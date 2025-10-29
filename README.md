@@ -71,6 +71,15 @@ python tools/create_github_issues.py \
 
 This will create one issue per user story with a checklist for the acceptance criteria.
 
+### Monorepo structure
+
+-   frontend — Next.js/React
+-   backend — API (NestJS/Node or Laravel)
+-   mobile — React Native (future)
+-   docs — documentation
+-   docker — containerization and ops assets
+-   .github — GitHub templates/workflows
+
 ### Notes
 
 -   The script parses lines like `US-001: العنوان...` followed by a persona/goal line (e.g., يبدأ بـ "كمستخدم"/"كعميل"/"كمورد"/"كنظام") and a block headed by `معايير القبول:`. All lines in that block are turned into checklist items.

@@ -1,0 +1,194 @@
+{
+  "nav": {
+    "home": "Home",
+    "about": "About",
+    "requests": "Requests",
+    "suppliers": "Suppliers",
+    "contact": "Contact"
+  },
+  "home": {
+    "hero": {
+      "badge": "Leading Platform for Specifications",
+      "title": "Request Your Product Specifications",
+      "titleHighlight": "and Get the Best Offers",
+      "subtitle": "A platform connecting specification seekers with professional suppliers. Get competitive quotes from trusted suppliers in minutes",
+      "searchPlaceholder": "Search for specifications, products, or suppliers...",
+      "searchButton": "Search",
+      "requestButton": "Request Specifications Now",
+      "browseSuppliersButton": "Browse Suppliers",
+      "illustrationText": "Simple and Easy Interface",
+      "stats": {
+        "requests": "Specification Requests",
+        "suppliers": "Verified Suppliers",
+        "satisfaction": "Customer Satisfaction"
+      },
+      "floatingCards": {
+        "newRequest": "New Request",
+        "quote": "Quote"
+      }
+    },
+    "cta": {
+      "title": "Get Started Today",
+      "description": "Join thousands of businesses finding the best suppliers",
+      "primary": "Sign Up Now",
+      "secondary": "Learn More",
+      "benefits": {
+        "free": "Free to use",
+        "network": "Wide supplier network",
+        "fast": "Fast responses",
+        "support": "24/7 support"
+      },
+      "stats": {
+        "requests": "Active Requests",
+        "suppliers": "Verified Suppliers",
+        "satisfaction": "Satisfaction Rate",
+        "support": "Support"
+      }
+    },
+    "stats": {
+      "title": "Our Stats",
+      "requests": {
+        "label": "Total Requests",
+        "value": "5,000+"
+      },
+      "suppliers": {
+        "label": "Active Suppliers",
+        "value": "1,200+"
+      },
+      "offers": {
+        "label": "Offers Submitted",
+        "value": "15,000+"
+      },
+      "satisfaction": {
+        "label": "Satisfaction Rate",
+        "value": "98%"
+      }
+    },
+    "features": {
+      "title": "Features",
+      "description": "Discover what makes our platform the best choice for your business",
+      "list": {
+        "speed": {
+          "title": "Fast Response",
+          "description": "Get quotes quickly from verified suppliers"
+        },
+        "trust": {
+          "title": "Trusted Network",
+          "description": "Work with verified and trusted suppliers"
+        },
+        "network": {
+          "title": "Wide Network",
+          "description": "Access thousands of suppliers nationwide"
+        },
+        "quality": {
+          "title": "Quality Guaranteed",
+          "description": "All suppliers are vetted for quality"
+        },
+        "time": {
+          "title": "Save Time",
+          "description": "Get multiple quotes in one place"
+        },
+        "prices": {
+          "title": "Best Prices",
+          "description": "Compare prices and choose the best"
+        },
+        "communication": {
+          "title": "Easy Communication",
+          "description": "Direct messaging with suppliers"
+        },
+        "ease": {
+          "title": "Easy to Use",
+          "description": "Simple and intuitive interface"
+        }
+      }
+    },
+    "categories": {
+      "title": "Categories",
+      "description": "Browse requests by category",
+      "viewAll": "View All Categories",
+      "items": {
+        "electronics": "Electronics",
+        "furniture": "Furniture",
+        "clothing": "Clothing",
+        "food": "Food & Beverages",
+        "automotive": "Automotive",
+        "tools": "Tools & Equipment",
+        "supplies": "Office Supplies",
+        "construction": "Construction"
+      }
+    },
+    "howItWorks": {
+      "title": "How It Works",
+      "description": "Getting started is easy - just follow these simple steps",
+      "steps": {
+        "write": {
+          "title": "Write Your Request",
+          "description": "Describe what you need in detail"
+        },
+        "publish": {
+          "title": "Publish Request",
+          "description": "Your request goes live to suppliers"
+        },
+        "receive": {
+          "title": "Receive Offers",
+          "description": "Get competitive quotes from suppliers"
+        },
+        "choose": {
+          "title": "Choose Best Offer",
+          "description": "Compare and select the best supplier"
+        }
+      },
+      "cta": {
+        "ready": "Ready to get started?",
+        "button": "Post Your First Request"
+      }
+    },
+    "recentRequests": {
+      "title": "Recent Requests",
+      "description": "Latest requests from buyers",
+      "viewAll": "View All Requests",
+      "viewDetails": "View Details",
+      "budget": "Budget",
+      "offers": "{count} offers",
+      "status": {
+        "active": "Active",
+        "closed": "Closed",
+        "pending": "Pending"
+      },
+      "mockData": {
+        "request1": {
+          "title": "Office Laptops Needed",
+          "category": "Electronics"
+        },
+        "request2": {
+          "title": "Complete Restaurant Setup",
+          "category": "Food & Beverages"
+        }
+      }
+    },
+    "testimonials": {
+      "title": "What Our Clients Say",
+      "description": "Hear from businesses who found success with our platform",
+      "items": {
+        "testimonial1": {
+          "name": "Ahmed Al-Saeed",
+          "role": "Procurement Manager",
+          "company": "Modern Technology Company",
+          "content": "Amazing platform that saved us a lot of time and effort in finding suppliers. We received diverse and competitive offers in record time."
+        },
+        "testimonial2": {
+          "name": "Fatima Al-Zahrani",
+          "role": "Project Manager",
+          "company": "Advanced Construction Corporation",
+          "content": "Excellent experience! Professional suppliers and very competitive prices. I highly recommend it to anyone looking for reliable suppliers."
+        },
+        "testimonial3": {
+          "name": "Khalid Al-Otaibi",
+          "role": "Restaurant Owner",
+          "company": "Elite Restaurants",
+          "content": "I used the platform to request kitchen equipment specifications and received excellent offers. Communication with suppliers was smooth and professional."
+        }
+      }
+    }
+  }
+}

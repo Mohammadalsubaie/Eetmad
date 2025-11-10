@@ -1,0 +1,103 @@
+:root {
+  --radius: 0.5rem;
+
+  /* Base colors - Light Theme - Vaporwave Dream */
+  --background: 300 100% 99%;         /* Ultra light pink */
+  --foreground: 280 80% 15%;          /* Deep purple-black */
+  
+  /* Primary brand color - Hot Magenta */
+  --primary: 320 100% 50%;            /* Electric magenta */
+  --primary-foreground: 0 0% 100%;
+  
+  /* Secondary brand color - Cyber Lime */
+  --secondary: 80 100% 50%;           /* Neon lime green */
+  --secondary-foreground: 280 80% 15%;
+  
+  /* Muted backgrounds - Pastel Purple */
+  --muted: 280 60% 97%;               /* Soft lavender mist */
+  --muted-foreground: 280 30% 40%;    /* Purple gray */
+  
+  /* Accent color - Electric Cyan */
+  --accent: 180 100% 90%;             /* Bright cyan tint */
+  --accent-foreground: 280 80% 15%;
+  
+  /* Destructive/error - Laser Red */
+  --destructive: 340 100% 55%;        /* Vibrant red-pink */
+  --destructive-foreground: 0 0% 100%;
+  
+  /* Success - Matrix Green */
+  --success: 120 100% 40%;            /* Bright matrix green */
+  --success-foreground: 0 0% 100%;
+  
+  /* Warning - Neon Orange */
+  --warning: 30 100% 55%;             /* Electric orange */
+  --warning-foreground: 280 80% 15%;
+  
+  /* Info - Hologram Blue */
+  --info: 200 100% 60%;               /* Holographic blue */
+  --info-foreground: 0 0% 100%;
+  
+  /* UI elements - Glitch Borders */
+  --border: 300 50% 90%;              /* Pink-purple border */
+  --input: 300 50% 90%;
+  --ring: 320 100% 50%;
+  
+  /* Card - Glossy White */
+  --card: 0 0% 100%;
+  --card-foreground: 280 80% 15%;
+  
+  /* Popover - Glossy White */
+  --popover: 0 0% 100%;
+  --popover-foreground: 280 80% 15%;
+}
+
+.dark {
+  /* Base colors - Dark Theme - Cyberpunk Night */
+  --background: 280 50% 8%;           /* Deep purple-black */
+  --foreground: 180 100% 85%;         /* Bright cyan-white */
+  
+  /* Primary brand color - Neon Pink */
+  --primary: 320 100% 60%;            /* Hot neon pink */
+  --primary-foreground: 0 0% 100%;
+  
+  /* Secondary brand color - Toxic Green */
+  --secondary: 75 100% 55%;           /* Radioactive green */
+  --secondary-foreground: 280 50% 8%;
+  
+  /* Muted backgrounds - Dark Purple */
+  --muted: 280 35% 15%;               /* Dark violet */
+  --muted-foreground: 280 20% 75%;    /* Light purple-gray */
+  
+  /* Accent color - Electric Blue */
+  --accent: 190 100% 35%;             /* Deep electric blue */
+  --accent-foreground: 180 100% 85%;
+  
+  /* Destructive/error - Plasma Red */
+  --destructive: 0 100% 60%;          /* Glowing red */
+  --destructive-foreground: 0 0% 100%;
+  
+  /* Success - Laser Green */
+  --success: 140 100% 50%;            /* Neon green */
+  --success-foreground: 280 50% 8%;
+  
+  /* Warning - Solar Orange */
+  --warning: 35 100% 60%;             /* Blazing orange */
+  --warning-foreground: 280 50% 8%;
+  
+  /* Info - Plasma Cyan */
+  --info: 180 100% 55%;               /* Glowing cyan */
+  --info-foreground: 280 50% 8%;
+  
+  /* UI elements - Neon Borders */
+  --border: 280 40% 25%;              /* Purple glow border */
+  --input: 280 40% 25%;
+  --ring: 320 100% 60%;
+  
+  /* Card - Dark Glass */
+  --card: 280 45% 12%;                /* Translucent purple */
+  --card-foreground: 180 100% 85%;
+  
+  /* Popover - Dark Glass */
+  --popover: 280 45% 12%;
+  --popover-foreground: 180 100% 85%;
+}

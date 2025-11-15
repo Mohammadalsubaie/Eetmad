@@ -5,7 +5,7 @@ import { motion } from 'framer-motion';
 import { Facebook, Globe, Linkedin, Target, Twitter } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 import Link from 'next/link';
-
+// for test only
 export function Footer() {
   const t = useTranslations('footer');
 
@@ -73,7 +73,9 @@ export function Footer() {
                   href={social.href}
                   whileHover={{ scale: 1.1 }}
                   className="flex h-11 w-11 items-center justify-center rounded-xl transition-all"
-                  style={{ backgroundColor: `color-mix(in srgb, ${cssVars.neutral.textMuted} 15%, transparent)` }}
+                  style={{
+                    backgroundColor: `color-mix(in srgb, ${cssVars.neutral.textMuted} 15%, transparent)`,
+                  }}
                   aria-label={social.label}
                 >
                   <social.icon className="h-5 w-5" style={{ color: cssVars.neutral.textMuted }} />
@@ -121,12 +123,18 @@ export function Footer() {
         {/* Bottom Bar */}
         <div
           className="flex flex-col items-center justify-between gap-4 border-t pt-8 md:flex-row"
-          style={{ borderColor: `color-mix(in srgb, ${cssVars.neutral.textMuted} 20%, transparent)` }}
+          style={{
+            borderColor: `color-mix(in srgb, ${cssVars.neutral.textMuted} 20%, transparent)`,
+          }}
         >
           <p style={{ color: cssVars.neutral.textMuted }}>{t('copyright')}</p>
           <div className="flex gap-6">
             <motion.div whileHover={{ scale: 1.05 }}>
-              <Link href="/terms" className="text-sm transition-all" style={{ color: cssVars.neutral.textMuted }}>
+              <Link
+                href="/terms"
+                className="text-sm transition-all"
+                style={{ color: cssVars.neutral.textMuted }}
+              >
                 <span
                   className="transition-colors"
                   onMouseEnter={(e) => {
@@ -141,7 +149,11 @@ export function Footer() {
               </Link>
             </motion.div>
             <motion.div whileHover={{ scale: 1.05 }}>
-              <Link href="/privacy" className="text-sm transition-all" style={{ color: cssVars.neutral.textMuted }}>
+              <Link
+                href="/privacy"
+                className="text-sm transition-all"
+                style={{ color: cssVars.neutral.textMuted }}
+              >
                 <span
                   className="transition-colors"
                   onMouseEnter={(e) => {

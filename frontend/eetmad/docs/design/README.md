@@ -71,6 +71,27 @@ frontend/eetmad/src/styles/theme/
 3. Reference theme: `frontend/eetmad/src/styles/theme/cssVariables.ts`
 4. Follow the rules and examples in the guidelines
 
+## 🧩 New Landing Sections
+
+- `ExploreCategoriesSection`, `GettingStartedSection`, `ProjectBenefitsSection`, `FAQSection`, `AudienceSection`
+  - Located in `frontend/eetmad/src/components/features/home/`
+  - Showcase the new marketing story: category discovery, onboarding paths، المميزات، الأسئلة الشائعة، والفئات المستهدفة
+  - Rely on `cssVars`, `framer-motion`, و `next-intl` بنفس النمط المستخدم في Hero/Search
+  - تمت إضافة النصوص في `frontend/eetmad/messages/{ar,en}.json` تحت `biddingPlatform.sections`
+
+### قائمة الأقسام في الصفحة الرئيسية:
+
+1. **Hero Section** - قسم البطل الرئيسي مع الإحصائيات
+2. **Platform Overview** - لمحة عن المنصة
+3. **Explore Categories** - استكشف الفئات
+4. **Success Stories** - قصص النجاح وحالات الاستخدام ⭐ (جديد)
+5. **Project Benefits** - مميزات المشروع
+6. **Transparency Section** - الأمان والشفافية ⭐ (جديد)
+7. **Getting Started** - كيف تبدأ مشروعك
+8. **Audience Section** - الفئات التي نخدمها
+9. **CTA Section** - دعوة للإجراء (محدّثة) ⭐
+10. **FAQ Section** - الأسئلة الشائعة
+
 ## 🔗 Related Documentation
 
 - Project Structure: `../structure/structure.md`

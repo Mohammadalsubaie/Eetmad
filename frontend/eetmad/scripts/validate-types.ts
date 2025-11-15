@@ -189,9 +189,7 @@ function isPlaceholderFile(content: string): boolean {
 
   // Check for placeholder patterns in the first 10 lines
   const lines = content.split('\n').slice(0, 10).join('\n');
-  const hasPlaceholderPattern = placeholderPatterns.some((pattern) =>
-    pattern.test(lines)
-  );
+  const hasPlaceholderPattern = placeholderPatterns.some((pattern) => pattern.test(lines));
 
   // Also check if file is very minimal (likely a placeholder)
   const isMinimalPlaceholder =
@@ -605,14 +603,14 @@ function main() {
   let skippedPlaceholders = 0;
   for (const filePath of typeFiles) {
     const content = fs.readFileSync(filePath, 'utf-8');
-    
+
     // Skip placeholder files
     if (isPlaceholderFile(content)) {
       skippedPlaceholders++;
       console.log(`   ${path.basename(filePath)}: ⏭️  skipped (placeholder)`);
       continue;
     }
-    
+
     const interfaces = parseTypeScriptInterfaces(filePath, content, allTypeAliases);
     tsInterfaces.push(...interfaces);
     console.log(`   ${path.basename(filePath)}: ${interfaces.length} interface(s)`);

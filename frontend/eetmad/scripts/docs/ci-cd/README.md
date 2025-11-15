@@ -9,11 +9,13 @@
 We have two levels of automation:
 
 ### 1. **Local Checks** (Git Hooks)
+
 - Run on your machine before commit/push
 - Fast feedback
 - Catches issues early
 
 ### 2. **CI/CD Pipeline** (GitHub Actions)
+
 - Runs on pull requests to `develop`
 - Comprehensive checks
 - Final validation before merge
@@ -32,6 +34,7 @@ chmod +x scripts/setup-hooks.sh
 ```
 
 This installs:
+
 - ✅ Pre-commit hook (validates staged files)
 - ✅ Pre-push hook (full validation)
 
@@ -44,10 +47,12 @@ This installs:
 **When it runs:** Before every `git commit`
 
 **What it checks:**
+
 - Design rules on staged files
 - Fast (only changed files)
 
 **Example output:**
+
 ```
 🔍 Running pre-commit checks...
 
@@ -70,6 +75,7 @@ Files to check:
 **When it runs:** Before every `git push`
 
 **What it checks:**
+
 1. TypeScript compilation
 2. ESLint
 3. Prettier formatting
@@ -80,6 +86,7 @@ Files to check:
 **Time:** ~30 seconds
 
 **Example output:**
+
 ```
 🚀 Running pre-push checks...
 
@@ -216,12 +223,14 @@ Final step:
 ### Viewing Results
 
 **On GitHub:**
+
 1. Go to your Pull Request
 2. Scroll to "Checks" section
 3. Click on "Develop Branch CI/CD"
 4. View detailed results
 
 **Example:**
+
 ```
 ✅ Code Quality & Validation  - Passed
 ✅ Testing                    - Passed
@@ -237,17 +246,17 @@ Final step:
 
 ### Complete Checklist
 
-| Check | Pre-Commit | Pre-Push | CI/CD |
-|-------|------------|----------|-------|
-| Design Rules | ✅ (staged) | ✅ (changed) | ✅ (all) |
-| TypeScript | ❌ | ✅ | ✅ |
-| ESLint | ❌ | ✅ | ✅ |
-| Prettier | ❌ | ✅ | ✅ |
-| Type Validation | ❌ | ✅ | ✅ |
-| Naming Convention | ❌ | ❌ | ✅ |
-| Tests | ❌ | ✅ | ✅ |
-| Build | ❌ | ❌ | ✅ |
-| Security Audit | ❌ | ❌ | ✅ |
+| Check             | Pre-Commit  | Pre-Push     | CI/CD    |
+| ----------------- | ----------- | ------------ | -------- |
+| Design Rules      | ✅ (staged) | ✅ (changed) | ✅ (all) |
+| TypeScript        | ❌          | ✅           | ✅       |
+| ESLint            | ❌          | ✅           | ✅       |
+| Prettier          | ❌          | ✅           | ✅       |
+| Type Validation   | ❌          | ✅           | ✅       |
+| Naming Convention | ❌          | ❌           | ✅       |
+| Tests             | ❌          | ✅           | ✅       |
+| Build             | ❌          | ❌           | ✅       |
+| Security Audit    | ❌          | ❌           | ✅       |
 
 ---
 
@@ -273,6 +282,7 @@ on:
 **Location:** `.husky/pre-commit`
 
 **Customization:**
+
 ```bash
 # Edit the file to add/remove checks
 vim .husky/pre-commit
@@ -289,6 +299,7 @@ npm run your-custom-script
 **Location:** `.husky/pre-push`
 
 **Customization:**
+
 ```bash
 # Edit the file to add/remove checks
 vim .husky/pre-push
@@ -306,6 +317,7 @@ vim .husky/pre-push
 **Problem:** Git hooks don't execute
 
 **Solution:**
+
 ```bash
 # Reinstall hooks
 ./scripts/setup-hooks.sh
@@ -325,6 +337,7 @@ chmod +x .husky/pre-push
 **Problem:** Pre-push hook fails
 
 **Debug:**
+
 ```bash
 # Run checks manually to see details
 cd frontend/eetmad
@@ -338,6 +351,7 @@ npm run test
 ```
 
 **Quick fixes:**
+
 ```bash
 # Format code
 npm run format
@@ -356,6 +370,7 @@ cat scripts/quick-reference/common-fixes.md
 **Problem:** GitHub Actions failing
 
 **Steps:**
+
 1. Check the error logs on GitHub
 2. Run the same checks locally:
    ```bash
@@ -371,6 +386,7 @@ cat scripts/quick-reference/common-fixes.md
 **Problem:** Pre-push takes too long
 
 **Solutions:**
+
 ```bash
 # Option 1: Comment out tests in .husky/pre-push
 # (Not recommended for develop branch)
@@ -450,16 +466,19 @@ git push
 ## 📚 Additional Resources
 
 ### Quick References
+
 - [Common Fixes](../../quick-reference/common-fixes.md)
 - [Design Rules](../../quick-reference/design-rules.md)
 - [cssVars Reference](../../quick-reference/css-vars.md)
 
 ### Workflows
+
 - [Before Commit](../workflows/README.md#before-committing)
 - [Code Review](../workflows/README.md#code-review-workflows)
 - [Debugging Errors](../workflows/README.md#debugging-workflows)
 
 ### Examples
+
 - [CI/CD Config Examples](./ci-integration-example.yml)
 - [Correct Component](../../examples/test-component-correct.tsx)
 
@@ -468,16 +487,19 @@ git push
 ## 🎯 Summary
 
 ### Setup (One Time)
+
 ```bash
 ./scripts/setup-hooks.sh
 ```
 
 ### Daily Use
+
 - Commit → Pre-commit hook validates
 - Push → Pre-push hook validates
 - PR → CI/CD validates
 
 ### Benefits
+
 - ✅ Catch errors early
 - ✅ Consistent code quality
 - ✅ Automated checks
@@ -489,12 +511,14 @@ git push
 ## 📞 Support
 
 **Issues?**
+
 - Check logs carefully
 - Run checks manually
 - Use interactive menu: `npm run scripts:menu`
 - Ask in #dev-help channel
 
 **Want to customize?**
+
 - Edit `.husky/pre-commit` or `.husky/pre-push`
 - Modify `.github/workflows/develop-checks.yml`
 - Update and test carefully
@@ -503,5 +527,4 @@ git push
 
 **🎉 Your code quality is now automated!**
 
-*Last Updated: November 15, 2025*
-
+_Last Updated: November 15, 2025_

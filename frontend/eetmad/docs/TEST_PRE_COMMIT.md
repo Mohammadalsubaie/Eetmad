@@ -28,7 +28,7 @@ import { cssVars } from '@/styles/theme';
 
 export default function TestCorrect() {
   const t = useTranslations('test');
-  
+
   return (
     <div style={{ backgroundColor: cssVars.neutral.bg }}>
       <h1>{t('title')}</h1>
@@ -76,6 +76,7 @@ git commit -m "test: wrong component"
 **Expected:** ❌ Validation fails, commit blocked
 
 **You should see:**
+
 ```
 ❌ Design rules validation failed!
 
@@ -112,6 +113,7 @@ git commit -m "test: hook"
 ```
 
 **Clean up:**
+
 ```bash
 rm src/test-hook.ts
 git restore --staged src/test-hook.ts 2>/dev/null || true
@@ -177,11 +179,10 @@ If the hook is working, you'll see:
 ✅ **Automatic validation** on every commit  
 ✅ **Fast feedback** (< 10 seconds)  
 ✅ **Clear error messages**  
-✅ **No bad code gets committed**  
+✅ **No bad code gets committed**
 
 ---
 
 **Your commits are now protected! 🛡️**
 
-*Next: Try committing actual code and see the validation in action!*
-
+_Next: Try committing actual code and see the validation in action!_

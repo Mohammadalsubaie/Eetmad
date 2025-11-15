@@ -57,4 +57,3 @@ export const withOpacity = (cssVar: string, opacity: number) => {
   // Return with opacity (works with rgb colors)
   return `color-mix(in srgb, ${cssVar} ${opacity * 100}%, transparent)`;
 };
-

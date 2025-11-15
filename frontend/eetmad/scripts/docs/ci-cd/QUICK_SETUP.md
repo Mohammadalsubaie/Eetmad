@@ -19,16 +19,19 @@ chmod +x scripts/setup-hooks.sh
 ## ✅ What You Just Installed
 
 ### 1. Pre-Commit Hook
+
 - Runs before every commit
 - Validates staged files
 - Fast (< 10 seconds)
 
 ### 2. Pre-Push Hook
+
 - Runs before every push
 - Full validation suite
 - Takes ~30 seconds
 
 ### 3. GitHub Actions
+
 - Already configured
 - Runs on PRs to develop
 - Comprehensive checks
@@ -71,6 +74,7 @@ git push
 ## 📋 What Happens Now
 
 ### When You Commit
+
 ```
 $ git commit -m "feat: add feature"
 
@@ -89,6 +93,7 @@ Files to check:
 ---
 
 ### When You Push
+
 ```
 $ git push
 
@@ -124,6 +129,7 @@ $ git push
 ### When You Create PR to Develop
 
 GitHub Actions automatically runs:
+
 - ✅ Code Quality Checks
 - ✅ Tests
 - ✅ Build Check
@@ -231,8 +237,8 @@ After setup, verify:
 
 **🎉 You're all set! Your code quality is now automated.**
 
-*Setup time: 5 minutes*  
-*Saves: Hours of code review*
+_Setup time: 5 minutes_  
+_Saves: Hours of code review_
 
 ---
 
@@ -247,5 +253,4 @@ npm run scripts:menu
 
 ---
 
-*Last Updated: November 15, 2025*
-
+_Last Updated: November 15, 2025_

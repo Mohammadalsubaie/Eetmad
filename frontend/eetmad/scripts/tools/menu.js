@@ -5,6 +5,7 @@
  * Easy way to discover and run all available scripts
  */
 
+/* eslint-disable @typescript-eslint/no-require-imports */
 const readline = require('readline');
 const { spawn } = require('child_process');
 const path = require('path');

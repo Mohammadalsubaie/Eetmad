@@ -4,7 +4,7 @@ import { useTranslations } from 'next-intl';
 
 export default function FAQPage() {
   const t = useTranslations('pages');
-  
+
   return (
     <div>
       <h1>{t('faq.title')}</h1>

@@ -82,8 +82,8 @@ Use opacity instead of color shades:
 ### Cards
 
 ```tsx
-<div className="bg-card text-card-foreground border-border rounded-lg border shadow-sm">
-  <h3 className="text-foreground font-semibold">Title</h3>
+<div className="rounded-lg border border-border bg-card text-card-foreground shadow-sm">
+  <h3 className="font-semibold text-foreground">Title</h3>
   <p className="text-muted-foreground">Description</p>
 </div>
 ```
@@ -134,14 +134,14 @@ Use opacity instead of color shades:
   <p className="text-primary-foreground/90">Subtitle with slight transparency</p>
 
   {/* Card on colored background */}
-  <div className="bg-card text-card-foreground border-border">Content</div>
+  <div className="border-border bg-card text-card-foreground">Content</div>
 </section>
 ```
 
 ### Glass Effects
 
 ```tsx
-<div className="bg-card/80 border-border/50 border backdrop-blur-md">Glass morphism content</div>
+<div className="border border-border/50 bg-card/80 backdrop-blur-md">Glass morphism content</div>
 ```
 
 ## Dark Mode Rules
@@ -219,7 +219,7 @@ Use logical properties for RTL compatibility:
 
 ```tsx
 <Dialog>
-  <DialogContent className="bg-card text-card-foreground border-border">
+  <DialogContent className="border-border bg-card text-card-foreground">
     <DialogHeader>
       <DialogTitle className="text-foreground">Title</DialogTitle>
       <DialogDescription className="text-muted-foreground">Description</DialogDescription>

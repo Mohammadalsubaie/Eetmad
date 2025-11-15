@@ -7,6 +7,7 @@
 ## 📋 Quick Checklist
 
 Before you start, make sure you have:
+
 - [ ] Component name (PascalCase)
 - [ ] Location decided (which feature/folder)
 - [ ] Props interface planned
@@ -40,32 +41,24 @@ touch src/components/features/yourfeature/YourComponent.tsx
 ### Step 2: Set Up Basic Structure
 
 ```tsx
-'use client';  // ← Add if using hooks or interactivity
+'use client'; // ← Add if using hooks or interactivity
 
-import { useState } from 'react';  // ← If needed
+import { useState } from 'react'; // ← If needed
 import { useTranslations } from 'next-intl';
-import { motion } from 'framer-motion';  // ← For animations
+import { motion } from 'framer-motion'; // ← For animations
 import { cssVars } from '@/styles/theme';
 
 // Props interface
 interface YourComponentProps {
   title: string;
-  description?: string;  // Optional props with ?
+  description?: string; // Optional props with ?
   onAction?: () => void;
 }
 
-export default function YourComponent({ 
-  title, 
-  description,
-  onAction 
-}: YourComponentProps) {
+export default function YourComponent({ title, description, onAction }: YourComponentProps) {
   // Component logic here
-  
-  return (
-    <div>
-      {/* JSX here */}
-    </div>
-  );
+
+  return <div>{/* JSX here */}</div>;
 }
 ```
 
@@ -76,8 +69,8 @@ export default function YourComponent({
 ```tsx
 export default function YourComponent({ title }: YourComponentProps) {
   // Add translation hook
-  const t = useTranslations('yourfeature');  // ← namespace
-  
+  const t = useTranslations('yourfeature'); // ← namespace
+
   return (
     <div>
       <h1>{t('componentTitle')}</h1>
@@ -120,20 +113,20 @@ code messages/en.json
 ```tsx
 export default function YourComponent({ title }: YourComponentProps) {
   const t = useTranslations('yourfeature');
-  
+
   return (
     <div
-      className="p-6 rounded-lg"  // ← Tailwind for layout
+      className="rounded-lg p-6" // ← Tailwind for layout
       style={{
-        backgroundColor: cssVars.neutral.surface,  // ← cssVars for colors
+        backgroundColor: cssVars.neutral.surface, // ← cssVars for colors
         border: `1px solid ${cssVars.neutral.border}`,
         boxShadow: cssVars.shadow.md,
       }}
     >
       <h1
-        className="text-2xl font-bold mb-4"  // ← Tailwind for typography
+        className="mb-4 text-2xl font-bold" // ← Tailwind for typography
         style={{
-          color: cssVars.text.primary,  // ← cssVars for colors
+          color: cssVars.text.primary, // ← cssVars for colors
         }}
       >
         {t('componentTitle')}
@@ -144,6 +137,7 @@ export default function YourComponent({ title }: YourComponentProps) {
 ```
 
 **Remember:**
+
 - ✅ Use Tailwind for: layout, spacing, sizing
 - ✅ Use cssVars for: colors, shadows, custom values
 - ❌ Never use: hardcoded hex colors, Tailwind color classes
@@ -155,22 +149,20 @@ export default function YourComponent({ title }: YourComponentProps) {
 ```tsx
 export default function YourComponent({ title }: YourComponentProps) {
   const t = useTranslations('yourfeature');
-  
+
   return (
     <motion.div
-      className="p-6 rounded-lg"
+      className="rounded-lg p-6"
       style={{
         backgroundColor: cssVars.neutral.surface,
         border: `1px solid ${cssVars.neutral.border}`,
       }}
-      initial={{ opacity: 0, y: 20 }}       // ← Entry animation
+      initial={{ opacity: 0, y: 20 }} // ← Entry animation
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.3 }}
-      whileHover={{ scale: 1.02 }}          // ← Hover effect
+      whileHover={{ scale: 1.02 }} // ← Hover effect
     >
-      <h1 style={{ color: cssVars.text.primary }}>
-        {t('componentTitle')}
-      </h1>
+      <h1 style={{ color: cssVars.text.primary }}>{t('componentTitle')}</h1>
     </motion.div>
   );
 }
@@ -191,17 +183,15 @@ interface YourComponentProps {
   initialValue?: string;
 }
 
-export default function YourComponent({ 
-  initialValue = '' 
-}: YourComponentProps) {
+export default function YourComponent({ initialValue = '' }: YourComponentProps) {
   const t = useTranslations('yourfeature');
   const [value, setValue] = useState(initialValue);
   const [isHovered, setIsHovered] = useState(false);
-  
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setValue(e.target.value);
   };
-  
+
   return (
     <div>
       <input
@@ -263,19 +253,19 @@ npm run dev
 
 ### Step 9: Document (if complex)
 
-```tsx
+````tsx
 /**
  * YourComponent
- * 
+ *
  * Description: Brief description of what the component does
- * 
+ *
  * @param title - The main title to display
  * @param description - Optional description text
  * @param onAction - Optional callback when action is triggered
- * 
+ *
  * @example
  * ```tsx
- * <YourComponent 
+ * <YourComponent
  *   title="My Title"
  *   description="My Description"
  *   onAction={() => console.log('Action!')}
@@ -285,7 +275,7 @@ npm run dev
 export default function YourComponent({ ... }: YourComponentProps) {
   // ...
 }
-```
+````
 
 ---
 
@@ -321,24 +311,19 @@ interface ServiceCardProps {
   onBook?: (serviceId: string) => void;
 }
 
-export default function ServiceCard({
-  serviceId,
-  title,
-  price,
-  onBook,
-}: ServiceCardProps) {
+export default function ServiceCard({ serviceId, title, price, onBook }: ServiceCardProps) {
   const t = useTranslations('services');
   const [isHovered, setIsHovered] = useState(false);
-  
+
   const handleBook = () => {
     if (onBook) {
       onBook(serviceId);
     }
   };
-  
+
   return (
     <motion.div
-      className="p-6 rounded-lg"
+      className="rounded-lg p-6"
       style={{
         backgroundColor: cssVars.neutral.surface,
         border: `1px solid ${cssVars.neutral.border}`,
@@ -350,23 +335,17 @@ export default function ServiceCard({
       whileHover={{ y: -4 }}
       transition={{ duration: 0.2 }}
     >
-      <h3
-        className="text-xl font-bold mb-2"
-        style={{ color: cssVars.text.primary }}
-      >
+      <h3 className="mb-2 text-xl font-bold" style={{ color: cssVars.text.primary }}>
         {title}
       </h3>
-      
-      <p
-        className="text-lg mb-4"
-        style={{ color: cssVars.primary.DEFAULT }}
-      >
+
+      <p className="mb-4 text-lg" style={{ color: cssVars.primary.DEFAULT }}>
         {price} {t('currency')}
       </p>
-      
+
       <motion.button
         onClick={handleBook}
-        className="w-full py-2 px-4 rounded-md"
+        className="w-full rounded-md px-4 py-2"
         style={{
           backgroundColor: cssVars.primary.DEFAULT,
           color: cssVars.text.white,
@@ -426,22 +405,26 @@ export default function Button({
       text: cssVars.text.white,
     },
   };
-  
+
   return (
     <motion.button
       onClick={onClick}
       disabled={disabled}
-      className="px-6 py-3 rounded-md font-medium"
+      className="rounded-md px-6 py-3 font-medium"
       style={{
         backgroundColor: variants[variant].bg,
         color: variants[variant].text,
         opacity: disabled ? 0.5 : 1,
         cursor: disabled ? 'not-allowed' : 'pointer',
       }}
-      whileHover={!disabled ? {
-        backgroundColor: variants[variant].hover,
-        scale: 1.02,
-      } : {}}
+      whileHover={
+        !disabled
+          ? {
+              backgroundColor: variants[variant].hover,
+              scale: 1.02,
+            }
+          : {}
+      }
       whileTap={!disabled ? { scale: 0.98 } : {}}
     >
       {children}
@@ -464,23 +447,23 @@ interface CardProps {
   className?: string;
 }
 
-export default function Card({
-  children,
-  hoverable = false,
-  className = '',
-}: CardProps) {
+export default function Card({ children, hoverable = false, className = '' }: CardProps) {
   return (
     <motion.div
-      className={`p-6 rounded-lg ${className}`}
+      className={`rounded-lg p-6 ${className}`}
       style={{
         backgroundColor: cssVars.neutral.surface,
         border: `1px solid ${cssVars.neutral.border}`,
         boxShadow: cssVars.shadow.md,
       }}
-      whileHover={hoverable ? {
-        y: -4,
-        boxShadow: cssVars.shadow.lg,
-      } : {}}
+      whileHover={
+        hoverable
+          ? {
+              y: -4,
+              boxShadow: cssVars.shadow.lg,
+            }
+          : {}
+      }
       transition={{ duration: 0.2 }}
     >
       {children}
@@ -507,11 +490,11 @@ export default function Card({
 
 ```tsx
 // WRONG
-<h1>Welcome</h1>
+<h1>Welcome</h1>;
 
 // RIGHT
 const t = useTranslations('home');
-<h1>{t('welcome')}</h1>
+<h1>{t('welcome')}</h1>;
 ```
 
 ### ❌ Mistake 3: Missing 'use client'
@@ -551,5 +534,4 @@ export default function Component() { ... }
 
 **🎉 You're ready to build great components!**
 
-*Last Updated: November 15, 2025*
-
+_Last Updated: November 15, 2025_

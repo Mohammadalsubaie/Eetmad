@@ -62,7 +62,10 @@ export default function ForgotPasswordForm() {
               </span>
             </div>
 
-            <h1 className="mb-2 text-3xl font-bold md:text-4xl" style={{ color: cssVars.secondary.DEFAULT }}>
+            <h1
+              className="mb-2 text-3xl font-bold md:text-4xl"
+              style={{ color: cssVars.secondary.DEFAULT }}
+            >
               {t('forgotPassword.title')}
             </h1>
             <p className="text-base" style={{ color: cssVars.neutral.textSecondary }}>
@@ -91,7 +94,10 @@ export default function ForgotPasswordForm() {
           <form onSubmit={handleSubmit} className="space-y-5">
             {/* Email Field */}
             <div>
-              <label className="mb-2 block text-sm font-bold" style={{ color: cssVars.secondary.DEFAULT }}>
+              <label
+                className="mb-2 block text-sm font-bold"
+                style={{ color: cssVars.secondary.DEFAULT }}
+              >
                 {t('common.email')}
               </label>
               <div className="relative">
@@ -100,12 +106,12 @@ export default function ForgotPasswordForm() {
                   style={{ color: cssVars.neutral.textMuted }}
                 />
                 <input
-                type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                required
-                dir="ltr"
-                className="w-full rounded-xl border-2 py-3 pl-4 pr-12 font-semibold outline-none transition-all focus:border-opacity-100"
+                  type="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  required
+                  dir="ltr"
+                  className="w-full rounded-xl border-2 py-3 pl-4 pr-12 font-semibold outline-none transition-all focus:border-opacity-100"
                   style={{
                     backgroundColor: cssVars.neutral.bg,
                     color: cssVars.secondary.DEFAULT,
@@ -133,11 +139,7 @@ export default function ForgotPasswordForm() {
               ) : (
                 <>
                   {t('forgotPassword.submitButton')}
-                  {isRTL ? (
-                    <ArrowLeft className="h-6 w-6" />
-                  ) : (
-                    <ArrowRight className="h-6 w-6" />
-                  )}
+                  {isRTL ? <ArrowLeft className="h-6 w-6" /> : <ArrowRight className="h-6 w-6" />}
                 </>
               )}
             </motion.button>
@@ -167,7 +169,9 @@ export default function ForgotPasswordForm() {
             animate={{ scale: 1 }}
             transition={{ delay: 0.2, type: 'spring' }}
             className="mx-auto mb-6 flex h-24 w-24 items-center justify-center rounded-full"
-            style={{ backgroundColor: `color-mix(in srgb, ${cssVars.status.success} 15%, transparent)` }}
+            style={{
+              backgroundColor: `color-mix(in srgb, ${cssVars.status.success} 15%, transparent)`,
+            }}
           >
             <CheckCircle2 className="h-12 w-12" style={{ color: cssVars.status.success }} />
           </motion.div>

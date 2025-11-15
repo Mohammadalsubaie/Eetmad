@@ -11,50 +11,50 @@
 
 :root {
   /* ========== الثيم الفاتح (الافتراضي) ========== */
-  
+
   /* الألوان الأساسية */
-  --color-primary: #34656D;
-  --color-primary-dark: #284E54;
-  --color-primary-darker: #284E54;
-  --color-primary-light: #6C8B89;
+  --color-primary: #34656d;
+  --color-primary-dark: #284e54;
+  --color-primary-darker: #284e54;
+  --color-primary-light: #6c8b89;
 
   /* اللون الثانوي */
   --color-secondary: #334443;
   --color-secondary-darker: #334443;
 
   /* ألوان الإبراز - الفضي بدلاً من الذهبي */
-  --color-accent-primary: #E8E8E8;
-  --color-accent: #E8E8E8;
-  --color-accent-secondary: #D1D1D1;
-  --color-accent-dark: #D1D1D1;
-  --color-accent-warm: #B8B8B8;
-  --color-accent-light: #F5F5F5;
+  --color-accent-primary: #e8e8e8;
+  --color-accent: #e8e8e8;
+  --color-accent-secondary: #d1d1d1;
+  --color-accent-dark: #d1d1d1;
+  --color-accent-warm: #b8b8b8;
+  --color-accent-light: #f5f5f5;
 
   /* الألوان المحايدة - استبدال البني بالفضي */
-  --color-neutral-bg: #F5F5F5;
-  --color-neutral-background: #F5F5F5;
-  --color-neutral-surface: #FFFFFF;
-  --color-neutral-surface-alt: #E8E8E8;
-  --color-neutral-border: #D1D1D1;
-  --color-neutral-text-muted: #A4C5CA;
+  --color-neutral-bg: #f5f5f5;
+  --color-neutral-background: #f5f5f5;
+  --color-neutral-surface: #ffffff;
+  --color-neutral-surface-alt: #e8e8e8;
+  --color-neutral-border: #d1d1d1;
+  --color-neutral-text-muted: #a4c5ca;
   --color-neutral-text-secondary: #536765;
-  --color-neutral-light: #A4C5CA;
-  --color-neutral: #8C9E9D;
+  --color-neutral-light: #a4c5ca;
+  --color-neutral: #8c9e9d;
   --color-neutral-dark: #536765;
   --color-neutral-darker: #334443;
 
   /* ألوان الحالة */
-  --color-status-success: #3D8B64;
-  --color-status-error: #C95454;
-  --color-status-warning: #B8B8B8;
-  --color-status-info: #34656D;
+  --color-status-success: #3d8b64;
+  --color-status-error: #c95454;
+  --color-status-warning: #b8b8b8;
+  --color-status-info: #34656d;
 
   /* التدرجات */
-  --gradient-gold: linear-gradient(135deg, #E8E8E8 0%, #D1D1D1 100%);
-  --gradient-primary: linear-gradient(135deg, #34656D 0%, #284E54 100%);
-  --gradient-hero: linear-gradient(180deg, #334443 0%, #34656D 100%);
-  --gradient-cta: linear-gradient(135deg, #34656D 0%, #334443 100%);
-  
+  --gradient-gold: linear-gradient(135deg, #e8e8e8 0%, #d1d1d1 100%);
+  --gradient-primary: linear-gradient(135deg, #34656d 0%, #284e54 100%);
+  --gradient-hero: linear-gradient(180deg, #334443 0%, #34656d 100%);
+  --gradient-cta: linear-gradient(135deg, #34656d 0%, #334443 100%);
+
   /* Ring colors with opacity */
   --ring-primary-dark-20: rgba(40, 77, 84, 0.2);
   --bg-neutral-light-20: rgba(164, 197, 202, 0.2);
@@ -66,48 +66,48 @@
 /* ========== الثيم الغامق ========== */
 .dark {
   /* الألوان الأساسية - تناسق مع الفاتح */
-  --color-primary: #6C8B89;
-  --color-primary-dark: #88A5A3;
-  --color-primary-darker: #A4C5CA;
-  --color-primary-light: #4A6B6F;
+  --color-primary: #6c8b89;
+  --color-primary-dark: #88a5a3;
+  --color-primary-darker: #a4c5ca;
+  --color-primary-light: #4a6b6f;
 
   /* اللون الثانوي */
   --color-secondary: #536765;
-  --color-secondary-darker: #6C7E7C;
+  --color-secondary-darker: #6c7e7c;
 
   /* ألوان الإبراز - الفضي للثيم الغامق */
-  --color-accent-primary: #D1D1D1;
-  --color-accent: #D1D1D1;
-  --color-accent-secondary: #E8E8E8;
-  --color-accent-dark: #B8B8B8;
-  --color-accent-warm: #C5C5C5;
-  --color-accent-light: #2A2A2A;
+  --color-accent-primary: #d1d1d1;
+  --color-accent: #d1d1d1;
+  --color-accent-secondary: #e8e8e8;
+  --color-accent-dark: #b8b8b8;
+  --color-accent-warm: #c5c5c5;
+  --color-accent-light: #2a2a2a;
 
   /* الألوان المحايدة - معكوسة بشكل ذكي */
-  --color-neutral-bg: #1A1F1E;
-  --color-neutral-background: #1A1F1E;
+  --color-neutral-bg: #1a1f1e;
+  --color-neutral-background: #1a1f1e;
   --color-neutral-surface: #242929;
-  --color-neutral-surface-alt: #2D3433;
-  --color-neutral-border: #3D4847;
-  --color-neutral-text-muted: #6C7E7C;
-  --color-neutral-text-secondary: #A4B5B3;
+  --color-neutral-surface-alt: #2d3433;
+  --color-neutral-border: #3d4847;
+  --color-neutral-text-muted: #6c7e7c;
+  --color-neutral-text-secondary: #a4b5b3;
   --color-neutral-light: #536765;
-  --color-neutral: #6C7E7C;
-  --color-neutral-dark: #A4C5CA;
-  --color-neutral-darker: #E8F2F1;
+  --color-neutral: #6c7e7c;
+  --color-neutral-dark: #a4c5ca;
+  --color-neutral-darker: #e8f2f1;
 
   /* ألوان الحالة - محسّنة للثيم الغامق */
-  --color-status-success: #4CAF50;
-  --color-status-error: #EF5350;
-  --color-status-warning: #C5C5C5;
-  --color-status-info: #6C8B89;
+  --color-status-success: #4caf50;
+  --color-status-error: #ef5350;
+  --color-status-warning: #c5c5c5;
+  --color-status-info: #6c8b89;
 
   /* التدرجات - متوافقة مع الثيم الغامق */
-  --gradient-gold: linear-gradient(135deg, #D1D1D1 0%, #B8B8B8 100%);
-  --gradient-primary: linear-gradient(135deg, #6C8B89 0%, #4A6B6F 100%);
-  --gradient-hero: linear-gradient(180deg, #242929 0%, #34656D 100%);
-  --gradient-cta: linear-gradient(135deg, #6C8B89 0%, #536765 100%);
-  
+  --gradient-gold: linear-gradient(135deg, #d1d1d1 0%, #b8b8b8 100%);
+  --gradient-primary: linear-gradient(135deg, #6c8b89 0%, #4a6b6f 100%);
+  --gradient-hero: linear-gradient(180deg, #242929 0%, #34656d 100%);
+  --gradient-cta: linear-gradient(135deg, #6c8b89 0%, #536765 100%);
+
   /* Ring colors with opacity - محدّثة */
   --ring-primary-dark-20: rgba(136, 165, 163, 0.2);
   --bg-neutral-light-20: rgba(83, 103, 101, 0.2);
@@ -135,17 +135,21 @@
   body {
     background-color: var(--color-neutral-bg);
     color: var(--color-neutral-darker);
-    font-feature-settings: "rlig" 1, "calt" 1;
+    font-feature-settings:
+      'rlig' 1,
+      'calt' 1;
     direction: rtl;
     min-height: 100vh;
-    transition: background-color 0.3s ease, color 0.3s ease;
+    transition:
+      background-color 0.3s ease,
+      color 0.3s ease;
   }
 
   /* تحسين النصوص العربية */
   body {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
-      'Helvetica Neue', Arial, 'Noto Sans', sans-serif,
-      'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+    font-family:
+      -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, 'Noto Sans',
+      sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
   }
 
   /* تحسين العناوين */
@@ -219,7 +223,7 @@
     border: 2px solid var(--color-neutral-border);
     color: var(--color-neutral-darker);
   }
-  
+
   input:focus,
   textarea:focus,
   select:focus {
@@ -248,12 +252,12 @@
 
   /* تحسين الصور */
   img {
-    @apply max-w-full h-auto;
+    @apply h-auto max-w-full;
   }
 
   /* تحسين الكود */
   code {
-    @apply rounded px-2 py-1 text-sm font-mono;
+    @apply rounded px-2 py-1 font-mono text-sm;
     color: var(--color-primary-dark);
     background-color: var(--bg-neutral-light-20);
   }
@@ -286,7 +290,7 @@
 
   /* تحسين الـ scrollbar */
   ::-webkit-scrollbar {
-    @apply w-2 h-2;
+    @apply h-2 w-2;
   }
 
   ::-webkit-scrollbar-track {
@@ -378,7 +382,7 @@
   }
 
   .card-hover {
-    @apply hover:shadow-xl hover:-translate-y-1;
+    @apply hover:-translate-y-1 hover:shadow-xl;
   }
 
   .card-bordered {
@@ -399,7 +403,7 @@
     border: 2px solid var(--color-neutral-border);
     color: var(--color-neutral-darker);
   }
-  
+
   .input:focus {
     border-color: var(--color-primary-dark);
     box-shadow: 0 0 0 2px var(--ring-primary-dark-20);
@@ -408,7 +412,7 @@
   .input-error {
     @apply border-red-500 focus:border-red-500;
   }
-  
+
   .input-error:focus {
     box-shadow: 0 0 0 2px rgba(239, 68, 68, 0.2);
   }

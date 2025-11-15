@@ -75,7 +75,10 @@ export default function SessionsList() {
     >
       {/* Header */}
       <div className="mb-8">
-        <h1 className="mb-2 text-3xl font-bold md:text-4xl" style={{ color: cssVars.secondary.DEFAULT }}>
+        <h1
+          className="mb-2 text-3xl font-bold md:text-4xl"
+          style={{ color: cssVars.secondary.DEFAULT }}
+        >
           {t('title')}
         </h1>
         <p className="text-base" style={{ color: cssVars.neutral.textSecondary }}>
@@ -128,7 +131,10 @@ export default function SessionsList() {
 
                 {/* Session Info */}
                 <div className="flex-1">
-                  <h3 className="mb-1 text-lg font-bold" style={{ color: cssVars.secondary.DEFAULT }}>
+                  <h3
+                    className="mb-1 text-lg font-bold"
+                    style={{ color: cssVars.secondary.DEFAULT }}
+                  >
                     {session.browser}
                   </h3>
                   <p className="mb-3 text-sm" style={{ color: cssVars.neutral.textSecondary }}>
@@ -136,7 +142,10 @@ export default function SessionsList() {
                   </p>
 
                   <div className="space-y-2">
-                    <div className="flex items-center gap-2 text-sm" style={{ color: cssVars.neutral.textSecondary }}>
+                    <div
+                      className="flex items-center gap-2 text-sm"
+                      style={{ color: cssVars.neutral.textSecondary }}
+                    >
                       <MapPin className="h-4 w-4" />
                       <span>{session.location}</span>
                       <span className="text-xs" style={{ color: cssVars.neutral.textMuted }}>
@@ -144,7 +153,10 @@ export default function SessionsList() {
                       </span>
                     </div>
 
-                    <div className="flex items-center gap-2 text-sm" style={{ color: cssVars.neutral.textSecondary }}>
+                    <div
+                      className="flex items-center gap-2 text-sm"
+                      style={{ color: cssVars.neutral.textSecondary }}
+                    >
                       <Clock className="h-4 w-4" />
                       <span>{t('lastActive', { time: session.lastActive })}</span>
                     </div>

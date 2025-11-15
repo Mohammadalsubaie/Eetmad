@@ -5,6 +5,7 @@
 ## 📦 المكونات المتاحة
 
 ### Core Components (الأساسية)
+
 - **Badge** - badges للحالة والفئات
 - **Button** - أزرار موحدة
 - **Card** - بطاقات أساسية
@@ -12,9 +13,11 @@
 - **Tag** - وسوم
 
 ### Layout Components (التخطيط)
+
 - **IconContainer** - حاوية للأيقونات
 
 ### Section Components (الأقسام) 🆕
+
 - **SectionBadge** - Badge لرؤوس الأقسام
 - **SectionHeader** - رأس كامل للقسم (badge + title + subtitle)
 - **GradientIcon** - أيقونة مع خلفية gradient
@@ -37,6 +40,7 @@ import {
 ## 📚 التوثيق
 
 للتوثيق الكامل، راجع:
+
 - **دليل المكونات**: `/docs/design/UI_COMPONENTS_GUIDE.md`
 - **تعليمات التصميم**: `/docs/design/component-building-guidelines.md`
 - **دليل الألوان**: `/docs/design/color-palette-guide.md`
@@ -44,6 +48,7 @@ import {
 ## ✨ أمثلة سريعة
 
 ### Section Header
+
 ```tsx
 <SectionHeader
   badge="الميزات"
@@ -56,6 +61,7 @@ import {
 ```
 
 ### Feature Card
+
 ```tsx
 <FeatureCard
   title="الشفافية الكاملة"
@@ -67,13 +73,9 @@ import {
 ```
 
 ### Gradient Icon
+
 ```tsx
-<GradientIcon
-  icon={Sparkles}
-  background={cssVars.gradient.primary}
-  size="lg"
-  animated
-/>
+<GradientIcon icon={Sparkles} background={cssVars.gradient.primary} size="lg" animated />
 ```
 
 ## 🎯 المبادئ
@@ -87,4 +89,3 @@ import {
 ---
 
 **آخر تحديث**: نوفمبر 2025
-

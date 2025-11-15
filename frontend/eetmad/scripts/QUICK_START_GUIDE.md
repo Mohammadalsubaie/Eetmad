@@ -83,11 +83,13 @@ npm run validate:design src/components/ --json validation-report.json
 ### خطأ #1: لون hex مباشر
 
 **الخطأ:**
+
 ```tsx
 <div style={{ backgroundColor: '#FAF8F1' }}>
 ```
 
 **الإصلاح:**
+
 ```tsx
 import { cssVars } from '@/styles/theme';
 <div style={{ backgroundColor: cssVars.neutral.bg }}>
@@ -98,19 +100,22 @@ import { cssVars } from '@/styles/theme';
 ### خطأ #2: نص hardcoded
 
 **الخطأ:**
+
 ```tsx
 <h1>Welcome to Platform</h1>
 ```
 
 **الإصلاح:**
+
 ```tsx
 import { useTranslations } from 'next-intl';
 
 const t = useTranslations('home');
-<h1>{t('welcomeTitle')}</h1>
+<h1>{t('welcomeTitle')}</h1>;
 ```
 
 ثم أضف في `messages/en.json`:
+
 ```json
 {
   "home": {
@@ -124,12 +129,14 @@ const t = useTranslations('home');
 ### خطأ #3: استيراد colors بدلاً من cssVars
 
 **الخطأ:**
+
 ```tsx
 import { colors } from '@/styles/theme';
 <div style={{ backgroundColor: colors.neutral.bg }}>
 ```
 
 **الإصلاح:**
+
 ```tsx
 import { cssVars } from '@/styles/theme';
 <div style={{ backgroundColor: cssVars.neutral.bg }}>
@@ -140,14 +147,16 @@ import { cssVars } from '@/styles/theme';
 ### خطأ #4: Tailwind color classes
 
 **الخطأ:**
+
 ```tsx
 <div className="bg-white text-gray-800">
 ```
 
 **الإصلاح:**
+
 ```tsx
 import { cssVars } from '@/styles/theme';
-<div 
+<div
   className="p-4"
   style={{
     backgroundColor: cssVars.neutral.surface,
@@ -161,11 +170,13 @@ import { cssVars } from '@/styles/theme';
 ### خطأ #5: directional classes
 
 **الخطأ:**
+
 ```tsx
 <div className="ml-4 mr-2">
 ```
 
 **الإصلاح:**
+
 ```tsx
 <div className="ms-4 me-2">
 ```
@@ -175,15 +186,17 @@ import { cssVars } from '@/styles/theme';
 ### خطأ #6: rgba مباشر
 
 **الخطأ:**
+
 ```tsx
 <div style={{ backgroundColor: 'rgba(51, 68, 67, 0.95)' }}>
 ```
 
 **الإصلاح:**
+
 ```tsx
 import { cssVars } from '@/styles/theme';
-<div style={{ 
-  backgroundColor: `color-mix(in srgb, ${cssVars.secondary.DEFAULT} 95%, transparent)` 
+<div style={{
+  backgroundColor: `color-mix(in srgb, ${cssVars.secondary.DEFAULT} 95%, transparent)`
 }}>
 ```
 
@@ -192,6 +205,7 @@ import { cssVars } from '@/styles/theme';
 ### خطأ #7: عدم استخدام 'use client'
 
 **الخطأ:**
+
 ```tsx
 import { useState } from 'react';
 
@@ -202,6 +216,7 @@ export default function MyComponent() {
 ```
 
 **الإصلاح:**
+
 ```tsx
 'use client';
 
@@ -216,39 +231,43 @@ export default function MyComponent() {
 ## 📚 قائمة cssVars المتاحة
 
 ### الألوان الأساسية
-```tsx
-cssVars.primary.DEFAULT    // اللون الأساسي
-cssVars.primary.dark       // أغمق
-cssVars.primary.light      // أفتح
 
-cssVars.secondary.DEFAULT  // اللون الثانوي
-cssVars.secondary.darker   // أغمق
+```tsx
+cssVars.primary.DEFAULT; // اللون الأساسي
+cssVars.primary.dark; // أغمق
+cssVars.primary.light; // أفتح
+
+cssVars.secondary.DEFAULT; // اللون الثانوي
+cssVars.secondary.darker; // أغمق
 ```
 
 ### الألوان المحايدة
+
 ```tsx
-cssVars.neutral.bg            // خلفية الصفحة
-cssVars.neutral.surface       // سطح العنصر
-cssVars.neutral.surfaceAlt    // سطح بديل
-cssVars.neutral.border        // لون الحدود
-cssVars.neutral.textMuted     // نص خفيف
-cssVars.neutral.textSecondary // نص ثانوي
+cssVars.neutral.bg; // خلفية الصفحة
+cssVars.neutral.surface; // سطح العنصر
+cssVars.neutral.surfaceAlt; // سطح بديل
+cssVars.neutral.border; // لون الحدود
+cssVars.neutral.textMuted; // نص خفيف
+cssVars.neutral.textSecondary; // نص ثانوي
 ```
 
 ### ألوان الحالة
+
 ```tsx
-cssVars.status.success  // نجاح
-cssVars.status.error    // خطأ
-cssVars.status.warning  // تحذير
-cssVars.status.info     // معلومة
+cssVars.status.success; // نجاح
+cssVars.status.error; // خطأ
+cssVars.status.warning; // تحذير
+cssVars.status.info; // معلومة
 ```
 
 ### التدرجات
+
 ```tsx
-cssVars.gradient.gold     // تدرج ذهبي
-cssVars.gradient.primary  // تدرج أساسي
-cssVars.gradient.hero     // تدرج البطل
-cssVars.gradient.cta      // تدرج CTA
+cssVars.gradient.gold; // تدرج ذهبي
+cssVars.gradient.primary; // تدرج أساسي
+cssVars.gradient.hero; // تدرج البطل
+cssVars.gradient.cta; // تدرج CTA
 ```
 
 ## 🔄 سير العمل اليومي
@@ -256,6 +275,7 @@ cssVars.gradient.cta      // تدرج CTA
 ### قبل البدء بتطوير component جديد
 
 1. راجع القواعد:
+
    ```bash
    cat docs/design/component-building-guidelines.md
    ```
@@ -300,6 +320,7 @@ alias vd="npm run validate:design"
 ```
 
 الاستخدام:
+
 ```bash
 vd src/components/features/home/
 ```
@@ -348,7 +369,7 @@ STAGED_FILES=$(git diff --cached --name-only --diff-filter=ACM | grep -E '\.(tsx
 if [ -n "$STAGED_FILES" ]; then
   echo "🔍 Validating design rules..."
   npm run validate:design $STAGED_FILES
-  
+
   if [ $? -ne 0 ]; then
     echo "❌ Design rules validation failed. Please fix the errors above."
     exit 1
@@ -389,12 +410,14 @@ fi
 
 **س: السكريبت بطيء جداً، ماذا أفعل؟**
 ج: فحص مجلدات محددة بدلاً من كل المشروع:
+
 ```bash
 npm run validate:design src/components/features/myfeature/
 ```
 
 **س: كيف أتجاهل بعض الأخطاء؟**
 ج: السكريبت ذكي ويتجاهل:
+
 - التعليقات (`//`)
 - الأمثلة المحتوية على `❌` أو `WRONG`
 - ملفات الاختبار (`.test.ts`, `.spec.ts`)
@@ -405,4 +428,3 @@ npm run validate:design src/components/features/myfeature/
 ---
 
 **استمتع بالبناء! 🚀**
-

@@ -25,10 +25,10 @@ export default function VerifyEmailForm() {
     if (resendTimer > 0) {
       const timer = setTimeout(() => setResendTimer(resendTimer - 1), 1000);
       return () => clearTimeout(timer);
-    } else {
+    } else if (resendTimer === 0 && !canResend) {
       setCanResend(true);
     }
-  }, [resendTimer]);
+  }, [resendTimer, canResend]);
 
   const handleChange = (index: number, value: string) => {
     if (!/^\d*$/.test(value)) return; // Only allow numbers

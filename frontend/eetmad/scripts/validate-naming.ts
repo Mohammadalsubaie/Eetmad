@@ -64,9 +64,7 @@ function isPlaceholderFile(filePath: string, content: string): boolean {
 
   // Check for placeholder patterns in the first 10 lines
   const lines = content.split('\n').slice(0, 10).join('\n');
-  const hasPlaceholderPattern = placeholderPatterns.some((pattern) =>
-    pattern.test(lines)
-  );
+  const hasPlaceholderPattern = placeholderPatterns.some((pattern) => pattern.test(lines));
 
   // Also check if file is very minimal (likely a placeholder)
   // If it only has a few lines and returns null, it's likely a placeholder

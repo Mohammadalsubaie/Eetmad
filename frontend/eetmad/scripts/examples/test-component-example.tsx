@@ -22,8 +22,8 @@ export default function TestComponent() {
       }}
     >
       {/* ❌ خطأ: نص hardcoded */}
-      <h1 className="text-4xl font-bold mb-4">Welcome to Our Platform</h1>
-      
+      <h1 className="mb-4 text-4xl font-bold">Welcome to Our Platform</h1>
+
       {/* ❌ خطأ: نص عربي hardcoded */}
       <p className="text-lg">مرحباً بك في منصتنا الرائعة</p>
 
@@ -35,15 +35,12 @@ export default function TestComponent() {
         }}
       >
         {/* ❌ خطأ: استخدام directional class */}
-        <button 
-          className="ml-4 mr-2 px-6 py-3"
-          onClick={() => setCount(count + 1)}
-        >
+        <button className="ml-4 mr-2 px-6 py-3" onClick={() => setCount(count + 1)}>
           Click Me
         </button>
 
         {/* ❌ خطأ: استخدام Tailwind arbitrary value */}
-        <div className="bg-[#FFFFFF] text-[#334443] p-4">
+        <div className="bg-[#FFFFFF] p-4 text-[#334443]">
           <span>Count: {count}</span>
         </div>
       </div>
@@ -55,4 +52,3 @@ export default function TestComponent() {
     </div>
   );
 }
-

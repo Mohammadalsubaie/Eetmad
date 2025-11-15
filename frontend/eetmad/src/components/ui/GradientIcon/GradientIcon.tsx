@@ -33,7 +33,7 @@ export interface GradientIconProps {
 
 /**
  * مكون أيقونة مع خلفية gradient
- * 
+ *
  * @example
  * <GradientIcon
  *   icon={Sparkles}
@@ -41,7 +41,7 @@ export interface GradientIconProps {
  *   size="lg"
  *   animated
  * />
- * 
+ *
  * @example
  * <GradientIcon
  *   icon={Code}
@@ -88,4 +88,3 @@ export default function GradientIcon({
     </motion.div>
   );
 }
-

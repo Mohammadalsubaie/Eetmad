@@ -13,7 +13,7 @@ import { useTranslations } from 'next-intl';
 
 export default function MyComponent() {
   const t = useTranslations('namespace');
-  
+
   return <h1>{t('key')}</h1>;
 }
 ```
@@ -57,9 +57,9 @@ const t = useTranslations('home');
 ```tsx
 // Component
 const t = useTranslations('user');
-const userName = "Ahmad";
+const userName = 'Ahmad';
 
-<p>{t('greeting', { name: userName })}</p>
+<p>{t('greeting', { name: userName })}</p>;
 ```
 
 ```json
@@ -87,7 +87,7 @@ const userName = "Ahmad";
 const t = useTranslations('items');
 const count = 5;
 
-<p>{t('itemCount', { count })}</p>
+<p>{t('itemCount', { count })}</p>;
 ```
 
 ```json
@@ -117,9 +117,9 @@ const t = useTranslations('content');
 <div>
   {t.rich('description', {
     strong: (chunks) => <strong>{chunks}</strong>,
-    link: (chunks) => <a href="/about">{chunks}</a>
+    link: (chunks) => <a href="/about">{chunks}</a>,
   })}
-</div>
+</div>;
 ```
 
 ```json
@@ -149,14 +149,16 @@ import { useFormatter } from 'next-intl';
 export default function DateDisplay() {
   const format = useFormatter();
   const date = new Date();
-  
+
   return (
     <div>
-      <p>{format.dateTime(date, {
-        year: 'numeric',
-        month: 'long',
-        day: 'numeric'
-      })}</p>
+      <p>
+        {format.dateTime(date, {
+          year: 'numeric',
+          month: 'long',
+          day: 'numeric',
+        })}
+      </p>
     </div>
   );
 }
@@ -173,17 +175,19 @@ import { useFormatter } from 'next-intl';
 export default function PriceDisplay() {
   const format = useFormatter();
   const price = 1234.56;
-  
+
   return (
     <div>
       {/* Number */}
       <p>{format.number(price)}</p>
-      
+
       {/* Currency */}
-      <p>{format.number(price, {
-        style: 'currency',
-        currency: 'SAR'
-      })}</p>
+      <p>
+        {format.number(price, {
+          style: 'currency',
+          currency: 'SAR',
+        })}
+      </p>
     </div>
   );
 }
@@ -219,7 +223,7 @@ const common = useTranslations('common');
 <div>
   <h1>{t('title')}</h1>
   <button>{common('save')}</button>
-</div>
+</div>;
 ```
 
 ---
@@ -253,7 +257,7 @@ const t = useTranslations('auth.login');
   <input placeholder={t('email')} />
   <input placeholder={t('password')} />
   <button>{t('submit')}</button>
-</form>
+</form>;
 ```
 
 ---
@@ -273,22 +277,14 @@ interface ButtonProps {
   onClick?: () => void;
 }
 
-export default function Button({ 
-  translationKey, 
-  namespace = 'common',
-  onClick 
-}: ButtonProps) {
+export default function Button({ translationKey, namespace = 'common', onClick }: ButtonProps) {
   const t = useTranslations(namespace);
-  
-  return (
-    <button onClick={onClick}>
-      {t(translationKey)}
-    </button>
-  );
+
+  return <button onClick={onClick}>{t(translationKey)}</button>;
 }
 
 // Usage
-<Button translationKey="save" namespace="common" />
+<Button translationKey="save" namespace="common" />;
 ```
 
 ---
@@ -303,34 +299,24 @@ import { useTranslations } from 'next-intl';
 export default function LoginForm() {
   const t = useTranslations('auth.login');
   const common = useTranslations('common');
-  
+
   return (
     <form>
       <h1>{t('title')}</h1>
-      
+
       <div>
         <label>{t('email')}</label>
-        <input 
-          type="email" 
-          placeholder={t('emailPlaceholder')}
-        />
+        <input type="email" placeholder={t('emailPlaceholder')} />
       </div>
-      
+
       <div>
         <label>{t('password')}</label>
-        <input 
-          type="password"
-          placeholder={t('passwordPlaceholder')}
-        />
+        <input type="password" placeholder={t('passwordPlaceholder')} />
       </div>
-      
-      <button type="submit">
-        {t('submit')}
-      </button>
-      
-      <a href="/register">
-        {t('noAccount')}
-      </a>
+
+      <button type="submit">{t('submit')}</button>
+
+      <a href="/register">{t('noAccount')}</a>
     </form>
   );
 }
@@ -351,16 +337,12 @@ interface ErrorMessageProps {
 
 export default function ErrorMessage({ errorCode }: ErrorMessageProps) {
   const t = useTranslations('errors');
-  
-  return (
-    <div role="alert">
-      {t(errorCode)}
-    </div>
-  );
+
+  return <div role="alert">{t(errorCode)}</div>;
 }
 
 // Usage
-<ErrorMessage errorCode="invalidEmail" />
+<ErrorMessage errorCode="invalidEmail" />;
 ```
 
 ```json
@@ -384,7 +366,7 @@ export default function ErrorMessage({ errorCode }: ErrorMessageProps) {
 const t = useTranslations('status');
 const isActive = true;
 
-<p>{t(isActive ? 'active' : 'inactive')}</p>
+<p>{t(isActive ? 'active' : 'inactive')}</p>;
 ```
 
 ---
@@ -396,12 +378,12 @@ const t = useTranslations('navigation');
 const menuItems = ['home', 'about', 'services', 'contact'];
 
 <nav>
-  {menuItems.map(item => (
+  {menuItems.map((item) => (
     <a key={item} href={`/${item}`}>
       {t(item)}
     </a>
   ))}
-</nav>
+</nav>;
 ```
 
 ```json
@@ -423,7 +405,7 @@ const menuItems = ['home', 'about', 'services', 'contact'];
 const t = useTranslations('categories');
 const category = 'technology'; // Dynamic value
 
-<h2>{t(category)}</h2>
+<h2>{t(category)}</h2>;
 ```
 
 ---
@@ -504,18 +486,21 @@ const common = useTranslations('common');
 ## 🚀 Quick Commands
 
 ### Check Translations
+
 ```bash
 # Coming soon
 npm run i18n:check
 ```
 
 ### Extract Keys
+
 ```bash
 # Coming soon
 npm run i18n:extract
 ```
 
 ### Sync Files
+
 ```bash
 # Coming soon
 npm run i18n:sync
@@ -533,5 +518,4 @@ npm run i18n:sync
 
 **🌍 Build multilingual apps with confidence!**
 
-*Last Updated: November 15, 2025*
-
+_Last Updated: November 15, 2025_

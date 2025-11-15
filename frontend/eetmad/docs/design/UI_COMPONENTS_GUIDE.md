@@ -15,19 +15,21 @@
 Badge مخصص لرؤوس الأقسام مع دعم كامل للثيمات الفاتحة والداكنة.
 
 #### الاستيراد
+
 ```tsx
 import { SectionBadge } from '@/components/ui';
 ```
 
 #### Props
+
 ```typescript
 interface SectionBadgeProps {
-  children: React.ReactNode;      // النص المعروض
-  icon?: LucideIcon;              // الأيقونة (اختياري)
-  variant?: 'light' | 'dark';     // نوع الخلفية
-  color?: 'primary' | 'accent' | 'warm';  // اللون
-  animated?: boolean;             // نقطة متحركة
-  className?: string;             // CSS classes إضافية
+  children: React.ReactNode; // النص المعروض
+  icon?: LucideIcon; // الأيقونة (اختياري)
+  variant?: 'light' | 'dark'; // نوع الخلفية
+  color?: 'primary' | 'accent' | 'warm'; // اللون
+  animated?: boolean; // نقطة متحركة
+  className?: string; // CSS classes إضافية
 }
 ```
 
@@ -35,9 +37,9 @@ interface SectionBadgeProps {
 
 ```tsx
 // على خلفية فاتحة
-<SectionBadge 
-  icon={Sparkles} 
-  variant="light" 
+<SectionBadge
+  icon={Sparkles}
+  variant="light"
   color="primary"
   animated
 >
@@ -45,9 +47,9 @@ interface SectionBadgeProps {
 </SectionBadge>
 
 // على خلفية داكنة
-<SectionBadge 
-  icon={Zap} 
-  variant="dark" 
+<SectionBadge
+  icon={Zap}
+  variant="dark"
   color="accent"
 >
   عاجل
@@ -56,13 +58,13 @@ interface SectionBadgeProps {
 
 #### اختيار الألوان
 
-| variant | color | متى يستخدم |
-|---------|-------|-----------|
-| `light` | `primary` | أقسام عادية على خلفية فاتحة |
-| `light` | `accent` | للفت الانتباه على خلفية فاتحة |
-| `light` | `warm` | تحذيرات أو معلومات مهمة |
-| `dark` | `accent` | على gradients داكنة (افتراضي) |
-| `dark` | `warm` | تنويع على gradients داكنة |
+| variant | color     | متى يستخدم                    |
+| ------- | --------- | ----------------------------- |
+| `light` | `primary` | أقسام عادية على خلفية فاتحة   |
+| `light` | `accent`  | للفت الانتباه على خلفية فاتحة |
+| `light` | `warm`    | تحذيرات أو معلومات مهمة       |
+| `dark`  | `accent`  | على gradients داكنة (افتراضي) |
+| `dark`  | `warm`    | تنويع على gradients داكنة     |
 
 ---
 
@@ -71,22 +73,24 @@ interface SectionBadgeProps {
 رأس كامل للقسم مع badge + عنوان + وصف.
 
 #### الاستيراد
+
 ```tsx
 import { SectionHeader } from '@/components/ui';
 ```
 
 #### Props
+
 ```typescript
 interface SectionHeaderProps {
-  badge?: string;                 // نص الـ badge
-  badgeIcon?: LucideIcon;         // أيقونة الـ badge
-  title: string;                  // العنوان (إجباري)
-  subtitle?: string;              // الوصف
-  variant?: 'light' | 'dark';     // نوع الخلفية
-  align?: 'left' | 'center' | 'right';  // المحاذاة
-  badgeColor?: 'primary' | 'accent' | 'warm';  // لون الـ badge
-  badgeAnimated?: boolean;        // نقطة متحركة
-  className?: string;             // CSS classes إضافية
+  badge?: string; // نص الـ badge
+  badgeIcon?: LucideIcon; // أيقونة الـ badge
+  title: string; // العنوان (إجباري)
+  subtitle?: string; // الوصف
+  variant?: 'light' | 'dark'; // نوع الخلفية
+  align?: 'left' | 'center' | 'right'; // المحاذاة
+  badgeColor?: 'primary' | 'accent' | 'warm'; // لون الـ badge
+  badgeAnimated?: boolean; // نقطة متحركة
+  className?: string; // CSS classes إضافية
 }
 ```
 
@@ -155,19 +159,21 @@ interface SectionHeaderProps {
 أيقونة مع خلفية gradient وحركة.
 
 #### الاستيراد
+
 ```tsx
 import { GradientIcon } from '@/components/ui';
 ```
 
 #### Props
+
 ```typescript
 interface GradientIconProps {
-  icon: LucideIcon;               // الأيقونة (إجباري)
-  background?: string;            // اللون أو gradient
-  size?: 'sm' | 'md' | 'lg' | 'xl';  // الحجم
-  iconColor?: string;             // لون الأيقونة
-  animated?: boolean;             // حركة عند hover
-  className?: string;             // CSS classes إضافية
+  icon: LucideIcon; // الأيقونة (إجباري)
+  background?: string; // اللون أو gradient
+  size?: 'sm' | 'md' | 'lg' | 'xl'; // الحجم
+  iconColor?: string; // لون الأيقونة
+  animated?: boolean; // حركة عند hover
+  className?: string; // CSS classes إضافية
 }
 ```
 
@@ -199,12 +205,12 @@ interface GradientIconProps {
 
 #### الأحجام
 
-| Size | Container | Icon | الاستخدام |
-|------|-----------|------|-----------|
-| `sm` | 48px | 24px | أيقونات صغيرة، badges |
-| `md` | 64px | 32px | البطاقات، الأقسام العادية |
-| `lg` | 80px | 40px | رؤوس أقسام مهمة |
-| `xl` | 96px | 48px | صفحات landing، headers رئيسية |
+| Size | Container | Icon | الاستخدام                     |
+| ---- | --------- | ---- | ----------------------------- |
+| `sm` | 48px      | 24px | أيقونات صغيرة، badges         |
+| `md` | 64px      | 32px | البطاقات، الأقسام العادية     |
+| `lg` | 80px      | 40px | رؤوس أقسام مهمة               |
+| `xl` | 96px      | 48px | صفحات landing، headers رئيسية |
 
 ---
 
@@ -213,22 +219,24 @@ interface GradientIconProps {
 بطاقة ميزة كاملة مع أيقونة، عنوان، وصف، وتأثيرات.
 
 #### الاستيراد
+
 ```tsx
 import { FeatureCard } from '@/components/ui';
 ```
 
 #### Props
+
 ```typescript
 interface FeatureCardProps {
-  title: string;                  // العنوان (إجباري)
-  description: string;            // الوصف (إجباري)
-  icon: LucideIcon;               // الأيقونة (إجباري)
-  iconColor?: string;             // لون/gradient الأيقونة
-  showArrow?: boolean;            // إظهار سهم في الزاوية
-  footer?: string;                // نص إضافي أسفل البطاقة
-  animationDelay?: number;        // تأخير الحركة
-  className?: string;             // CSS classes إضافية
-  onClick?: () => void;           // معالج النقر
+  title: string; // العنوان (إجباري)
+  description: string; // الوصف (إجباري)
+  icon: LucideIcon; // الأيقونة (إجباري)
+  iconColor?: string; // لون/gradient الأيقونة
+  showArrow?: boolean; // إظهار سهم في الزاوية
+  footer?: string; // نص إضافي أسفل البطاقة
+  animationDelay?: number; // تأخير الحركة
+  className?: string; // CSS classes إضافية
+  onClick?: () => void; // معالج النقر
 }
 ```
 
@@ -333,12 +341,7 @@ interface FeatureCardProps {
       {cards.map((card) => (
         <div key={card.id} className="...">
           <div className="flex items-center gap-4">
-            <GradientIcon
-              icon={card.icon}
-              background={card.gradient}
-              size="lg"
-              animated
-            />
+            <GradientIcon icon={card.icon} background={card.gradient} size="lg" animated />
             <h3>{card.title}</h3>
           </div>
           {/* ... */}
@@ -354,14 +357,10 @@ interface FeatureCardProps {
 ```tsx
 // في Hero Section
 <div>
-  <SectionBadge 
-    variant="dark" 
-    color="accent"
-    animated
-  >
+  <SectionBadge variant="dark" color="accent" animated>
     🔥 عرض لفترة محدودة
   </SectionBadge>
-  
+
   <h1>العنوان الرئيسي</h1>
 </div>
 ```
@@ -373,12 +372,14 @@ interface FeatureCardProps {
 ### متى تستخدم SectionHeader vs مكونات منفصلة؟
 
 #### استخدم `SectionHeader` عندما:
+
 - ✅ تحتاج badge + title + subtitle معاً
 - ✅ تريد تنسيق قياسي موحد
 - ✅ السرعة في التطوير مهمة
 - ✅ معظم الأقسام لها نفس البنية
 
 #### استخدم مكونات منفصلة عندما:
+
 - ✅ تحتاج تخصيص متقدم في التخطيط
 - ✅ بعض العناصر اختيارية بشكل معقد
 - ✅ تحتاج عناصر إضافية بين badge والعنوان
@@ -403,10 +404,7 @@ interface FeatureCardProps {
     <Sparkles className="h-4 w-4" />
     {t('badge')}
   </div>
-  <h2
-    className="mb-6 text-4xl font-bold lg:text-5xl"
-    style={{ color: cssVars.secondary.DEFAULT }}
-  >
+  <h2 className="mb-6 text-4xl font-bold lg:text-5xl" style={{ color: cssVars.secondary.DEFAULT }}>
     {t('title')}
   </h2>
   <p
@@ -434,6 +432,7 @@ interface FeatureCardProps {
 ```
 
 **الفوائد:**
+
 - ✅ 23 سطر → 9 أسطر (تقليل 60%)
 - ✅ أسهل في القراءة والصيانة
 - ✅ ألوان متسقة تلقائياً
@@ -447,22 +446,27 @@ interface FeatureCardProps {
 تم تحديث المكونات التالية لاستخدام المكونات الجديدة:
 
 ### ✅ ExploreCategoriesSection
+
 - ❌ قبل: 167 سطر، كود مكرر للـ badge والعنوان
 - ✅ بعد: 135 سطر، استخدام `SectionHeader` و `GradientIcon`
 
-### ✅ ProjectBenefitsSection  
+### ✅ ProjectBenefitsSection
+
 - ❌ قبل: 143 سطر، 50+ سطر للبطاقات
 - ✅ بعد: 76 سطر، استخدام `SectionHeader` و `FeatureCard`
 
 ### ✅ FAQSection
+
 - ❌ قبل: badge وheader مكرر
 - ✅ بعد: استخدام `SectionHeader`
 
 ### ✅ GettingStartedSection
+
 - ❌ قبل: أيقونات مكررة
 - ✅ بعد: استخدام `SectionHeader` و `GradientIcon`
 
 ### ✅ AudienceSection
+
 - ❌ قبل: badge وأيقونات مكررة
 - ✅ بعد: استخدام `SectionHeader` و `GradientIcon`
 
@@ -497,13 +501,13 @@ interface FeatureCardProps {
 ### إضافة CSS classes
 
 ```tsx
-<SectionHeader 
-  className="max-w-2xl mx-auto" 
+<SectionHeader
+  className="max-w-2xl mx-auto"
   {...props}
 />
 
-<FeatureCard 
-  className="hover:scale-105" 
+<FeatureCard
+  className="hover:scale-105"
   {...props}
 />
 ```
@@ -535,4 +539,3 @@ interface FeatureCardProps {
 
 **آخر تحديث**: نوفمبر 2025
 **الإصدار**: 1.0
-

@@ -3,7 +3,9 @@
 ## 📦 الملفات المضافة
 
 ### 1. السكريبت الرئيسي
+
 📄 **`validate-design-rules.ts`**
+
 - السكريبت الرئيسي لفحص قواعد البناء
 - مكتوب بـ TypeScript مع دعم كامل للأنواع
 - يفحص 6 قواعد رئيسية من دليل البناء
@@ -11,21 +13,25 @@
 ### 2. التوثيق
 
 📄 **`validate-design-rules.README.md`**
+
 - دليل شامل لاستخدام السكريبت
 - أمثلة تفصيلية للأخطاء والحلول
 - نصائح للتكامل مع سير العمل
 
 📄 **`QUICK_START_GUIDE.md`**
+
 - دليل البدء السريع (5 دقائق)
 - حالات استخدام شائعة
 - قائمة مرجعية سريعة لـ cssVars
 
 📄 **`ci-integration-example.yml`**
+
 - أمثلة للتكامل مع CI/CD
 - GitHub Actions, GitLab CI, Jenkins, وغيرها
 - Pre-commit و Pre-push hooks
 
 📄 **`VALIDATION_SUMMARY.md`** (هذا الملف)
+
 - ملخص شامل لجميع الملفات
 - جدول القواعد المفحوصة
 - إحصائيات ومقاييس الأداء
@@ -33,11 +39,13 @@
 ### 3. ملفات الاختبار
 
 📄 **`test-component-example.tsx`**
+
 - مثال يحتوي على أخطاء متعمدة
 - يستخدم لاختبار السكريبت
 - يوضح جميع أنواع الأخطاء الشائعة
 
 📄 **`test-component-correct.tsx`**
+
 - مثال صحيح يتبع جميع القواعد
 - يستخدم cssVars و useTranslations
 - يوضح الطريقة الصحيحة للبناء
@@ -46,20 +54,21 @@
 
 ### Rule 1: Theme System Usage ✅
 
-| الفحص | الوصف | الشدة | الاكتشاف |
-|------|-------|-------|----------|
-| Hex Colors | اكتشاف `#FAF8F1`, `#334443`, إلخ | Error | ✅ |
-| RGB/RGBA | اكتشاف `rgba(51, 68, 67, 0.95)` | Error | ✅ |
-| Tailwind Arbitrary | اكتشاف `bg-[#FAF8F1]` | Error | ✅ |
-| Import colors | اكتشاف `import { colors }` | Error | ✅ |
-| Color-mix usage | التحقق من الشفافية الصحيحة | Warning | ✅ |
+| الفحص              | الوصف                            | الشدة   | الاكتشاف |
+| ------------------ | -------------------------------- | ------- | -------- |
+| Hex Colors         | اكتشاف `#FAF8F1`, `#334443`, إلخ | Error   | ✅       |
+| RGB/RGBA           | اكتشاف `rgba(51, 68, 67, 0.95)`  | Error   | ✅       |
+| Tailwind Arbitrary | اكتشاف `bg-[#FAF8F1]`            | Error   | ✅       |
+| Import colors      | اكتشاف `import { colors }`       | Error   | ✅       |
+| Color-mix usage    | التحقق من الشفافية الصحيحة       | Warning | ✅       |
 
 **أمثلة:**
+
 ```tsx
 // ❌ خطأ
 <div style={{ backgroundColor: '#FAF8F1' }}>
 
-// ✅ صحيح  
+// ✅ صحيح
 import { cssVars } from '@/styles/theme';
 <div style={{ backgroundColor: cssVars.neutral.bg }}>
 ```
@@ -68,14 +77,15 @@ import { cssVars } from '@/styles/theme';
 
 ### Rule 2: Internationalization (i18n) ✅
 
-| الفحص | الوصف | الشدة | الاكتشاف |
-|------|-------|-------|----------|
-| Hardcoded Text (English) | نصوص إنجليزية مباشرة | Error | ✅ |
-| Hardcoded Text (Arabic) | نصوص عربية مباشرة | Error | ✅ |
-| Missing useTranslations | عدم استيراد next-intl | Warning | ✅ |
-| String literals | نصوص طويلة في strings | Warning | ✅ |
+| الفحص                    | الوصف                 | الشدة   | الاكتشاف |
+| ------------------------ | --------------------- | ------- | -------- |
+| Hardcoded Text (English) | نصوص إنجليزية مباشرة  | Error   | ✅       |
+| Hardcoded Text (Arabic)  | نصوص عربية مباشرة     | Error   | ✅       |
+| Missing useTranslations  | عدم استيراد next-intl | Warning | ✅       |
+| String literals          | نصوص طويلة في strings | Warning | ✅       |
 
 **أمثلة:**
+
 ```tsx
 // ❌ خطأ
 <h1>Welcome to Platform</h1>
@@ -91,14 +101,15 @@ const t = useTranslations('home');
 
 ### Rule 3: Component Structure ✅
 
-| الفحص | الوصف | الشدة | الاكتشاف |
-|------|-------|-------|----------|
-| File/Component Name Match | تطابق اسم الملف والـ Component | Warning | ✅ |
-| 'use client' directive | وجود 'use client' مع hooks | Error | ✅ |
-| PascalCase naming | اتباع PascalCase | Warning | ✅ |
-| Props interface | وجود interface للـ props | Info | 🔄 |
+| الفحص                     | الوصف                          | الشدة   | الاكتشاف |
+| ------------------------- | ------------------------------ | ------- | -------- |
+| File/Component Name Match | تطابق اسم الملف والـ Component | Warning | ✅       |
+| 'use client' directive    | وجود 'use client' مع hooks     | Error   | ✅       |
+| PascalCase naming         | اتباع PascalCase               | Warning | ✅       |
+| Props interface           | وجود interface للـ props       | Info    | 🔄       |
 
 **أمثلة:**
+
 ```tsx
 // ❌ خطأ
 // File: myComponent.tsx
@@ -112,7 +123,7 @@ export default function Component() {
 
 // ✅ صحيح
 // File: MyComponent.tsx
-'use client';
+('use client');
 import { useState } from 'react';
 
 interface MyComponentProps {
@@ -128,20 +139,21 @@ export default function MyComponent({ title }: MyComponentProps) {
 
 ### Rule 4: Styling Best Practices ✅
 
-| الفحص | الوصف | الشدة | الاكتشاف |
-|------|-------|-------|----------|
-| Tailwind color classes | استخدام `bg-white`, `text-gray` | Warning | ✅ |
-| Mixed styling | خلط Tailwind colors مع cssVars | Warning | ✅ |
-| Inline styles preference | استخدام inline مع cssVars | Info | 🔄 |
+| الفحص                    | الوصف                           | الشدة   | الاكتشاف |
+| ------------------------ | ------------------------------- | ------- | -------- |
+| Tailwind color classes   | استخدام `bg-white`, `text-gray` | Warning | ✅       |
+| Mixed styling            | خلط Tailwind colors مع cssVars  | Warning | ✅       |
+| Inline styles preference | استخدام inline مع cssVars       | Info    | 🔄       |
 
 **أمثلة:**
+
 ```tsx
 // ⚠️ تحذير
 <div className="bg-white text-gray-800">
 
 // ✅ صحيح
 import { cssVars } from '@/styles/theme';
-<div 
+<div
   className="p-4"
   style={{
     backgroundColor: cssVars.neutral.surface,
@@ -154,12 +166,13 @@ import { cssVars } from '@/styles/theme';
 
 ### Rule 6: Animations and Interactions ✅
 
-| الفحص | الوصف | الشدة | الاكتشاف |
-|------|-------|-------|----------|
-| framer-motion usage | استخدام framer-motion للـ animations | Warning | ✅ |
-| CSS animations | animations بدون framer-motion | Warning | ✅ |
+| الفحص               | الوصف                                | الشدة   | الاكتشاف |
+| ------------------- | ------------------------------------ | ------- | -------- |
+| framer-motion usage | استخدام framer-motion للـ animations | Warning | ✅       |
+| CSS animations      | animations بدون framer-motion        | Warning | ✅       |
 
 **أمثلة:**
+
 ```tsx
 // ⚠️ تحذير
 <div style={{ transition: 'all 0.3s' }}>
@@ -173,13 +186,14 @@ import { motion } from 'framer-motion';
 
 ### Rule 7: RTL Support ✅
 
-| الفحص | الوصف | الشدة | الاكتشاف |
-|------|-------|-------|----------|
-| Left/Right classes | استخدام `ml-`, `mr-`, `pl-`, `pr-` | Warning | ✅ |
-| Float left/right | استخدام `float-left/right` | Warning | ✅ |
-| Text alignment | استخدام `text-left/right` | Info | ✅ |
+| الفحص              | الوصف                              | الشدة   | الاكتشاف |
+| ------------------ | ---------------------------------- | ------- | -------- |
+| Left/Right classes | استخدام `ml-`, `mr-`, `pl-`, `pr-` | Warning | ✅       |
+| Float left/right   | استخدام `float-left/right`         | Warning | ✅       |
+| Text alignment     | استخدام `text-left/right`          | Info    | ✅       |
 
 **أمثلة:**
+
 ```tsx
 // ⚠️ تحذير
 <div className="ml-4 mr-2">
@@ -192,23 +206,23 @@ import { motion } from 'framer-motion';
 
 ### سرعة الفحص
 
-| عدد الملفات | الوقت المتوسط | الملاحظات |
-|-------------|---------------|-----------|
-| 1-10 | < 1 ثانية | سريع جداً |
-| 10-50 | 1-3 ثواني | سريع |
-| 50-100 | 3-7 ثواني | متوسط |
-| 100-500 | 7-30 ثانية | مقبول |
-| 500+ | 30+ ثانية | بطيء (يُنصح بتقسيم الفحص) |
+| عدد الملفات | الوقت المتوسط | الملاحظات                 |
+| ----------- | ------------- | ------------------------- |
+| 1-10        | < 1 ثانية     | سريع جداً                 |
+| 10-50       | 1-3 ثواني     | سريع                      |
+| 50-100      | 3-7 ثواني     | متوسط                     |
+| 100-500     | 7-30 ثانية    | مقبول                     |
+| 500+        | 30+ ثانية     | بطيء (يُنصح بتقسيم الفحص) |
 
 ### دقة الاكتشاف
 
-| نوع الخطأ | معدل الاكتشاف | False Positives |
-|----------|---------------|-----------------|
-| Hex Colors | 99% | < 1% |
-| RGBA Values | 95% | < 5% |
-| Hardcoded Text | 90% | < 10% |
-| Import errors | 100% | 0% |
-| RTL issues | 85% | < 15% |
+| نوع الخطأ      | معدل الاكتشاف | False Positives |
+| -------------- | ------------- | --------------- |
+| Hex Colors     | 99%           | < 1%            |
+| RGBA Values    | 95%           | < 5%            |
+| Hardcoded Text | 90%           | < 10%           |
+| Import errors  | 100%          | 0%              |
+| RTL issues     | 85%           | < 15%           |
 
 ### استهلاك الموارد
 
@@ -221,21 +235,25 @@ import { motion } from 'framer-motion';
 ### ✅ متى يجب استخدام السكريبت
 
 1. **قبل Commit**
+
    ```bash
    npm run validate:design $(git diff --name-only --cached)
    ```
 
 2. **أثناء التطوير**
+
    ```bash
    npm run validate:design src/components/features/myfeature/
    ```
 
 3. **في CI/CD Pipeline**
+
    ```bash
    npm run validate:design src/ --json report.json
    ```
 
 4. **مراجعة Pull Request**
+
    ```bash
    npm run validate:design $(git diff --name-only origin/main...HEAD)
    ```
@@ -335,18 +353,21 @@ const files = await glob(`${pattern}/**/*.{tsx,ts}`, {
 ## 🔄 خارطة الطريق
 
 ### الإصدار 1.0 (الحالي) ✅
+
 - ✅ فحص القواعد الأساسية الستة
 - ✅ تقارير مفصلة
 - ✅ دعم JSON output
 - ✅ توثيق شامل
 
 ### الإصدار 1.1 (مخطط)
+
 - 🔄 Auto-fix للمشاكل البسيطة
 - 🔄 Configuration file support
 - 🔄 Cache للأداء الأفضل
 - 🔄 Incremental validation
 
 ### الإصدار 2.0 (مستقبلي)
+
 - 📅 IDE integration (VS Code extension)
 - 📅 Real-time validation
 - 📅 AI-powered suggestions
@@ -373,6 +394,7 @@ const files = await glob(`${pattern}/**/*.{tsx,ts}`, {
 ### المساهمة
 
 #### تحسين السكريبت
+
 ```bash
 # Fork the repo
 git clone https://github.com/your-org/fisal.git
@@ -386,6 +408,7 @@ npm run validate:design scripts/test-component-example.tsx
 ```
 
 #### إضافة قواعد جديدة
+
 1. أضف القاعدة في `validate-design-rules.ts`
 2. أضف أمثلة في `test-component-example.tsx`
 3. وثق القاعدة في التوثيق
@@ -394,18 +417,21 @@ npm run validate:design scripts/test-component-example.tsx
 ## 📊 تقرير الحالة
 
 ### الإصدار الحالي
+
 - **النسخة**: 1.0.0
 - **تاريخ الإطلاق**: نوفمبر 2025
 - **الحالة**: مستقر ✅
 - **الاختبار**: تم اختباره على 500+ ملف
 
 ### الإحصائيات
+
 - **القواعد**: 6 قواعد رئيسية
 - **الفحوصات**: 15+ فحص فرعي
 - **معدل الدقة**: 95%+
 - **الأداء**: ممتاز
 
 ### الاستخدام في المشروع
+
 - **ملفات مفحوصة**: 150+ ملف TSX/TS
 - **أخطاء مكتشفة**: 200+ خطأ
 - **أخطاء مصلحة**: 180+ خطأ (90%)
@@ -442,4 +468,3 @@ npm run validate:design src/ --json report.json
 **آخر تحديث:** نوفمبر 14, 2025
 **النسخة:** 1.0.0
 **المساهمون:** فريق Fisal
-

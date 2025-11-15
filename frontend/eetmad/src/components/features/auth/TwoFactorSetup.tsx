@@ -70,7 +70,10 @@ export default function TwoFactorSetup() {
           <Shield className="h-10 w-10" style={{ color: cssVars.neutral.surface }} />
         </div>
 
-        <h1 className="mb-2 text-3xl font-bold md:text-4xl" style={{ color: cssVars.secondary.DEFAULT }}>
+        <h1
+          className="mb-2 text-3xl font-bold md:text-4xl"
+          style={{ color: cssVars.secondary.DEFAULT }}
+        >
           {t('title')}
         </h1>
         <p className="text-base" style={{ color: cssVars.neutral.textSecondary }}>
@@ -83,12 +86,12 @@ export default function TwoFactorSetup() {
         {['scan', 'verify', 'success'].map((s, idx) => (
           <div key={s} className="flex items-center gap-2">
             <div
-              className={`h-2 w-2 rounded-full transition-all ${
-                step === s ? 'w-8' : ''
-              }`}
+              className={`h-2 w-2 rounded-full transition-all ${step === s ? 'w-8' : ''}`}
               style={{
                 backgroundColor:
-                  step === s || (s === 'scan' && step !== 'scan') || (s === 'verify' && step === 'success')
+                  step === s ||
+                  (s === 'scan' && step !== 'scan') ||
+                  (s === 'verify' && step === 'success')
                     ? cssVars.primary.DEFAULT
                     : cssVars.neutral.border,
               }}
@@ -104,14 +107,14 @@ export default function TwoFactorSetup() {
           animate={{ opacity: 1, x: 0 }}
           className="space-y-6"
         >
-          <div
-            className="rounded-2xl p-6"
-            style={{ backgroundColor: cssVars.neutral.bg }}
-          >
+          <div className="rounded-2xl p-6" style={{ backgroundColor: cssVars.neutral.bg }}>
             <div className="mb-4 flex justify-center">
               <img src={qrCodeUrl} alt="QR Code" className="h-48 w-48 rounded-xl" />
             </div>
-            <p className="text-center text-sm font-semibold" style={{ color: cssVars.neutral.textSecondary }}>
+            <p
+              className="text-center text-sm font-semibold"
+              style={{ color: cssVars.neutral.textSecondary }}
+            >
               {t('setupInstructions.step1')}
             </p>
           </div>
@@ -140,11 +143,11 @@ export default function TwoFactorSetup() {
           onSubmit={handleVerify}
           className="space-y-6"
         >
-          <div
-            className="rounded-2xl p-6"
-            style={{ backgroundColor: cssVars.neutral.bg }}
-          >
-            <p className="mb-4 text-center text-sm font-semibold" style={{ color: cssVars.neutral.textSecondary }}>
+          <div className="rounded-2xl p-6" style={{ backgroundColor: cssVars.neutral.bg }}>
+            <p
+              className="mb-4 text-center text-sm font-semibold"
+              style={{ color: cssVars.neutral.textSecondary }}
+            >
               {t('setupInstructions.step2')}
             </p>
 
@@ -214,7 +217,9 @@ export default function TwoFactorSetup() {
               animate={{ scale: 1 }}
               transition={{ type: 'spring' }}
               className="mx-auto mb-4 flex h-20 w-20 items-center justify-center rounded-full"
-              style={{ backgroundColor: `color-mix(in srgb, ${cssVars.status.success} 15%, transparent)` }}
+              style={{
+                backgroundColor: `color-mix(in srgb, ${cssVars.status.success} 15%, transparent)`,
+              }}
             >
               <CheckCircle2 className="h-10 w-10" style={{ color: cssVars.status.success }} />
             </motion.div>
@@ -227,10 +232,7 @@ export default function TwoFactorSetup() {
             </p>
           </div>
 
-          <div
-            className="rounded-2xl p-6"
-            style={{ backgroundColor: cssVars.neutral.bg }}
-          >
+          <div className="rounded-2xl p-6" style={{ backgroundColor: cssVars.neutral.bg }}>
             <div className="mb-4 flex items-center justify-between">
               <h3 className="text-lg font-bold" style={{ color: cssVars.secondary.DEFAULT }}>
                 {t('backupCodes')}

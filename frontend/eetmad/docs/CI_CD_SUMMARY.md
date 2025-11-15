@@ -7,12 +7,14 @@
 ## ✅ What's Been Set Up
 
 ### 1. **Pre-Commit Hook** ✅
+
 - **Location:** `.husky/pre-commit`
 - **Runs:** Before every `git commit`
 - **Checks:** Design rules on staged files
 - **Time:** < 10 seconds
 
 ### 2. **Pre-Push Hook** ✅
+
 - **Location:** `.husky/pre-push`
 - **Runs:** Before every `git push`
 - **Checks:**
@@ -25,6 +27,7 @@
 - **Time:** ~30 seconds
 
 ### 3. **GitHub Actions Pipeline** ✅
+
 - **Location:** `.github/workflows/develop-checks.yml`
 - **Runs:** On PRs and pushes to `develop` branch
 - **Jobs:**
@@ -151,14 +154,15 @@ When you create a PR to `develop`:
 
 ## 📊 Coverage Comparison
 
-| Check | Local Dev | Pre-Commit | Pre-Push | CI/CD |
-|-------|-----------|------------|----------|-------|
-| **Speed** | Instant | < 10s | ~30s | 5-8 min |
-| **Scope** | Manual | Staged files | Changed files | All files |
-| **When** | Anytime | Before commit | Before push | On PR |
-| **Purpose** | Quick check | Catch errors | Full validation | Final gate |
+| Check       | Local Dev   | Pre-Commit    | Pre-Push        | CI/CD      |
+| ----------- | ----------- | ------------- | --------------- | ---------- |
+| **Speed**   | Instant     | < 10s         | ~30s            | 5-8 min    |
+| **Scope**   | Manual      | Staged files  | Changed files   | All files  |
+| **When**    | Anytime     | Before commit | Before push     | On PR      |
+| **Purpose** | Quick check | Catch errors  | Full validation | Final gate |
 
 **Strategy:**
+
 - 🏃 Fast feedback (pre-commit)
 - 🔍 Thorough check (pre-push)
 - 🚪 Final gate (CI/CD)
@@ -219,18 +223,21 @@ git commit / git push
 ## 🎯 Benefits
 
 ### For Developers
+
 - ✅ Catch errors before push
 - ✅ Fast feedback loop
 - ✅ No surprises in CI/CD
 - ✅ Better code quality
 
 ### For Team
+
 - ✅ Consistent code quality
 - ✅ Faster code reviews
 - ✅ No bad code in develop
 - ✅ Automated enforcement
 
 ### For Project
+
 - ✅ Maintainable codebase
 - ✅ Fewer bugs
 - ✅ Better developer experience
@@ -321,15 +328,18 @@ git push --no-verify
 ## 📚 Documentation
 
 ### Quick References
+
 - [5-Minute Setup](./frontend/eetmad/scripts/docs/ci-cd/QUICK_SETUP.md)
 - [Complete CI/CD Guide](./frontend/eetmad/scripts/docs/ci-cd/README.md)
 - [Common Fixes](./frontend/eetmad/scripts/quick-reference/common-fixes.md)
 
 ### Workflows
+
 - [Before Commit Workflow](./frontend/eetmad/scripts/docs/workflows/README.md)
 - [Code Review Process](./frontend/eetmad/scripts/docs/workflows/README.md#code-review-workflows)
 
 ### Scripts Hub
+
 - [Main INDEX](./frontend/eetmad/scripts/INDEX.md)
 - [Interactive Menu](./frontend/eetmad/scripts/INDEX.md#interactive-tools)
 
@@ -340,6 +350,7 @@ git push --no-verify
 ### For New Team Members
 
 **First Day:**
+
 ```bash
 # 1. Clone repo
 git clone <repo-url>
@@ -364,12 +375,14 @@ cat scripts/START_HERE.md
 ### Time Savings
 
 **Before CI/CD:**
+
 - ❌ Manual checks: 10 min per commit
 - ❌ Finding issues in review: 30 min
 - ❌ Fixing issues later: 1 hour
 - ❌ Total: ~1.5 hours per feature
 
 **After CI/CD:**
+
 - ✅ Automated checks: 30 seconds
 - ✅ Issues caught early: Immediate
 - ✅ Fix time: 5 min (caught early)
@@ -387,7 +400,7 @@ cat scripts/START_HERE.md
 ✅ **Pre-push hooks** - Full validation before push  
 ✅ **CI/CD pipeline** - Automated checks on PRs  
 ✅ **Documentation** - Complete guides and quick refs  
-✅ **Interactive tools** - Easy-to-use menu system  
+✅ **Interactive tools** - Easy-to-use menu system
 
 ### What This Means
 
@@ -420,7 +433,6 @@ cat scripts/START_HERE.md
 
 ---
 
-*Created: November 15, 2025*  
-*Version: 1.0*  
-*Maintained by: Fisal Dev Team*
-
+_Created: November 15, 2025_  
+_Version: 1.0_  
+_Maintained by: Fisal Dev Team_

@@ -11,11 +11,13 @@
 **What it does:** Checks if your code follows the design rules from `component-building-guidelines.md`
 
 **Command:**
+
 ```bash
 npm run validate:design [path]
 ```
 
 **Checks for:**
+
 - ✅ Theme system usage (cssVars instead of hardcoded colors)
 - ✅ Internationalization (useTranslations instead of hardcoded text)
 - ✅ Component structure (proper naming, 'use client', props interface)
@@ -24,6 +26,7 @@ npm run validate:design [path]
 - ✅ RTL support (ms-/me- instead of ml-/mr-)
 
 **Documentation:**
+
 - [Full Design Rules Guide](./design-rules.md)
 - [Quick Reference](../../quick-reference/design-rules.md)
 - [Common Fixes](../../quick-reference/common-fixes.md)
@@ -35,17 +38,20 @@ npm run validate:design [path]
 **What it does:** Checks TypeScript types for correctness and completeness
 
 **Command:**
+
 ```bash
 npm run validate-types
 ```
 
 **Checks for:**
+
 - Props interfaces
 - Correct type usage
 - No `any` types
 - Complete type definitions
 
 **Documentation:**
+
 - [Type Validation Guide](./types.md)
 
 ---
@@ -55,11 +61,13 @@ npm run validate-types
 **What it does:** Ensures consistent naming across the codebase
 
 **Command:**
+
 ```bash
 npm run validate-naming
 ```
 
 **Checks for:**
+
 - PascalCase for components
 - camelCase for functions/variables
 - kebab-case for CSS files
@@ -72,11 +80,13 @@ npm run validate-naming
 **What it does:** Verifies project structure follows the defined architecture
 
 **Command:**
+
 ```bash
 node scripts/validate-structure.js
 ```
 
 **Checks for:**
+
 - Correct folder structure
 - Files in right locations
 - Required files present
@@ -88,11 +98,13 @@ node scripts/validate-structure.js
 **What it does:** Checks for correct import statements
 
 **Command:**
+
 ```bash
 ./scripts/check-imports.sh
 ```
 
 **Checks for:**
+
 - Valid import paths
 - No circular dependencies
 - Correct module usage
@@ -178,7 +190,7 @@ STAGED_FILES=$(git diff --cached --name-only --diff-filter=ACM | grep -E '\.(tsx
 if [ -n "$STAGED_FILES" ]; then
   echo "🔍 Validating design rules..."
   npm run validate:design $STAGED_FILES
-  
+
   if [ $? -ne 0 ]; then
     echo "❌ Validation failed! Please fix errors before committing."
     exit 1
@@ -218,12 +230,12 @@ npx nodemon --watch src/ --ext tsx,ts \
 
 ### When to Validate
 
-| Timing | Command | Why |
-|--------|---------|-----|
-| **While coding** | `npm run validate:design <file>` | Catch issues early |
-| **Before commit** | `npm run validate:design $(git diff --cached --name-only)` | Ensure quality |
-| **Before push** | `npm run validate:all` | Full check |
-| **In CI/CD** | `npm run validate:design src/` | Automated quality gate |
+| Timing            | Command                                                    | Why                    |
+| ----------------- | ---------------------------------------------------------- | ---------------------- |
+| **While coding**  | `npm run validate:design <file>`                           | Catch issues early     |
+| **Before commit** | `npm run validate:design $(git diff --cached --name-only)` | Ensure quality         |
+| **Before push**   | `npm run validate:all`                                     | Full check             |
+| **In CI/CD**      | `npm run validate:design src/`                             | Automated quality gate |
 
 ---
 
@@ -273,6 +285,7 @@ graph TD
 **Problem:** Takes too long to validate entire project
 
 **Solutions:**
+
 ```bash
 # Option 1: Validate specific directory
 npm run validate:design src/components/features/home/
@@ -290,11 +303,13 @@ npm run validate:design $(git diff --name-only)
 **Problem:** Validation reports errors that aren't actually issues
 
 **Common causes:**
+
 1. Comments containing examples
 2. Documentation strings
 3. Legitimate URLs
 
 **Solutions:**
+
 - The validator already ignores comments and examples
 - Use `// eslint-disable-next-line` for edge cases
 - Report false positives to improve the validator
@@ -306,6 +321,7 @@ npm run validate:design $(git diff --name-only)
 **Problem:** "Cannot find module 'glob'" or similar
 
 **Solution:**
+
 ```bash
 cd frontend/eetmad
 npm install
@@ -363,5 +379,4 @@ npm run validate:design src/ --json weekly-report-$(date +%Y%m%d).json
 
 **💡 Tip:** Run `npm run scripts:menu` for interactive access to all validation tools!
 
-*Last Updated: November 15, 2025*
-
+_Last Updated: November 15, 2025_

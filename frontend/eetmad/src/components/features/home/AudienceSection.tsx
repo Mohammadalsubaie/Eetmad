@@ -7,8 +7,18 @@ import { useTranslations } from 'next-intl';
 import { SectionHeader, GradientIcon } from '@/components/ui';
 
 const segments = [
-  { key: 'individuals', icon: UserRound, gradient: cssVars.gradient.primary, accentColor: cssVars.primary.DEFAULT },
-  { key: 'businesses', icon: Building2, gradient: cssVars.gradient.gold, accentColor: cssVars.secondary.DEFAULT },
+  {
+    key: 'individuals',
+    icon: UserRound,
+    gradient: cssVars.gradient.primary,
+    accentColor: cssVars.primary.DEFAULT,
+  },
+  {
+    key: 'businesses',
+    icon: Building2,
+    gradient: cssVars.gradient.gold,
+    accentColor: cssVars.secondary.DEFAULT,
+  },
 ] as const;
 
 const listKeys = {
@@ -53,7 +63,7 @@ export default function AudienceSection() {
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ delay: index * 0.15, duration: 0.6 }}
-              className="group relative overflow-hidden rounded-3xl border-2 p-8 shadow-2xl transition-all duration-500 hover:scale-[1.02] hover:shadow-3xl"
+              className="hover:shadow-3xl group relative overflow-hidden rounded-3xl border-2 p-8 shadow-2xl transition-all duration-500 hover:scale-[1.02]"
               style={{
                 backgroundColor: cssVars.neutral.surface,
                 borderColor: cssVars.neutral.border,
@@ -69,7 +79,7 @@ export default function AudienceSection() {
 
               {/* Top decorative element */}
               <div
-                className="absolute end-0 top-0 h-24 w-24 translate-x-8 -translate-y-8 rounded-full opacity-20 blur-2xl transition-all duration-500 group-hover:scale-150"
+                className="absolute end-0 top-0 h-24 w-24 -translate-y-8 translate-x-8 rounded-full opacity-20 blur-2xl transition-all duration-500 group-hover:scale-150"
                 style={{ background: segment.accentColor }}
               />
 
@@ -81,7 +91,10 @@ export default function AudienceSection() {
                   animated
                 />
                 <div>
-                  <p className="text-xs font-bold uppercase tracking-[0.3em]" style={{ color: segment.accentColor }}>
+                  <p
+                    className="text-xs font-bold uppercase tracking-[0.3em]"
+                    style={{ color: segment.accentColor }}
+                  >
                     {t(`segments.${segment.key}.tagline`)}
                   </p>
                   <h3 className="text-3xl font-bold" style={{ color: cssVars.secondary.DEFAULT }}>
@@ -90,7 +103,10 @@ export default function AudienceSection() {
                 </div>
               </div>
 
-              <p className="relative mb-8 text-lg leading-relaxed" style={{ color: cssVars.neutral.textSecondary }}>
+              <p
+                className="relative mb-8 text-lg leading-relaxed"
+                style={{ color: cssVars.neutral.textSecondary }}
+              >
                 {t(`segments.${segment.key}.description`)}
               </p>
 
@@ -109,11 +125,16 @@ export default function AudienceSection() {
                   >
                     <div
                       className="mt-0.5 flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full"
-                      style={{ backgroundColor: `color-mix(in srgb, ${segment.accentColor} 15%, transparent)` }}
+                      style={{
+                        backgroundColor: `color-mix(in srgb, ${segment.accentColor} 15%, transparent)`,
+                      }}
                     >
                       <CheckCircle2 className="h-4 w-4" style={{ color: segment.accentColor }} />
                     </div>
-                    <p className="flex-1 text-base font-bold" style={{ color: cssVars.secondary.DEFAULT }}>
+                    <p
+                      className="flex-1 text-base font-bold"
+                      style={{ color: cssVars.secondary.DEFAULT }}
+                    >
                       {t(`segments.${segment.key}.items.${itemKey}`)}
                     </p>
                   </motion.div>
@@ -132,5 +153,3 @@ export default function AudienceSection() {
     </section>
   );
 }
-
-

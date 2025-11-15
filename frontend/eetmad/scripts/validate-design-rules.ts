@@ -75,6 +75,8 @@ class DesignRulesValidator {
       filePath.includes('\\scripts\\') ||
       filePath.includes('/i18n/') ||
       filePath.includes('\\i18n\\') ||
+      filePath.includes('/docs/') ||
+      filePath.includes('\\docs\\') ||
       filePath.endsWith('.config.') ||
       filePath.includes('.config.ts') ||
       filePath.includes('.config.js') ||
@@ -661,6 +663,12 @@ class DesignRulesValidator {
 
     // Skip placeholder files
     if (this.isPlaceholderFile(filePath, content)) {
+      this.skippedPlaceholders++;
+      return null;
+    }
+
+    // Skip script and documentation files
+    if (this.isScriptFile(filePath)) {
       this.skippedPlaceholders++;
       return null;
     }

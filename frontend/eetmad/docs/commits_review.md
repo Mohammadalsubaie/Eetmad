@@ -101,9 +101,9 @@
 
 ## Summary
 
--   **Total commits:** 19
--   **Feature commits:** 3 (new sections, theme refactor, UI restructure)
--   **Fix commits:** 5 (import fixes)
--   **Merge commits:** 5
--   **Restore commits:** 2 (page.tsx restorations)
--   **Chore/Docs commits:** 4
+- **Total commits:** 19
+- **Feature commits:** 3 (new sections, theme refactor, UI restructure)
+- **Fix commits:** 5 (import fixes)
+- **Merge commits:** 5
+- **Restore commits:** 2 (page.tsx restorations)
+- **Chore/Docs commits:** 4

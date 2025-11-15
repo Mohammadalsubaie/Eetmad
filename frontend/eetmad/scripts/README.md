@@ -49,6 +49,7 @@ scripts/
 **الوصف:** يفحص الملفات للتأكد من اتباع جميع قواعد البناء المذكورة في `docs/design/component-building-guidelines.md`
 
 **الاستخدام:**
+
 ```bash
 # فحص ملف واحد
 npm run validate:design src/components/features/home/HeroSection.tsx
@@ -64,6 +65,7 @@ npm run validate:design --help
 ```
 
 **ما يفحصه:**
+
 - ✅ استخدام `cssVars` بدلاً من الألوان الـ hardcoded
 - ✅ استخدام `useTranslations` للنصوص
 - ✅ هيكل المكونات الصحيح
@@ -72,12 +74,14 @@ npm run validate:design --help
 - ✅ دعم RTL
 
 **التوثيق:**
+
 - 📄 [دليل شامل](./validate-design-rules.README.md)
 - 📄 [دليل البدء السريع](./QUICK_START_GUIDE.md)
 - 📄 [ملخص شامل](./VALIDATION_SUMMARY.md)
 - 📄 [أمثلة CI/CD](./ci-integration-example.yml)
 
 **أمثلة الاختبار:**
+
 - 📄 [مثال بأخطاء](./test-component-example.tsx)
 - 📄 [مثال صحيح](./test-component-correct.tsx)
 
@@ -90,11 +94,13 @@ npm run validate:design --help
 **الوصف:** يفحص أسماء الملفات والمكونات للتأكد من اتباع معايير التسمية.
 
 **الاستخدام:**
+
 ```bash
 npm run validate-naming
 ```
 
 **ما يفحصه:**
+
 - PascalCase للمكونات
 - camelCase للدوال والمتغيرات
 - kebab-case لملفات CSS
@@ -109,17 +115,20 @@ npm run validate-naming
 **الوصف:** يفحص TypeScript types للتأكد من صحتها واكتمالها.
 
 **الاستخدام:**
+
 ```bash
 npm run validate-types
 ```
 
 **ما يفحصه:**
+
 - وجود interfaces للـ props
 - استخدام الأنواع الصحيحة
 - عدم استخدام `any`
 - اكتمال type definitions
 
 **التوثيق:**
+
 - 📄 [دليل التحقق من الأنواع](./validate-types.README.md)
 
 ---
@@ -131,6 +140,7 @@ npm run validate-types
 **الوصف:** يفحص هيكل المشروع للتأكد من اتباع البنية المحددة.
 
 **الاستخدام:**
+
 ```bash
 node scripts/validate-structure.js
 ```
@@ -196,7 +206,7 @@ if [ -n "$STAGED_FILES" ]; then
   echo "🔍 Validating design rules..."
   cd frontend/eetmad
   npm run validate:design $STAGED_FILES
-  
+
   if [ $? -ne 0 ]; then
     echo "❌ Design rules validation failed!"
     exit 1
@@ -207,6 +217,7 @@ fi
 ### CI/CD Pipeline
 
 أمثلة للتكامل مع:
+
 - GitHub Actions
 - GitLab CI
 - Jenkins
@@ -236,12 +247,12 @@ fi
 
 ## 📊 مقارنة السكريبتات
 
-| السكريبت | الغرض | الاستخدام | الوقت |
-|---------|-------|----------|-------|
-| `validate-design-rules` | فحص قواعد البناء | يومي | < 5 ثواني |
-| `validate-naming` | فحص التسمية | أسبوعي | < 2 ثانية |
-| `validate-types` | فحص الأنواع | قبل commit | < 3 ثواني |
-| `validate-structure` | فحص الهيكل | شهري | < 1 ثانية |
+| السكريبت                | الغرض            | الاستخدام  | الوقت     |
+| ----------------------- | ---------------- | ---------- | --------- |
+| `validate-design-rules` | فحص قواعد البناء | يومي       | < 5 ثواني |
+| `validate-naming`       | فحص التسمية      | أسبوعي     | < 2 ثانية |
+| `validate-types`        | فحص الأنواع      | قبل commit | < 3 ثواني |
+| `validate-structure`    | فحص الهيكل       | شهري       | < 1 ثانية |
 
 ## 🎯 أفضل الممارسات
 
@@ -294,11 +305,13 @@ alias vt="npm run validate-types"
 ### التوثيق التفصيلي
 
 #### فحص قواعد البناء
+
 - 📄 [README شامل](./validate-design-rules.README.md)
 - 📄 [دليل البدء السريع](./QUICK_START_GUIDE.md)
 - 📄 [ملخص وإحصائيات](./VALIDATION_SUMMARY.md)
 
 #### فحص الأنواع
+
 - 📄 [دليل TypeScript Validation](./validate-types.README.md)
 
 ## 🐛 المشاكل الشائعة
@@ -306,6 +319,7 @@ alias vt="npm run validate-types"
 ### المشكلة: "Cannot find module 'glob'"
 
 **الحل:**
+
 ```bash
 cd frontend/eetmad
 npm install
@@ -314,6 +328,7 @@ npm install
 ### المشكلة: السكريبت بطيء
 
 **الحل:** فحص مجلدات محددة بدلاً من كل المشروع:
+
 ```bash
 npm run validate:design src/components/features/home/
 ```
@@ -321,6 +336,7 @@ npm run validate:design src/components/features/home/
 ### المشكلة: كثرة False Positives
 
 **الحل:** السكريبت يتجاهل:
+
 - التعليقات (`//`)
 - الأمثلة مع `❌` أو `WRONG`
 - ملفات الاختبار
@@ -329,13 +345,13 @@ npm run validate:design src/components/features/home/
 
 ### من تاريخ الإطلاق (نوفمبر 2025)
 
-| المقياس | القيمة |
-|---------|--------|
-| ملفات مفحوصة | 150+ |
-| أخطاء مكتشفة | 200+ |
-| أخطاء مصلحة | 180+ (90%) |
-| وقت موفر | ~40 ساعة |
-| معدل الدقة | 95%+ |
+| المقياس      | القيمة     |
+| ------------ | ---------- |
+| ملفات مفحوصة | 150+       |
+| أخطاء مكتشفة | 200+       |
+| أخطاء مصلحة  | 180+ (90%) |
+| وقت موفر     | ~40 ساعة   |
+| معدل الدقة   | 95%+       |
 
 ## 🔮 المستقبل
 
@@ -356,6 +372,7 @@ npm run validate:design src/components/features/home/
 ### أفكار مستقبلية
 
 من [scripts-suggestions.md](./scripts-suggestions.md):
+
 - Database backup scripts
 - API client generator
 - Performance monitoring
@@ -430,4 +447,3 @@ npx nodemon --watch src/ --ext tsx,ts --exec "npm run validate:design src/"
 
 **آخر تحديث:** نوفمبر 14, 2025
 **النسخة:** 1.0.0
-

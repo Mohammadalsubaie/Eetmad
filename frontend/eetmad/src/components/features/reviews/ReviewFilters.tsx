@@ -1,4 +1,4 @@
-export default function Reviewfilters() {
+export default function ReviewFilters() {
   // TODO: Implement ReviewFilters component
   return null;
 }

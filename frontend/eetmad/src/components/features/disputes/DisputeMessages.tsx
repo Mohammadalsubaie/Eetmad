@@ -1,4 +1,4 @@
-export default function Disputemessages() {
+export default function DisputeMessages() {
   // TODO: Implement DisputeMessages component
   return null;
 }

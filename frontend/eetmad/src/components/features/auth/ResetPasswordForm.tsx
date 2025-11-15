@@ -4,8 +4,16 @@ import { useState } from 'react';
 import { cssVars } from '@/styles/theme';
 import { useTranslations, useLocale } from 'next-intl';
 import { motion } from 'framer-motion';
-import { Lock, Eye, EyeOff, ArrowRight, ArrowLeft, Sparkles, CheckCircle2, Shield } from 'lucide-react';
-import Link from 'next/link';
+import {
+  Lock,
+  Eye,
+  EyeOff,
+  ArrowRight,
+  ArrowLeft,
+  Sparkles,
+  CheckCircle2,
+  Shield,
+} from 'lucide-react';
 
 export default function ResetPasswordForm() {
   const t = useTranslations('auth');
@@ -41,7 +49,7 @@ export default function ResetPasswordForm() {
       console.log('Reset password');
       setIsSuccess(true);
       setIsLoading(false);
-      
+
       // Redirect to login after 2 seconds
       setTimeout(() => {
         window.location.href = '/login';
@@ -52,9 +60,23 @@ export default function ResetPasswordForm() {
   // Password strength indicator
   const getPasswordStrength = () => {
     if (newPassword.length === 0) return { label: '', strength: 0, color: cssVars.neutral.border };
-    if (newPassword.length < 8) return { label: t('common.passwordStrength.weak'), strength: 33, color: cssVars.status.error };
-    if (newPassword.length < 12) return { label: t('common.passwordStrength.medium'), strength: 66, color: cssVars.status.warning };
-    return { label: t('common.passwordStrength.strong'), strength: 100, color: cssVars.status.success };
+    if (newPassword.length < 8)
+      return {
+        label: t('common.passwordStrength.weak'),
+        strength: 33,
+        color: cssVars.status.error,
+      };
+    if (newPassword.length < 12)
+      return {
+        label: t('common.passwordStrength.medium'),
+        strength: 66,
+        color: cssVars.status.warning,
+      };
+    return {
+      label: t('common.passwordStrength.strong'),
+      strength: 100,
+      color: cssVars.status.success,
+    };
   };
 
   const strength = getPasswordStrength();
@@ -84,7 +106,10 @@ export default function ResetPasswordForm() {
               </span>
             </div>
 
-            <h1 className="mb-2 text-3xl font-bold md:text-4xl" style={{ color: cssVars.secondary.DEFAULT }}>
+            <h1
+              className="mb-2 text-3xl font-bold md:text-4xl"
+              style={{ color: cssVars.secondary.DEFAULT }}
+            >
               {t('resetPassword.title')}
             </h1>
             <p className="text-base" style={{ color: cssVars.neutral.textSecondary }}>
@@ -113,7 +138,10 @@ export default function ResetPasswordForm() {
           <form onSubmit={handleSubmit} className="space-y-5">
             {/* New Password Field */}
             <div>
-              <label className="mb-2 block text-sm font-bold" style={{ color: cssVars.secondary.DEFAULT }}>
+              <label
+                className="mb-2 block text-sm font-bold"
+                style={{ color: cssVars.secondary.DEFAULT }}
+              >
                 {t('resetPassword.newPassword')}
               </label>
               <div className="relative">
@@ -152,7 +180,10 @@ export default function ResetPasswordForm() {
               {newPassword.length > 0 && (
                 <div className="mt-2">
                   <div className="mb-1 flex items-center justify-between">
-                    <span className="text-xs font-semibold" style={{ color: cssVars.neutral.textSecondary }}>
+                    <span
+                      className="text-xs font-semibold"
+                      style={{ color: cssVars.neutral.textSecondary }}
+                    >
                       {t('common.passwordStrength.label')}
                     </span>
                     <span className="text-xs font-bold" style={{ color: strength.color }}>
@@ -177,7 +208,10 @@ export default function ResetPasswordForm() {
 
             {/* Confirm Password Field */}
             <div>
-              <label className="mb-2 block text-sm font-bold" style={{ color: cssVars.secondary.DEFAULT }}>
+              <label
+                className="mb-2 block text-sm font-bold"
+                style={{ color: cssVars.secondary.DEFAULT }}
+              >
                 {t('common.confirmPassword')}
               </label>
               <div className="relative">
@@ -243,11 +277,7 @@ export default function ResetPasswordForm() {
               ) : (
                 <>
                   {t('resetPassword.submitButton')}
-                  {isRTL ? (
-                    <ArrowLeft className="h-6 w-6" />
-                  ) : (
-                    <ArrowRight className="h-6 w-6" />
-                  )}
+                  {isRTL ? <ArrowLeft className="h-6 w-6" /> : <ArrowRight className="h-6 w-6" />}
                 </>
               )}
             </motion.button>
@@ -265,7 +295,9 @@ export default function ResetPasswordForm() {
             animate={{ scale: 1 }}
             transition={{ delay: 0.2, type: 'spring' }}
             className="mx-auto mb-6 flex h-24 w-24 items-center justify-center rounded-full"
-            style={{ backgroundColor: `color-mix(in srgb, ${cssVars.status.success} 15%, transparent)` }}
+            style={{
+              backgroundColor: `color-mix(in srgb, ${cssVars.status.success} 15%, transparent)`,
+            }}
           >
             <CheckCircle2 className="h-12 w-12" style={{ color: cssVars.status.success }} />
           </motion.div>
@@ -278,8 +310,14 @@ export default function ResetPasswordForm() {
             {t('common.successMessage')}
           </p>
 
-          <div className="flex items-center justify-center gap-2 text-sm" style={{ color: cssVars.neutral.textMuted }}>
-            <div className="h-1 w-1 animate-pulse rounded-full" style={{ backgroundColor: cssVars.status.success }} />
+          <div
+            className="flex items-center justify-center gap-2 text-sm"
+            style={{ color: cssVars.neutral.textMuted }}
+          >
+            <div
+              className="h-1 w-1 animate-pulse rounded-full"
+              style={{ backgroundColor: cssVars.status.success }}
+            />
             <span>{t('common.redirecting')}</span>
           </div>
         </motion.div>

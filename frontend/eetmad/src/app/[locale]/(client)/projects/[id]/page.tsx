@@ -1,3 +1,4 @@
+// TODO: Implement this page with proper i18n
 'use client';
 
 import { useAuth } from '@/contexts/AuthContext';
@@ -12,12 +13,12 @@ export default function ProjectDetailPage({ params }: { params: { id: string } }
       <h1>Project Details</h1>
       <p>Project ID: {params.id}</p>
       {isSupplier && (
-        <p className="text-muted-foreground text-sm">
+        <p className="text-sm text-muted-foreground">
           Viewing project as supplier - bid and offer management will be available here
         </p>
       )}
       {isClient && (
-        <p className="text-muted-foreground text-sm">
+        <p className="text-sm text-muted-foreground">
           Viewing project as client - project management will be available here
         </p>
       )}

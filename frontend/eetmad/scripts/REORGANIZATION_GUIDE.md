@@ -7,11 +7,13 @@
 ## 🎯 TL;DR
 
 **Before:**
+
 - Many scattered documentation files
 - Hard to find what you need
 - No clear structure
 
 **After:**
+
 - Organized by purpose
 - Quick reference cards
 - Interactive menu system
@@ -23,23 +25,23 @@
 
 ### New Files Created
 
-| File | Purpose | When to Use |
-|------|---------|-------------|
-| `START_HERE.md` | Entry point for new users | First time |
-| `INDEX.md` | Central hub with links to everything | Navigation |
-| `REORGANIZATION_GUIDE.md` | This file - what changed | Understanding changes |
-| `tools/menu.js` | Interactive CLI menu | Daily use |
+| File                      | Purpose                              | When to Use           |
+| ------------------------- | ------------------------------------ | --------------------- |
+| `START_HERE.md`           | Entry point for new users            | First time            |
+| `INDEX.md`                | Central hub with links to everything | Navigation            |
+| `REORGANIZATION_GUIDE.md` | This file - what changed             | Understanding changes |
+| `tools/menu.js`           | Interactive CLI menu                 | Daily use             |
 
 ### Quick Reference Cards (New!)
 
 All in `quick-reference/` folder:
 
-| File | What It Covers | Size |
-|------|----------------|------|
-| `design-rules.md` | All 6 design rules | 1 page |
-| `css-vars.md` | Complete cssVars reference | 2 pages |
-| `common-fixes.md` | Solutions to common errors | 2 pages |
-| `i18n-patterns.md` | i18n usage patterns | 2 pages |
+| File               | What It Covers             | Size    |
+| ------------------ | -------------------------- | ------- |
+| `design-rules.md`  | All 6 design rules         | 1 page  |
+| `css-vars.md`      | Complete cssVars reference | 2 pages |
+| `common-fixes.md`  | Solutions to common errors | 2 pages |
+| `i18n-patterns.md` | i18n usage patterns        | 2 pages |
 
 ---
 
@@ -107,17 +109,17 @@ scripts/
 
 ### Where Did My File Go?
 
-| Old Location | New Location | Notes |
-|--------------|--------------|-------|
-| `README.md` | `README.md` (updated) | Now points to new structure |
-| `VALIDATION_SUMMARY.md` | `docs/validation/README.md` | Reorganized |
-| `QUICK_START_GUIDE.md` | `docs/onboarding/quick-start.md` | Moved |
-| `validate-design-rules.README.md` | `docs/validation/design-rules.md` | Copied |
-| `validate-types.README.md` | `docs/validation/types.md` | Copied |
-| `ci-integration-example.yml` | `docs/ci-cd/ci-integration-example.yml` | Copied |
-| `test-component-*.tsx` | `examples/` | Will be moved |
-| (new) | `quick-reference/*.md` | New cheat sheets! |
-| (new) | `tools/menu.js` | New interactive menu! |
+| Old Location                      | New Location                            | Notes                       |
+| --------------------------------- | --------------------------------------- | --------------------------- |
+| `README.md`                       | `README.md` (updated)                   | Now points to new structure |
+| `VALIDATION_SUMMARY.md`           | `docs/validation/README.md`             | Reorganized                 |
+| `QUICK_START_GUIDE.md`            | `docs/onboarding/quick-start.md`        | Moved                       |
+| `validate-design-rules.README.md` | `docs/validation/design-rules.md`       | Copied                      |
+| `validate-types.README.md`        | `docs/validation/types.md`              | Copied                      |
+| `ci-integration-example.yml`      | `docs/ci-cd/ci-integration-example.yml` | Copied                      |
+| `test-component-*.tsx`            | `examples/`                             | Will be moved               |
+| (new)                             | `quick-reference/*.md`                  | New cheat sheets!           |
+| (new)                             | `tools/menu.js`                         | New interactive menu!       |
 
 **Note:** Original files still exist for now. They'll be archived after team feedback.
 
@@ -182,12 +184,14 @@ npm run scripts:menu
 ```
 
 **Features:**
+
 - Browse all scripts
 - Run validations
 - Open documentation
 - View examples
 
 **Use when:**
+
 - You don't remember the command
 - Exploring available tools
 - Quick access needed
@@ -199,12 +203,14 @@ npm run scripts:menu
 **Location:** `quick-reference/`
 
 **Why they're great:**
+
 - One page each
 - Designed for printing
 - Quick lookups
 - No scrolling
 
 **Best for:**
+
 - Daily reference
 - Keep next to your desk
 - Bookmark in browser
@@ -214,6 +220,7 @@ npm run scripts:menu
 ### 3. Organized Documentation
 
 **Benefits:**
+
 - Find things faster
 - Logical grouping
 - Clear hierarchy
@@ -247,11 +254,13 @@ npm run validate:watch
 ### For All Team Members
 
 1. **Read START_HERE.md** (2 min)
+
    ```bash
    cat scripts/START_HERE.md
    ```
 
 2. **Try the interactive menu** (1 min)
+
    ```bash
    npm run scripts:menu
    ```
@@ -349,11 +358,13 @@ cat scripts/quick-reference/design-rules.md
 ### Do commands change?
 
 **Mostly no.** Core commands stay the same:
+
 - `npm run validate:design` ✅ Same
 - `npm run validate-types` ✅ Same
 - `npm run validate-naming` ✅ Same
 
 **New additions:**
+
 - `npm run scripts:menu` 🆕
 - `npm run validate:all` 🆕
 - `npm run check:health` 🆕
@@ -474,6 +485,5 @@ We want to keep improving!
 
 **🎉 Welcome to the new, organized scripts structure!**
 
-*Last Updated: November 15, 2025*
-*Version: 2.0*
-
+_Last Updated: November 15, 2025_
+_Version: 2.0_

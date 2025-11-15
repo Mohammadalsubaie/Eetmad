@@ -1,4 +1,4 @@
-export default function Supplierstats() {
+export default function SupplierStats() {
   // TODO: Implement SupplierStats component
   return null;
 }

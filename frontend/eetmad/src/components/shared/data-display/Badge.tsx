@@ -97,11 +97,18 @@ const Badge: React.FC<BadgeProps> = ({
 }) => {
   return (
     <span
-      className={cn('inline-flex items-center gap-1.5 rounded-full border font-medium', sizeStyles[size], className)}
+      className={cn(
+        'inline-flex items-center gap-1.5 rounded-full border font-medium',
+        sizeStyles[size],
+        className
+      )}
       style={getVariantStyles(variant)}
     >
       {dot && (
-        <span className="h-1.5 w-1.5 rounded-full" style={{ backgroundColor: getDotColor(variant) }} />
+        <span
+          className="h-1.5 w-1.5 rounded-full"
+          style={{ backgroundColor: getDotColor(variant) }}
+        />
       )}
       {children}
     </span>

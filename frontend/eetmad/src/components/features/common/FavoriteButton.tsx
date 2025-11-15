@@ -1,4 +1,4 @@
-export default function Favoritebutton() {
+export default function FavoriteButton() {
   // TODO: Implement FavoriteButton component
   return null;
 }

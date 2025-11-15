@@ -8,7 +8,7 @@ import { motion } from 'framer-motion';
 import { ArrowRight, FileText, Gift } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 import React from 'react';
-
+// test design
 const CTASection: React.FC = () => {
   const t = useTranslations('home.cta');
 

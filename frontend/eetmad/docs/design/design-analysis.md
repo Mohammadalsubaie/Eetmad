@@ -1,9 +1,9 @@
 # Design Analysis (Legacy Document)
 
 > **⚠️ IMPORTANT**: This document is outdated. The theme system has moved to `frontend/eetmad/src/styles/theme/`.
-> 
+>
 > **📖 For current guidelines, see**: [Component Building Guidelines](./component-building-guidelines.md)
-> 
+>
 > This document is kept for historical reference only.
 
 ---

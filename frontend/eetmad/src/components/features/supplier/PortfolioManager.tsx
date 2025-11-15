@@ -1,4 +1,4 @@
-export default function Portfoliomanager() {
+export default function PortfolioManager() {
   // TODO: Implement PortfolioManager component
   return null;
 }

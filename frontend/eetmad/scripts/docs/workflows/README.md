@@ -451,5 +451,4 @@ cat weekly-report.json | jq '.summary'
 
 **💡 Tip:** Bookmark the workflows you use most!
 
-*Last Updated: November 15, 2025*
-
+_Last Updated: November 15, 2025_

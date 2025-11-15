@@ -52,9 +52,6 @@ export const cssVars = {
 
 // Helper function to add opacity to CSS variables
 export const withOpacity = (cssVar: string, opacity: number) => {
-  // Extract the variable name
-  const varName = cssVar.replace('var(', '').replace(')', '');
   // Return with opacity (works with rgb colors)
   return `color-mix(in srgb, ${cssVar} ${opacity * 100}%, transparent)`;
 };
-

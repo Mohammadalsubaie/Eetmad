@@ -1,19 +1,19 @@
 // frontend/eetmad/src/styles/theme/gradients.ts
 
-// تدرجات الثيم الفاتح
+// تدرجات الثيم الفاتح - استخدام CSS variables
 export const lightThemeGradients = {
-  gold: 'linear-gradient(135deg, #FAEAB1 0%, #F7DD7D 100%)',
-  primary: 'linear-gradient(135deg, #34656D 0%, #284E54 100%)',
-  hero: 'linear-gradient(180deg, #334443 0%, #34656D 100%)',
-  cta: 'linear-gradient(135deg, #34656D 0%, #334443 100%)',
+  gold: 'linear-gradient(135deg, var(--color-accent-primary) 0%, var(--color-accent-secondary) 100%)',
+  primary: 'linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%)',
+  hero: 'linear-gradient(180deg, var(--color-secondary) 0%, var(--color-primary) 100%)',
+  cta: 'linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%)',
 } as const;
 
-// تدرجات الثيم الغامق
+// تدرجات الثيم الغامق - استخدام CSS variables
 export const darkThemeGradients = {
-  gold: 'linear-gradient(135deg, #F7374F 0%, #88304E 100%)',
-  primary: 'linear-gradient(135deg, #F7374F 0%, #88304E 100%)',
-  hero: 'linear-gradient(180deg, #522546 0%, #88304E 100%)',
-  cta: 'linear-gradient(135deg, #88304E 0%, #522546 100%)',
+  gold: 'linear-gradient(135deg, var(--color-accent-primary) 0%, var(--color-accent-dark) 100%)',
+  primary: 'linear-gradient(135deg, var(--color-accent-primary) 0%, var(--color-accent-dark) 100%)',
+  hero: 'linear-gradient(180deg, var(--color-secondary) 0%, var(--color-accent-dark) 100%)',
+  cta: 'linear-gradient(135deg, var(--color-accent-dark) 0%, var(--color-secondary) 100%)',
 } as const;
 
 // التدرج الافتراضي (الثيم الفاتح)

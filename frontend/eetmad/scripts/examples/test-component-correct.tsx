@@ -15,10 +15,7 @@ interface TestComponentProps {
   description?: string;
 }
 
-export default function TestComponentCorrect({ 
-  title, 
-  description 
-}: TestComponentProps) {
+export default function TestComponentCorrect({ title, description }: TestComponentProps) {
   const t = useTranslations('test');
   const [count, setCount] = useState(0);
 
@@ -32,18 +29,12 @@ export default function TestComponentCorrect({
       }}
     >
       {/* ✅ صحيح: استخدام useTranslations */}
-      <h1 
-        className="mb-4 text-4xl font-bold"
-        style={{ color: cssVars.secondary.DEFAULT }}
-      >
+      <h1 className="mb-4 text-4xl font-bold" style={{ color: cssVars.secondary.DEFAULT }}>
         {title || t('welcomeTitle')}
       </h1>
-      
+
       {/* ✅ صحيح: استخدام useTranslations */}
-      <p 
-        className="text-lg"
-        style={{ color: cssVars.neutral.textSecondary }}
-      >
+      <p className="text-lg" style={{ color: cssVars.neutral.textSecondary }}>
         {description || t('welcomeDescription')}
       </p>
 
@@ -60,7 +51,7 @@ export default function TestComponentCorrect({
         <motion.button
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
-          className="ms-4 me-2 rounded-xl px-6 py-3"
+          className="me-2 ms-4 rounded-xl px-6 py-3"
           style={{
             backgroundColor: cssVars.primary.DEFAULT,
             color: cssVars.neutral.bg,
@@ -99,4 +90,3 @@ export default function TestComponentCorrect({
     </div>
   );
 }
-

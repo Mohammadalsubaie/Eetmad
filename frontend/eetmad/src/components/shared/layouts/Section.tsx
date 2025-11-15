@@ -45,7 +45,10 @@ const Section: React.FC<SectionProps> = ({
   padding = 'lg',
 }) => {
   return (
-    <section className={cn(paddingStyles[padding], className)} style={getBackgroundStyle(background)}>
+    <section
+      className={cn(paddingStyles[padding], className)}
+      style={getBackgroundStyle(background)}
+    >
       {children}
     </section>
   );

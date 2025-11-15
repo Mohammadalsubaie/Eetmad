@@ -1,4 +1,4 @@
-export default function Cancelrequestmodal() {
+export default function CancelRequestModal() {
   // TODO: Implement CancelRequestModal component
   return null;
 }

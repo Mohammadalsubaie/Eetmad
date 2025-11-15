@@ -1,4 +1,4 @@
-export default function Statcard() {
+export default function StatCard() {
   // TODO: Implement StatCard component
   return null;
 }

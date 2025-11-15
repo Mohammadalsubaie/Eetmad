@@ -15,11 +15,13 @@ This document provides comprehensive rules and best practices for building compo
 **Location**: `frontend/eetmad/src/styles/theme/cssVariables.ts`
 
 **Import Pattern**:
+
 ```tsx
 import { cssVars } from '@/styles/theme';
 ```
 
 **Usage in Components**:
+
 ```tsx
 'use client';
 
@@ -44,21 +46,25 @@ export default function MyComponent() {
 ### ✅ Available CSS Variables
 
 #### Primary Colors
+
 - `cssVars.primary.DEFAULT` - Main primary color
 - `cssVars.primary.dark` - Dark variant
 - `cssVars.primary.light` - Light variant
 
 #### Secondary Colors
+
 - `cssVars.secondary.DEFAULT` - Main secondary color
 - `cssVars.secondary.darker` - Darker variant
 
 #### Accent Colors
+
 - `cssVars.accent.primary` - Primary accent
 - `cssVars.accent.secondary` - Secondary accent
 - `cssVars.accent.warm` - Warm accent
 - `cssVars.accent.light` - Light accent
 
 #### Neutral Colors
+
 - `cssVars.neutral.bg` - Page background
 - `cssVars.neutral.surface` - Element surface
 - `cssVars.neutral.surfaceAlt` - Alternative surface
@@ -67,12 +73,14 @@ export default function MyComponent() {
 - `cssVars.neutral.textSecondary` - Secondary text
 
 #### Status Colors
+
 - `cssVars.status.success` - Success state
 - `cssVars.status.error` - Error state
 - `cssVars.status.warning` - Warning state
 - `cssVars.status.info` - Info state
 
 #### Gradients
+
 - `cssVars.gradient.gold` - Gold gradient
 - `cssVars.gradient.primary` - Primary gradient
 - `cssVars.gradient.hero` - Hero section gradient
@@ -125,11 +133,13 @@ import { colors } from '@/styles/theme';
 ### ✅ ALWAYS Use Translations for All Text
 
 **Import Pattern**:
+
 ```tsx
 import { useTranslations } from 'next-intl';
 ```
 
 **Usage Pattern**:
+
 ```tsx
 'use client';
 
@@ -137,7 +147,7 @@ import { useTranslations } from 'next-intl';
 
 export default function MyComponent() {
   const t = useTranslations('namespace');
-  
+
   return (
     <div>
       <h1>{t('title')}</h1>
@@ -182,10 +192,10 @@ Organize translations by feature/component:
 const t = useTranslations('biddingPlatform');
 
 // Simple variable
-t('opportunities.count', { count: filteredProjects.length })
+t('opportunities.count', { count: filteredProjects.length });
 
 // Multiple variables
-t('validation.minLength', { field: 'Password', min: 8 })
+t('validation.minLength', { field: 'Password', min: 8 });
 ```
 
 ### ✅ Example from Real Component
@@ -199,12 +209,12 @@ import { useTranslations } from 'next-intl';
 
 function ModernBiddingPlatform() {
   const t = useTranslations('biddingPlatform');
-  
+
   const categories = [
     { id: 'all', name: t('categories.all'), icon: Package, count: 312 },
     { id: 'tech', name: t('categories.tech'), icon: Code, count: 124 },
   ];
-  
+
   const projects: Project[] = [
     {
       id: 1,
@@ -213,7 +223,7 @@ function ModernBiddingPlatform() {
       description: t('projects.project1.description'),
     },
   ];
-  
+
   return (
     <div>
       <h2>{t('opportunities.title')}</h2>
@@ -276,13 +286,9 @@ interface MyComponentProps {
   onAction?: () => void;
 }
 
-export default function MyComponent({
-  title,
-  description,
-  onAction,
-}: MyComponentProps) {
+export default function MyComponent({ title, description, onAction }: MyComponentProps) {
   const t = useTranslations('namespace');
-  
+
   return (
     <div
       style={{
@@ -291,9 +297,7 @@ export default function MyComponent({
       }}
     >
       <h2 style={{ color: cssVars.secondary.DEFAULT }}>{title}</h2>
-      {description && (
-        <p style={{ color: cssVars.neutral.textSecondary }}>{description}</p>
-      )}
+      {description && <p style={{ color: cssVars.neutral.textSecondary }}>{description}</p>}
       <button
         onClick={onAction}
         style={{
@@ -367,9 +371,7 @@ Always use gradient CSS variables:
 Use Tailwind responsive classes:
 
 ```tsx
-<div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
-  {/* Content */}
-</div>
+<div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">{/* Content */}</div>
 ```
 
 ### ❌ NEVER Do This
@@ -382,7 +384,7 @@ Use Tailwind responsive classes:
 <div className="bg-white text-gray-800">
 
 // ❌ WRONG - Mixing hardcoded and theme values
-<div style={{ 
+<div style={{
   backgroundColor: cssVars.neutral.surface,
   color: '#334443' // Should use cssVars.secondary.DEFAULT
 }}>
@@ -440,7 +442,7 @@ import { motion } from 'framer-motion';
   }}
 >
   {t('buttonText')}
-</motion.button>
+</motion.button>;
 ```
 
 ### ✅ Hover Effects
@@ -524,7 +526,7 @@ interface CardProps {
 
 export default function Card({ title, description, onAction }: CardProps) {
   const t = useTranslations('common');
-  
+
   return (
     <motion.div
       whileHover={{ y: -8 }}
@@ -572,12 +574,12 @@ import { motion } from 'framer-motion';
 
 export default function Header() {
   const t = useTranslations('nav');
-  
+
   const navItems = [
     { key: 'home', href: '/' },
     { key: 'projects', href: '/projects' },
   ];
-  
+
   return (
     <header
       className="sticky top-0 z-50 border-b backdrop-blur-lg"
@@ -623,12 +625,9 @@ interface GradientButtonProps {
   variant?: 'primary' | 'secondary';
 }
 
-export default function GradientButton({ 
-  onClick, 
-  variant = 'primary' 
-}: GradientButtonProps) {
+export default function GradientButton({ onClick, variant = 'primary' }: GradientButtonProps) {
   const t = useTranslations('common');
-  
+
   return (
     <motion.button
       whileHover={{ scale: 1.05 }}
@@ -636,9 +635,7 @@ export default function GradientButton({
       onClick={onClick}
       className="rounded-2xl px-10 py-4 text-lg font-bold shadow-lg"
       style={{
-        background: variant === 'primary' 
-          ? cssVars.gradient.gold 
-          : cssVars.gradient.primary,
+        background: variant === 'primary' ? cssVars.gradient.gold : cssVars.gradient.primary,
         color: cssVars.secondary.DEFAULT,
       }}
     >
@@ -666,11 +663,11 @@ export default function GradientButton({
 
 ```tsx
 // ❌ WRONG
-<h1>Welcome to the Platform</h1>
+<h1>Welcome to the Platform</h1>;
 
 // ✅ CORRECT
 const t = useTranslations('home');
-<h1>{t('welcomeTitle')}</h1>
+<h1>{t('welcomeTitle')}</h1>;
 ```
 
 ### ❌ Mistake 3: Using colors instead of cssVars
@@ -689,11 +686,11 @@ import { cssVars } from '@/styles/theme';
 
 ```tsx
 // ❌ WRONG
-<p>{projects.length} projects available</p>
+<p>{projects.length} projects available</p>;
 
 // ✅ CORRECT
 const t = useTranslations('projects');
-<p>{t('count', { count: projects.length })}</p>
+<p>{t('count', { count: projects.length })}</p>;
 ```
 
 ---
@@ -720,18 +717,18 @@ When building components, reference these files:
 
 ## 🎯 Quick Reference
 
-| Need | Use | Never Use |
-|------|-----|-----------|
-| Page background | `cssVars.neutral.bg` | `#FAF8F1` |
-| Card surface | `cssVars.neutral.surface` | `#FFFFFF` |
-| Primary action | `cssVars.primary.DEFAULT` | `#34656D` |
-| Secondary text | `cssVars.neutral.textSecondary` | `#536765` |
-| Border | `cssVars.neutral.border` | `#E0DCC8` |
-| Success state | `cssVars.status.success` | `#3D8B64` |
-| Error state | `cssVars.status.error` | `#C95454` |
-| Gold gradient | `cssVars.gradient.gold` | `linear-gradient(...)` |
-| Text content | `t('key')` | `"Hardcoded text"` |
-| Opacity | `color-mix(in srgb, ${cssVar} 95%, transparent)` | `rgba(...)` |
+| Need            | Use                                              | Never Use              |
+| --------------- | ------------------------------------------------ | ---------------------- |
+| Page background | `cssVars.neutral.bg`                             | `#FAF8F1`              |
+| Card surface    | `cssVars.neutral.surface`                        | `#FFFFFF`              |
+| Primary action  | `cssVars.primary.DEFAULT`                        | `#34656D`              |
+| Secondary text  | `cssVars.neutral.textSecondary`                  | `#536765`              |
+| Border          | `cssVars.neutral.border`                         | `#E0DCC8`              |
+| Success state   | `cssVars.status.success`                         | `#3D8B64`              |
+| Error state     | `cssVars.status.error`                           | `#C95454`              |
+| Gold gradient   | `cssVars.gradient.gold`                          | `linear-gradient(...)` |
+| Text content    | `t('key')`                                       | `"Hardcoded text"`     |
+| Opacity         | `color-mix(in srgb, ${cssVar} 95%, transparent)` | `rgba(...)`            |
 
 ---
 
@@ -753,4 +750,3 @@ When building components, reference these files:
 **Theme Location**: `frontend/eetmad/src/styles/theme/`
 
 **Example Reference**: `frontend/eetmad/src/app/[locale]/page.tsx`
-

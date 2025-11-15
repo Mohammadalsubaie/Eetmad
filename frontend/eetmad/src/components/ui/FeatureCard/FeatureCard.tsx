@@ -46,7 +46,7 @@ export interface FeatureCardProps {
 
 /**
  * بطاقة ميزة - تستخدم لعرض المميزات والفوائد
- * 
+ *
  * @example
  * <FeatureCard
  *   title="الشفافية الكاملة"
@@ -109,10 +109,7 @@ export default function FeatureCard({
       </div>
 
       {/* Title */}
-      <h3
-        className="relative mb-4 text-2xl font-bold"
-        style={{ color: cssVars.secondary.DEFAULT }}
-      >
+      <h3 className="relative mb-4 text-2xl font-bold" style={{ color: cssVars.secondary.DEFAULT }}>
         {title}
       </h3>
 
@@ -126,10 +123,7 @@ export default function FeatureCard({
 
       {/* Footer */}
       {footer && (
-        <div
-          className="relative mt-6 text-sm font-bold"
-          style={{ color: iconColor }}
-        >
+        <div className="relative mt-6 text-sm font-bold" style={{ color: iconColor }}>
           {footer}
         </div>
       )}
@@ -142,4 +136,3 @@ export default function FeatureCard({
     </motion.article>
   );
 }
-

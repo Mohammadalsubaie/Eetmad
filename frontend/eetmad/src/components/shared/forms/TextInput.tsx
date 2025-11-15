@@ -1,4 +1,4 @@
-export default function Textinput() {
+export default function TextInput() {
   // TODO: Implement TextInput component
   return null;
 }

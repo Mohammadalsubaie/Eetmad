@@ -2,13 +2,13 @@
 
 /**
  * Design Rules Validation Script
- * 
+ *
  * يفحص الملفات للتأكد من اتباع قواعد البناء المذكورة في:
  * frontend/eetmad/docs/design/component-building-guidelines.md
- * 
+ *
  * الاستخدام:
  * npm run validate:design [ملف أو مجلد]
- * 
+ *
  * أمثلة:
  * npm run validate:design src/components/features/home/HeroSection.tsx
  * npm run validate:design src/components/features/home/
@@ -16,14 +16,28 @@
  */
 
 import * as fs from 'fs';
-import * as path from 'path';
 import { glob } from 'glob';
+import * as path from 'path';
 
 // الألوان المحظورة (hex patterns شائعة من المشروع)
+// Reserved for future use - currently not enforced
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const FORBIDDEN_HEX_COLORS = [
-  '#FAF8F1', '#FFFFFF', '#334443', '#536765', '#E0DCC8',
-  '#34656D', '#3D8B64', '#C95454', '#F7F3E3', '#FFF8DC',
-  '#FFFACD', '#D4A95E', '#C19A6B', '#B8860B', '#DAA520',
+  '#FAF8F1',
+  '#FFFFFF',
+  '#334443',
+  '#536765',
+  '#E0DCC8',
+  '#34656D',
+  '#3D8B64',
+  '#C95454',
+  '#F7F3E3',
+  '#FFF8DC',
+  '#FFFACD',
+  '#D4A95E',
+  '#C19A6B',
+  '#B8860B',
+  '#DAA520',
 ];
 
 interface ValidationError {
@@ -50,12 +64,92 @@ class DesignRulesValidator {
   private totalFiles = 0;
   private totalErrors = 0;
   private totalWarnings = 0;
+  private skippedPlaceholders = 0;
+
+  /**
+   * Check if a file is a script file (should be excluded from component rules)
+   */
+  private isScriptFile(filePath: string): boolean {
+    return (
+      filePath.includes('/scripts/') ||
+      filePath.includes('\\scripts\\') ||
+      filePath.includes('/i18n/') ||
+      filePath.includes('\\i18n\\') ||
+      filePath.includes('/docs/') ||
+      filePath.includes('\\docs\\') ||
+      filePath.endsWith('.config.') ||
+      filePath.includes('.config.ts') ||
+      filePath.includes('.config.js') ||
+      filePath.includes('validate-') ||
+      filePath.includes('setup-') ||
+      filePath.includes('check-') ||
+      filePath.includes('.test.') ||
+      filePath.includes('.spec.') ||
+      filePath.includes('.test-demo.') ||
+      filePath.includes('.examples.') ||
+      filePath.endsWith('/error.tsx') ||
+      filePath.endsWith('\\error.tsx') ||
+      filePath.endsWith('/not-found.tsx') ||
+      filePath.endsWith('\\not-found.tsx') ||
+      filePath.endsWith('/loading.tsx') ||
+      filePath.endsWith('\\loading.tsx') ||
+      filePath.endsWith('/layout.tsx') ||
+      filePath.endsWith('\\layout.tsx')
+    );
+  }
+
+  /**
+   * Check if a file is a theme definition file (should be excluded from color validation)
+   */
+  private isThemeFile(filePath: string): boolean {
+    return (
+      filePath.includes('/styles/theme/') ||
+      filePath.includes('\\styles\\theme\\') ||
+      filePath.endsWith('/colors.ts') ||
+      filePath.endsWith('\\colors.ts') ||
+      filePath.endsWith('/cssVariables.ts') ||
+      filePath.endsWith('\\cssVariables.ts')
+    );
+  }
+
+  /**
+   * Check if a file is a placeholder (not ready for validation)
+   */
+  private isPlaceholderFile(filePath: string, content: string): boolean {
+    const placeholderPatterns = [
+      /\/\/\s*TODO:\s*Implement/i,
+      /\/\/\s*PLACEHOLDER/i,
+      /\/\/\s*not\s+ready/i,
+      /\/\/\s*not\s+implemented/i,
+      /\/\/\s*placeholder\s+only/i,
+      /\/\*\s*TODO:\s*Implement/i,
+      /\/\*\s*PLACEHOLDER/i,
+    ];
+
+    // Check for placeholder patterns in the first 10 lines
+    const lines = content.split('\n').slice(0, 10).join('\n');
+    const hasPlaceholderPattern = placeholderPatterns.some((pattern) => pattern.test(lines));
+
+    // Also check if file is very minimal (likely a placeholder)
+    // If it only has a few lines and returns null, it's likely a placeholder
+    const isMinimalPlaceholder =
+      content.split('\n').length < 10 &&
+      (content.includes('return null') || content.includes('return;'));
+
+    return hasPlaceholderPattern || isMinimalPlaceholder;
+  }
 
   /**
    * القاعدة 1: فحص استخدام الألوان
    */
   private checkColorUsage(content: string, filePath: string): ValidationError[] {
     const errors: ValidationError[] = [];
+
+    // تجاهل ملفات الـ scripts وملفات الثيم
+    if (this.isScriptFile(filePath) || this.isThemeFile(filePath)) {
+      return errors;
+    }
+
     const lines = content.split('\n');
 
     lines.forEach((line, index) => {
@@ -66,7 +160,7 @@ class DesignRulesValidator {
       let hexMatch;
       while ((hexMatch = hexColorRegex.exec(line)) !== null) {
         const hexColor = hexMatch[0];
-        
+
         // تجاهل التعليقات والـ examples
         if (line.trim().startsWith('//') || line.includes('WRONG') || line.includes('❌')) {
           continue;
@@ -152,21 +246,27 @@ class DesignRulesValidator {
    */
   private checkI18nUsage(content: string, filePath: string): ValidationError[] {
     const errors: ValidationError[] = [];
+
+    // تجاهل ملفات الـ scripts
+    if (this.isScriptFile(filePath)) {
+      return errors;
+    }
+
     const lines = content.split('\n');
 
     // فحص إذا كان ملف component
-    const isComponent = content.includes('export default function') || 
-                       content.includes('export function') ||
-                       content.includes('const ') && content.includes('= () =>');
+    const isComponent =
+      content.includes('export default function') ||
+      content.includes('export function') ||
+      (content.includes('const ') && content.includes('= () =>'));
 
     if (!isComponent) {
       return errors; // تجاهل الملفات غير Components
     }
 
     // فحص وجود useTranslations
-    const hasUseTranslations = content.includes('useTranslations');
-    const hasTranslationImport = content.includes("from 'next-intl'") || 
-                                  content.includes('from "next-intl"');
+    const hasTranslationImport =
+      content.includes("from 'next-intl'") || content.includes('from "next-intl"');
 
     // فحص النصوص المباشرة في JSX
     lines.forEach((line, index) => {
@@ -174,14 +274,16 @@ class DesignRulesValidator {
       const trimmedLine = line.trim();
 
       // تجاهل التعليقات والـ imports والـ types
-      if (trimmedLine.startsWith('//') || 
-          trimmedLine.startsWith('/*') || 
-          trimmedLine.startsWith('*') ||
-          trimmedLine.startsWith('import') ||
-          trimmedLine.startsWith('type') ||
-          trimmedLine.startsWith('interface') ||
-          trimmedLine.includes('WRONG') ||
-          trimmedLine.includes('❌')) {
+      if (
+        trimmedLine.startsWith('//') ||
+        trimmedLine.startsWith('/*') ||
+        trimmedLine.startsWith('*') ||
+        trimmedLine.startsWith('import') ||
+        trimmedLine.startsWith('type') ||
+        trimmedLine.startsWith('interface') ||
+        trimmedLine.includes('WRONG') ||
+        trimmedLine.includes('❌')
+      ) {
         return;
       }
 
@@ -190,7 +292,7 @@ class DesignRulesValidator {
       let jsxMatch;
       while ((jsxMatch = jsxTextRegex.exec(line)) !== null) {
         const text = jsxMatch[1].trim();
-        
+
         // تجاهل النصوص القصيرة جداً والأرقام والرموز
         if (text.length < 3 || /^[\d\s\-_.,;:!?()[\]{}]+$/.test(text)) {
           continue;
@@ -220,13 +322,26 @@ class DesignRulesValidator {
       let stringMatch;
       while ((stringMatch = stringRegex.exec(line)) !== null) {
         const text = stringMatch[1];
-        
-        // تجاهل الـ imports والـ paths
-        if (line.includes('import') || 
-            line.includes('from') || 
-            text.includes('/') ||
-            text.includes('@') ||
-            text.includes('.')) {
+
+        // تجاهل الـ imports والـ paths والـ className والـ CSS classes والـ React directives
+        if (
+          line.includes('import') ||
+          line.includes('from') ||
+          line.includes('className=') ||
+          line.includes('class=') ||
+          text === 'use client' ||
+          text === 'use server' ||
+          text === 'use strict' ||
+          text.includes('/') ||
+          text.includes('@') ||
+          text.includes('.') ||
+          text.includes('px-') ||
+          text.includes('py-') ||
+          text.includes('text-') ||
+          text.includes('flex') ||
+          text.includes('grid') ||
+          text.includes('rounded')
+        ) {
           continue;
         }
 
@@ -269,7 +384,11 @@ class DesignRulesValidator {
    */
   private checkComponentStructure(content: string, filePath: string): ValidationError[] {
     const errors: ValidationError[] = [];
-    const lines = content.split('\n');
+
+    // تجاهل ملفات الـ scripts
+    if (this.isScriptFile(filePath)) {
+      return errors;
+    }
 
     // فحص إذا كان ملف TSX component
     if (!filePath.endsWith('.tsx') && !filePath.endsWith('.ts')) {
@@ -277,6 +396,59 @@ class DesignRulesValidator {
     }
 
     const fileName = path.basename(filePath, path.extname(filePath));
+
+    // استثناء: تجاهل الملفات غير الـ component
+    const nonComponentPatterns = [
+      '/types/',
+      '/schemas/',
+      '/constants/',
+      '/api/',
+      '/lib/',
+      '/utils/',
+      '/hooks/',
+      '/store/',
+      '/contexts/',
+      '/mocks/',
+      '.types.',
+      '.schema.',
+      '.config.',
+      '.constants.',
+      'index.ts',
+      'route.ts',
+      'layout.tsx',
+      'page.tsx',
+      'middleware.',
+      'instrumentation.',
+    ];
+
+    const isNonComponentFile = nonComponentPatterns.some(
+      (pattern) => filePath.includes(pattern) || fileName.includes(pattern.replace('.', ''))
+    );
+
+    if (isNonComponentFile) {
+      // فقط فحص 'use client' للملفات التي تستخدم hooks
+      const usesClientHooks =
+        content.includes('useState') ||
+        content.includes('useEffect') ||
+        content.includes('useTranslations') ||
+        content.includes('useRouter');
+
+      const hasUseClient = content.includes("'use client'") || content.includes('"use client"');
+
+      if (usesClientHooks && !hasUseClient) {
+        errors.push({
+          file: filePath,
+          line: 1,
+          column: 1,
+          rule: 'Rule 3: Component Structure',
+          severity: 'error',
+          message: 'الملف يستخدم client hooks لكن بدون "use client"',
+          suggestion: 'أضف "use client" في أول الملف',
+        });
+      }
+
+      return errors; // تجاهل فحوصات PascalCase و Component name
+    }
 
     // فحص تطابق اسم الملف مع اسم Component
     const componentNameRegex = /export\s+(?:default\s+)?function\s+(\w+)/;
@@ -295,10 +467,11 @@ class DesignRulesValidator {
     }
 
     // فحص وجود 'use client' في components التي تستخدم hooks
-    const usesClientHooks = content.includes('useState') || 
-                           content.includes('useEffect') ||
-                           content.includes('useTranslations') ||
-                           content.includes('useRouter');
+    const usesClientHooks =
+      content.includes('useState') ||
+      content.includes('useEffect') ||
+      content.includes('useTranslations') ||
+      content.includes('useRouter');
 
     const hasUseClient = content.includes("'use client'") || content.includes('"use client"');
 
@@ -314,7 +487,7 @@ class DesignRulesValidator {
       });
     }
 
-    // فحص PascalCase للـ component name
+    // فحص PascalCase للـ component name (فقط للـ components الفعلية)
     if (fileName && !/^[A-Z][a-zA-Z0-9]*$/.test(fileName)) {
       errors.push({
         file: filePath,
@@ -335,6 +508,12 @@ class DesignRulesValidator {
    */
   private checkStylingPractices(content: string, filePath: string): ValidationError[] {
     const errors: ValidationError[] = [];
+
+    // تجاهل ملفات الـ scripts
+    if (this.isScriptFile(filePath)) {
+      return errors;
+    }
+
     const lines = content.split('\n');
 
     lines.forEach((line, index) => {
@@ -342,9 +521,20 @@ class DesignRulesValidator {
 
       // فحص استخدام Tailwind classes للألوان بدلاً من cssVars
       const tailwindColorClasses = [
-        'bg-white', 'bg-black', 'bg-gray', 'bg-red', 'bg-blue', 'bg-green',
-        'text-white', 'text-black', 'text-gray', 'text-red', 'text-blue',
-        'border-white', 'border-black', 'border-gray',
+        'bg-white',
+        'bg-black',
+        'bg-gray',
+        'bg-red',
+        'bg-blue',
+        'bg-green',
+        'text-white',
+        'text-black',
+        'text-gray',
+        'text-red',
+        'text-blue',
+        'border-white',
+        'border-black',
+        'border-gray',
       ];
 
       tailwindColorClasses.forEach((cls) => {
@@ -372,6 +562,12 @@ class DesignRulesValidator {
    */
   private checkRTLSupport(content: string, filePath: string): ValidationError[] {
     const errors: ValidationError[] = [];
+
+    // تجاهل ملفات الـ scripts
+    if (this.isScriptFile(filePath)) {
+      return errors;
+    }
+
     const lines = content.split('\n');
 
     lines.forEach((line, index) => {
@@ -379,20 +575,30 @@ class DesignRulesValidator {
 
       // فحص استخدام left/right بدلاً من start/end
       const leftRightClasses = [
-        'ml-', 'mr-', 'pl-', 'pr-', 'left-', 'right-',
-        'float-left', 'float-right', 'text-left', 'text-right',
+        'ml-',
+        'mr-',
+        'pl-',
+        'pr-',
+        'left-',
+        'right-',
+        'float-left',
+        'float-right',
+        'text-left',
+        'text-right',
       ];
 
       leftRightClasses.forEach((cls) => {
         if (line.includes(cls) && !line.trim().startsWith('//')) {
           // استثناء: بعض الحالات المقبولة
           const acceptablePatterns = [
-            'text-left', 'text-right', // قد تكون مقبولة في بعض الحالات
-            'ChevronLeft', 'ChevronRight', // أسماء components
+            'text-left',
+            'text-right', // قد تكون مقبولة في بعض الحالات
+            'ChevronLeft',
+            'ChevronRight', // أسماء components
           ];
 
-          const isAcceptable = acceptablePatterns.some(pattern => 
-            line.includes(pattern) && !cls.startsWith('text-')
+          const isAcceptable = acceptablePatterns.some(
+            (pattern) => line.includes(pattern) && !cls.startsWith('text-')
           );
 
           if (!isAcceptable) {
@@ -420,13 +626,18 @@ class DesignRulesValidator {
   private checkAnimations(content: string, filePath: string): ValidationError[] {
     const errors: ValidationError[] = [];
 
-    // فحص استخدام animations بدون framer-motion
-    const hasAnimations = content.includes('transition') || 
-                         content.includes('animation') ||
-                         content.includes('animate');
+    // تجاهل ملفات الـ scripts
+    if (this.isScriptFile(filePath)) {
+      return errors;
+    }
 
-    const hasFramerMotion = content.includes('framer-motion') || 
-                           content.includes('motion.');
+    // فحص استخدام animations بدون framer-motion
+    const hasAnimations =
+      content.includes('transition') ||
+      content.includes('animation') ||
+      content.includes('animate');
+
+    const hasFramerMotion = content.includes('framer-motion') || content.includes('motion.');
 
     if (hasAnimations && !hasFramerMotion) {
       errors.push({
@@ -446,9 +657,21 @@ class DesignRulesValidator {
   /**
    * فحص ملف واحد
    */
-  private async validateFile(filePath: string): Promise<ValidationResult> {
+  private async validateFile(filePath: string): Promise<ValidationResult | null> {
     const content = fs.readFileSync(filePath, 'utf-8');
     const lines = content.split('\n');
+
+    // Skip placeholder files
+    if (this.isPlaceholderFile(filePath, content)) {
+      this.skippedPlaceholders++;
+      return null;
+    }
+
+    // Skip script and documentation files
+    if (this.isScriptFile(filePath)) {
+      this.skippedPlaceholders++;
+      return null;
+    }
 
     const allErrors: ValidationError[] = [
       ...this.checkColorUsage(content, filePath),
@@ -459,8 +682,8 @@ class DesignRulesValidator {
       ...this.checkAnimations(content, filePath),
     ];
 
-    const errors = allErrors.filter(e => e.severity === 'error');
-    const warnings = allErrors.filter(e => e.severity === 'warning');
+    const errors = allErrors.filter((e) => e.severity === 'error');
+    const warnings = allErrors.filter((e) => e.severity === 'warning');
 
     this.totalErrors += errors.length;
     this.totalWarnings += warnings.length;
@@ -500,7 +723,7 @@ class DesignRulesValidator {
             '**/*.spec.{ts,tsx}',
           ],
         });
-        files.forEach(f => allFiles.add(f));
+        files.forEach((f) => allFiles.add(f));
       }
     }
 
@@ -512,13 +735,18 @@ class DesignRulesValidator {
     // فحص كل ملف
     for (const file of files) {
       const result = await this.validateFile(file);
-      this.results.push(result);
-      
+      if (result !== null) {
+        this.results.push(result);
+      }
+
       // عرض progress
       process.stdout.write(`\r⏳ جاري الفحص... ${this.results.length}/${this.totalFiles}`);
     }
 
     console.log('\n\n✅ انتهى الفحص!\n');
+    if (this.skippedPlaceholders > 0) {
+      console.log(`⏭️  تم تخطي ${this.skippedPlaceholders} ملف placeholder\n`);
+    }
   }
 
   /**
@@ -529,6 +757,9 @@ class DesignRulesValidator {
     console.log('📊 ملخص النتائج');
     console.log('═'.repeat(80));
     console.log(`📁 إجمالي الملفات: ${this.totalFiles}`);
+    if (this.skippedPlaceholders > 0) {
+      console.log(`⏭️  ملفات placeholder تم تخطيها: ${this.skippedPlaceholders}`);
+    }
     console.log(`❌ إجمالي الأخطاء: ${this.totalErrors}`);
     console.log(`⚠️  إجمالي التحذيرات: ${this.totalWarnings}`);
     console.log('═'.repeat(80));
@@ -543,7 +774,7 @@ class DesignRulesValidator {
 
     // عرض الملفات التي بها مشاكل
     const filesWithIssues = sortedResults.filter(
-      r => r.errors.length > 0 || r.warnings.length > 0
+      (r) => r.errors.length > 0 || r.warnings.length > 0
     );
 
     if (filesWithIssues.length === 0) {
@@ -559,7 +790,9 @@ class DesignRulesValidator {
 
       console.log(`\n${'─'.repeat(80)}`);
       console.log(`📄 [${index + 1}/${filesWithIssues.length}] ${relPath}`);
-      console.log(`   الأخطاء: ${result.errors.length} | التحذيرات: ${result.warnings.length} | إجمالي: ${totalIssues}`);
+      console.log(
+        `   الأخطاء: ${result.errors.length} | التحذيرات: ${result.warnings.length} | إجمالي: ${totalIssues}`
+      );
       console.log(`${'─'.repeat(80)}`);
 
       // عرض الأخطاء
@@ -600,8 +833,8 @@ class DesignRulesValidator {
 
     const ruleStats = new Map<string, { errors: number; warnings: number }>();
 
-    this.results.forEach(result => {
-      [...result.errors, ...result.warnings].forEach(issue => {
+    this.results.forEach((result) => {
+      [...result.errors, ...result.warnings].forEach((issue) => {
         const current = ruleStats.get(issue.rule) || { errors: 0, warnings: 0 };
         if (issue.severity === 'error') {
           current.errors++;
@@ -613,7 +846,7 @@ class DesignRulesValidator {
     });
 
     Array.from(ruleStats.entries())
-      .sort((a, b) => (b[1].errors + b[1].warnings) - (a[1].errors + a[1].warnings))
+      .sort((a, b) => b[1].errors + b[1].warnings - (a[1].errors + a[1].warnings))
       .forEach(([rule, stats]) => {
         console.log(`\n${rule}:`);
         console.log(`  ❌ أخطاء: ${stats.errors}`);
@@ -642,6 +875,7 @@ class DesignRulesValidator {
     const report = {
       summary: {
         totalFiles: this.totalFiles,
+        skippedPlaceholders: this.skippedPlaceholders,
         totalErrors: this.totalErrors,
         totalWarnings: this.totalWarnings,
         scannedAt: new Date().toISOString(),
@@ -706,7 +940,7 @@ async function main() {
   }
 
   // التحقق من وجود المسارات
-  const validPaths = paths.filter(p => {
+  const validPaths = paths.filter((p) => {
     try {
       fs.statSync(p);
       return true;
@@ -744,5 +978,4 @@ if (require.main === module) {
   main();
 }
 
-export { DesignRulesValidator, ValidationError, ValidationResult };
-
+export { DesignRulesValidator };

@@ -1,4 +1,4 @@
-export default function Sharebutton() {
+export default function ShareButton() {
   // TODO: Implement ShareButton component
   return null;
 }

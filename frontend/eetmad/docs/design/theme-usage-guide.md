@@ -1,11 +1,11 @@
 # Theme Usage Guide (Legacy Document)
 
 > **⚠️ IMPORTANT**: This document is outdated. The theme system now uses CSS variables.
-> 
+>
 > **📖 For current guidelines, see**: [Component Building Guidelines](./component-building-guidelines.md)
-> 
+>
 > **Current Theme Location**: `frontend/eetmad/src/styles/theme/`
-> 
+>
 > **Key Change**: Always use `cssVars` instead of direct `colors` import.
 
 ---
@@ -52,33 +52,33 @@ import { colors, gradients } from '@/styles/theme';
 ```typescript
 colors = {
   primary: {
-    DEFAULT: '#34656D',    // اللون الأساسي
-    dark: '#284E54',       // اللون الداكن
-    light: '#6C8B89',      // اللون الفاتح
+    DEFAULT: '#34656D', // اللون الأساسي
+    dark: '#284E54', // اللون الداكن
+    light: '#6C8B89', // اللون الفاتح
   },
   secondary: {
     DEFAULT: '#334443',
   },
   accent: {
-    primary: '#FAEAB1',    // اللون الأساسي للإبراز
-    secondary: '#F7DD7D',  // اللون الثانوي للإبراز
-    warm: '#F3D049',       // اللون الدافئ
+    primary: '#FAEAB1', // اللون الأساسي للإبراز
+    secondary: '#F7DD7D', // اللون الثانوي للإبراز
+    warm: '#F3D049', // اللون الدافئ
   },
   neutral: {
-    bg: '#FAF8F1',         // خلفية الصفحة
-    surface: '#FFFFFF',    // سطح العناصر
+    bg: '#FAF8F1', // خلفية الصفحة
+    surface: '#FFFFFF', // سطح العناصر
     surfaceAlt: '#F0ECDD', // سطح بديل
-    border: '#E0DCC8',     // لون الحدود
-    textMuted: '#A4C5CA',  // نص خافت
+    border: '#E0DCC8', // لون الحدود
+    textMuted: '#A4C5CA', // نص خافت
     textSecondary: '#536765', // نص ثانوي
   },
   status: {
-    success: '#3D8B64',    // نجاح
-    error: '#C95454',      // خطأ
-    warning: '#F3D049',    // تحذير
-    info: '#34656D',       // معلومات
+    success: '#3D8B64', // نجاح
+    error: '#C95454', // خطأ
+    warning: '#F3D049', // تحذير
+    info: '#34656D', // معلومات
   },
-}
+};
 ```
 
 ### ✅ الاستخدام الصحيح
@@ -121,7 +121,7 @@ gradients = {
   primary: 'linear-gradient(135deg, #34656D 0%, #284E54 100%)',
   hero: 'linear-gradient(180deg, #334443 0%, #34656D 100%)',
   cta: 'linear-gradient(135deg, #34656D 0%, #334443 100%)',
-}
+};
 ```
 
 ### ✅ الاستخدام الصحيح
@@ -134,7 +134,7 @@ import { gradients } from '@/styles/theme';
   <div style={{ background: gradients.gold }}>
     <button style={{ background: gradients.primary }}>زر</button>
   </div>
-</section>
+</section>;
 ```
 
 ### ❌ الاستخدام الخاطئ
@@ -156,7 +156,7 @@ import { spacing } from '@/styles/theme';
 
 <div style={{ padding: spacing.md, margin: spacing.lg }}>
   <div style={{ gap: spacing.sm }}>محتوى</div>
-</div>
+</div>;
 ```
 
 ## 🔲 أنصاف الأقطار (Radius)
@@ -168,7 +168,7 @@ import { radius } from '@/styles/theme';
 
 <div style={{ borderRadius: radius.lg }}>
   <button style={{ borderRadius: radius.md }}>زر</button>
-</div>
+</div>;
 ```
 
 ## 🌑 الظلال (Shadows)
@@ -180,7 +180,7 @@ import { shadows } from '@/styles/theme';
 
 <div style={{ boxShadow: shadows.lg }}>
   <card style={{ boxShadow: shadows.md }}>بطاقة</card>
-</div>
+</div>;
 ```
 
 ## 📝 الخطوط (Typography)
@@ -213,7 +213,7 @@ export default function Header() {
     <header
       style={{
         backgroundColor: `${colors.secondary.DEFAULT}F2`, // 95% opacity
-        borderColor: `${colors.neutral.textMuted}33`,    // 20% opacity
+        borderColor: `${colors.neutral.textMuted}33`, // 20% opacity
       }}
     >
       <motion.button
@@ -284,11 +284,7 @@ export default function Button({ variant = 'primary' }) {
     },
   };
 
-  return (
-    <button style={styles[variant]}>
-      نص الزر
-    </button>
-  );
+  return <button style={styles[variant]}>نص الزر</button>;
 }
 ```
 
@@ -315,11 +311,7 @@ export default function Badge({ type = 'success' }) {
     },
   };
 
-  return (
-    <span style={badgeStyles[type]}>
-      {type}
-    </span>
-  );
+  return <span style={badgeStyles[type]}>{type}</span>;
 }
 ```
 
@@ -418,20 +410,20 @@ export default function Badge({ type = 'success' }) {
 
 عند الحاجة لشفافية، استخدم hex opacity codes:
 
-| Hex | Opacity | الاستخدام |
-|-----|---------|-----------|
-| `00` | 0% | شفاف تماماً |
-| `1A` | 10% | خلفيات خفيفة جداً |
-| `26` | 15% | خلفيات خفيفة |
-| `33` | 20% | خلفيات شفافة |
-| `4D` | 30% | خلفيات متوسطة الشفافية |
-| `66` | 40% | - |
-| `80` | 50% | خلفيات شبه شفافة |
-| `99` | 60% | - |
-| `B3` | 70% | - |
-| `CC` | 80% | - |
-| `E6` | 90% | - |
-| `FF` | 100% | معتم تماماً |
+| Hex  | Opacity | الاستخدام              |
+| ---- | ------- | ---------------------- |
+| `00` | 0%      | شفاف تماماً            |
+| `1A` | 10%     | خلفيات خفيفة جداً      |
+| `26` | 15%     | خلفيات خفيفة           |
+| `33` | 20%     | خلفيات شفافة           |
+| `4D` | 30%     | خلفيات متوسطة الشفافية |
+| `66` | 40%     | -                      |
+| `80` | 50%     | خلفيات شبه شفافة       |
+| `99` | 60%     | -                      |
+| `B3` | 70%     | -                      |
+| `CC` | 80%     | -                      |
+| `E6` | 90%     | -                      |
+| `FF` | 100%    | معتم تماماً            |
 
 ### أمثلة
 
@@ -452,17 +444,20 @@ export default function Badge({ type = 'success' }) {
 ## 📋 قائمة مرجعية سريعة
 
 ### الألوان الأساسية
+
 - `colors.primary.DEFAULT` - اللون الأساسي
 - `colors.primary.dark` - اللون الداكن
 - `colors.primary.light` - اللون الفاتح
 - `colors.secondary.DEFAULT` - اللون الثانوي
 
 ### ألوان الإبراز
+
 - `colors.accent.primary` - إبراز أساسي
 - `colors.accent.secondary` - إبراز ثانوي
 - `colors.accent.warm` - إبراز دافئ
 
 ### الألوان المحايدة
+
 - `colors.neutral.bg` - خلفية الصفحة
 - `colors.neutral.surface` - سطح العناصر
 - `colors.neutral.surfaceAlt` - سطح بديل
@@ -471,12 +466,14 @@ export default function Badge({ type = 'success' }) {
 - `colors.neutral.textSecondary` - نص ثانوي
 
 ### ألوان الحالة
+
 - `colors.status.success` - نجاح
 - `colors.status.error` - خطأ
 - `colors.status.warning` - تحذير
 - `colors.status.info` - معلومات
 
 ### التدرجات
+
 - `gradients.gold` - تدرج ذهبي
 - `gradients.primary` - تدرج أساسي
 - `gradients.hero` - تدرج Hero Section
@@ -508,7 +505,7 @@ import { colors, gradients } from '@/styles/theme';
   </div>
   <h1 style={{ color: colors.neutral.bg }}>عنوان</h1>
   <p style={{ color: colors.neutral.textMuted }}>وصف</p>
-</section>
+</section>;
 ```
 
 ### Project Card
@@ -536,7 +533,7 @@ import { colors, gradients } from '@/styles/theme';
   >
     قدم الآن
   </button>
-</div>
+</div>;
 ```
 
 ## 🎓 نصائح إضافية
@@ -550,6 +547,7 @@ import { colors, gradients } from '@/styles/theme';
 ## 📞 الدعم
 
 إذا كان لديك أي أسئلة حول استخدام الثيم، راجع:
+
 - المكونات الموجودة في `src/components`
 - ملفات الثيم في `src/styles/theme`
 - هذا الدليل
@@ -557,4 +555,3 @@ import { colors, gradients } from '@/styles/theme';
 ---
 
 **آخر تحديث**: 2025
-

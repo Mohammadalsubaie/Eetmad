@@ -58,7 +58,10 @@ const Avatar: React.FC<AvatarProps> = ({
   return (
     <div className={cn('relative inline-block', className)}>
       <div
-        className={cn('flex items-center justify-center overflow-hidden rounded-full', sizeStyles[size])}
+        className={cn(
+          'flex items-center justify-center overflow-hidden rounded-full',
+          sizeStyles[size]
+        )}
         style={{
           backgroundColor: cssVars.neutral.surfaceAlt,
         }}
@@ -82,7 +85,7 @@ const Avatar: React.FC<AvatarProps> = ({
       {isVerified && (
         <div
           className={cn(
-            'absolute -end-0.5 -bottom-0.5 flex items-center justify-center rounded-full p-0.5',
+            'absolute -bottom-0.5 -end-0.5 flex items-center justify-center rounded-full p-0.5',
             verifiedBadgeSize[size]
           )}
           style={{

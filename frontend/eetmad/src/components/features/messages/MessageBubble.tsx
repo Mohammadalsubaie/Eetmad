@@ -1,4 +1,4 @@
-export default function Messagebubble() {
+export default function MessageBubble() {
   // TODO: Implement MessageBubble component
   return null;
 }

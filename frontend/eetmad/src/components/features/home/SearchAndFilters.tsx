@@ -1,7 +1,7 @@
 'use client';
 
 import { cssVars } from '@/styles/theme';
-import Button from '@/components/ui/Button/Button';
+import { Button } from '@/components/ui';
 import { useTranslations } from 'next-intl';
 import { motion } from 'framer-motion';
 import { Filter, Search } from 'lucide-react';

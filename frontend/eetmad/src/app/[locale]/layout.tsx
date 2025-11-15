@@ -1,3 +1,5 @@
+import { Footer } from '@/components/shared/layouts/Footer';
+import { Header } from '@/components/shared/layouts/Header';
 import { routing } from '@/i18n/routing';
 import { NextIntlClientProvider } from 'next-intl';
 import { getMessages } from 'next-intl/server';
@@ -24,7 +26,9 @@ export default async function LocaleLayout({
   return (
     <NextIntlClientProvider messages={messages}>
       <div className={locale === 'ar' ? 'rtl' : 'ltr'} dir={locale === 'ar' ? 'rtl' : 'ltr'}>
+        <Header />
         {children}
+        <Footer />
       </div>
     </NextIntlClientProvider>
   );

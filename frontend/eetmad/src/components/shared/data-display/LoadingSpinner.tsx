@@ -1,6 +1,10 @@
 // src/components/shared/data-display/LoadingSpinner.tsx
 
+'use client';
+
 import { cn } from '@/lib/utils/cn';
+import { cssVars } from '@/styles/theme';
+import { motion } from 'framer-motion';
 import { Loader2 } from 'lucide-react';
 import React from 'react';
 
@@ -27,10 +31,22 @@ const LoadingSpinner: React.FC<LoadingSpinnerProps> = ({
   text,
 }) => {
   const spinner = (
-    <div className="flex flex-col items-center gap-3">
-      <Loader2 className={cn('text-primary-600 animate-spin', sizeStyles[size], className)} />
-      {text && <p className="text-sm text-gray-600">{text}</p>}
-    </div>
+    <motion.div
+      className="flex flex-col items-center gap-3"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.3 }}
+    >
+      <Loader2
+        className={cn('animate-spin', sizeStyles[size], className)}
+        style={{ color: cssVars.primary.DEFAULT }}
+      />
+      {text && (
+        <p className="text-sm" style={{ color: cssVars.neutral.textSecondary }}>
+          {text}
+        </p>
+      )}
+    </motion.div>
   );
 
   if (fullScreen) {

@@ -1,9 +1,28 @@
+'use client';
+
+import { cssVars } from '@/styles/theme';
+import { useTranslations } from 'next-intl';
+
 export default function Template1() {
+  const t = useTranslations('templates');
+
   return (
-    <div className="flex min-h-screen items-center justify-center bg-gray-50">
-      <div className="mx-auto max-w-4xl rounded-lg bg-white p-8 shadow-lg">
-        <h1 className="mb-4 text-3xl font-bold text-gray-900">Template 1</h1>
-        <p className="text-gray-600">This is a placeholder template. You can add your own templates here.</p>
+    <div
+      className="flex min-h-screen items-center justify-center"
+      style={{ backgroundColor: cssVars.neutral.bg }}
+    >
+      <div
+        className="mx-auto max-w-4xl rounded-lg p-8 shadow-lg"
+        style={{
+          backgroundColor: cssVars.neutral.surface,
+        }}
+      >
+        <h1 className="mb-4 text-3xl font-bold" style={{ color: cssVars.secondary.DEFAULT }}>
+          {t('template1.title')}
+        </h1>
+        <p style={{ color: cssVars.neutral.textSecondary }}>
+          {t('template1.description')}
+        </p>
       </div>
     </div>
   );

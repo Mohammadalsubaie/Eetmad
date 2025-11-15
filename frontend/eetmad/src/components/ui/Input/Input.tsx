@@ -1,3 +1,5 @@
+'use client';
+
 import { cssVars } from '@/styles/theme';
 import { LucideIcon } from 'lucide-react';
 import React, { useState } from 'react';

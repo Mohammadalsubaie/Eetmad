@@ -1,49 +1,79 @@
 {
   "nav": {
     "home": "Home",
-    "about": "About",
-    "requests": "Requests",
-    "suppliers": "Suppliers",
-    "contact": "Contact"
+    "projects": "Projects",
+    "organizations": "Organizations",
+    "resources": "Resources",
+    "support": "Support",
+    "myAccount": "My Account",
+    "notifications": "Notifications",
+    "brandName": "Opportunities Platform",
+    "brandTagline": "Government Bidding Portal"
+  },
+  "footer": {
+    "brandName": "Opportunities Platform",
+    "brandDescription": "A trusted platform connecting talents with government opportunities with transparency and high professionalism",
+    "quickLinks": {
+      "title": "Quick Links",
+      "projects": "Projects",
+      "organizations": "Organizations",
+      "resources": "Resources",
+      "pricing": "Pricing"
+    },
+    "support": {
+      "title": "Support",
+      "help": "Help",
+      "faq": "FAQ",
+      "contact": "Contact",
+      "terms": "Terms"
+    },
+    "info": {
+      "title": "Information",
+      "about": "About Us",
+      "privacy": "Privacy",
+      "security": "Security",
+      "careers": "Careers"
+    },
+    "copyright": "© 2025 Opportunities Platform. All rights reserved",
+    "termsAndConditions": "Terms & Conditions",
+    "privacyPolicy": "Privacy Policy"
   },
   "home": {
     "hero": {
-      "badge": "Leading Platform for Specifications",
-      "title": "Request Your Product Specifications",
-      "titleHighlight": "and Get the Best Offers",
-      "subtitle": "A platform connecting specification seekers with professional suppliers. Get competitive quotes from trusted suppliers in minutes",
-      "searchPlaceholder": "Search for specifications, products, or suppliers...",
-      "searchButton": "Search",
-      "requestButton": "Request Specifications Now",
-      "browseSuppliersButton": "Browse Suppliers",
-      "illustrationText": "Simple and Easy Interface",
+      "badge": "312 Opportunities Available Now",
+      "title": "Explore",
+      "titleHighlight": "Exceptional Opportunities",
+      "titleEnd": "in the Government Sector",
+      "subtitle": "A trusted platform connecting talents with government opportunities. Complete transparency, smooth processes, and shared success",
+      "exploreButton": "Explore Opportunities",
+      "videoButton": "Watch Video",
       "stats": {
-        "requests": "Specification Requests",
-        "suppliers": "Verified Suppliers",
-        "satisfaction": "Customer Satisfaction"
-      },
-      "floatingCards": {
-        "newRequest": "New Request",
-        "quote": "Quote"
+        "activeProjects": {
+          "label": "Active Projects",
+          "value": "312",
+          "change": "+24%"
+        },
+        "totalValue": {
+          "label": "Total Value",
+          "value": "186M",
+          "change": "+18%"
+        },
+        "government": {
+          "label": "Government Entities",
+          "value": "84",
+          "change": "+12%"
+        },
+        "successRate": {
+          "label": "Success Rate",
+          "value": "94%",
+          "change": "+5%"
+        }
       }
     },
     "cta": {
-      "title": "Get Started Today",
-      "description": "Join thousands of businesses finding the best suppliers",
-      "primary": "Sign Up Now",
-      "secondary": "Learn More",
-      "benefits": {
-        "free": "Free to use",
-        "network": "Wide supplier network",
-        "fast": "Fast responses",
-        "support": "24/7 support"
-      },
-      "stats": {
-        "requests": "Active Requests",
-        "suppliers": "Verified Suppliers",
-        "satisfaction": "Satisfaction Rate",
-        "support": "Support"
-      }
+      "title": "Start Today and Launch Your First Competition",
+      "primary": "I Want to Post a Request",
+      "secondary": "I Want to Submit Offers"
     },
     "stats": {
       "title": "Our Stats",
@@ -189,6 +219,281 @@
           "content": "I used the platform to request kitchen equipment specifications and received excellent offers. Communication with suppliers was smooth and professional."
         }
       }
+    }
+  },
+  "biddingPlatform": {
+    "sections": {
+      "platformOverview": {
+        "eyebrow": "Overview",
+        "title": "Smart Platform for Bidding Management",
+        "subtitle": "Discover how we make the bidding process easier and more efficient",
+        "mainCard": {
+          "title": "How Does It Work?",
+          "description": "Our platform is designed to simplify the bidding process from start to finish. We provide you with the tools and capabilities you need to get the best offers.",
+          "highlights": {
+            "postRequests": "Post your requests easily and clearly",
+            "receiveOffers": "Receive competitive offers from certified suppliers",
+            "manageCompetition": "Compare offers and choose the best",
+            "smartContract": "Smart management of contracts and agreements"
+          }
+        },
+        "features": {
+          "modern": {
+            "title": "Modern Technology",
+            "description": "Modern and easy-to-use interface with the latest technologies"
+          },
+          "secure": {
+            "title": "Safe & Protected",
+            "description": "Highest security standards to protect your data and transactions"
+          },
+          "smart": {
+            "title": "Smart & Efficient",
+            "description": "Smart system to match requests with suitable suppliers"
+          },
+          "trusted": {
+            "title": "Reliable & Certified",
+            "description": "Network of certified and trusted suppliers"
+          }
+        }
+      },
+      "audience": {
+        "eyebrow": "Who Uses the Platform?",
+        "title": "For Everyone Seeking Professional Solutions",
+        "subtitle": "Whether you're an individual or a business, we provide what you need",
+        "segments": {
+          "individuals": {
+            "tagline": "For Individuals",
+            "title": "Personal Project Owners",
+            "description": "Planning a home project or special event? Get offers from certified professionals",
+            "items": {
+              "furniture": "Custom home furniture and decor",
+              "design": "Interior design and coordination",
+              "events": "Event and wedding planning",
+              "maintenance": "Home maintenance and renovations",
+              "customNeeds": "Special needs and individual projects"
+            }
+          },
+          "businesses": {
+            "tagline": "For Businesses",
+            "title": "Companies & Enterprises",
+            "description": "We help your company find the best suppliers for all your operational needs",
+            "items": {
+              "tech": "Technology and IT solutions",
+              "supply": "Office supplies and equipment",
+              "office": "Office setup and furnishing",
+              "eventManagement": "Corporate event management",
+              "retainer": "Long-term supply contracts"
+            }
+          }
+        }
+      },
+      "exploreCategories": {
+        "eyebrow": "Most Requested Categories",
+        "title": "Explore Categories",
+        "subtitle": "Browse the most popular categories and find what you need",
+        "insight": {
+          "title": "Active Requests",
+          "value": "250+",
+          "description": "New requests daily"
+        },
+        "items": {
+          "techSolutions": {
+            "title": "Tech Solutions",
+            "description": "Programming, web development, apps, and integrated tech solutions",
+            "stat": "350+ active requests"
+          },
+          "creative": {
+            "title": "Creative Services",
+            "description": "Graphic design, branding, digital marketing and content",
+            "stat": "280+ active requests"
+          },
+          "operations": {
+            "title": "Operational Services",
+            "description": "Supplies, equipment, maintenance and logistics services",
+            "stat": "420+ active requests"
+          },
+          "events": {
+            "title": "Events & Occasions",
+            "description": "Conferences, exhibitions, parties and special occasions",
+            "stat": "190+ active requests"
+          }
+        }
+      },
+      "projectBenefits": {
+        "eyebrow": "Why Choose Us?",
+        "title": "Platform Benefits",
+        "subtitle": "Discover the features that make us the best choice",
+        "items": {
+          "transparency": {
+            "title": "Full Transparency",
+            "description": "All offers are documented and visible, with comprehensive supplier rating system"
+          },
+          "matching": {
+            "title": "Smart Matching",
+            "description": "Smart system connects your request with the most suitable suppliers by specialty and experience"
+          },
+          "quality": {
+            "title": "Quality Guaranteed",
+            "description": "All suppliers are certified and rated by previous clients"
+          },
+          "support": {
+            "title": "Continuous Support",
+            "description": "Professional support team available 24/7 to help you"
+          }
+        }
+      },
+      "transparency": {
+        "eyebrow": "Transparency & Trust",
+        "title": "Trusted and Secure Platform",
+        "subtitle": "We ensure a safe and transparent experience in all your transactions",
+        "mainCard": {
+          "title": "Complete Transparency at Every Step",
+          "description": "We are committed to providing a safe and transparent environment for all users. Our system is designed to ensure trust and credibility in every transaction.",
+          "points": {
+            "point1": "All offers are documented and secured",
+            "point2": "Comprehensive supplier rating system",
+            "point3": "Complete protection of data and information",
+            "point4": "24/7 support team available"
+          }
+        },
+        "features": {
+          "ratings": {
+            "title": "Rating System",
+            "description": "Real reviews from users help you choose the best supplier"
+          },
+          "management": {
+            "title": "Contract Management",
+            "description": "Complete system for managing contracts and agreements securely"
+          },
+          "documentation": {
+            "title": "Full Documentation",
+            "description": "All transactions are documented and stored securely"
+          },
+          "verification": {
+            "title": "Supplier Verification",
+            "description": "All suppliers are verified and their credibility is confirmed"
+          }
+        }
+      },
+      "successStories": {
+        "eyebrow": "Success Stories",
+        "title": "Clients Who Succeeded With Us",
+        "subtitle": "Discover how our platform helped businesses find the best suppliers",
+        "stories": {
+          "smallBusiness": {
+            "title": "Small Business Gets 12 Offers",
+            "description": "A tech startup was able to get 12 competitive offers to equip their offices"
+          },
+          "individual": {
+            "title": "Individual Saves 30% on Costs",
+            "description": "An individual project owner saved more than 30% of expected costs thanks to competition between suppliers"
+          },
+          "enterprise": {
+            "title": "Large Enterprise Finds Reliable Supplier",
+            "description": "A large enterprise contracted with a certified supplier to supply equipment worth over one million riyals"
+          }
+        },
+        "withinHours": "Within {hours} hours",
+        "totalProjects": "Successful Projects",
+        "satisfactionRate": "Satisfaction Rate",
+        "avgResponseTime": "Average Response Hours"
+      },
+      "gettingStarted": {
+        "eyebrow": "Get Started Now",
+        "title": "How to Start With Our Platform",
+        "subtitle": "Simple steps to start getting the best offers",
+        "cards": {
+          "owners": {
+            "tagline": "For Specification Seekers",
+            "title": "Project Owners",
+            "description": "Looking for reliable suppliers? Start by posting your request now and get competitive offers from certified suppliers",
+            "badge": "Start Free",
+            "steps": {
+              "step1": {
+                "order": "1",
+                "title": "Create New Account",
+                "description": "Create your account for free in minutes"
+              },
+              "step2": {
+                "order": "2",
+                "title": "Post Specification Request",
+                "description": "Write details of what you need clearly"
+              },
+              "step3": {
+                "order": "3",
+                "title": "Receive Offers",
+                "description": "Get offers from certified suppliers"
+              },
+              "step4": {
+                "order": "4",
+                "title": "Choose Best Offer",
+                "description": "Compare offers and choose the most suitable"
+              }
+            }
+          },
+          "providers": {
+            "tagline": "For Suppliers",
+            "title": "Service Providers",
+            "description": "Are you a professional supplier? Join our network of certified suppliers and get new requests daily",
+            "badge": "Join Now",
+            "steps": {
+              "step1": {
+                "order": "1",
+                "title": "Register as Supplier",
+                "description": "Submit your data and documents for verification"
+              },
+              "step2": {
+                "order": "2",
+                "title": "Complete Your Profile",
+                "description": "Add information about your services and products"
+              },
+              "step3": {
+                "order": "3",
+                "title": "Browse Requests",
+                "description": "Search for requests suitable for your services"
+              },
+              "step4": {
+                "order": "4",
+                "title": "Submit Your Offers",
+                "description": "Send competitive offers for suitable requests"
+              }
+            }
+          }
+        }
+      },
+      "faq": {
+        "eyebrow": "FAQ",
+        "title": "Answers to Your Questions",
+        "subtitle": "Have questions? Here are answers to the most frequently asked questions",
+        "items": {
+          "timelines": {
+            "question": "How long does it take to get offers?",
+            "summary": "Expected time to receive offers from suppliers",
+            "answer": "Offers usually start arriving within 24 hours of posting the request. In most cases, you get several offers within two days. The duration depends on the type of request and its complexity."
+          },
+          "offers": {
+            "question": "How many offers to expect?",
+            "summary": "Average number of offers you can receive",
+            "answer": "The number of offers varies depending on the type of request and geographic area. On average, requests receive 5-10 offers from different suppliers. Clear and detailed requests attract more offers."
+          },
+          "payments": {
+            "question": "How does the payment process work?",
+            "summary": "Payment mechanism and financial transfers",
+            "answer": "We do not directly intervene in the payment process. Financial agreements are made between the two parties directly. We recommend using safe and documented payment methods. We provide an optional contract template to document the agreement."
+          },
+          "quality": {
+            "question": "How do you ensure supplier quality?",
+            "summary": "Criteria for selecting and evaluating suppliers",
+            "answer": "We verify all suppliers before accepting them on the platform. We request commercial registration and official documents. We have a comprehensive rating system from users. We continuously monitor supplier performance and take action against violators."
+          }
+        }
+      }
+    }
+  },
+  "templates": {
+    "template1": {
+      "title": "Template 1",
+      "description": "This is a placeholder template. You can add your own templates here."
     }
   }
 }

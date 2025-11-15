@@ -1,13 +1,15 @@
 'use client';
 
+import { cssVars } from '@/styles/theme';
+import { motion } from 'framer-motion';
 import { Globe } from 'lucide-react';
 import { useLocale } from 'next-intl';
 import { usePathname, useRouter } from 'next/navigation';
 import { useTransition } from 'react';
 
 const languages = [
-  { code: 'en', name: 'English', nativeName: 'English' },
-  { code: 'ar', name: 'Arabic', nativeName: 'العربية' },
+  { code: 'en', name: 'English', nativeName: 'English', fullName: 'English' },
+  { code: 'ar', name: 'Arabic', nativeName: 'العربية', fullName: 'العربية' },
 ];
 
 export function LanguageSwitcher() {
@@ -27,19 +29,46 @@ export function LanguageSwitcher() {
     });
   };
 
-  const otherLanguage = languages.find((lang) => lang.code !== locale);
+  const otherLang = languages.find((lang) => lang.code !== locale);
 
   return (
     <div className="relative inline-block">
-      <button
-        onClick={() => otherLanguage && handleLanguageChange(otherLanguage.code)}
+      <motion.button
+        onClick={() => otherLang && handleLanguageChange(otherLang.code)}
         disabled={isPending}
-        className="flex items-center gap-2 rounded-lg border border-border bg-background px-3 py-2 transition-colors hover:bg-accent disabled:opacity-50"
-        aria-label="Switch language"
+        className="relative flex h-10 items-center gap-2 rounded-full px-4 shadow-sm disabled:opacity-50"
+        style={{
+          background: cssVars.gradient.gold,
+          border: `1px solid ${cssVars.neutral.border}`,
+        }}
+        whileHover={{ scale: 1.05 }}
+        whileTap={{ scale: 0.95 }}
+        aria-label={`Switch to ${otherLang?.fullName}`}
       >
-        <Globe className="text-foreground h-5 w-5" />
-        <span className="text-foreground text-sm font-medium">{otherLanguage?.nativeName}</span>
-      </button>
+        {/* Globe icon */}
+        <motion.div
+          animate={{
+            rotate: isPending ? 360 : 0,
+          }}
+          transition={{
+            duration: isPending ? 1 : 0,
+            repeat: isPending ? Infinity : 0,
+            ease: 'linear',
+          }}
+        >
+          <Globe className="h-4 w-4" style={{ color: cssVars.secondary.DEFAULT }} />
+        </motion.div>
+
+        {/* Language text - shows the OTHER language (what you'll switch to) */}
+        <span
+          className="text-sm font-bold"
+          style={{
+            color: cssVars.secondary.DEFAULT,
+          }}
+        >
+          {otherLang?.nativeName}
+        </span>
+      </motion.button>
     </div>
   );
 }

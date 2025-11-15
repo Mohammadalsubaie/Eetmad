@@ -1,828 +1,0 @@
-'use client';
-
-import React, { useState, useEffect } from 'react';
-import {
-  Search,
-  ArrowRight,
-  CheckCircle,
-  Star,
-  Users,
-  TrendingUp,
-  Shield,
-  Zap,
-  Clock,
-  Award,
-  ChevronRight,
-  Play,
-  Menu,
-  X,
-  Globe,
-  Briefcase,
-  Code,
-  Palette,
-  Megaphone,
-  Package,
-  Sparkles,
-  Target,
-  BarChart3,
-  MessageCircle,
-  FileText,
-  DollarSign,
-  Rocket,
-  Heart,
-  Trophy,
-  Coffee,
-  Laptop,
-  PenTool,
-  Camera,
-  Music,
-  BookOpen,
-  Lightbulb,
-  Crown,
-  Layers,
-  Box,
-  Cpu,
-  Database,
-  LineChart,
-  PieChart,
-  Activity,
-  Radio,
-  Wifi,
-  Compass,
-  Map,
-  Navigation,
-} from 'lucide-react';
-import { motion, AnimatePresence } from 'framer-motion';
-
-function ModernPlatform() {
-  const [scrollY, setScrollY] = useState(0);
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [activeCategory, setActiveCategory] = useState(0);
-  const [hoveredService, setHoveredService] = useState(null);
-  const [currentTestimonial, setCurrentTestimonial] = useState(0);
-
-  useEffect(() => {
-    const handleScroll = () => setScrollY(window.scrollY);
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
-  const categories = [
-    {
-      name: 'تطوير البرمجيات',
-      icon: <Code className="h-6 w-6" />,
-      projects: '2,847',
-      color: 'from-teal-500 to-cyan-500',
-      bg: 'bg-teal-50',
-      border: 'border-teal-200',
-      text: 'text-teal-600',
-    },
-    {
-      name: 'تصميم إبداعي',
-      icon: <Palette className="h-6 w-6" />,
-      projects: '3,921',
-      color: 'from-rose-500 to-pink-500',
-      bg: 'bg-rose-50',
-      border: 'border-rose-200',
-      text: 'text-rose-600',
-    },
-    {
-      name: 'تسويق رقمي',
-      icon: <Megaphone className="h-6 w-6" />,
-      projects: '1,653',
-      color: 'from-amber-500 to-orange-500',
-      bg: 'bg-amber-50',
-      border: 'border-amber-200',
-      text: 'text-amber-600',
-    },
-    {
-      name: 'كتابة محتوى',
-      icon: <FileText className="h-6 w-6" />,
-      projects: '4,285',
-      color: 'from-indigo-500 to-blue-500',
-      bg: 'bg-indigo-50',
-      border: 'border-indigo-200',
-      text: 'text-indigo-600',
-    },
-    {
-      name: 'استشارات أعمال',
-      icon: <Briefcase className="h-6 w-6" />,
-      projects: '987',
-      color: 'from-emerald-500 to-green-500',
-      bg: 'bg-emerald-50',
-      border: 'border-emerald-200',
-      text: 'text-emerald-600',
-    },
-    {
-      name: 'تحليل البيانات',
-      icon: <Database className="h-6 w-6" />,
-      projects: '1,432',
-      color: 'from-violet-500 to-purple-500',
-      bg: 'bg-violet-50',
-      border: 'border-violet-200',
-      text: 'text-violet-600',
-    },
-  ];
-
-  const topFreelancers = [
-    {
-      name: 'محمد العلي',
-      specialty: 'مطور Full Stack',
-      avatar: '👨‍💻',
-      rating: 4.9,
-      projects: 247,
-      hourlyRate: 350,
-      color: 'from-teal-500 to-cyan-500',
-      badge: 'نجم صاعد',
-    },
-    {
-      name: 'سارة أحمد',
-      specialty: 'مصممة UI/UX',
-      avatar: '👩‍🎨',
-      rating: 5.0,
-      projects: 189,
-      hourlyRate: 280,
-      color: 'from-rose-500 to-pink-500',
-      badge: 'محترف معتمد',
-    },
-    {
-      name: 'خالد الشمري',
-      specialty: 'مسوق رقمي',
-      avatar: '👨‍💼',
-      rating: 4.8,
-      projects: 156,
-      hourlyRate: 220,
-      color: 'from-amber-500 to-orange-500',
-      badge: 'خبير تسويق',
-    },
-  ];
-
-  const features = [
-    {
-      icon: <Shield className="h-8 w-8" />,
-      title: 'حماية الدفع',
-      description: 'لا تدفع حتى تستلم العمل المكتمل وتراجعه بالكامل',
-      gradient: 'from-teal-500 to-cyan-500',
-      iconBg: 'bg-teal-100',
-      iconColor: 'text-teal-600',
-    },
-    {
-      icon: <Users className="h-8 w-8" />,
-      title: 'محترفون موثوقون',
-      description: 'جميع المستقلين تم التحقق منهم ومراجعة أعمالهم السابقة',
-      gradient: 'from-rose-500 to-pink-500',
-      iconBg: 'bg-rose-100',
-      iconColor: 'text-rose-600',
-    },
-    {
-      icon: <Clock className="h-8 w-8" />,
-      title: 'تسليم سريع',
-      description: 'احصل على عروض خلال دقائق وابدأ العمل فوراً',
-      gradient: 'from-amber-500 to-orange-500',
-      iconBg: 'bg-amber-100',
-      iconColor: 'text-amber-600',
-    },
-    {
-      icon: <Award className="h-8 w-8" />,
-      title: 'ضمان الجودة',
-      description: 'مراجعات حقيقية ونظام تقييم شفاف لضمان أفضل النتائج',
-      gradient: 'from-indigo-500 to-blue-500',
-      iconBg: 'bg-indigo-100',
-      iconColor: 'text-indigo-600',
-    },
-  ];
-
-  const howItWorks = [
-    {
-      number: '01',
-      title: 'صف مشروعك',
-      description: 'اكتب تفاصيل واضحة عن المشروع والمتطلبات',
-      icon: <FileText className="h-7 w-7" />,
-      color: 'from-teal-500 to-cyan-500',
-    },
-    {
-      number: '02',
-      title: 'استقبل العروض',
-      description: 'المحترفون يتنافسون لتقديم أفضل عرض لك',
-      icon: <Users className="h-7 w-7" />,
-      color: 'from-rose-500 to-pink-500',
-    },
-    {
-      number: '03',
-      title: 'اختر المناسب',
-      description: 'قارن الملفات والأسعار واختر الأنسب',
-      icon: <Target className="h-7 w-7" />,
-      color: 'from-amber-500 to-orange-500',
-    },
-    {
-      number: '04',
-      title: 'استلم العمل',
-      description: 'راجع النتائج وأطلق الدفع عند رضاك التام',
-      icon: <CheckCircle className="h-7 w-7" />,
-      color: 'from-emerald-500 to-green-500',
-    },
-  ];
-
-  const stats = [
-    {
-      value: '50K+',
-      label: 'مشروع منجز',
-      icon: <CheckCircle className="h-5 w-5" />,
-      color: 'text-teal-600',
-    },
-    {
-      value: '15K+',
-      label: 'عميل راضٍ',
-      icon: <Heart className="h-5 w-5" />,
-      color: 'text-rose-600',
-    },
-    {
-      value: '8K+',
-      label: 'محترف نشط',
-      icon: <Users className="h-5 w-5" />,
-      color: 'text-amber-600',
-    },
-    {
-      value: '99%',
-      label: 'معدل النجاح',
-      icon: <TrendingUp className="h-5 w-5" />,
-      color: 'text-emerald-600',
-    },
-  ];
-
-  const testimonials = [
-    {
-      name: 'أحمد البلوشي',
-      role: 'مدير منتج',
-      company: 'تقنية السحاب',
-      avatar: '🧑‍💼',
-      content: 'تجربة رائعة! وجدت مطوراً ممتازاً أنجز مشروعي في الوقت المحدد بجودة عالية.',
-      rating: 5,
-      project: 'تطبيق جوال',
-      color: 'from-teal-500 to-cyan-500',
-    },
-    {
-      name: 'نورة القحطاني',
-      role: 'مديرة تسويق',
-      company: 'براند ستوديو',
-      avatar: '👩‍💼',
-      content:
-        'المنصة سهلة الاستخدام والمحترفون على مستوى عالٍ. حصلت على تصاميم إبداعية فاقت توقعاتي.',
-      rating: 5,
-      project: 'هوية بصرية',
-      color: 'from-rose-500 to-pink-500',
-    },
-    {
-      name: 'عبدالله السعيد',
-      role: 'رائد أعمال',
-      company: 'ستارت آب',
-      avatar: '🚀',
-      content: 'منصة موثوقة وفرت علي الكثير من الوقت والجهد. الأسعار منافسة والجودة ممتازة.',
-      rating: 5,
-      project: 'موقع إلكتروني',
-      color: 'from-amber-500 to-orange-500',
-    },
-  ];
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentTestimonial((prev) => (prev + 1) % testimonials.length);
-    }, 5000);
-    return () => clearInterval(interval);
-  }, []);
-
-  return (
-    <div className="min-h-screen bg-slate-50" dir="rtl">
-      <div className="pointer-events-none fixed inset-0 overflow-hidden">
-        <div className="absolute top-0 left-1/4 h-96 w-96 animate-pulse rounded-full bg-teal-200 opacity-20 mix-blend-multiply blur-3xl filter"></div>
-        <div
-          className="absolute right-1/4 bottom-0 h-96 w-96 animate-pulse rounded-full bg-rose-200 opacity-20 mix-blend-multiply blur-3xl filter"
-          style={{ animationDelay: '2s' }}
-        ></div>
-        <div
-          className="absolute top-1/2 left-1/2 h-96 w-96 animate-pulse rounded-full bg-amber-200 opacity-20 mix-blend-multiply blur-3xl filter"
-          style={{ animationDelay: '4s' }}
-        ></div>
-      </div>
-
-      {/* Header */}
-      <motion.header
-        initial={{ y: -100 }}
-        animate={{ y: 0 }}
-        className={`fixed top-0 right-0 left-0 z-50 transition-all duration-300 ${
-          scrollY > 20 ? 'bg-white shadow-lg' : 'bg-white/80 backdrop-blur-md'
-        }`}
-      >
-        <nav className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="flex h-20 items-center justify-between">
-            <div className="flex items-center gap-3">
-              <div className="relative">
-                <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-teal-500 to-cyan-500 shadow-lg">
-                  <Layers className="h-6 w-6 text-white" />
-                </div>
-                <div className="absolute -top-1 -right-1 h-3 w-3 rounded-full border-2 border-white bg-rose-500"></div>
-              </div>
-              <div>
-                <div className="text-2xl font-bold text-gray-900">منصة العمل</div>
-                <div className="text-xs text-gray-500">احترافية بلا حدود</div>
-              </div>
-            </div>
-
-            <div className="hidden items-center gap-8 lg:flex">
-              {['الرئيسية', 'الفئات', 'المحترفون', 'كيف تعمل', 'المدونة'].map((item) => (
-                <a
-                  key={item}
-                  href="#"
-                  className="group relative font-medium text-gray-700 transition-colors hover:text-teal-600"
-                >
-                  {item}
-                  <span className="absolute -bottom-1 left-0 h-0.5 w-0 bg-teal-600 transition-all duration-300 group-hover:w-full"></span>
-                </a>
-              ))}
-            </div>
-
-            <div className="hidden items-center gap-4 lg:flex">
-              <button className="px-5 py-2 font-medium text-gray-700 transition-colors hover:text-teal-600">
-                تسجيل الدخول
-              </button>
-              <button className="rounded-lg bg-gradient-to-r from-teal-500 to-cyan-500 px-6 py-2.5 font-medium text-white shadow-md transition-all hover:-translate-y-0.5 hover:shadow-lg">
-                إنشاء حساب
-              </button>
-            </div>
-
-            <button
-              className="text-gray-700 lg:hidden"
-              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            >
-              {mobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-            </button>
-          </div>
-        </nav>
-      </motion.header>
-
-      {/* Hero Section */}
-      <section className="relative px-4 pt-32 pb-20 sm:px-6 lg:px-8">
-        <div className="mx-auto max-w-7xl">
-          <div className="grid items-center gap-16 lg:grid-cols-2">
-            <motion.div
-              initial={{ opacity: 0, x: -30 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8 }}
-            >
-              <motion.div
-                initial={{ scale: 0 }}
-                animate={{ scale: 1 }}
-                transition={{ delay: 0.3, type: 'spring' }}
-                className="mb-6 inline-flex items-center gap-2 rounded-full border border-gray-200 bg-white px-4 py-2 shadow-md"
-              >
-                <div className="h-2 w-2 animate-pulse rounded-full bg-emerald-500"></div>
-                <Activity className="h-4 w-4 text-teal-600" />
-                <span className="text-sm font-semibold text-gray-700">632 مشروع نشط الآن</span>
-              </motion.div>
-
-              <h1 className="mb-6 text-5xl leading-tight font-bold text-gray-900 lg:text-6xl">
-                ابحث عن أفضل
-                <span className="mt-2 block bg-gradient-to-r from-teal-600 via-cyan-600 to-blue-600 bg-clip-text text-transparent">
-                  المحترفين المستقلين
-                </span>
-              </h1>
-
-              <p className="mb-8 text-xl leading-relaxed text-gray-600">
-                تواصل مع آلاف المحترفين الموهوبين. انجز مشاريعك بجودة عالية وأسعار تنافسية.
-              </p>
-
-              <div className="mb-10 flex flex-col gap-4 sm:flex-row">
-                <button className="group flex items-center justify-center gap-2 rounded-lg bg-gradient-to-r from-teal-500 to-cyan-500 px-8 py-4 text-lg font-semibold text-white shadow-lg transition-all hover:-translate-y-1 hover:shadow-xl">
-                  ابدأ مشروعك الآن
-                  <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
-                </button>
-                <button className="flex items-center justify-center gap-2 rounded-lg border-2 border-gray-300 bg-white px-8 py-4 text-lg font-semibold text-gray-700 shadow-md transition-all hover:border-teal-400">
-                  <Play className="h-5 w-5" />
-                  شاهد الفيديو
-                </button>
-              </div>
-
-              <div className="flex items-center gap-8">
-                <div className="flex -space-x-2">
-                  {['🧑‍💻', '👩‍🎨', '👨‍💼', '👩‍💻', '🧑‍🎨'].map((emoji, i) => (
-                    <div
-                      key={i}
-                      className="flex h-10 w-10 items-center justify-center rounded-full border-2 border-white bg-gradient-to-br from-gray-100 to-gray-200 shadow-md"
-                    >
-                      <span className="text-lg">{emoji}</span>
-                    </div>
-                  ))}
-                </div>
-                <div>
-                  <div className="mb-1 flex items-center gap-1">
-                    {[1, 2, 3, 4, 5].map((i) => (
-                      <Star key={i} className="h-4 w-4 fill-amber-400 text-amber-400" />
-                    ))}
-                  </div>
-                  <p className="text-sm text-gray-600">
-                    تقييم <span className="font-bold text-gray-900">4.9/5</span> من 15,000+ عميل
-                  </p>
-                </div>
-              </div>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, x: 30 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              className="relative"
-            >
-              <div className="relative rounded-2xl border border-gray-200 bg-white p-6 shadow-2xl">
-                <div className="mb-6 flex items-center justify-between">
-                  <h3 className="text-lg font-bold text-gray-900">أفضل المحترفين</h3>
-                  <button className="text-sm font-semibold text-teal-600 hover:text-teal-700">
-                    عرض الكل
-                  </button>
-                </div>
-
-                <div className="space-y-4">
-                  {topFreelancers.map((freelancer, i) => (
-                    <motion.div
-                      key={i}
-                      initial={{ opacity: 0, y: 20 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ delay: 0.5 + i * 0.1 }}
-                      className="group cursor-pointer rounded-xl border border-gray-200 bg-gray-50 p-4 transition-all hover:border-teal-300 hover:shadow-md"
-                    >
-                      <div className="flex items-start gap-3">
-                        <div
-                          className={`relative h-14 w-14 bg-gradient-to-br ${freelancer.color} flex items-center justify-center rounded-xl text-2xl shadow-md transition-transform group-hover:scale-105`}
-                        >
-                          {freelancer.avatar}
-                          <div className="absolute -right-1 -bottom-1 h-4 w-4 rounded-full border-2 border-white bg-emerald-500"></div>
-                        </div>
-                        <div className="flex-1">
-                          <div className="mb-1 flex items-center justify-between">
-                            <h4 className="font-bold text-gray-900">{freelancer.name}</h4>
-                            <div className="flex items-center gap-1">
-                              <Star className="h-4 w-4 fill-amber-400 text-amber-400" />
-                              <span className="text-sm font-semibold text-gray-700">
-                                {freelancer.rating}
-                              </span>
-                            </div>
-                          </div>
-                          <p className="mb-2 text-sm text-gray-600">{freelancer.specialty}</p>
-                          <div className="flex items-center justify-between">
-                            <span className="rounded-full border border-gray-300 bg-white px-2 py-1 text-xs font-medium text-gray-700">
-                              {freelancer.badge}
-                            </span>
-                            <div className="text-sm">
-                              <span className="font-bold text-gray-900">
-                                {freelancer.hourlyRate} ر.س
-                              </span>
-                              <span className="text-gray-500">/ساعة</span>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </motion.div>
-                  ))}
-                </div>
-
-                <button className="mt-4 w-full rounded-lg bg-gradient-to-r from-teal-500 to-cyan-500 py-3 font-semibold text-white transition-all hover:shadow-lg">
-                  تصفح المزيد من المحترفين
-                </button>
-              </div>
-
-              <motion.div
-                initial={{ scale: 0 }}
-                animate={{ scale: 1 }}
-                transition={{ delay: 0.8, type: 'spring' }}
-                className="absolute -right-4 -bottom-4 rounded-xl border border-gray-200 bg-white p-4 shadow-xl"
-              >
-                <div className="flex items-center gap-3">
-                  <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-gradient-to-br from-rose-500 to-pink-500">
-                    <CheckCircle className="h-6 w-6 text-white" />
-                  </div>
-                  <div>
-                    <div className="text-2xl font-bold text-gray-900">50K+</div>
-                    <div className="text-sm text-gray-600">مشروع مكتمل</div>
-                  </div>
-                </div>
-              </motion.div>
-            </motion.div>
-          </div>
-        </div>
-      </section>
-
-      {/* Stats */}
-      <section className="border-y border-gray-200 bg-white px-4 py-16 sm:px-6 lg:px-8">
-        <div className="mx-auto max-w-7xl">
-          <div className="grid grid-cols-2 gap-8 lg:grid-cols-4">
-            {stats.map((stat, i) => (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.1 }}
-                className="group text-center"
-              >
-                <div
-                  className={`mb-3 inline-flex h-12 w-12 items-center justify-center rounded-lg bg-gray-100 transition-transform group-hover:scale-110 ${stat.color}`}
-                >
-                  {stat.icon}
-                </div>
-                <div className="mb-1 text-4xl font-bold text-gray-900">{stat.value}</div>
-                <div className="text-gray-600">{stat.label}</div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Categories */}
-      <section className="px-4 py-20 sm:px-6 lg:px-8">
-        <div className="mx-auto max-w-7xl">
-          <div className="mb-12 text-center">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="mb-4 inline-flex items-center gap-2 rounded-full border border-gray-200 bg-white px-4 py-2 shadow-md"
-            >
-              <Compass className="h-4 w-4 text-teal-600" />
-              <span className="text-sm font-semibold text-gray-700">استكشف الفئات</span>
-            </motion.div>
-            <h2 className="mb-4 text-4xl font-bold text-gray-900">
-              ابحث في كل{' '}
-              <span className="bg-gradient-to-r from-teal-600 to-cyan-600 bg-clip-text text-transparent">
-                التخصصات
-              </span>
-            </h2>
-            <p className="text-xl text-gray-600">آلاف المحترفين جاهزون لمساعدتك في أي مجال</p>
-          </div>
-
-          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-            {categories.map((category, i) => (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.1 }}
-                onMouseEnter={() => setHoveredService(i)}
-                onMouseLeave={() => setHoveredService(null)}
-                className={`cursor-pointer rounded-xl border-2 bg-white p-6 transition-all ${
-                  hoveredService === i
-                    ? `${category.border} -translate-y-1 shadow-xl`
-                    : 'border-gray-200 shadow-md'
-                }`}
-              >
-                <div
-                  className={`h-14 w-14 bg-gradient-to-br ${category.color} mb-4 flex items-center justify-center rounded-xl text-white shadow-md ${hoveredService === i ? 'scale-110' : ''} transition-transform`}
-                >
-                  {category.icon}
-                </div>
-                <h3 className="mb-2 text-xl font-bold text-gray-900">{category.name}</h3>
-                <p className="mb-4 text-gray-600">{category.projects} مشروع متاح</p>
-                <button
-                  className={`flex items-center gap-2 ${category.text} font-semibold transition-all hover:gap-3`}
-                >
-                  استكشف المزيد
-                  <ChevronRight className="h-4 w-4" />
-                </button>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Features */}
-      <section className="bg-gradient-to-br from-gray-50 to-slate-100 px-4 py-20 sm:px-6 lg:px-8">
-        <div className="mx-auto max-w-7xl">
-          <div className="mb-16 text-center">
-            <h2 className="mb-4 text-4xl font-bold text-gray-900">
-              لماذا تختار{' '}
-              <span className="bg-gradient-to-r from-teal-600 to-cyan-600 bg-clip-text text-transparent">
-                منصتنا
-              </span>
-              ؟
-            </h2>
-            <p className="text-xl text-gray-600">نوفر لك تجربة استثنائية وآمنة</p>
-          </div>
-
-          <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
-            {features.map((feature, i) => (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.15 }}
-                className="rounded-xl border border-gray-200 bg-white p-6 shadow-lg transition-all hover:-translate-y-1 hover:shadow-xl"
-              >
-                <div
-                  className={`h-16 w-16 ${feature.iconBg} mb-4 flex items-center justify-center rounded-xl ${feature.iconColor}`}
-                >
-                  {feature.icon}
-                </div>
-                <h3 className="mb-3 text-xl font-bold text-gray-900">{feature.title}</h3>
-                <p className="leading-relaxed text-gray-600">{feature.description}</p>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* How It Works */}
-      <section className="bg-white px-4 py-20 sm:px-6 lg:px-8">
-        <div className="mx-auto max-w-6xl">
-          <div className="mb-16 text-center">
-            <h2 className="mb-4 text-4xl font-bold text-gray-900">
-              كيف{' '}
-              <span className="bg-gradient-to-r from-teal-600 to-cyan-600 bg-clip-text text-transparent">
-                تعمل المنصة
-              </span>
-              ؟
-            </h2>
-            <p className="text-xl text-gray-600">أربع خطوات بسيطة لإنجاز مشروعك</p>
-          </div>
-
-          <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
-            {howItWorks.map((step, i) => (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.2 }}
-                className="relative"
-              >
-                {i < howItWorks.length - 1 && (
-                  <div className="absolute top-16 left-full z-0 -ml-4 hidden h-0.5 w-full bg-gradient-to-r from-gray-300 to-transparent lg:block"></div>
-                )}
-                <div className="group relative rounded-xl border-2 border-gray-200 bg-gray-50 p-6 transition-all hover:border-teal-300 hover:shadow-lg">
-                  <div
-                    className={`absolute -top-4 -right-4 h-12 w-12 bg-gradient-to-br ${step.color} flex items-center justify-center rounded-lg text-xl font-bold text-white shadow-lg transition-transform group-hover:scale-110`}
-                  >
-                    {step.number}
-                  </div>
-                  <div className="mt-4 mb-4 flex h-14 w-14 items-center justify-center rounded-lg border-2 border-gray-200 bg-white text-gray-700 shadow-sm">
-                    {step.icon}
-                  </div>
-                  <h3 className="mb-2 text-lg font-bold text-gray-900">{step.title}</h3>
-                  <p className="leading-relaxed text-gray-600">{step.description}</p>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Testimonials */}
-      <section className="bg-gradient-to-br from-gray-50 to-slate-100 px-4 py-20 sm:px-6 lg:px-8">
-        <div className="mx-auto max-w-5xl">
-          <div className="mb-12 text-center">
-            <h2 className="mb-4 text-4xl font-bold text-gray-900">
-              ماذا يقول{' '}
-              <span className="bg-gradient-to-r from-teal-600 to-cyan-600 bg-clip-text text-transparent">
-                عملاؤنا
-              </span>
-            </h2>
-          </div>
-
-          <div className="relative">
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={currentTestimonial}
-                initial={{ opacity: 0, x: 50 }}
-                animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0, x: -50 }}
-                className={`bg-gradient-to-br ${testimonials[currentTestimonial].color} rounded-2xl p-10 text-white shadow-2xl`}
-              >
-                <div className="mb-6 flex gap-1">
-                  {[...Array(testimonials[currentTestimonial].rating)].map((_, i) => (
-                    <Star key={i} className="h-6 w-6 fill-white text-white" />
-                  ))}
-                </div>
-                <p className="mb-8 text-xl leading-relaxed">
-                  {testimonials[currentTestimonial].content}
-                </p>
-                <div className="flex items-center gap-4">
-                  <div className="flex h-16 w-16 items-center justify-center rounded-xl bg-white/20 text-3xl backdrop-blur-sm">
-                    {testimonials[currentTestimonial].avatar}
-                  </div>
-                  <div>
-                    <div className="text-lg font-bold">{testimonials[currentTestimonial].name}</div>
-                    <div className="text-sm text-white/90">
-                      {testimonials[currentTestimonial].role}
-                    </div>
-                    <div className="text-xs text-white/70">
-                      {testimonials[currentTestimonial].company}
-                    </div>
-                  </div>
-                </div>
-              </motion.div>
-            </AnimatePresence>
-
-            <div className="mt-8 flex justify-center gap-2">
-              {testimonials.map((_, i) => (
-                <button
-                  key={i}
-                  onClick={() => setCurrentTestimonial(i)}
-                  className={`h-2 rounded-full transition-all ${
-                    i === currentTestimonial
-                      ? 'w-8 bg-teal-600'
-                      : 'w-2 bg-gray-300 hover:bg-gray-400'
-                  }`}
-                />
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* CTA */}
-      <section className="bg-gradient-to-r from-teal-500 via-cyan-500 to-blue-500 px-4 py-20 sm:px-6 lg:px-8">
-        <div className="mx-auto max-w-4xl text-center">
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-          >
-            <h2 className="mb-6 text-5xl font-bold text-white">جاهز لبدء مشروعك؟</h2>
-            <p className="mb-10 text-xl text-teal-50">
-              انضم لآلاف العملاء الراضين واحصل على أفضل النتائج
-            </p>
-            <div className="flex flex-col justify-center gap-4 sm:flex-row">
-              <button className="rounded-lg bg-white px-10 py-4 text-lg font-bold text-teal-600 shadow-xl transition-all hover:-translate-y-1 hover:shadow-2xl">
-                ابدأ الآن مجاناً
-              </button>
-              <button className="rounded-lg border-2 border-white/50 bg-white/10 px-10 py-4 text-lg font-bold text-white backdrop-blur-sm transition-all hover:bg-white/20">
-                تواصل معنا
-              </button>
-            </div>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Footer */}
-      <footer className="bg-gray-900 px-4 py-16 text-white sm:px-6 lg:px-8">
-        <div className="mx-auto max-w-7xl">
-          <div className="mb-12 grid gap-10 md:grid-cols-4">
-            <div className="md:col-span-2">
-              <div className="mb-4 flex items-center gap-3">
-                <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-gradient-to-br from-teal-500 to-cyan-500">
-                  <Layers className="h-5 w-5 text-white" />
-                </div>
-                <div className="text-xl font-bold">منصة العمل</div>
-              </div>
-              <p className="mb-6 leading-relaxed text-gray-400">
-                نربط المواهب بالفرص، ونساعد الأعمال على النمو من خلال توفير أفضل المحترفين
-                المستقلين.
-              </p>
-              <div className="flex gap-3">
-                {['X', 'in', 'YT', 'IG'].map((social, i) => (
-                  <button
-                    key={i}
-                    className="flex h-10 w-10 items-center justify-center rounded-lg bg-gray-800 transition-colors hover:bg-teal-600"
-                  >
-                    <span className="text-sm font-bold">{social}</span>
-                  </button>
-                ))}
-              </div>
-            </div>
-
-            {[
-              { title: 'الشركة', links: ['عن المنصة', 'المدونة', 'الوظائف', 'اتصل بنا'] },
-              { title: 'الدعم', links: ['مركز المساعدة', 'الشروط', 'الخصوصية', 'الأمان'] },
-            ].map((section, i) => (
-              <div key={i}>
-                <h4 className="mb-4 font-bold">{section.title}</h4>
-                <ul className="space-y-3">
-                  {section.links.map((link) => (
-                    <li key={link}>
-                      <a href="#" className="text-gray-400 transition-colors hover:text-white">
-                        {link}
-                      </a>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))}
-          </div>
-
-          <div className="flex flex-col items-center justify-between gap-4 border-t border-gray-800 pt-8 md:flex-row">
-            <div className="text-gray-400">© 2025 منصة العمل. جميع الحقوق محفوظة</div>
-            <div className="flex gap-6">
-              <a href="#" className="text-gray-400 transition-colors hover:text-white">
-                الشروط
-              </a>
-              <a href="#" className="text-gray-400 transition-colors hover:text-white">
-                الخصوصية
-              </a>
-            </div>
-          </div>
-        </div>
-      </footer>
-    </div>
-  );
-}
-
-export default ModernPlatform;

@@ -1,4 +1,4 @@
-export default function Notificationitem() {
+export default function NotificationItem() {
   // TODO: Implement NotificationItem component
   return null;
 }

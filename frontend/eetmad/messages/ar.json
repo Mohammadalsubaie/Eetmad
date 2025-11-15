@@ -625,5 +625,123 @@
       "terminateAllButton": "إنهاء جميع الجلسات الأخرى",
       "noOtherSessions": "لا توجد جلسات أخرى نشطة"
     }
+  },
+  "pages": {
+    "suppliers": {
+      "title": "الموردون"
+    },
+    "terms": {
+      "title": "شروط الخدمة"
+    },
+    "faq": {
+      "title": "الأسئلة الشائعة"
+    },
+    "howItWorks": {
+      "title": "كيف يعمل"
+    },
+    "contact": {
+      "title": "اتصل بنا"
+    },
+    "categories": {
+      "title": "الفئات"
+    },
+    "about": {
+      "title": "من نحن"
+    },
+    "privacy": {
+      "title": "سياسة الخصوصية"
+    },
+    "supplierProfile": {
+      "title": "ملف المورد",
+      "id": "رقم المورد"
+    },
+    "dashboard": {
+      "title": "لوحة التحكم"
+    },
+    "profile": {
+      "title": "الملف الشخصي"
+    },
+    "security": {
+      "title": "إعدادات الأمان"
+    },
+    "requests": {
+      "title": "الطلبات"
+    },
+    "projects": {
+      "title": "المشاريع"
+    },
+    "statistics": {
+      "title": "الإحصائيات"
+    },
+    "portfolio": {
+      "title": "المحفظة"
+    },
+    "myOffers": {
+      "title": "عروضي"
+    },
+    "supplierSetup": {
+      "title": "إعداد ملف المورد"
+    },
+    "createOffer": {
+      "title": "إنشاء عرض جديد"
+    },
+    "offerDetails": {
+      "title": "تفاصيل العرض",
+      "id": "رقم العرض"
+    },
+    "editOffer": {
+      "title": "تعديل العرض",
+      "id": "رقم العرض"
+    },
+    "createRequest": {
+      "title": "إنشاء طلب جديد"
+    },
+    "myRequests": {
+      "title": "طلباتي"
+    },
+    "requestDetails": {
+      "title": "تفاصيل الطلب",
+      "id": "رقم الطلب"
+    },
+    "requestOffers": {
+      "title": "عروض الطلب",
+      "id": "رقم الطلب"
+    },
+    "editRequest": {
+      "title": "تعديل الطلب",
+      "id": "رقم الطلب"
+    },
+    "adminDashboard": {
+      "title": "لوحة تحكم المدير"
+    },
+    "userManagement": {
+      "title": "إدارة المستخدمين"
+    },
+    "userDetails": {
+      "title": "تفاصيل المستخدم",
+      "id": "رقم المستخدم"
+    },
+    "categoryManagement": {
+      "title": "إدارة الفئات"
+    },
+    "analytics": {
+      "title": "التحليلات"
+    },
+    "disputes": {
+      "title": "النزاعات"
+    },
+    "disputeDetails": {
+      "title": "تفاصيل النزاع",
+      "id": "رقم النزاع"
+    },
+    "reports": {
+      "title": "التقارير"
+    },
+    "systemSettings": {
+      "title": "إعدادات النظام"
+    },
+    "verificationQueue": {
+      "title": "قائمة التحقق"
+    }
   }
 }

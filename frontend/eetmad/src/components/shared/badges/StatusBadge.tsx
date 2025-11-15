@@ -1,4 +1,4 @@
-export default function Statusbadge() {
+export default function StatusBadge() {
   // TODO: Implement StatusBadge component
   return null;
 }

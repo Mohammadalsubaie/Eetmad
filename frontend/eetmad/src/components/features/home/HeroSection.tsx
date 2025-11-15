@@ -125,7 +125,7 @@ const HeroSection: React.FC = () => {
                 whileHover={{ y: -5 }}
                 className="rounded-2xl border p-6 backdrop-blur-sm"
                 style={{
-                  backgroundColor: 'rgba(255, 255, 255, 0.1)',
+                  backgroundColor: `color-mix(in srgb, ${cssVars.neutral.bg} 10%, transparent)`,
                   borderColor: `color-mix(in srgb, ${cssVars.accent.DEFAULT} 20%, transparent)`,
                 }}
               >

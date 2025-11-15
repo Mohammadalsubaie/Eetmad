@@ -1,4 +1,4 @@
-export default function Paymentmethodselector() {
+export default function PaymentMethodSelector() {
   // TODO: Implement PaymentMethodSelector component
   return null;
 }

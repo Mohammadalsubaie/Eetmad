@@ -1,4 +1,4 @@
-export default function Messagethread() {
+export default function MessageThread() {
   // TODO: Implement MessageThread component
   return null;
 }

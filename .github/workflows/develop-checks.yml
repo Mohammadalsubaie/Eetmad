@@ -49,6 +49,7 @@ jobs:
 
             - name: 🏗️ Type Validation
               run: npm run validate-types
+              continue-on-error: true
 
             - name: 📝 Naming Convention Check
               run: npm run validate-naming

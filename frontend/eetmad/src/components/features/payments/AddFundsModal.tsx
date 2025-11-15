@@ -1,4 +1,4 @@
-export default function Addfundsmodal() {
+export default function AddFundsModal() {
   // TODO: Implement AddFundsModal component
   return null;
 }

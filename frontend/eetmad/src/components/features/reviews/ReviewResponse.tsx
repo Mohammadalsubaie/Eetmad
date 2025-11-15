@@ -1,4 +1,4 @@
-export default function Reviewresponse() {
+export default function ReviewResponse() {
   // TODO: Implement ReviewResponse component
   return null;
 }

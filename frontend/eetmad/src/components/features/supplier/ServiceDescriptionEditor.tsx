@@ -1,4 +1,4 @@
-export default function Servicedescriptioneditor() {
+export default function ServiceDescriptionEditor() {
   // TODO: Implement ServiceDescriptionEditor component
   return null;
 }

@@ -1,3 +1,5 @@
+'use client';
+
 // src/components/features/home/StatsSection.tsx
 
 import PageContainer from '@/components/shared/layouts/PageContainer';

@@ -624,5 +624,123 @@
       "terminateAllButton": "Terminate All Other Sessions",
       "noOtherSessions": "No other active sessions"
     }
+  },
+  "pages": {
+    "suppliers": {
+      "title": "Suppliers"
+    },
+    "terms": {
+      "title": "Terms of Service"
+    },
+    "faq": {
+      "title": "Frequently Asked Questions"
+    },
+    "howItWorks": {
+      "title": "How It Works"
+    },
+    "contact": {
+      "title": "Contact Us"
+    },
+    "categories": {
+      "title": "Categories"
+    },
+    "about": {
+      "title": "About Us"
+    },
+    "privacy": {
+      "title": "Privacy Policy"
+    },
+    "supplierProfile": {
+      "title": "Supplier Profile",
+      "id": "Supplier ID"
+    },
+    "dashboard": {
+      "title": "Dashboard"
+    },
+    "profile": {
+      "title": "Profile"
+    },
+    "security": {
+      "title": "Security Settings"
+    },
+    "requests": {
+      "title": "Requests"
+    },
+    "projects": {
+      "title": "Projects"
+    },
+    "statistics": {
+      "title": "Statistics"
+    },
+    "portfolio": {
+      "title": "Portfolio"
+    },
+    "myOffers": {
+      "title": "My Offers"
+    },
+    "supplierSetup": {
+      "title": "Supplier Profile Setup"
+    },
+    "createOffer": {
+      "title": "Create New Offer"
+    },
+    "offerDetails": {
+      "title": "Offer Details",
+      "id": "Offer ID"
+    },
+    "editOffer": {
+      "title": "Edit Offer",
+      "id": "Offer ID"
+    },
+    "createRequest": {
+      "title": "Create New Request"
+    },
+    "myRequests": {
+      "title": "My Requests"
+    },
+    "requestDetails": {
+      "title": "Request Details",
+      "id": "Request ID"
+    },
+    "requestOffers": {
+      "title": "Request Offers",
+      "id": "Request ID"
+    },
+    "editRequest": {
+      "title": "Edit Request",
+      "id": "Request ID"
+    },
+    "adminDashboard": {
+      "title": "Admin Dashboard"
+    },
+    "userManagement": {
+      "title": "User Management"
+    },
+    "userDetails": {
+      "title": "User Details",
+      "id": "User ID"
+    },
+    "categoryManagement": {
+      "title": "Category Management"
+    },
+    "analytics": {
+      "title": "Analytics"
+    },
+    "disputes": {
+      "title": "Disputes"
+    },
+    "disputeDetails": {
+      "title": "Dispute Details",
+      "id": "Dispute ID"
+    },
+    "reports": {
+      "title": "Reports"
+    },
+    "systemSettings": {
+      "title": "System Settings"
+    },
+    "verificationQueue": {
+      "title": "Verification Queue"
+    }
   }
 }

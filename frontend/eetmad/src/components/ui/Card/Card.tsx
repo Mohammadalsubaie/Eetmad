@@ -50,7 +50,7 @@ const Card: React.FC<CardProps> = ({
     >
       {variant === 'featured' && (
         <div
-          className="absolute left-0 right-0 top-0 h-1"
+          className="absolute inset-x-0 top-0 h-1"
           style={{ background: cssVars.gradient.gold }}
         />
       )}

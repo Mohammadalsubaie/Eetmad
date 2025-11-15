@@ -62,6 +62,13 @@
   --bg-neutral-darker-80: rgba(51, 68, 67, 0.8);
   --bg-white-10: rgba(255, 255, 255, 0.1);
   --bg-black-10: rgba(0, 0, 0, 0.1);
+  
+  /* Shadow colors with opacity - using color-mix with neutral darker */
+  --shadow-color-sm: color-mix(in srgb, var(--color-neutral-darker) 5%, transparent);
+  --shadow-color-md: color-mix(in srgb, var(--color-neutral-darker) 7%, transparent);
+  --shadow-color-lg: color-mix(in srgb, var(--color-neutral-darker) 10%, transparent);
+  --shadow-color-xl: color-mix(in srgb, var(--color-neutral-darker) 15%, transparent);
+  --shadow-color-2xl: color-mix(in srgb, var(--color-neutral-darker) 25%, transparent);
 }
 
 /* ========== الثيم الغامق ========== */
@@ -115,6 +122,13 @@
   --bg-neutral-darker-80: rgba(232, 242, 241, 0.1);
   --bg-white-10: rgba(255, 255, 255, 0.05);
   --bg-black-10: rgba(0, 0, 0, 0.3);
+  
+  /* Shadow colors with opacity - using color-mix with neutral darker */
+  --shadow-color-sm: color-mix(in srgb, var(--color-neutral-darker) 5%, transparent);
+  --shadow-color-md: color-mix(in srgb, var(--color-neutral-darker) 7%, transparent);
+  --shadow-color-lg: color-mix(in srgb, var(--color-neutral-darker) 10%, transparent);
+  --shadow-color-xl: color-mix(in srgb, var(--color-neutral-darker) 15%, transparent);
+  --shadow-color-2xl: color-mix(in srgb, var(--color-neutral-darker) 25%, transparent);
 }
 
 /* ========================================

@@ -1,4 +1,4 @@
-export default function Systemsettings() {
+export default function SystemSettings() {
   // TODO: Implement SystemSettings component
   return null;
 }

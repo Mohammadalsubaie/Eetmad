@@ -1,7 +1,11 @@
 // src/components/shared/cards/StatCard.tsx
 
+'use client';
+
 import { cn } from '@/lib/utils/cn';
-import { LucideIcon } from 'lucide-react';
+import { cssVars } from '@/styles/theme';
+import { motion } from 'framer-motion';
+import { LucideIcon, TrendingDown, TrendingUp } from 'lucide-react';
 import React from 'react';
 
 interface StatCardProps {
@@ -17,33 +21,51 @@ interface StatCardProps {
 
 const StatCard: React.FC<StatCardProps> = ({ icon: Icon, label, value, trend, className }) => {
   return (
-    <div
-      className={cn(
-        'rounded-xl border border-border bg-card p-6 shadow-md transition-all hover:shadow-lg',
-        className
-      )}
+    <motion.div
+      whileHover={{ y: -5, scale: 1.02 }}
+      className={cn('rounded-xl border p-6 shadow-md transition-shadow hover:shadow-lg', className)}
+      style={{
+        backgroundColor: cssVars.neutral.surface,
+        borderColor: cssVars.neutral.border,
+      }}
     >
       <div className="flex items-center justify-between">
         <div className="flex-1">
-          <p className="text-sm font-medium text-muted-foreground">{label}</p>
-          <p className="mt-2 text-3xl font-bold text-foreground">{value}</p>
+          <p className="text-sm font-medium" style={{ color: cssVars.neutral.textSecondary }}>
+            {label}
+          </p>
+          <p className="mt-2 text-3xl font-bold" style={{ color: cssVars.secondary.DEFAULT }}>
+            {value}
+          </p>
           {trend && (
-            <p
-              className={cn(
-                'mt-2 text-sm font-medium',
-                trend.isPositive ? 'text-green-600 dark:text-green-400' : 'text-red-600 dark:text-red-400'
-              )}
+            <div
+              className="mt-2 flex items-center gap-1 text-sm font-medium"
+              style={{
+                color: trend.isPositive ? cssVars.status.success : cssVars.status.error,
+              }}
             >
-              {trend.isPositive ? '+' : '-'}
-              {Math.abs(trend.value)}%
-            </p>
+              {trend.isPositive ? (
+                <TrendingUp className="h-4 w-4" />
+              ) : (
+                <TrendingDown className="h-4 w-4" />
+              )}
+              <span>
+                {trend.isPositive ? '+' : '-'}
+                {Math.abs(trend.value)}%
+              </span>
+            </div>
           )}
         </div>
-        <div className="bg-primary-50 dark:bg-primary-950/30 flex h-12 w-12 items-center justify-center rounded-lg">
-          <Icon className="text-primary-600 dark:text-primary-400 h-6 w-6" />
+        <div
+          className="flex h-12 w-12 items-center justify-center rounded-lg"
+          style={{
+            backgroundColor: `color-mix(in srgb, ${cssVars.primary.DEFAULT} 10%, transparent)`,
+          }}
+        >
+          <Icon className="h-6 w-6" style={{ color: cssVars.primary.DEFAULT }} />
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 

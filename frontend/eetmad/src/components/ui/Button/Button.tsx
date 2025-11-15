@@ -1,3 +1,5 @@
+'use client';
+
 import { cssVars } from '@/styles/theme';
 import { HTMLMotionProps, motion } from 'framer-motion';
 import { LucideIcon } from 'lucide-react';
@@ -83,7 +85,9 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     return (
       <motion.button
         ref={ref}
-        whileHover={disabled ? undefined : variant === 'outline' || variant === 'ghost' ? {} : { scale: 1.05 }}
+        whileHover={
+          disabled ? undefined : variant === 'outline' || variant === 'ghost' ? {} : { scale: 1.05 }
+        }
         whileTap={disabled ? undefined : { scale: 0.95 }}
         className={`${baseStyles} ${variantStyles[variant]} ${sizeStyles[size]} ${fullWidth ? 'w-full' : ''} ${className}`}
         style={getVariantStyle()}

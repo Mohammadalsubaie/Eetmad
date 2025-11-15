@@ -1,138 +1,166 @@
 'use client';
 
-import { LanguageSwitcher } from '@/components/shared/misc/LanguageSwitcher';
-import PageContainer from '@/components/shared/layouts/PageContainer';
-import { ThemeToggle } from '@/components/shared/misc/ThemeToggle';
-import { Button } from '@/components/ui';
-import { Input } from '@/components/ui';
-import { ArrowLeft, FileText, Search, Users } from 'lucide-react';
+import { cssVars } from '@/styles/theme';
+import { motion } from 'framer-motion';
+import {
+  Activity,
+  ArrowRight,
+  Building2,
+  DollarSign,
+  Play,
+  Sparkles,
+  TrendingUp,
+} from 'lucide-react';
 import { useTranslations } from 'next-intl';
 import React from 'react';
 
 const HeroSection: React.FC = () => {
   const t = useTranslations('home.hero');
 
+  const stats = [
+    { key: 'activeProjects', icon: Activity },
+    { key: 'totalValue', icon: DollarSign },
+    { key: 'government', icon: Building2 },
+    { key: 'successRate', icon: TrendingUp },
+  ];
+
   return (
-    <section className="bg-primary text-primary-foreground relative overflow-hidden">
-      {/* Subtle Background Pattern */}
+    <section
+      className="relative overflow-hidden py-20"
+      style={{
+        background: `linear-gradient(180deg, ${cssVars.primary.DEFAULT} 0%, ${cssVars.primary.dark} 100%)`,
+      }}
+    >
+      {/* Background Decorative Blurs */}
       <div className="absolute inset-0 opacity-5">
-        <div className="absolute inset-0 bg-[linear-gradient(30deg,transparent_12%,rgba(255,255,255,.08)_12.5%,rgba(255,255,255,.08)_14%,transparent_14.5%,transparent_62%,rgba(255,255,255,.08)_62.5%,rgba(255,255,255,.08)_64%,transparent_64.5%)] bg-[length:80px_140px]"></div>
+        <div
+          className="absolute right-20 top-20 h-96 w-96 rounded-full blur-3xl"
+          style={{ background: cssVars.accent.warm }}
+        ></div>
+        <div
+          className="absolute bottom-20 left-20 h-96 w-96 rounded-full blur-3xl"
+          style={{ background: cssVars.primary.dark }}
+        ></div>
       </div>
 
-      <PageContainer className="relative z-10 py-16 lg:py-24">
-        <div className="absolute top-8 flex items-center gap-4 ltr:right-8 rtl:left-8">
-          <ThemeToggle />
-          <LanguageSwitcher />
-        </div>
-
-        <div className="grid items-center gap-16 lg:grid-cols-2">
-          {/* Content */}
-          <div className="text-center lg:text-start">
+      <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="mx-auto mb-16 max-w-4xl text-center">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+          >
             {/* Badge */}
-            <div className="border-primary-foreground/20 bg-primary-foreground/10 mb-8 inline-flex items-center gap-2 rounded-full border px-4 py-2 backdrop-blur-sm">
-              <div className="bg-secondary h-2 w-2 animate-pulse rounded-full"></div>
-              <span className="text-sm font-semibold tracking-wide">{t('badge')}</span>
+            <div
+              className="mb-6 inline-flex items-center gap-2 rounded-full px-4 py-2"
+              style={{
+                backgroundColor: `color-mix(in srgb, ${cssVars.accent.warm} 15%, transparent)`,
+                border: `1px solid color-mix(in srgb, ${cssVars.accent.warm} 30%, transparent)`,
+              }}
+            >
+              <Sparkles className="h-4 w-4" style={{ color: cssVars.accent.warm }} />
+              <span className="text-sm font-bold" style={{ color: cssVars.accent.warm }}>
+                {t('badge')}
+              </span>
             </div>
 
             {/* Main Heading */}
-            <h1 className="mb-6 text-4xl leading-tight font-bold lg:text-5xl xl:text-6xl">
-              {t('title')}
-              <span className="text-secondary mt-3 block">{t('titleHighlight')}</span>
+            <h1
+              className="mb-6 text-5xl font-bold leading-tight lg:text-6xl xl:text-7xl"
+              style={{ color: cssVars.neutral.bg }}
+            >
+              {t('title')} <span style={{ color: cssVars.accent.warm }}>{t('titleHighlight')}</span>{' '}
+              {t('titleEnd')}
             </h1>
 
-            <p className="mx-auto mb-10 max-w-xl text-lg leading-relaxed opacity-90 lg:mx-0 lg:text-xl">
+            {/* Subtitle */}
+            <p
+              className="mb-10 text-xl leading-relaxed lg:text-2xl"
+              style={{ color: cssVars.accent.DEFAULT }}
+            >
               {t('subtitle')}
             </p>
 
-            {/* Search Bar */}
-            <form className="mb-10">
-              <div className="bg-background text-foreground mx-auto flex max-w-2xl gap-3 rounded-xl p-3 shadow-2xl">
-                <div className="relative flex-1">
-                  <Search className="text-muted-foreground absolute top-1/2 h-5 w-5 -translate-y-1/2 ltr:left-4 rtl:right-4" />
-                  <Input
-                    type="text"
-                    placeholder={t('searchPlaceholder')}
-                    className="h-12 border-0 bg-transparent text-base focus-visible:ring-0 ltr:pl-12 rtl:pr-12"
-                  />
-                </div>
-                <Button
-                  type="submit"
-                  size="lg"
-                  className="bg-secondary text-secondary-foreground hover:bg-secondary/90 h-12 gap-2 px-8 whitespace-nowrap"
-                >
-                  <span className="font-semibold">{t('searchButton')}</span>
-                </Button>
-              </div>
-            </form>
-
             {/* CTA Buttons */}
-            <div className="mb-12 flex flex-wrap items-center justify-center gap-4 lg:justify-start">
-              <Button
-                size="lg"
-                className="bg-secondary text-secondary-foreground hover:bg-secondary/90 h-12 gap-2 px-8 shadow-lg"
+            <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="flex items-center gap-3 rounded-2xl px-10 py-4 text-lg font-bold shadow-2xl transition-all"
+                style={{
+                  background: cssVars.gradient.gold,
+                  color: cssVars.primary.DEFAULT,
+                }}
               >
-                <FileText className="h-5 w-5" />
-                <span className="font-semibold">{t('requestButton')}</span>
-                <ArrowLeft className="h-4 w-4" />
-              </Button>
-
-              <Button
-                size="lg"
-                variant="outline"
-                className="border-primary-foreground/30 bg-primary-foreground/10 text-primary-foreground hover:border-primary-foreground/50 hover:bg-primary-foreground/20 h-12 gap-2 border-2 px-8 backdrop-blur-sm"
+                {t('exploreButton')}
+                <ArrowRight className="h-6 w-6" />
+              </motion.button>
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="flex items-center gap-3 rounded-2xl border-2 px-10 py-4 text-lg font-bold transition-all"
+                style={{
+                  borderColor: cssVars.accent.DEFAULT,
+                  color: cssVars.neutral.bg,
+                  backgroundColor: 'transparent',
+                }}
               >
-                <Users className="h-5 w-5" />
-                <span className="font-semibold">{t('browseSuppliersButton')}</span>
-              </Button>
+                <Play className="h-6 w-6" />
+                {t('videoButton')}
+              </motion.button>
             </div>
-
-            {/* Stats */}
-            <div className="border-primary-foreground/20 grid grid-cols-3 gap-8 border-t pt-8">
-              <div>
-                <div className="text-secondary mb-2 text-4xl font-bold">+5000</div>
-                <div className="text-sm font-medium opacity-80">{t('stats.requests')}</div>
-              </div>
-              <div>
-                <div className="text-secondary mb-2 text-4xl font-bold">+1200</div>
-                <div className="text-sm font-medium opacity-80">{t('stats.suppliers')}</div>
-              </div>
-              <div>
-                <div className="text-secondary mb-2 text-4xl font-bold">98%</div>
-                <div className="text-sm font-medium opacity-80">{t('stats.satisfaction')}</div>
-              </div>
-            </div>
-          </div>
-
-          {/* Illustration */}
-          <div className="relative hidden lg:block">
-            <div className="border-primary-foreground/20 bg-primary-foreground/10 relative aspect-square overflow-hidden rounded-3xl border-2 p-12 backdrop-blur-sm">
-              <div className="flex h-full items-center justify-center">
-                <div className="space-y-6 text-center">
-                  <div className="bg-secondary mx-auto flex h-32 w-32 items-center justify-center rounded-3xl shadow-2xl">
-                    <Search className="text-secondary-foreground h-16 w-16" />
-                  </div>
-                  <p className="max-w-xs text-xl font-semibold">{t('illustrationText')}</p>
-                </div>
-              </div>
-
-              {/* Floating Cards */}
-              <div className="border-border bg-card text-card-foreground absolute start-6 top-6 rounded-xl border-2 p-4 shadow-2xl backdrop-blur-sm">
-                <div className="text-muted-foreground mb-1 text-sm font-medium">
-                  {t('floatingCards.newRequest')}
-                </div>
-                <div className="text-primary text-2xl font-bold">+24</div>
-              </div>
-
-              <div className="border-border bg-card text-card-foreground absolute end-6 bottom-6 rounded-xl border-2 p-4 shadow-2xl backdrop-blur-sm">
-                <div className="text-muted-foreground mb-1 text-sm font-medium">
-                  {t('floatingCards.quote')}
-                </div>
-                <div className="text-secondary text-2xl font-bold">+156</div>
-              </div>
-            </div>
-          </div>
+          </motion.div>
         </div>
-      </PageContainer>
+
+        {/* Stats Grid */}
+        <div className="grid grid-cols-2 gap-6 lg:grid-cols-4">
+          {stats.map((stat, idx) => {
+            const Icon = stat.icon;
+            return (
+              <motion.div
+                key={stat.key}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: idx * 0.1 }}
+                whileHover={{ y: -5 }}
+                className="rounded-2xl border p-6 backdrop-blur-sm"
+                style={{
+                  backgroundColor: 'rgba(255, 255, 255, 0.1)',
+                  borderColor: `color-mix(in srgb, ${cssVars.accent.DEFAULT} 20%, transparent)`,
+                }}
+              >
+                <div className="mb-4 flex items-center justify-between">
+                  <div
+                    className="flex h-12 w-12 items-center justify-center rounded-xl"
+                    style={{
+                      backgroundColor: `color-mix(in srgb, ${cssVars.accent.warm} 20%, transparent)`,
+                    }}
+                  >
+                    <Icon className="h-6 w-6" style={{ color: cssVars.accent.warm }} />
+                  </div>
+                  <div
+                    className="flex items-center gap-1 rounded-lg px-2.5 py-1"
+                    style={{
+                      backgroundColor: `color-mix(in srgb, ${cssVars.status.success} 20%, transparent)`,
+                    }}
+                  >
+                    <TrendingUp className="h-3.5 w-3.5" style={{ color: cssVars.status.success }} />
+                    <span className="text-xs font-bold" style={{ color: cssVars.status.success }}>
+                      {t(`stats.${stat.key}.change`)}
+                    </span>
+                  </div>
+                </div>
+                <div className="mb-1 text-3xl font-bold" style={{ color: cssVars.neutral.bg }}>
+                  {t(`stats.${stat.key}.value`)}
+                </div>
+                <div className="text-sm font-semibold" style={{ color: cssVars.accent.DEFAULT }}>
+                  {t(`stats.${stat.key}.label`)}
+                </div>
+              </motion.div>
+            );
+          })}
+        </div>
+      </div>
     </section>
   );
 };

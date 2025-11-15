@@ -1,81 +1,84 @@
 // src/components/features/home/CTASection.tsx
 
+'use client';
+
 import PageContainer from '@/components/shared/layouts/PageContainer';
 import Section from '@/components/shared/layouts/Section';
-import { Button } from '@/components/ui';
-import { ArrowLeft, CheckCircle } from 'lucide-react';
+import { motion } from 'framer-motion';
+import { ArrowRight, FileText, Gift } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 import React from 'react';
 
 const CTASection: React.FC = () => {
   const t = useTranslations('home.cta');
 
-  const benefits = ['free', 'network', 'fast', 'support'];
-
   return (
     <Section background="primary" padding="xl">
       <PageContainer>
-        <div className="bg-primary text-primary-foreground relative overflow-hidden rounded-2xl px-8 py-16 shadow-2xl lg:px-16">
-          {/* Background Pattern */}
-          <div className="absolute inset-0 opacity-10">
-            <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxnIGZpbGw9IiNmZmYiIGZpbGwtb3BhY2l0eT0iMSI+PHBhdGggZD0iTTM2IDE2YzAtNC40MTggMy41ODItOCA4LThzOCAzLjU4MiA4IDgtMy41ODIgOC04IDgtOC0zLjU4Mi04LTh6bTAgMjRjMC00LjQxOCAzLjU4Mi04IDgtOHM4IDMuNTgyIDggOC0zLjU4MiA4LTggOC04LTMuNTgyLTgtOHpNMTIgMTZjMC00LjQxOCAzLjU4Mi04IDgtOHM4IDMuNTgyIDggOC0zLjU4MiA4LTggOC04LTMuNTgyLTgtOHptMCAyNGMwLTQuNDE4IDMuNTgyLTggOC04czggMy41ODIgOCA4LTMuNTgyIDgtOCA4LTgtMy41ODItOC04eiIvPjwvZz48L2c+PC9zdmc+')] bg-repeat"></div>
+        <section
+          className="relative overflow-hidden py-24"
+          style={{ background: 'linear-gradient(135deg, #34656D 0%, #334443 100%)' }}
+        >
+          <div className="absolute inset-0 opacity-5">
+            <div
+              className="absolute right-0 top-0 h-96 w-96 rounded-full blur-3xl"
+              style={{ background: '#FAEAB1' }}
+            ></div>
+            <div
+              className="absolute bottom-0 left-0 h-96 w-96 rounded-full blur-3xl"
+              style={{ background: '#34656D' }}
+            ></div>
           </div>
 
-          <div className="relative grid gap-12 lg:grid-cols-2 lg:items-center">
-            {/* Content */}
-            <div className="text-center lg:text-start">
-              <h2 className="mb-4 text-3xl font-bold lg:text-4xl">{t('title')}</h2>
-              <p className="mb-8 text-lg opacity-90">{t('description')}</p>
-
-              <div className="mb-8 space-y-3">
-                {benefits.map((benefit, index) => (
-                  <div
-                    key={index}
-                    className="flex items-center justify-center gap-3 lg:justify-start"
-                  >
-                    <CheckCircle className="text-success h-5 w-5 flex-shrink-0" />
-                    <span className="opacity-90">{t(`benefits.${benefit}`)}</span>
-                  </div>
-                ))}
+          <div className="relative mx-auto max-w-5xl px-4 text-center sm:px-6 lg:px-8">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+            >
+              <div
+                className="mx-auto mb-8 flex h-24 w-24 items-center justify-center rounded-3xl shadow-2xl"
+                style={{ background: 'linear-gradient(135deg, #FAEAB1 0%, #F7DD7D 100%)' }}
+              >
+                <FileText className="h-12 w-12" style={{ color: '#334443' }} />
               </div>
 
-              <div className="flex flex-wrap items-center justify-center gap-4 lg:justify-start">
-                <Button size="lg" variant="secondary" className="gap-2 shadow-xl">
-                  <span>{t('primary')}</span>
-                  <ArrowLeft className="h-5 w-5" />
-                </Button>
+              <h2 className="mb-6 text-5xl font-bold" style={{ color: '#FAF8F1' }}>
+                {t('title')}
+              </h2>
 
-                <Button
-                  size="lg"
-                  variant="outline"
-                  className="border-primary-foreground/30 bg-primary-foreground/10 text-primary-foreground hover:border-primary-foreground/40 hover:bg-primary-foreground/20 backdrop-blur-sm"
+              <div className="flex flex-col justify-center gap-4 sm:flex-row">
+                <motion.button
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="flex items-center justify-center gap-3 rounded-2xl px-12 py-5 text-xl font-bold shadow-2xl transition-all"
+                  style={{
+                    background: 'linear-gradient(135deg, #FAEAB1 0%, #F7DD7D 100%)',
+                    color: '#334443',
+                  }}
                 >
-                  {t('secondary')}
-                </Button>
-              </div>
-            </div>
+                  {t('primary')}
+                  <ArrowRight className="h-6 w-6" />
+                </motion.button>
 
-            {/* Stats */}
-            <div className="grid grid-cols-2 gap-6">
-              <div className="bg-primary-foreground/10 rounded-xl p-6 text-center backdrop-blur-sm">
-                <div className="mb-2 text-4xl font-bold">+5000</div>
-                <div className="text-sm opacity-80">{t('stats.requests')}</div>
+                <motion.button
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="flex items-center justify-center gap-3 rounded-2xl border-2 px-12 py-5 text-xl font-bold transition-all"
+                  style={{
+                    borderColor: '#FAF8F1',
+                    color: '#FAF8F1',
+                    backgroundColor: 'transparent',
+                  }}
+                >
+                  <Gift className="h-6 w-6" />
+                  {t('secondary')}
+                </motion.button>
               </div>
-              <div className="bg-primary-foreground/10 rounded-xl p-6 text-center backdrop-blur-sm">
-                <div className="mb-2 text-4xl font-bold">+1200</div>
-                <div className="text-sm opacity-80">{t('stats.suppliers')}</div>
-              </div>
-              <div className="bg-primary-foreground/10 rounded-xl p-6 text-center backdrop-blur-sm">
-                <div className="mb-2 text-4xl font-bold">98%</div>
-                <div className="text-sm opacity-80">{t('stats.satisfaction')}</div>
-              </div>
-              <div className="bg-primary-foreground/10 rounded-xl p-6 text-center backdrop-blur-sm">
-                <div className="mb-2 text-4xl font-bold">24/7</div>
-                <div className="text-sm opacity-80">{t('stats.support')}</div>
-              </div>
-            </div>
+            </motion.div>
           </div>
-        </div>
+        </section>
       </PageContainer>
     </Section>
   );

@@ -1,6 +1,9 @@
 // src/components/shared/data-display/Avatar.tsx
 
+'use client';
+
 import { cn } from '@/lib/utils/cn';
+import { cssVars } from '@/styles/theme';
 import { Check, User } from 'lucide-react';
 import React from 'react';
 
@@ -55,10 +58,10 @@ const Avatar: React.FC<AvatarProps> = ({
   return (
     <div className={cn('relative inline-block', className)}>
       <div
-        className={cn(
-          'flex items-center justify-center overflow-hidden rounded-full bg-muted',
-          sizeStyles[size]
-        )}
+        className={cn('flex items-center justify-center overflow-hidden rounded-full', sizeStyles[size])}
+        style={{
+          backgroundColor: cssVars.neutral.surfaceAlt,
+        }}
       >
         {src && !imageError ? (
           // eslint-disable-next-line @next/next/no-img-element
@@ -69,19 +72,24 @@ const Avatar: React.FC<AvatarProps> = ({
             onError={() => setImageError(true)}
           />
         ) : initials ? (
-          <span className="font-medium text-muted-foreground">{initials}</span>
+          <span className="font-medium" style={{ color: cssVars.neutral.textSecondary }}>
+            {initials}
+          </span>
         ) : (
-          <User className="h-1/2 w-1/2 text-muted-foreground" />
+          <User className="h-1/2 w-1/2" style={{ color: cssVars.neutral.textSecondary }} />
         )}
       </div>
       {isVerified && (
         <div
           className={cn(
-            'bg-primary-500 absolute -right-0.5 -bottom-0.5 flex items-center justify-center rounded-full p-0.5',
+            'absolute -end-0.5 -bottom-0.5 flex items-center justify-center rounded-full p-0.5',
             verifiedBadgeSize[size]
           )}
+          style={{
+            backgroundColor: cssVars.status.success,
+          }}
         >
-          <Check className="h-full w-full text-white" strokeWidth={3} />
+          <Check className="h-full w-full" style={{ color: cssVars.neutral.bg }} strokeWidth={3} />
         </div>
       )}
     </div>

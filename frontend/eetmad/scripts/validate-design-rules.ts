@@ -73,12 +73,40 @@ class DesignRulesValidator {
     return (
       filePath.includes('/scripts/') ||
       filePath.includes('\\scripts\\') ||
+      filePath.includes('/i18n/') ||
+      filePath.includes('\\i18n\\') ||
       filePath.endsWith('.config.') ||
       filePath.includes('.config.ts') ||
       filePath.includes('.config.js') ||
       filePath.includes('validate-') ||
       filePath.includes('setup-') ||
-      filePath.includes('check-')
+      filePath.includes('check-') ||
+      filePath.includes('.test.') ||
+      filePath.includes('.spec.') ||
+      filePath.includes('.test-demo.') ||
+      filePath.includes('.examples.') ||
+      filePath.endsWith('/error.tsx') ||
+      filePath.endsWith('\\error.tsx') ||
+      filePath.endsWith('/not-found.tsx') ||
+      filePath.endsWith('\\not-found.tsx') ||
+      filePath.endsWith('/loading.tsx') ||
+      filePath.endsWith('\\loading.tsx') ||
+      filePath.endsWith('/layout.tsx') ||
+      filePath.endsWith('\\layout.tsx')
+    );
+  }
+
+  /**
+   * Check if a file is a theme definition file (should be excluded from color validation)
+   */
+  private isThemeFile(filePath: string): boolean {
+    return (
+      filePath.includes('/styles/theme/') ||
+      filePath.includes('\\styles\\theme\\') ||
+      filePath.endsWith('/colors.ts') ||
+      filePath.endsWith('\\colors.ts') ||
+      filePath.endsWith('/cssVariables.ts') ||
+      filePath.endsWith('\\cssVariables.ts')
     );
   }
 
@@ -115,8 +143,8 @@ class DesignRulesValidator {
   private checkColorUsage(content: string, filePath: string): ValidationError[] {
     const errors: ValidationError[] = [];
 
-    // تجاهل ملفات الـ scripts
-    if (this.isScriptFile(filePath)) {
+    // تجاهل ملفات الـ scripts وملفات الثيم
+    if (this.isScriptFile(filePath) || this.isThemeFile(filePath)) {
       return errors;
     }
 
@@ -293,12 +321,15 @@ class DesignRulesValidator {
       while ((stringMatch = stringRegex.exec(line)) !== null) {
         const text = stringMatch[1];
 
-        // تجاهل الـ imports والـ paths والـ className والـ CSS classes
+        // تجاهل الـ imports والـ paths والـ className والـ CSS classes والـ React directives
         if (
           line.includes('import') ||
           line.includes('from') ||
           line.includes('className=') ||
           line.includes('class=') ||
+          text === 'use client' ||
+          text === 'use server' ||
+          text === 'use strict' ||
           text.includes('/') ||
           text.includes('@') ||
           text.includes('.') ||

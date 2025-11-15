@@ -1,3 +1,4 @@
+// TODO: Implement this page with proper i18n
 'use client';
 
 import { useAuth } from '@/contexts/AuthContext';

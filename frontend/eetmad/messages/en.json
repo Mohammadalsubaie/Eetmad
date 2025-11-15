@@ -495,5 +495,134 @@
       "title": "Template 1",
       "description": "This is a placeholder template. You can add your own templates here."
     }
+  },
+  "auth": {
+    "common": {
+      "email": "Email Address",
+      "password": "Password",
+      "confirmPassword": "Confirm Password",
+      "rememberMe": "Remember me",
+      "forgotPassword": "Forgot password?",
+      "orContinueWith": "Or continue with",
+      "alreadyHaveAccount": "Already have an account?",
+      "dontHaveAccount": "Don't have an account?",
+      "backToLogin": "Back to Login",
+      "continue": "Continue",
+      "back": "Back",
+      "requiredField": "This field is required",
+      "invalidEmail": "Please enter a valid email address",
+      "passwordTooShort": "Password must be at least 8 characters",
+      "passwordsNotMatch": "Passwords do not match",
+      "agreeTermsError": "Please agree to the terms and conditions",
+      "passwordStrength": {
+        "label": "Password Strength",
+        "weak": "Weak",
+        "medium": "Medium",
+        "strong": "Strong"
+      },
+      "didntReceiveCode": "Didn't receive the code?",
+      "securityTip": "Choose a strong password with at least 8 characters, including uppercase, lowercase, numbers, and symbols.",
+      "successMessage": "Your password has been reset successfully. You can now sign in with your new password.",
+      "redirecting": "Redirecting to login...",
+      "emailVerifiedMessage": "Your email has been verified successfully. You can now sign in to your account."
+    },
+    "login": {
+      "title": "Welcome Back",
+      "subtitle": "Sign in to your account to continue",
+      "badge": "Secure Login",
+      "submitButton": "Sign In",
+      "signUpLink": "Sign Up",
+      "success": "Login successful! Redirecting...",
+      "error": "Invalid email or password"
+    },
+    "register": {
+      "title": "Create Your Account",
+      "subtitle": "Join our platform and start your journey",
+      "badge": "Get Started Free",
+      "fullName": "Full Name",
+      "phoneNumber": "Phone Number",
+      "companyName": "Company Name",
+      "commercialRegistration": "Commercial Registration",
+      "submitButton": "Create Account",
+      "signInLink": "Sign In",
+      "termsAgreement": "I agree to the {terms} and {privacy}",
+      "termsOfService": "Terms of Service",
+      "privacyPolicy": "Privacy Policy",
+      "success": "Account created successfully! Please verify your email.",
+      "error": "Registration failed. Please try again.",
+      "userType": {
+        "title": "Choose Account Type",
+        "subtitle": "Select the type that best describes you",
+        "client": {
+          "title": "Client",
+          "description": "Post requests and receive offers from suppliers"
+        },
+        "supplier": {
+          "title": "Supplier",
+          "description": "Browse requests and submit your offers"
+        }
+      }
+    },
+    "forgotPassword": {
+      "title": "Reset Your Password",
+      "subtitle": "Enter your email address and we'll send you a reset link",
+      "badge": "Password Recovery",
+      "submitButton": "Send Reset Link",
+      "success": "Reset link sent! Check your email.",
+      "error": "Failed to send reset link. Please try again.",
+      "checkEmail": {
+        "title": "Check Your Email",
+        "message": "We've sent a password reset link to {email}",
+        "note": "Didn't receive the email? Check your spam folder or",
+        "resendLink": "resend"
+      }
+    },
+    "resetPassword": {
+      "title": "Set New Password",
+      "subtitle": "Enter your new password below",
+      "badge": "Reset Password",
+      "newPassword": "New Password",
+      "submitButton": "Reset Password",
+      "success": "Password reset successfully! Redirecting to login...",
+      "error": "Failed to reset password. Please try again.",
+      "invalidToken": "Invalid or expired reset link"
+    },
+    "verifyEmail": {
+      "title": "Verify Your Email",
+      "subtitle": "We've sent a verification code to your email",
+      "badge": "Email Verification",
+      "verificationCode": "Verification Code",
+      "submitButton": "Verify Email",
+      "resendButton": "Resend Code",
+      "success": "Email verified successfully!",
+      "error": "Invalid verification code",
+      "codeSent": "Verification code sent to {email}",
+      "resendSuccess": "New code sent successfully!"
+    },
+    "twoFactor": {
+      "title": "Two-Factor Authentication",
+      "subtitle": "Secure your account with 2FA",
+      "badge": "Security",
+      "enable": "Enable 2FA",
+      "disable": "Disable 2FA",
+      "setupInstructions": {
+        "step1": "Scan the QR code with your authenticator app",
+        "step2": "Enter the 6-digit code from your app",
+        "step3": "Save your backup codes in a safe place"
+      },
+      "backupCodes": "Backup Codes",
+      "downloadCodes": "Download Codes",
+      "verificationCode": "Verification Code",
+      "submitButton": "Verify & Enable"
+    },
+    "sessions": {
+      "title": "Active Sessions",
+      "subtitle": "Manage your active sessions and devices",
+      "currentSession": "Current Session",
+      "lastActive": "Last active: {time}",
+      "terminateButton": "Terminate",
+      "terminateAllButton": "Terminate All Other Sessions",
+      "noOtherSessions": "No other active sessions"
+    }
   }
 }

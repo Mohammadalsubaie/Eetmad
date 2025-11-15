@@ -59,7 +59,7 @@ export default function SuccessStoriesSection() {
             subtitle={t('subtitle')}
             variant="light"
             align="center"
-            badgeColor="success"
+            badgeColor="primary"
           />
         </div>
 
@@ -130,7 +130,10 @@ export default function SuccessStoriesSection() {
                     <span className="text-3xl font-black" style={{ color: story.color }}>
                       {story.stat}
                     </span>
-                    <span className="text-sm font-bold" style={{ color: cssVars.neutral.textSecondary }}>
+                    <span
+                      className="text-sm font-bold"
+                      style={{ color: cssVars.neutral.textSecondary }}
+                    >
                       {story.statLabel}
                     </span>
                   </div>
@@ -208,4 +211,3 @@ export default function SuccessStoriesSection() {
     </section>
   );
 }
-

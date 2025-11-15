@@ -99,19 +99,20 @@ export function Header() {
                 />
               )}
             </motion.button>
-
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="flex items-center gap-3 rounded-xl px-6 py-3 font-bold shadow-lg transition-all"
-              style={{
-                background: cssVars.gradient.gold,
-                color: cssVars.secondary.DEFAULT,
-              }}
-            >
-              <User className="h-5 w-5" />
-              <span>{t('myAccount')}</span>
-            </motion.button>
+            <Link href="/login">
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="flex items-center gap-3 rounded-xl px-6 py-3 font-bold shadow-lg transition-all"
+                style={{
+                  background: cssVars.gradient.gold,
+                  color: cssVars.secondary.DEFAULT,
+                }}
+              >
+                <User className="h-5 w-5" />
+                <span>{t('myAccount')}</span>
+              </motion.button>
+            </Link>
           </div>
 
           {/* Mobile Menu Button */}
@@ -161,16 +162,19 @@ export function Header() {
                   </button>
                 </Link>
               ))}
-              <button
-                className="flex w-full items-center gap-3 rounded-xl px-4 py-3 font-bold shadow-lg transition-all"
-                style={{
-                  background: cssVars.gradient.gold,
-                  color: cssVars.secondary.DEFAULT,
-                }}
-              >
-                <User className="h-5 w-5" />
-                <span>{t('myAccount')}</span>
-              </button>
+
+              <Link href="/login">
+                <button
+                  className="flex w-full items-center gap-3 rounded-xl px-4 py-3 font-bold shadow-lg transition-all"
+                  style={{
+                    background: cssVars.gradient.gold,
+                    color: cssVars.secondary.DEFAULT,
+                  }}
+                >
+                  <User className="h-5 w-5" />
+                  <span>{t('myAccount')}</span>
+                </button>
+              </Link>
             </div>
           </motion.nav>
         )}

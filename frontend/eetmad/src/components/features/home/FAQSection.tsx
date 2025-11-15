@@ -4,7 +4,7 @@ import { SectionHeader } from '@/components/ui';
 import { cssVars } from '@/styles/theme';
 import { motion } from 'framer-motion';
 import { ChevronDown, ChevronUp, HelpCircle } from 'lucide-react';
-import { useTranslations } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
 import { useState } from 'react';
 
 const faqKeys = ['timelines', 'offers', 'payments', 'quality'] as const;
@@ -12,7 +12,8 @@ const faqKeys = ['timelines', 'offers', 'payments', 'quality'] as const;
 export default function FAQSection() {
   const t = useTranslations('biddingPlatform.sections.faq');
   const [activeKey, setActiveKey] = useState<string | null>(faqKeys[0]);
-
+  const locale = useLocale();
+  const isRTL = locale === 'ar';
   const toggleKey = (key: string) => {
     setActiveKey((prev) => (prev === key ? null : key));
   };
@@ -44,7 +45,7 @@ export default function FAQSection() {
             title={t('title')}
             subtitle={t('subtitle')}
             variant="dark"
-            align="left"
+            align={isRTL ? 'right' : 'left'}
             badgeColor="warm"
             className="max-w-xl"
           />

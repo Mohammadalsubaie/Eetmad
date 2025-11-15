@@ -16,14 +16,14 @@ export default function HomePage() {
     <main>
       <HeroSection />
       <PlatformOverviewSection />
+      <GettingStartedSection />
       <AudienceSection />
+      <CTASection />
       <ExploreCategoriesSection />
       <ProjectBenefitsSection />
       <TransparencySection />
       <SuccessStoriesSection />
-      <GettingStartedSection />
       <FAQSection />
-      <CTASection />
     </main>
   );
 }

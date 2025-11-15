@@ -54,7 +54,7 @@ export default function TransparencySection() {
             subtitle={t('subtitle')}
             variant="dark"
             align="center"
-            badgeColor="success"
+            badgeColor="primary"
           />
         </div>
 
@@ -84,7 +84,10 @@ export default function TransparencySection() {
                 >
                   <Shield className="h-8 w-8" style={{ color: cssVars.secondary.DEFAULT }} />
                 </div>
-                <h3 className="text-3xl font-bold lg:text-4xl" style={{ color: cssVars.secondary.DEFAULT }}>
+                <h3
+                  className="text-3xl font-bold lg:text-4xl"
+                  style={{ color: cssVars.secondary.DEFAULT }}
+                >
                   {t('mainCard.title')}
                 </h3>
               </div>
@@ -163,7 +166,10 @@ export default function TransparencySection() {
                 <h4 className="mb-3 text-xl font-bold" style={{ color: cssVars.secondary.DEFAULT }}>
                   {t(`features.${feature.key}.title`)}
                 </h4>
-                <p className="text-sm leading-relaxed" style={{ color: cssVars.neutral.textSecondary }}>
+                <p
+                  className="text-sm leading-relaxed"
+                  style={{ color: cssVars.neutral.textSecondary }}
+                >
                   {t(`features.${feature.key}.description`)}
                 </p>
 
@@ -180,4 +186,3 @@ export default function TransparencySection() {
     </section>
   );
 }
-

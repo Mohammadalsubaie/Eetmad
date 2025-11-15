@@ -1,8 +1,8 @@
 'use client';
 
-import { useState, useEffect } from 'react';
-import { loginUser, registerUser, logoutUser } from '@/lib/api/auth';
+import { loginUser, logoutUser, registerUser } from '@/lib/api/auth';
 import type { User } from '@/lib/types/user.types';
+import { useEffect, useState } from 'react';
 
 export function useAuth() {
   const [user, setUser] = useState<User | null>(null);
@@ -28,8 +28,8 @@ export function useAuth() {
         name: response.user.name,
         userType: response.user.userType,
         verified: response.user.verified ?? false,
-        avatar: response.user.avatar,
-        phone: response.user.phone,
+        avatar: response.user.avatar ?? '',
+        phone: response.user.phone ?? '',
         createdAt: response.user.createdAt || new Date().toISOString(),
         updatedAt: response.user.updatedAt || new Date().toISOString(),
       };
@@ -56,8 +56,8 @@ export function useAuth() {
         name: response.user.name,
         userType: response.user.userType,
         verified: response.user.verified ?? false,
-        avatar: response.user.avatar,
-        phone: response.user.phone,
+        avatar: response.user.avatar ?? '',
+        phone: response.user.phone ?? '',
         createdAt: response.user.createdAt || new Date().toISOString(),
         updatedAt: response.user.updatedAt || new Date().toISOString(),
       };

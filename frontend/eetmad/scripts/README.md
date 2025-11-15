@@ -1,6 +1,44 @@
 # Scripts Directory
 
+**📦 Recently Reorganized! Better structure, easier to use.**
+
 مجموعة من السكريبتات المساعدة لتحسين جودة الكود والتطوير.
+
+---
+
+## 🚀 Quick Start
+
+### New Here?
+
+**👉 Start with:** [START_HERE.md](./START_HERE.md)
+
+### Want Interactive Menu?
+
+```bash
+npm run scripts:menu
+```
+
+### Want to Browse?
+
+**👉 Read:** [INDEX.md](./INDEX.md) - Central hub with links to everything
+
+---
+
+## 📁 New Structure
+
+```
+scripts/
+├── START_HERE.md          ← Begin here!
+├── INDEX.md               ← Central navigation hub
+├── quick-reference/       ← ⚡ One-page cheat sheets
+├── docs/                  ← Detailed documentation
+├── examples/              ← Code samples
+└── tools/                 ← Helper utilities
+```
+
+**📖 For complete guide:** [REORGANIZATION_GUIDE.md](./REORGANIZATION_GUIDE.md)
+
+---
 
 ## 📋 السكريبتات المتاحة
 

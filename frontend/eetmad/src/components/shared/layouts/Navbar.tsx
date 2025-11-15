@@ -2,8 +2,8 @@
 
 import { useLocale, useTranslations } from 'next-intl';
 import Link from 'next/link';
-import { LanguageSwitcher } from '../LanguageSwitcher';
-import { ThemeToggle } from '../ThemeToggle';
+import { LanguageSwitcher } from '../misc/LanguageSwitcher';
+import { ThemeToggle } from '../misc/ThemeToggle';
 // Or use the dropdown version:
 // import { LanguageSwitcherDropdown } from '../LanguageSwitcherDropdown';
 import { Menu, X } from 'lucide-react';
@@ -23,11 +23,11 @@ export default function Navbar() {
   ];
 
   return (
-    <nav className="border-border bg-background/80 sticky top-0 z-50 border-b backdrop-blur-sm">
+    <nav className="sticky top-0 z-50 border-b border-border bg-background/80 backdrop-blur-sm">
       <div className="container mx-auto px-4">
         <div className="flex h-16 items-center justify-between">
           {/* Logo */}
-          <Link href={`/${locale}`} className="text-primary text-2xl font-bold">
+          <Link href={`/${locale}`} className="text-2xl font-bold text-primary">
             Eetmad
           </Link>
 
@@ -37,7 +37,7 @@ export default function Navbar() {
               <Link
                 key={link.href}
                 href={link.href}
-                className="text-foreground hover:text-primary transition-colors"
+                className="text-foreground transition-colors hover:text-primary"
               >
                 {link.label}
               </Link>
@@ -65,13 +65,13 @@ export default function Navbar() {
 
         {/* Mobile Navigation */}
         {isMobileMenuOpen && (
-          <div className="border-border border-t py-4 md:hidden">
+          <div className="border-t border-border py-4 md:hidden">
             <div className="flex flex-col gap-4">
               {navLinks.map((link) => (
                 <Link
                   key={link.href}
                   href={link.href}
-                  className="text-foreground hover:text-primary transition-colors"
+                  className="text-foreground transition-colors hover:text-primary"
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
                   {link.label}

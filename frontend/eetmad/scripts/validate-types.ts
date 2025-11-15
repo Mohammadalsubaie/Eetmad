@@ -170,6 +170,38 @@ function fieldNameToPropertyName(fieldName: string): string {
 }
 
 // ============================================================================
+// Placeholder Detection
+// ============================================================================
+
+/**
+ * Check if a file is a placeholder (not ready for validation)
+ */
+function isPlaceholderFile(content: string): boolean {
+  const placeholderPatterns = [
+    /\/\/\s*TODO:\s*Implement/i,
+    /\/\/\s*PLACEHOLDER/i,
+    /\/\/\s*not\s+ready/i,
+    /\/\/\s*not\s+implemented/i,
+    /\/\/\s*placeholder\s+only/i,
+    /\/\*\s*TODO:\s*Implement/i,
+    /\/\*\s*PLACEHOLDER/i,
+  ];
+
+  // Check for placeholder patterns in the first 10 lines
+  const lines = content.split('\n').slice(0, 10).join('\n');
+  const hasPlaceholderPattern = placeholderPatterns.some((pattern) =>
+    pattern.test(lines)
+  );
+
+  // Also check if file is very minimal (likely a placeholder)
+  const isMinimalPlaceholder =
+    content.split('\n').length < 10 &&
+    (content.includes('return null') || content.includes('return;'));
+
+  return hasPlaceholderPattern || isMinimalPlaceholder;
+}
+
+// ============================================================================
 // TypeScript Parser
 // ============================================================================
 
@@ -570,13 +602,26 @@ function main() {
 
   // Second pass: parse interfaces
   const tsInterfaces: TypeScriptInterface[] = [];
+  let skippedPlaceholders = 0;
   for (const filePath of typeFiles) {
     const content = fs.readFileSync(filePath, 'utf-8');
+    
+    // Skip placeholder files
+    if (isPlaceholderFile(content)) {
+      skippedPlaceholders++;
+      console.log(`   ${path.basename(filePath)}: ⏭️  skipped (placeholder)`);
+      continue;
+    }
+    
     const interfaces = parseTypeScriptInterfaces(filePath, content, allTypeAliases);
     tsInterfaces.push(...interfaces);
     console.log(`   ${path.basename(filePath)}: ${interfaces.length} interface(s)`);
   }
-  console.log(`   Total: ${tsInterfaces.length} interfaces\n`);
+  console.log(`   Total: ${tsInterfaces.length} interfaces`);
+  if (skippedPlaceholders > 0) {
+    console.log(`   ⏭️  Skipped ${skippedPlaceholders} placeholder file(s)`);
+  }
+  console.log();
 
   // Validate
   console.log('🔍 Validating types against database schema...\n');

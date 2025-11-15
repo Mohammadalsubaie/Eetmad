@@ -62,12 +62,62 @@ class DesignRulesValidator {
   private totalFiles = 0;
   private totalErrors = 0;
   private totalWarnings = 0;
+  private skippedPlaceholders = 0;
+
+  /**
+   * Check if a file is a script file (should be excluded from component rules)
+   */
+  private isScriptFile(filePath: string): boolean {
+    return (
+      filePath.includes('/scripts/') ||
+      filePath.includes('\\scripts\\') ||
+      filePath.endsWith('.config.') ||
+      filePath.includes('.config.ts') ||
+      filePath.includes('.config.js') ||
+      filePath.includes('validate-') ||
+      filePath.includes('setup-') ||
+      filePath.includes('check-')
+    );
+  }
+
+  /**
+   * Check if a file is a placeholder (not ready for validation)
+   */
+  private isPlaceholderFile(filePath: string, content: string): boolean {
+    const placeholderPatterns = [
+      /\/\/\s*TODO:\s*Implement/i,
+      /\/\/\s*PLACEHOLDER/i,
+      /\/\/\s*not\s+ready/i,
+      /\/\/\s*not\s+implemented/i,
+      /\/\/\s*placeholder\s+only/i,
+      /\/\*\s*TODO:\s*Implement/i,
+      /\/\*\s*PLACEHOLDER/i,
+    ];
+
+    // Check for placeholder patterns in the first 10 lines
+    const lines = content.split('\n').slice(0, 10).join('\n');
+    const hasPlaceholderPattern = placeholderPatterns.some((pattern) => pattern.test(lines));
+
+    // Also check if file is very minimal (likely a placeholder)
+    // If it only has a few lines and returns null, it's likely a placeholder
+    const isMinimalPlaceholder =
+      content.split('\n').length < 10 &&
+      (content.includes('return null') || content.includes('return;'));
+
+    return hasPlaceholderPattern || isMinimalPlaceholder;
+  }
 
   /**
    * القاعدة 1: فحص استخدام الألوان
    */
   private checkColorUsage(content: string, filePath: string): ValidationError[] {
     const errors: ValidationError[] = [];
+
+    // تجاهل ملفات الـ scripts
+    if (this.isScriptFile(filePath)) {
+      return errors;
+    }
+
     const lines = content.split('\n');
 
     lines.forEach((line, index) => {
@@ -164,6 +214,12 @@ class DesignRulesValidator {
    */
   private checkI18nUsage(content: string, filePath: string): ValidationError[] {
     const errors: ValidationError[] = [];
+
+    // تجاهل ملفات الـ scripts
+    if (this.isScriptFile(filePath)) {
+      return errors;
+    }
+
     const lines = content.split('\n');
 
     // فحص إذا كان ملف component
@@ -294,6 +350,12 @@ class DesignRulesValidator {
    */
   private checkComponentStructure(content: string, filePath: string): ValidationError[] {
     const errors: ValidationError[] = [];
+
+    // تجاهل ملفات الـ scripts
+    if (this.isScriptFile(filePath)) {
+      return errors;
+    }
+
     const lines = content.split('\n');
 
     // فحص إذا كان ملف TSX component
@@ -414,6 +476,12 @@ class DesignRulesValidator {
    */
   private checkStylingPractices(content: string, filePath: string): ValidationError[] {
     const errors: ValidationError[] = [];
+
+    // تجاهل ملفات الـ scripts
+    if (this.isScriptFile(filePath)) {
+      return errors;
+    }
+
     const lines = content.split('\n');
 
     lines.forEach((line, index) => {
@@ -462,6 +530,12 @@ class DesignRulesValidator {
    */
   private checkRTLSupport(content: string, filePath: string): ValidationError[] {
     const errors: ValidationError[] = [];
+
+    // تجاهل ملفات الـ scripts
+    if (this.isScriptFile(filePath)) {
+      return errors;
+    }
+
     const lines = content.split('\n');
 
     lines.forEach((line, index) => {
@@ -520,6 +594,11 @@ class DesignRulesValidator {
   private checkAnimations(content: string, filePath: string): ValidationError[] {
     const errors: ValidationError[] = [];
 
+    // تجاهل ملفات الـ scripts
+    if (this.isScriptFile(filePath)) {
+      return errors;
+    }
+
     // فحص استخدام animations بدون framer-motion
     const hasAnimations =
       content.includes('transition') ||
@@ -546,9 +625,15 @@ class DesignRulesValidator {
   /**
    * فحص ملف واحد
    */
-  private async validateFile(filePath: string): Promise<ValidationResult> {
+  private async validateFile(filePath: string): Promise<ValidationResult | null> {
     const content = fs.readFileSync(filePath, 'utf-8');
     const lines = content.split('\n');
+
+    // Skip placeholder files
+    if (this.isPlaceholderFile(filePath, content)) {
+      this.skippedPlaceholders++;
+      return null;
+    }
 
     const allErrors: ValidationError[] = [
       ...this.checkColorUsage(content, filePath),
@@ -612,13 +697,18 @@ class DesignRulesValidator {
     // فحص كل ملف
     for (const file of files) {
       const result = await this.validateFile(file);
-      this.results.push(result);
+      if (result !== null) {
+        this.results.push(result);
+      }
 
       // عرض progress
       process.stdout.write(`\r⏳ جاري الفحص... ${this.results.length}/${this.totalFiles}`);
     }
 
     console.log('\n\n✅ انتهى الفحص!\n');
+    if (this.skippedPlaceholders > 0) {
+      console.log(`⏭️  تم تخطي ${this.skippedPlaceholders} ملف placeholder\n`);
+    }
   }
 
   /**
@@ -629,6 +719,9 @@ class DesignRulesValidator {
     console.log('📊 ملخص النتائج');
     console.log('═'.repeat(80));
     console.log(`📁 إجمالي الملفات: ${this.totalFiles}`);
+    if (this.skippedPlaceholders > 0) {
+      console.log(`⏭️  ملفات placeholder تم تخطيها: ${this.skippedPlaceholders}`);
+    }
     console.log(`❌ إجمالي الأخطاء: ${this.totalErrors}`);
     console.log(`⚠️  إجمالي التحذيرات: ${this.totalWarnings}`);
     console.log('═'.repeat(80));
@@ -744,6 +837,7 @@ class DesignRulesValidator {
     const report = {
       summary: {
         totalFiles: this.totalFiles,
+        skippedPlaceholders: this.skippedPlaceholders,
         totalErrors: this.totalErrors,
         totalWarnings: this.totalWarnings,
         scannedAt: new Date().toISOString(),

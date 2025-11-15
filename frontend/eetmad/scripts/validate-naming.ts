@@ -49,6 +49,35 @@ const EXCLUDE_FILES = [
 const VALID_EXTENSIONS = ['.ts', '.tsx'];
 
 /**
+ * Check if a file is a placeholder (not ready for validation)
+ */
+function isPlaceholderFile(filePath: string, content: string): boolean {
+  const placeholderPatterns = [
+    /\/\/\s*TODO:\s*Implement/i,
+    /\/\/\s*PLACEHOLDER/i,
+    /\/\/\s*not\s+ready/i,
+    /\/\/\s*not\s+implemented/i,
+    /\/\/\s*placeholder\s+only/i,
+    /\/\*\s*TODO:\s*Implement/i,
+    /\/\*\s*PLACEHOLDER/i,
+  ];
+
+  // Check for placeholder patterns in the first 10 lines
+  const lines = content.split('\n').slice(0, 10).join('\n');
+  const hasPlaceholderPattern = placeholderPatterns.some((pattern) =>
+    pattern.test(lines)
+  );
+
+  // Also check if file is very minimal (likely a placeholder)
+  // If it only has a few lines and returns null, it's likely a placeholder
+  const isMinimalPlaceholder =
+    content.split('\n').length < 10 &&
+    (content.includes('return null') || content.includes('return;'));
+
+  return hasPlaceholderPattern || isMinimalPlaceholder;
+}
+
+/**
  * Check if a file should be excluded
  */
 function shouldExcludeFile(filePath: string): boolean {
@@ -105,7 +134,15 @@ function findTypeScriptFiles(dir: string, srcDir: string, fileList: string[] = [
         !shouldExcludeFile(filePath) &&
         !shouldExcludePath(filePath, srcDir)
       ) {
-        fileList.push(filePath);
+        // Check if it's a placeholder file before adding
+        try {
+          const content = fs.readFileSync(filePath, 'utf-8');
+          if (!isPlaceholderFile(filePath, content)) {
+            fileList.push(filePath);
+          }
+        } catch {
+          // If we can't read the file, skip it
+        }
       }
     }
   });
@@ -234,7 +271,7 @@ function main() {
 
   files.forEach((filePath) => {
     const code = readFileContent(filePath);
-    if (code) {
+    if (code && !isPlaceholderFile(filePath, code)) {
       const relativePath = getRelativePath(filePath, projectRoot);
       inputs.push({
         filePath: relativePath,

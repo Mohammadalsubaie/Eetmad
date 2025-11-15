@@ -2,8 +2,8 @@
 
 import PageContainer from '@/components/shared/layouts/PageContainer';
 import Section from '@/components/shared/layouts/Section';
-import Badge from '@/components/ui/badge';
-import { Button } from '@/components/ui/button';
+import Badge from '@/components/ui';
+import { Button } from '@/components/ui';
 import { ArrowLeft, Clock, MapPin, TrendingUp } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 import React from 'react';

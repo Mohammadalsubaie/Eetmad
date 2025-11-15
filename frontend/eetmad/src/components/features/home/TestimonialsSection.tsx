@@ -2,7 +2,7 @@
 
 import PageContainer from '@/components/shared/layouts/PageContainer';
 import Section from '@/components/shared/layouts/Section';
-import { Avatar } from '@/components/ui/avatar';
+import { Avatar } from '@/components/shared/data-display/Avatar';
 import { Quote, Star } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 import React from 'react';

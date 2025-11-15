@@ -3,8 +3,8 @@
 import { LanguageSwitcher } from '@/components/shared/misc/LanguageSwitcher';
 import PageContainer from '@/components/shared/layouts/PageContainer';
 import { ThemeToggle } from '@/components/shared/misc/ThemeToggle';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
+import { Button } from '@/components/ui';
+import { Input } from '@/components/ui';
 import { ArrowLeft, FileText, Search, Users } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 import React from 'react';

@@ -2,7 +2,7 @@
 
 import PageContainer from '@/components/shared/layouts/PageContainer';
 import Section from '@/components/shared/layouts/Section';
-import { Button } from '@/components/ui/button';
+import { Button } from '@/components/ui';
 import { ArrowLeft, CheckCircle } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 import React from 'react';

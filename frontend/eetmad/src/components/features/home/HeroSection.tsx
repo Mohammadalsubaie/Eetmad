@@ -1,8 +1,8 @@
 'use client';
 
-import { LanguageSwitcher } from '@/components/shared/LanguageSwitcher';
+import { LanguageSwitcher } from '@/components/shared/misc/LanguageSwitcher';
 import PageContainer from '@/components/shared/layouts/PageContainer';
-import { ThemeToggle } from '@/components/shared/ThemeToggle';
+import { ThemeToggle } from '@/components/shared/misc/ThemeToggle';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { ArrowLeft, FileText, Search, Users } from 'lucide-react';

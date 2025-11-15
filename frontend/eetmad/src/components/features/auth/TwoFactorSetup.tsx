@@ -83,7 +83,7 @@ export default function TwoFactorSetup() {
 
       {/* Step Indicator */}
       <div className="mb-8 flex items-center justify-center gap-2">
-        {['scan', 'verify', 'success'].map((s, idx) => (
+        {['scan', 'verify', 'success'].map((s) => (
           <div key={s} className="flex items-center gap-2">
             <div
               className={`h-2 w-2 rounded-full transition-all ${step === s ? 'w-8' : ''}`}
@@ -109,6 +109,7 @@ export default function TwoFactorSetup() {
         >
           <div className="rounded-2xl p-6" style={{ backgroundColor: cssVars.neutral.bg }}>
             <div className="mb-4 flex justify-center">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
               <img src={qrCodeUrl} alt="QR Code" className="h-48 w-48 rounded-xl" />
             </div>
             <p

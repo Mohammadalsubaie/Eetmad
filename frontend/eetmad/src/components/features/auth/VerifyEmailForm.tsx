@@ -25,10 +25,12 @@ export default function VerifyEmailForm() {
     if (resendTimer > 0) {
       const timer = setTimeout(() => setResendTimer(resendTimer - 1), 1000);
       return () => clearTimeout(timer);
-    } else if (resendTimer === 0 && !canResend) {
+    } else if (resendTimer === 0) {
+      // When timer reaches zero, enable resend
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setCanResend(true);
     }
-  }, [resendTimer, canResend]);
+  }, [resendTimer]);
 
   const handleChange = (index: number, value: string) => {
     if (!/^\d*$/.test(value)) return; // Only allow numbers

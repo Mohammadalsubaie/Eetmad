@@ -20,6 +20,8 @@ import { glob } from 'glob';
 import * as path from 'path';
 
 // الألوان المحظورة (hex patterns شائعة من المشروع)
+// Reserved for future use - currently not enforced
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const FORBIDDEN_HEX_COLORS = [
   '#FAF8F1',
   '#FFFFFF',
@@ -233,7 +235,6 @@ class DesignRulesValidator {
     }
 
     // فحص وجود useTranslations
-    const hasUseTranslations = content.includes('useTranslations');
     const hasTranslationImport =
       content.includes("from 'next-intl'") || content.includes('from "next-intl"');
 
@@ -355,8 +356,6 @@ class DesignRulesValidator {
     if (this.isScriptFile(filePath)) {
       return errors;
     }
-
-    const lines = content.split('\n');
 
     // فحص إذا كان ملف TSX component
     if (!filePath.endsWith('.tsx') && !filePath.endsWith('.ts')) {

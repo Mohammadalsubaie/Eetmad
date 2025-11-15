@@ -14,7 +14,6 @@ import {
   CheckCircle2,
   Shield,
 } from 'lucide-react';
-import Link from 'next/link';
 
 export default function ResetPasswordForm() {
   const t = useTranslations('auth');

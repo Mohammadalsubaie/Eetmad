@@ -45,7 +45,7 @@ export default function AnalyticsPage() {
       {/* Key Metrics */}
       <div className="mb-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
         <AdminStatCard
-          title="إجمالي المستخدمين"
+          title={t('analytics.stats.totalUsers')}
           value="1,247"
           change="+12%"
           trend="up"
@@ -53,7 +53,7 @@ export default function AnalyticsPage() {
           color={cssVars.primary.DEFAULT}
         />
         <AdminStatCard
-          title="إجمالي الإيرادات"
+          title={t('analytics.stats.totalRevenue')}
           value="2.8M ر.س"
           change="+18%"
           trend="up"
@@ -89,13 +89,13 @@ export default function AnalyticsPage() {
           }}
         >
           <h3 className="mb-4 text-xl font-bold" style={{ color: cssVars.secondary.DEFAULT }}>
-            نمو المستخدمين
+            {t('analytics.charts.userGrowth')}
           </h3>
           <div
             className="flex h-64 items-center justify-center rounded-xl"
             style={{ backgroundColor: cssVars.neutral.bg }}
           >
-            <p style={{ color: cssVars.neutral.textMuted }}>مخطط نمو المستخدمين</p>
+            <p style={{ color: cssVars.neutral.textMuted }}>{t('analytics.charts.placeholder')}</p>
           </div>
         </motion.div>
 
@@ -108,13 +108,13 @@ export default function AnalyticsPage() {
           }}
         >
           <h3 className="mb-4 text-xl font-bold" style={{ color: cssVars.secondary.DEFAULT }}>
-            الإيرادات الشهرية
+            {t('analytics.charts.monthlyRevenue')}
           </h3>
           <div
             className="flex h-64 items-center justify-center rounded-xl"
             style={{ backgroundColor: cssVars.neutral.bg }}
           >
-            <p style={{ color: cssVars.neutral.textMuted }}>مخطط الإيرادات</p>
+            <p style={{ color: cssVars.neutral.textMuted }}>{t('analytics.charts.placeholder')}</p>
           </div>
         </motion.div>
       </div>
@@ -129,13 +129,13 @@ export default function AnalyticsPage() {
           }}
         >
           <h3 className="mb-4 text-xl font-bold" style={{ color: cssVars.secondary.DEFAULT }}>
-            توزيع المشاريع حسب الفئة
+            {t('analytics.charts.projectsByCategory')}
           </h3>
           <div
             className="flex h-64 items-center justify-center rounded-xl"
             style={{ backgroundColor: cssVars.neutral.bg }}
           >
-            <p style={{ color: cssVars.neutral.textMuted }}>مخطط دائري للفئات</p>
+            <p style={{ color: cssVars.neutral.textMuted }}>{t('analytics.charts.placeholder')}</p>
           </div>
         </motion.div>
 
@@ -148,13 +148,13 @@ export default function AnalyticsPage() {
           }}
         >
           <h3 className="mb-4 text-xl font-bold" style={{ color: cssVars.secondary.DEFAULT }}>
-            معدل إتمام المشاريع
+            {t('analytics.charts.completionRate')}
           </h3>
           <div
             className="flex h-64 items-center justify-center rounded-xl"
             style={{ backgroundColor: cssVars.neutral.bg }}
           >
-            <p style={{ color: cssVars.neutral.textMuted }}>مخطط معدل الإتمام</p>
+            <p style={{ color: cssVars.neutral.textMuted }}>{t('analytics.charts.placeholder')}</p>
           </div>
         </motion.div>
       </div>

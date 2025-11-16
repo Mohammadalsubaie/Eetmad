@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import { cssVars } from '@/styles/theme';
 import { ChevronLeft, ChevronRight, Search } from 'lucide-react';
 import { useState } from 'react';
+import { useTranslations } from 'next-intl';
 
 interface Column<T> {
   key: string;
@@ -24,11 +25,12 @@ interface AdminDataTableProps<T> {
 export default function AdminDataTable<T extends { id: string }>({
   data,
   columns,
-  searchPlaceholder = 'بحث...',
+  searchPlaceholder,
   onRowClick,
   isLoading = false,
-  emptyMessage = 'لا توجد بيانات',
+  emptyMessage,
 }: AdminDataTableProps<T>) {
+  const t = useTranslations('admin');
   const [searchQuery, setSearchQuery] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 10;
@@ -50,12 +52,12 @@ export default function AdminDataTable<T extends { id: string }>({
       <div className="border-b p-4" style={{ borderColor: cssVars.neutral.border }}>
         <div className="relative">
           <Search
-            className="absolute right-4 top-1/2 h-5 w-5 -translate-y-1/2"
+            className="absolute end-4 top-1/2 h-5 w-5 -translate-y-1/2"
             style={{ color: cssVars.neutral.textMuted }}
           />
           <input
             type="text"
-            placeholder={searchPlaceholder}
+            placeholder={searchPlaceholder ?? t('common.search')}
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             className="w-full rounded-xl border-2 py-3 pe-4 ps-12 outline-none transition-all focus:border-opacity-100"
@@ -89,7 +91,7 @@ export default function AdminDataTable<T extends { id: string }>({
               <tr>
                 <td colSpan={columns.length} className="py-12 text-center">
                   <div className="text-lg font-semibold" style={{ color: cssVars.neutral.textSecondary }}>
-                    جاري التحميل...
+                    {t('common.loading')}
                   </div>
                 </td>
               </tr>
@@ -97,7 +99,7 @@ export default function AdminDataTable<T extends { id: string }>({
               <tr>
                 <td colSpan={columns.length} className="py-12 text-center">
                   <div className="text-lg font-semibold" style={{ color: cssVars.neutral.textSecondary }}>
-                    {emptyMessage}
+                    {emptyMessage ?? t('common.noData')}
                   </div>
                 </td>
               </tr>

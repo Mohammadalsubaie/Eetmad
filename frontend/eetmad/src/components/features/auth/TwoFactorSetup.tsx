@@ -110,7 +110,7 @@ export default function TwoFactorSetup() {
           <div className="rounded-2xl p-6" style={{ backgroundColor: cssVars.neutral.bg }}>
             <div className="mb-4 flex justify-center">
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src={qrCodeUrl} alt="QR Code" className="h-48 w-48 rounded-xl" />
+              <img src={qrCodeUrl} alt={t('qrCodeAlt')} className="h-48 w-48 rounded-xl" />
             </div>
             <p
               className="text-center text-sm font-semibold"

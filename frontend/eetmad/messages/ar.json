@@ -7,6 +7,7 @@
     "support": "الدعم",
     "myAccount": "حسابي",
     "notifications": "الإشعارات",
+    "menu": "القائمة",
     "brandName": " عروض",
     "brandTagline": "بوابة المنافسات  "
   },
@@ -383,15 +384,19 @@
         "stories": {
           "smallBusiness": {
             "title": "شركة صغيرة تحصل على 12 عرضاً",
-            "description": "شركة ناشئة في مجال التقنية تمكنت من الحصول على 12 عرضاً تنافسياً لتجهيز مكاتبها"
+            "description": "شركة ناشئة في مجال التقنية تمكنت من الحصول على 12 عرضاً تنافسياً لتجهيز مكاتبها",
+            "statLabel": "عروض"
           },
           "individual": {
             "title": "فرد يوفر 30% من التكاليف",
-            "description": "صاحب مشروع فردي وفر أكثر من 30% من التكاليف المتوقعة بفضل المنافسة بين الموردين"
+            "description": "صاحب مشروع فردي وفر أكثر من 30% من التكاليف المتوقعة بفضل المنافسة بين الموردين",
+            "statLabel": "عرض",
+            "statLabelPlural": "عروض"
           },
           "enterprise": {
             "title": "مؤسسة كبرى تجد مورداً موثوقاً",
-            "description": "مؤسسة كبرى تعاقدت مع مورد معتمد لتوريد معدات بقيمة تزيد عن مليون ريال"
+            "description": "مؤسسة كبرى تعاقدت مع مورد معتمد لتوريد معدات بقيمة تزيد عن مليون ريال",
+            "statLabel": "عروض"
           }
         },
         "withinHours": "خلال {hours} ساعة",
@@ -498,6 +503,7 @@
     }
   },
   "auth": {
+    "emailPlaceholder": "أدخل بريدك الإلكتروني",
     "common": {
       "email": "البريد الإلكتروني",
       "password": "كلمة المرور",
@@ -546,7 +552,7 @@
       "commercialRegistration": "السجل التجاري",
       "submitButton": "إنشاء الحساب",
       "signInLink": "تسجيل الدخول",
-      "termsAgreement": "أوافق على {terms} و {privacy}",
+      "termsAgreement": "أوافق على <terms>شروط الخدمة</terms> و <privacy>سياسة الخصوصية</privacy>",
       "termsOfService": "شروط الخدمة",
       "privacyPolicy": "سياسة الخصوصية",
       "success": "تم إنشاء الحساب بنجاح! يرجى التحقق من بريدك الإلكتروني.",
@@ -742,6 +748,378 @@
     },
     "verificationQueue": {
       "title": "قائمة التحقق"
+    }
+  },
+  "admin": {
+    "title": "لوحة الإدارة",
+    "nav": {
+      "dashboard": "لوحة التحكم",
+      "users": "المستخدمين",
+      "suppliers": "الموردين",
+      "requests": "الطلبات",
+      "offers": "العروض",
+      "projects": "المشاريع",
+      "disputes": "النزاعات",
+      "verification": "التحقق",
+      "categories": "الفئات",
+      "payments": "المدفوعات",
+      "reviews": "التقييمات",
+      "reports": "البلاغات",
+      "analytics": "التحليلات",
+      "settings": "الإعدادات",
+      "logout": "تسجيل الخروج"
+    },
+    "dashboard": {
+      "title": "لوحة التحكم",
+      "description": "نظرة عامة على المنصة",
+      "stats": {
+        "totalUsers": "إجمالي المستخدمين",
+        "totalSuppliers": "إجمالي الموردين",
+        "activeRequests": "الطلبات النشطة",
+        "activeProjects": "المشاريع النشطة"
+      },
+      "revenue": {
+        "title": "إجمالي الإيرادات",
+        "subtitle": "هذا الشهر",
+        "comparison": "مقارنة بالشهر الماضي"
+      },
+      "performance": {
+        "title": "معدل الأداء",
+        "subtitle": "نسبة إتمام المشاريع",
+        "completionRate": "معدل إنجاز المشاريع"
+      },
+      "recentActivity": {
+        "title": "النشاط الأخير",
+        "search": "بحث في النشاط...",
+        "empty": "لا يوجد نشاط حالياً"
+      },
+      "alerts": {
+        "pendingDisputes": "نزاعات معلقة تحتاج مراجعة",
+        "pendingVerifications": "طلبات توثيق بانتظار الموافقة"
+      }
+    },
+    "users": {
+      "title": "إدارة المستخدمين",
+      "description": "عرض وإدارة جميع المستخدمين",
+      "search": "بحث عن مستخدم...",
+      "empty": "لا يوجد مستخدمين",
+      "table": {
+        "name": "الاسم",
+        "type": "النوع",
+        "status": "الحالة",
+        "verified": "التحقق",
+        "projects": "المشاريع",
+        "rating": "التقييم",
+        "actions": "الإجراءات"
+      },
+      "actions": {
+        "sendEmail": "إرسال بريد",
+        "export": "تصدير",
+        "addUser": "إضافة مستخدم"
+      },
+      "types": {
+        "client": "عميل",
+        "supplier": "مورد",
+        "admin": "مسؤول"
+      },
+      "statuses": {
+        "active": "نشط",
+        "inactive": "غير نشط",
+        "suspended": "معلق",
+        "banned": "محظور"
+      }
+    },
+    "suppliers": {
+      "title": "إدارة الموردين",
+      "description": "عرض وإدارة جميع الموردين",
+      "search": "بحث عن مورد...",
+      "empty": "لا يوجد موردين",
+      "table": {
+        "name": "اسم المورد",
+        "rating": "التقييم",
+        "projects": "المشاريع",
+        "successRate": "معدل النجاح",
+        "verified": "التحقق",
+        "actions": "الإجراءات"
+      }
+    },
+    "requests": {
+      "title": "إدارة الطلبات",
+      "description": "عرض وإدارة جميع الطلبات",
+      "search": "بحث عن طلب...",
+      "empty": "لا يوجد طلبات",
+      "table": {
+        "title": "عنوان الطلب",
+        "budget": "الميزانية",
+        "deadline": "الموعد النهائي",
+        "status": "الحالة",
+        "actions": "الإجراءات"
+      },
+      "statuses": {
+        "draft": "مسودة",
+        "active": "نشط",
+        "closed": "مغلق",
+        "cancelled": "ملغي"
+      }
+    },
+    "offers": {
+      "title": "إدارة العروض",
+      "description": "عرض وإدارة جميع العروض",
+      "search": "بحث عن عرض...",
+      "empty": "لا يوجد عروض",
+      "table": {
+        "request": "الطلب",
+        "price": "السعر",
+        "deliveryTime": "مدة التسليم",
+        "date": "التاريخ",
+        "status": "الحالة",
+        "actions": "الإجراءات"
+      },
+      "statuses": {
+        "pending": "معلق",
+        "accepted": "مقبول",
+        "rejected": "مرفوض",
+        "withdrawn": "مسحوب"
+      },
+      "time": {
+        "days": "يوم",
+        "hours": "ساعة"
+      }
+    },
+    "projects": {
+      "title": "إدارة المشاريع",
+      "description": "عرض وإدارة جميع المشاريع",
+      "search": "بحث عن مشروع...",
+      "empty": "لا يوجد مشاريع",
+      "table": {
+        "title": "عنوان المشروع",
+        "price": "السعر",
+        "progress": "التقدم",
+        "deadline": "الموعد النهائي",
+        "status": "الحالة",
+        "actions": "الإجراءات"
+      },
+      "statuses": {
+        "draft": "مسودة",
+        "pending_contract": "بانتظار العقد",
+        "active": "نشط",
+        "on_hold": "متوقف مؤقتاً",
+        "completed": "مكتمل",
+        "cancelled": "ملغي",
+        "disputed": "نزاع"
+      }
+    },
+    "disputes": {
+      "title": "إدارة النزاعات",
+      "description": "عرض وحل النزاعات",
+      "search": "بحث عن نزاع...",
+      "empty": "لا يوجد نزاعات",
+      "table": {
+        "reason": "السبب",
+        "priority": "الأولوية",
+        "date": "التاريخ",
+        "status": "الحالة",
+        "actions": "الإجراءات"
+      },
+      "priorities": {
+        "high": "عالية",
+        "medium": "متوسطة",
+        "low": "منخفضة"
+      },
+      "statuses": {
+        "open": "مفتوح",
+        "in_review": "قيد المراجعة",
+        "escalated": "متصاعد",
+        "resolved": "محلول",
+        "closed": "مغلق"
+      }
+    },
+    "verification": {
+      "title": "قائمة التحقق",
+      "description": "مراجعة طلبات التحقق",
+      "search": "بحث عن مستند...",
+      "empty": "لا يوجد مستندات للمراجعة",
+      "table": {
+        "documentType": "نوع المستند",
+        "submittedAt": "تاريخ الإرسال",
+        "expiryDate": "تاريخ الانتهاء",
+        "status": "الحالة",
+        "actions": "الإجراءات"
+      },
+      "actions": {
+        "exportReport": "تصدير تقرير"
+      },
+      "statuses": {
+        "pending": "معلق",
+        "approved": "موافق",
+        "rejected": "مرفوض"
+      },
+      "stats": {
+        "pending": "معلقة",
+        "approved": "موافق عليها",
+        "rejected": "مرفوضة"
+      },
+      "types": {
+        "commercialRegister": "سجل تجاري",
+        "nationalId": "هوية وطنية",
+        "taxNumber": "رقم ضريبي",
+        "other": "مستند"
+      }
+    },
+    "categories": {
+      "title": "إدارة الفئات",
+      "description": "تنظيم وإدارة الفئات",
+      "search": "بحث عن فئة...",
+      "empty": "لا يوجد فئات",
+      "table": {
+        "name": "اسم الفئة",
+        "slug": "الرابط",
+        "order": "الترتيب",
+        "status": "الحالة",
+        "actions": "الإجراءات"
+      },
+      "actions": {
+        "addCategory": "إضافة فئة"
+      },
+      "statuses": {
+        "active": "نشط",
+        "inactive": "غير نشط"
+      }
+    },
+    "payments": {
+      "title": "إدارة المدفوعات",
+      "description": "عرض ومراقبة المدفوعات",
+      "search": "بحث عن دفعة...",
+      "empty": "لا يوجد مدفوعات",
+      "table": {
+        "transaction": "رقم العملية",
+        "amount": "المبلغ",
+        "method": "طريقة الدفع",
+        "date": "التاريخ",
+        "status": "الحالة",
+        "actions": "الإجراءات"
+      },
+      "statuses": {
+        "pending": "معلق",
+        "completed": "مكتمل",
+        "failed": "فاشل"
+      },
+      "methods": {
+        "credit_card": "بطاقة ائتمان",
+        "bank_transfer": "تحويل بنكي",
+        "wallet": "محفظة",
+        "other": "أخرى"
+      },
+      "types": {
+        "project_payment": "دفعة مشروع",
+        "milestone_payment": "دفعة مرحلة"
+      },
+      "labels": {
+        "pending": "معلق",
+        "netAmount": "صافي"
+      }
+    },
+    "reviews": {
+      "title": "إدارة التقييمات",
+      "description": "عرض ومراجعة التقييمات",
+      "search": "بحث عن تقييم...",
+      "empty": "لا يوجد تقييمات",
+      "table": {
+        "rating": "التقييم",
+        "comment": "التعليق",
+        "helpful": "مفيد",
+        "date": "التاريخ",
+        "verified": "التحقق",
+        "actions": "الإجراءات"
+      }
+    },
+    "reports": {
+      "title": "إدارة البلاغات",
+      "description": "مراجعة البلاغات المقدمة",
+      "search": "بحث عن بلاغ...",
+      "empty": "لا يوجد بلاغات",
+      "table": {
+        "type": "النوع",
+        "reason": "السبب",
+        "date": "التاريخ",
+        "status": "الحالة",
+        "actions": "الإجراءات"
+      },
+      "types": {
+        "user": "مستخدم",
+        "project": "مشروع",
+        "review": "تقييم",
+        "other": "عنصر"
+      },
+      "reasons": {
+        "inappropriate_content": "محتوى غير لائق",
+        "spam": "رسائل مزعجة",
+        "false_information": "معلومات كاذبة",
+        "fraud": "احتيال"
+      },
+      "statuses": {
+        "pending": "معلق",
+        "reviewing": "قيد المراجعة",
+        "under_review": "قيد المراجعة",
+        "resolved": "محلول",
+        "dismissed": "مرفوض"
+      }
+    },
+    "analytics": {
+      "title": "التحليلات والتقارير",
+      "description": "إحصائيات وتحليلات المنصة",
+      "actions": {
+        "selectPeriod": "اختيار الفترة",
+        "exportReport": "تصدير تقرير"
+      },
+      "charts": {
+        "userGrowth": "نمو المستخدمين",
+        "monthlyRevenue": "الإيرادات الشهرية",
+        "projectsByCategory": "توزيع المشاريع حسب الفئة",
+        "completionRate": "معدل إتمام المشاريع",
+        "placeholder": "مخطط"
+      },
+      "stats": {
+        "totalUsers": "إجمالي المستخدمين",
+        "totalRevenue": "إجمالي الإيرادات",
+        "activeProjects": "المشاريع النشطة",
+        "growthRate": "معدل النمو"
+      }
+    },
+    "settings": {
+      "title": "إعدادات النظام",
+      "description": "إدارة إعدادات المنصة",
+      "actions": {
+        "saveChanges": "حفظ التغييرات"
+      },
+      "sections": {
+        "general": "الإعدادات العامة",
+        "payment": "إعدادات الدفع",
+        "email": "إعدادات البريد",
+        "security": "الأمان والخصوصية",
+        "notifications": "الإشعارات",
+        "database": "قاعدة البيانات",
+        "manage": "إدارة"
+      },
+      "fields": {
+        "platformName": "اسم المنصة",
+        "supportEmail": "البريد الإلكتروني للدعم",
+        "phoneNumber": "رقم الهاتف",
+        "maintenanceMode": "تفعيل وضع الصيانة"
+      }
+    },
+    "common": {
+      "loading": "جاري التحميل...",
+      "noData": "لا توجد بيانات",
+      "search": "بحث...",
+      "filter": "تصفية",
+      "export": "تصدير",
+      "save": "حفظ",
+      "cancel": "إلغاء",
+      "delete": "حذف",
+      "edit": "تعديل",
+      "view": "عرض",
+      "actions": "الإجراءات"
     }
   }
 }

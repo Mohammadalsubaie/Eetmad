@@ -125,7 +125,7 @@ export function Header() {
               style={{
                 backgroundColor: `color-mix(in srgb, ${cssVars.neutral.textMuted} 15%, transparent)`,
               }}
-              aria-label="Menu"
+              aria-label={t('menu')}
             >
               {showMobileMenu ? (
                 <X className="h-6 w-6" style={{ color: cssVars.neutral.textMuted }} />

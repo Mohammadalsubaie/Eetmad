@@ -7,6 +7,7 @@
     "support": "Support",
     "myAccount": "My Account",
     "notifications": "Notifications",
+    "menu": "Menu",
     "brandName": "Opportunities Platform",
     "brandTagline": "Government Bidding Portal"
   },
@@ -382,15 +383,19 @@
         "stories": {
           "smallBusiness": {
             "title": "Small Business Gets 12 Offers",
-            "description": "A tech startup was able to get 12 competitive offers to equip their offices"
+            "description": "A tech startup was able to get 12 competitive offers to equip their offices",
+            "statLabel": "Offers"
           },
           "individual": {
             "title": "Individual Saves 30% on Costs",
-            "description": "An individual project owner saved more than 30% of expected costs thanks to competition between suppliers"
+            "description": "An individual project owner saved more than 30% of expected costs thanks to competition between suppliers",
+            "statLabel": "Offer",
+            "statLabelPlural": "Offers"
           },
           "enterprise": {
             "title": "Large Enterprise Finds Reliable Supplier",
-            "description": "A large enterprise contracted with a certified supplier to supply equipment worth over one million riyals"
+            "description": "A large enterprise contracted with a certified supplier to supply equipment worth over one million riyals",
+            "statLabel": "Offers"
           }
         },
         "withinHours": "Within {hours} hours",
@@ -497,6 +502,7 @@
     }
   },
   "auth": {
+    "emailPlaceholder": "Enter your email address",
     "common": {
       "email": "Email Address",
       "password": "Password",
@@ -545,7 +551,7 @@
       "commercialRegistration": "Commercial Registration",
       "submitButton": "Create Account",
       "signInLink": "Sign In",
-      "termsAgreement": "I agree to the {terms} and {privacy}",
+      "termsAgreement": "I agree to the <terms>Terms of Service</terms> and <privacy>Privacy Policy</privacy>",
       "termsOfService": "Terms of Service",
       "privacyPolicy": "Privacy Policy",
       "success": "Account created successfully! Please verify your email.",
@@ -741,6 +747,378 @@
     },
     "verificationQueue": {
       "title": "Verification Queue"
+    }
+  },
+  "admin": {
+    "title": "Admin Panel",
+    "nav": {
+      "dashboard": "Dashboard",
+      "users": "Users",
+      "suppliers": "Suppliers",
+      "requests": "Requests",
+      "offers": "Offers",
+      "projects": "Projects",
+      "disputes": "Disputes",
+      "verification": "Verification",
+      "categories": "Categories",
+      "payments": "Payments",
+      "reviews": "Reviews",
+      "reports": "Reports",
+      "analytics": "Analytics",
+      "settings": "Settings",
+      "logout": "Logout"
+    },
+    "dashboard": {
+      "title": "Dashboard",
+      "description": "Platform overview",
+      "stats": {
+        "totalUsers": "Total Users",
+        "totalSuppliers": "Total Suppliers",
+        "activeRequests": "Active Requests",
+        "activeProjects": "Active Projects"
+      },
+      "revenue": {
+        "title": "Total Revenue",
+        "subtitle": "This month",
+        "comparison": "Compared to last month"
+      },
+      "performance": {
+        "title": "Performance Rate",
+        "subtitle": "Project completion rate",
+        "completionRate": "Project completion rate"
+      },
+      "recentActivity": {
+        "title": "Recent Activity",
+        "search": "Search activity...",
+        "empty": "No recent activity"
+      },
+      "alerts": {
+        "pendingDisputes": "Pending disputes need review",
+        "pendingVerifications": "Verification requests awaiting approval"
+      }
+    },
+    "users": {
+      "title": "User Management",
+      "description": "View and manage all users",
+      "search": "Search for user...",
+      "empty": "No users found",
+      "table": {
+        "name": "Name",
+        "type": "Type",
+        "status": "Status",
+        "verified": "Verified",
+        "projects": "Projects",
+        "rating": "Rating",
+        "actions": "Actions"
+      },
+      "actions": {
+        "sendEmail": "Send Email",
+        "export": "Export",
+        "addUser": "Add User"
+      },
+      "types": {
+        "client": "Client",
+        "supplier": "Supplier",
+        "admin": "Admin"
+      },
+      "statuses": {
+        "active": "Active",
+        "inactive": "Inactive",
+        "suspended": "Suspended",
+        "banned": "Banned"
+      }
+    },
+    "suppliers": {
+      "title": "Supplier Management",
+      "description": "View and manage all suppliers",
+      "search": "Search for supplier...",
+      "empty": "No suppliers found",
+      "table": {
+        "name": "Supplier Name",
+        "rating": "Rating",
+        "projects": "Projects",
+        "successRate": "Success Rate",
+        "verified": "Verified",
+        "actions": "Actions"
+      }
+    },
+    "requests": {
+      "title": "Request Management",
+      "description": "View and manage all requests",
+      "search": "Search for request...",
+      "empty": "No requests found",
+      "table": {
+        "title": "Request Title",
+        "budget": "Budget",
+        "deadline": "Deadline",
+        "status": "Status",
+        "actions": "Actions"
+      },
+      "statuses": {
+        "draft": "Draft",
+        "active": "Active",
+        "closed": "Closed",
+        "cancelled": "Cancelled"
+      }
+    },
+    "offers": {
+      "title": "Offer Management",
+      "description": "View and manage all offers",
+      "search": "Search for offer...",
+      "empty": "No offers found",
+      "table": {
+        "request": "Request",
+        "price": "Price",
+        "deliveryTime": "Delivery Time",
+        "date": "Date",
+        "status": "Status",
+        "actions": "Actions"
+      },
+      "statuses": {
+        "pending": "Pending",
+        "accepted": "Accepted",
+        "rejected": "Rejected",
+        "withdrawn": "Withdrawn"
+      },
+      "time": {
+        "days": "day",
+        "hours": "hour"
+      }
+    },
+    "projects": {
+      "title": "Project Management",
+      "description": "View and manage all projects",
+      "search": "Search for project...",
+      "empty": "No projects found",
+      "table": {
+        "title": "Project Title",
+        "price": "Price",
+        "progress": "Progress",
+        "deadline": "Deadline",
+        "status": "Status",
+        "actions": "Actions"
+      },
+      "statuses": {
+        "draft": "Draft",
+        "pending_contract": "Pending Contract",
+        "active": "Active",
+        "on_hold": "On Hold",
+        "completed": "Completed",
+        "cancelled": "Cancelled",
+        "disputed": "Disputed"
+      }
+    },
+    "disputes": {
+      "title": "Dispute Management",
+      "description": "View and resolve disputes",
+      "search": "Search for dispute...",
+      "empty": "No disputes found",
+      "table": {
+        "reason": "Reason",
+        "priority": "Priority",
+        "date": "Date",
+        "status": "Status",
+        "actions": "Actions"
+      },
+      "priorities": {
+        "high": "High",
+        "medium": "Medium",
+        "low": "Low"
+      },
+      "statuses": {
+        "open": "Open",
+        "in_review": "In Review",
+        "escalated": "Escalated",
+        "resolved": "Resolved",
+        "closed": "Closed"
+      }
+    },
+    "verification": {
+      "title": "Verification Queue",
+      "description": "Review verification requests",
+      "search": "Search for document...",
+      "empty": "No documents to review",
+      "table": {
+        "documentType": "Document Type",
+        "submittedAt": "Submitted At",
+        "expiryDate": "Expiry Date",
+        "status": "Status",
+        "actions": "Actions"
+      },
+      "actions": {
+        "exportReport": "Export Report"
+      },
+      "statuses": {
+        "pending": "Pending",
+        "approved": "Approved",
+        "rejected": "Rejected"
+      },
+      "stats": {
+        "pending": "Pending",
+        "approved": "Approved",
+        "rejected": "Rejected"
+      },
+      "types": {
+        "commercialRegister": "Commercial Register",
+        "nationalId": "National ID",
+        "taxNumber": "Tax Number",
+        "other": "Document"
+      }
+    },
+    "categories": {
+      "title": "Category Management",
+      "description": "Organize and manage categories",
+      "search": "Search for category...",
+      "empty": "No categories found",
+      "table": {
+        "name": "Category Name",
+        "slug": "Slug",
+        "order": "Order",
+        "status": "Status",
+        "actions": "Actions"
+      },
+      "actions": {
+        "addCategory": "Add Category"
+      },
+      "statuses": {
+        "active": "Active",
+        "inactive": "Inactive"
+      }
+    },
+    "payments": {
+      "title": "Payment Management",
+      "description": "View and monitor payments",
+      "search": "Search for payment...",
+      "empty": "No payments found",
+      "table": {
+        "transaction": "Transaction ID",
+        "amount": "Amount",
+        "method": "Payment Method",
+        "date": "Date",
+        "status": "Status",
+        "actions": "Actions"
+      },
+      "statuses": {
+        "pending": "Pending",
+        "completed": "Completed",
+        "failed": "Failed"
+      },
+      "methods": {
+        "credit_card": "Credit Card",
+        "bank_transfer": "Bank Transfer",
+        "wallet": "Wallet",
+        "other": "Other"
+      },
+      "types": {
+        "project_payment": "Project Payment",
+        "milestone_payment": "Milestone Payment"
+      },
+      "labels": {
+        "pending": "Pending",
+        "netAmount": "Net"
+      }
+    },
+    "reviews": {
+      "title": "Review Management",
+      "description": "View and moderate reviews",
+      "search": "Search for review...",
+      "empty": "No reviews found",
+      "table": {
+        "rating": "Rating",
+        "comment": "Comment",
+        "helpful": "Helpful",
+        "date": "Date",
+        "verified": "Verified",
+        "actions": "Actions"
+      }
+    },
+    "reports": {
+      "title": "Report Management",
+      "description": "Review submitted reports",
+      "search": "Search for report...",
+      "empty": "No reports found",
+      "table": {
+        "type": "Type",
+        "reason": "Reason",
+        "date": "Date",
+        "status": "Status",
+        "actions": "Actions"
+      },
+      "types": {
+        "user": "User",
+        "project": "Project",
+        "review": "Review",
+        "other": "Item"
+      },
+      "reasons": {
+        "inappropriate_content": "Inappropriate Content",
+        "spam": "Spam",
+        "false_information": "False Information",
+        "fraud": "Fraud"
+      },
+      "statuses": {
+        "pending": "Pending",
+        "reviewing": "Reviewing",
+        "under_review": "Reviewing",
+        "resolved": "Resolved",
+        "dismissed": "Dismissed"
+      }
+    },
+    "analytics": {
+      "title": "Analytics & Reports",
+      "description": "Platform statistics and analytics",
+      "actions": {
+        "selectPeriod": "Select Period",
+        "exportReport": "Export Report"
+      },
+      "charts": {
+        "userGrowth": "User Growth",
+        "monthlyRevenue": "Monthly Revenue",
+        "projectsByCategory": "Projects by Category",
+        "completionRate": "Project Completion Rate",
+        "placeholder": "Chart"
+      },
+      "stats": {
+        "totalUsers": "Total Users",
+        "totalRevenue": "Total Revenue",
+        "activeProjects": "Active Projects",
+        "growthRate": "Growth Rate"
+      }
+    },
+    "settings": {
+      "title": "System Settings",
+      "description": "Manage platform settings",
+      "actions": {
+        "saveChanges": "Save Changes"
+      },
+      "sections": {
+        "general": "General Settings",
+        "payment": "Payment Settings",
+        "email": "Email Settings",
+        "security": "Security & Privacy",
+        "notifications": "Notifications",
+        "database": "Database",
+        "manage": "Manage"
+      },
+      "fields": {
+        "platformName": "Platform Name",
+        "supportEmail": "Support Email",
+        "phoneNumber": "Phone Number",
+        "maintenanceMode": "Enable Maintenance Mode"
+      }
+    },
+    "common": {
+      "loading": "Loading...",
+      "noData": "No data",
+      "search": "Search...",
+      "filter": "Filter",
+      "export": "Export",
+      "save": "Save",
+      "cancel": "Cancel",
+      "delete": "Delete",
+      "edit": "Edit",
+      "view": "View",
+      "actions": "Actions"
     }
   }
 }

@@ -43,6 +43,9 @@ export * from './dispute.types';
 // Verification types
 export * from './verification.types';
 
+// Admin types
+export * from './admin.types';
+
 // OTP types
 export * from './otp.types';
 

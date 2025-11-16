@@ -242,6 +242,303 @@ class DesignRulesValidator {
   }
 
   /**
+   * التحقق من أن النص ليس قيمة تقنية (يجب تجاهلها)
+   */
+  private isTechnicalValue(text: string, line: string, filePath?: string): boolean {
+    // JavaScript keywords and built-ins
+    const jsKeywords = [
+      'undefined',
+      'null',
+      'true',
+      'false',
+      'typeof',
+      'instanceof',
+      'void',
+      'delete',
+      'new',
+      'this',
+      'super',
+      'return',
+      'break',
+      'continue',
+      'if',
+      'else',
+      'for',
+      'while',
+      'do',
+      'switch',
+      'case',
+      'default',
+      'try',
+      'catch',
+      'finally',
+      'throw',
+      'const',
+      'let',
+      'var',
+      'function',
+      'class',
+      'extends',
+      'import',
+      'export',
+      'from',
+      'as',
+      'default',
+      'async',
+      'await',
+      'yield',
+      'static',
+      'public',
+      'private',
+      'protected',
+      'readonly',
+      'abstract',
+      'interface',
+      'type',
+      'enum',
+      'namespace',
+      'module',
+      'declare',
+      'implements',
+    ];
+
+    // DOM event names
+    const domEvents = [
+      'change',
+      'click',
+      'mousedown',
+      'mouseup',
+      'mousemove',
+      'mouseenter',
+      'mouseleave',
+      'mouseover',
+      'mouseout',
+      'touchstart',
+      'touchend',
+      'touchmove',
+      'touchcancel',
+      'keydown',
+      'keyup',
+      'keypress',
+      'focus',
+      'blur',
+      'submit',
+      'reset',
+      'load',
+      'unload',
+      'error',
+      'resize',
+      'scroll',
+      'wheel',
+      'drag',
+      'drop',
+    ];
+
+    // CSS and theme values
+    const cssValues = [
+      'transparent',
+      'linear',
+      'ease',
+      'ease-in',
+      'ease-out',
+      'ease-in-out',
+      'primary',
+      'secondary',
+      'accent',
+      'ghost',
+      'dark',
+      'light',
+      'white',
+      'black',
+      'gray',
+      'grey',
+      'red',
+      'blue',
+      'green',
+      'yellow',
+      'orange',
+      'purple',
+      'pink',
+      'inherit',
+      'center',
+      'left',
+      'right',
+      'warm',
+      'success',
+      'error',
+      'warning',
+      'info',
+      'featured',
+      'urgent',
+      'default',
+    ];
+
+    // HTML/CSS attribute values
+    const htmlAttributeValues = [
+      'ltr',
+      'rtl',
+      'numeric',
+      'text',
+      'email',
+      'password',
+      'tel',
+      'url',
+      'search',
+      'div',
+      'span',
+      'button',
+      'input',
+      'form',
+      'section',
+    ];
+
+    // Keyboard keys
+    const keyboardKeys = [
+      'backspace',
+      'enter',
+      'escape',
+      'tab',
+      'space',
+      'arrowup',
+      'arrowdown',
+      'arrowleft',
+      'arrowright',
+      'home',
+      'end',
+      'pageup',
+      'pagedown',
+      'delete',
+      'insert',
+    ];
+
+    // localStorage/sessionStorage keys
+    const storageKeys = ['token', 'theme', 'user', 'auth', 'locale', 'language'];
+
+    // CSS size values (like "32px 32px", "40px 40px")
+    const isCssSize = /^\d+px\s+\d+px$/.test(text) || /^\d+px$/.test(text);
+
+    // Translation keys in arrays (like ['step1', 'step2'] or ['point1', 'point2'])
+    const isTranslationKeyArray =
+      /\[\s*['"]/.test(line) &&
+      (line.includes('as const') || line.includes('Keys') || line.includes('key'));
+
+    // Object key property (like key: 'value') - only filter if it's a camelCase identifier (translation key)
+    // Don't filter if it contains Arabic text or looks like user-facing text
+    const isObjectKeyProperty =
+      (/^\s*key\s*:\s*['"]/.test(line) || /key:\s*['"]/.test(line)) &&
+      // Only filter camelCase identifiers (translation keys), not user-facing text
+      /^[a-z][a-zA-Z0-9]*$/.test(text) &&
+      !/[\u0600-\u06FF]/.test(text) &&
+      text.length < 30; // Translation keys are usually short
+
+    // Media query strings
+    const isMediaQuery =
+      text.includes('prefers-color-scheme') ||
+      text.includes('@media') ||
+      (text.includes('(') && text.includes(')'));
+
+    // Console.log messages (developer-facing)
+    const isConsoleLog =
+      line.includes('console.log') ||
+      line.includes('console.debug') ||
+      line.includes('console.info');
+
+    // Translation key patterns (inside t(), useTranslations(), etc.)
+    // Match: t('key'), t("key"), useTranslations('key'), const t = useTranslations('key')
+    const isTranslationKey =
+      /\bt\s*\(['"]/.test(line) ||
+      /useTranslations\s*\(['"]/.test(line) ||
+      /\.t\s*\(['"]/.test(line) ||
+      /const\s+\w+\s*=\s*useTranslations\s*\(['"]/.test(line);
+
+    // Type definitions and enums
+    const isTypeDefinition =
+      /:\s*['"]/.test(line) &&
+      (line.includes('type ') || line.includes('interface ') || line.includes('enum '));
+
+    // Object property names (like ", name: " or ", nativeName: " or "{ name: ")
+    // But exclude if it's a JSX prop like "name=" or "className="
+    // Only filter if the text matches common property names, not user-facing values
+    const commonPropertyNames = [
+      'name',
+      'code',
+      'nativeName',
+      'fullName',
+      'title',
+      'label',
+      'value',
+      'id',
+      'key',
+    ];
+    const isObjectPropertyName = commonPropertyNames.some((propName) =>
+      new RegExp(
+        `,\\s*${propName}\\s*:\\s*['"]${text.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}['"]`
+      ).test(line)
+    );
+    const isObjectProperty =
+      isObjectPropertyName ||
+      ((/,\s*\w+\s*:\s*['"]/.test(line) || /{\s*\w+\s*:\s*['"]/.test(line)) &&
+        !line.includes('=') &&
+        !line.includes('<') &&
+        !line.includes('>') &&
+        // Don't filter if it contains Arabic text (user-facing)
+        !/[\u0600-\u06FF]/.test(text));
+
+    // Error messages (developer-facing, not user-facing)
+    const isError =
+      line.includes('throw new Error') ||
+      line.includes('console.error') ||
+      line.includes('console.warn');
+
+    // Mock/test data files
+    const isMockFile = filePath
+      ? filePath.includes('/mocks/') || filePath.includes('/test/') || filePath.includes('/tests/')
+      : false;
+
+    // localStorage.getItem/setItem/removeItem calls
+    const isLocalStorageCall =
+      line.includes('localStorage.getItem') ||
+      line.includes('localStorage.setItem') ||
+      line.includes('localStorage.removeItem') ||
+      line.includes('sessionStorage.getItem') ||
+      line.includes('sessionStorage.setItem') ||
+      line.includes('sessionStorage.removeItem');
+
+    // Clipboard API calls
+    const isClipboardCall =
+      line.includes('clipboardData.getData') || line.includes('clipboardData.setData');
+
+    // Type union patterns (like 'client' | 'supplier' or 'left' | 'center' | 'right')
+    const isTypeUnion =
+      /['"]\s*\|\s*['"]/.test(line) &&
+      (line.includes('type ') || line.includes('?:') || line.includes('='));
+
+    const lowerText = text.toLowerCase().trim();
+
+    return (
+      jsKeywords.includes(lowerText) ||
+      domEvents.includes(lowerText) ||
+      cssValues.includes(lowerText) ||
+      htmlAttributeValues.includes(lowerText) ||
+      keyboardKeys.includes(lowerText) ||
+      storageKeys.includes(lowerText) ||
+      isCssSize ||
+      isTranslationKey ||
+      isTranslationKeyArray ||
+      isTypeDefinition ||
+      isTypeUnion ||
+      isObjectProperty ||
+      isObjectKeyProperty ||
+      isError ||
+      isConsoleLog ||
+      isMediaQuery ||
+      isLocalStorageCall ||
+      isClipboardCall ||
+      (isMockFile && lowerText.length < 20) // Allow short strings in mock files
+    );
+  }
+
+  /**
    * القاعدة 2: فحص استخدام i18n
    */
   private checkI18nUsage(content: string, filePath: string): ValidationError[] {
@@ -293,14 +590,19 @@ class DesignRulesValidator {
       while ((jsxMatch = jsxTextRegex.exec(line)) !== null) {
         const text = jsxMatch[1].trim();
 
-        // تجاهل النصوص القصيرة جداً والأرقام والرموز
-        if (text.length < 3 || /^[\d\s\-_.,;:!?()[\]{}]+$/.test(text)) {
+        // تجاهل النصوص الفارغة والأرقام والرموز فقط
+        if (text.length === 0 || /^[\d\s\-_.,;:!?()[\]{}]+$/.test(text)) {
+          continue;
+        }
+
+        // تجاهل القيم التقنية
+        if (this.isTechnicalValue(text, line, filePath)) {
           continue;
         }
 
         // فحص إذا كان نص عربي أو إنجليزي (ليس متغير)
         const hasArabic = /[\u0600-\u06FF]/.test(text);
-        const hasEnglish = /[a-zA-Z]{3,}/.test(text);
+        const hasEnglish = /[a-zA-Z]{2,}/.test(text); // تقليل الحد الأدنى إلى حرفين
         const isVariable = text.includes('{') || text.startsWith('$');
 
         if ((hasArabic || hasEnglish) && !isVariable) {
@@ -317,11 +619,54 @@ class DesignRulesValidator {
         }
       }
 
-      // فحص النصوص في strings
-      const stringRegex = /['"]([^'"]{10,})['"](?!\s*[:=])/g;
+      // فحص النصوص في JSX attributes (placeholder, title, alt, aria-label, etc.)
+      const jsxAttributeRegex =
+        /(placeholder|title|alt|aria-label|aria-description|label)\s*=\s*["']([^"']+)["']/gi;
+      let attrMatch;
+      while ((attrMatch = jsxAttributeRegex.exec(line)) !== null) {
+        const attrName = attrMatch[1];
+        const text = attrMatch[2].trim();
+
+        // تجاهل النصوص القصيرة جداً والأرقام والرموز
+        if (text.length === 0 || /^[\d\s\-_.,;:!?()[\]{}]+$/.test(text)) {
+          continue;
+        }
+
+        // تجاهل القيم التقنية
+        if (this.isTechnicalValue(text, line, filePath)) {
+          continue;
+        }
+
+        const hasArabic = /[\u0600-\u06FF]/.test(text);
+        const hasEnglish = /[a-zA-Z]{2,}/.test(text);
+
+        if (hasArabic || hasEnglish) {
+          errors.push({
+            file: filePath,
+            line: lineNum,
+            column: attrMatch.index + 1,
+            rule: 'Rule 2: Internationalization',
+            severity: 'error',
+            message: `نص hardcoded في ${attrName}: "${text}"`,
+            suggestion: `استخدم {t('key')} بدلاً من "${text}"`,
+            code: line.trim(),
+          });
+        }
+      }
+
+      // فحص النصوص في strings (تقليل الحد الأدنى إلى 3 أحرف)
+      // تحسين regex لتجنب مطابقة أسماء الخصائص في الكائنات
+      const stringRegex = /['"]([^'"]{3,})['"](?!\s*[:=])/g;
       let stringMatch;
       while ((stringMatch = stringRegex.exec(line)) !== null) {
         const text = stringMatch[1];
+        const matchIndex = stringMatch.index;
+
+        // تجاهل إذا كان النص جزء من اسم خاصية في كائن (مثل ", name: " أو "{ name: ")
+        const beforeMatch = line.substring(Math.max(0, matchIndex - 20), matchIndex);
+        if (/,\s*\w+\s*:\s*$/.test(beforeMatch) || /{\s*\w+\s*:\s*$/.test(beforeMatch)) {
+          continue;
+        }
 
         // تجاهل الـ imports والـ paths والـ className والـ CSS classes والـ React directives
         if (
@@ -345,8 +690,13 @@ class DesignRulesValidator {
           continue;
         }
 
+        // تجاهل القيم التقنية
+        if (this.isTechnicalValue(text, line, filePath)) {
+          continue;
+        }
+
         const hasArabic = /[\u0600-\u06FF]/.test(text);
-        const hasEnglish = /[a-zA-Z]{3,}/.test(text);
+        const hasEnglish = /[a-zA-Z]{2,}/.test(text); // تقليل الحد الأدنى إلى حرفين
 
         if (hasArabic || hasEnglish) {
           errors.push({

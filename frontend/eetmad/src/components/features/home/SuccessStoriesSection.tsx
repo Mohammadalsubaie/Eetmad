@@ -12,7 +12,7 @@ const stories = [
     icon: Building2,
     color: cssVars.primary.DEFAULT,
     stat: '12',
-    statLabel: 'عرض',
+    statLabelKey: 'statLabel',
     time: '24',
   },
   {
@@ -20,7 +20,7 @@ const stories = [
     icon: Home,
     color: cssVars.status.success,
     stat: '7',
-    statLabel: 'عروض',
+    statLabelKey: 'statLabelPlural',
     time: '48',
   },
   {
@@ -28,7 +28,7 @@ const stories = [
     icon: Package,
     color: cssVars.accent.primary,
     stat: '15',
-    statLabel: 'عرض',
+    statLabelKey: 'statLabel',
     time: '36',
   },
 ] as const;
@@ -134,7 +134,7 @@ export default function SuccessStoriesSection() {
                       className="text-sm font-bold"
                       style={{ color: cssVars.neutral.textSecondary }}
                     >
-                      {story.statLabel}
+                      {t(`stories.${story.key}.${story.statLabelKey}`)}
                     </span>
                   </div>
 

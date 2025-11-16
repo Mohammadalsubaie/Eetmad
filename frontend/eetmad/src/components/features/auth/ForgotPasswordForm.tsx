@@ -1,11 +1,11 @@
 'use client';
 
-import { useState } from 'react';
 import { cssVars } from '@/styles/theme';
-import { useTranslations, useLocale } from 'next-intl';
 import { motion } from 'framer-motion';
-import { Mail, ArrowRight, Sparkles, CheckCircle2, ArrowLeft } from 'lucide-react';
+import { ArrowLeft, ArrowRight, CheckCircle2, Mail, Sparkles } from 'lucide-react';
+import { useLocale, useTranslations } from 'next-intl';
 import Link from 'next/link';
+import { useState } from 'react';
 
 export default function ForgotPasswordForm() {
   const t = useTranslations('auth');
@@ -117,7 +117,7 @@ export default function ForgotPasswordForm() {
                     color: cssVars.secondary.DEFAULT,
                     borderColor: cssVars.neutral.border,
                   }}
-                  placeholder="example@email.com"
+                  placeholder={t('emailPlaceholder')}
                 />
               </div>
             </div>

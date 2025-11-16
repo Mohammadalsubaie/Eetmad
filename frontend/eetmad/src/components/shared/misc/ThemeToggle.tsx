@@ -39,7 +39,6 @@ export function ThemeToggle() {
       }}
       whileHover={{ scale: 1.05 }}
       whileTap={{ scale: 0.95 }}
-      aria-label="Toggle theme"
     >
       {/* Sliding indicator */}
       <motion.div

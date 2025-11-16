@@ -8,79 +8,106 @@ on:
         branches:
             - develop
 
+# Cancel in-progress runs when a new one starts
+concurrency:
+    group: ${{ github.workflow }}-${{ github.ref }}
+    cancel-in-progress: true
+
+env:
+    NODE_VERSION: '20'
+    WORKING_DIR: frontend/eetmad
+
 jobs:
-    # Job 1: Code Quality Checks
-    code-quality:
-        name: Code Quality & Validation
+    # ========================================================================
+    # JOB 1: Setup & Cache Dependencies
+    # Purpose: Install dependencies once and cache for all jobs
+    # Duration: ~30-60 seconds (first run), ~5 seconds (cached)
+    # ========================================================================
+    setup:
+        name: 🚀 Setup & Cache Dependencies
         runs-on: ubuntu-latest
 
-        defaults:
-            run:
-                working-directory: frontend/eetmad
+        outputs:
+            cache-hit: ${{ steps.cache-node-modules.outputs.cache-hit }}
 
         steps:
             - name: 📥 Checkout code
               uses: actions/checkout@v4
-              with:
-                  fetch-depth: 0 # Full history for better diffs
 
             - name: 📦 Setup Node.js
               uses: actions/setup-node@v4
               with:
-                  node-version: '20'
-                  cache: 'npm'
-                  cache-dependency-path: frontend/eetmad/package-lock.json
+                  node-version: ${{ env.NODE_VERSION }}
+
+            # Cache node_modules for faster subsequent runs
+            - name: 💾 Cache node_modules
+              id: cache-node-modules
+              uses: actions/cache@v4
+              with:
+                  path: ${{ env.WORKING_DIR }}/node_modules
+                  key: ${{ runner.os }}-node-modules-${{ hashFiles('frontend/eetmad/package-lock.json') }}
+                  restore-keys: |
+                      ${{ runner.os }}-node-modules-
 
             - name: 📥 Install dependencies
-              run: npm ci
+              if: steps.cache-node-modules.outputs.cache-hit != 'true'
+              working-directory: ${{ env.WORKING_DIR }}
+              run: npm ci --prefer-offline --no-audit
 
-            - name: 🔍 TypeScript Check
-              run: npm run type-check
+            - name: ✅ Dependencies ready
+              run: echo "Dependencies installed and cached successfully"
+
+    # ========================================================================
+    # JOB 2: Quick Checks (Fast fail-fast checks)
+    # Purpose: Fast validation to catch common errors early
+    # Duration: ~20-40 seconds
+    # ========================================================================
+    quick-checks:
+        name: ⚡ Quick Validation
+        runs-on: ubuntu-latest
+        needs: setup
+
+        defaults:
+            run:
+                working-directory: ${{ env.WORKING_DIR }}
+
+        steps:
+            - name: 📥 Checkout code
+              uses: actions/checkout@v4
+
+            - name: 📦 Setup Node.js
+              uses: actions/setup-node@v4
+              with:
+                  node-version: ${{ env.NODE_VERSION }}
+
+            - name: 💾 Restore node_modules cache
+              uses: actions/cache@v4
+              with:
+                  path: ${{ env.WORKING_DIR }}/node_modules
+                  key: ${{ runner.os }}-node-modules-${{ hashFiles('frontend/eetmad/package-lock.json') }}
 
             - name: 🔍 ESLint Check
               run: npm run lint:check
 
-            - name: 🔍 Prettier Check
+            - name: 🎨 Prettier Check
               run: npm run format:check
-
-            - name: ✅ Design Rules Validation
-              run: npm run validate:design src/
-              continue-on-error: true
-
-            - name: 🏗️ Type Validation
-              run: npm run validate-types
-              continue-on-error: true
 
             - name: 📝 Naming Convention Check
               run: npm run validate-naming
 
-            - name: 📊 Generate Validation Report
-              if: always()
-              run: |
-                  npm run validate:design src/ --json validation-report.json || true
-                  echo "## Validation Report" >> $GITHUB_STEP_SUMMARY
-                  if [ -f validation-report.json ]; then
-                    echo "✅ Report generated successfully" >> $GITHUB_STEP_SUMMARY
-                  else
-                    echo "⚠️ No validation report generated" >> $GITHUB_STEP_SUMMARY
-                  fi
-
-            - name: 📤 Upload Validation Report
-              if: always()
-              uses: actions/upload-artifact@v4
-              with:
-                  name: validation-report
-                  path: frontend/eetmad/validation-report.json
-                  retention-days: 30
-
-    # Job 2: Testing
-    test:
-        name: Run Tests
+    # ========================================================================
+    # JOB 3: TypeScript & Type Validation
+    # Purpose: Comprehensive type checking
+    # Duration: ~30-60 seconds
+    # ========================================================================
+    type-checking:
+        name: 🔍 TypeScript & Types
         runs-on: ubuntu-latest
+        needs: [setup, quick-checks]
 
         defaults:
             run:
-                working-directory: frontend/eetmad
+                working-directory: ${{ env.WORKING_DIR }}
 
         steps:
             - name: 📥 Checkout code
@@ -89,94 +116,33 @@ jobs:
             - name: 📦 Setup Node.js
               uses: actions/setup-node@v4
               with:
-                  node-version: '20'
-                  cache: 'npm'
-                  cache-dependency-path: frontend/eetmad/package-lock.json
+                  node-version: ${{ env.NODE_VERSION }}
 
-            - name: 📥 Install dependencies
-              run: npm ci
-
-            - name: 🧪 Run Tests
-              run: npm run test -- --coverage
-
-            - name: 📊 Upload Coverage Report
-              if: always()
-              uses: actions/upload-artifact@v4
+            - name: 💾 Restore node_modules cache
+              uses: actions/cache@v4
               with:
-                  name: coverage-report
-                  path: frontend/eetmad/coverage/
-                  retention-days: 30
+                  path: ${{ env.WORKING_DIR }}/node_modules
+                  key: ${{ runner.os }}-node-modules-${{ hashFiles('frontend/eetmad/package-lock.json') }}
 
-    # Job 3: Build Check
-    build:
-        name: Build Check
+            - name: 🔍 TypeScript Check
+              run: npm run type-check
+
+            - name: 🏗️ Type Validation
+              run: npm run validate-types
+
+    # ========================================================================
+    # JOB 4: Design Rules Validation
+    # Purpose: Validate design system compliance
+    # Duration: ~20-40 seconds (only changed files in PRs)
+    # ========================================================================
+    design-validation:
+        name: ✅ Design Rules
         runs-on: ubuntu-latest
+        needs: [setup, quick-checks]
 
         defaults:
             run:
-                working-directory: frontend/eetmad
-
-        steps:
-            - name: 📥 Checkout code
-              uses: actions/checkout@v4
-
-            - name: 📦 Setup Node.js
-              uses: actions/setup-node@v4
-              with:
-                  node-version: '20'
-                  cache: 'npm'
-                  cache-dependency-path: frontend/eetmad/package-lock.json
-
-            - name: 📥 Install dependencies
-              run: npm ci
-
-            - name: 🏗️ Build Application
-              run: npm run build
-              env:
-                  NODE_ENV: production
-
-            - name: 📊 Check Build Size
-              run: |
-                  echo "## Build Size Report" >> $GITHUB_STEP_SUMMARY
-                  du -sh .next >> $GITHUB_STEP_SUMMARY
-                  echo "Build completed successfully ✅" >> $GITHUB_STEP_SUMMARY
-
-    # Job 4: Security Audit
-    security:
-        name: Security Audit
-        runs-on: ubuntu-latest
-
-        defaults:
-            run:
-                working-directory: frontend/eetmad
-
-        steps:
-            - name: 📥 Checkout code
-              uses: actions/checkout@v4
-
-            - name: 📦 Setup Node.js
-              uses: actions/setup-node@v4
-              with:
-                  node-version: '20'
-
-            - name: 🔒 Run npm audit
-              run: npm audit --audit-level=moderate
-              continue-on-error: true
-
-            - name: 🔍 Check for circular dependencies
-              run: |
-                  npm install -g madge
-                  madge --circular --extensions ts,tsx src/ || echo "⚠️ Circular dependencies found"
-
-    # Job 5: Changed Files Validation (for PRs)
-    changed-files:
-        name: Validate Changed Files
-        runs-on: ubuntu-latest
-        if: github.event_name == 'pull_request'
-
-        defaults:
-            run:
-                working-directory: frontend/eetmad
+                working-directory: ${{ env.WORKING_DIR }}
 
         steps:
             - name: 📥 Checkout code
@@ -187,66 +153,252 @@ jobs:
             - name: 📦 Setup Node.js
               uses: actions/setup-node@v4
               with:
-                  node-version: '20'
-                  cache: 'npm'
-                  cache-dependency-path: frontend/eetmad/package-lock.json
+                  node-version: ${{ env.NODE_VERSION }}
 
-            - name: 📥 Install dependencies
-              run: npm ci
+            - name: 💾 Restore node_modules cache
+              uses: actions/cache@v4
+              with:
+                  path: ${{ env.WORKING_DIR }}/node_modules
+                  key: ${{ runner.os }}-node-modules-${{ hashFiles('frontend/eetmad/package-lock.json') }}
 
-            - name: 🔍 Get Changed Files
-              id: changed-files
+            # For PRs: validate only changed files
+            - name: 🔍 Get Changed Files (PR)
+              if: github.event_name == 'pull_request'
+              id: changed-files-pr
               run: |
-                  # Get changed TypeScript/TSX files
                   CHANGED_FILES=$(git diff --name-only ${{ github.event.pull_request.base.sha }} ${{ github.sha }} | grep -E '\.(tsx?|ts)$' || echo "")
-                  echo "changed_files=$CHANGED_FILES" >> $GITHUB_OUTPUT
-                  echo "Changed files: $CHANGED_FILES"
+                  echo "files=$CHANGED_FILES" >> $GITHUB_OUTPUT
+                  echo "count=$(echo "$CHANGED_FILES" | grep -c . || echo 0)" >> $GITHUB_OUTPUT
 
-            - name: ✅ Validate Changed Files
-              if: steps.changed-files.outputs.changed_files != ''
+            - name: ✅ Validate Changed Files (PR)
+              if: github.event_name == 'pull_request' && steps.changed-files-pr.outputs.count != '0'
               run: |
-                  FILES="${{ steps.changed-files.outputs.changed_files }}"
-                  if [ ! -z "$FILES" ]; then
-                    echo "Validating changed files..."
-                    npm run validate:design $FILES
-                  else
-                    echo "No TypeScript/TSX files changed"
+                  FILES="${{ steps.changed-files-pr.outputs.files }}"
+                  npm run validate:design $FILES
+
+            # For pushes: validate all src/
+            - name: ✅ Validate All Files (Push)
+              if: github.event_name == 'push'
+              run: npm run validate:design src/
+
+            - name: 📊 Generate Validation Report
+              if: always()
+              run: |
+                  npm run validate:design src/ --json validation-report.json || true
+
+            - name: 📤 Upload Validation Report
+              if: always()
+              uses: actions/upload-artifact@v4
+              with:
+                  name: validation-report
+                  path: ${{ env.WORKING_DIR }}/validation-report.json
+                  retention-days: 30
+
+    # ========================================================================
+    # JOB 5: Tests with Coverage
+    # Purpose: Run test suite and generate coverage
+    # Duration: ~1-3 minutes
+    # ========================================================================
+    test:
+        name: 🧪 Tests & Coverage
+        runs-on: ubuntu-latest
+        needs: [setup, quick-checks]
+
+        defaults:
+            run:
+                working-directory: ${{ env.WORKING_DIR }}
+
+        steps:
+            - name: 📥 Checkout code
+              uses: actions/checkout@v4
+              with:
+                  fetch-depth: 0 # Needed for --onlyChanged
+
+            - name: 📦 Setup Node.js
+              uses: actions/setup-node@v4
+              with:
+                  node-version: ${{ env.NODE_VERSION }}
+
+            - name: 💾 Restore node_modules cache
+              uses: actions/cache@v4
+              with:
+                  path: ${{ env.WORKING_DIR }}/node_modules
+                  key: ${{ runner.os }}-node-modules-${{ hashFiles('frontend/eetmad/package-lock.json') }}
+
+            # For PRs: run only affected tests
+            - name: 🧪 Run Affected Tests (PR)
+              if: github.event_name == 'pull_request'
+              run: npm run test -- --onlyChanged --coverage --passWithNoTests
+
+            # For pushes: run all tests
+            - name: 🧪 Run All Tests (Push)
+              if: github.event_name == 'push'
+              run: npm run test -- --coverage
+
+            - name: 📊 Upload Coverage Report
+              if: always()
+              uses: actions/upload-artifact@v4
+              with:
+                  name: coverage-report
+                  path: ${{ env.WORKING_DIR }}/coverage/
+                  retention-days: 30
+
+            - name: 📈 Coverage Summary
+              if: always()
+              run: |
+                  echo "## Test Coverage Summary" >> $GITHUB_STEP_SUMMARY
+                  if [ -f coverage/coverage-summary.json ]; then
+                    cat coverage/coverage-summary.json >> $GITHUB_STEP_SUMMARY
                   fi
 
-    # Job 6: Summary Report
-    summary:
-        name: Summary Report
+    # ========================================================================
+    # JOB 6: Build
+    # Purpose: Verify production build works
+    # Duration: ~1-2 minutes
+    # ========================================================================
+    build:
+        name: 🏗️ Production Build
         runs-on: ubuntu-latest
-        needs: [code-quality, test, build, security]
+        needs: [type-checking, design-validation, test]
+
+        defaults:
+            run:
+                working-directory: ${{ env.WORKING_DIR }}
+
+        steps:
+            - name: 📥 Checkout code
+              uses: actions/checkout@v4
+
+            - name: 📦 Setup Node.js
+              uses: actions/setup-node@v4
+              with:
+                  node-version: ${{ env.NODE_VERSION }}
+
+            - name: 💾 Restore node_modules cache
+              uses: actions/cache@v4
+              with:
+                  path: ${{ env.WORKING_DIR }}/node_modules
+                  key: ${{ runner.os }}-node-modules-${{ hashFiles('frontend/eetmad/package-lock.json') }}
+
+            - name: 🏗️ Build Application
+              run: npm run build
+              env:
+                  NODE_ENV: production
+
+            - name: 📊 Build Size Analysis
+              run: |
+                  echo "## 📦 Build Size Report" >> $GITHUB_STEP_SUMMARY
+                  echo "" >> $GITHUB_STEP_SUMMARY
+                  echo "**Total build size:**" >> $GITHUB_STEP_SUMMARY
+                  du -sh .next >> $GITHUB_STEP_SUMMARY
+                  echo "" >> $GITHUB_STEP_SUMMARY
+                  echo "**Static assets:**" >> $GITHUB_STEP_SUMMARY
+                  du -sh .next/static >> $GITHUB_STEP_SUMMARY || echo "No static assets" >> $GITHUB_STEP_SUMMARY
+
+            - name: 📤 Upload Build Artifacts
+              uses: actions/upload-artifact@v4
+              with:
+                  name: build-output
+                  path: ${{ env.WORKING_DIR }}/.next/
+                  retention-days: 7
+
+    # ========================================================================
+    # JOB 7: Security Audit
+    # Purpose: Check for security vulnerabilities
+    # Duration: ~20-30 seconds
+    # ========================================================================
+    security:
+        name: 🔒 Security Audit
+        runs-on: ubuntu-latest
+        needs: setup
+
+        defaults:
+            run:
+                working-directory: ${{ env.WORKING_DIR }}
+
+        steps:
+            - name: 📥 Checkout code
+              uses: actions/checkout@v4
+
+            - name: 📦 Setup Node.js
+              uses: actions/setup-node@v4
+              with:
+                  node-version: ${{ env.NODE_VERSION }}
+
+            - name: 💾 Restore node_modules cache
+              uses: actions/cache@v4
+              with:
+                  path: ${{ env.WORKING_DIR }}/node_modules
+                  key: ${{ runner.os }}-node-modules-${{ hashFiles('frontend/eetmad/package-lock.json') }}
+
+            - name: 🔒 NPM Audit (Production)
+              run: npm audit --production --audit-level=high
+              continue-on-error: true
+
+            - name: 🔒 NPM Audit (All)
+              run: npm audit --audit-level=moderate
+              continue-on-error: true
+
+            - name: 🔍 Check Circular Dependencies
+              run: |
+                  npm install -g madge
+                  madge --circular --extensions ts,tsx src/ || echo "⚠️ Circular dependencies detected"
+
+            - name: 📊 Security Summary
+              if: always()
+              run: |
+                  echo "## 🔒 Security Audit Summary" >> $GITHUB_STEP_SUMMARY
+                  echo "" >> $GITHUB_STEP_SUMMARY
+                  echo "✅ Security checks completed" >> $GITHUB_STEP_SUMMARY
+                  echo "Check logs above for details" >> $GITHUB_STEP_SUMMARY
+
+    # ========================================================================
+    # JOB 8: Final Summary
+    # Purpose: Aggregate results and provide clear status
+    # Duration: ~5 seconds
+    # ========================================================================
+    summary:
+        name: 📊 Pipeline Summary
+        runs-on: ubuntu-latest
+        needs: [quick-checks, type-checking, design-validation, test, build, security]
         if: always()
 
         steps:
-            - name: 📊 Generate Summary
+            - name: 📊 Generate Summary Report
               run: |
-                  echo "# CI/CD Pipeline Summary" >> $GITHUB_STEP_SUMMARY
+                  echo "# 🎯 CI/CD Pipeline Summary" >> $GITHUB_STEP_SUMMARY
                   echo "" >> $GITHUB_STEP_SUMMARY
-                  echo "## Results" >> $GITHUB_STEP_SUMMARY
+                  echo "## 📋 Job Results" >> $GITHUB_STEP_SUMMARY
                   echo "" >> $GITHUB_STEP_SUMMARY
-                  echo "- Code Quality: ${{ needs.code-quality.result }}" >> $GITHUB_STEP_SUMMARY
-                  echo "- Tests: ${{ needs.test.result }}" >> $GITHUB_STEP_SUMMARY
-                  echo "- Build: ${{ needs.build.result }}" >> $GITHUB_STEP_SUMMARY
-                  echo "- Security: ${{ needs.security.result }}" >> $GITHUB_STEP_SUMMARY
+                  echo "| Job | Status |" >> $GITHUB_STEP_SUMMARY
+                  echo "|-----|--------|" >> $GITHUB_STEP_SUMMARY
+                  echo "| ⚡ Quick Checks | ${{ needs.quick-checks.result == 'success' && '✅ Passed' || '❌ Failed' }} |" >> $GITHUB_STEP_SUMMARY
+                  echo "| 🔍 Type Checking | ${{ needs.type-checking.result == 'success' && '✅ Passed' || '❌ Failed' }} |" >> $GITHUB_STEP_SUMMARY
+                  echo "| ✅ Design Validation | ${{ needs.design-validation.result == 'success' && '✅ Passed' || '❌ Failed' }} |" >> $GITHUB_STEP_SUMMARY
+                  echo "| 🧪 Tests | ${{ needs.test.result == 'success' && '✅ Passed' || '❌ Failed' }} |" >> $GITHUB_STEP_SUMMARY
+                  echo "| 🏗️ Build | ${{ needs.build.result == 'success' && '✅ Passed' || '❌ Failed' }} |" >> $GITHUB_STEP_SUMMARY
+                  echo "| 🔒 Security | ${{ needs.security.result == 'success' && '✅ Passed' || '⚠️ Warning' }} |" >> $GITHUB_STEP_SUMMARY
                   echo "" >> $GITHUB_STEP_SUMMARY
-
-                  if [ "${{ needs.code-quality.result }}" == "success" ] && \
-                     [ "${{ needs.test.result }}" == "success" ] && \
-                     [ "${{ needs.build.result }}" == "success" ]; then
-                    echo "✅ All checks passed! Ready to merge." >> $GITHUB_STEP_SUMMARY
-                  else
-                    echo "❌ Some checks failed. Please review and fix." >> $GITHUB_STEP_SUMMARY
-                  fi
 
             - name: ✅ All Checks Passed
-              if: needs.code-quality.result == 'success' && needs.test.result == 'success' && needs.build.result == 'success'
-              run: echo "All checks passed successfully!"
+              if: needs.quick-checks.result == 'success' && needs.type-checking.result == 'success' && needs.design-validation.result == 'success' && needs.test.result == 'success' && needs.build.result == 'success'
+              run: |
+                  echo "" >> $GITHUB_STEP_SUMMARY
+                  echo "## 🎉 Success!" >> $GITHUB_STEP_SUMMARY
+                  echo "" >> $GITHUB_STEP_SUMMARY
+                  echo "✅ All validation checks passed successfully!" >> $GITHUB_STEP_SUMMARY
+                  echo "Ready to merge to develop branch." >> $GITHUB_STEP_SUMMARY
 
             - name: ❌ Some Checks Failed
-              if: needs.code-quality.result != 'success' || needs.test.result != 'success' || needs.build.result != 'success'
+              if: needs.quick-checks.result != 'success' || needs.type-checking.result != 'success' || needs.design-validation.result != 'success' || needs.test.result != 'success' || needs.build.result != 'success'
               run: |
-                  echo "Some checks failed. Please review the logs above."
+                  echo "" >> $GITHUB_STEP_SUMMARY
+                  echo "## ❌ Validation Failed" >> $GITHUB_STEP_SUMMARY
+                  echo "" >> $GITHUB_STEP_SUMMARY
+                  echo "Some checks failed. Please review the errors above and fix them." >> $GITHUB_STEP_SUMMARY
+                  echo "" >> $GITHUB_STEP_SUMMARY
+                  echo "### 🔧 Quick Help" >> $GITHUB_STEP_SUMMARY
+                  echo "- Run \`npm run check:health\` locally" >> $GITHUB_STEP_SUMMARY
+                  echo "- Check specific failed jobs above" >> $GITHUB_STEP_SUMMARY
+                  echo "- Review \`scripts/quick-reference/common-fixes.md\`" >> $GITHUB_STEP_SUMMARY
                   exit 1

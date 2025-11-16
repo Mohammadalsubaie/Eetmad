@@ -4,17 +4,7 @@ import { useState } from 'react';
 import { useTranslations } from 'next-intl';
 import { useRouter } from 'next/navigation';
 import { cssVars } from '@/styles/theme';
-import {
-  Users,
-  Eye,
-  Ban,
-  CheckCircle,
-  XCircle,
-  Shield,
-  Plus,
-  Download,
-  Mail,
-} from 'lucide-react';
+import { Users, Eye, Ban, CheckCircle, XCircle, Shield, Plus, Download, Mail } from 'lucide-react';
 import type { User } from '@/lib/types/user.types';
 import AdminPageHeader from '@/components/shared/admin/AdminPageHeader';
 import AdminDataTable from '@/components/shared/admin/AdminDataTable';
@@ -142,14 +132,14 @@ export default function AdminUsersPage() {
               user.userType === 'supplier'
                 ? `color-mix(in srgb, ${cssVars.accent.primary} 15%, transparent)`
                 : user.userType === 'admin'
-                ? `color-mix(in srgb, ${cssVars.status.warning} 15%, transparent)`
-                : `color-mix(in srgb, ${cssVars.primary.DEFAULT} 15%, transparent)`,
+                  ? `color-mix(in srgb, ${cssVars.status.warning} 15%, transparent)`
+                  : `color-mix(in srgb, ${cssVars.primary.DEFAULT} 15%, transparent)`,
             color:
               user.userType === 'supplier'
                 ? cssVars.accent.primary
                 : user.userType === 'admin'
-                ? cssVars.status.warning
-                : cssVars.primary.DEFAULT,
+                  ? cssVars.status.warning
+                  : cssVars.primary.DEFAULT,
           }}
         >
           {user.userType === 'supplier' ? 'مورد' : user.userType === 'admin' ? 'مسؤول' : 'عميل'}
@@ -221,7 +211,9 @@ export default function AdminUsersPage() {
               router.push(`/admin/users/${user.id}`);
             }}
             className="rounded-lg p-2 transition-all hover:bg-opacity-80"
-            style={{ backgroundColor: `color-mix(in srgb, ${cssVars.primary.DEFAULT} 10%, transparent)` }}
+            style={{
+              backgroundColor: `color-mix(in srgb, ${cssVars.primary.DEFAULT} 10%, transparent)`,
+            }}
           >
             <Eye className="h-4 w-4" style={{ color: cssVars.primary.DEFAULT }} />
           </button>
@@ -231,7 +223,9 @@ export default function AdminUsersPage() {
               // Handle suspend
             }}
             className="rounded-lg p-2 transition-all hover:bg-opacity-80"
-            style={{ backgroundColor: `color-mix(in srgb, ${cssVars.status.warning} 10%, transparent)` }}
+            style={{
+              backgroundColor: `color-mix(in srgb, ${cssVars.status.warning} 10%, transparent)`,
+            }}
           >
             <Shield className="h-4 w-4" style={{ color: cssVars.status.warning }} />
           </button>
@@ -241,7 +235,9 @@ export default function AdminUsersPage() {
               // Handle ban
             }}
             className="rounded-lg p-2 transition-all hover:bg-opacity-80"
-            style={{ backgroundColor: `color-mix(in srgb, ${cssVars.status.error} 10%, transparent)` }}
+            style={{
+              backgroundColor: `color-mix(in srgb, ${cssVars.status.error} 10%, transparent)`,
+            }}
           >
             <Ban className="h-4 w-4" style={{ color: cssVars.status.error }} />
           </button>
@@ -268,11 +264,7 @@ export default function AdminUsersPage() {
               icon={Download}
               variant="secondary"
             />
-            <AdminActionButton
-              label={t('users.actions.addUser')}
-              icon={Plus}
-              variant="primary"
-            />
+            <AdminActionButton label={t('users.actions.addUser')} icon={Plus} variant="primary" />
           </div>
         }
       />

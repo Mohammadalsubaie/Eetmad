@@ -77,7 +77,7 @@ export default function AdminDataTable<T extends { id: string }>({
             <tr style={{ backgroundColor: cssVars.neutral.bg }}>
               {columns.map((column) => (
                 <th
-                  key={column.key}
+                  key={String(column.key)}
                   className="px-6 py-4 text-start text-sm font-bold"
                   style={{ color: cssVars.secondary.DEFAULT }}
                 >
@@ -90,7 +90,10 @@ export default function AdminDataTable<T extends { id: string }>({
             {isLoading ? (
               <tr>
                 <td colSpan={columns.length} className="py-12 text-center">
-                  <div className="text-lg font-semibold" style={{ color: cssVars.neutral.textSecondary }}>
+                  <div
+                    className="text-lg font-semibold"
+                    style={{ color: cssVars.neutral.textSecondary }}
+                  >
                     {t('common.loading')}
                   </div>
                 </td>
@@ -98,7 +101,10 @@ export default function AdminDataTable<T extends { id: string }>({
             ) : paginatedData.length === 0 ? (
               <tr>
                 <td colSpan={columns.length} className="py-12 text-center">
-                  <div className="text-lg font-semibold" style={{ color: cssVars.neutral.textSecondary }}>
+                  <div
+                    className="text-lg font-semibold"
+                    style={{ color: cssVars.neutral.textSecondary }}
+                  >
                     {emptyMessage ?? t('common.noData')}
                   </div>
                 </td>
@@ -125,13 +131,20 @@ export default function AdminDataTable<T extends { id: string }>({
                 >
                   {columns.map((column) => (
                     <td
-                      key={column.key}
+                      key={String(column.key)}
                       className="px-6 py-4 text-sm"
                       style={{ color: cssVars.neutral.textSecondary }}
                     >
                       {column.render
                         ? column.render(item)
-                        : String((item as any)[column.key] || '-')}
+                        : String(
+                            ((item as unknown as Record<string, unknown>)[column.key] as
+                              | string
+                              | number
+                              | boolean
+                              | null
+                              | undefined) ?? '-'
+                          )}
                     </td>
                   ))}
                 </motion.tr>
@@ -202,4 +215,3 @@ export default function AdminDataTable<T extends { id: string }>({
     </div>
   );
 }
-

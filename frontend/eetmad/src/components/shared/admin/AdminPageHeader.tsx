@@ -12,7 +12,12 @@ interface AdminPageHeaderProps {
   action?: ReactNode;
 }
 
-export default function AdminPageHeader({ title, description, icon: Icon, action }: AdminPageHeaderProps) {
+export default function AdminPageHeader({
+  title,
+  description,
+  icon: Icon,
+  action,
+}: AdminPageHeaderProps) {
   return (
     <div className="mb-8 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
       <div className="flex items-center gap-4">
@@ -39,4 +44,3 @@ export default function AdminPageHeader({ title, description, icon: Icon, action
     </div>
   );
 }
-

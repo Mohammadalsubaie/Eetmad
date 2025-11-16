@@ -4,16 +4,7 @@ import { useState } from 'react';
 import { useTranslations } from 'next-intl';
 import { motion } from 'framer-motion';
 import { cssVars } from '@/styles/theme';
-import {
-  Settings,
-  Save,
-  Globe,
-  DollarSign,
-  Mail,
-  Shield,
-  Bell,
-  Database,
-} from 'lucide-react';
+import { Settings, Save, Globe, DollarSign, Mail, Shield, Bell, Database } from 'lucide-react';
 import AdminPageHeader from '@/components/shared/admin/AdminPageHeader';
 import AdminActionButton from '@/components/shared/admin/AdminActionButton';
 
@@ -120,7 +111,10 @@ export default function AdminSettingsPage() {
 
         <div className="space-y-6">
           <div>
-            <label className="mb-2 block text-sm font-semibold" style={{ color: cssVars.secondary.DEFAULT }}>
+            <label
+              className="mb-2 block text-sm font-semibold"
+              style={{ color: cssVars.secondary.DEFAULT }}
+            >
               اسم المنصة
             </label>
             <input
@@ -136,7 +130,10 @@ export default function AdminSettingsPage() {
           </div>
 
           <div>
-            <label className="mb-2 block text-sm font-semibold" style={{ color: cssVars.secondary.DEFAULT }}>
+            <label
+              className="mb-2 block text-sm font-semibold"
+              style={{ color: cssVars.secondary.DEFAULT }}
+            >
               البريد الإلكتروني للدعم
             </label>
             <input
@@ -152,7 +149,10 @@ export default function AdminSettingsPage() {
           </div>
 
           <div>
-            <label className="mb-2 block text-sm font-semibold" style={{ color: cssVars.secondary.DEFAULT }}>
+            <label
+              className="mb-2 block text-sm font-semibold"
+              style={{ color: cssVars.secondary.DEFAULT }}
+            >
               رقم الهاتف
             </label>
             <input

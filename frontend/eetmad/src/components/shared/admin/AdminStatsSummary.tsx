@@ -40,7 +40,10 @@ export default function AdminStatsSummary({ items }: AdminStatsSummaryProps) {
               <div className="text-2xl font-bold" style={{ color: cssVars.secondary.DEFAULT }}>
                 {item.value}
               </div>
-              <div className="text-sm font-semibold" style={{ color: cssVars.neutral.textSecondary }}>
+              <div
+                className="text-sm font-semibold"
+                style={{ color: cssVars.neutral.textSecondary }}
+              >
                 {item.label}
               </div>
             </div>
@@ -50,4 +53,3 @@ export default function AdminStatsSummary({ items }: AdminStatsSummaryProps) {
     </div>
   );
 }
-

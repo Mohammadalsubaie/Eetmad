@@ -48,8 +48,20 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
     { id: 'requests', icon: FileText, labelKey: 'nav.requests', href: '/admin/requests' },
     { id: 'offers', icon: Briefcase, labelKey: 'nav.offers', href: '/admin/offers' },
     { id: 'projects', icon: Briefcase, labelKey: 'nav.projects', href: '/admin/projects' },
-    { id: 'disputes', icon: AlertTriangle, labelKey: 'nav.disputes', href: '/admin/disputes', badge: 3 },
-    { id: 'verification', icon: ShieldCheck, labelKey: 'nav.verification', href: '/admin/verification', badge: 8 },
+    {
+      id: 'disputes',
+      icon: AlertTriangle,
+      labelKey: 'nav.disputes',
+      href: '/admin/disputes',
+      badge: 3,
+    },
+    {
+      id: 'verification',
+      icon: ShieldCheck,
+      labelKey: 'nav.verification',
+      href: '/admin/verification',
+      badge: 8,
+    },
     { id: 'categories', icon: FolderTree, labelKey: 'nav.categories', href: '/admin/categories' },
     { id: 'payments', icon: CreditCard, labelKey: 'nav.payments', href: '/admin/payments' },
     { id: 'reviews', icon: Star, labelKey: 'nav.reviews', href: '/admin/reviews' },
@@ -75,7 +87,9 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
             <button
               onClick={() => setSidebarOpen(!sidebarOpen)}
               className="hidden rounded-xl p-2 transition-all hover:bg-opacity-80 lg:block"
-              style={{ backgroundColor: `color-mix(in srgb, ${cssVars.primary.DEFAULT} 10%, transparent)` }}
+              style={{
+                backgroundColor: `color-mix(in srgb, ${cssVars.primary.DEFAULT} 10%, transparent)`,
+              }}
             >
               <Menu className="h-5 w-5" style={{ color: cssVars.primary.DEFAULT }} />
             </button>
@@ -83,7 +97,9 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               className="rounded-xl p-2 transition-all hover:bg-opacity-80 lg:hidden"
-              style={{ backgroundColor: `color-mix(in srgb, ${cssVars.primary.DEFAULT} 10%, transparent)` }}
+              style={{
+                backgroundColor: `color-mix(in srgb, ${cssVars.primary.DEFAULT} 10%, transparent)`,
+              }}
             >
               <Menu className="h-5 w-5" style={{ color: cssVars.primary.DEFAULT }} />
             </button>
@@ -98,7 +114,9 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               className="relative rounded-xl p-3 transition-all"
-              style={{ backgroundColor: `color-mix(in srgb, ${cssVars.neutral.border} 30%, transparent)` }}
+              style={{
+                backgroundColor: `color-mix(in srgb, ${cssVars.neutral.border} 30%, transparent)`,
+              }}
             >
               <Bell className="h-5 w-5" style={{ color: cssVars.neutral.textSecondary }} />
               <span
@@ -111,7 +129,9 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               className="flex items-center gap-2 rounded-xl px-4 py-2 transition-all"
-              style={{ backgroundColor: `color-mix(in srgb, ${cssVars.neutral.border} 30%, transparent)` }}
+              style={{
+                backgroundColor: `color-mix(in srgb, ${cssVars.neutral.border} 30%, transparent)`,
+              }}
             >
               <div
                 className="h-8 w-8 rounded-lg"
@@ -132,13 +152,13 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
               animate={{ width: 280, opacity: 1 }}
               exit={{ width: 0, opacity: 0 }}
               transition={{ duration: 0.3 }}
-              className="hidden lg:block sticky top-16 h-[calc(100vh-4rem)] overflow-y-auto border-e"
+              className="sticky top-16 hidden h-[calc(100vh-4rem)] overflow-y-auto border-e lg:block"
               style={{
                 backgroundColor: cssVars.neutral.surface,
                 borderColor: cssVars.neutral.border,
               }}
             >
-              <nav className="p-4 space-y-2">
+              <nav className="space-y-2 p-4">
                 {navItems.map((item) => (
                   <Link key={item.id} href={item.href}>
                     <motion.div
@@ -211,20 +231,25 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
                   backgroundColor: cssVars.neutral.surface,
                 }}
               >
-                <div className="flex items-center justify-between border-b p-4" style={{ borderColor: cssVars.neutral.border }}>
+                <div
+                  className="flex items-center justify-between border-b p-4"
+                  style={{ borderColor: cssVars.neutral.border }}
+                >
                   <h2 className="text-lg font-bold" style={{ color: cssVars.secondary.DEFAULT }}>
                     {t('title')}
                   </h2>
                   <button
                     onClick={() => setMobileMenuOpen(false)}
                     className="rounded-xl p-2"
-                    style={{ backgroundColor: `color-mix(in srgb, ${cssVars.neutral.border} 30%, transparent)` }}
+                    style={{
+                      backgroundColor: `color-mix(in srgb, ${cssVars.neutral.border} 30%, transparent)`,
+                    }}
                   >
                     <X className="h-5 w-5" style={{ color: cssVars.neutral.textSecondary }} />
                   </button>
                 </div>
 
-                <nav className="p-4 space-y-2">
+                <nav className="space-y-2 p-4">
                   {navItems.map((item) => (
                     <Link key={item.id} href={item.href} onClick={() => setMobileMenuOpen(false)}>
                       <div

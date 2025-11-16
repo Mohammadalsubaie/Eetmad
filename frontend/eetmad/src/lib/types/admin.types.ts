@@ -1,3 +1,5 @@
+import type { LucideIcon } from 'lucide-react';
+
 export interface DashboardStats {
   totalUsers: number;
   totalSuppliers: number;
@@ -22,6 +24,6 @@ export interface StatsSummaryItem {
   id: string;
   label: string;
   value: string | number;
-  icon: any;
+  icon: LucideIcon;
   color: string;
 }

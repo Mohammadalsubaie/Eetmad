@@ -1,5 +1,6 @@
 'use client';
 
+import { useTheme } from '@/contexts/ThemeContext';
 import { cssVars } from '@/styles/theme';
 import { motion } from 'framer-motion';
 import { Facebook, Globe, Linkedin, Target, Twitter } from 'lucide-react';
@@ -8,6 +9,8 @@ import Link from 'next/link';
 // for test only
 export function Footer() {
   const t = useTranslations('footer');
+  const { theme } = useTheme();
+  const isDark = theme === 'dark';
 
   const socialLinks = [
     { icon: Linkedin, href: '#', label: 'LinkedIn' },
@@ -47,7 +50,10 @@ export function Footer() {
   ];
 
   return (
-    <footer className="pb-10 pt-20" style={{ backgroundColor: cssVars.primary.DEFAULT }}>
+    <footer
+      className="pb-10 pt-20"
+      style={{ backgroundColor: isDark ? cssVars.neutral.background : cssVars.primary.DEFAULT }}
+    >
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="mb-16 grid gap-12 md:grid-cols-2 lg:grid-cols-4">
           {/* Brand Section */}
@@ -57,9 +63,15 @@ export function Footer() {
                 className="flex h-14 w-14 items-center justify-center rounded-2xl shadow-xl"
                 style={{ background: cssVars.gradient.primary }}
               >
-                <Target className="h-7 w-7" style={{ color: cssVars.neutral.bg }} />
+                <Target
+                  className="h-7 w-7"
+                  style={{ color: isDark ? cssVars.neutral.surface : cssVars.neutral.bg }}
+                />
               </div>
-              <h3 className="text-2xl font-bold" style={{ color: cssVars.neutral.bg }}>
+              <h3
+                className="text-2xl font-bold"
+                style={{ color: isDark ? cssVars.neutral.darker : cssVars.neutral.bg }}
+              >
                 {t('brandName')}
               </h3>
             </div>
@@ -87,7 +99,10 @@ export function Footer() {
           {/* Footer Sections */}
           {footerSections.map((section, idx) => (
             <div key={idx}>
-              <h4 className="mb-6 text-xl font-bold" style={{ color: cssVars.neutral.bg }}>
+              <h4
+                className="mb-6 text-xl font-bold"
+                style={{ color: isDark ? cssVars.neutral.darker : cssVars.neutral.bg }}
+              >
                 {section.title}
               </h4>
               <ul className="space-y-4">
@@ -104,7 +119,9 @@ export function Footer() {
                           color: 'inherit',
                         }}
                         onMouseEnter={(e) => {
-                          e.currentTarget.style.color = cssVars.neutral.bg;
+                          e.currentTarget.style.color = isDark
+                            ? cssVars.neutral.darker
+                            : cssVars.neutral.bg;
                         }}
                         onMouseLeave={(e) => {
                           e.currentTarget.style.color = cssVars.neutral.textMuted;
@@ -138,7 +155,7 @@ export function Footer() {
                 <span
                   className="transition-colors"
                   onMouseEnter={(e) => {
-                    e.currentTarget.style.color = cssVars.neutral.bg;
+                    e.currentTarget.style.color = cssVars.neutral.darker;
                   }}
                   onMouseLeave={(e) => {
                     e.currentTarget.style.color = cssVars.neutral.textMuted;
@@ -157,7 +174,7 @@ export function Footer() {
                 <span
                   className="transition-colors"
                   onMouseEnter={(e) => {
-                    e.currentTarget.style.color = cssVars.neutral.bg;
+                    e.currentTarget.style.color = cssVars.neutral.darker;
                   }}
                   onMouseLeave={(e) => {
                     e.currentTarget.style.color = cssVars.neutral.textMuted;

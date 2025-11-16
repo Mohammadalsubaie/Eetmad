@@ -2,6 +2,7 @@
 
 import { LanguageSwitcher } from '@/components/shared/misc/LanguageSwitcher';
 import { ThemeToggle } from '@/components/shared/misc/ThemeToggle';
+import { useTheme } from '@/contexts/ThemeContext';
 import { cssVars } from '@/styles/theme';
 import { motion } from 'framer-motion';
 import { Bell, Menu, Sparkles, Target, User, X } from 'lucide-react';
@@ -13,6 +14,8 @@ export function Header() {
   const t = useTranslations('nav');
   const [showMobileMenu, setShowMobileMenu] = useState(false);
   const [hasNotifications] = useState(true);
+  const { theme } = useTheme();
+  const isDark = theme === 'dark';
 
   const navItems = [
     { key: 'home', href: '/' },
@@ -26,8 +29,12 @@ export function Header() {
     <header
       className="sticky top-0 z-50 border-b backdrop-blur-lg"
       style={{
-        backgroundColor: `color-mix(in srgb, ${cssVars.primary.DEFAULT} 95%, transparent)`,
-        borderColor: `color-mix(in srgb, ${cssVars.neutral.border} 20%, transparent)`,
+        backgroundColor: isDark
+          ? `color-mix(in srgb, ${cssVars.neutral.background} 85%, transparent)`
+          : `color-mix(in srgb, ${cssVars.primary.DEFAULT} 95%, transparent)`,
+        borderColor: isDark
+          ? `color-mix(in srgb, ${cssVars.neutral.border} 30%, transparent)`
+          : `color-mix(in srgb, ${cssVars.neutral.border} 20%, transparent)`,
       }}
     >
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -43,11 +50,17 @@ export function Header() {
                   className="absolute h-6 w-6"
                   style={{ color: cssVars.accent.warm, opacity: 0.3 }}
                 />
-                <Target className="relative z-10 h-6 w-6" style={{ color: cssVars.neutral.bg }} />
+                <Target
+                  className="relative z-10 h-6 w-6"
+                  style={{ color: isDark ? cssVars.neutral.surface : cssVars.neutral.bg }}
+                />
               </div>
             </motion.div>
             <div>
-              <h1 className="text-xl font-bold" style={{ color: cssVars.neutral.bg }}>
+              <h1
+                className="text-xl font-bold"
+                style={{ color: isDark ? cssVars.neutral.darker : cssVars.neutral.bg }}
+              >
                 {t('brandName')}
               </h1>
               <p className="text-xs" style={{ color: cssVars.neutral.textMuted }}>
@@ -144,7 +157,9 @@ export function Header() {
             exit={{ opacity: 0, y: -20 }}
             className="border-t py-4 lg:hidden"
             style={{
-              borderColor: `color-mix(in srgb, ${cssVars.neutral.border} 20%, transparent)`,
+              borderColor: isDark
+                ? `color-mix(in srgb, ${cssVars.neutral.border} 30%, transparent)`
+                : `color-mix(in srgb, ${cssVars.neutral.border} 20%, transparent)`,
             }}
           >
             <div className="space-y-2">
@@ -153,8 +168,10 @@ export function Header() {
                   <button
                     className="w-full rounded-xl px-4 py-3 text-start font-semibold transition-all hover:bg-opacity-10"
                     style={{
-                      color: cssVars.neutral.bg,
-                      backgroundColor: `color-mix(in srgb, ${cssVars.neutral.textMuted} 5%, transparent)`,
+                      color: isDark ? cssVars.neutral.darker : cssVars.neutral.bg,
+                      backgroundColor: isDark
+                        ? `color-mix(in srgb, ${cssVars.neutral.textMuted} 10%, transparent)`
+                        : `color-mix(in srgb, ${cssVars.neutral.textMuted} 5%, transparent)`,
                     }}
                     onClick={() => setShowMobileMenu(false)}
                   >

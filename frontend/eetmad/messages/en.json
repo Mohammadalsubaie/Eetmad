@@ -1053,11 +1053,13 @@
       "reasons": {
         "inappropriate_content": "Inappropriate Content",
         "spam": "Spam",
-        "false_information": "False Information"
+        "false_information": "False Information",
+        "fraud": "Fraud"
       },
       "statuses": {
         "pending": "Pending",
         "reviewing": "Reviewing",
+        "under_review": "Reviewing",
         "resolved": "Resolved",
         "dismissed": "Dismissed"
       }

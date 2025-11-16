@@ -1054,11 +1054,13 @@
       "reasons": {
         "inappropriate_content": "محتوى غير لائق",
         "spam": "رسائل مزعجة",
-        "false_information": "معلومات كاذبة"
+        "false_information": "معلومات كاذبة",
+        "fraud": "احتيال"
       },
       "statuses": {
         "pending": "معلق",
         "reviewing": "قيد المراجعة",
+        "under_review": "قيد المراجعة",
         "resolved": "محلول",
         "dismissed": "مرفوض"
       }

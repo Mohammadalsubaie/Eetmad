@@ -112,7 +112,7 @@ export default function LoginForm() {
                 color: cssVars.secondary.DEFAULT,
                 borderColor: cssVars.neutral.border,
               }}
-              placeholder="example@email.com"
+              placeholder={t('emailPlaceholder')}
             />
           </div>
         </div>

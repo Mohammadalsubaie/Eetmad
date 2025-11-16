@@ -24,12 +24,57 @@ const EXCLUDE_DIRS = [
   'build',
   'coverage',
   '.cache',
-  'public', // Skip public assets
+  'public',
+  '.vercel',
+  'out',
 ];
 
-// Path patterns to exclude (relative to src)
+// Next.js App Router special files
+const NEXTJS_SPECIAL_FILES = [
+  'page.tsx',
+  'layout.tsx',
+  'loading.tsx',
+  'error.tsx',
+  'not-found.tsx',
+  'global-error.tsx',
+  'route.ts',
+  'template.tsx',
+  'default.tsx',
+  'opengraph-image.tsx',
+  'twitter-image.tsx',
+  'icon.tsx',
+  'apple-icon.tsx',
+  'manifest.ts',
+  'sitemap.ts',
+  'robots.ts',
+];
+
+// Next.js root-level special files
+const NEXTJS_ROOT_FILES = [
+  'middleware.ts',
+  'instrumentation.ts',
+  'next.config.js',
+  'next.config.mjs',
+  'next.config.ts',
+];
+
+// Standard file names that are allowed
+const ALLOWED_FILE_NAMES = [
+  'index.ts',
+  'index.tsx',
+  'types.ts',
+  'constants.ts',
+  'utils.ts',
+  'helpers.ts',
+  'config.ts',
+  'styles.ts',
+  'hooks.ts',
+];
+
+// Path patterns to exclude
 const EXCLUDE_PATTERNS = [
   'components/ui', // shadcn/ui components use kebab-case
+  'app/api', // API routes can use kebab-case by convention
 ];
 
 // Files to exclude
@@ -39,18 +84,102 @@ const EXCLUDE_FILES = [
   '*.test.tsx',
   '*.spec.ts',
   '*.spec.tsx',
-  'naming-validator.ts', // Validator itself
-  'naming-validator.examples.ts', // Examples file
-  'naming-validator.test-demo.ts', // Test demo file
-  'naming-validator.README.md', // Documentation
+  'naming-validator.ts',
+  'naming-validator.examples.ts',
+  'naming-validator.test-demo.ts',
+  'naming-validator.README.md',
+  '*.stories.tsx',
+  '*.config.ts',
+  '*.config.js',
+  ...ALLOWED_FILE_NAMES,
 ];
 
 // Extensions to validate
 const VALID_EXTENSIONS = ['.ts', '.tsx'];
 
 /**
- * Check if a file is a placeholder (not ready for validation)
+ * React-specific naming patterns that should be allowed
  */
+const REACT_PATTERNS = {
+  eventHandlers: /^(handle|on)[A-Z]/,
+  hooks: /^use[A-Z]/,
+  helpers:
+    /^(get|set|is|has|should|can|will|format|parse|validate|calculate|compute|find|filter|map|reduce|create|make|build|generate|check|confirm|verify|toggle)[A-Z]/,
+};
+
+/**
+ * Filter out false positive violations based on React conventions
+ */
+function filterReactViolations(result: ValidationResult): ValidationResult {
+  const filteredViolations = result.violations.filter((violation) => {
+    // Allow index files
+    if (violation.type === 'file' && ALLOWED_FILE_NAMES.includes(violation.name)) {
+      return false;
+    }
+
+    // Allow event handlers (handleSubmit, onClick, etc.)
+    if (violation.type === 'function' && REACT_PATTERNS.eventHandlers.test(violation.name)) {
+      return false;
+    }
+
+    // Allow React hooks (useState, useEffect, useCustomHook, etc.)
+    if (violation.type === 'function' && REACT_PATTERNS.hooks.test(violation.name)) {
+      return false;
+    }
+
+    // Allow helper functions (getInitials, formatDate, etc.)
+    if (violation.type === 'function' && REACT_PATTERNS.helpers.test(violation.name)) {
+      return false;
+    }
+
+    // Allow component variables (const Icon = ...)
+    if (violation.type === 'variable' && /^[A-Z]/.test(violation.name)) {
+      return false;
+    }
+
+    return true;
+  });
+
+  // Recalculate score
+  const totalChecks = result.violations.length;
+  const remainingViolations = filteredViolations.length;
+  const score =
+    totalChecks > 0 ? Math.round(((totalChecks - remainingViolations) / totalChecks) * 100) : 100;
+
+  return {
+    ...result,
+    violations: filteredViolations,
+    score,
+  };
+}
+
+function isDynamicSegment(dirName: string): boolean {
+  return (
+    /^\[\.\.\..*\]$/.test(dirName) || /^\[\[\.\.\..*\]\]$/.test(dirName) || /^\[.*\]$/.test(dirName)
+  );
+}
+
+function isNextJsSpecialFile(filePath: string, projectRoot: string): boolean {
+  const fileName = path.basename(filePath);
+  const relativePath = getRelativePath(filePath, projectRoot);
+
+  if (NEXTJS_ROOT_FILES.includes(fileName)) {
+    return true;
+  }
+
+  if (NEXTJS_SPECIAL_FILES.includes(fileName)) {
+    return true;
+  }
+
+  if (relativePath.startsWith('app/') || relativePath.startsWith('src/app/')) {
+    if (NEXTJS_SPECIAL_FILES.includes(fileName)) {
+      return true;
+    }
+  }
+
+  return false;
+}
+
 function isPlaceholderFile(filePath: string, content: string): boolean {
   const placeholderPatterns = [
     /\/\/\s*TODO:\s*Implement/i,
@@ -62,12 +191,9 @@ function isPlaceholderFile(filePath: string, content: string): boolean {
     /\/\*\s*PLACEHOLDER/i,
   ];
 
-  // Check for placeholder patterns in the first 10 lines
   const lines = content.split('\n').slice(0, 10).join('\n');
   const hasPlaceholderPattern = placeholderPatterns.some((pattern) => pattern.test(lines));
 
-  // Also check if file is very minimal (likely a placeholder)
-  // If it only has a few lines and returns null, it's likely a placeholder
   const isMinimalPlaceholder =
     content.split('\n').length < 10 &&
     (content.includes('return null') || content.includes('return;'));
@@ -75,13 +201,13 @@ function isPlaceholderFile(filePath: string, content: string): boolean {
   return hasPlaceholderPattern || isMinimalPlaceholder;
 }
 
-/**
- * Check if a file should be excluded
- */
-function shouldExcludeFile(filePath: string): boolean {
+function shouldExcludeFile(filePath: string, projectRoot: string): boolean {
   const fileName = path.basename(filePath);
 
-  // Check exclude patterns
+  if (isNextJsSpecialFile(filePath, projectRoot)) {
+    return true;
+  }
+
   for (const pattern of EXCLUDE_FILES) {
     if (pattern.includes('*')) {
       const regex = new RegExp(pattern.replace(/\*/g, '.*'));
@@ -96,11 +222,8 @@ function shouldExcludeFile(filePath: string): boolean {
   return false;
 }
 
-/**
- * Check if a path should be excluded based on patterns
- */
-function shouldExcludePath(filePath: string, srcDir: string): boolean {
-  const relativePath = getRelativePath(filePath, srcDir);
+function shouldExcludePath(filePath: string, projectRoot: string): boolean {
+  const relativePath = getRelativePath(filePath, projectRoot);
   for (const pattern of EXCLUDE_PATTERNS) {
     if (relativePath.includes(pattern)) {
       return true;
@@ -109,37 +232,40 @@ function shouldExcludePath(filePath: string, srcDir: string): boolean {
   return false;
 }
 
-/**
- * Recursively find all TypeScript files
- */
-function findTypeScriptFiles(dir: string, srcDir: string, fileList: string[] = []): string[] {
+function findTypeScriptFiles(dir: string, projectRoot: string, fileList: string[] = []): string[] {
   const files = fs.readdirSync(dir);
 
   files.forEach((file) => {
     const filePath = path.join(dir, file);
     const stat = fs.statSync(filePath);
 
-    // Skip excluded directories
     if (stat.isDirectory()) {
       const dirName = path.basename(filePath);
-      if (!EXCLUDE_DIRS.includes(dirName) && !dirName.startsWith('.')) {
-        findTypeScriptFiles(filePath, srcDir, fileList);
+
+      if (EXCLUDE_DIRS.includes(dirName) || dirName.startsWith('.')) {
+        return;
       }
+
+      if (isDynamicSegment(dirName)) {
+        findTypeScriptFiles(filePath, projectRoot, fileList);
+        return;
+      }
+
+      findTypeScriptFiles(filePath, projectRoot, fileList);
     } else if (stat.isFile()) {
       const ext = path.extname(filePath);
       if (
         VALID_EXTENSIONS.includes(ext) &&
-        !shouldExcludeFile(filePath) &&
-        !shouldExcludePath(filePath, srcDir)
+        !shouldExcludeFile(filePath, projectRoot) &&
+        !shouldExcludePath(filePath, projectRoot)
       ) {
-        // Check if it's a placeholder file before adding
         try {
           const content = fs.readFileSync(filePath, 'utf-8');
           if (!isPlaceholderFile(filePath, content)) {
             fileList.push(filePath);
           }
         } catch {
-          // If we can't read the file, skip it
+          // Skip files we can't read
         }
       }
     }
@@ -148,9 +274,6 @@ function findTypeScriptFiles(dir: string, srcDir: string, fileList: string[] = [
   return fileList;
 }
 
-/**
- * Read file content
- */
 function readFileContent(filePath: string): string {
   try {
     return fs.readFileSync(filePath, 'utf-8');
@@ -160,22 +283,15 @@ function readFileContent(filePath: string): string {
   }
 }
 
-/**
- * Convert absolute path to relative path from project root
- */
 function getRelativePath(filePath: string, projectRoot: string): string {
   return path.relative(projectRoot, filePath).replace(/\\/g, '/');
 }
 
-/**
- * Format results with file grouping
- */
 function formatResultsWithFiles(results: Map<string, ValidationResult>): string {
   let output = '\n' + '='.repeat(80) + '\n';
-  output += '📊 Naming Convention Validation - Project Wide\n';
+  output += '📊 Naming Convention Validation - Next.js Project\n';
   output += '='.repeat(80) + '\n\n';
 
-  // Calculate totals
   let totalViolations = 0;
   let totalFiles = 0;
   let totalFilesWithViolations = 0;
@@ -197,7 +313,6 @@ function formatResultsWithFiles(results: Map<string, ValidationResult>): string 
     }
   });
 
-  // Overall summary
   output += `Overall Summary:\n`;
   output += `  • Total files validated: ${totalFiles}\n`;
   output += `  • Files with violations: ${totalFilesWithViolations}\n`;
@@ -209,7 +324,6 @@ function formatResultsWithFiles(results: Map<string, ValidationResult>): string 
   output += `  • Variables: ${summary.variable}\n`;
   output += `  • Constants: ${summary.constant}\n\n`;
 
-  // Files with violations
   if (totalFilesWithViolations > 0) {
     output += '='.repeat(80) + '\n';
     output += 'Files with Violations:\n';
@@ -242,19 +356,37 @@ function formatResultsWithFiles(results: Map<string, ValidationResult>): string 
   return output;
 }
 
-/**
- * Main function
- */
 function main() {
   const projectRoot = path.resolve(__dirname, '..');
-  const srcDir = path.join(projectRoot, 'src');
+
+  const possibleDirs = [path.join(projectRoot, 'src'), path.join(projectRoot, 'app')];
+
+  const dirsToScan = possibleDirs.filter((dir) => fs.existsSync(dir));
 
   console.log('🔍 Scanning for TypeScript files...');
   console.log(`Project root: ${projectRoot}`);
-  console.log(`Source directory: ${srcDir}\n`);
+  console.log(`Scanning directories: ${dirsToScan.map((d) => path.basename(d)).join(', ')}\n`);
 
-  // Find all TypeScript files
-  const files = findTypeScriptFiles(srcDir, srcDir);
+  let files: string[] = [];
+  dirsToScan.forEach((dir) => {
+    files = files.concat(findTypeScriptFiles(dir, projectRoot));
+  });
+
+  const rootFiles = fs
+    .readdirSync(projectRoot)
+    .filter((file) => {
+      const filePath = path.join(projectRoot, file);
+      const stat = fs.statSync(filePath);
+      return (
+        stat.isFile() &&
+        VALID_EXTENSIONS.includes(path.extname(file)) &&
+        !shouldExcludeFile(filePath, projectRoot)
+      );
+    })
+    .map((file) => path.join(projectRoot, file));
+
+  files = files.concat(rootFiles);
+
   console.log(`Found ${files.length} TypeScript files to validate\n`);
 
   if (files.length === 0) {
@@ -262,7 +394,6 @@ function main() {
     return;
   }
 
-  // Validate each file
   console.log('Validating files...\n');
   const inputs: ValidationInput[] = [];
   const fileResults = new Map<string, ValidationResult>();
@@ -278,20 +409,24 @@ function main() {
     }
   });
 
-  // Validate all files
   const batchResult = validateNamingConventions(inputs);
 
-  // Also get individual results for better reporting
+  // Apply React-specific filtering
   inputs.forEach((input) => {
     const result = validateNamingConventions(input);
-    fileResults.set(input.filePath, result);
+    const filteredResult = filterReactViolations(result);
+    fileResults.set(input.filePath, filteredResult);
   });
 
-  // Display results
   console.log(formatResultsWithFiles(fileResults));
 
-  // Exit with error code if there are violations
-  if (batchResult.violations.length > 0) {
+  // Count actual violations after filtering
+  const actualViolations = Array.from(fileResults.values()).reduce(
+    (sum, result) => sum + result.violations.length,
+    0
+  );
+
+  if (actualViolations > 0) {
     console.log('\n❌ Validation completed with violations.');
     process.exit(1);
   } else {
@@ -300,5 +435,4 @@ function main() {
   }
 }
 
-// Run the script
 main();

@@ -892,6 +892,7 @@
       "search": "بحث عن مشروع...",
       "empty": "لا يوجد مشاريع",
       "table": {
+        "request": "الطلب",
         "title": "عنوان المشروع",
         "price": "السعر",
         "progress": "التقدم",
@@ -906,7 +907,8 @@
         "on_hold": "متوقف مؤقتاً",
         "completed": "مكتمل",
         "cancelled": "ملغي",
-        "disputed": "نزاع"
+        "disputed": "نزاع",
+        "in_progress": "قيد التنفيذ"
       }
     },
     "disputes": {

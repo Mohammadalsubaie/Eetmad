@@ -41,8 +41,9 @@
   --color-neutral-text-secondary: #536765;
   --color-neutral-light: #a4c5ca;
   --color-neutral: #8c9e9d;
-  --color-neutral-dark: #536765;
-  --color-neutral-darker: #334443;
+  --color-neutral-dark: #ffffff;
+  --color-neutral-darker: #ffffff;
+  --color-white: #ffffff;
 
   /* ألوان الحالة */
   --color-status-success: #3d8b64;
@@ -103,6 +104,7 @@
   --color-neutral: #6c7e7c;
   --color-neutral-dark: #a4c5ca;
   --color-neutral-darker: #e8f2f1;
+  --color-white: #ffffff;
 
   /* ألوان الحالة - محسّنة للثيم الغامق */
   --color-status-success: #4caf50;

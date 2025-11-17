@@ -38,13 +38,13 @@ npm run check:health
 
 ### 🔍 Code Quality & Validation
 
-| Script                | Command                              | When to Use   | Time |
-| --------------------- | ------------------------------------ | ------------- | ---- |
-| **Design Rules**      | `npm run validate:design [path]`     | Before commit | < 5s |
-| **Type Checking**     | `npm run validate-types`             | Before commit | < 3s |
-| **Naming Convention** | `npm run validate-naming`            | Weekly        | < 2s |
-| **Structure Check**   | `node scripts/validate-structure.js` | Monthly       | < 1s |
-| **Import Check**      | `./scripts/check-imports.sh`         | As needed     | < 2s |
+| Script                | Command                                             | When to Use   | Time |
+| --------------------- | --------------------------------------------------- | ------------- | ---- |
+| **Design Rules**      | `npm run validate:design [path]`                    | Before commit | < 5s |
+| **Type Checking**     | `npm run validate-types`                            | Before commit | < 3s |
+| **Naming Convention** | `npm run validate-naming`                           | Weekly        | < 2s |
+| **Structure Check**   | `node scripts/src/validation/validate-structure.js` | Monthly       | < 1s |
+| **Import Check**      | `./scripts/src/utils/check-imports.sh`              | As needed     | < 2s |
 
 📖 [Detailed Guide](./docs/validation/README.md)
 
@@ -219,8 +219,8 @@ npm run check:health
 
 **Start Here:**
 
-1. 📖 [5-Minute Quick Start](./docs/onboarding/quick-start.md)
-2. 🎓 [Training Path](./docs/onboarding/training.md)
+1. 📖 [5-Minute Quick Start](./docs/getting-started/QUICK_START_GUIDE.md)
+2. 📖 [Start Here Guide](./docs/getting-started/START_HERE.md)
 3. 💡 [Examples to Study](./examples/)
 
 ---
@@ -311,26 +311,38 @@ npm run scripts:help
 ```
 scripts/
 ├── INDEX.md                    ← You are here!
+├── README.md                    ← Overview
+├── STRUCTURE.md                 ← Complete structure guide
 │
-├── docs/                       ← Detailed documentation
-│   ├── validation/
-│   ├── workflows/
-│   ├── ci-cd/
-│   └── onboarding/
+├── src/                         ← All actual scripts
+│   ├── validation/              # Validation scripts
+│   ├── analysis/                # Analysis scripts
+│   └── utils/                   # Helper utilities
 │
-├── quick-reference/            ← One-page cheat sheets
+├── docs/                        ← All documentation
+│   ├── getting-started/         # Start here!
+│   ├── validation/              # Validation docs
+│   ├── workflows/               # Workflow guides
+│   ├── ci-cd/                   # CI/CD integration
+│   ├── changelog/                # Change logs
+│   ├── onboarding/              # For new members
+│   └── troubleshooting/         # Troubleshooting
+│
+├── quick-reference/             ← One-page cheat sheets
 │   ├── design-rules.md
 │   ├── css-vars.md
 │   └── common-fixes.md
 │
-├── examples/                   ← Code examples
+├── examples/                    ← Code examples
 │   ├── test-component-correct.tsx
 │   └── test-component-example.tsx
 │
-├── tools/                      ← Helper tools
-│   └── menu.js                ← Interactive menu
+├── tools/                       ← Helper tools
+│   └── menu.js                  ← Interactive menu
 │
-└── *.ts                       ← Actual script files
+└── reports/                     ← Analysis reports
+    ├── structure-analysis-report.txt
+    └── STRUCTURE_ANALYZER_SUMMARY.md
 ```
 
 ---

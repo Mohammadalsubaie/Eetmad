@@ -6,6 +6,8 @@ import { ArrowLeft, ArrowRight, CheckCircle2, Mail, Sparkles } from 'lucide-reac
 import { useLocale, useTranslations } from 'next-intl';
 import Link from 'next/link';
 import { useState } from 'react';
+import Card from '@/components/ui/Card/Card';
+import Button from '@/components/ui/Button/Button';
 
 export default function ForgotPasswordForm() {
   const t = useTranslations('auth');
@@ -38,13 +40,7 @@ export default function ForgotPasswordForm() {
   };
 
   return (
-    <div
-      className="w-full max-w-md rounded-3xl border-2 p-8 shadow-2xl md:p-10"
-      style={{
-        backgroundColor: cssVars.neutral.surface,
-        borderColor: cssVars.neutral.border,
-      }}
-    >
+    <Card className="w-full max-w-md p-8 md:p-10">
       {!isSuccess ? (
         <>
           {/* Header */}
@@ -135,7 +131,10 @@ export default function ForgotPasswordForm() {
               }}
             >
               {isLoading ? (
-                <div className="h-6 w-6 animate-spin rounded-full border-2 border-white border-t-transparent" />
+                <div
+                  className="h-6 w-6 animate-spin rounded-full border-2 border-t-transparent"
+                  style={{ borderColor: cssVars.neutral.surface }}
+                />
               ) : (
                 <>
                   {t('forgotPassword.submitButton')}
@@ -192,14 +191,16 @@ export default function ForgotPasswordForm() {
           >
             <p className="text-sm" style={{ color: cssVars.neutral.textSecondary }}>
               {t('forgotPassword.checkEmail.note')}{' '}
-              <button
+              <Button
                 onClick={handleResend}
                 disabled={isLoading}
-                className="font-bold hover:underline disabled:opacity-50"
+                variant="ghost"
+                size="sm"
+                className="inline h-auto p-0 font-bold hover:underline disabled:opacity-50"
                 style={{ color: cssVars.primary.DEFAULT }}
               >
                 {t('forgotPassword.checkEmail.resendLink')}
-              </button>
+              </Button>
             </p>
           </div>
 
@@ -220,6 +221,6 @@ export default function ForgotPasswordForm() {
           </Link>
         </motion.div>
       )}
-    </div>
+    </Card>
   );
 }

@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import Image from 'next/image';
 import { cssVars } from '@/styles/theme';
 import { useTranslations } from 'next-intl';
 import { motion } from 'framer-motion';
@@ -109,8 +110,13 @@ export default function TwoFactorSetup() {
         >
           <div className="rounded-2xl p-6" style={{ backgroundColor: cssVars.neutral.bg }}>
             <div className="mb-4 flex justify-center">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src={qrCodeUrl} alt={t('qrCodeAlt')} className="h-48 w-48 rounded-xl" />
+              <Image
+                src={qrCodeUrl}
+                alt={t('qrCodeAlt')}
+                width={192}
+                height={192}
+                className="h-48 w-48 rounded-xl"
+              />
             </div>
             <p
               className="text-center text-sm font-semibold"
@@ -196,7 +202,10 @@ export default function TwoFactorSetup() {
               }}
             >
               {isLoading ? (
-                <div className="mx-auto h-6 w-6 animate-spin rounded-full border-2 border-white border-t-transparent" />
+                <div
+                  className="mx-auto h-6 w-6 animate-spin rounded-full border-2 border-t-transparent"
+                  style={{ borderColor: cssVars.neutral.surface }}
+                />
               ) : (
                 t('submitButton')
               )}

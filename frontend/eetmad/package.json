@@ -9,15 +9,16 @@
     "lint": "next lint",
     "format": "prettier --write \"**/*.{ts,tsx,json,md,css}\"",
     "type-check": "tsc --noEmit",
-    "validate-naming": "tsx scripts/validate-naming.ts",
-    "validate-types": "tsx scripts/validate-types.ts",
-    "validate:design": "tsx scripts/validate-design-rules.ts",
+    "validate-naming": "tsx scripts/src/validation/validate-naming.ts",
+    "validate-types": "tsx scripts/src/validation/validate-types.ts",
+    "validate:design": "tsx scripts/src/validation/validate-design-rules.ts",
     "validate:all": "npm run type-check && npm run lint && npm run validate:design src/",
     "validate:watch": "nodemon --watch src/ --ext tsx,ts --exec 'npm run validate:design src/'",
     "scripts:menu": "node scripts/tools/menu.js",
     "scripts:help": "cat scripts/INDEX.md",
     "check:health": "npm run type-check && npm run lint:check && npm run format:check && npm run validate:design src/",
-    "setup:hooks": "chmod +x scripts/setup-hooks.sh && scripts/setup-hooks.sh",
+    "setup:hooks": "chmod +x scripts/src/utils/setup-hooks.sh && scripts/src/utils/setup-hooks.sh",
+    "analyze:structure": "tsx scripts/src/analysis/analyze-structure.ts",
     "prepare": "husky",
     "lint:check": "eslint . --ext .ts,.tsx",
     "format:check": "prettier --check \"**/*.{ts,tsx,json,md,css}\"",
@@ -82,5 +83,15 @@
   },
   "optionalDependencies": {
     "@esbuild/darwin-x64": "^0.27.0"
+  },
+  "lint-staged": {
+    "*.{ts,tsx}": [
+      "eslint --fix",
+      "prettier --write",
+      "npm run validate:design"
+    ],
+    "*.{json,md,css}": [
+      "prettier --write"
+    ]
   }
 }

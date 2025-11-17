@@ -1,0 +1,201 @@
+================================================================================
+📊 COMPONENT & PAGE STRUCTURE ANALYSIS REPORT
+================================================================================
+
+🏥 STRUCTURE HEALTH
+--------------------------------------------------------------------------------
+⚠️ Health Score: 70/100
+
+⚠️  Warnings:
+   • 165 components appear to be unused
+   • 42 pages have no outgoing links
+
+📦 COMPONENT STATISTICS
+--------------------------------------------------------------------------------
+Total Components: 188
+Components in Use: 23
+Unused Components: 165
+
+Component Distribution:
+   features/features                        119 components (15 used, 13%)
+   shared/shared                             53 components (8 used, 15%)
+   ui/ui                                     16 components (0 used, 0%)
+
+📄 PAGE STATISTICS
+--------------------------------------------------------------------------------
+Total Pages: 51
+Pages by Route Group:
+   admin                16 pages
+   auth                 5 pages
+   client               8 pages
+   main                 4 pages
+   public               10 pages
+   root                 1 pages
+   supplier             7 pages
+
+🚫 UNUSED COMPONENTS
+--------------------------------------------------------------------------------
+   • AnalyticsDashboard (features/features)
+   • AuditLogViewer (features/features)
+   • CategoryManager (features/features)
+   • DisputeReview (features/features)
+   • ReportsQueue (features/features)
+   • SystemSettings (features/features)
+   • UserManagement (features/features)
+   • VerificationQueue (features/features)
+   • SessionsList (features/features)
+   • TwoFactorSetup (features/features)
+   • UserTypeSelector (features/features)
+   • CategoryBreadcrumb (features/features)
+   • FavoriteButton (features/features)
+   • ReportButton (features/features)
+   • SavedSearches (features/features)
+   • SearchWithFilters (features/features)
+   • ShareButton (features/features)
+   • AddClauseModal (features/features)
+   • ContractVersionHistory (features/features)
+   • ContractViewer (features/features)
+   ... and 145 more
+
+⭐ MOST USED COMPONENTS
+--------------------------------------------------------------------------------
+   AdminPageHeader                used in 14 pages (shared/shared)
+   AdminDataTable                 used in 12 pages (shared/shared)
+   AdminActionButton              used in  5 pages (shared/shared)
+   StatusBadge                    used in  4 pages (shared/shared)
+   AdminStatCard                  used in  2 pages (shared/shared)
+   AdminStatsSummary              used in  1 pages (shared/shared)
+   ForgotPasswordForm             used in  1 pages (features/features)
+   LoginForm                      used in  1 pages (features/features)
+   RegisterForm                   used in  1 pages (features/features)
+   ResetPasswordForm              used in  1 pages (features/features)
+
+🔗 PAGE CONNECTIVITY
+--------------------------------------------------------------------------------
+Pages with Most Outgoing Links:
+   /                                        14 links
+   /admin/disputes                          2 links
+   /admin/offers                            2 links
+   /admin/payments                          2 links
+   /admin/projects                          2 links
+   /admin/requests                          2 links
+   /admin/reviews                           2 links
+   /admin/suppliers                         2 links
+   /admin/users                             2 links
+   /admin/analytics                         0 links
+
+🔌 ISOLATED PAGES (No Outgoing Links)
+--------------------------------------------------------------------------------
+   • /admin/analytics
+   • /admin/categories
+   • /admin/dashboard
+   • /admin/disputes/[id]
+   • /admin/reports
+   • /admin/settings
+   • /admin/users/[id]
+   • /admin/verification
+   • /forgot-password
+   • /login
+   • /register
+   • /reset-password
+   • /verify-email
+   • /projects/[id]
+   • /projects
+   • /requests/[id]/edit
+   • /requests/[id]/offers
+   • /requests/[id]
+   • /requests/my-requests
+   • /requests/new
+   • /requests
+   • /dashboard
+   • /profile/edit
+   • /profile
+   • /profile/security
+   • /about
+   • /categories/[slug]
+   • /categories
+   • /contact
+   • /faq
+   • /how-it-works
+   • /privacy
+   • /suppliers/[id]
+   • /suppliers
+   • /terms
+   • /offers/[id]/edit
+   • /offers/[id]
+   • /offers/new
+   • /offers
+   • /portfolio
+   • /profile/setup
+   • /stats
+
+📋 COMPONENT USAGE BY PAGE
+--------------------------------------------------------------------------------
+
+/ (root):
+   Components used: 10
+   • AudienceSection
+   • CTASection
+   • ExploreCategoriesSection
+   • FAQSection
+   • GettingStartedSection
+   ... and 5 more
+
+/admin/users (admin):
+   Components used: 4
+   • AdminPageHeader
+   • AdminDataTable
+   • AdminActionButton
+   • StatusBadge
+
+/admin/verification (admin):
+   Components used: 4
+   • AdminActionButton
+   • AdminDataTable
+   • AdminPageHeader
+   • AdminStatsSummary
+
+/admin/analytics (admin):
+   Components used: 3
+   • AdminPageHeader
+   • AdminStatCard
+   • AdminActionButton
+
+/admin/categories (admin):
+   Components used: 3
+   • AdminActionButton
+   • AdminDataTable
+   • AdminPageHeader
+
+/admin/dashboard (admin):
+   Components used: 3
+   • AdminDataTable
+   • AdminPageHeader
+   • AdminStatCard
+
+/admin/offers (admin):
+   Components used: 3
+   • AdminDataTable
+   • AdminPageHeader
+   • StatusBadge
+
+/admin/projects (admin):
+   Components used: 3
+   • AdminDataTable
+   • AdminPageHeader
+   • StatusBadge
+
+/admin/requests (admin):
+   Components used: 3
+   • AdminDataTable
+   • AdminPageHeader
+   • StatusBadge
+
+/admin/disputes (admin):
+   Components used: 2
+   • AdminDataTable
+   • AdminPageHeader
+
+================================================================================
+Report generated at: 11/17/2025, 3:40:15 PM
+================================================================================

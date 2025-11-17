@@ -14,6 +14,7 @@ import {
   CheckCircle2,
   Shield,
 } from 'lucide-react';
+import Card from '@/components/ui/Card/Card';
 
 export default function ResetPasswordForm() {
   const t = useTranslations('auth');
@@ -82,13 +83,7 @@ export default function ResetPasswordForm() {
   const strength = getPasswordStrength();
 
   return (
-    <div
-      className="w-full max-w-md rounded-3xl border-2 p-8 shadow-2xl md:p-10"
-      style={{
-        backgroundColor: cssVars.neutral.surface,
-        borderColor: cssVars.neutral.border,
-      }}
-    >
+    <Card className="w-full max-w-md p-8 md:p-10">
       {!isSuccess ? (
         <>
           {/* Header */}
@@ -273,7 +268,10 @@ export default function ResetPasswordForm() {
               }}
             >
               {isLoading ? (
-                <div className="h-6 w-6 animate-spin rounded-full border-2 border-white border-t-transparent" />
+                <div
+                  className="h-6 w-6 animate-spin rounded-full border-2 border-t-transparent"
+                  style={{ borderColor: cssVars.neutral.surface }}
+                />
               ) : (
                 <>
                   {t('resetPassword.submitButton')}
@@ -322,6 +320,6 @@ export default function ResetPasswordForm() {
           </div>
         </motion.div>
       )}
-    </div>
+    </Card>
   );
 }

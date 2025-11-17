@@ -6,6 +6,8 @@ import { ArrowLeft, ArrowRight, CheckCircle2, RefreshCw, Sparkles } from 'lucide
 import { useLocale, useTranslations } from 'next-intl';
 import Link from 'next/link';
 import { useEffect, useRef, useState } from 'react';
+import Card from '@/components/ui/Card/Card';
+import Button from '@/components/ui/Button/Button';
 
 export default function VerifyEmailForm() {
   const t = useTranslations('auth');
@@ -118,13 +120,7 @@ export default function VerifyEmailForm() {
   };
 
   return (
-    <div
-      className="w-full max-w-md rounded-2xl border-2 p-4 shadow-2xl sm:rounded-3xl sm:p-6 md:p-8"
-      style={{
-        backgroundColor: cssVars.neutral.surface,
-        borderColor: cssVars.neutral.border,
-      }}
-    >
+    <Card className="w-full max-w-md p-4 sm:p-6 md:p-8">
       {!isSuccess ? (
         <>
           {/* Header */}
@@ -211,19 +207,20 @@ export default function VerifyEmailForm() {
             <p className="mb-2 text-xs sm:text-sm" style={{ color: cssVars.neutral.textSecondary }}>
               {t('common.didntReceiveCode')}
             </p>
-            <button
+            <Button
               onClick={handleResend}
               disabled={!canResend}
-              className="inline-flex items-center gap-2 text-sm font-bold transition-all hover:underline disabled:opacity-50"
+              variant="ghost"
+              size="sm"
+              icon={RefreshCw}
+              iconPosition="left"
+              className="inline-flex h-auto p-0 font-bold hover:underline disabled:opacity-50"
               style={{ color: cssVars.primary.DEFAULT }}
             >
-              <RefreshCw
-                className={`h-3.5 w-3.5 sm:h-4 sm:w-4 ${!canResend ? 'animate-spin' : ''}`}
-              />
               <span className="text-xs sm:text-sm">
                 {canResend ? t('verifyEmail.resendButton') : `Resend in ${resendTimer}s`}
               </span>
-            </button>
+            </Button>
           </div>
 
           {/* Submit Button */}
@@ -306,6 +303,6 @@ export default function VerifyEmailForm() {
           </div>
         </motion.div>
       )}
-    </div>
+    </Card>
   );
 }

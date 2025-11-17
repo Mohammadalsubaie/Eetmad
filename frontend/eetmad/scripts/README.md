@@ -10,7 +10,7 @@
 
 ### New Here?
 
-**👉 Start with:** [START_HERE.md](./START_HERE.md)
+**👉 Start with:** [docs/getting-started/START_HERE.md](./docs/getting-started/START_HERE.md)
 
 ### Want Interactive Menu?
 
@@ -24,19 +24,34 @@ npm run scripts:menu
 
 ---
 
-## 📁 New Structure
+## 📁 Structure
 
 ```
 scripts/
-├── START_HERE.md          ← Begin here!
-├── INDEX.md               ← Central navigation hub
-├── quick-reference/       ← ⚡ One-page cheat sheets
-├── docs/                  ← Detailed documentation
-├── examples/              ← Code samples
-└── tools/                 ← Helper utilities
+├── README.md                    ← هذا الملف - نظرة عامة
+├── INDEX.md                     ← نقطة التنقل المركزية
+├── STRUCTURE.md                 ← وصف الهيكل الكامل
+│
+├── src/                         ← جميع السكريبتات الفعلية
+│   ├── validation/              # سكريبتات الفحص
+│   ├── analysis/                # سكريبتات التحليل
+│   └── utils/                   # أدوات مساعدة
+│
+├── docs/                        ← جميع التوثيق
+│   ├── getting-started/         # دليل البدء
+│   ├── validation/              # توثيق الفحص
+│   ├── workflows/               # سير العمل
+│   ├── ci-cd/                   # CI/CD
+│   └── changelog/                # سجل التغييرات
+│
+├── quick-reference/             ← ⚡ مراجع سريعة (صفحة واحدة)
+├── examples/                    ← أمثلة الكود
+├── tools/                       ← أدوات مساعدة
+└── reports/                     ← التقارير والتحليلات
 ```
 
-**📖 For complete guide:** [REORGANIZATION_GUIDE.md](./REORGANIZATION_GUIDE.md)
+**📖 For complete structure guide:** [STRUCTURE.md](./STRUCTURE.md)  
+**📖 For reorganization details:** [docs/getting-started/REORGANIZATION_GUIDE.md](./docs/getting-started/REORGANIZATION_GUIDE.md)
 
 ---
 
@@ -44,7 +59,7 @@ scripts/
 
 ### ✅ فحص قواعد البناء (Design Rules Validation)
 
-**السكريبت:** `validate-design-rules.ts` ⭐ **جديد!**
+**السكريبت:** `src/validation/validate-design-rules.ts` ⭐ **جديد!**
 
 **الوصف:** يفحص الملفات للتأكد من اتباع جميع قواعد البناء المذكورة في `docs/design/component-building-guidelines.md`
 
@@ -75,21 +90,21 @@ npm run validate:design --help
 
 **التوثيق:**
 
-- 📄 [دليل شامل](./validate-design-rules.README.md)
-- 📄 [دليل البدء السريع](./QUICK_START_GUIDE.md)
-- 📄 [ملخص شامل](./VALIDATION_SUMMARY.md)
-- 📄 [أمثلة CI/CD](./ci-integration-example.yml)
+- 📄 [دليل شامل](./docs/validation/design-rules.md)
+- 📄 [دليل البدء السريع](./docs/getting-started/QUICK_START_GUIDE.md)
+- 📄 [ملخص شامل](./docs/changelog/VALIDATION_SUMMARY.md)
+- 📄 [أمثلة CI/CD](./docs/ci-cd/ci-integration-example.yml)
 
 **أمثلة الاختبار:**
 
-- 📄 [مثال بأخطاء](./test-component-example.tsx)
-- 📄 [مثال صحيح](./test-component-correct.tsx)
+- 📄 [مثال بأخطاء](./examples/test-component-example.tsx)
+- 📄 [مثال صحيح](./examples/test-component-correct.tsx)
 
 ---
 
 ### ✅ فحص التسمية (Naming Validation)
 
-**السكريبت:** `validate-naming.ts`
+**السكريبت:** `src/validation/validate-naming.ts`
 
 **الوصف:** يفحص أسماء الملفات والمكونات للتأكد من اتباع معايير التسمية.
 
@@ -110,7 +125,7 @@ npm run validate-naming
 
 ### ✅ فحص الأنواع (Type Validation)
 
-**السكريبت:** `validate-types.ts`
+**السكريبت:** `src/validation/validate-types.ts`
 
 **الوصف:** يفحص TypeScript types للتأكد من صحتها واكتمالها.
 
@@ -129,20 +144,20 @@ npm run validate-types
 
 **التوثيق:**
 
-- 📄 [دليل التحقق من الأنواع](./validate-types.README.md)
+- 📄 [دليل التحقق من الأنواع](./docs/validation/types.md)
 
 ---
 
 ### 📋 فحص الهيكل (Structure Validation)
 
-**السكريبت:** `validate-structure.js`
+**السكريبت:** `src/validation/validate-structure.js`
 
 **الوصف:** يفحص هيكل المشروع للتأكد من اتباع البنية المحددة.
 
 **الاستخدام:**
 
 ```bash
-node scripts/validate-structure.js
+node scripts/src/validation/validate-structure.js
 ```
 
 ---
@@ -224,7 +239,7 @@ fi
 - Azure Pipelines
 - CircleCI
 
-انظر: [ci-integration-example.yml](./ci-integration-example.yml)
+انظر: [ci-integration-example.yml](./docs/ci-cd/ci-integration-example.yml)
 
 ### VS Code Tasks
 
@@ -298,21 +313,21 @@ alias vt="npm run validate-types"
 
 ### الأمثلة والـ Templates
 
-- 📄 [مثال Component صحيح](./test-component-correct.tsx)
-- 📄 [مثال Component بأخطاء](./test-component-example.tsx)
-- 📄 [أمثلة CI/CD](./ci-integration-example.yml)
+- 📄 [مثال Component صحيح](./examples/test-component-correct.tsx)
+- 📄 [مثال Component بأخطاء](./examples/test-component-example.tsx)
+- 📄 [أمثلة CI/CD](./docs/ci-cd/ci-integration-example.yml)
 
 ### التوثيق التفصيلي
 
 #### فحص قواعد البناء
 
-- 📄 [README شامل](./validate-design-rules.README.md)
-- 📄 [دليل البدء السريع](./QUICK_START_GUIDE.md)
-- 📄 [ملخص وإحصائيات](./VALIDATION_SUMMARY.md)
+- 📄 [README شامل](./docs/validation/design-rules.md)
+- 📄 [دليل البدء السريع](./docs/getting-started/QUICK_START_GUIDE.md)
+- 📄 [ملخص وإحصائيات](./docs/changelog/VALIDATION_SUMMARY.md)
 
 #### فحص الأنواع
 
-- 📄 [دليل TypeScript Validation](./validate-types.README.md)
+- 📄 [دليل TypeScript Validation](./docs/validation/types.md)
 
 ## 🐛 المشاكل الشائعة
 
@@ -418,8 +433,8 @@ npx nodemon --watch src/ --ext tsx,ts --exec "npm run validate:design src/"
 
 ### الحصول على المساعدة
 
-1. **اقرأ التوثيق** - ابدأ بـ [QUICK_START_GUIDE.md](./QUICK_START_GUIDE.md)
-2. **جرّب الأمثلة** - افحص [test-component-example.tsx](./test-component-example.tsx)
+1. **اقرأ التوثيق** - ابدأ بـ [QUICK_START_GUIDE.md](./docs/getting-started/QUICK_START_GUIDE.md)
+2. **جرّب الأمثلة** - افحص [test-component-example.tsx](./examples/test-component-example.tsx)
 3. **تواصل مع الفريق** - افتح issue أو تحدث مع المطورين
 
 ### المساهمة

@@ -13,7 +13,7 @@ import {
   validateNamingConventions,
   type ValidationInput,
   type ValidationResult,
-} from '../src/lib/utils/naming-validator';
+} from '../../../src/lib/utils/naming-validator';
 
 // Directories to exclude
 const EXCLUDE_DIRS = [
@@ -357,7 +357,7 @@ function formatResultsWithFiles(results: Map<string, ValidationResult>): string 
 }
 
 function main() {
-  const projectRoot = path.resolve(__dirname, '..');
+  const projectRoot = path.resolve(__dirname, '../../../');
 
   const possibleDirs = [path.join(projectRoot, 'src'), path.join(projectRoot, 'app')];
 

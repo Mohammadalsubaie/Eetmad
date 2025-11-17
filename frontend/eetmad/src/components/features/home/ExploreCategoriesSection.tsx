@@ -59,7 +59,7 @@ export default function ExploreCategoriesSection() {
           >
             <div className="absolute inset-0 opacity-10">
               <div
-                className="absolute end-0 top-0 h-32 w-32 rounded-full"
+                className="absolute end-0 top-0 h-24 w-24 rounded-full sm:h-32 sm:w-32"
                 style={{ background: cssVars.neutral.bg }}
               />
             </div>

@@ -556,7 +556,7 @@ function validateTypes(
 // ============================================================================
 
 function main() {
-  const projectRoot = path.resolve(__dirname, '..');
+  const projectRoot = path.resolve(__dirname, '../../../');
   const sqlFilePath = path.join(projectRoot, 'docs', 'database', 'mysql.sql');
   const typesDir = path.join(projectRoot, 'src', 'lib', 'types');
 

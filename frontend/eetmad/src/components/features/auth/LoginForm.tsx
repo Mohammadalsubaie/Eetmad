@@ -7,6 +7,7 @@ import { useTranslations } from 'next-intl';
 import { useLocale } from 'next-intl';
 import Link from 'next/link';
 import { useState } from 'react';
+import Card from '@/components/ui/Card/Card';
 
 export default function LoginForm() {
   const t = useTranslations('auth');
@@ -32,13 +33,7 @@ export default function LoginForm() {
   };
 
   return (
-    <div
-      className="w-full max-w-md rounded-2xl border-2 p-4 shadow-2xl sm:rounded-3xl sm:p-6 md:p-8"
-      style={{
-        backgroundColor: cssVars.neutral.surface,
-        borderColor: cssVars.neutral.border,
-      }}
-    >
+    <Card className="w-full max-w-md p-4 sm:p-6 md:p-8">
       {/* Header */}
       <div className="mb-6 text-center sm:mb-8">
         <div
@@ -204,7 +199,10 @@ export default function LoginForm() {
           }}
         >
           {isLoading ? (
-            <div className="h-6 w-6 animate-spin rounded-full border-2 border-white border-t-transparent" />
+            <div
+              className="h-6 w-6 animate-spin rounded-full border-2 border-t-transparent"
+              style={{ borderColor: cssVars.neutral.surface }}
+            />
           ) : (
             <>
               {t('login.submitButton')}
@@ -270,6 +268,6 @@ export default function LoginForm() {
           </Link>
         </p>
       </div>
-    </div>
+    </Card>
   );
 }

@@ -1,6 +1,11 @@
 import apiClient from './client';
 import type { UpdateUserProfileData, User } from '@/lib/types/user.types';
 
+export interface ChangePasswordData {
+  currentPassword: string;
+  newPassword: string;
+}
+
 export const usersApi = {
   getProfile: async () => {
     const { data } = await apiClient.get<User>('/users/me');
@@ -10,5 +15,10 @@ export const usersApi = {
   updateProfile: async (profileData: UpdateUserProfileData) => {
     const { data: response } = await apiClient.put<User>('/users/me', profileData);
     return response;
+  },
+
+  changePassword: async (passwordData: ChangePasswordData) => {
+    const { data } = await apiClient.put('/users/me/password', passwordData);
+    return data;
   },
 };

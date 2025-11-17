@@ -35,6 +35,7 @@ export const cssVars = {
     DEFAULT: 'var(--color-neutral)',
     dark: 'var(--color-neutral-dark)',
     darker: 'var(--color-neutral-darker)',
+    white: 'var(--color-white)',
   },
   status: {
     success: 'var(--color-status-success)',

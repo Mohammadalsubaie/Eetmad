@@ -1,6 +1,6 @@
 \*\*Build frontend pages and components
 
-frontend/eetmad/src/app/[locale]/(admin)/admin pages and components
+frontend/eetmad/src/app/[locale]/(public)/contact pages and components
 
 following ALL guidelines, rules, and examples in `docs/build-prompt.md`\*\*
 

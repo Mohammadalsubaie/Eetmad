@@ -39,8 +39,31 @@
     "termsAndConditions": "Terms & Conditions",
     "privacyPolicy": "Privacy Policy"
   },
-  "home": {
-    "hero": {
+  "faq": {
+    "pageTitle": "Frequently Asked Questions",
+    "fetchError": "Failed to load FAQs. Please try again later.",
+    "loading": "Loading FAQs...",
+    "noFaqsFound": "No FAQs found at the moment.",
+    "questions": {
+      "timelines": "How long does it take to get offers?",
+      "offers": "How many offers to expect?",
+      "payments": "How does the payment process work?",
+      "quality": "How do you ensure supplier quality?"
+    },
+    "answers": {
+      "timelines": "Offers usually start arriving within 24 hours of posting the request. In most cases, you get several offers within two days. The duration depends on the type of request and its complexity.",
+      "offers": "The number of offers varies depending on the type of request and geographic area. On average, requests receive 5-10 offers from different suppliers. Clear and detailed requests attract more offers.",
+      "payments": "We do not directly intervene in the payment process. Financial agreements are made between the two parties directly. We recommend using safe and documented payment methods. We provide an optional contract template to document the agreement.",
+      "quality": "We verify all suppliers before accepting them on the platform. We request commercial registration and official documents. We have a comprehensive rating system from users. We continuously monitor supplier performance and take action against violators."
+    }
+  },
+      "faq": {
+        "pageTitle": "Frequently Asked Questions",
+        "fetchError": "Failed to load FAQs. Please try again later.",
+        "loading": "Loading FAQs...",
+        "noFaqsFound": "No FAQs found at the moment."
+      },
+      "home": {    "hero": {
       "badge": "312 Opportunities Available Now",
       "title": "Explore",
       "titleHighlight": "Exceptional Opportunities",
@@ -223,6 +246,18 @@
     }
   },
   "biddingPlatform": {
+    "about": {
+      "title": "About Our Platform",
+      "description": "We are dedicated to connecting talents with government opportunities, fostering transparency, efficiency, and shared success.",
+      "missionTitle": "Our Mission",
+      "missionDescription": "To empower individuals and businesses by providing a seamless and transparent platform for government bidding, ensuring fair access and optimal outcomes for all participants.",
+      "visionTitle": "Our Vision",
+      "visionDescription": "To be the leading platform for government procurement, recognized for our innovation, integrity, and commitment to community development and economic growth.",
+      "ourValuesTitle": "Our Core Values",
+      "value1": "Transparency",
+      "value2": "Integrity",
+      "value3": "Innovation"
+    },
     "sections": {
       "platformOverview": {
         "eyebrow": "Overview",
@@ -465,33 +500,6 @@
             }
           }
         }
-      },
-      "faq": {
-        "eyebrow": "FAQ",
-        "title": "Answers to Your Questions",
-        "subtitle": "Have questions? Here are answers to the most frequently asked questions",
-        "items": {
-          "timelines": {
-            "question": "How long does it take to get offers?",
-            "summary": "Expected time to receive offers from suppliers",
-            "answer": "Offers usually start arriving within 24 hours of posting the request. In most cases, you get several offers within two days. The duration depends on the type of request and its complexity."
-          },
-          "offers": {
-            "question": "How many offers to expect?",
-            "summary": "Average number of offers you can receive",
-            "answer": "The number of offers varies depending on the type of request and geographic area. On average, requests receive 5-10 offers from different suppliers. Clear and detailed requests attract more offers."
-          },
-          "payments": {
-            "question": "How does the payment process work?",
-            "summary": "Payment mechanism and financial transfers",
-            "answer": "We do not directly intervene in the payment process. Financial agreements are made between the two parties directly. We recommend using safe and documented payment methods. We provide an optional contract template to document the agreement."
-          },
-          "quality": {
-            "question": "How do you ensure supplier quality?",
-            "summary": "Criteria for selecting and evaluating suppliers",
-            "answer": "We verify all suppliers before accepting them on the platform. We request commercial registration and official documents. We have a comprehensive rating system from users. We continuously monitor supplier performance and take action against violators."
-          }
-        }
       }
     }
   },
@@ -636,16 +644,59 @@
       "title": "Suppliers"
     },
     "terms": {
-      "title": "Terms of Service"
+      "pageTitle": "Terms and Conditions",
+      "introduction": "Welcome to Eetmad. These Terms and Conditions govern your use of our website and services. By accessing or using our platform, you agree to be bound by these terms.",
+      "section1Title": "Acceptance of Terms",
+      "section1Content": "By creating an account or using any part of our service, you confirm your acceptance of these Terms and Conditions and our Privacy Policy. If you do not agree, you may not access or use the service.",
+      "section2Title": "User Accounts",
+      "section2Content": "You must be at least 18 years old to create an account. You are responsible for maintaining the confidentiality of your account and password and for restricting access to your computer. You agree to accept responsibility for all activities that occur under your account or password.",
+      "section3Title": "Prohibited Activities",
+      "section3Content": "You may not use the service for any illegal or unauthorized purpose. You agree to comply with all local laws regarding online conduct and acceptable content. Prohibited activities include, but are not limited to, harassment, spamming, and distributing malicious software.",
+      "section4Title": "Intellectual Property",
+      "section4Content": "The service and its original content, features, and functionality are and will remain the exclusive property of Eetmad and its licensors. Our trademarks and trade dress may not be used in connection with any product or service without the prior written consent of Eetmad.",
+      "section5Title": "Limitation of Liability",
+      "section5Content": "In no event shall Eetmad, nor its directors, employees, partners, agents, suppliers, or affiliates, be liable for any indirect, incidental, special, consequential or punitive damages, including without limitation, loss of profits, data, use, goodwill, or other intangible losses, resulting from (i) your access to or use of or inability to access or use the Service; (ii) any conduct or content of any third party on the Service; (iii) any content obtained from the Service; and (iv) unauthorized access, use or alteration of your transmissions or content, whether based on warranty, contract, tort (including negligence) or any other legal theory, whether or not we have been informed of the possibility of such damage, and even if a remedy set forth herein is found to have failed of its essential purpose.",
+      "conclusion": "These Terms and Conditions are effective as of November 16, 2025."
     },
     "faq": {
-      "title": "Frequently Asked Questions"
+      "title": "Frequently Asked Questions",
+      "pageTitle": "Frequently Asked Questions",
+      "fetchError": "Failed to load FAQs. Please try again later.",
+      "loading": "Loading FAQs...",
+      "noFaqsFound": "No FAQs found at the moment.",
+      "questions": {
+        "timelines": "How long does it take to get offers?",
+        "offers": "How many offers to expect?",
+        "payments": "How does the payment process work?",
+        "quality": "How do you ensure supplier quality?"
+      },
+      "answers": {
+        "timelines": "Offers usually start arriving within 24 hours of posting the request. In most cases, you get several offers within two days. The duration depends on the type of request and its complexity.",
+        "offers": "The number of offers varies depending on the type of request and geographic area. On average, requests receive 5-10 offers from different suppliers. Clear and detailed requests attract more offers.",
+        "payments": "We do not directly intervene in the payment process. Financial agreements are made between the two parties directly. We recommend using safe and documented payment methods. We provide an optional contract template to document the agreement.",
+        "quality": "We verify all suppliers before accepting them on the platform. We request commercial registration and official documents. We have a comprehensive rating system from users. We continuously monitor supplier performance and take action against violators."
+      }
     },
     "howItWorks": {
       "title": "How It Works"
     },
     "contact": {
-      "title": "Contact Us"
+      "title": "Contact Us",
+      "nameLabel": "Your Name",
+      "emailLabel": "Your Email",
+      "subjectLabel": "Subject",
+      "messageLabel": "Your Message",
+      "submitButton": "Send Message",
+      "sending": "Sending...",
+      "allFieldsRequired": "All fields are required.",
+      "invalidEmail": "Please enter a valid email address.",
+      "submissionFailed": "Failed to send message. Please try again.",
+      "pageTitle": "Contact Us",
+      "pageDescription": "We'd love to hear from you! Send us a message and we'll get back to you as soon as possible.",
+      "formTitle": "Send us a Message",
+      "submitting": "Sending...",
+      "submitSuccess": "Your message has been sent successfully!",
+      "submitError": "Failed to send your message. Please try again later."
     },
     "categories": {
       "title": "Categories"
@@ -654,7 +705,35 @@
       "title": "About Us"
     },
     "privacy": {
-      "title": "Privacy Policy"
+      "title": "Privacy Policy",
+      "introduction": {
+        "title": "Introduction",
+        "paragraph1": "This Privacy Policy describes Our policies and procedures on the collection, use and disclosure of Your information when You use the Service and tells You about Your privacy rights and how the law protects You.",
+        "paragraph2": "We use Your Personal data to provide and improve the Service. By using the Service, You agree to the collection and use of information in accordance with this Privacy Policy."
+      },
+      "dataCollection": {
+        "title": "Collecting and Using Your Personal Data",
+        "paragraph1": "While using Our Service, We may ask You to provide Us with certain personally identifiable information that can be used to contact or identify You. Personally identifiable information may include, but is not limited to:",
+        "item1": "Email address",
+        "item2": "First name and last name",
+        "item3": "Phone number"
+      },
+      "dataUsage": {
+        "title": "Use of Your Personal Data",
+        "paragraph1": "The Company may use Personal Data for the following purposes: To provide and maintain our Service, including to monitor the usage of our Service. To manage Your Account: to manage Your registration as a user of the Service. The Personal Data You provide can give You access to different functionalities of the Service that are available to You as a registered user."
+      },
+      "userRights": {
+        "title": "Your Privacy Rights",
+        "paragraph1": "You have the right to access, update or to delete the information We have on You. Whenever made possible, you can access, update or request deletion of Your Personal Data directly within Your account settings section. If you are unable to perform these actions yourself, please contact Us to assist You."
+      },
+      "changes": {
+        "title": "Changes to this Privacy Policy",
+        "paragraph1": "We may update Our Privacy Policy from time to time. We will notify You of any changes by posting the new Privacy Policy on this page. We will let You know via email and/or a prominent notice on Our Service, prior to the change becoming effective and update the 'Last updated' date at the top of this Privacy Policy."
+      },
+      "contact": {
+        "title": "Contact Us",
+        "paragraph1": "If you have any questions about this Privacy Policy, You can contact us: By email: support@eetmad.com"
+      }
     },
     "supplierProfile": {
       "title": "Supplier Profile",
@@ -664,7 +743,104 @@
       "title": "Dashboard"
     },
     "profile": {
-      "title": "Profile"
+      "title": "Profile",
+      "edit": {
+        "title": "Edit Profile",
+        "back": "Back",
+        "loading": "Loading profile...",
+        "save": "Save Changes",
+        "saving": "Saving...",
+        "success": "Profile updated successfully!",
+        "sections": {
+          "basicInfo": "Basic Information",
+          "companyInfo": "Company Information",
+          "address": "Address",
+          "socialLinks": "Social Links & Website"
+        },
+        "fields": {
+          "fullName": {
+            "placeholder": "Full Name"
+          },
+          "phone": {
+            "placeholder": "Phone Number"
+          },
+          "dateOfBirth": {
+            "placeholder": "Date of Birth"
+          },
+          "nationalId": {
+            "placeholder": "National ID"
+          },
+          "bio": {
+            "label": "Bio",
+            "placeholder": "Tell us about yourself...",
+            "maxLength": "characters"
+          },
+          "companyName": {
+            "placeholder": "Company Name"
+          },
+          "commercialRegister": {
+            "placeholder": "Commercial Register Number"
+          },
+          "taxNumber": {
+            "placeholder": "Tax Number"
+          },
+          "street": {
+            "placeholder": "Street Address"
+          },
+          "city": {
+            "placeholder": "City"
+          },
+          "state": {
+            "placeholder": "State/Province"
+          },
+          "country": {
+            "placeholder": "Country"
+          },
+          "postalCode": {
+            "placeholder": "Postal Code"
+          },
+          "website": {
+            "placeholder": "Website URL"
+          },
+          "linkedin": {
+            "placeholder": "LinkedIn Profile URL"
+          },
+          "twitter": {
+            "placeholder": "Twitter Profile URL"
+          },
+          "github": {
+            "placeholder": "GitHub Profile URL"
+          }
+        },
+        "errors": {
+          "saveFailed": "Failed to save profile. Please try again."
+        }
+      },
+      "security": {
+        "title": "Security Settings",
+        "back": "Back",
+        "currentPassword": "Current Password",
+        "newPassword": "New Password",
+        "confirmPassword": "Confirm New Password",
+        "saveButton": "Save Changes",
+        "passwordStrength": {
+          "label": "Password Strength",
+          "weak": "Weak",
+          "medium": "Medium",
+          "strong": "Strong"
+        },
+        "securityTip": "Choose a strong password with at least 8 characters, including uppercase, lowercase, numbers, and symbols. After changing your password, you will be logged out from all other devices.",
+        "success": {
+          "passwordChanged": "Password changed successfully! You have been logged out from all other devices."
+        },
+        "errors": {
+          "currentPasswordRequired": "Current password is required",
+          "passwordTooShort": "Password must be at least 8 characters",
+          "passwordsNotMatch": "Passwords do not match",
+          "samePassword": "New password must be different from current password",
+          "changePasswordFailed": "Failed to change password. Please check your current password and try again."
+        }
+      }
     },
     "security": {
       "title": "Security Settings"

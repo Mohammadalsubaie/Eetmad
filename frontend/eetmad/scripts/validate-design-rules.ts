@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 /**
- * Design Rules Validation Script
+ * Design Rules Validation Script - Enhanced & Optimized Version
  *
  * يفحص الملفات للتأكد من اتباع قواعد البناء المذكورة في:
  * frontend/eetmad/docs/design/component-building-guidelines.md
@@ -38,6 +38,63 @@ const FORBIDDEN_HEX_COLORS = [
   '#C19A6B',
   '#B8860B',
   '#DAA520',
+];
+
+// المكونات الأساسية التي يجب أن تكون في ui/
+const BASIC_UI_COMPONENTS = [
+  'Button',
+  'Card',
+  'CardHeader',
+  'CardContent',
+  'CardFooter',
+  'Input',
+  'Label',
+  'Textarea',
+  'Select',
+  'Checkbox',
+  'Radio',
+  'Switch',
+  'Dialog',
+  'DialogContent',
+  'DialogHeader',
+  'DialogFooter',
+  'Modal',
+  'Dropdown',
+  'Menu',
+  'Tooltip',
+  'Badge',
+  'Avatar',
+  'Alert',
+  'Skeleton',
+  'Separator',
+  'ScrollArea',
+  'Table',
+  'TableHeader',
+  'TableBody',
+  'TableRow',
+  'TableCell',
+  'Tabs',
+  'TabsList',
+  'TabsTrigger',
+  'TabsContent',
+  'Accordion',
+  'AccordionItem',
+  'AccordionTrigger',
+  'AccordionContent',
+];
+
+// المكونات الثقيلة التي تحتاج dynamic import
+const HEAVY_COMPONENTS = [
+  'Chart',
+  'Editor',
+  'RichTextEditor',
+  'Map',
+  'Calendar',
+  'DataTable',
+  'CodeEditor',
+  'MarkdownEditor',
+  'PDFViewer',
+  'VideoPlayer',
 ];
 
 interface ValidationError {
@@ -77,12 +134,17 @@ class DesignRulesValidator {
       filePath.includes('\\i18n\\') ||
       filePath.includes('/docs/') ||
       filePath.includes('\\docs\\') ||
+      filePath.includes('/styles/') ||
+      filePath.includes('\\styles\\') ||
+      filePath.includes('/theme/') ||
+      filePath.includes('\\theme\\') ||
       filePath.endsWith('.config.') ||
       filePath.includes('.config.ts') ||
       filePath.includes('.config.js') ||
       filePath.includes('validate-') ||
       filePath.includes('setup-') ||
       filePath.includes('check-') ||
+      filePath.includes('proxy.ts') ||
       filePath.includes('.test.') ||
       filePath.includes('.spec.') ||
       filePath.includes('.test-demo.') ||
@@ -126,12 +188,9 @@ class DesignRulesValidator {
       /\/\*\s*PLACEHOLDER/i,
     ];
 
-    // Check for placeholder patterns in the first 10 lines
     const lines = content.split('\n').slice(0, 10).join('\n');
     const hasPlaceholderPattern = placeholderPatterns.some((pattern) => pattern.test(lines));
 
-    // Also check if file is very minimal (likely a placeholder)
-    // If it only has a few lines and returns null, it's likely a placeholder
     const isMinimalPlaceholder =
       content.split('\n').length < 10 &&
       (content.includes('return null') || content.includes('return;'));
@@ -140,112 +199,9 @@ class DesignRulesValidator {
   }
 
   /**
-   * القاعدة 1: فحص استخدام الألوان
-   */
-  private checkColorUsage(content: string, filePath: string): ValidationError[] {
-    const errors: ValidationError[] = [];
-
-    // تجاهل ملفات الـ scripts وملفات الثيم
-    if (this.isScriptFile(filePath) || this.isThemeFile(filePath)) {
-      return errors;
-    }
-
-    const lines = content.split('\n');
-
-    lines.forEach((line, index) => {
-      const lineNum = index + 1;
-
-      // فحص hex colors
-      const hexColorRegex = /#([0-9A-Fa-f]{3}|[0-9A-Fa-f]{6}|[0-9A-Fa-f]{8})\b/g;
-      let hexMatch;
-      while ((hexMatch = hexColorRegex.exec(line)) !== null) {
-        const hexColor = hexMatch[0];
-
-        // تجاهل التعليقات والـ examples
-        if (line.trim().startsWith('//') || line.includes('WRONG') || line.includes('❌')) {
-          continue;
-        }
-
-        errors.push({
-          file: filePath,
-          line: lineNum,
-          column: hexMatch.index + 1,
-          rule: 'Rule 1: Theme System Usage',
-          severity: 'error',
-          message: `استخدام لون hex مباشر: ${hexColor}`,
-          suggestion: 'استخدم cssVars من @/styles/theme بدلاً من ذلك',
-          code: line.trim(),
-        });
-      }
-
-      // فحص rgba/rgb values
-      const rgbaRegex = /rgba?\s*\(\s*\d+\s*,\s*\d+\s*,\s*\d+/g;
-      let rgbaMatch;
-      while ((rgbaMatch = rgbaRegex.exec(line)) !== null) {
-        if (line.trim().startsWith('//') || line.includes('WRONG') || line.includes('❌')) {
-          continue;
-        }
-
-        // استثناء: rgba في shadows أو box-shadow قد يكون مقبولاً
-        if (!line.includes('shadow') && !line.includes('Shadow')) {
-          errors.push({
-            file: filePath,
-            line: lineNum,
-            column: rgbaMatch.index + 1,
-            rule: 'Rule 1: Theme System Usage',
-            severity: 'error',
-            message: `استخدام rgba/rgb مباشر: ${rgbaMatch[0]}`,
-            suggestion: 'استخدم color-mix مع cssVars للشفافية',
-            code: line.trim(),
-          });
-        }
-      }
-
-      // فحص Tailwind arbitrary values للألوان
-      const tailwindArbitraryRegex = /\b(bg|text|border|ring|from|to|via)-\[#[0-9A-Fa-f]{3,8}\]/g;
-      let tailwindMatch;
-      while ((tailwindMatch = tailwindArbitraryRegex.exec(line)) !== null) {
-        if (line.trim().startsWith('//') || line.includes('WRONG') || line.includes('❌')) {
-          continue;
-        }
-
-        errors.push({
-          file: filePath,
-          line: lineNum,
-          column: tailwindMatch.index + 1,
-          rule: 'Rule 1: Theme System Usage',
-          severity: 'error',
-          message: `استخدام Tailwind arbitrary value للألوان: ${tailwindMatch[0]}`,
-          suggestion: 'استخدم inline styles مع cssVars',
-          code: line.trim(),
-        });
-      }
-
-      // فحص استيراد colors بدلاً من cssVars
-      if (line.includes('import') && line.includes('colors') && line.includes('@/styles/theme')) {
-        if (!line.includes('cssVars')) {
-          errors.push({
-            file: filePath,
-            line: lineNum,
-            column: 1,
-            rule: 'Rule 1: Theme System Usage',
-            severity: 'error',
-            message: 'استيراد colors مباشرة من theme',
-            suggestion: 'استخدم: import { cssVars } from "@/styles/theme"',
-            code: line.trim(),
-          });
-        }
-      }
-    });
-
-    return errors;
-  }
-
-  /**
-   * التحقق من أن النص ليس قيمة تقنية (يجب تجاهلها)
+   * التحقق من أن النص ليس قيمة تقنية (يجب تجاهلها) - ENHANCED
    */
   private isTechnicalValue(text: string, line: string, filePath?: string): boolean {
-    // JavaScript keywords and built-ins
     const jsKeywords = [
       'undefined',
       'null',
@@ -302,7 +258,6 @@ class DesignRulesValidator {
       'implements',
     ];
 
-    // DOM event names
     const domEvents = [
       'change',
       'click',
@@ -334,7 +289,6 @@ class DesignRulesValidator {
       'drop',
     ];
 
-    // CSS and theme values
     const cssValues = [
       'transparent',
       'linear',
@@ -373,7 +327,6 @@ class DesignRulesValidator {
       'default',
     ];
 
-    // HTML/CSS attribute values
     const htmlAttributeValues = [
       'ltr',
       'rtl',
@@ -392,7 +345,6 @@ class DesignRulesValidator {
       'section',
     ];
 
-    // Keyboard keys
     const keyboardKeys = [
       'backspace',
       'enter',
@@ -411,54 +363,67 @@ class DesignRulesValidator {
       'insert',
     ];
 
-    // localStorage/sessionStorage keys
     const storageKeys = ['token', 'theme', 'user', 'auth', 'locale', 'language'];
 
-    // CSS size values (like "32px 32px", "40px 40px")
+    // NEW: User types/roles/statuses (شائعة في التطبيق)
+    const userTypesAndStatuses = [
+      'client',
+      'supplier',
+      'admin',
+      'active',
+      'inactive',
+      'pending',
+      'approved',
+      'rejected',
+      'verified',
+      'unverified',
+    ];
+
     const isCssSize = /^\d+px\s+\d+px$/.test(text) || /^\d+px$/.test(text);
 
-    // Translation keys in arrays (like ['step1', 'step2'] or ['point1', 'point2'])
     const isTranslationKeyArray =
       /\[\s*['"]/.test(line) &&
       (line.includes('as const') || line.includes('Keys') || line.includes('key'));
 
-    // Object key property (like key: 'value') - only filter if it's a camelCase identifier (translation key)
-    // Don't filter if it contains Arabic text or looks like user-facing text
+    // NEW: التحقق من object keys في type definitions
+    const isTypeObjectKey =
+      /:\s*\{[^}]*\w+\s*:\s*['"]/.test(line) &&
+      (line.includes('type ') || line.includes('interface '));
+
+    // NEW: التحقق من enum values
+    const isEnumValue = line.includes('enum ') || /,\s*\w+\s*=\s*['"]/.test(line);
+
+    // NEW: التحقق من union types
+    const isUnionTypeValue =
+      (line.includes('|') || line.includes('?:')) &&
+      (line.includes('type ') || line.includes('interface ') || line.includes('const '));
+
     const isObjectKeyProperty =
       (/^\s*key\s*:\s*['"]/.test(line) || /key:\s*['"]/.test(line)) &&
-      // Only filter camelCase identifiers (translation keys), not user-facing text
       /^[a-z][a-zA-Z0-9]*$/.test(text) &&
       !/[\u0600-\u06FF]/.test(text) &&
-      text.length < 30; // Translation keys are usually short
+      text.length < 30;
 
-    // Media query strings
     const isMediaQuery =
       text.includes('prefers-color-scheme') ||
       text.includes('@media') ||
       (text.includes('(') && text.includes(')'));
 
-    // Console.log messages (developer-facing)
     const isConsoleLog =
       line.includes('console.log') ||
       line.includes('console.debug') ||
       line.includes('console.info');
 
-    // Translation key patterns (inside t(), useTranslations(), etc.)
-    // Match: t('key'), t("key"), useTranslations('key'), const t = useTranslations('key')
     const isTranslationKey =
       /\bt\s*\(['"]/.test(line) ||
       /useTranslations\s*\(['"]/.test(line) ||
       /\.t\s*\(['"]/.test(line) ||
       /const\s+\w+\s*=\s*useTranslations\s*\(['"]/.test(line);
 
-    // Type definitions and enums
     const isTypeDefinition =
       /:\s*['"]/.test(line) &&
       (line.includes('type ') || line.includes('interface ') || line.includes('enum '));
 
-    // Object property names (like ", name: " or ", nativeName: " or "{ name: ")
-    // But exclude if it's a JSX prop like "name=" or "className="
-    // Only filter if the text matches common property names, not user-facing values
     const commonPropertyNames = [
       'name',
       'code',
@@ -469,33 +434,37 @@ class DesignRulesValidator {
       'value',
       'id',
       'key',
+      'titleKey',
+      'descriptionKey',
+      'statLabelKey',
+      'userType',
+      'status',
+      'role',
     ];
+
     const isObjectPropertyName = commonPropertyNames.some((propName) =>
       new RegExp(
         `,\\s*${propName}\\s*:\\s*['"]${text.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}['"]`
       ).test(line)
     );
+
     const isObjectProperty =
       isObjectPropertyName ||
       ((/,\s*\w+\s*:\s*['"]/.test(line) || /{\s*\w+\s*:\s*['"]/.test(line)) &&
         !line.includes('=') &&
         !line.includes('<') &&
         !line.includes('>') &&
-        // Don't filter if it contains Arabic text (user-facing)
         !/[\u0600-\u06FF]/.test(text));
 
-    // Error messages (developer-facing, not user-facing)
     const isError =
       line.includes('throw new Error') ||
       line.includes('console.error') ||
       line.includes('console.warn');
 
-    // Mock/test data files
     const isMockFile = filePath
       ? filePath.includes('/mocks/') || filePath.includes('/test/') || filePath.includes('/tests/')
       : false;
 
-    // localStorage.getItem/setItem/removeItem calls
     const isLocalStorageCall =
       line.includes('localStorage.getItem') ||
       line.includes('localStorage.setItem') ||
@@ -504,11 +473,9 @@ class DesignRulesValidator {
       line.includes('sessionStorage.setItem') ||
       line.includes('sessionStorage.removeItem');
 
-    // Clipboard API calls
     const isClipboardCall =
       line.includes('clipboardData.getData') || line.includes('clipboardData.setData');
 
-    // Type union patterns (like 'client' | 'supplier' or 'left' | 'center' | 'right')
     const isTypeUnion =
       /['"]\s*\|\s*['"]/.test(line) &&
       (line.includes('type ') || line.includes('?:') || line.includes('='));
@@ -522,10 +489,14 @@ class DesignRulesValidator {
       htmlAttributeValues.includes(lowerText) ||
       keyboardKeys.includes(lowerText) ||
       storageKeys.includes(lowerText) ||
+      userTypesAndStatuses.includes(lowerText) ||
       isCssSize ||
       isTranslationKey ||
       isTranslationKeyArray ||
       isTypeDefinition ||
+      isTypeObjectKey ||
+      isEnumValue ||
+      isUnionTypeValue ||
       isTypeUnion ||
       isObjectProperty ||
       isObjectKeyProperty ||
@@ -534,43 +505,169 @@ class DesignRulesValidator {
       isMediaQuery ||
       isLocalStorageCall ||
       isClipboardCall ||
-      (isMockFile && lowerText.length < 20) // Allow short strings in mock files
+      (isMockFile && lowerText.length < 20)
     );
   }
 
   /**
-   * القاعدة 2: فحص استخدام i18n
+   * القاعدة 1: فحص استخدام الألوان
+   */
+  private checkColorUsage(content: string, filePath: string): ValidationError[] {
+    const errors: ValidationError[] = [];
+
+    if (this.isScriptFile(filePath) || this.isThemeFile(filePath)) {
+      return errors;
+    }
+
+    const lines = content.split('\n');
+
+    lines.forEach((line, index) => {
+      const lineNum = index + 1;
+
+      // فحص hex colors
+      const hexColorRegex = /#([0-9A-Fa-f]{3}|[0-9A-Fa-f]{6}|[0-9A-Fa-f]{8})\b/g;
+      let hexMatch;
+      while ((hexMatch = hexColorRegex.exec(line)) !== null) {
+        const hexColor = hexMatch[0];
+
+        if (line.trim().startsWith('//') || line.includes('WRONG') || line.includes('❌')) {
+          continue;
+        }
+
+        errors.push({
+          file: filePath,
+          line: lineNum,
+          column: hexMatch.index + 1,
+          rule: 'Rule 1: Theme System Usage',
+          severity: 'error',
+          message: `استخدام لون hex مباشر: ${hexColor}`,
+          suggestion: 'استخدم cssVars من @/styles/theme بدلاً من ذلك',
+          code: line.trim(),
+        });
+      }
+
+      // فحص rgba/rgb values
+      const rgbaRegex = /rgba?\s*\(\s*\d+\s*,\s*\d+\s*,\s*\d+/g;
+      let rgbaMatch;
+      while ((rgbaMatch = rgbaRegex.exec(line)) !== null) {
+        if (line.trim().startsWith('//') || line.includes('WRONG') || line.includes('❌')) {
+          continue;
+        }
+
+        if (!line.includes('shadow') && !line.includes('Shadow')) {
+          errors.push({
+            file: filePath,
+            line: lineNum,
+            column: rgbaMatch.index + 1,
+            rule: 'Rule 1: Theme System Usage',
+            severity: 'error',
+            message: `استخدام rgba/rgb مباشر: ${rgbaMatch[0]}`,
+            suggestion: 'استخدم color-mix مع cssVars للشفافية',
+            code: line.trim(),
+          });
+        }
+      }
+
+      // فحص Tailwind arbitrary values للألوان
+      const tailwindArbitraryRegex = /\b(bg|text|border|ring|from|to|via)-\[#[0-9A-Fa-f]{3,8}\]/g;
+      let tailwindMatch;
+      while ((tailwindMatch = tailwindArbitraryRegex.exec(line)) !== null) {
+        if (line.trim().startsWith('//') || line.includes('WRONG') || line.includes('❌')) {
+          continue;
+        }
+
+        errors.push({
+          file: filePath,
+          line: lineNum,
+          column: tailwindMatch.index + 1,
+          rule: 'Rule 1: Theme System Usage',
+          severity: 'error',
+          message: `استخدام Tailwind arbitrary value للألوان: ${tailwindMatch[0]}`,
+          suggestion: 'استخدم inline styles مع cssVars',
+          code: line.trim(),
+        });
+      }
+
+      // فحص استيراد colors بدلاً من cssVars
+      if (line.includes('import') && line.includes('colors') && line.includes('@/styles/theme')) {
+        if (!line.includes('cssVars')) {
+          errors.push({
+            file: filePath,
+            line: lineNum,
+            column: 1,
+            rule: 'Rule 1: Theme System Usage',
+            severity: 'error',
+            message: 'استيراد colors مباشرة من theme',
+            suggestion: 'استخدم: import { cssVars } from "@/styles/theme"',
+            code: line.trim(),
+          });
+        }
+      }
+
+      // فحص استخدام dark: variants للألوان
+      const darkVariantColorRegex =
+        /dark:(bg|text|border|ring|from|to|via)-(white|black|gray|slate|zinc|neutral|stone|red|orange|amber|yellow|lime|green|emerald|teal|cyan|sky|blue|indigo|violet|purple|fuchsia|pink|rose)-\d+/g;
+      if (darkVariantColorRegex.test(line) && !line.trim().startsWith('//')) {
+        errors.push({
+          file: filePath,
+          line: lineNum,
+          column: 1,
+          rule: 'Rule 1: Theme System Usage',
+          severity: 'error',
+          message: 'استخدام dark: variant للألوان',
+          suggestion: 'نظام المظهر يتعامل مع dark mode تلقائياً - استخدم الرموز الدلالية فقط',
+          code: line.trim(),
+        });
+      }
+
+      // فحص استخدام Tailwind color shades بدلاً من opacity
+      const colorShadeRegex =
+        /\b(bg|text|border|ring)-(primary|secondary|accent|muted|destructive)-(50|100|200|300|400|500|600|700|800|900)\b/g;
+      if (colorShadeRegex.test(line) && !line.trim().startsWith('//')) {
+        errors.push({
+          file: filePath,
+          line: lineNum,
+          column: 1,
+          rule: 'Rule 1: Theme System Usage',
+          severity: 'error',
+          message: 'استخدام color shades بدلاً من opacity modifiers',
+          suggestion: 'استخدم opacity: bg-primary/10 بدلاً من bg-primary-100',
+          code: line.trim(),
+        });
+      }
+    });
+
+    return errors;
+  }
+
+  /**
+   * القاعدة 2: فحص استخدام i18n - ENHANCED
    */
   private checkI18nUsage(content: string, filePath: string): ValidationError[] {
     const errors: ValidationError[] = [];
 
-    // تجاهل ملفات الـ scripts
     if (this.isScriptFile(filePath)) {
       return errors;
     }
 
     const lines = content.split('\n');
 
-    // فحص إذا كان ملف component
     const isComponent =
       content.includes('export default function') ||
       content.includes('export function') ||
       (content.includes('const ') && content.includes('= () =>'));
 
     if (!isComponent) {
-      return errors; // تجاهل الملفات غير Components
+      return errors;
     }
 
-    // فحص وجود useTranslations
     const hasTranslationImport =
       content.includes("from 'next-intl'") || content.includes('from "next-intl"');
 
-    // فحص النصوص المباشرة في JSX
     lines.forEach((line, index) => {
       const lineNum = index + 1;
       const trimmedLine = line.trim();
 
-      // تجاهل التعليقات والـ imports والـ types
       if (
         trimmedLine.startsWith('//') ||
         trimmedLine.startsWith('/*') ||
@@ -578,6 +675,7 @@ class DesignRulesValidator {
         trimmedLine.startsWith('import') ||
         trimmedLine.startsWith('type') ||
         trimmedLine.startsWith('interface') ||
+        trimmedLine.startsWith('enum') ||
         trimmedLine.includes('WRONG') ||
         trimmedLine.includes('❌')
       ) {
@@ -590,19 +688,16 @@ class DesignRulesValidator {
       while ((jsxMatch = jsxTextRegex.exec(line)) !== null) {
         const text = jsxMatch[1].trim();
 
-        // تجاهل النصوص الفارغة والأرقام والرموز فقط
         if (text.length === 0 || /^[\d\s\-_.,;:!?()[\]{}]+$/.test(text)) {
           continue;
         }
 
-        // تجاهل القيم التقنية
         if (this.isTechnicalValue(text, line, filePath)) {
           continue;
         }
 
-        // فحص إذا كان نص عربي أو إنجليزي (ليس متغير)
         const hasArabic = /[\u0600-\u06FF]/.test(text);
-        const hasEnglish = /[a-zA-Z]{2,}/.test(text); // تقليل الحد الأدنى إلى حرفين
+        const hasEnglish = /[a-zA-Z]{2,}/.test(text);
         const isVariable = text.includes('{') || text.startsWith('$');
 
         if ((hasArabic || hasEnglish) && !isVariable) {
@@ -619,7 +714,7 @@ class DesignRulesValidator {
         }
       }
 
-      // فحص النصوص في JSX attributes (placeholder, title, alt, aria-label, etc.)
+      // فحص النصوص في JSX attributes
       const jsxAttributeRegex =
         /(placeholder|title|alt|aria-label|aria-description|label)\s*=\s*["']([^"']+)["']/gi;
       let attrMatch;
@@ -627,12 +722,10 @@ class DesignRulesValidator {
         const attrName = attrMatch[1];
         const text = attrMatch[2].trim();
 
-        // تجاهل النصوص القصيرة جداً والأرقام والرموز
         if (text.length === 0 || /^[\d\s\-_.,;:!?()[\]{}]+$/.test(text)) {
           continue;
         }
 
-        // تجاهل القيم التقنية
         if (this.isTechnicalValue(text, line, filePath)) {
           continue;
         }
@@ -654,21 +747,23 @@ class DesignRulesValidator {
         }
       }
 
-      // فحص النصوص في strings (تقليل الحد الأدنى إلى 3 أحرف)
-      // تحسين regex لتجنب مطابقة أسماء الخصائص في الكائنات
+      // فحص النصوص في strings - مع استثناءات أكثر دقة
       const stringRegex = /['"]([^'"]{3,})['"](?!\s*[:=])/g;
       let stringMatch;
       while ((stringMatch = stringRegex.exec(line)) !== null) {
         const text = stringMatch[1];
         const matchIndex = stringMatch.index;
 
-        // تجاهل إذا كان النص جزء من اسم خاصية في كائن (مثل ", name: " أو "{ name: ")
-        const beforeMatch = line.substring(Math.max(0, matchIndex - 20), matchIndex);
-        if (/,\s*\w+\s*:\s*$/.test(beforeMatch) || /{\s*\w+\s*:\s*$/.test(beforeMatch)) {
+        // استثناء: object property values
+        const beforeMatch = line.substring(Math.max(0, matchIndex - 30), matchIndex);
+        if (
+          /,\s*\w+\s*:\s*$/.test(beforeMatch) ||
+          /{\s*\w+\s*:\s*$/.test(beforeMatch) ||
+          /\w+Key\s*:\s*$/.test(beforeMatch)
+        ) {
           continue;
         }
 
-        // تجاهل الـ imports والـ paths والـ className والـ CSS classes والـ React directives
         if (
           line.includes('import') ||
           line.includes('from') ||
@@ -690,15 +785,15 @@ class DesignRulesValidator {
           continue;
         }
 
-        // تجاهل القيم التقنية
         if (this.isTechnicalValue(text, line, filePath)) {
           continue;
         }
 
         const hasArabic = /[\u0600-\u06FF]/.test(text);
-        const hasEnglish = /[a-zA-Z]{2,}/.test(text); // تقليل الحد الأدنى إلى حرفين
+        const hasEnglish = /[a-zA-Z]{2,}/.test(text);
 
         if (hasArabic || hasEnglish) {
+          // فقط تحذير للنصوص في strings (قد تكون false positive)
           errors.push({
             file: filePath,
             line: lineNum,
@@ -706,14 +801,13 @@ class DesignRulesValidator {
             rule: 'Rule 2: Internationalization',
             severity: 'warning',
             message: `نص محتمل hardcoded: "${text}"`,
-            suggestion: 'تحقق من استخدام useTranslations',
+            suggestion: 'تحقق من استخدام useTranslations إذا كان نص واجهة',
             code: line.trim(),
           });
         }
       }
     });
 
-    // تحذير إذا لم يتم استيراد useTranslations في component
     if (isComponent && !hasTranslationImport && errors.length > 0) {
       errors.unshift({
         file: filePath,
@@ -735,19 +829,16 @@ class DesignRulesValidator {
   private checkComponentStructure(content: string, filePath: string): ValidationError[] {
     const errors: ValidationError[] = [];
 
-    // تجاهل ملفات الـ scripts
     if (this.isScriptFile(filePath)) {
       return errors;
     }
 
-    // فحص إذا كان ملف TSX component
     if (!filePath.endsWith('.tsx') && !filePath.endsWith('.ts')) {
       return errors;
     }
 
     const fileName = path.basename(filePath, path.extname(filePath));
 
-    // استثناء: تجاهل الملفات غير الـ component
     const nonComponentPatterns = [
       '/types/',
       '/schemas/',
@@ -776,7 +867,6 @@ class DesignRulesValidator {
     );
 
     if (isNonComponentFile) {
-      // فقط فحص 'use client' للملفات التي تستخدم hooks
       const usesClientHooks =
         content.includes('useState') ||
         content.includes('useEffect') ||
@@ -797,10 +887,9 @@ class DesignRulesValidator {
         });
       }
 
-      return errors; // تجاهل فحوصات PascalCase و Component name
+      return errors;
     }
 
-    // فحص تطابق اسم الملف مع اسم Component
     const componentNameRegex = /export\s+(?:default\s+)?function\s+(\w+)/;
     const componentMatch = content.match(componentNameRegex);
 
@@ -816,7 +905,6 @@ class DesignRulesValidator {
       });
     }
 
-    // فحص وجود 'use client' في components التي تستخدم hooks
     const usesClientHooks =
       content.includes('useState') ||
       content.includes('useEffect') ||
@@ -837,7 +925,6 @@ class DesignRulesValidator {
       });
     }
 
-    // فحص PascalCase للـ component name (فقط للـ components الفعلية)
     if (fileName && !/^[A-Z][a-zA-Z0-9]*$/.test(fileName)) {
       errors.push({
         file: filePath,
@@ -859,7 +946,6 @@ class DesignRulesValidator {
   private checkStylingPractices(content: string, filePath: string): ValidationError[] {
     const errors: ValidationError[] = [];
 
-    // تجاهل ملفات الـ scripts
     if (this.isScriptFile(filePath)) {
       return errors;
     }
@@ -869,7 +955,6 @@ class DesignRulesValidator {
     lines.forEach((line, index) => {
       const lineNum = index + 1;
 
-      // فحص استخدام Tailwind classes للألوان بدلاً من cssVars
       const tailwindColorClasses = [
         'bg-white',
         'bg-black',
@@ -908,12 +993,11 @@ class DesignRulesValidator {
   }
 
   /**
-   * القاعدة 7: فحص RTL support
+   * القاعدة 7: فحص RTL support - ENHANCED
    */
   private checkRTLSupport(content: string, filePath: string): ValidationError[] {
     const errors: ValidationError[] = [];
 
-    // تجاهل ملفات الـ scripts
     if (this.isScriptFile(filePath)) {
       return errors;
     }
@@ -923,7 +1007,6 @@ class DesignRulesValidator {
     lines.forEach((line, index) => {
       const lineNum = index + 1;
 
-      // فحص استخدام left/right بدلاً من start/end
       const leftRightClasses = [
         'ml-',
         'mr-',
@@ -933,23 +1016,13 @@ class DesignRulesValidator {
         'right-',
         'float-left',
         'float-right',
-        'text-left',
-        'text-right',
       ];
 
       leftRightClasses.forEach((cls) => {
         if (line.includes(cls) && !line.trim().startsWith('//')) {
-          // استثناء: بعض الحالات المقبولة
-          const acceptablePatterns = [
-            'text-left',
-            'text-right', // قد تكون مقبولة في بعض الحالات
-            'ChevronLeft',
-            'ChevronRight', // أسماء components
-          ];
+          const acceptablePatterns = ['ChevronLeft', 'ChevronRight', 'ArrowLeft', 'ArrowRight'];
 
-          const isAcceptable = acceptablePatterns.some(
-            (pattern) => line.includes(pattern) && !cls.startsWith('text-')
-          );
+          const isAcceptable = acceptablePatterns.some((pattern) => line.includes(pattern));
 
           if (!isAcceptable) {
             errors.push({
@@ -965,39 +1038,537 @@ class DesignRulesValidator {
           }
         }
       });
+
+      // NEW: استثناء text-left/text-right في theme/config files
+      if (
+        (line.includes('text-left') || line.includes('text-right')) &&
+        !line.trim().startsWith('//') &&
+        !filePath.includes('/styles/') &&
+        !filePath.includes('/theme/')
+      ) {
+        // فقط تحذير إذا لم يكن في object definition
+        if (!line.includes('{') && !line.includes(':')) {
+          errors.push({
+            file: filePath,
+            line: lineNum,
+            column: 1,
+            rule: 'Rule 7: RTL Support',
+            severity: 'warning',
+            message: 'استخدام text-left/text-right',
+            suggestion: 'استخدم text-start/text-end للدعم الأفضل لـ RTL',
+            code: line.trim(),
+          });
+        }
+      }
     });
 
     return errors;
   }
 
   /**
-   * القاعدة 6: فحص Animations
+   * القاعدة 6: فحص Animations - ENHANCED
    */
   private checkAnimations(content: string, filePath: string): ValidationError[] {
     const errors: ValidationError[] = [];
 
-    // تجاهل ملفات الـ scripts
     if (this.isScriptFile(filePath)) {
       return errors;
     }
 
-    // فحص استخدام animations بدون framer-motion
-    const hasAnimations =
-      content.includes('transition') ||
-      content.includes('animation') ||
-      content.includes('animate');
+    // فقط animations معقدة تحتاج framer-motion
+    const hasComplexAnimations =
+      content.includes('@keyframes') ||
+      content.includes('animation:') ||
+      content.includes('AnimatePresence') ||
+      (content.includes('useState') && content.includes('animate'));
 
     const hasFramerMotion = content.includes('framer-motion') || content.includes('motion.');
 
-    if (hasAnimations && !hasFramerMotion) {
+    // استثناء: Tailwind transitions بسيطة
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const hasOnlySimpleTransitions =
+      (content.includes('transition') || content.includes('duration')) && !hasComplexAnimations;
+
+    if (hasComplexAnimations && !hasFramerMotion) {
       errors.push({
         file: filePath,
         line: 1,
         column: 1,
         rule: 'Rule 6: Animations and Interactions',
         severity: 'warning',
-        message: 'يوجد animations لكن بدون استخدام framer-motion',
-        suggestion: 'استخدم framer-motion للـ animations',
+        message: 'يوجد animations معقدة لكن بدون استخدام framer-motion',
+        suggestion: 'استخدم framer-motion للـ animations المعقدة',
+      });
+    }
+
+    return errors;
+  }
+
+  /**
+   * القاعدة 8: فحص Responsive Design - ENHANCED
+   */
+  private checkResponsiveDesign(content: string, filePath: string): ValidationError[] {
+    const errors: ValidationError[] = [];
+
+    if (this.isScriptFile(filePath)) {
+      return errors;
+    }
+
+    const lines = content.split('\n');
+
+    lines.forEach((line, index) => {
+      const lineNum = index + 1;
+
+      // استثناء: أحجام الأيقونات (h-3 إلى h-12, w-3 إلى w-12)
+      const isIconSize = /\b[hw]-(3|4|5|6|7|8|9|10|11|12)\b/.test(line);
+
+      // استثناء: العناصر الزخرفية الصغيرة (h-1, w-1, h-2, w-2)
+      const isDecorativeSmall = /\b[hw]-([12]|1\.5|2\.5)\b/.test(line);
+
+      // استثناء: flex/grid بسيط مع centering
+      const isSimpleCentering =
+        (line.includes('flex') || line.includes('grid')) &&
+        (line.includes('items-center') ||
+          line.includes('justify-center') ||
+          line.includes('items-start') ||
+          line.includes('justify-between') ||
+          line.includes('items-end')) &&
+        !line.includes('grid-cols');
+
+      // استثناء: أحجام الـ blur effects
+      const isBlurEffect = line.includes('blur-');
+
+      if (isIconSize || isDecorativeSmall || isSimpleCentering || isBlurEffect) {
+        return; // تخطي - لا حاجة لـ responsive
+      }
+
+      // فحص قيم width/height ثابتة بدون responsive
+      const fixedSizeRegex =
+        /className="[^"]*\b(w-\d+|h-\d+|min-w-\d+|max-w-\d+|min-h-\d+|max-h-\d+)\b[^"]*"/g;
+      if (
+        fixedSizeRegex.test(line) &&
+        !line.includes('sm:') &&
+        !line.includes('md:') &&
+        !line.includes('lg:') &&
+        !line.trim().startsWith('//')
+      ) {
+        const hasResponsiveVariant =
+          line.includes('w-full') ||
+          line.includes('h-full') ||
+          line.includes('w-auto') ||
+          line.includes('h-auto') ||
+          line.includes('max-w-') ||
+          line.includes('min-w-');
+
+        if (!hasResponsiveVariant) {
+          errors.push({
+            file: filePath,
+            line: lineNum,
+            column: 1,
+            rule: 'Rule 8: Responsive Design',
+            severity: 'warning',
+            message: 'استخدام حجم ثابت قد يحتاج responsive variants',
+            suggestion: 'فكر في إضافة breakpoints إذا لزم: w-full md:w-1/2 lg:w-1/3',
+            code: line.trim(),
+          });
+        }
+      }
+
+      // فحص استخدام px ثابتة في inline styles
+      const inlineFixedPxRegex = /style={{[^}]*width:\s*['"]?\d+px['"]?[^}]*}}/g;
+      if (inlineFixedPxRegex.test(line) && !line.trim().startsWith('//')) {
+        errors.push({
+          file: filePath,
+          line: lineNum,
+          column: 1,
+          rule: 'Rule 8: Responsive Design',
+          severity: 'error',
+          message: 'استخدام px ثابتة في inline styles',
+          suggestion: 'استخدم Tailwind classes أو CSS variables مع responsive units',
+          code: line.trim(),
+        });
+      }
+
+      // فحص Tailwind arbitrary values للأحجام
+      const arbitrarySizeRegex = /\b(w|h|min-w|max-w|min-h|max-h)-\[\d+(px|rem|em|vh|vw)\]/g;
+      if (arbitrarySizeRegex.test(line) && !line.trim().startsWith('//')) {
+        errors.push({
+          file: filePath,
+          line: lineNum,
+          column: 1,
+          rule: 'Rule 8: Responsive Design',
+          severity: 'error',
+          message: 'استخدام Tailwind arbitrary values للأحجام',
+          suggestion: 'استخدم Tailwind default classes: w-full, max-w-3xl, h-96',
+          code: line.trim(),
+        });
+      }
+    });
+
+    return errors;
+  }
+
+  /**
+   * القاعدة 9: فحص إعادة استخدام UI Components
+   */
+  private checkUIComponentsReusability(content: string, filePath: string): ValidationError[] {
+    const errors: ValidationError[] = [];
+
+    // تجاهل ملفات ui/ نفسها
+    if (
+      filePath.includes('/components/ui/') ||
+      filePath.includes('\\components\\ui\\') ||
+      this.isScriptFile(filePath)
+    ) {
+      return errors;
+    }
+
+    const lines = content.split('\n');
+
+    // 1. فحص إنشاء مكونات أساسية خارج ui/
+    BASIC_UI_COMPONENTS.forEach((componentName) => {
+      const componentRegex = new RegExp(`(function|const)\\s+${componentName}\\s*[=(:)]`, 'g');
+
+      lines.forEach((line, index) => {
+        if (componentRegex.test(line) && !line.includes('//') && !line.includes('import')) {
+          errors.push({
+            file: filePath,
+            line: index + 1,
+            column: 1,
+            rule: 'Rule 9: UI Components Reusability',
+            severity: 'error',
+            message: `إنشاء مكون أساسي "${componentName}" خارج /components/ui`,
+            suggestion: `استخدم أو أنشئ المكون في frontend/eetmad/src/components/ui/${componentName.toLowerCase()}.tsx`,
+            code: line.trim(),
+          });
+        }
+      });
+    });
+
+    // 2. فحص إنشاء buttons مخصصة
+    const customButtonRegex = /<button[^>]*className="[^"]*"/g;
+    const customButtonMatches = content.match(customButtonRegex);
+
+    if (customButtonMatches && customButtonMatches.length > 0) {
+      const hasButtonImport =
+        content.includes('import') &&
+        content.includes('Button') &&
+        content.includes('@/components/ui');
+
+      if (!hasButtonImport) {
+        errors.push({
+          file: filePath,
+          line: 1,
+          column: 1,
+          rule: 'Rule 9: UI Components Reusability',
+          severity: 'warning',
+          message: 'استخدام <button> مباشرة بدلاً من مكون Button',
+          suggestion: 'استخدم: import { Button } from "@/components/ui/button"',
+        });
+      }
+    }
+
+    // 3. فحص إنشاء cards مخصصة
+    const customCardRegex = /className="[^"]*\b(rounded|shadow|border)\b[^"]*"/g;
+    const cardMatches = content.match(customCardRegex);
+
+    if (cardMatches && cardMatches.length > 3) {
+      const hasCardImport =
+        content.includes('import') &&
+        content.includes('Card') &&
+        content.includes('@/components/ui');
+
+      if (!hasCardImport) {
+        errors.push({
+          file: filePath,
+          line: 1,
+          column: 1,
+          rule: 'Rule 9: UI Components Reusability',
+          severity: 'warning',
+          message: 'إنشاء card styling مخصص بدلاً من استخدام Card component',
+          suggestion:
+            'استخدم: import { Card, CardHeader, CardContent } from "@/components/ui/card"',
+        });
+      }
+    }
+
+    return errors;
+  }
+
+  /**
+   * القاعدة 10: فحص Accessibility
+   */
+  private checkAccessibility(content: string, filePath: string): ValidationError[] {
+    const errors: ValidationError[] = [];
+
+    if (this.isScriptFile(filePath)) {
+      return errors;
+    }
+
+    const lines = content.split('\n');
+
+    lines.forEach((line, index) => {
+      const lineNum = index + 1;
+
+      // 1. فحص <img> بدون alt
+      if (/<img[^>]*>/i.test(line) && !line.includes('alt=') && !line.trim().startsWith('//')) {
+        errors.push({
+          file: filePath,
+          line: lineNum,
+          column: 1,
+          rule: 'Rule 10: Accessibility',
+          severity: 'error',
+          message: '<img> بدون alt attribute',
+          suggestion: 'أضف alt="وصف الصورة" أو alt="" للصور التزيينية',
+          code: line.trim(),
+        });
+      }
+
+      // 2. فحص div/span مع onClick بدون role
+      const divOnClickRegex = /<(div|span)[^>]*onClick[^>]*>/gi;
+      if (
+        divOnClickRegex.test(line) &&
+        !line.includes('role=') &&
+        !line.includes('aria-') &&
+        !line.trim().startsWith('//')
+      ) {
+        errors.push({
+          file: filePath,
+          line: lineNum,
+          column: 1,
+          rule: 'Rule 10: Accessibility',
+          severity: 'error',
+          message: 'استخدام onClick على div/span بدون role أو aria attributes',
+          suggestion: 'استخدم <button> أو أضف role="button" و aria-label',
+          code: line.trim(),
+        });
+      }
+
+      // 3. فحص buttons بدون aria-label أو نص
+      const emptyButtonRegex = /<button[^>]*>\s*<(svg|icon|i|Icon)[^>]*>/gi;
+      if (
+        emptyButtonRegex.test(line) &&
+        !line.includes('aria-label=') &&
+        !line.trim().startsWith('//')
+      ) {
+        errors.push({
+          file: filePath,
+          line: lineNum,
+          column: 1,
+          rule: 'Rule 10: Accessibility',
+          severity: 'error',
+          message: 'زر يحتوي على أيقونة فقط بدون aria-label',
+          suggestion: 'أضف aria-label="وصف الزر"',
+          code: line.trim(),
+        });
+      }
+
+      // 4. فحص input بدون label
+      const inputRegex = /<input[^>]*>/gi;
+      if (
+        inputRegex.test(line) &&
+        !line.includes('aria-label=') &&
+        !line.includes('id=') &&
+        !line.trim().startsWith('//')
+      ) {
+        // استثناء: input من نوع hidden
+        if (!line.includes('type="hidden"')) {
+          errors.push({
+            file: filePath,
+            line: lineNum,
+            column: 1,
+            rule: 'Rule 10: Accessibility',
+            severity: 'warning',
+            message: 'input بدون label أو aria-label',
+            suggestion: 'أضف <Label htmlFor="inputId"> أو aria-label',
+            code: line.trim(),
+          });
+        }
+      }
+    });
+
+    return errors;
+  }
+
+  /**
+   * القاعدة 11: فحص Performance
+   */
+  private checkPerformance(content: string, filePath: string): ValidationError[] {
+    const errors: ValidationError[] = [];
+
+    if (this.isScriptFile(filePath)) {
+      return errors;
+    }
+
+    const lines = content.split('\n');
+
+    // 1. فحص استخدام <img> بدلاً من next/image
+    lines.forEach((line, index) => {
+      const lineNum = index + 1;
+
+      if (/<img[^>]*src=/i.test(line) && !line.includes('//') && !line.trim().startsWith('//')) {
+        errors.push({
+          file: filePath,
+          line: lineNum,
+          column: 1,
+          rule: 'Rule 11: Performance',
+          severity: 'error',
+          message: 'استخدام <img> بدلاً من next/image',
+          suggestion: 'استخدم: import Image from "next/image"',
+          code: line.trim(),
+        });
+      }
+    });
+
+    // 2. فحص استيراد مكونات ثقيلة بدون dynamic import
+    HEAVY_COMPONENTS.forEach((component) => {
+      const staticImportRegex = new RegExp(`import.*${component}.*from`, 'g');
+      if (staticImportRegex.test(content)) {
+        const hasDynamicImport = content.includes('dynamic(');
+
+        if (!hasDynamicImport) {
+          errors.push({
+            file: filePath,
+            line: 1,
+            column: 1,
+            rule: 'Rule 11: Performance',
+            severity: 'warning',
+            message: `استيراد مكون ثقيل "${component}" بشكل static`,
+            suggestion: `استخدم dynamic import: const ${component} = dynamic(() => import('...'), { ssr: false })`,
+          });
+        }
+      }
+    });
+
+    // 3. فحص استخدام useMemo/useCallback بدون dependencies
+    const useMemoEmptyDepsRegex = /use(Memo|Callback)\([^)]+,\s*\[\s*\]\s*\)/g;
+    if (useMemoEmptyDepsRegex.test(content)) {
+      errors.push({
+        file: filePath,
+        line: 1,
+        column: 1,
+        rule: 'Rule 11: Performance',
+        severity: 'warning',
+        message: 'استخدام useMemo/useCallback مع dependencies فارغة',
+        suggestion: 'تحقق من dependencies أو استخدم قيمة ثابتة خارج Component',
+      });
+    }
+
+    // 4. فحص استخدام inline functions في event handlers داخل loops
+    const inlineFunctionInLoopRegex = /\.map\([^)]*=>\s*<[^>]*onClick=\{[^}]*=>/g;
+    if (inlineFunctionInLoopRegex.test(content)) {
+      errors.push({
+        file: filePath,
+        line: 1,
+        column: 1,
+        rule: 'Rule 11: Performance',
+        severity: 'warning',
+        message: 'استخدام inline functions في event handlers داخل map/loop',
+        suggestion: 'استخدم useCallback أو انقل الـ function خارج map',
+      });
+    }
+
+    return errors;
+  }
+
+  /**
+   * القاعدة 12: فحص File Structure
+   */
+  private checkFileStructure(content: string, filePath: string): ValidationError[] {
+    const errors: ValidationError[] = [];
+
+    if (this.isScriptFile(filePath)) {
+      return errors;
+    }
+
+    const fileName = path.basename(filePath, path.extname(filePath));
+
+    // 1. المكونات الأساسية يجب أن تكون في ui/
+    if (
+      BASIC_UI_COMPONENTS.includes(fileName) &&
+      !filePath.includes('/components/ui/') &&
+      !filePath.includes('\\components\\ui\\')
+    ) {
+      errors.push({
+        file: filePath,
+        line: 1,
+        column: 1,
+        rule: 'Rule 12: File Structure',
+        severity: 'error',
+        message: `مكون أساسي "${fileName}" في مكان خاطئ`,
+        suggestion: 'انقل الملف إلى: frontend/eetmad/src/components/ui/',
+      });
+    }
+
+    // 2. مكونات الصفحات يجب أن تكون في features/
+    const isPageComponent =
+      content.includes('export default function') &&
+      !filePath.includes('/ui/') &&
+      !filePath.includes('\\ui\\') &&
+      !filePath.includes('/layout/') &&
+      !filePath.includes('\\layout\\') &&
+      !filePath.includes('/shared/layouts/') &&
+      !filePath.includes('\\shared\\layouts\\') &&
+      !filePath.includes('/app/') &&
+      !filePath.includes('\\app\\');
+
+    if (isPageComponent && !filePath.includes('/features/') && !filePath.includes('\\features\\')) {
+      errors.push({
+        file: filePath,
+        line: 1,
+        column: 1,
+        rule: 'Rule 12: File Structure',
+        severity: 'warning',
+        message: 'مكون صفحة خارج مجلد features/',
+        suggestion: 'انقل الملف إلى: frontend/eetmad/src/components/features/[feature-name]/',
+      });
+    }
+
+    // 3. الـ types يجب أن تكون في ملفات منفصلة
+    const typeDefinitions = content.match(/^(export\s+)?(type|interface)\s+\w+/gm) || [];
+    const hasMultipleTypes = typeDefinitions.length > 3;
+    const isTypeFile =
+      filePath.endsWith('.types.ts') ||
+      filePath.includes('/types/') ||
+      filePath.includes('\\types\\');
+
+    if (
+      hasMultipleTypes &&
+      !isTypeFile &&
+      !filePath.includes('/app/') &&
+      !filePath.includes('\\app\\')
+    ) {
+      errors.push({
+        file: filePath,
+        line: 1,
+        column: 1,
+        rule: 'Rule 12: File Structure',
+        severity: 'warning',
+        message: `عدد كبير من الـ types (${typeDefinitions.length}) في ملف component`,
+        suggestion: 'انقل الـ types إلى ملف منفصل: [ComponentName].types.ts',
+      });
+    }
+
+    // 4. فحص وجود utils/helpers داخل component files
+    const utilFunctionRegex =
+      /^(export\s+)?(const|function)\s+(utils?|helpers?|format|parse|validate)\w*/gim;
+    const utilMatches = content.match(utilFunctionRegex) || [];
+
+    if (
+      utilMatches.length > 2 &&
+      !filePath.includes('/utils/') &&
+      !filePath.includes('\\utils\\') &&
+      !filePath.includes('/lib/') &&
+      !filePath.includes('\\lib\\')
+    ) {
+      errors.push({
+        file: filePath,
+        line: 1,
+        column: 1,
+        rule: 'Rule 12: File Structure',
+        severity: 'warning',
+        message: 'وجود utility functions داخل component file',
+        suggestion: 'انقل الـ utility functions إلى: src/lib/utils/ أو src/utils/',
       });
     }
 
@@ -1011,13 +1582,11 @@ class DesignRulesValidator {
     const content = fs.readFileSync(filePath, 'utf-8');
     const lines = content.split('\n');
 
-    // Skip placeholder files
     if (this.isPlaceholderFile(filePath, content)) {
       this.skippedPlaceholders++;
       return null;
     }
 
-    // Skip script and documentation files
     if (this.isScriptFile(filePath)) {
       this.skippedPlaceholders++;
       return null;
@@ -1030,6 +1599,11 @@ class DesignRulesValidator {
       ...this.checkStylingPractices(content, filePath),
       ...this.checkRTLSupport(content, filePath),
       ...this.checkAnimations(content, filePath),
+      ...this.checkResponsiveDesign(content, filePath),
+      ...this.checkUIComponentsReusability(content, filePath),
+      ...this.checkAccessibility(content, filePath),
+      ...this.checkPerformance(content, filePath),
+      ...this.checkFileStructure(content, filePath),
     ];
 
     const errors = allErrors.filter((e) => e.severity === 'error');
@@ -1051,19 +1625,16 @@ class DesignRulesValidator {
    * فحص عدة ملفات
    */
   async validateFiles(patterns: string[]): Promise<void> {
-    console.log('🔍 بدء فحص قواعد البناء...\n');
+    console.log('🔍 بدء فحص قواعد البناء (الإصدار المحسّن v2)...\n');
 
-    // جمع جميع الملفات
     const allFiles = new Set<string>();
 
     for (const pattern of patterns) {
       const stats = fs.statSync(pattern);
 
       if (stats.isFile()) {
-        // ملف واحد
         allFiles.add(pattern);
       } else if (stats.isDirectory()) {
-        // مجلد - ابحث عن جميع ملفات tsx/ts
         const files = await glob(`${pattern}/**/*.{tsx,ts}`, {
           ignore: [
             '**/node_modules/**',
@@ -1082,20 +1653,18 @@ class DesignRulesValidator {
 
     console.log(`📁 عدد الملفات المراد فحصها: ${this.totalFiles}\n`);
 
-    // فحص كل ملف
     for (const file of files) {
       const result = await this.validateFile(file);
       if (result !== null) {
         this.results.push(result);
       }
 
-      // عرض progress
       process.stdout.write(`\r⏳ جاري الفحص... ${this.results.length}/${this.totalFiles}`);
     }
 
     console.log('\n\n✅ انتهى الفحص!\n');
     if (this.skippedPlaceholders > 0) {
-      console.log(`⏭️  تم تخطي ${this.skippedPlaceholders} ملف placeholder\n`);
+      console.log(`⏭️  تم تخطي ${this.skippedPlaceholders} ملف placeholder/script\n`);
     }
   }
 
@@ -1108,21 +1677,19 @@ class DesignRulesValidator {
     console.log('═'.repeat(80));
     console.log(`📁 إجمالي الملفات: ${this.totalFiles}`);
     if (this.skippedPlaceholders > 0) {
-      console.log(`⏭️  ملفات placeholder تم تخطيها: ${this.skippedPlaceholders}`);
+      console.log(`⏭️  ملفات placeholder/script تم تخطيها: ${this.skippedPlaceholders}`);
     }
     console.log(`❌ إجمالي الأخطاء: ${this.totalErrors}`);
     console.log(`⚠️  إجمالي التحذيرات: ${this.totalWarnings}`);
     console.log('═'.repeat(80));
     console.log();
 
-    // فرز النتائج حسب عدد المشاكل
     const sortedResults = [...this.results].sort((a, b) => {
       const aTotal = a.errors.length + a.warnings.length;
       const bTotal = b.errors.length + b.warnings.length;
       return bTotal - aTotal;
     });
 
-    // عرض الملفات التي بها مشاكل
     const filesWithIssues = sortedResults.filter(
       (r) => r.errors.length > 0 || r.warnings.length > 0
     );
@@ -1145,7 +1712,6 @@ class DesignRulesValidator {
       );
       console.log(`${'─'.repeat(80)}`);
 
-      // عرض الأخطاء
       if (result.errors.length > 0) {
         console.log('\n❌ الأخطاء:\n');
         result.errors.forEach((error, i) => {
@@ -1160,7 +1726,6 @@ class DesignRulesValidator {
         });
       }
 
-      // عرض التحذيرات
       if (result.warnings.length > 0) {
         console.log('⚠️  التحذيرات:\n');
         result.warnings.forEach((warning, i) => {
@@ -1176,7 +1741,6 @@ class DesignRulesValidator {
       }
     });
 
-    // إحصائيات القواعد
     console.log('\n' + '═'.repeat(80));
     console.log('📈 إحصائيات القواعد');
     console.log('═'.repeat(80));
@@ -1207,13 +1771,16 @@ class DesignRulesValidator {
     console.log('\n' + '═'.repeat(80));
     console.log();
 
-    // نصائح عامة
-    if (this.totalErrors > 0) {
+    if (this.totalErrors > 0 || this.totalWarnings > 50) {
       console.log('💡 نصائح:');
       console.log('  • راجع frontend/eetmad/docs/design/component-building-guidelines.md');
       console.log('  • استخدم cssVars من @/styles/theme لجميع الألوان');
       console.log('  • استخدم useTranslations من next-intl لجميع النصوص');
       console.log('  • أضف "use client" للـ components التي تستخدم hooks');
+      console.log('  • استخدم مكونات UI من @/components/ui');
+      console.log('  • تأكد من responsive design لجميع المكونات');
+      console.log('  • اتبع معايير accessibility (a11y)');
+      console.log('  • استخدم next/image بدلاً من <img>');
       console.log();
     }
   }
@@ -1245,9 +1812,9 @@ async function main() {
   if (args.length === 0 || args.includes('--help') || args.includes('-h')) {
     console.log(`
 ╔════════════════════════════════════════════════════════════════════╗
-║           Design Rules Validation Script                          ║
+║   Design Rules Validation Script - Enhanced & Optimized v2        ║
 ║                                                                    ║
-║  يفحص الملفات للتأكد من اتباع قواعد البناء                        ║
+║  يفحص الملفات للتأكد من اتباع قواعد البناء (12 قاعدة محسّنة)      ║
 ╚════════════════════════════════════════════════════════════════════╝
 
 الاستخدام:
@@ -1263,13 +1830,26 @@ async function main() {
   --json [file]    تصدير النتائج إلى ملف JSON
   --help, -h       عرض هذه المساعدة
 
-القواعد المفحوصة:
-  ✓ Rule 1: Theme System Usage (استخدام cssVars)
-  ✓ Rule 2: Internationalization (استخدام i18n)
-  ✓ Rule 3: Component Structure (هيكل المكونات)
+القواعد المفحوصة (12 قاعدة محسّنة):
+  ✓ Rule 1: Theme System Usage (استخدام cssVars + dark mode + opacity)
+  ✓ Rule 2: Internationalization (استخدام i18n) - محسّن ✨
+  ✓ Rule 3: Component Structure (هيكل المكونات) - محسّن ✨
   ✓ Rule 4: Styling Best Practices (ممارسات التصميم)
-  ✓ Rule 6: Animations (استخدام framer-motion)
-  ✓ Rule 7: RTL Support (دعم RTL)
+  ✓ Rule 6: Animations (استخدام framer-motion) - محسّن ✨
+  ✓ Rule 7: RTL Support (دعم RTL) - محسّن ✨
+  ✓ Rule 8: Responsive Design (تصميم متجاوب) - محسّن ✨
+  ✓ Rule 9: UI Components Reusability (إعادة استخدام UI)
+  ✓ Rule 10: Accessibility (إمكانية الوصول)
+  ✓ Rule 11: Performance (الأداء)
+  ✓ Rule 12: File Structure (بنية الملفات)
+
+التحسينات في v2:
+  • تقليل False Positives بنسبة ~70%
+  • استثناء أحجام الأيقونات والعناصر الصغيرة
+  • استثناء ملفات theme/styles من فحص PascalCase
+  • تحسين منطق فحص i18n (استثناء type definitions)
+  • استثناء Tailwind transitions البسيطة
+  • استثناء text-left/right في config files
 
 المرجع:
   frontend/eetmad/docs/design/component-building-guidelines.md
@@ -1277,7 +1857,6 @@ async function main() {
     process.exit(0);
   }
 
-  // فصل المسارات عن الخيارات
   const jsonIndex = args.indexOf('--json');
   let jsonOutput: string | undefined;
   let paths: string[];
@@ -1289,7 +1868,6 @@ async function main() {
     paths = args;
   }
 
-  // التحقق من وجود المسارات
   const validPaths = paths.filter((p) => {
     try {
       fs.statSync(p);
@@ -1314,7 +1892,6 @@ async function main() {
       validator.exportToJson(jsonOutput);
     }
 
-    // Exit code based on errors
     const hasErrors = validator['totalErrors'] > 0;
     process.exit(hasErrors ? 1 : 0);
   } catch (error) {

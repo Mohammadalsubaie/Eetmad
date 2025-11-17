@@ -1,15 +1,27 @@
 'use client';
 
-import { useState, useEffect } from 'react';
-import { useTranslations } from 'next-intl';
-import { cssVars } from '@/styles/theme';
-import { motion } from 'framer-motion';
-import { User, Phone, Calendar, MapPin, Building2, FileText, Globe, Linkedin, Twitter, Github, Save } from 'lucide-react';
-import { useUser } from '@/lib/hooks/useUser';
-import type { UpdateUserProfileData } from '@/lib/types/user.types';
-import { Input } from '@/components/ui/Input';
 import { Button } from '@/components/ui/Button';
 import { Card } from '@/components/ui/Card';
+import { Input } from '@/components/ui/Input';
+import { useUser } from '@/lib/hooks/useUser';
+import type { UpdateUserProfileData, UserProfile } from '@/lib/types/user.types';
+import { cssVars } from '@/styles/theme';
+import { motion } from 'framer-motion';
+import {
+  Building2,
+  Calendar,
+  FileText,
+  Github,
+  Globe,
+  Linkedin,
+  MapPin,
+  Phone,
+  Save,
+  Twitter,
+  User,
+} from 'lucide-react';
+import { useTranslations } from 'next-intl';
+import { useEffect, useState } from 'react';
 
 export default function ProfileEditForm() {
   const t = useTranslations('pages.profile.edit');
@@ -47,13 +59,13 @@ export default function ProfileEditForm() {
       setFormData({
         fullName: profile.fullName || '',
         phone: profile.phone || '',
-        dateOfBirth: profile.dateOfBirth || null,
-        nationalId: profile.nationalId || null,
-        companyName: profile.companyName || null,
-        commercialRegister: profile.commercialRegister || null,
-        taxNumber: profile.taxNumber || null,
-        bio: (profile as any).bio || '',
-        website: (profile as any).website || '',
+        dateOfBirth: profile.dateOfBirth,
+        nationalId: profile.nationalId,
+        companyName: profile.companyName,
+        commercialRegister: profile.commercialRegister,
+        taxNumber: profile.taxNumber,
+        bio: (profile as UserProfile).bio || '',
+        website: (profile as UserProfile).website || '',
         address: {
           street: profile.address?.street || '',
           city: profile.address?.city || '',
@@ -62,9 +74,9 @@ export default function ProfileEditForm() {
           postalCode: profile.address?.postalCode || '',
         },
         socialLinks: {
-          linkedin: (profile as any).socialLinks?.linkedin || '',
-          twitter: (profile as any).socialLinks?.twitter || '',
-          github: (profile as any).socialLinks?.github || '',
+          linkedin: (profile as UserProfile).socialLinks?.linkedin || '',
+          twitter: (profile as UserProfile).socialLinks?.twitter || '',
+          github: (profile as UserProfile).socialLinks?.github || '',
         },
       });
     }
@@ -73,13 +85,19 @@ export default function ProfileEditForm() {
   const handleInputChange = (field: string, value: string | null) => {
     if (field.includes('.')) {
       const [parent, child] = field.split('.');
-      setFormData((prev) => ({
-        ...prev,
-        [parent]: {
-          ...(prev[parent as keyof UpdateUserProfileData] as any),
-          [child]: value,
-        },
-      }));
+      setFormData((prev) => {
+        const parentValue = prev[parent as keyof UpdateUserProfileData];
+        if (parentValue && typeof parentValue === 'object' && !Array.isArray(parentValue)) {
+          return {
+            ...prev,
+            [parent]: {
+              ...parentValue,
+              [child]: value,
+            },
+          };
+        }
+        return prev;
+      });
     } else {
       setFormData((prev) => ({
         ...prev,
@@ -98,31 +116,31 @@ export default function ProfileEditForm() {
       // Clean up empty strings to null
       const cleanedData: UpdateUserProfileData = {
         ...formData,
-        dateOfBirth: formData.dateOfBirth || null,
-        nationalId: formData.nationalId || null,
-        companyName: formData.companyName || null,
-        commercialRegister: formData.commercialRegister || null,
-        taxNumber: formData.taxNumber || null,
-        bio: formData.bio || undefined,
-        website: formData.website || undefined,
+        dateOfBirth: formData.dateOfBirth,
+        nationalId: formData.nationalId,
+        companyName: formData.companyName,
+        commercialRegister: formData.commercialRegister,
+        taxNumber: formData.taxNumber,
+        bio: formData.bio,
+        website: formData.website,
         address: {
-          street: formData.address?.street || undefined,
-          city: formData.address?.city || undefined,
-          state: formData.address?.state || undefined,
-          country: formData.address?.country || undefined,
-          postalCode: formData.address?.postalCode || undefined,
+          street: formData.address?.street,
+          city: formData.address?.city,
+          state: formData.address?.state,
+          country: formData.address?.country,
+          postalCode: formData.address?.postalCode,
         },
         socialLinks: {
-          linkedin: formData.socialLinks?.linkedin || undefined,
-          twitter: formData.socialLinks?.twitter || undefined,
-          github: formData.socialLinks?.github || undefined,
+          linkedin: formData.socialLinks?.linkedin,
+          twitter: formData.socialLinks?.twitter,
+          github: formData.socialLinks?.github,
         },
       };
 
       await updateProfile(cleanedData);
       setSubmitSuccess(true);
       setTimeout(() => setSubmitSuccess(false), 3000);
-    } catch (error) {
+    } catch {
       setSubmitError(t('errors.saveFailed'));
     } finally {
       setIsSubmitting(false);
@@ -145,7 +163,7 @@ export default function ProfileEditForm() {
           initial={{ opacity: 0, y: -10 }}
           animate={{ opacity: 1, y: 0 }}
           className="rounded-2xl p-4"
-          style={{ backgroundColor: cssVars.status.success, color: '#FFFFFF' }}
+          style={{ backgroundColor: cssVars.status.success, color: cssVars.neutral.white }}
         >
           {t('success')}
         </motion.div>
@@ -157,7 +175,7 @@ export default function ProfileEditForm() {
           initial={{ opacity: 0, y: -10 }}
           animate={{ opacity: 1, y: 0 }}
           className="rounded-2xl p-4"
-          style={{ backgroundColor: cssVars.status.error, color: '#FFFFFF' }}
+          style={{ backgroundColor: cssVars.status.error, color: cssVars.neutral.white }}
         >
           {submitError}
         </motion.div>
@@ -190,19 +208,22 @@ export default function ProfileEditForm() {
             type="date"
             placeholder={t('fields.dateOfBirth.placeholder')}
             value={formData.dateOfBirth || ''}
-            onChange={(e) => handleInputChange('dateOfBirth', e.target.value || null)}
+            onChange={(e) => handleInputChange('dateOfBirth', e.target.value)}
             fullWidth
           />
           <Input
             icon={FileText}
             placeholder={t('fields.nationalId.placeholder')}
             value={formData.nationalId || ''}
-            onChange={(e) => handleInputChange('nationalId', e.target.value || null)}
+            onChange={(e) => handleInputChange('nationalId', e.target.value)}
             fullWidth
           />
         </div>
         <div className="mt-6">
-          <label className="mb-2 block text-sm font-semibold" style={{ color: cssVars.secondary.DEFAULT }}>
+          <label
+            className="mb-2 block text-sm font-semibold"
+            style={{ color: cssVars.secondary.DEFAULT }}
+          >
             {t('fields.bio.label')}
           </label>
           <textarea
@@ -235,21 +256,21 @@ export default function ProfileEditForm() {
               icon={Building2}
               placeholder={t('fields.companyName.placeholder')}
               value={formData.companyName || ''}
-              onChange={(e) => handleInputChange('companyName', e.target.value || null)}
+              onChange={(e) => handleInputChange('companyName', e.target.value)}
               fullWidth
             />
             <Input
               icon={FileText}
               placeholder={t('fields.commercialRegister.placeholder')}
               value={formData.commercialRegister || ''}
-              onChange={(e) => handleInputChange('commercialRegister', e.target.value || null)}
+              onChange={(e) => handleInputChange('commercialRegister', e.target.value)}
               fullWidth
             />
             <Input
               icon={FileText}
               placeholder={t('fields.taxNumber.placeholder')}
               value={formData.taxNumber || ''}
-              onChange={(e) => handleInputChange('taxNumber', e.target.value || null)}
+              onChange={(e) => handleInputChange('taxNumber', e.target.value)}
               fullWidth
             />
           </div>
@@ -266,35 +287,35 @@ export default function ProfileEditForm() {
             icon={MapPin}
             placeholder={t('fields.street.placeholder')}
             value={formData.address?.street || ''}
-            onChange={(e) => handleInputChange('address.street', e.target.value || undefined)}
+            onChange={(e) => handleInputChange('address.street', e.target.value)}
             fullWidth
           />
           <Input
             icon={MapPin}
             placeholder={t('fields.city.placeholder')}
             value={formData.address?.city || ''}
-            onChange={(e) => handleInputChange('address.city', e.target.value || undefined)}
+            onChange={(e) => handleInputChange('address.city', e.target.value)}
             fullWidth
           />
           <Input
             icon={MapPin}
             placeholder={t('fields.state.placeholder')}
             value={formData.address?.state || ''}
-            onChange={(e) => handleInputChange('address.state', e.target.value || undefined)}
+            onChange={(e) => handleInputChange('address.state', e.target.value)}
             fullWidth
           />
           <Input
             icon={MapPin}
             placeholder={t('fields.country.placeholder')}
             value={formData.address?.country || ''}
-            onChange={(e) => handleInputChange('address.country', e.target.value || undefined)}
+            onChange={(e) => handleInputChange('address.country', e.target.value)}
             fullWidth
           />
           <Input
             icon={MapPin}
             placeholder={t('fields.postalCode.placeholder')}
             value={formData.address?.postalCode || ''}
-            onChange={(e) => handleInputChange('address.postalCode', e.target.value || undefined)}
+            onChange={(e) => handleInputChange('address.postalCode', e.target.value)}
             fullWidth
           />
         </div>
@@ -311,7 +332,7 @@ export default function ProfileEditForm() {
             type="url"
             placeholder={t('fields.website.placeholder')}
             value={formData.website || ''}
-            onChange={(e) => handleInputChange('website', e.target.value || undefined)}
+            onChange={(e) => handleInputChange('website', e.target.value)}
             fullWidth
           />
           <Input
@@ -319,7 +340,7 @@ export default function ProfileEditForm() {
             type="url"
             placeholder={t('fields.linkedin.placeholder')}
             value={formData.socialLinks?.linkedin || ''}
-            onChange={(e) => handleInputChange('socialLinks.linkedin', e.target.value || undefined)}
+            onChange={(e) => handleInputChange('socialLinks.linkedin', e.target.value)}
             fullWidth
           />
           <Input
@@ -327,7 +348,7 @@ export default function ProfileEditForm() {
             type="url"
             placeholder={t('fields.twitter.placeholder')}
             value={formData.socialLinks?.twitter || ''}
-            onChange={(e) => handleInputChange('socialLinks.twitter', e.target.value || undefined)}
+            onChange={(e) => handleInputChange('socialLinks.twitter', e.target.value)}
             fullWidth
           />
           <Input
@@ -335,7 +356,7 @@ export default function ProfileEditForm() {
             type="url"
             placeholder={t('fields.github.placeholder')}
             value={formData.socialLinks?.github || ''}
-            onChange={(e) => handleInputChange('socialLinks.github', e.target.value || undefined)}
+            onChange={(e) => handleInputChange('socialLinks.github', e.target.value)}
             fullWidth
           />
         </div>
@@ -343,13 +364,7 @@ export default function ProfileEditForm() {
 
       {/* Submit Button */}
       <div className="flex justify-end gap-4">
-        <Button
-          type="submit"
-          variant="primary"
-          size="lg"
-          icon={Save}
-          disabled={isSubmitting}
-        >
+        <Button type="submit" variant="primary" size="lg" icon={Save} disabled={isSubmitting}>
           {isSubmitting ? t('saving') : t('save')}
         </Button>
       </div>

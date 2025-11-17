@@ -1,14 +1,13 @@
 'use client';
 
-import { useState } from 'react';
-import { useTranslations } from 'next-intl';
-import { cssVars } from '@/styles/theme';
-import { motion } from 'framer-motion';
-import { Lock, Eye, EyeOff, Shield, CheckCircle2 } from 'lucide-react';
-import { usersApi } from '@/lib/api/users';
-import { Input } from '@/components/ui/Input';
 import { Button } from '@/components/ui/Button';
 import { Card } from '@/components/ui/Card';
+import { usersApi } from '@/lib/api/users';
+import { cssVars } from '@/styles/theme';
+import { motion } from 'framer-motion';
+import { CheckCircle2, Eye, EyeOff, Lock, Shield } from 'lucide-react';
+import { useTranslations } from 'next-intl';
+import { useState } from 'react';
 
 export default function ChangePasswordForm() {
   const t = useTranslations('pages.profile.security');
@@ -90,8 +89,12 @@ export default function ChangePasswordForm() {
       setTimeout(() => {
         setSuccess(false);
       }, 5000);
-    } catch (err: any) {
-      setError(err?.response?.data?.message || t('errors.changePasswordFailed'));
+    } catch (err: unknown) {
+      const errorMessage =
+        err && typeof err === 'object' && 'response' in err
+          ? (err as { response?: { data?: { message?: string } } })?.response?.data?.message
+          : undefined;
+      setError(errorMessage || t('errors.changePasswordFailed'));
     } finally {
       setIsSubmitting(false);
     }
@@ -111,7 +114,10 @@ export default function ChangePasswordForm() {
               borderColor: cssVars.status.success,
             }}
           >
-            <CheckCircle2 className="h-5 w-5 flex-shrink-0" style={{ color: cssVars.status.success }} />
+            <CheckCircle2
+              className="h-5 w-5 flex-shrink-0"
+              style={{ color: cssVars.status.success }}
+            />
             <p className="text-sm font-semibold" style={{ color: cssVars.status.success }}>
               {t('success.passwordChanged')}
             </p>
@@ -145,7 +151,7 @@ export default function ChangePasswordForm() {
           </label>
           <div className="relative">
             <Lock
-              className="absolute right-6 top-1/2 h-6 w-6 -translate-y-1/2"
+              className="absolute end-6 top-1/2 h-6 w-6 -translate-y-1/2"
               style={{ color: cssVars.neutral.textMuted }}
             />
             <input
@@ -153,7 +159,7 @@ export default function ChangePasswordForm() {
               value={currentPassword}
               onChange={(e) => setCurrentPassword(e.target.value)}
               required
-              className="w-full rounded-2xl border-2 py-4 pl-8 pr-16 text-lg font-semibold outline-none transition-all focus:border-opacity-100"
+              className="w-full rounded-2xl border-2 py-4 pe-16 ps-8 text-lg font-semibold outline-none transition-all focus:border-opacity-100"
               style={{
                 backgroundColor: cssVars.neutral.bg,
                 color: cssVars.secondary.DEFAULT,
@@ -164,7 +170,7 @@ export default function ChangePasswordForm() {
             <button
               type="button"
               onClick={() => setShowCurrentPassword(!showCurrentPassword)}
-              className="absolute left-4 top-1/2 -translate-y-1/2 transition-all"
+              className="absolute start-4 top-1/2 -translate-y-1/2 transition-all"
             >
               {showCurrentPassword ? (
                 <EyeOff className="h-5 w-5" style={{ color: cssVars.neutral.textMuted }} />
@@ -185,7 +191,7 @@ export default function ChangePasswordForm() {
           </label>
           <div className="relative">
             <Lock
-              className="absolute right-6 top-1/2 h-6 w-6 -translate-y-1/2"
+              className="absolute end-6 top-1/2 h-6 w-6 -translate-y-1/2"
               style={{ color: cssVars.neutral.textMuted }}
             />
             <input
@@ -194,7 +200,7 @@ export default function ChangePasswordForm() {
               onChange={(e) => setNewPassword(e.target.value)}
               required
               minLength={8}
-              className="w-full rounded-2xl border-2 py-4 pl-8 pr-16 text-lg font-semibold outline-none transition-all focus:border-opacity-100"
+              className="w-full rounded-2xl border-2 py-4 pe-16 ps-8 text-lg font-semibold outline-none transition-all focus:border-opacity-100"
               style={{
                 backgroundColor: cssVars.neutral.bg,
                 color: cssVars.secondary.DEFAULT,
@@ -205,7 +211,7 @@ export default function ChangePasswordForm() {
             <button
               type="button"
               onClick={() => setShowNewPassword(!showNewPassword)}
-              className="absolute left-4 top-1/2 -translate-y-1/2 transition-all"
+              className="absolute start-4 top-1/2 -translate-y-1/2 transition-all"
             >
               {showNewPassword ? (
                 <EyeOff className="h-5 w-5" style={{ color: cssVars.neutral.textMuted }} />
@@ -255,7 +261,7 @@ export default function ChangePasswordForm() {
           </label>
           <div className="relative">
             <Lock
-              className="absolute right-6 top-1/2 h-6 w-6 -translate-y-1/2"
+              className="absolute end-6 top-1/2 h-6 w-6 -translate-y-1/2"
               style={{ color: cssVars.neutral.textMuted }}
             />
             <input
@@ -264,7 +270,7 @@ export default function ChangePasswordForm() {
               onChange={(e) => setConfirmPassword(e.target.value)}
               required
               minLength={8}
-              className="w-full rounded-2xl border-2 py-4 pl-8 pr-16 text-lg font-semibold outline-none transition-all focus:border-opacity-100"
+              className="w-full rounded-2xl border-2 py-4 pe-16 ps-8 text-lg font-semibold outline-none transition-all focus:border-opacity-100"
               style={{
                 backgroundColor: cssVars.neutral.bg,
                 color: cssVars.secondary.DEFAULT,
@@ -278,7 +284,7 @@ export default function ChangePasswordForm() {
             <button
               type="button"
               onClick={() => setShowConfirmPassword(!showConfirmPassword)}
-              className="absolute left-4 top-1/2 -translate-y-1/2 transition-all"
+              className="absolute start-4 top-1/2 -translate-y-1/2 transition-all"
             >
               {showConfirmPassword ? (
                 <EyeOff className="h-5 w-5" style={{ color: cssVars.neutral.textMuted }} />
@@ -308,13 +314,7 @@ export default function ChangePasswordForm() {
         </div>
 
         {/* Submit Button */}
-        <Button
-          type="submit"
-          variant="primary"
-          size="lg"
-          fullWidth
-          disabled={isSubmitting}
-        >
+        <Button type="submit" variant="primary" size="lg" fullWidth disabled={isSubmitting}>
           {isSubmitting ? (
             <div className="h-5 w-5 animate-spin rounded-full border-2 border-current border-t-transparent" />
           ) : (

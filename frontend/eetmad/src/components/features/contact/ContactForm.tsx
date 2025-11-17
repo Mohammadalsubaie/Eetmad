@@ -51,7 +51,7 @@ export default function ContactForm() {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
-      className="p-8 rounded-2xl shadow-lg max-w-lg mx-auto"
+      className="mx-auto max-w-lg rounded-2xl p-8 shadow-lg"
       style={{
         backgroundColor: cssVars.neutral.surface,
         borderColor: cssVars.neutral.border,
@@ -59,7 +59,7 @@ export default function ContactForm() {
       }}
     >
       <h2
-        className="text-3xl font-bold mb-6 text-center"
+        className="mb-6 text-center text-3xl font-bold"
         style={{ color: cssVars.secondary.DEFAULT }}
       >
         {t('formTitle')}
@@ -67,7 +67,11 @@ export default function ContactForm() {
 
       <form onSubmit={handleSubmit} className="space-y-4">
         <div>
-          <label htmlFor="name" className="block text-sm font-medium mb-1" style={{ color: cssVars.neutral.textSecondary }}>
+          <label
+            htmlFor="name"
+            className="mb-1 block text-sm font-medium"
+            style={{ color: cssVars.neutral.textSecondary }}
+          >
             {t('nameLabel')}
           </label>
           <input
@@ -77,7 +81,7 @@ export default function ContactForm() {
             value={formData.name}
             onChange={handleChange}
             required
-            className="w-full p-3 rounded-md border"
+            className="w-full rounded-md border p-3"
             style={{
               backgroundColor: cssVars.neutral.bg,
               borderColor: cssVars.neutral.border,
@@ -87,7 +91,11 @@ export default function ContactForm() {
         </div>
 
         <div>
-          <label htmlFor="email" className="block text-sm font-medium mb-1" style={{ color: cssVars.neutral.textSecondary }}>
+          <label
+            htmlFor="email"
+            className="mb-1 block text-sm font-medium"
+            style={{ color: cssVars.neutral.textSecondary }}
+          >
             {t('emailLabel')}
           </label>
           <input
@@ -97,7 +105,7 @@ export default function ContactForm() {
             value={formData.email}
             onChange={handleChange}
             required
-            className="w-full p-3 rounded-md border"
+            className="w-full rounded-md border p-3"
             style={{
               backgroundColor: cssVars.neutral.bg,
               borderColor: cssVars.neutral.border,
@@ -107,7 +115,11 @@ export default function ContactForm() {
         </div>
 
         <div>
-          <label htmlFor="subject" className="block text-sm font-medium mb-1" style={{ color: cssVars.neutral.textSecondary }}>
+          <label
+            htmlFor="subject"
+            className="mb-1 block text-sm font-medium"
+            style={{ color: cssVars.neutral.textSecondary }}
+          >
             {t('subjectLabel')}
           </label>
           <input
@@ -117,7 +129,7 @@ export default function ContactForm() {
             value={formData.subject}
             onChange={handleChange}
             required
-            className="w-full p-3 rounded-md border"
+            className="w-full rounded-md border p-3"
             style={{
               backgroundColor: cssVars.neutral.bg,
               borderColor: cssVars.neutral.border,
@@ -127,7 +139,11 @@ export default function ContactForm() {
         </div>
 
         <div>
-          <label htmlFor="message" className="block text-sm font-medium mb-1" style={{ color: cssVars.neutral.textSecondary }}>
+          <label
+            htmlFor="message"
+            className="mb-1 block text-sm font-medium"
+            style={{ color: cssVars.neutral.textSecondary }}
+          >
             {t('messageLabel')}
           </label>
           <textarea
@@ -137,7 +153,7 @@ export default function ContactForm() {
             onChange={handleChange}
             required
             rows={5}
-            className="w-full p-3 rounded-md border"
+            className="w-full rounded-md border p-3"
             style={{
               backgroundColor: cssVars.neutral.bg,
               borderColor: cssVars.neutral.border,
@@ -150,11 +166,12 @@ export default function ContactForm() {
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            className={`p-3 rounded-md text-center ${
+            className={`rounded-md p-3 text-center ${
               status.type === 'success' ? 'text-green-700' : 'text-red-700'
             }`}
             style={{
-              backgroundColor: status.type === 'success' ? cssVars.status.success : cssVars.status.error,
+              backgroundColor:
+                status.type === 'success' ? cssVars.status.success : cssVars.status.error,
               color: status.type === 'success' ? 'white' : 'white', // Ensure text is readable on status background
             }}
           >
@@ -167,7 +184,7 @@ export default function ContactForm() {
           whileHover={{ scale: 1.02 }}
           whileTap={{ scale: 0.98 }}
           disabled={loading}
-          className="w-full py-3 rounded-md font-semibold text-lg"
+          className="w-full rounded-md py-3 text-lg font-semibold"
           style={{
             background: cssVars.gradient.gold,
             color: cssVars.secondary.DEFAULT,

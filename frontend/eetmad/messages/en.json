@@ -57,13 +57,14 @@
       "quality": "We verify all suppliers before accepting them on the platform. We request commercial registration and official documents. We have a comprehensive rating system from users. We continuously monitor supplier performance and take action against violators."
     }
   },
-      "faq": {
-        "pageTitle": "Frequently Asked Questions",
-        "fetchError": "Failed to load FAQs. Please try again later.",
-        "loading": "Loading FAQs...",
-        "noFaqsFound": "No FAQs found at the moment."
-      },
-      "home": {    "hero": {
+  "faq": {
+    "pageTitle": "Frequently Asked Questions",
+    "fetchError": "Failed to load FAQs. Please try again later.",
+    "loading": "Loading FAQs...",
+    "noFaqsFound": "No FAQs found at the moment."
+  },
+  "home": {
+    "hero": {
       "badge": "312 Opportunities Available Now",
       "title": "Explore",
       "titleHighlight": "Exceptional Opportunities",

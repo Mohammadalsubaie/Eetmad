@@ -10,7 +10,7 @@ import { useState } from 'react';
 const faqKeys = ['timelines', 'offers', 'payments', 'quality'] as const;
 
 export default function FAQSection() {
-  const t = useTranslations('biddingPlatform.sections.faq');
+  const t = useTranslations('pages.faq');
   const [activeKey, setActiveKey] = useState<string | null>(faqKeys[0]);
   const locale = useLocale();
   const isRTL = locale === 'ar';

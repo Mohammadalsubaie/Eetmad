@@ -1,12 +1,12 @@
 'use client';
 
-import { useState, useEffect } from 'react';
-import { useTranslations } from 'next-intl';
-import { cssVars } from '@/styles/theme';
+import EmptyState from '@/components/ui/EmptyState';
 import { faqApi } from '@/lib/api/faq';
 import type { FAQ } from '@/lib/types/content.types';
+import { cssVars } from '@/styles/theme';
+import { useTranslations } from 'next-intl';
+import { useEffect, useState } from 'react';
 import FAQItem from './FAQItem';
-import EmptyState from '@/components/shared/data-display/EmptyState';
 
 export default function FAQList() {
   const t = useTranslations('faq');
@@ -39,7 +39,7 @@ export default function FAQList() {
   }
 
   if (faqs.length === 0) {
-    return <EmptyState message={t('noFaqsFound')} />;
+    return <EmptyState title={t('noFaqsFound')} />;
   }
 
   return (

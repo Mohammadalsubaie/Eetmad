@@ -498,7 +498,7 @@ import { cssVars } from '@/styles/theme';
 import { requestsApi } from '@/lib/api/requests';
 import type { Request } from '@/lib/types/request.types';
 import RequestCard from '@/components/features/requests/RequestCard';
-import EmptyState from '@/components/shared/data-display/EmptyState';
+import EmptyState from '@/components/ui/EmptyState';
 
 export default function RequestsPage() {
 	const t = useTranslations('requests');

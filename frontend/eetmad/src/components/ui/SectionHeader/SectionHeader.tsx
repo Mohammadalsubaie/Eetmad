@@ -86,7 +86,7 @@ export default function SectionHeader({
     right: 'text-right',
   };
 
-  const titleColor = variant === 'dark' ? cssVars.neutral.bg : cssVars.secondary.DEFAULT;
+  const titleColor = variant === 'dark' ? cssVars.secondary.DEFAULT : cssVars.neutral.bg;
   const subtitleColor =
     variant === 'dark' ? cssVars.neutral.textMuted : cssVars.neutral.textSecondary;
 

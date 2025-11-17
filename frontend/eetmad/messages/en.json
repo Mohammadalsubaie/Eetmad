@@ -664,6 +664,8 @@
       "fetchError": "Failed to load FAQs. Please try again later.",
       "loading": "Loading FAQs...",
       "noFaqsFound": "No FAQs found at the moment.",
+      "eyebrow": "FAQ",
+      "subtitle": "Find answers to the most common questions about our platform and services",
       "questions": {
         "timelines": "How long does it take to get offers?",
         "offers": "How many offers to expect?",
@@ -675,6 +677,28 @@
         "offers": "The number of offers varies depending on the type of request and geographic area. On average, requests receive 5-10 offers from different suppliers. Clear and detailed requests attract more offers.",
         "payments": "We do not directly intervene in the payment process. Financial agreements are made between the two parties directly. We recommend using safe and documented payment methods. We provide an optional contract template to document the agreement.",
         "quality": "We verify all suppliers before accepting them on the platform. We request commercial registration and official documents. We have a comprehensive rating system from users. We continuously monitor supplier performance and take action against violators."
+      },
+      "items": {
+        "timelines": {
+          "question": "How long does it take to get offers?",
+          "summary": "Typically within 24-48 hours of posting",
+          "answer": "Offers usually start arriving within 24 hours of posting the request. In most cases, you get several offers within two days. The duration depends on the type of request and its complexity."
+        },
+        "offers": {
+          "question": "How many offers to expect?",
+          "summary": "Average of 5-10 offers per request",
+          "answer": "The number of offers varies depending on the type of request and geographic area. On average, requests receive 5-10 offers from different suppliers. Clear and detailed requests attract more offers."
+        },
+        "payments": {
+          "question": "How does the payment process work?",
+          "summary": "Direct agreements between parties with safe payment methods",
+          "answer": "We do not directly intervene in the payment process. Financial agreements are made between the two parties directly. We recommend using safe and documented payment methods. We provide an optional contract template to document the agreement."
+        },
+        "quality": {
+          "question": "How do you ensure supplier quality?",
+          "summary": "Comprehensive verification and rating system",
+          "answer": "We verify all suppliers before accepting them on the platform. We request commercial registration and official documents. We have a comprehensive rating system from users. We continuously monitor supplier performance and take action against violators."
+        }
       }
     },
     "howItWorks": {

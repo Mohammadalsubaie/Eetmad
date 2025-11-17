@@ -44,7 +44,7 @@ export default function FAQPage() {
             badgeIcon={HelpCircle}
             title={t('title')}
             subtitle={t('subtitle')}
-            variant="dark"
+            variant="light"
             align={isRTL ? 'right' : 'left'}
             badgeColor="warm"
             className="max-w-xl"

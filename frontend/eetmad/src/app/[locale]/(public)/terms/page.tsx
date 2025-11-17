@@ -1,18 +1,18 @@
 'use client';
 
-import { useTranslations } from 'next-intl';
-import { cssVars } from '@/styles/theme';
 import TermsContent from '@/components/features/terms/TermsContent';
+import { cssVars } from '@/styles/theme';
+import { useTranslations } from 'next-intl';
 
 export default function TermsPage() {
   const t = useTranslations('pages.terms');
 
   return (
     <div
-      className="container mx-auto py-8 px-4"
+      className="container mx-auto px-4 py-8"
       style={{ backgroundColor: cssVars.neutral.bg, color: cssVars.neutral.textSecondary }}
     >
-      <h1 className="text-4xl font-bold mb-8" style={{ color: cssVars.secondary.DEFAULT }}>
+      <h1 className="mb-8 text-4xl font-bold" style={{ color: cssVars.primary.DEFAULT }}>
         {t('pageTitle')}
       </h1>
       <TermsContent />

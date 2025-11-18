@@ -8,7 +8,6 @@ import { motion } from 'framer-motion';
 import {
   Activity,
   Briefcase,
-  DollarSign,
   FileText,
   Bell,
   MessageSquare,

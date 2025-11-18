@@ -28,3 +28,11 @@ export interface QueryParams {
   search?: string;
   [key: string]: string | number | boolean | undefined;
 }
+
+export interface ProjectFilters {
+  status?: string;
+  categoryId?: string;
+  clientId?: string;
+  supplierId?: string;
+  [key: string]: string | number | undefined;
+}

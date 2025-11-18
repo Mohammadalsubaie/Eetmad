@@ -36,7 +36,7 @@ export default function RequestOffersPage() {
     }
   };
 
-  const handleOfferAccepted = (offerId: string) => {
+  const handleOfferAccepted = () => {
     // Refresh request to update selected offer
     fetchRequest(id);
     // Optionally redirect to projects page

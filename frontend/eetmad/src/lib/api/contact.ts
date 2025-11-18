@@ -1,4 +1,3 @@
-import apiClient from './client';
 import type { ContactFormInput, ContactFormResponse } from '@/lib/types/contact.types';
 
 export const contactApi = {

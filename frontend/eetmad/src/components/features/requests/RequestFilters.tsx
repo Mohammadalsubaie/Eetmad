@@ -6,17 +6,20 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Filter, X } from 'lucide-react';
 import { cssVars } from '@/styles/theme';
 import { Button } from '@/components/ui/Button';
-import type { RequestStatus } from '@/lib/types/request.types';
+import type {
+  RequestStatus,
+  RequestFilters as RequestFiltersType,
+} from '@/lib/types/request.types';
 
 interface RequestFiltersProps {
-  filters?: Record<string, any>;
-  onFilterChange?: (filters: Record<string, any>) => void;
+  filters?: RequestFiltersType;
+  onFilterChange?: (filters: RequestFiltersType) => void;
 }
 
 export default function RequestFilters({ filters = {}, onFilterChange }: RequestFiltersProps) {
   const t = useTranslations('pages.requests');
   const [isOpen, setIsOpen] = useState(false);
-  const [localFilters, setLocalFilters] = useState<Record<string, any>>({
+  const [localFilters, setLocalFilters] = useState<RequestFiltersType>({
     status: filters.status || '',
     categoryId: filters.categoryId || '',
     budgetMin: filters.budgetMin || '',
@@ -32,7 +35,7 @@ export default function RequestFilters({ filters = {}, onFilterChange }: Request
     'closed',
   ];
 
-  const handleFilterChange = (key: string, value: any) => {
+  const handleFilterChange = (key: string, value: string | number | RequestStatus) => {
     const newFilters = { ...localFilters, [key]: value };
     setLocalFilters(newFilters);
     if (onFilterChange) {
@@ -41,8 +44,8 @@ export default function RequestFilters({ filters = {}, onFilterChange }: Request
   };
 
   const handleClearFilters = () => {
-    const clearedFilters = {
-      status: '',
+    const clearedFilters: RequestFiltersType = {
+      status: '' as RequestStatus | '',
       categoryId: '',
       budgetMin: '',
       budgetMax: '',

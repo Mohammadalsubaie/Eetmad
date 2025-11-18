@@ -1,8 +1,7 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { useTranslations } from 'next-intl';
-import { motion } from 'framer-motion';
 import { DollarSign, TrendingUp, CheckCircle2, Star, Package, Award } from 'lucide-react';
 import { cssVars } from '@/styles/theme';
 import { suppliersApi } from '@/lib/api/suppliers';
@@ -23,11 +22,7 @@ export default function StatsPage() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
-  useEffect(() => {
-    fetchStats();
-  }, []);
-
-  const fetchStats = async () => {
+  const fetchStats = useCallback(async () => {
     try {
       setLoading(true);
       setError(null);
@@ -39,7 +34,11 @@ export default function StatsPage() {
     } finally {
       setLoading(false);
     }
-  };
+  }, [t]);
+
+  useEffect(() => {
+    fetchStats();
+  }, [fetchStats]);
 
   const formatCurrency = (amount: number) => {
     return `${amount.toLocaleString()} ${t('currency')}`;

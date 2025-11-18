@@ -1,11 +1,10 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { useTranslations, useLocale } from 'next-intl';
 import { useParams, useRouter } from 'next/navigation';
 import { cssVars } from '@/styles/theme';
 import { motion } from 'framer-motion';
-import { SectionHeader } from '@/components/ui';
 import { categoriesApi } from '@/lib/api/categories';
 import type { Category } from '@/lib/types/category.types';
 import { Package, ArrowLeft, TrendingUp, Users } from 'lucide-react';
@@ -23,13 +22,7 @@ export default function CategoryPage() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
-  useEffect(() => {
-    if (slug) {
-      fetchCategory();
-    }
-  }, [slug]);
-
-  const fetchCategory = async () => {
+  const fetchCategory = useCallback(async () => {
     try {
       setLoading(true);
       const allCategories = await categoriesApi.getAll();
@@ -53,7 +46,13 @@ export default function CategoryPage() {
     } finally {
       setLoading(false);
     }
-  };
+  }, [slug, t]);
+
+  useEffect(() => {
+    if (slug) {
+      fetchCategory();
+    }
+  }, [slug, fetchCategory]);
 
   if (loading) {
     return (

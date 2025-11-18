@@ -5,7 +5,7 @@ import { faqApi } from '@/lib/api/faq';
 import type { FAQ } from '@/lib/types/content.types';
 import { cssVars } from '@/styles/theme';
 import { useTranslations } from 'next-intl';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 import FAQItem from './FAQItem';
 
 export default function FAQList() {
@@ -14,11 +14,7 @@ export default function FAQList() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
-  useEffect(() => {
-    fetchFaqs();
-  }, []);
-
-  const fetchFaqs = async () => {
+  const fetchFaqs = useCallback(async () => {
     try {
       const data = await faqApi.getAll();
       setFaqs(data);
@@ -28,7 +24,11 @@ export default function FAQList() {
     } finally {
       setLoading(false);
     }
-  };
+  }, [t]);
+
+  useEffect(() => {
+    fetchFaqs();
+  }, [fetchFaqs]);
 
   if (loading) {
     return <div style={{ color: cssVars.neutral.textSecondary }}>{t('loading')}</div>;

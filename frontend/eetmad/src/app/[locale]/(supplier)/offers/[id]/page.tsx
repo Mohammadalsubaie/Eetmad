@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { useParams, useRouter } from 'next/navigation';
 import { useTranslations } from 'next-intl';
 import { motion } from 'framer-motion';
@@ -30,25 +30,28 @@ export default function OfferDetailPage() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
+  const fetchOffer = useCallback(
+    async (offerId: string) => {
+      try {
+        setLoading(true);
+        setError(null);
+        const data = await offersApi.getById(offerId);
+        setOffer(data);
+      } catch (err) {
+        console.error('Failed to fetch offer:', err);
+        setError(t('fetchError'));
+      } finally {
+        setLoading(false);
+      }
+    },
+    [t]
+  );
+
   useEffect(() => {
     if (id) {
       fetchOffer(id);
     }
-  }, [id]);
-
-  const fetchOffer = async (offerId: string) => {
-    try {
-      setLoading(true);
-      setError(null);
-      const data = await offersApi.getById(offerId);
-      setOffer(data);
-    } catch (err) {
-      console.error('Failed to fetch offer:', err);
-      setError(t('fetchError'));
-    } finally {
-      setLoading(false);
-    }
-  };
+  }, [id, fetchOffer]);
 
   const formatDate = (dateString: string) => {
     return new Date(dateString).toLocaleDateString('en-US', {

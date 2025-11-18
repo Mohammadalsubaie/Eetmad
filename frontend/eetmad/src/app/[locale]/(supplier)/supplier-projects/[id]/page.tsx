@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { useParams, useRouter } from 'next/navigation';
 import { useTranslations } from 'next-intl';
 import { motion } from 'framer-motion';
@@ -29,25 +29,28 @@ export default function SupplierProjectDetailPage() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
+  const fetchProject = useCallback(
+    async (projectId: string) => {
+      try {
+        setLoading(true);
+        setError(null);
+        const data = await projectsApi.getById(projectId);
+        setProject(data);
+      } catch (err) {
+        console.error('Failed to fetch project:', err);
+        setError(t('fetchError'));
+      } finally {
+        setLoading(false);
+      }
+    },
+    [t]
+  );
+
   useEffect(() => {
     if (id) {
       fetchProject(id);
     }
-  }, [id]);
-
-  const fetchProject = async (projectId: string) => {
-    try {
-      setLoading(true);
-      setError(null);
-      const data = await projectsApi.getById(projectId);
-      setProject(data);
-    } catch (err) {
-      console.error('Failed to fetch project:', err);
-      setError(t('fetchError'));
-    } finally {
-      setLoading(false);
-    }
-  };
+  }, [id, fetchProject]);
 
   const formatDate = (dateString: string) => {
     return new Date(dateString).toLocaleDateString('en-US', {
@@ -59,24 +62,6 @@ export default function SupplierProjectDetailPage() {
 
   const formatCurrency = (amount: number) => {
     return `${amount.toLocaleString()} ${t('currency')}`;
-  };
-
-  const getStatusColor = (status: string) => {
-    switch (status) {
-      case 'active':
-        return cssVars.status.success;
-      case 'pending_contract':
-        return cssVars.status.warning;
-      case 'completed':
-        return cssVars.primary.DEFAULT;
-      case 'cancelled':
-      case 'disputed':
-        return cssVars.status.error;
-      case 'on_hold':
-        return cssVars.neutral.textSecondary;
-      default:
-        return cssVars.neutral.textSecondary;
-    }
   };
 
   const getStatusIcon = (status: string) => {

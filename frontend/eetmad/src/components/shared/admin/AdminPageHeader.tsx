@@ -1,6 +1,5 @@
 'use client';
 
-import { motion } from 'framer-motion';
 import { cssVars } from '@/styles/theme';
 import { LucideIcon } from 'lucide-react';
 import { ReactNode } from 'react';

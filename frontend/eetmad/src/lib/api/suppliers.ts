@@ -1,6 +1,26 @@
 import apiClient from './client';
 import type { QueryParams } from '@/lib/types/common.types';
+import type { SupplierProfile } from '@/lib/types/supplier.types';
 import { mockSuppliers } from '@/mocks/data/suppliers';
+
+export interface UpdateSupplierProfileData {
+  serviceDescription?: string;
+  responseTime?: number;
+  acceptanceRate?: number;
+  onTimeDelivery?: number;
+  workingHours?: SupplierProfile['workingHours'];
+  [key: string]: unknown;
+}
+
+export interface PortfolioItemData {
+  title: string;
+  description: string;
+  images: string[];
+  category: string;
+  completedAt: string;
+  projectId?: string;
+  clientName?: string;
+}
 
 const USE_MOCKS = process.env.NEXT_PUBLIC_USE_MOCKS === 'true';
 
@@ -50,7 +70,7 @@ export const suppliersApi = {
     }
   },
 
-  updateProfile: async (profileData: Partial<any>) => {
+  updateProfile: async (profileData: UpdateSupplierProfileData) => {
     const { data } = await apiClient.put('/v1/suppliers/me', profileData);
     return data;
   },
@@ -75,12 +95,12 @@ export const suppliersApi = {
     }
   },
 
-  addPortfolioItem: async (itemData: any) => {
+  addPortfolioItem: async (itemData: PortfolioItemData) => {
     const { data } = await apiClient.post('/v1/suppliers/me/portfolio', itemData);
     return data;
   },
 
-  updatePortfolioItem: async (id: string, itemData: any) => {
+  updatePortfolioItem: async (id: string, itemData: Partial<PortfolioItemData>) => {
     const { data } = await apiClient.put(`/v1/suppliers/me/portfolio/${id}`, itemData);
     return data;
   },

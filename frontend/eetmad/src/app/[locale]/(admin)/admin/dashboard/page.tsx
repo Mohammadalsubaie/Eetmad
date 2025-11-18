@@ -26,7 +26,7 @@ import { useEffect, useState } from 'react';
 
 export default function AdminDashboardPage() {
   const t = useTranslations('admin');
-  const [stats, setStats] = useState<DashboardStats>({
+  const [stats] = useState<DashboardStats>({
     totalUsers: 1247,
     totalSuppliers: 389,
     activeRequests: 156,
@@ -37,7 +37,7 @@ export default function AdminDashboardPage() {
     completionRate: 94.5,
   });
 
-  const [recentActivity, setRecentActivity] = useState<RecentActivity[]>([
+  const [recentActivity] = useState<RecentActivity[]>([
     {
       id: '1',
       type: 'user_registered',
@@ -80,7 +80,7 @@ export default function AdminDashboardPage() {
     },
   ]);
 
-  const [loading, setLoading] = useState(false);
+  const [loading] = useState(false);
 
   useEffect(() => {
     // Fetch dashboard data from API

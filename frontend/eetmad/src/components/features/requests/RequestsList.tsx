@@ -1,18 +1,18 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { useTranslations } from 'next-intl';
 import { cssVars } from '@/styles/theme';
 import { requestsApi } from '@/lib/api/requests';
-import type { Request } from '@/lib/types/request.types';
+import type { Request, RequestFilters } from '@/lib/types/request.types';
 import RequestCard from './RequestCard';
-import RequestFilters from './RequestFilters';
+import RequestFiltersComponent from './RequestFilters';
 import RequestSearch from './RequestSearch';
 import EmptyState from '@/components/ui/EmptyState';
 
 interface RequestsListProps {
   showMyRequests?: boolean;
-  filters?: Record<string, any>;
+  filters?: RequestFilters;
 }
 
 export default function RequestsList({ showMyRequests = false, filters }: RequestsListProps) {
@@ -21,13 +21,9 @@ export default function RequestsList({ showMyRequests = false, filters }: Reques
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [searchQuery, setSearchQuery] = useState('');
-  const [activeFilters, setActiveFilters] = useState<Record<string, any>>(filters || {});
+  const [activeFilters, setActiveFilters] = useState<RequestFilters>(filters || {});
 
-  useEffect(() => {
-    fetchRequests();
-  }, [showMyRequests, activeFilters]);
-
-  const fetchRequests = async () => {
+  const fetchRequests = useCallback(async () => {
     try {
       setLoading(true);
       setError(null);
@@ -45,7 +41,11 @@ export default function RequestsList({ showMyRequests = false, filters }: Reques
     } finally {
       setLoading(false);
     }
-  };
+  }, [showMyRequests, activeFilters, searchQuery, t]);
+
+  useEffect(() => {
+    fetchRequests();
+  }, [fetchRequests]);
 
   const handleSearch = (query: string) => {
     setSearchQuery(query);
@@ -56,7 +56,7 @@ export default function RequestsList({ showMyRequests = false, filters }: Reques
     return () => clearTimeout(timeoutId);
   };
 
-  const handleFilterChange = (newFilters: Record<string, any>) => {
+  const handleFilterChange = (newFilters: RequestFilters) => {
     setActiveFilters(newFilters);
   };
 
@@ -86,7 +86,7 @@ export default function RequestsList({ showMyRequests = false, filters }: Reques
       {/* Search and Filters */}
       <div className="space-y-4">
         <RequestSearch onSearch={handleSearch} />
-        <RequestFilters filters={activeFilters} onFilterChange={handleFilterChange} />
+        <RequestFiltersComponent filters={activeFilters} onFilterChange={handleFilterChange} />
       </div>
 
       {/* Requests Grid */}

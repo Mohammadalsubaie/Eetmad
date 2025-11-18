@@ -7,16 +7,12 @@ import { motion } from 'framer-motion';
 import { cssVars } from '@/styles/theme';
 import {
   ArrowLeft,
-  Calendar,
-  CheckCircle,
-  Clock,
   CreditCard,
   DollarSign,
   FileText,
   Info,
   XCircle,
   Building2,
-  User,
   TrendingUp,
 } from 'lucide-react';
 import type { Payment } from '@/lib/types/payment.types';

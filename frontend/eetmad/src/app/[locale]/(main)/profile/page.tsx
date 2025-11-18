@@ -12,7 +12,6 @@ import {
   Phone,
   MapPin,
   Building2,
-  Calendar,
   Shield,
   Edit,
   Wallet,

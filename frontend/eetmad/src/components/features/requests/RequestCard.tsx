@@ -14,7 +14,7 @@ interface RequestCardProps {
   showActions?: boolean;
 }
 
-export default function RequestCard({ request, onView, showActions = true }: RequestCardProps) {
+export default function RequestCard({ request, onView }: RequestCardProps) {
   const t = useTranslations('pages.requests');
   const router = useRouter();
 

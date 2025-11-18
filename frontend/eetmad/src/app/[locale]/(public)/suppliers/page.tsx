@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { useTranslations, useLocale } from 'next-intl';
 import { useRouter } from 'next/navigation';
 import { cssVars } from '@/styles/theme';
@@ -20,11 +20,7 @@ export default function SuppliersPage() {
   const [error, setError] = useState<string | null>(null);
   const [searchQuery, setSearchQuery] = useState('');
 
-  useEffect(() => {
-    fetchSuppliers();
-  }, []);
-
-  const fetchSuppliers = async () => {
+  const fetchSuppliers = useCallback(async () => {
     try {
       setLoading(true);
       const data = await suppliersApi.getAll();
@@ -35,7 +31,11 @@ export default function SuppliersPage() {
     } finally {
       setLoading(false);
     }
-  };
+  }, [t]);
+
+  useEffect(() => {
+    fetchSuppliers();
+  }, [fetchSuppliers]);
 
   const filteredSuppliers = suppliers.filter((supplier) => {
     if (!searchQuery) return true;
@@ -49,8 +49,6 @@ export default function SuppliersPage() {
       )
     );
   });
-
-  const verifiedSuppliers = filteredSuppliers.filter((s) => s.isVerified);
 
   return (
     <div

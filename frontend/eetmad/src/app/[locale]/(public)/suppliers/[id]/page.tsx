@@ -1,23 +1,13 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { useTranslations, useLocale } from 'next-intl';
 import { useParams, useRouter } from 'next/navigation';
 import { cssVars } from '@/styles/theme';
 import { motion } from 'framer-motion';
-import { SectionHeader } from '@/components/ui';
 import { suppliersApi } from '@/lib/api/suppliers';
 import type { Supplier } from '@/lib/types/supplier.types';
-import {
-  Users,
-  Star,
-  CheckCircle2,
-  ArrowLeft,
-  TrendingUp,
-  Clock,
-  Award,
-  Package,
-} from 'lucide-react';
+import { Users, Star, CheckCircle2, ArrowLeft, TrendingUp, Clock, Award } from 'lucide-react';
 
 export default function SupplierDetailPage() {
   const params = useParams();
@@ -30,13 +20,7 @@ export default function SupplierDetailPage() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
-  useEffect(() => {
-    if (id) {
-      fetchSupplier();
-    }
-  }, [id]);
-
-  const fetchSupplier = async () => {
+  const fetchSupplier = useCallback(async () => {
     try {
       setLoading(true);
       const data = await suppliersApi.getById(id);
@@ -47,7 +31,13 @@ export default function SupplierDetailPage() {
     } finally {
       setLoading(false);
     }
-  };
+  }, [id, t]);
+
+  useEffect(() => {
+    if (id) {
+      fetchSupplier();
+    }
+  }, [id, fetchSupplier]);
 
   if (loading) {
     return (

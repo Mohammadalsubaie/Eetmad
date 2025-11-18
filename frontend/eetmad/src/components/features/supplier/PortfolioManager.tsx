@@ -1,7 +1,8 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { useTranslations } from 'next-intl';
+import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { Plus, Edit, Trash2, Image as ImageIcon } from 'lucide-react';
 import { cssVars } from '@/styles/theme';
@@ -16,11 +17,7 @@ export default function PortfolioManager() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
-  useEffect(() => {
-    fetchPortfolio();
-  }, []);
-
-  const fetchPortfolio = async () => {
+  const fetchPortfolio = useCallback(async () => {
     try {
       setLoading(true);
       setError(null);
@@ -32,7 +29,11 @@ export default function PortfolioManager() {
     } finally {
       setLoading(false);
     }
-  };
+  }, [t]);
+
+  useEffect(() => {
+    fetchPortfolio();
+  }, [fetchPortfolio]);
 
   const handleDelete = async (id: string) => {
     if (!confirm(t('confirmDelete'))) return;
@@ -121,11 +122,7 @@ export default function PortfolioManager() {
                 }}
               >
                 {item.images && item.images.length > 0 ? (
-                  <img
-                    src={item.images[0]}
-                    alt={item.title}
-                    className="h-full w-full object-cover"
-                  />
+                  <Image src={item.images[0]} alt={item.title} fill className="object-cover" />
                 ) : (
                   <div className="flex h-full items-center justify-center">
                     <ImageIcon className="h-12 w-12" style={{ color: cssVars.primary.DEFAULT }} />

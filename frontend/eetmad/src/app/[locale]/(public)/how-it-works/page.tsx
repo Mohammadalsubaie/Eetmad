@@ -18,7 +18,6 @@ import { useLocale, useTranslations } from 'next-intl';
 
 export default function HowItWorksPage() {
   const t = useTranslations('biddingPlatform.sections.gettingStarted');
-  const tPage = useTranslations('pages.howItWorks');
   const locale = useLocale();
   const isRTL = locale === 'ar';
 

@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { useTranslations } from 'next-intl';
 import { cssVars } from '@/styles/theme';
 import { offersApi } from '@/lib/api/offers';
@@ -20,11 +20,7 @@ export default function OffersList({ requestId, onAccept, onReject }: OffersList
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
-  useEffect(() => {
-    fetchOffers();
-  }, [requestId]);
-
-  const fetchOffers = async () => {
+  const fetchOffers = useCallback(async () => {
     try {
       setLoading(true);
       setError(null);
@@ -36,7 +32,11 @@ export default function OffersList({ requestId, onAccept, onReject }: OffersList
     } finally {
       setLoading(false);
     }
-  };
+  }, [requestId, t]);
+
+  useEffect(() => {
+    fetchOffers();
+  }, [fetchOffers]);
 
   const handleAccept = async (offerId: string) => {
     try {

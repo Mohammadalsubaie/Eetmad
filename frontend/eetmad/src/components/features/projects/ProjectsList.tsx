@@ -1,15 +1,16 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { useTranslations } from 'next-intl';
 import { cssVars } from '@/styles/theme';
 import { projectsApi } from '@/lib/api/projects';
 import type { Project } from '@/lib/types/project.types';
+import type { ProjectFilters } from '@/lib/types/common.types';
 import ProjectCard from './ProjectCard';
 import EmptyState from '@/components/ui/EmptyState';
 
 interface ProjectsListProps {
-  filters?: Record<string, any>;
+  filters?: ProjectFilters;
 }
 
 export default function ProjectsList({ filters }: ProjectsListProps) {
@@ -18,11 +19,7 @@ export default function ProjectsList({ filters }: ProjectsListProps) {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
-  useEffect(() => {
-    fetchProjects();
-  }, [filters]);
-
-  const fetchProjects = async () => {
+  const fetchProjects = useCallback(async () => {
     try {
       setLoading(true);
       setError(null);
@@ -34,7 +31,11 @@ export default function ProjectsList({ filters }: ProjectsListProps) {
     } finally {
       setLoading(false);
     }
-  };
+  }, [filters, t]);
+
+  useEffect(() => {
+    fetchProjects();
+  }, [fetchProjects]);
 
   if (loading) {
     return (

@@ -14,7 +14,7 @@ interface ProjectCardProps {
   showActions?: boolean;
 }
 
-export default function ProjectCard({ project, onView, showActions = true }: ProjectCardProps) {
+export default function ProjectCard({ project, onView }: ProjectCardProps) {
   const t = useTranslations('pages.projects');
   const router = useRouter();
 

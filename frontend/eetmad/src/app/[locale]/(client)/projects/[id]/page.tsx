@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { useParams, useRouter } from 'next/navigation';
 import { useTranslations } from 'next-intl';
 import { motion } from 'framer-motion';
@@ -29,25 +29,28 @@ export default function ProjectDetailPage() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
+  const fetchProject = useCallback(
+    async (projectId: string) => {
+      try {
+        setLoading(true);
+        setError(null);
+        const data = await projectsApi.getById(projectId);
+        setProject(data);
+      } catch (err) {
+        console.error('Failed to fetch project:', err);
+        setError(t('fetchError'));
+      } finally {
+        setLoading(false);
+      }
+    },
+    [t]
+  );
+
   useEffect(() => {
     if (id) {
       fetchProject(id);
     }
-  }, [id]);
-
-  const fetchProject = async (projectId: string) => {
-    try {
-      setLoading(true);
-      setError(null);
-      const data = await projectsApi.getById(projectId);
-      setProject(data);
-    } catch (err) {
-      console.error('Failed to fetch project:', err);
-      setError(t('fetchError'));
-    } finally {
-      setLoading(false);
-    }
-  };
+  }, [id, fetchProject]);
 
   const formatDate = (dateString: string) => {
     return new Date(dateString).toLocaleDateString('en-US', {
@@ -273,7 +276,7 @@ export default function ProjectDetailPage() {
                 {t('milestones')}
               </h2>
               <div className="space-y-4">
-                {project.milestones.map((milestone, index) => (
+                {project.milestones.map((milestone) => (
                   <div
                     key={milestone.id}
                     className="rounded-xl border-2 p-4"

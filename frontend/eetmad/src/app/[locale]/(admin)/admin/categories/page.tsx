@@ -103,7 +103,7 @@ export default function CategoriesManagementPage() {
     {
       key: 'actions',
       header: t('categories.table.actions'),
-      render: (category: Category) => (
+      render: () => (
         <div className="flex items-center gap-2">
           <button
             onClick={(e) => e.stopPropagation()}

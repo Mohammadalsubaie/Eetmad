@@ -6,9 +6,7 @@ import { useTranslations } from 'next-intl';
 import { motion } from 'framer-motion';
 import { cssVars } from '@/styles/theme';
 import { suppliersApi } from '@/lib/api/suppliers';
-import { categoriesApi } from '@/lib/api/categories';
 import type { Supplier } from '@/lib/types/supplier.types';
-import type { Category } from '@/lib/types/category.types';
 import { Button } from '@/components/ui/Button';
 
 interface ProfileEditFormProps {
@@ -21,8 +19,7 @@ export default function ProfileEditForm({ profile, onSuccess }: ProfileEditFormP
   const router = useRouter();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const [categories, setCategories] = useState<Category[]>([]);
-  const [selectedCategories, setSelectedCategories] = useState<string[]>(
+  const [selectedCategories] = useState<string[]>(
     profile.categories?.map((c) => c.categoryId) || []
   );
   const [formData, setFormData] = useState({

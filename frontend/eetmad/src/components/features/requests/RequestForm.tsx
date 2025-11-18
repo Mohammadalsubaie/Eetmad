@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { useTranslations } from 'next-intl';
 import { motion } from 'framer-motion';
-import { DollarSign, Calendar, MapPin, FileText, Check } from 'lucide-react';
+import { DollarSign } from 'lucide-react';
 import { cssVars } from '@/styles/theme';
 import { requestsApi } from '@/lib/api/requests';
 import { categoriesApi } from '@/lib/api/categories';
@@ -23,7 +23,6 @@ export default function RequestForm({ request, onSuccess }: RequestFormProps) {
   const isEdit = !!request;
 
   const [categories, setCategories] = useState<Category[]>([]);
-  const [loading, setLoading] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
 

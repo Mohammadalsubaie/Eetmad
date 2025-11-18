@@ -8,7 +8,7 @@ import { motion } from 'framer-motion';
 import { ArrowLeft, Calendar, Clock, DollarSign, Edit, Eye, MapPin, Tag } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 import { useParams, useRouter } from 'next/navigation';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 
 export default function RequestDetailPage() {
   const params = useParams();
@@ -19,25 +19,28 @@ export default function RequestDetailPage() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
+  const fetchRequest = useCallback(
+    async (requestId: string) => {
+      try {
+        setLoading(true);
+        setError(null);
+        const data = await requestsApi.getById(requestId);
+        setRequest(data);
+      } catch (err) {
+        console.error('Failed to fetch request:', err);
+        setError(t('fetchError'));
+      } finally {
+        setLoading(false);
+      }
+    },
+    [t]
+  );
+
   useEffect(() => {
     if (id) {
       fetchRequest(id);
     }
-  }, [id]);
-
-  const fetchRequest = async (requestId: string) => {
-    try {
-      setLoading(true);
-      setError(null);
-      const data = await requestsApi.getById(requestId);
-      setRequest(data);
-    } catch (err) {
-      console.error('Failed to fetch request:', err);
-      setError(t('fetchError'));
-    } finally {
-      setLoading(false);
-    }
-  };
+  }, [id, fetchRequest]);
 
   const formatDate = (dateString: string) => {
     return new Date(dateString).toLocaleDateString('en-US', {

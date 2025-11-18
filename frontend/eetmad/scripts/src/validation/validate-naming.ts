@@ -409,7 +409,7 @@ function main() {
     }
   });
 
-  const batchResult = validateNamingConventions(inputs);
+  validateNamingConventions(inputs);
 
   // Apply React-specific filtering
   inputs.forEach((input) => {

@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { useTranslations } from 'next-intl';
 import { motion } from 'framer-motion';
-import { DollarSign, Calendar, FileText, Shield } from 'lucide-react';
+import { DollarSign } from 'lucide-react';
 import { cssVars } from '@/styles/theme';
 import { offersApi } from '@/lib/api/offers';
 import { requestsApi } from '@/lib/api/requests';
@@ -24,7 +24,6 @@ export default function OfferForm({ offer, requestId, onSuccess }: OfferFormProp
   const isEdit = !!offer;
 
   const [request, setRequest] = useState<Request | null>(null);
-  const [loading, setLoading] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
@@ -59,7 +58,6 @@ export default function OfferForm({ offer, requestId, onSuccess }: OfferFormProp
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value, type } = e.target;
-    const checked = (e.target as HTMLInputElement).checked;
 
     if (type === 'number') {
       setFormData((prev) => ({

@@ -3,64 +3,33 @@
 import AdminActionButton from '@/components/shared/admin/AdminActionButton';
 import AdminDataTable from '@/components/shared/admin/AdminDataTable';
 import AdminPageHeader from '@/components/shared/admin/AdminPageHeader';
+import { categoriesApi } from '@/lib/api/categories';
 import type { Category } from '@/lib/types/category.types';
 import { cssVars } from '@/styles/theme';
 import { ChevronRight, Edit, Eye, EyeOff, FolderTree, Plus, Trash2 } from 'lucide-react';
 import { useTranslations } from 'next-intl';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 export default function CategoriesManagementPage() {
   const t = useTranslations('admin');
   const [loading, setLoading] = useState(false);
+  const [categories, setCategories] = useState<Category[]>([]);
 
-  // Mock data
-  const [categories] = useState<Category[]>([
-    {
-      id: '1',
-      nameAr: 'التقنية',
-      nameEn: 'Technology',
-      slug: 'technology',
-      description: 'Various technology services',
-      parentId: null,
-      isActive: true,
-      sortOrder: 1,
-      icon: 'code',
-      suppliersCount: 45,
-      requestsCount: 120,
-      createdAt: '2024-01-01',
-      updatedAt: '2024-01-01',
-    },
-    {
-      id: '2',
-      nameAr: 'التصميم',
-      nameEn: 'Design',
-      slug: 'design',
-      description: 'Design and creativity services',
-      parentId: null,
-      isActive: true,
-      sortOrder: 2,
-      icon: 'palette',
-      suppliersCount: 38,
-      requestsCount: 95,
-      createdAt: '2024-01-01',
-      updatedAt: '2024-01-01',
-    },
-    {
-      id: '3',
-      nameAr: 'التسويق',
-      nameEn: 'Marketing',
-      slug: 'marketing',
-      description: 'Digital marketing services',
-      parentId: null,
-      isActive: false,
-      sortOrder: 3,
-      icon: 'megaphone',
-      suppliersCount: 52,
-      requestsCount: 180,
-      createdAt: '2024-01-01',
-      updatedAt: '2024-01-01',
-    },
-  ]);
+  useEffect(() => {
+    const fetchCategories = async () => {
+      try {
+        setLoading(true);
+        const data = await categoriesApi.getAll();
+        setCategories(Array.isArray(data) ? data : []);
+      } catch (error) {
+        console.error('Failed to fetch categories:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchCategories();
+  }, []);
 
   const columns = [
     {

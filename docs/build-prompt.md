@@ -114,16 +114,57 @@ export default function MyComponent() {
 <h1>Welcome</h1>; // WRONG!
 ```
 
+**Translation Files Location:**
+
+-   **English**: `frontend/eetmad/messages/en.json`
+-   **Arabic**: `frontend/eetmad/messages/ar.json`
+
+**CRITICAL**: When adding new translation keys:
+
+1. **ALWAYS** add to BOTH files (English and Arabic)
+2. **ALWAYS** check existing keys before creating new ones
+3. Use consistent namespace structure
+4. Keep keys organized by feature/page
+
 **Translation Namespaces:**
 
 -   `biddingPlatform` - Main platform content
 -   `nav` - Navigation items
 -   `common` - Common UI elements
 -   `auth` - Authentication
+-   `pages.{feature}` - Page-specific translations (e.g., `pages.categories`, `pages.suppliers`)
 -   `requests` - Requests feature
 -   `offers` - Offers feature
 -   `projects` - Projects feature
 -   Feature-specific namespaces as needed
+
+**Example Translation Structure:**
+
+```json
+// frontend/eetmad/messages/en.json
+{
+  "pages": {
+    "categories": {
+      "title": "Categories",
+      "subtitle": "Explore all available categories",
+      "loading": "Loading categories...",
+      "error": "Failed to load categories"
+    }
+  }
+}
+
+// frontend/eetmad/messages/ar.json
+{
+  "pages": {
+    "categories": {
+      "title": "الفئات",
+      "subtitle": "استكشف جميع الفئات المتاحة",
+      "loading": "جاري تحميل الفئات...",
+      "error": "فشل تحميل الفئات"
+    }
+  }
+}
+```
 
 ### Rule 3: Component Structure
 
@@ -264,49 +305,140 @@ The API client is located in `frontend/eetmad/src/lib/api/`. Follow this pattern
 import apiClient from './client';
 import type { QueryParams } from '@/lib/types/common.types';
 import type { CreateRequestInput, Request } from '@/lib/types/request.types';
+import { mockRequests } from '@/mocks/data/requests'; // Import mock data
+
+const USE_MOCKS = process.env.NEXT_PUBLIC_USE_MOCKS === 'true';
 
 export const requestsApi = {
 	// GET requests
 	getAll: async (params?: QueryParams) => {
-		const { data } = await apiClient.get('/requests', { params });
-		return data;
+		try {
+			const { data } = await apiClient.get('/v1/requests', { params });
+			return data;
+		} catch (error) {
+			// Fallback to mock data if API fails or in development
+			if (USE_MOCKS || process.env.NODE_ENV === 'development') {
+				console.warn('Using mock requests data');
+				return mockRequests;
+			}
+			throw error;
+		}
 	},
 
 	getById: async (id: string) => {
-		const { data } = await apiClient.get(`/requests/${id}`);
-		return data;
+		try {
+			const { data } = await apiClient.get(`/v1/requests/${id}`);
+			return data;
+		} catch (error) {
+			// Fallback to mock data if API fails or in development
+			if (USE_MOCKS || process.env.NODE_ENV === 'development') {
+				console.warn('Using mock request data');
+				const request = mockRequests.find((req) => req.id === id);
+				if (!request) {
+					throw new Error('Request not found');
+				}
+				return request;
+			}
+			throw error;
+		}
 	},
 
 	// POST requests
 	create: async (requestData: CreateRequestInput) => {
-		const { data: response } = await apiClient.post<Request>('/requests', requestData);
+		const { data: response } = await apiClient.post<Request>('/v1/requests', requestData);
 		return response;
 	},
 
 	// PUT requests
 	update: async (id: string, requestData: Partial<CreateRequestInput>) => {
-		const { data } = await apiClient.put(`/requests/${id}`, requestData);
+		const { data } = await apiClient.put(`/v1/requests/${id}`, requestData);
 		return data;
 	},
 
 	// PATCH requests
 	publish: async (id: string) => {
-		const { data } = await apiClient.patch(`/requests/${id}/publish`);
+		const { data } = await apiClient.patch(`/v1/requests/${id}/publish`);
 		return data;
 	},
 
 	close: async (id: string) => {
-		const { data } = await apiClient.patch(`/requests/${id}/close`);
+		const { data } = await apiClient.patch(`/v1/requests/${id}/close`);
 		return data;
 	},
 
 	// DELETE requests
 	delete: async (id: string) => {
-		const { data } = await apiClient.delete(`/requests/${id}`);
+		const { data } = await apiClient.delete(`/v1/requests/${id}`);
 		return data;
 	},
 };
 ```
+
+### Mock Data Integration
+
+**CRITICAL**: Always implement mock data fallback for development and testing.
+
+#### Mock Data Structure
+
+Mock data files are located in `frontend/eetmad/src/mocks/data/`:
+
+-   `categories.ts` - Category mock data
+-   `suppliers.ts` - Supplier mock data
+-   `requests.ts` - Request mock data
+-   `offers.ts` - Offer mock data
+-   `projects.ts` - Project mock data
+-   `users.ts` - User mock data
+
+#### Creating Mock Data
+
+```tsx
+// frontend/eetmad/src/mocks/data/{feature}.ts
+import type { FeatureType } from '@/lib/types/{feature}.types';
+
+export const mockFeatures: FeatureType[] = [
+	{
+		id: '1',
+		// ... all required fields matching the type
+	},
+	// ... more mock items
+];
+```
+
+#### MSW Handlers
+
+Update `frontend/eetmad/src/mocks/handlers.ts` to add API handlers:
+
+```tsx
+import { http, HttpResponse } from 'msw';
+import { mockFeatures } from './data/{feature}';
+
+export const handlers = [
+	// ... existing handlers
+
+	// Feature endpoints
+	http.get('/api/v1/{feature}', () => {
+		return HttpResponse.json(mockFeatures);
+	}),
+
+	http.get('/api/v1/{feature}/:id', ({ params }) => {
+		const { id } = params;
+		const item = mockFeatures.find((item) => item.id === id);
+		if (!item) {
+			return HttpResponse.json({ error: 'Not found' }, { status: 404 });
+		}
+		return HttpResponse.json(item);
+	}),
+];
+```
+
+#### Mock Data Best Practices
+
+1. **Match Type Structure**: Mock data must exactly match the TypeScript types
+2. **Realistic Data**: Use realistic, meaningful data for better testing
+3. **Complete Data**: Include all required fields and optional fields that are commonly used
+4. **Bilingual Support**: For Arabic/English content, include both `nameAr` and `nameEn`
+5. **Relationships**: Maintain relationships between entities (e.g., supplier categories)
+6. **Fallback Logic**: Always implement try-catch with mock data fallback in API functions
 
 ### Using API in Components
 
@@ -473,9 +605,12 @@ export default function RequestsPage() {
 
 #### 4. **Add Translations**
 
--   Add translation keys to `messages/ar.json` and `messages/en.json`
--   Use proper namespace organization
--   Test in both languages
+-   **CRITICAL**: Add translation keys to `frontend/eetmad/messages/en.json` AND `frontend/eetmad/messages/ar.json`
+-   **ALWAYS** add to BOTH files - never skip Arabic translations
+-   Check existing keys before creating new ones to avoid duplication
+-   Use proper namespace organization (`pages.{feature}`, `common`, etc.)
+-   Test in both languages (English and Arabic)
+-   Ensure RTL support for Arabic content
 
 #### 5. **Test & Refine**
 
@@ -600,6 +735,7 @@ Before submitting any component or page, verify:
 
 -   [ ] All colors use `cssVars` from theme (no hardcoded colors)
 -   [ ] All text uses `useTranslations` (no hardcoded text)
+-   [ ] Translations added to BOTH `messages/en.json` and `messages/ar.json`
 -   [ ] Design matches home page style (`docs/design-sample.md`)
 -   [ ] Responsive design works on mobile, tablet, desktop
 -   [ ] RTL support tested (if applicable)
@@ -618,6 +754,9 @@ Before submitting any component or page, verify:
 
 -   [ ] API functions in `lib/api/{feature}.ts`
 -   [ ] Endpoints match `docs/docs/endpoints.md`
+-   [ ] Mock data created in `mocks/data/{feature}.ts`
+-   [ ] MSW handlers added to `mocks/handlers.ts`
+-   [ ] Mock data fallback implemented in API functions
 -   [ ] Proper error handling for API calls
 -   [ ] Loading states during API calls
 -   [ ] Success/error feedback to user
@@ -708,19 +847,24 @@ color: cssVars.status.error; // Error
 
 1. Review `docs/docs/endpoints.md` for Requests endpoints
 2. Check `frontend/eetmad/src/lib/types/request.types.ts` for types
-3. Create API functions in `lib/api/requests.ts` (if not exists)
-4. Build components in `components/features/requests/`:
+3. Create mock data in `frontend/eetmad/src/mocks/data/requests.ts` (if not exists)
+4. Update `frontend/eetmad/src/mocks/handlers.ts` with MSW handlers
+5. Create API functions in `lib/api/requests.ts` with mock data fallback (if not exists)
+6. Build components in `components/features/requests/`:
     - `RequestsList.tsx` - List view
     - `RequestCard.tsx` - Card component
     - `RequestDetail.tsx` - Detail view
     - `RequestForm.tsx` - Create/Edit form
     - `RequestFilters.tsx` - Filter component
-5. Create pages in `app/[locale]/requests/`:
+7. Create pages in `app/[locale]/requests/`:
     - `page.tsx` - List page
     - `[id]/page.tsx` - Detail page
     - `new/page.tsx` - Create page
-6. Add translations to `messages/ar.json` and `messages/en.json`
-7. Test all functionality
+8. **Add translations to BOTH files**:
+    - `frontend/eetmad/messages/en.json`
+    - `frontend/eetmad/messages/ar.json`
+9. Test all functionality with mock data
+10. Test in both English and Arabic languages
 
 ---
 
@@ -733,6 +877,9 @@ color: cssVars.status.error; // Error
 -   **API Endpoints**: `docs/docs/endpoints.md`
 -   **Types**: `frontend/eetmad/src/lib/types/`
 -   **API Client**: `frontend/eetmad/src/lib/api/`
+-   **Mock Data**: `frontend/eetmad/src/mocks/data/`
+-   **MSW Handlers**: `frontend/eetmad/src/mocks/handlers.ts`
+-   **Translations**: `frontend/eetmad/messages/` (en.json, ar.json)
 
 ---
 

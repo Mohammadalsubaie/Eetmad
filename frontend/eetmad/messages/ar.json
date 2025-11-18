@@ -8,12 +8,12 @@
     "myAccount": "حسابي",
     "notifications": "الإشعارات",
     "menu": "القائمة",
-    "brandName": "منصة عروض",
-    "brandTagline": "بوابة المنافسات الحكومية"
+    "brandName": "عروض",
+    "brandTagline": "بوابة المنافسات  "
   },
   "footer": {
-    "brandName": "منصة عروض",
-    "brandDescription": "منصة موثوقة تربط المواهب بالفرص الحكومية بشفافية واحترافية عالية",
+    "brandName": "عروض",
+    "brandDescription": "منصة موثوقة تربط المواهب بالفرص   بشفافية واحترافية عالية",
     "quickLinks": {
       "title": "روابط سريعة",
       "projects": "المشاريع",
@@ -35,7 +35,7 @@
       "security": "الأمان",
       "careers": "الوظائف"
     },
-    "copyright": "© 2025 منصة عروض. جميع الحقوق محفوظة",
+    "copyright": "© 2025 عروض. جميع الحقوق محفوظة",
     "termsAndConditions": "الشروط والأحكام",
     "privacyPolicy": "سياسة الخصوصية"
   },
@@ -244,11 +244,11 @@
   "biddingPlatform": {
     "about": {
       "title": "عن منصتنا",
-      "description": "نحن ملتزمون بربط المواهب بالفرص الحكومية، وتعزيز الشفافية والكفاءة والنجاح المشترك.",
+      "description": "نحن ملتزمون بربط المواهب بالفرص  ، وتعزيز الشفافية والكفاءة والنجاح المشترك.",
       "missionTitle": "مهمتنا",
-      "missionDescription": "تمكين الأفراد والشركات من خلال توفير منصة سلسة وشفافة للمناقصات الحكومية، وضمان الوصول العادل والنتائج المثلى لجميع المشاركين.",
+      "missionDescription": "تمكين الأفراد والشركات من خلال توفير منصة سلسة وشفافة للمناقصات  ، وضمان الوصول العادل والنتائج المثلى لجميع المشاركين.",
       "visionTitle": "رؤيتنا",
-      "visionDescription": "أن نكون المنصة الرائدة للمشتريات الحكومية، المعترف بها لابتكارنا ونزاهتنا والتزامنا بتنمية المجتمع والنمو الاقتصادي.",
+      "visionDescription": "أن نكون المنصة الرائدة للمشتريات  ، المعترف بها لابتكارنا ونزاهتنا والتزامنا بتنمية المجتمع والنمو الاقتصادي.",
       "ourValuesTitle": "قيمنا الأساسية",
       "value1": "الشفافية",
       "value2": "النزاهة",
@@ -641,7 +641,7 @@
     },
     "terms": {
       "pageTitle": "الشروط والأحكام",
-      "introduction": "مرحباً بكم في إيتماد. تحكم هذه الشروط والأحكام استخدامك لموقعنا وخدماتنا. من خلال الوصول إلى منصتنا أو استخدامها، فإنك توافق على الالتزام بهذه الشروط.",
+      "introduction": "مرحباً بكم في عروض. تحكم هذه الشروط والأحكام استخدامك لموقعنا وخدماتنا. من خلال الوصول إلى منصتنا أو استخدامها، فإنك توافق على الالتزام بهذه الشروط.",
       "section1Title": "قبول الشروط",
       "section1Content": "من خلال إنشاء حساب أو استخدام أي جزء من خدمتنا، فإنك تؤكد موافقتك على هذه الشروط والأحكام وسياسة الخصوصية الخاصة بنا. إذا كنت لا توافق، فلا يجوز لك الوصول إلى الخدمة أو استخدامها.",
       "section2Title": "حسابات المستخدمين",
@@ -649,9 +649,9 @@
       "section3Title": "الأنشطة المحظورة",
       "section3Content": "لا يجوز لك استخدام الخدمة لأي غرض غير قانوني أو غير مصرح به. أنت توافق على الامتثال لجميع القوانين المحلية المتعلقة بالسلوك عبر الإنترنت والمحتوى المقبول. تشمل الأنشطة المحظورة، على سبيل المثال لا الحصر، التحرش، إرسال الرسائل غير المرغوب فيها، وتوزيع البرامج الضارة.",
       "section4Title": "الملكية الفكرية",
-      "section4Content": "الخدمة ومحتواها الأصلي وميزاتها ووظائفها هي وستظل ملكية حصرية لإيتماد ومرخصيها. لا يجوز استخدام علاماتنا التجارية ومظهرنا التجاري فيما يتعلق بأي منتج أو خدمة دون موافقة كتابية مسبقة من إيتماد.",
+      "section4Content": "الخدمة ومحتواها الأصلي وميزاتها ووظائفها هي وستظل ملكية حصرية لعروض ومرخصيها. لا يجوز استخدام علاماتنا التجارية ومظهرنا التجاري فيما يتعلق بأي منتج أو خدمة دون موافقة كتابية مسبقة من عروض.",
       "section5Title": "تحديد المسؤولية",
-      "section5Content": "لن تكون إيتماد، ولا مديروها أو موظفوها أو شركاؤها أو وكلاؤها أو مورديها أو الشركات التابعة لها، مسؤولة بأي حال من الأحوال عن أي أضرار غير مباشرة أو عرضية أو خاصة أو تبعية أو تأديبية، بما في ذلك على سبيل المثال لا الحصر، خسارة الأرباح أو البيانات أو الاستخدام أو الشهرة أو غيرها من الخسائر غير الملموسة، الناتجة عن (1) وصولك إلى الخدمة أو استخدامها أو عدم قدرتك على الوصول إليها أو استخدامها؛ (2) أي سلوك أو محتوى لأي طرف ثالث على الخدمة؛ (3) أي محتوى تم الحصول عليه من الخدمة؛ و (4) الوصول غير المصرح به إلى عمليات الإرسال أو المحتوى الخاص بك أو استخديله أو تعديله، سواء كان ذلك بناءً على ضمان أو عقد أو ضرر (بما في ذلك الإهمال) أو أي نظرية قانونية أخرى، سواء تم إبلاغنا بإمكانية حدوث مثل هذا الضرر أم لا، وحتى لو تبين أن العلاج المنصوص عليه هنا قد فشل في غرضه الأساسي.",
+      "section5Content": "لن تكون عروض، ولا مديروها أو موظفوها أو شركاؤها أو وكلاؤها أو مورديها أو الشركات التابعة لها، مسؤولة بأي حال من الأحوال عن أي أضرار غير مباشرة أو عرضية أو خاصة أو تبعية أو تأديبية، بما في ذلك على سبيل المثال لا الحصر، خسارة الأرباح أو البيانات أو الاستخدام أو الشهرة أو غيرها من الخسائر غير الملموسة، الناتجة عن (1) وصولك إلى الخدمة أو استخدامها أو عدم قدرتك على الوصول إليها أو استخدامها؛ (2) أي سلوك أو محتوى لأي طرف ثالث على الخدمة؛ (3) أي محتوى تم الحصول عليه من الخدمة؛ و (4) الوصول غير المصرح به إلى عمليات الإرسال أو المحتوى الخاص بك أو استخديله أو تعديله، سواء كان ذلك بناءً على ضمان أو عقد أو ضرر (بما في ذلك الإهمال) أو أي نظرية قانونية أخرى، سواء تم إبلاغنا بإمكانية حدوث مثل هذا الضرر أم لا، وحتى لو تبين أن العلاج المنصوص عليه هنا قد فشل في غرضه الأساسي.",
       "conclusion": "هذه الشروط والأحكام سارية اعتبارًا من 16 نوفمبر 2025."
     },
     "faq": {
@@ -719,7 +719,18 @@
       "submitError": "فشل إرسال رسالتك. الرجاء المحاولة مرة أخرى لاحقاً."
     },
     "categories": {
-      "title": "الفئات"
+      "title": "الفئات",
+      "badge": "تصفح",
+      "subtitle": "استكشف جميع الفئات المتاحة",
+      "loading": "جاري تحميل الفئات...",
+      "noCategories": "لا توجد فئات متاحة في الوقت الحالي.",
+      "requests": "طلبات",
+      "subcategories": "فئات فرعية",
+      "notFound": "الفئة غير موجودة",
+      "error": "فشل تحميل الفئة",
+      "back": "رجوع",
+      "backToCategories": "العودة إلى الفئات",
+      "suppliers": "موردين"
     },
     "about": {
       "title": "من نحن"
@@ -755,15 +766,141 @@
         "paragraph1": "إذا كان لديك أي أسئلة حول سياسة الخصوصية هذه، يمكنك الاتصال بنا: عبر البريد الإلكتروني: support@eetmad.com"
       }
     },
+    "suppliers": {
+      "title": "الموردين",
+      "badge": "الموردين",
+      "subtitle": "تصفح موردينا المعتمدين",
+      "searchPlaceholder": "ابحث عن موردين...",
+      "loading": "جاري تحميل الموردين...",
+      "error": "فشل تحميل الموردين",
+      "noSuppliers": "لم يتم العثور على موردين.",
+      "acceptanceRate": "معدل القبول",
+      "onTime": "في الوقت المحدد",
+      "notFound": "المورد غير موجود",
+      "back": "رجوع",
+      "verified": "معتمد",
+      "reviews": "تقييمات",
+      "onTimeDelivery": "التسليم في الوقت المحدد",
+      "responseTime": "وقت الاستجابة",
+      "categories": "الفئات",
+      "primary": "أساسي",
+      "portfolio": "المعرض",
+      "certifications": "الشهادات"
+    },
     "supplierProfile": {
       "title": "ملف المورد",
       "id": "رقم المورد"
     },
     "dashboard": {
-      "title": "لوحة التحكم"
+      "title": "لوحة التحكم",
+      "subtitle": "مرحباً بعودتك! إليك نظرة عامة على نشاطك",
+      "loading": "جاري تحميل لوحة التحكم...",
+      "currency": "ريال",
+      "stats": {
+        "totalRequests": "إجمالي الطلبات",
+        "activeProjects": "المشاريع النشطة",
+        "completedProjects": "المشاريع المكتملة",
+        "walletBalance": "رصيد المحفظة"
+      },
+      "sections": {
+        "requests": {
+          "title": "الطلبات",
+          "total": "الإجمالي",
+          "active": "نشط",
+          "closed": "مغلق",
+          "pending": "قيد الانتظار"
+        },
+        "projects": {
+          "title": "المشاريع",
+          "total": "الإجمالي",
+          "active": "نشط",
+          "completed": "مكتمل",
+          "cancelled": "ملغي"
+        },
+        "recentActivity": {
+          "title": "النشاط الأخير",
+          "empty": "لا يوجد نشاط حديث"
+        }
+      },
+      "timeAgo": {
+        "justNow": "الآن",
+        "minutes": "منذ {count} دقيقة",
+        "hours": "منذ {count} ساعة",
+        "days": "منذ {count} يوم"
+      }
     },
     "profile": {
       "title": "الملف الشخصي",
+      "subtitle": "عرض وإدارة معلومات ملفك الشخصي",
+      "loading": "جاري تحميل الملف الشخصي...",
+      "error": "فشل تحميل الملف الشخصي",
+      "editProfile": "تعديل الملف الشخصي",
+      "notProvided": "غير متوفر",
+      "reviews": "تقييم",
+      "completedProjects": "مشروع مكتمل",
+      "currency": "ريال",
+      "status": {
+        "active": "نشط",
+        "inactive": "غير نشط"
+      },
+      "sections": {
+        "contactInfo": {
+          "title": "معلومات الاتصال",
+          "email": "البريد الإلكتروني",
+          "phone": "الهاتف",
+          "address": "العنوان",
+          "verified": "موثق",
+          "notVerified": "غير موثق"
+        },
+        "companyInfo": {
+          "title": "معلومات الشركة",
+          "companyName": "اسم الشركة",
+          "commercialRegister": "السجل التجاري"
+        },
+        "stats": {
+          "title": "إحصائيات سريعة",
+          "rating": "التقييم",
+          "projects": "المشاريع",
+          "wallet": "المحفظة"
+        },
+        "accountInfo": {
+          "title": "معلومات الحساب",
+          "memberSince": "عضو منذ",
+          "lastLogin": "آخر تسجيل دخول",
+          "userType": "نوع المستخدم",
+          "userTypes": {
+            "client": "عميل",
+            "supplier": "مورد",
+            "admin": "مدير"
+          }
+        }
+      },
+      "security": {
+        "title": "إعدادات الأمان",
+        "subtitle": "إدارة أمان حسابك",
+        "back": "رجوع",
+        "currentPassword": "كلمة المرور الحالية",
+        "newPassword": "كلمة المرور الجديدة",
+        "confirmPassword": "تأكيد كلمة المرور الجديدة",
+        "saveButton": "حفظ التغييرات",
+        "passwordStrength": {
+          "label": "قوة كلمة المرور",
+          "weak": "ضعيفة",
+          "medium": "متوسطة",
+          "strong": "قوية"
+        },
+        "securityTip": "اختر كلمة مرور قوية تحتوي على 8 أحرف على الأقل، بما في ذلك الأحرف الكبيرة والصغيرة والأرقام والرموز. بعد تغيير كلمة المرور، سيتم تسجيل الخروج من جميع الأجهزة الأخرى.",
+        "success": {
+          "passwordChanged": "تم تغيير كلمة المرور بنجاح! تم تسجيل الخروج من جميع الأجهزة الأخرى."
+        },
+        "errors": {
+          "currentPasswordRequired": "كلمة المرور الحالية مطلوبة",
+          "passwordTooShort": "يجب أن تكون كلمة المرور 8 أحرف على الأقل",
+          "passwordsNotMatch": "كلمات المرور غير متطابقة",
+          "samePassword": "يجب أن تكون كلمة المرور الجديدة مختلفة عن كلمة المرور الحالية",
+          "changePasswordFailed": "فشل تغيير كلمة المرور. يرجى التحقق من كلمة المرور الحالية والمحاولة مرة أخرى."
+        }
+      },
       "edit": {
         "title": "تعديل الملف الشخصي",
         "back": "رجوع",
@@ -834,31 +971,31 @@
         },
         "errors": {
           "saveFailed": "فشل حفظ الملف الشخصي. يرجى المحاولة مرة أخرى."
-        }
-      },
-      "security": {
-        "title": "إعدادات الأمان",
-        "back": "رجوع",
-        "currentPassword": "كلمة المرور الحالية",
-        "newPassword": "كلمة المرور الجديدة",
-        "confirmPassword": "تأكيد كلمة المرور الجديدة",
-        "saveButton": "حفظ التغييرات",
-        "passwordStrength": {
-          "label": "قوة كلمة المرور",
-          "weak": "ضعيفة",
-          "medium": "متوسطة",
-          "strong": "قوية"
         },
-        "securityTip": "اختر كلمة مرور قوية تحتوي على 8 أحرف على الأقل، بما في ذلك الأحرف الكبيرة والصغيرة والأرقام والرموز. بعد تغيير كلمة المرور، سيتم تسجيل الخروج من جميع الأجهزة الأخرى.",
-        "success": {
-          "passwordChanged": "تم تغيير كلمة المرور بنجاح! تم تسجيل الخروج من جميع الأجهزة الأخرى."
-        },
-        "errors": {
-          "currentPasswordRequired": "كلمة المرور الحالية مطلوبة",
-          "passwordTooShort": "يجب أن تكون كلمة المرور 8 أحرف على الأقل",
-          "passwordsNotMatch": "كلمات المرور غير متطابقة",
-          "samePassword": "يجب أن تكون كلمة المرور الجديدة مختلفة عن كلمة المرور الحالية",
-          "changePasswordFailed": "فشل تغيير كلمة المرور. يرجى التحقق من كلمة المرور الحالية والمحاولة مرة أخرى."
+        "security": {
+          "title": "إعدادات الأمان",
+          "back": "رجوع",
+          "currentPassword": "كلمة المرور الحالية",
+          "newPassword": "كلمة المرور الجديدة",
+          "confirmPassword": "تأكيد كلمة المرور الجديدة",
+          "saveButton": "حفظ التغييرات",
+          "passwordStrength": {
+            "label": "قوة كلمة المرور",
+            "weak": "ضعيفة",
+            "medium": "متوسطة",
+            "strong": "قوية"
+          },
+          "securityTip": "اختر كلمة مرور قوية تحتوي على 8 أحرف على الأقل، بما في ذلك الأحرف الكبيرة والصغيرة والأرقام والرموز. بعد تغيير كلمة المرور، سيتم تسجيل الخروج من جميع الأجهزة الأخرى.",
+          "success": {
+            "passwordChanged": "تم تغيير كلمة المرور بنجاح! تم تسجيل الخروج من جميع الأجهزة الأخرى."
+          },
+          "errors": {
+            "currentPasswordRequired": "كلمة المرور الحالية مطلوبة",
+            "passwordTooShort": "يجب أن تكون كلمة المرور 8 أحرف على الأقل",
+            "passwordsNotMatch": "كلمات المرور غير متطابقة",
+            "samePassword": "يجب أن تكون كلمة المرور الجديدة مختلفة عن كلمة المرور الحالية",
+            "changePasswordFailed": "فشل تغيير كلمة المرور. يرجى التحقق من كلمة المرور الحالية والمحاولة مرة أخرى."
+          }
         }
       }
     },
@@ -866,22 +1003,272 @@
       "title": "إعدادات الأمان"
     },
     "requests": {
-      "title": "الطلبات"
+      "title": "الطلبات",
+      "subtitle": "تصفح وإدارة جميع الطلبات المتاحة",
+      "createRequest": "إنشاء طلب",
+      "loading": "جاري تحميل الطلبات...",
+      "fetchError": "فشل تحميل الطلبات. يرجى المحاولة مرة أخرى لاحقاً.",
+      "noRequests": "لا توجد طلبات",
+      "noMyRequests": "لم تقم بإنشاء أي طلبات بعد",
+      "noRequestsDescription": "ابدأ بإنشاء طلبك الأول للحصول على عروض من الموردين",
+      "searchPlaceholder": "البحث في الطلبات...",
+      "filters": "الفلاتر",
+      "clearFilters": "مسح",
+      "applyFilters": "تطبيق",
+      "filterStatus": "الحالة",
+      "filterBudgetMin": "الحد الأدنى للميزانية",
+      "filterBudgetMax": "الحد الأقصى للميزانية",
+      "filterBudgetMinPlaceholder": "الحد الأدنى",
+      "filterBudgetMaxPlaceholder": "الحد الأقصى",
+      "allStatuses": "جميع الحالات",
+      "status": {
+        "draft": "مسودة",
+        "open": "مفتوح",
+        "in_progress": "قيد التنفيذ",
+        "completed": "مكتمل",
+        "cancelled": "ملغي",
+        "closed": "مغلق",
+        "published": "منشور"
+      },
+      "currency": "ريال",
+      "budgetMin": "الحد الأدنى",
+      "budgetMax": "الحد الأقصى",
+      "budgetNotSpecified": "الميزانية غير محددة",
+      "days": "يوم",
+      "offers": "عروض",
+      "onSiteVisit": "يتطلب زيارة موقع",
+      "locationNotSpecified": "الموقع غير محدد",
+      "back": "رجوع",
+      "backToRequests": "العودة إلى الطلبات",
+      "edit": "تعديل",
+      "notFound": "الطلب غير موجود",
+      "views": "المشاهدات",
+      "budget": "الميزانية",
+      "duration": "المدة",
+      "description": "الوصف",
+      "details": "التفاصيل",
+      "deadline": "الموعد النهائي",
+      "location": "الموقع",
+      "viewOffers": "عرض العروض",
+      "myRequests": "طلباتي",
+      "myRequestsSubtitle": "إدارة جميع طلباتك",
+      "createRequestSubtitle": "املأ التفاصيل لإنشاء طلب جديد",
+      "editSubtitle": "تحديث تفاصيل طلبك",
+      "saveError": "فشل حفظ الطلب. يرجى المحاولة مرة أخرى.",
+      "form": {
+        "title": "العنوان",
+        "titlePlaceholder": "أدخل عنوان الطلب",
+        "description": "الوصف",
+        "descriptionPlaceholder": "صف ما تحتاجه بالتفصيل",
+        "category": "الفئة",
+        "selectCategory": "اختر فئة",
+        "budgetMin": "الحد الأدنى للميزانية",
+        "budgetMax": "الحد الأقصى للميزانية",
+        "budgetMinPlaceholder": "الحد الأدنى",
+        "budgetMaxPlaceholder": "الحد الأقصى",
+        "expectedDuration": "المدة المتوقعة (بالأيام)",
+        "deadline": "الموعد النهائي",
+        "preferredStartDate": "تاريخ البدء المفضل",
+        "requiresOnSiteVisit": "يتطلب زيارة موقع",
+        "cancel": "إلغاء",
+        "create": "إنشاء طلب",
+        "update": "تحديث الطلب",
+        "saving": "جاري الحفظ..."
+      }
+    },
+    "offers": {
+      "title": "العروض",
+      "subtitle": "عروض للطلب",
+      "loading": "جاري تحميل العروض...",
+      "fetchError": "فشل تحميل العروض. يرجى المحاولة مرة أخرى لاحقاً.",
+      "noOffers": "لا توجد عروض",
+      "noOffersDescription": "لم يتم تقديم أي عروض لهذا الطلب بعد.",
+      "back": "رجوع",
+      "currency": "ريال",
+      "proposedPrice": "السعر المقترح",
+      "days": "يوم",
+      "startDate": "تاريخ البدء",
+      "warranty": "الضمان",
+      "technicalProposal": "الاقتراح التقني",
+      "accept": "قبول",
+      "reject": "رفض",
+      "viewDetails": "عرض التفاصيل",
+      "status": {
+        "pending": "قيد الانتظار",
+        "accepted": "مقبول",
+        "rejected": "مرفوض",
+        "withdrawn": "مسحوب",
+        "expired": "منتهي الصلاحية"
+      },
+      "myOffers": "عروضي",
+      "myOffersSubtitle": "عرض وإدارة جميع عروضك المقدمة",
+      "createOffer": "إنشاء عرض",
+      "createOfferSubtitle": "تقديم عرض جديد لطلب",
+      "editOffer": "تعديل العرض",
+      "editOfferSubtitle": "تحديث تفاصيل عرضك",
+      "offerDetails": "تفاصيل العرض",
+      "notFound": "العرض غير موجود",
+      "backToOffers": "العودة إلى العروض",
+      "edit": "تعديل",
+      "withdraw": "سحب العرض",
+      "confirmWithdraw": "هل أنت متأكد من سحب هذا العرض؟",
+      "estimatedDuration": "المدة المتوقعة",
+      "deliverables": "المخرجات",
+      "paymentTerms": "شروط الدفع",
+      "warrantyDetails": "تفاصيل الضمان",
+      "requestBudget": "ميزانية الطلب",
+      "form": {
+        "requestId": "رقم الطلب",
+        "requestIdPlaceholder": "أدخل رقم الطلب",
+        "proposedPrice": "السعر المقترح",
+        "proposedPricePlaceholder": "أدخل السعر المقترح",
+        "estimatedDuration": "المدة المتوقعة (بالأيام)",
+        "estimatedDurationPlaceholder": "أيام",
+        "startDate": "تاريخ البدء",
+        "technicalProposal": "الاقتراح التقني",
+        "technicalProposalPlaceholder": "صف نهجك التقني ومنهجيتك",
+        "deliverables": "المخرجات",
+        "deliverablesPlaceholder": "اذكر جميع المخرجات والنتائج",
+        "paymentTerms": "شروط الدفع",
+        "paymentTermsPlaceholder": "صف جدول الدفع والشروط",
+        "warrantyPeriod": "فترة الضمان (بالأيام)",
+        "warrantyPeriodPlaceholder": "اختياري",
+        "warrantyDetails": "تفاصيل الضمان",
+        "warrantyDetailsPlaceholder": "معلومات الضمان (اختياري)",
+        "cancel": "إلغاء",
+        "create": "إنشاء عرض",
+        "update": "تحديث العرض",
+        "saving": "جاري الحفظ..."
+      },
+      "saveError": "فشل حفظ العرض. يرجى المحاولة مرة أخرى."
     },
     "projects": {
-      "title": "المشاريع"
+      "title": "المشاريع",
+      "subtitle": "عرض وإدارة جميع مشاريعك النشطة",
+      "loading": "جاري تحميل المشاريع...",
+      "fetchError": "فشل تحميل المشاريع. يرجى المحاولة مرة أخرى لاحقاً.",
+      "noProjects": "لا توجد مشاريع",
+      "noProjectsDescription": "ليس لديك أي مشاريع بعد. قم بإنشاء طلب وقبول عرض لبدء مشروع.",
+      "projectTitle": "مشروع",
+      "currency": "ريال",
+      "progress": "التقدم",
+      "totalAmount": "المبلغ الإجمالي",
+      "expectedEndDate": "تاريخ الانتهاء المتوقع",
+      "milestones": "المراحل",
+      "approved": "معتمد",
+      "status": {
+        "draft": "مسودة",
+        "pending_contract": "في انتظار العقد",
+        "active": "نشط",
+        "on_hold": "متوقف مؤقتاً",
+        "completed": "مكتمل",
+        "cancelled": "ملغي",
+        "disputed": "نزاع"
+      },
+      "back": "رجوع",
+      "notFound": "المشروع غير موجود",
+      "backToProjects": "العودة إلى المشاريع",
+      "startDate": "تاريخ البدء",
+      "paymentInfo": "معلومات الدفع",
+      "depositAmount": "الدفعة المقدمة",
+      "finalAmount": "المبلغ النهائي",
+      "viewMilestones": "عرض المراحل",
+      "milestoneStatus": {
+        "pending": "قيد الانتظار",
+        "in_progress": "قيد التنفيذ",
+        "completed": "مكتمل",
+        "approved": "معتمد",
+        "rejected": "مرفوض"
+      },
+      "submitMilestone": "تقديم مرحلة",
+      "milestones": {
+        "title": "مراحل المشروع",
+        "loading": "جاري تحميل المراحل...",
+        "notFound": "المشروع غير موجود",
+        "currency": "ر.س",
+        "totalAmount": "المبلغ الإجمالي",
+        "progress": "التقدم",
+        "completedMilestones": "المراحل المكتملة",
+        "empty": "لا توجد مراحل",
+        "amount": "المبلغ",
+        "dueDate": "تاريخ الاستحقاق",
+        "paymentStatus": "حالة الدفع",
+        "paid": "مدفوع",
+        "pending": "معلق",
+        "deliverables": "المخرجات",
+        "attachments": "المرفقات",
+        "notes": "ملاحظات",
+        "statuses": {
+          "pending": "قيد الانتظار",
+          "in_progress": "قيد التنفيذ",
+          "completed": "مكتمل",
+          "approved": "معتمد",
+          "rejected": "مرفوض"
+        },
+        "actions": {
+          "approve": "اعتماد",
+          "reject": "رفض"
+        }
+      }
+    },
+    "portfolio": {
+      "pageTitle": "المحفظة",
+      "pageSubtitle": "اعرض مشاريعك المكتملة وأعمالك",
+      "title": "عناصر المحفظة",
+      "subtitle": "إدارة محفظتك",
+      "addItem": "إضافة عنصر",
+      "loading": "جاري تحميل المحفظة...",
+      "fetchError": "فشل تحميل المحفظة. يرجى المحاولة مرة أخرى لاحقاً.",
+      "noItems": "لا توجد عناصر في المحفظة",
+      "noItemsDescription": "أضف أول عنصر في محفظتك لعرض أعمالك",
+      "confirmDelete": "هل أنت متأكد من حذف هذا العنصر من المحفظة؟"
+    },
+    "stats": {
+      "title": "الإحصائيات",
+      "subtitle": "عرض مؤشرات الأداء والإحصائيات الخاصة بك",
+      "loading": "جاري تحميل الإحصائيات...",
+      "fetchError": "فشل تحميل الإحصائيات. يرجى المحاولة مرة أخرى لاحقاً.",
+      "currency": "ريال",
+      "totalEarnings": "إجمالي الأرباح",
+      "totalOffers": "إجمالي العروض",
+      "acceptedOffers": "العروض المقبولة",
+      "totalProjects": "إجمالي المشاريع",
+      "completedProjects": "المشاريع المكتملة",
+      "averageRating": "متوسط التقييم"
+    },
+    "supplierSetup": {
+      "title": "إعداد ملف المورد",
+      "subtitle": "أكمل ملف المورد الخاص بك لبدء استلام الطلبات",
+      "step": "الخطوة",
+      "of": "من",
+      "step1Title": "اختر فئاتك",
+      "step1Description": "اختر الفئات التي تتخصص فيها",
+      "step2Title": "صف خدماتك",
+      "step2Description": "أخبر العملاء عن خدماتك وخبرتك",
+      "serviceDescription": "وصف الخدمة",
+      "serviceDescriptionPlaceholder": "صف خدماتك وخبرتك وما يميزك...",
+      "previous": "السابق",
+      "next": "التالي",
+      "complete": "إكمال الإعداد",
+      "saving": "جاري الحفظ...",
+      "saveError": "فشل حفظ الملف. يرجى المحاولة مرة أخرى."
+    },
+    "supplierProfile": {
+      "title": "تعديل ملف المورد",
+      "subtitle": "تحديث معلومات ملف المورد الخاص بك",
+      "loading": "جاري تحميل الملف...",
+      "serviceDescription": "وصف الخدمة",
+      "serviceDescriptionPlaceholder": "صف خدماتك وخبرتك...",
+      "cancel": "إلغاء",
+      "save": "حفظ التغييرات",
+      "saving": "جاري الحفظ...",
+      "saveError": "فشل حفظ الملف. يرجى المحاولة مرة أخرى."
     },
     "statistics": {
       "title": "الإحصائيات"
     },
-    "portfolio": {
-      "title": "المحفظة"
-    },
     "myOffers": {
       "title": "عروضي"
-    },
-    "supplierSetup": {
-      "title": "إعداد ملف المورد"
     },
     "createOffer": {
       "title": "إنشاء عرض جديد"
@@ -986,7 +1373,18 @@
       "recentActivity": {
         "title": "النشاط الأخير",
         "search": "بحث في النشاط...",
-        "empty": "لا يوجد نشاط حالياً"
+        "empty": "لا يوجد نشاط حالياً",
+        "table": {
+          "activity": "النشاط",
+          "time": "الوقت"
+        },
+        "types": {
+          "user_registered": "مستخدم جديد قام بالتسجيل",
+          "project_completed": "تم إكمال مشروع بنجاح",
+          "dispute_opened": "تم فتح نزاع جديد",
+          "payment_received": "تم استلام دفعة جديدة",
+          "verification_pending": "طلب توثيق جديد"
+        }
       },
       "alerts": {
         "pendingDisputes": "نزاعات معلقة تحتاج مراجعة",
@@ -1010,7 +1408,9 @@
       "actions": {
         "sendEmail": "إرسال بريد",
         "export": "تصدير",
-        "addUser": "إضافة مستخدم"
+        "addUser": "إضافة مستخدم",
+        "suspend": "تعليق",
+        "ban": "حظر"
       },
       "types": {
         "client": "عميل",
@@ -1022,6 +1422,40 @@
         "inactive": "غير نشط",
         "suspended": "معلق",
         "banned": "محظور"
+      },
+      "loading": "جاري تحميل المستخدم...",
+      "notFound": "المستخدم غير موجود",
+      "verified": "موثق",
+      "detail": {
+        "description": "عرض وإدارة تفاصيل المستخدم",
+        "email": "البريد الإلكتروني",
+        "phone": "الهاتف",
+        "location": "الموقع",
+        "memberSince": "عضو منذ",
+        "stats": {
+          "rating": "التقييم",
+          "reviews": "تقييم",
+          "projects": "المشاريع",
+          "completed": "مكتمل",
+          "wallet": "رصيد المحفظة",
+          "lastLogin": "آخر تسجيل دخول"
+        },
+        "sections": {
+          "personalInfo": "المعلومات الشخصية",
+          "address": "العنوان",
+          "verification": "حالة التحقق",
+          "account": "معلومات الحساب"
+        },
+        "dateOfBirth": "تاريخ الميلاد",
+        "nationalId": "الهوية الوطنية",
+        "companyName": "اسم الشركة",
+        "commercialRegister": "السجل التجاري",
+        "taxNumber": "الرقم الضريبي",
+        "emailVerification": "التحقق من البريد",
+        "phoneVerification": "التحقق من الهاتف",
+        "createdAt": "تاريخ الإنشاء",
+        "updatedAt": "تاريخ التحديث",
+        "lastLogin": "آخر تسجيل دخول"
       }
     },
     "suppliers": {
@@ -1176,11 +1610,51 @@
         "actions": "الإجراءات"
       },
       "actions": {
-        "addCategory": "إضافة فئة"
+        "addCategory": "إضافة فئة",
+        "edit": "تعديل الفئة"
       },
       "statuses": {
         "active": "نشط",
         "inactive": "غير نشط"
+      },
+      "loading": "جاري تحميل الفئة...",
+      "notFound": "الفئة غير موجودة",
+      "create": {
+        "title": "إنشاء فئة",
+        "description": "إضافة فئة جديدة للنظام",
+        "error": "فشل إنشاء الفئة"
+      },
+      "edit": {
+        "title": "تعديل الفئة",
+        "description": "تحديث معلومات الفئة",
+        "error": "فشل تحديث الفئة"
+      },
+      "form": {
+        "nameAr": "الاسم (عربي)",
+        "nameArPlaceholder": "اسم الفئة",
+        "nameEn": "الاسم (إنجليزي)",
+        "nameEnPlaceholder": "Category Name",
+        "description": "الوصف",
+        "descriptionPlaceholder": "وصف الفئة",
+        "icon": "الأيقونة",
+        "sortOrder": "ترتيب العرض",
+        "isActive": "نشط"
+      },
+      "detail": {
+        "suppliers": "الموردين",
+        "requests": "الطلبات",
+        "sortOrder": "ترتيب العرض",
+        "slug": "الرابط",
+        "icon": "الأيقونة",
+        "parent": "الفئة الرئيسية",
+        "status": "الحالة",
+        "createdAt": "تاريخ الإنشاء",
+        "updatedAt": "تاريخ التحديث",
+        "sections": {
+          "info": "معلومات الفئة",
+          "description": "الوصف",
+          "timestamps": "التواريخ"
+        }
       }
     },
     "payments": {
@@ -1198,22 +1672,68 @@
       },
       "statuses": {
         "pending": "معلق",
+        "processing": "قيد المعالجة",
         "completed": "مكتمل",
-        "failed": "فاشل"
+        "failed": "فاشل",
+        "cancelled": "ملغاة",
+        "refunded": "مسترجعة"
       },
       "methods": {
         "credit_card": "بطاقة ائتمان",
+        "debit_card": "بطاقة خصم",
         "bank_transfer": "تحويل بنكي",
         "wallet": "محفظة",
-        "other": "أخرى"
+        "cash": "نقد"
       },
       "types": {
+        "deposit": "دفعة مقدمة",
+        "milestone": "دفعة مرحلة",
+        "final": "دفعة نهائية",
+        "refund": "استرجاع",
+        "withdrawal": "سحب",
         "project_payment": "دفعة مشروع",
         "milestone_payment": "دفعة مرحلة"
       },
       "labels": {
         "pending": "معلق",
         "netAmount": "صافي"
+      },
+      "loading": "جاري تحميل الدفعة...",
+      "notFound": "الدفعة غير موجودة",
+      "stages": {
+        "initiated": "مبدوءة",
+        "pending": "معلقة",
+        "processing": "قيد المعالجة",
+        "completed": "مكتملة",
+        "failed": "فاشلة",
+        "cancelled": "ملغاة",
+        "refunded": "مسترجعة"
+      },
+      "detail": {
+        "title": "تفاصيل الدفعة",
+        "description": "عرض تفاصيل معاملة الدفع",
+        "totalAmount": "المبلغ الإجمالي",
+        "netAmount": "المبلغ الصافي",
+        "platformFee": "رسوم المنصة",
+        "paymentMethod": "طريقة الدفع",
+        "paymentType": "نوع الدفعة",
+        "paymentStage": "مرحلة الدفع",
+        "gateway": "بوابة الدفع",
+        "currency": "العملة",
+        "createdAt": "تاريخ الإنشاء",
+        "completedAt": "تاريخ الإتمام",
+        "ipAddress": "عنوان IP",
+        "projectId": "رقم المشروع",
+        "milestoneId": "رقم المرحلة",
+        "payerId": "رقم الدافع",
+        "receiverId": "رقم المستلم",
+        "sections": {
+          "paymentInfo": "معلومات الدفع",
+          "transactionInfo": "معلومات المعاملة",
+          "projectInfo": "معلومات المشروع",
+          "notes": "ملاحظات",
+          "failureReason": "سبب الفشل"
+        }
       }
     },
     "reviews": {
@@ -1228,6 +1748,68 @@
         "date": "التاريخ",
         "verified": "التحقق",
         "actions": "الإجراءات"
+      },
+      "loading": "جاري تحميل التقييم...",
+      "notFound": "التقييم غير موجود",
+      "verified": "موثق",
+      "notVerified": "غير موثق",
+      "actions": {
+        "edit": "تعديل التقييم"
+      },
+      "types": {
+        "client_to_supplier": "عميل إلى مورد",
+        "supplier_to_client": "مورد إلى عميل"
+      },
+      "statuses": {
+        "pending": "معلق",
+        "published": "منشور",
+        "hidden": "مخفي",
+        "reported": "مبلغ عنه"
+      },
+      "create": {
+        "title": "إنشاء تقييم",
+        "description": "إضافة تقييم جديد",
+        "error": "فشل إنشاء التقييم"
+      },
+      "edit": {
+        "title": "تعديل التقييم",
+        "description": "تحديث معلومات التقييم",
+        "error": "فشل تحديث التقييم"
+      },
+      "form": {
+        "projectId": "رقم المشروع",
+        "reviewedId": "رقم المقيّم له",
+        "reviewType": "نوع التقييم",
+        "rating": "التقييم الإجمالي",
+        "title": "العنوان",
+        "comment": "التعليق",
+        "qualityRating": "تقييم الجودة",
+        "communicationRating": "تقييم التواصل",
+        "timelinessRating": "تقييم الالتزام بالوقت",
+        "professionalismRating": "تقييم الاحترافية",
+        "response": "الرد"
+      },
+      "detail": {
+        "title": "تفاصيل التقييم",
+        "description": "عرض معلومات التقييم",
+        "reviewType": "نوع التقييم",
+        "projectId": "رقم المشروع",
+        "reviewerId": "رقم المقيّم",
+        "reviewedId": "رقم المقيّم له",
+        "status": "الحالة",
+        "qualityRating": "الجودة",
+        "communicationRating": "التواصل",
+        "timelinessRating": "الالتزام بالوقت",
+        "professionalismRating": "الاحترافية",
+        "helpfulCount": "مفيد",
+        "notHelpfulCount": "غير مفيد",
+        "createdAt": "تاريخ الإنشاء",
+        "respondedAt": "تاريخ الرد",
+        "sections": {
+          "info": "معلومات التقييم",
+          "engagement": "التفاعل والتواريخ",
+          "response": "الرد"
+        }
       }
     },
     "reports": {
@@ -1316,7 +1898,9 @@
       "delete": "حذف",
       "edit": "تعديل",
       "view": "عرض",
-      "actions": "الإجراءات"
+      "actions": "الإجراءات",
+      "currency": "ر.س",
+      "saving": "جاري الحفظ..."
     }
   }
 }

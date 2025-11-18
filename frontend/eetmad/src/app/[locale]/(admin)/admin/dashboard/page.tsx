@@ -41,7 +41,7 @@ export default function AdminDashboardPage() {
     {
       id: '1',
       type: 'user_registered',
-      description: 'مستخدم جديد قام بالتسجيل',
+      description: '',
       user: 'أحمد محمد',
       timestamp: 'منذ 5 دقائق',
       status: 'success',
@@ -49,7 +49,7 @@ export default function AdminDashboardPage() {
     {
       id: '2',
       type: 'project_completed',
-      description: 'تم إكمال مشروع بنجاح',
+      description: '',
       user: 'شركة التقنية المتطورة',
       timestamp: 'منذ 15 دقيقة',
       status: 'success',
@@ -57,7 +57,7 @@ export default function AdminDashboardPage() {
     {
       id: '3',
       type: 'dispute_opened',
-      description: 'تم فتح نزاع جديد',
+      description: '',
       user: 'سارة أحمد',
       timestamp: 'منذ 30 دقيقة',
       status: 'warning',
@@ -65,7 +65,7 @@ export default function AdminDashboardPage() {
     {
       id: '4',
       type: 'payment_received',
-      description: 'تم استلام دفعة جديدة',
+      description: '',
       user: 'محمد علي',
       timestamp: 'منذ ساعة',
       status: 'success',
@@ -73,7 +73,7 @@ export default function AdminDashboardPage() {
     {
       id: '5',
       type: 'verification_pending',
-      description: 'طلب توثيق جديد',
+      description: '',
       user: 'شركة البناء الحديث',
       timestamp: 'منذ ساعتين',
       status: 'info',
@@ -102,7 +102,7 @@ export default function AdminDashboardPage() {
   const activityColumns = [
     {
       key: 'description',
-      header: 'النشاط',
+      header: t('dashboard.recentActivity.table.activity'),
       render: (item: RecentActivity) => (
         <div className="flex items-center gap-3">
           <div
@@ -129,7 +129,7 @@ export default function AdminDashboardPage() {
           </div>
           <div>
             <div className="font-semibold" style={{ color: cssVars.secondary.DEFAULT }}>
-              {item.description}
+              {t(`dashboard.recentActivity.types.${item.type}`, { defaultValue: item.description })}
             </div>
             <div className="text-xs" style={{ color: cssVars.neutral.textMuted }}>
               {item.user}
@@ -140,7 +140,7 @@ export default function AdminDashboardPage() {
     },
     {
       key: 'timestamp',
-      header: 'الوقت',
+      header: t('dashboard.recentActivity.table.time'),
       render: (item: RecentActivity) => (
         <div className="flex items-center gap-2">
           <Clock className="h-4 w-4" style={{ color: cssVars.neutral.textMuted }} />
@@ -236,10 +236,10 @@ export default function AdminDashboardPage() {
             </div>
           </div>
           <div className="text-4xl font-bold" style={{ color: cssVars.secondary.DEFAULT }}>
-            {stats.totalRevenue.toLocaleString('ar-SA')} ر.س
+            {stats.totalRevenue.toLocaleString('ar-SA')} {t('common.currency')}
           </div>
           <div className="mt-2 text-sm" style={{ color: cssVars.neutral.textSecondary }}>
-            مقارنة بالشهر الماضي
+            {t('dashboard.revenue.comparison')}
           </div>
         </motion.div>
 
@@ -286,7 +286,7 @@ export default function AdminDashboardPage() {
             {stats.completionRate}%
           </div>
           <div className="mt-2 text-sm" style={{ color: cssVars.neutral.textSecondary }}>
-            معدل إنجاز المشاريع
+            {t('dashboard.performance.completionRate')}
           </div>
         </motion.div>
       </div>

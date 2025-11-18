@@ -2,19 +2,38 @@
 
 import AdminDataTable from '@/components/shared/admin/AdminDataTable';
 import AdminPageHeader from '@/components/shared/admin/AdminPageHeader';
+import { adminApi } from '@/lib/api/admin';
 import type { Dispute } from '@/lib/types/dispute.types';
 import { cssVars } from '@/styles/theme';
 import { AlertTriangle, Calendar, CheckCircle, Eye, MessageSquare, XCircle } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 import { useRouter } from 'next/navigation';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 export default function DisputesPage() {
   const t = useTranslations('admin');
   const router = useRouter();
   const [loading, setLoading] = useState(false);
+  const [disputes, setDisputes] = useState<Dispute[]>([]);
 
-  // Mock data
+  useEffect(() => {
+    const fetchDisputes = async () => {
+      try {
+        setLoading(true);
+        const data = await adminApi.getDisputes();
+        setDisputes(Array.isArray(data) ? data : []);
+      } catch (error) {
+        console.error('Failed to fetch disputes:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchDisputes();
+  }, []);
+
+  // Old inline mock data removed - now using API
+  /*
   const [disputes] = useState<Dispute[]>([
     {
       id: '1',
@@ -74,6 +93,7 @@ export default function DisputesPage() {
       updatedAt: '2024-03-16T16:00:00Z',
     },
   ]);
+  */
 
   const columns = [
     {

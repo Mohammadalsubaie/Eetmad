@@ -4,6 +4,7 @@ import AdminActionButton from '@/components/shared/admin/AdminActionButton';
 import AdminDataTable from '@/components/shared/admin/AdminDataTable';
 import AdminPageHeader from '@/components/shared/admin/AdminPageHeader';
 import AdminStatsSummary from '@/components/shared/admin/AdminStatsSummary';
+import { adminApi } from '@/lib/api/admin';
 import type { VerificationDocument } from '@/lib/types/verification.types';
 import { cssVars } from '@/styles/theme';
 import {
@@ -17,13 +18,31 @@ import {
   XCircle,
 } from 'lucide-react';
 import { useTranslations } from 'next-intl';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 export default function VerificationPage() {
   const t = useTranslations('admin');
   const [loading, setLoading] = useState(false);
+  const [documents, setDocuments] = useState<VerificationDocument[]>([]);
 
-  // Mock data - replace with API call
+  useEffect(() => {
+    const fetchDocuments = async () => {
+      try {
+        setLoading(true);
+        const data = await adminApi.getVerificationQueue();
+        setDocuments(Array.isArray(data) ? data : []);
+      } catch (error) {
+        console.error('Failed to fetch verification documents:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchDocuments();
+  }, []);
+
+  // Old inline mock data removed - now using API
+  /*
   const [documents] = useState<VerificationDocument[]>([
     {
       id: '1',
@@ -80,6 +99,7 @@ export default function VerificationPage() {
       updatedAt: '2024-03-11T11:00:00Z',
     },
   ]);
+  */
 
   const handleApprove = async (docId: string) => {
     // API call to approve document

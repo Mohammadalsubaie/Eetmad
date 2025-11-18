@@ -2,19 +2,38 @@
 
 import AdminDataTable from '@/components/shared/admin/AdminDataTable';
 import AdminPageHeader from '@/components/shared/admin/AdminPageHeader';
+import { suppliersApi } from '@/lib/api/suppliers';
 import type { Supplier } from '@/lib/types/supplier.types';
 import { cssVars } from '@/styles/theme';
 import { CheckCircle, Eye, Shield, ShoppingBag, Star, XCircle } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 import { useRouter } from 'next/navigation';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 export default function SuppliersManagementPage() {
   const t = useTranslations('admin');
   const router = useRouter();
   const [loading, setLoading] = useState(false);
+  const [suppliers, setSuppliers] = useState<Supplier[]>([]);
 
-  // Mock data
+  useEffect(() => {
+    const fetchSuppliers = async () => {
+      try {
+        setLoading(true);
+        const data = await suppliersApi.getAll();
+        setSuppliers(Array.isArray(data) ? data : []);
+      } catch (error) {
+        console.error('Failed to fetch suppliers:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchSuppliers();
+  }, []);
+
+  // Old inline mock data removed - now using API
+  /*
   const [suppliers] = useState<Supplier[]>([
     {
       id: '1',
@@ -74,6 +93,7 @@ export default function SuppliersManagementPage() {
       totalReviews: 78,
     },
   ]);
+  */
 
   const columns = [
     {

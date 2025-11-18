@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;500;600;700;800;900&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -40,8 +41,9 @@
   --color-neutral-text-secondary: #536765;
   --color-neutral-light: #a4c5ca;
   --color-neutral: #8c9e9d;
-  --color-neutral-dark: #536765;
-  --color-neutral-darker: #334443;
+  --color-neutral-dark: #ffffff;
+  --color-neutral-darker: #ffffff;
+  --color-white: #ffffff;
 
   /* ألوان الحالة */
   --color-status-success: #3d8b64;
@@ -61,6 +63,13 @@
   --bg-neutral-darker-80: rgba(51, 68, 67, 0.8);
   --bg-white-10: rgba(255, 255, 255, 0.1);
   --bg-black-10: rgba(0, 0, 0, 0.1);
+
+  /* Shadow colors with opacity - using color-mix with neutral darker */
+  --shadow-color-sm: color-mix(in srgb, var(--color-neutral-darker) 5%, transparent);
+  --shadow-color-md: color-mix(in srgb, var(--color-neutral-darker) 7%, transparent);
+  --shadow-color-lg: color-mix(in srgb, var(--color-neutral-darker) 10%, transparent);
+  --shadow-color-xl: color-mix(in srgb, var(--color-neutral-darker) 15%, transparent);
+  --shadow-color-2xl: color-mix(in srgb, var(--color-neutral-darker) 25%, transparent);
 }
 
 /* ========== الثيم الغامق ========== */
@@ -95,6 +104,7 @@
   --color-neutral: #6c7e7c;
   --color-neutral-dark: #a4c5ca;
   --color-neutral-darker: #e8f2f1;
+  --color-white: #ffffff;
 
   /* ألوان الحالة - محسّنة للثيم الغامق */
   --color-status-success: #4caf50;
@@ -114,6 +124,13 @@
   --bg-neutral-darker-80: rgba(232, 242, 241, 0.1);
   --bg-white-10: rgba(255, 255, 255, 0.05);
   --bg-black-10: rgba(0, 0, 0, 0.3);
+
+  /* Shadow colors with opacity - using color-mix with neutral darker */
+  --shadow-color-sm: color-mix(in srgb, var(--color-neutral-darker) 5%, transparent);
+  --shadow-color-md: color-mix(in srgb, var(--color-neutral-darker) 7%, transparent);
+  --shadow-color-lg: color-mix(in srgb, var(--color-neutral-darker) 10%, transparent);
+  --shadow-color-xl: color-mix(in srgb, var(--color-neutral-darker) 15%, transparent);
+  --shadow-color-2xl: color-mix(in srgb, var(--color-neutral-darker) 25%, transparent);
 }
 
 /* ========================================
@@ -315,6 +332,23 @@
   /* Container */
   .container {
     @apply mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8;
+  }
+
+  /* Arabic font (applies when layout sets .rtl for Arabic locale) */
+  .rtl {
+    font-family:
+      'Cairo',
+      -apple-system,
+      BlinkMacSystemFont,
+      'Segoe UI',
+      'Roboto',
+      'Helvetica Neue',
+      Arial,
+      'Noto Sans',
+      sans-serif,
+      'Apple Color Emoji',
+      'Segoe UI Emoji',
+      'Segoe UI Symbol' !important;
   }
 
   .container-sm {

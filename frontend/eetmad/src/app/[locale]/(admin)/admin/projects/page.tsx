@@ -3,19 +3,38 @@
 import AdminDataTable from '@/components/shared/admin/AdminDataTable';
 import AdminPageHeader from '@/components/shared/admin/AdminPageHeader';
 import StatusBadge from '@/components/shared/badges/StatusBadge';
+import { projectsApi } from '@/lib/api/projects';
 import type { Project } from '@/lib/types/project.types';
 import { cssVars } from '@/styles/theme';
 import { Briefcase, Calendar, DollarSign, Eye, TrendingUp } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 import { useRouter } from 'next/navigation';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 export default function ProjectsManagementPage() {
   const t = useTranslations('admin');
   const router = useRouter();
   const [loading, setLoading] = useState(false);
+  const [projects, setProjects] = useState<Project[]>([]);
 
-  // Mock data
+  useEffect(() => {
+    const fetchProjects = async () => {
+      try {
+        setLoading(true);
+        const data = await projectsApi.getAll();
+        setProjects(Array.isArray(data) ? data : []);
+      } catch (error) {
+        console.error('Failed to fetch projects:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchProjects();
+  }, []);
+
+  // Old inline mock data removed - now using API
+  /*
   const [projects] = useState<Project[]>([
     {
       id: '1',
@@ -66,6 +85,7 @@ export default function ProjectsManagementPage() {
       updatedAt: '2024-02-28T16:00:00Z',
     },
   ]);
+  */
 
   const columns = [
     {

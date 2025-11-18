@@ -2,17 +2,36 @@
 
 import AdminDataTable from '@/components/shared/admin/AdminDataTable';
 import AdminPageHeader from '@/components/shared/admin/AdminPageHeader';
+import { adminApi } from '@/lib/api/admin';
 import type { Report } from '@/lib/types/report.types';
 import { cssVars } from '@/styles/theme';
 import { Calendar, CheckCircle, Eye, Flag, XCircle } from 'lucide-react';
 import { useTranslations } from 'next-intl';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 export default function ReportsPage() {
   const t = useTranslations('admin');
   const [loading, setLoading] = useState(false);
+  const [reports, setReports] = useState<Report[]>([]);
 
-  // Mock data
+  useEffect(() => {
+    const fetchReports = async () => {
+      try {
+        setLoading(true);
+        const data = await adminApi.getReports();
+        setReports(Array.isArray(data) ? data : []);
+      } catch (error) {
+        console.error('Failed to fetch reports:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchReports();
+  }, []);
+
+  // Old inline mock data removed - now using API
+  /*
   const [reports] = useState<Report[]>([
     {
       id: '1',
@@ -63,6 +82,7 @@ export default function ReportsPage() {
       updatedAt: '2024-03-16T16:00:00Z',
     },
   ]);
+  */
 
   const columns = [
     {

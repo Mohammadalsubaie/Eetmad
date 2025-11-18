@@ -1,5 +1,8 @@
 import apiClient from './client';
 import type { UpdateUserProfileData, User } from '@/lib/types/user.types';
+import { mockUser } from '@/mocks/data/users';
+
+const USE_MOCKS = process.env.NEXT_PUBLIC_USE_MOCKS === 'true';
 
 export interface ChangePasswordData {
   currentPassword: string;
@@ -7,9 +10,17 @@ export interface ChangePasswordData {
 }
 
 export const usersApi = {
-  getProfile: async () => {
-    const { data } = await apiClient.get<User>('/users/me');
-    return data;
+  getProfile: async (): Promise<User> => {
+    try {
+      const { data } = await apiClient.get<User>('/users/me');
+      return data;
+    } catch (error) {
+      if (USE_MOCKS || process.env.NODE_ENV === 'development') {
+        console.warn('Using mock user profile data');
+        return mockUser;
+      }
+      throw error;
+    }
   },
 
   updateProfile: async (profileData: UpdateUserProfileData) => {

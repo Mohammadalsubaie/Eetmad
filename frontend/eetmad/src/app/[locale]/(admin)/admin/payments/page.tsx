@@ -2,19 +2,38 @@
 
 import AdminDataTable from '@/components/shared/admin/AdminDataTable';
 import AdminPageHeader from '@/components/shared/admin/AdminPageHeader';
+import { paymentsApi } from '@/lib/api/payments';
 import type { Payment } from '@/lib/types/payment.types';
 import { cssVars } from '@/styles/theme';
 import { Calendar, CheckCircle, Clock, CreditCard, DollarSign, Eye } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 import { useRouter } from 'next/navigation';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 export default function PaymentsManagementPage() {
   const t = useTranslations('admin');
   const router = useRouter();
   const [loading, setLoading] = useState(false);
+  const [payments, setPayments] = useState<Payment[]>([]);
 
-  // Mock data
+  useEffect(() => {
+    const fetchPayments = async () => {
+      try {
+        setLoading(true);
+        const data = await paymentsApi.getTransactions();
+        setPayments(Array.isArray(data) ? data : []);
+      } catch (error) {
+        console.error('Failed to fetch payments:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchPayments();
+  }, []);
+
+  // Old inline mock data removed - now using API
+  /*
   const [payments] = useState<Payment[]>([
     {
       id: '1',
@@ -71,6 +90,7 @@ export default function PaymentsManagementPage() {
       updatedAt: '2024-03-18T09:00:00Z',
     },
   ]);
+  */
 
   const columns = [
     {

@@ -3,19 +3,38 @@
 import AdminDataTable from '@/components/shared/admin/AdminDataTable';
 import AdminPageHeader from '@/components/shared/admin/AdminPageHeader';
 import StatusBadge from '@/components/shared/badges/StatusBadge';
+import { offersApi } from '@/lib/api/offers';
 import type { Offer } from '@/lib/types/offer.types';
 import { cssVars } from '@/styles/theme';
 import { Briefcase, Calendar, Clock, DollarSign, Eye } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 import { useRouter } from 'next/navigation';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 export default function OffersManagementPage() {
   const t = useTranslations('admin');
   const router = useRouter();
   const [loading, setLoading] = useState(false);
+  const [offers, setOffers] = useState<Offer[]>([]);
 
-  // Mock data
+  useEffect(() => {
+    const fetchOffers = async () => {
+      try {
+        setLoading(true);
+        const data = await offersApi.getAll();
+        setOffers(Array.isArray(data) ? data : []);
+      } catch (error) {
+        console.error('Failed to fetch offers:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchOffers();
+  }, []);
+
+  // Old inline mock data removed - now using API
+  /*
   const [offers] = useState<Offer[]>([
     {
       id: '1',
@@ -60,6 +79,7 @@ export default function OffersManagementPage() {
       acceptedAt: '2024-03-15T14:00:00Z',
     },
   ]);
+  */
 
   const columns = [
     {

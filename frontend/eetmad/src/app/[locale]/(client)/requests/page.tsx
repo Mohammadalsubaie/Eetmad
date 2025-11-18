@@ -1,14 +1,46 @@
 'use client';
 
 import { useTranslations } from 'next-intl';
+import { useRouter } from 'next/navigation';
+import { motion } from 'framer-motion';
+import { Plus } from 'lucide-react';
+import { cssVars } from '@/styles/theme';
+import RequestsList from '@/components/features/requests/RequestsList';
+import { Button } from '@/components/ui/Button';
 
 export default function RequestsPage() {
-  const t = useTranslations('pages');
+  const t = useTranslations('pages.requests');
+  const router = useRouter();
 
   return (
-    <div>
-      <h1>{t('requests.title')}</h1>
-      {/* Requests list will be implemented here */}
+    <div className="container mx-auto py-8" style={{ backgroundColor: cssVars.neutral.bg }}>
+      {/* Header */}
+      <div className="mb-8 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+        <div>
+          <h1 className="mb-2 text-4xl font-bold" style={{ color: cssVars.secondary.DEFAULT }}>
+            {t('title')}
+          </h1>
+          <p className="text-base" style={{ color: cssVars.neutral.textSecondary }}>
+            {t('subtitle')}
+          </p>
+        </div>
+        <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+          <Button
+            onClick={() => router.push('/requests/new')}
+            className="flex items-center gap-2"
+            style={{
+              background: cssVars.gradient.gold,
+              color: cssVars.secondary.DEFAULT,
+            }}
+          >
+            <Plus className="h-5 w-5" />
+            {t('createRequest')}
+          </Button>
+        </motion.div>
+      </div>
+
+      {/* Requests List */}
+      <RequestsList />
     </div>
   );
 }

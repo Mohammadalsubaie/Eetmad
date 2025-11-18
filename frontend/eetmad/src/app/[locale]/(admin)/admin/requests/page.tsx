@@ -3,19 +3,38 @@
 import AdminDataTable from '@/components/shared/admin/AdminDataTable';
 import AdminPageHeader from '@/components/shared/admin/AdminPageHeader';
 import StatusBadge from '@/components/shared/badges/StatusBadge';
+import { requestsApi } from '@/lib/api/requests';
 import type { Request } from '@/lib/types/request.types';
 import { cssVars } from '@/styles/theme';
 import { Calendar, DollarSign, Eye, FileText } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 import { useRouter } from 'next/navigation';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 export default function RequestsManagementPage() {
   const t = useTranslations('admin');
   const router = useRouter();
   const [loading, setLoading] = useState(false);
+  const [requests, setRequests] = useState<Request[]>([]);
 
-  // Mock data
+  useEffect(() => {
+    const fetchRequests = async () => {
+      try {
+        setLoading(true);
+        const data = await requestsApi.getAll();
+        setRequests(Array.isArray(data) ? data : []);
+      } catch (error) {
+        console.error('Failed to fetch requests:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchRequests();
+  }, []);
+
+  // Old inline mock data removed - now using API
+  /*
   const [requests] = useState<Request[]>([
     {
       id: '1',
@@ -66,6 +85,7 @@ export default function RequestsManagementPage() {
       closedAt: null,
     },
   ]);
+  */
 
   const columns = [
     {

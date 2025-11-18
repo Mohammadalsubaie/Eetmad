@@ -1,22 +1,41 @@
 'use client';
 
-import { useState } from 'react';
+import AdminActionButton from '@/components/shared/admin/AdminActionButton';
+import AdminDataTable from '@/components/shared/admin/AdminDataTable';
+import AdminPageHeader from '@/components/shared/admin/AdminPageHeader';
+import StatusBadge from '@/components/shared/badges/StatusBadge';
+import { adminApi } from '@/lib/api/admin';
+import type { User } from '@/lib/types/user.types';
+import { cssVars } from '@/styles/theme';
+import { Ban, CheckCircle, Download, Eye, Mail, Plus, Shield, Users, XCircle } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 import { useRouter } from 'next/navigation';
-import { cssVars } from '@/styles/theme';
-import { Users, Eye, Ban, CheckCircle, XCircle, Shield, Plus, Download, Mail } from 'lucide-react';
-import type { User } from '@/lib/types/user.types';
-import AdminPageHeader from '@/components/shared/admin/AdminPageHeader';
-import AdminDataTable from '@/components/shared/admin/AdminDataTable';
-import AdminActionButton from '@/components/shared/admin/AdminActionButton';
-import StatusBadge from '@/components/shared/badges/StatusBadge';
+import { useEffect, useState } from 'react';
 
 export default function AdminUsersPage() {
   const t = useTranslations('admin');
   const router = useRouter();
   const [loading, setLoading] = useState(false);
+  const [users, setUsers] = useState<User[]>([]);
 
-  // Mock data - replace with API call
+  useEffect(() => {
+    const fetchUsers = async () => {
+      try {
+        setLoading(true);
+        const data = await adminApi.getUsers();
+        setUsers(Array.isArray(data) ? data : []);
+      } catch (error) {
+        console.error('Failed to fetch users:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchUsers();
+  }, []);
+
+  // Old inline mock data removed - now using API
+  /*
   const [users] = useState<User[]>([
     {
       id: '1',
@@ -94,6 +113,7 @@ export default function AdminUsersPage() {
       lastLoginAt: '2024-03-10',
     },
   ]);
+  */
 
   const columns = [
     {

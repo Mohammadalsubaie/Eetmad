@@ -2,19 +2,38 @@
 
 import AdminDataTable from '@/components/shared/admin/AdminDataTable';
 import AdminPageHeader from '@/components/shared/admin/AdminPageHeader';
+import { reviewsApi } from '@/lib/api/reviews';
 import type { Review } from '@/lib/types/review.types';
 import { cssVars } from '@/styles/theme';
 import { Calendar, CheckCircle, Eye, Star, XCircle } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 import { useRouter } from 'next/navigation';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 export default function ReviewsManagementPage() {
   const t = useTranslations('admin');
   const router = useRouter();
   const [loading, setLoading] = useState(false);
+  const [reviews, setReviews] = useState<Review[]>([]);
 
-  // Mock data
+  useEffect(() => {
+    const fetchReviews = async () => {
+      try {
+        setLoading(true);
+        const data = await reviewsApi.getAll();
+        setReviews(Array.isArray(data) ? data : []);
+      } catch (error) {
+        console.error('Failed to fetch reviews:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchReviews();
+  }, []);
+
+  // Old inline mock data removed - now using API
+  /*
   const [reviews] = useState<Review[]>([
     {
       id: '1',
@@ -61,6 +80,7 @@ export default function ReviewsManagementPage() {
       updatedAt: '2024-03-14T09:00:00Z',
     },
   ]);
+  */
 
   const columns = [
     {

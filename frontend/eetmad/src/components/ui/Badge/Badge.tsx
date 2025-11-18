@@ -9,6 +9,7 @@ export interface BadgeProps {
   icon?: LucideIcon;
   children: React.ReactNode;
   className?: string;
+  style?: React.CSSProperties;
 }
 
 const Badge: React.FC<BadgeProps> = ({
@@ -16,6 +17,7 @@ const Badge: React.FC<BadgeProps> = ({
   icon: Icon,
   children,
   className = '',
+  style,
 }) => {
   const baseStyles = 'inline-flex items-center gap-1.5 rounded-lg px-3 py-1.5 text-xs font-bold';
 
@@ -52,7 +54,7 @@ const Badge: React.FC<BadgeProps> = ({
   };
 
   return (
-    <div className={`${baseStyles} ${className}`} style={getVariantStyles()}>
+    <div className={`${baseStyles} ${className}`} style={{ ...getVariantStyles(), ...style }}>
       {Icon && <Icon className="h-3.5 w-3.5" />}
       {children}
     </div>

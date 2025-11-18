@@ -177,7 +177,6 @@ export default function ProjectCard({ project, onView, showActions = true }: Pro
         </div>
         {project.approvedByClient && (
           <Badge
-            variant="outline"
             style={{
               borderColor: cssVars.status.success,
               color: cssVars.status.success,

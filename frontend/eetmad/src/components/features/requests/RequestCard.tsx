@@ -168,7 +168,6 @@ export default function RequestCard({ request, onView, showActions = true }: Req
         </div>
         {request.requiresOnSiteVisit && (
           <Badge
-            variant="outline"
             style={{
               borderColor: cssVars.accent.warm,
               color: cssVars.accent.warm,

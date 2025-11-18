@@ -102,7 +102,7 @@ export default function AdminUserDetailPage() {
         <AdminPageHeader
           title={user.fullName}
           description={t('users.detail.description')}
-          icon={User}
+          icon={UserIcon}
           action={
             <div className="flex gap-3">
               <motion.button
@@ -317,7 +317,6 @@ export default function AdminUserDetailPage() {
           title={t('users.detail.stats.wallet')}
           value={user.walletBalance.toLocaleString('ar-SA')}
           change={t('common.currency')}
-          trend="neutral"
           icon={DollarSign}
           color={cssVars.status.success}
         />
@@ -331,7 +330,6 @@ export default function AdminUserDetailPage() {
             hour: '2-digit',
             minute: '2-digit',
           })}
-          trend="neutral"
           icon={TrendingUp}
           color={cssVars.status.info}
         />

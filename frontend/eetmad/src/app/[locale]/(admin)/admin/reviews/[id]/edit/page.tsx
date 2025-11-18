@@ -1,8 +1,8 @@
 'use client';
 
 import AdminPageHeader from '@/components/shared/admin/AdminPageHeader';
-import { reviewsApi } from '@/lib/api/reviews';
-import type { Review, UpdateReviewInput } from '@/lib/types/review.types';
+import { reviewsApi, type UpdateReviewInput } from '@/lib/api/reviews';
+import type { Review } from '@/lib/types/review.types';
 import { cssVars } from '@/styles/theme';
 import { motion } from 'framer-motion';
 import { ArrowLeft, Save, Star } from 'lucide-react';
@@ -29,7 +29,7 @@ export default function EditReviewPage() {
     communicationRating: undefined,
     timelinessRating: undefined,
     professionalismRating: undefined,
-    response: null,
+    response: undefined,
   });
 
   useEffect(() => {
@@ -46,7 +46,7 @@ export default function EditReviewPage() {
           communicationRating: data.communicationRating || undefined,
           timelinessRating: data.timelinessRating || undefined,
           professionalismRating: data.professionalismRating || undefined,
-          response: data.response || null,
+          response: data.response || undefined,
         });
       } catch (error) {
         console.error('Failed to fetch review:', error);
@@ -62,14 +62,14 @@ export default function EditReviewPage() {
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
-    setFormData((prev) => ({
+    setFormData((prev: UpdateReviewInput) => ({
       ...prev,
       [name]: value,
     }));
   };
 
   const handleRatingChange = (name: string, value: number) => {
-    setFormData((prev) => ({
+    setFormData((prev: UpdateReviewInput) => ({
       ...prev,
       [name]: value,
     }));
@@ -172,7 +172,7 @@ export default function EditReviewPage() {
                   className="rounded-lg p-2 transition-all"
                   style={{
                     backgroundColor:
-                      formData.rating >= rating
+                      (formData.rating ?? 0) >= rating
                         ? `color-mix(in srgb, ${cssVars.status.warning} 15%, transparent)`
                         : 'transparent',
                   }}
@@ -181,8 +181,10 @@ export default function EditReviewPage() {
                     className="h-6 w-6"
                     style={{
                       color:
-                        formData.rating >= rating ? cssVars.status.warning : cssVars.neutral.border,
-                      fill: formData.rating >= rating ? cssVars.status.warning : 'none',
+                        (formData.rating ?? 0) >= rating
+                          ? cssVars.status.warning
+                          : cssVars.neutral.border,
+                      fill: (formData.rating ?? 0) >= rating ? cssVars.status.warning : 'none',
                     }}
                   />
                 </motion.button>

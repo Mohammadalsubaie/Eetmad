@@ -9,11 +9,13 @@ import { categoriesApi } from '@/lib/api/categories';
 import type { Category } from '@/lib/types/category.types';
 import { Package, ArrowLeft, TrendingUp, Users } from 'lucide-react';
 import Link from 'next/link';
+import Breadcrumbs from '@/components/shared/navigation/Breadcrumbs';
 
 export default function CategoryPage() {
   const params = useParams();
   const slug = params.slug as string;
   const t = useTranslations('pages.categories');
+  const tPages = useTranslations('pages');
   const locale = useLocale();
   const isRTL = locale === 'ar';
   const router = useRouter();
@@ -60,6 +62,15 @@ export default function CategoryPage() {
         className="flex min-h-screen items-center justify-center"
         style={{ backgroundColor: cssVars.neutral.bg }}
       >
+        <Breadcrumbs
+          items={[
+            { label: t('title'), href: `/${locale}/categories` },
+            // TODO: Replace with actual data for slug
+            { label: '{slug}' },
+          ]}
+          className="mb-6"
+        />
+
         <div className="text-lg font-semibold" style={{ color: cssVars.neutral.textSecondary }}>
           {t('loading') || 'Loading...'}
         </div>

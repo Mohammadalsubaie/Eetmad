@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { useParams, useRouter } from 'next/navigation';
-import { useTranslations } from 'next-intl';
+import { useTranslations, useLocale } from 'next-intl';
 import { motion } from 'framer-motion';
 import { cssVars } from '@/styles/theme';
 import {
@@ -27,11 +27,14 @@ import { adminApi } from '@/lib/api/admin';
 import AdminPageHeader from '@/components/shared/admin/AdminPageHeader';
 import StatusBadge from '@/components/shared/badges/StatusBadge';
 import AdminStatCard from '@/components/shared/admin/AdminStatCard';
+import Breadcrumbs from '@/components/shared/navigation/Breadcrumbs';
 
 export default function AdminUserDetailPage() {
   const params = useParams();
   const router = useRouter();
   const t = useTranslations('admin');
+  const tPages = useTranslations('pages');
+  const locale = useLocale();
   const userId = params.id as string;
 
   const [user, setUser] = useState<User | null>(null);
@@ -83,6 +86,14 @@ export default function AdminUserDetailPage() {
 
   return (
     <div>
+      <Breadcrumbs
+        items={[
+          { label: tPages('admin.title'), href: `/${locale}/admin` },
+          { label: tPages('users.title'), href: `/${locale}/admin/users` },
+          { label: user.fullName },
+        ]}
+        className="mb-6"
+      />
       {/* Header */}
       <div className="mb-6 flex items-center gap-4">
         <motion.button

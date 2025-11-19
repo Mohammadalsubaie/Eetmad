@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useCallback } from 'react';
 import { useParams, useRouter } from 'next/navigation';
-import { useTranslations } from 'next-intl';
+import { useTranslations, useLocale } from 'next-intl';
 import { motion } from 'framer-motion';
 import {
   ArrowLeft,
@@ -20,12 +20,15 @@ import { cssVars } from '@/styles/theme';
 import { offersApi } from '@/lib/api/offers';
 import type { Offer } from '@/lib/types/offer.types';
 import { Button } from '@/components/ui/Button';
+import Breadcrumbs from '@/components/shared/navigation/Breadcrumbs';
 
 export default function OfferDetailPage() {
   const params = useParams();
   const router = useRouter();
   const id = params.id as string;
   const t = useTranslations('pages.offers');
+  const tPages = useTranslations('pages');
+  const locale = useLocale();
   const [offer, setOffer] = useState<Offer | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -133,6 +136,13 @@ export default function OfferDetailPage() {
 
   return (
     <div className="container mx-auto py-8" style={{ backgroundColor: cssVars.neutral.bg }}>
+      <Breadcrumbs
+        items={[
+          { label: t('title'), href: `/${locale}/offers` },
+          { label: offer.offerNumber || `#${id}` },
+        ]}
+        className="mb-6"
+      />
       {/* Back Button */}
       <motion.button
         whileHover={{ x: -4 }}
@@ -184,7 +194,7 @@ export default function OfferDetailPage() {
               }}
             >
               <Edit className="h-4 w-4" />
-              {t('edit')}
+              {t('edit.title')}
             </Button>
           )}
         </div>

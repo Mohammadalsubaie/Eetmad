@@ -1,11 +1,12 @@
 'use client';
 
 import { useState, useEffect, useCallback } from 'react';
-import { useTranslations } from 'next-intl';
+import { useTranslations, useLocale } from 'next-intl';
 import { DollarSign, TrendingUp, CheckCircle2, Star, Package, Award } from 'lucide-react';
 import { cssVars } from '@/styles/theme';
 import { suppliersApi } from '@/lib/api/suppliers';
 import StatCard from '@/components/shared/cards/StatCard';
+import Breadcrumbs from '@/components/shared/navigation/Breadcrumbs';
 
 interface SupplierStats {
   totalOffers: number;
@@ -18,6 +19,8 @@ interface SupplierStats {
 
 export default function StatsPage() {
   const t = useTranslations('pages.stats');
+  const tPages = useTranslations('pages');
+  const locale = useLocale();
   const [stats, setStats] = useState<SupplierStats | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -77,6 +80,7 @@ export default function StatsPage() {
 
   return (
     <div className="container mx-auto py-8" style={{ backgroundColor: cssVars.neutral.bg }}>
+      <Breadcrumbs items={[{ label: t('title') }]} className="mb-6" />
       {/* Header */}
       <div className="mb-8">
         <h1 className="mb-2 text-4xl font-bold" style={{ color: cssVars.secondary.DEFAULT }}>

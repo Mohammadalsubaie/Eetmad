@@ -1,19 +1,24 @@
 'use client';
 
-import { useTranslations } from 'next-intl';
+import { useTranslations, useLocale } from 'next-intl';
 import { useRouter } from 'next/navigation';
 import { motion } from 'framer-motion';
 import { Plus } from 'lucide-react';
 import { cssVars } from '@/styles/theme';
 import RequestsList from '@/components/features/requests/RequestsList';
 import { Button } from '@/components/ui/Button';
+import Breadcrumbs from '@/components/shared/navigation/Breadcrumbs';
 
 export default function RequestsPage() {
   const t = useTranslations('pages.requests');
+  const tPages = useTranslations('pages');
+  const locale = useLocale();
   const router = useRouter();
 
   return (
     <div className="container mx-auto py-8" style={{ backgroundColor: cssVars.neutral.bg }}>
+      <Breadcrumbs items={[{ label: t('title') }]} className="mb-6" />
+
       {/* Header */}
       <div className="mb-8 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
         <div>

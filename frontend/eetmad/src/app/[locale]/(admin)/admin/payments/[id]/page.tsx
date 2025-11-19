@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { useParams, useRouter } from 'next/navigation';
-import { useTranslations } from 'next-intl';
+import { useTranslations, useLocale } from 'next-intl';
 import { motion } from 'framer-motion';
 import { cssVars } from '@/styles/theme';
 import {
@@ -19,11 +19,14 @@ import type { Payment } from '@/lib/types/payment.types';
 import { paymentsApi } from '@/lib/api/payments';
 import AdminPageHeader from '@/components/shared/admin/AdminPageHeader';
 import StatusBadge from '@/components/shared/badges/StatusBadge';
+import Breadcrumbs from '@/components/shared/navigation/Breadcrumbs';
 
 export default function PaymentDetailPage() {
   const params = useParams();
   const router = useRouter();
   const t = useTranslations('admin');
+  const tPages = useTranslations('pages');
+  const locale = useLocale();
   const paymentId = params.id as string;
 
   const [payment, setPayment] = useState<Payment | null>(null);
@@ -65,6 +68,14 @@ export default function PaymentDetailPage() {
 
   return (
     <div>
+      <Breadcrumbs
+        items={[
+          { label: tPages('admin.title'), href: `/${locale}/admin` },
+          { label: tPages('payments.title'), href: `/${locale}/admin/payments` },
+          { label: payment.transactionId },
+        ]}
+        className="mb-6"
+      />
       {/* Header */}
       <div className="mb-6 flex items-center gap-4">
         <motion.button

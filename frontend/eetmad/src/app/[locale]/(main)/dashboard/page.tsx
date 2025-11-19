@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { useTranslations } from 'next-intl';
+import { useTranslations, useLocale } from 'next-intl';
 import { useRouter } from 'next/navigation';
 import { cssVars } from '@/styles/theme';
 import { motion } from 'framer-motion';
@@ -20,9 +20,12 @@ import {
 } from 'lucide-react';
 import { dashboardApi } from '@/lib/api/dashboard';
 import type { DashboardOverview, DashboardStatistics, RecentActivity } from '@/lib/api/dashboard';
+import Breadcrumbs from '@/components/shared/navigation/Breadcrumbs';
 
 export default function DashboardPage() {
   const t = useTranslations('pages.dashboard');
+  const tPages = useTranslations('pages');
+  const locale = useLocale();
   const router = useRouter();
   const [overview, setOverview] = useState<DashboardOverview | null>(null);
   const [statistics, setStatistics] = useState<DashboardStatistics | null>(null);
@@ -83,6 +86,8 @@ export default function DashboardPage() {
   if (loading) {
     return (
       <div className="container mx-auto py-8" style={{ backgroundColor: cssVars.neutral.bg }}>
+        <Breadcrumbs items={[{ label: t('title') }]} className="mb-6" />
+
         <div className="text-center" style={{ color: cssVars.neutral.textSecondary }}>
           {t('loading')}
         </div>

@@ -1,18 +1,20 @@
 'use client';
 
+import Breadcrumbs from '@/components/shared/navigation/Breadcrumbs';
 import { Button } from '@/components/ui/Button';
 import { requestsApi } from '@/lib/api/requests';
 import type { Request } from '@/lib/types/request.types';
 import { cssVars } from '@/styles/theme';
 import { motion } from 'framer-motion';
 import { ArrowLeft, Calendar, Clock, DollarSign, Edit, Eye, MapPin, Tag } from 'lucide-react';
-import { useTranslations } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
 import { useParams, useRouter } from 'next/navigation';
-import { useEffect, useState, useCallback } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 
 export default function RequestDetailPage() {
   const params = useParams();
   const router = useRouter();
+  const locale = useLocale();
   const id = params.id as string;
   const t = useTranslations('pages.requests');
   const [request, setRequest] = useState<Request | null>(null);
@@ -116,6 +118,12 @@ export default function RequestDetailPage() {
 
   return (
     <div className="container mx-auto py-8" style={{ backgroundColor: cssVars.neutral.bg }}>
+      {/* Breadcrumbs */}
+      <Breadcrumbs
+        items={[{ label: t('title'), href: `/${locale}/requests` }, { label: request.title }]}
+        className="mb-6"
+      />
+
       {/* Back Button */}
       <motion.button
         whileHover={{ x: -4 }}
@@ -165,7 +173,7 @@ export default function RequestDetailPage() {
             }}
           >
             <Edit className="h-4 w-4" />
-            {t('edit')}
+            {t('edit.title')}
           </Button>
         </div>
 

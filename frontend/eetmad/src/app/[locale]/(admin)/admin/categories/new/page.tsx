@@ -6,13 +6,16 @@ import type { CreateCategoryInput } from '@/lib/types/category.types';
 import { cssVars } from '@/styles/theme';
 import { motion } from 'framer-motion';
 import { ArrowLeft, FolderTree, Save } from 'lucide-react';
-import { useTranslations } from 'next-intl';
+import { useTranslations, useLocale } from 'next-intl';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
+import Breadcrumbs from '@/components/shared/navigation/Breadcrumbs';
 
 export default function CreateCategoryPage() {
   const router = useRouter();
   const t = useTranslations('admin');
+  const tPages = useTranslations('pages');
+  const locale = useLocale();
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
@@ -73,6 +76,15 @@ export default function CreateCategoryPage() {
 
   return (
     <div>
+      <Breadcrumbs
+        items={[
+          { label: tPages('admin.title'), href: `/${locale}/admin` },
+          { label: tPages('categories.title'), href: `/${locale}/admin/categories` },
+          { label: tPages('new.title') },
+        ]}
+        className="mb-6"
+      />
+
       {/* Header */}
       <div className="mb-6 flex items-center gap-4">
         <motion.button

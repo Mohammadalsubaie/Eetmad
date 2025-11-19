@@ -1,6 +1,15 @@
 {
+  "common": {
+    "home": "Home",
+    "components": "Components"
+  },
   "nav": {
     "home": "Home",
+    "about": "About",
+    "requests": "Requests",
+    "suppliers": "Suppliers",
+    "contact": "Contact",
+    "toggleMenu": "Toggle menu",
     "projects": "Projects",
     "organizations": "Organizations",
     "resources": "Resources",
@@ -38,24 +47,6 @@
     "copyright": "© 2025 Opportunities Platform. All rights reserved",
     "termsAndConditions": "Terms & Conditions",
     "privacyPolicy": "Privacy Policy"
-  },
-  "faq": {
-    "pageTitle": "Frequently Asked Questions",
-    "fetchError": "Failed to load FAQs. Please try again later.",
-    "loading": "Loading FAQs...",
-    "noFaqsFound": "No FAQs found at the moment.",
-    "questions": {
-      "timelines": "How long does it take to get offers?",
-      "offers": "How many offers to expect?",
-      "payments": "How does the payment process work?",
-      "quality": "How do you ensure supplier quality?"
-    },
-    "answers": {
-      "timelines": "Offers usually start arriving within 24 hours of posting the request. In most cases, you get several offers within two days. The duration depends on the type of request and its complexity.",
-      "offers": "The number of offers varies depending on the type of request and geographic area. On average, requests receive 5-10 offers from different suppliers. Clear and detailed requests attract more offers.",
-      "payments": "We do not directly intervene in the payment process. Financial agreements are made between the two parties directly. We recommend using safe and documented payment methods. We provide an optional contract template to document the agreement.",
-      "quality": "We verify all suppliers before accepting them on the platform. We request commercial registration and official documents. We have a comprehensive rating system from users. We continuously monitor supplier performance and take action against violators."
-    }
   },
   "faq": {
     "pageTitle": "Frequently Asked Questions",
@@ -247,6 +238,11 @@
     }
   },
   "biddingPlatform": {
+    "pages": {
+      "about": {
+        "title": "About Us"
+      }
+    },
     "about": {
       "title": "About Our Platform",
       "description": "We are dedicated to connecting talents with government opportunities, fostering transparency, efficiency, and shared success.",
@@ -500,6 +496,11 @@
               }
             }
           }
+        },
+        "pages": {
+          "howItWorks": {
+            "title": "Title"
+          }
         }
       }
     }
@@ -628,7 +629,8 @@
       "backupCodes": "Backup Codes",
       "downloadCodes": "Download Codes",
       "verificationCode": "Verification Code",
-      "submitButton": "Verify & Enable"
+      "submitButton": "Verify & Enable",
+      "qrCodeAlt": "QR code for two-factor authentication setup"
     },
     "sessions": {
       "title": "Active Sessions",
@@ -641,10 +643,95 @@
     }
   },
   "pages": {
+    "admin": {
+      "title": "Admin"
+    },
+    "disputes": {
+      "title": "Disputes"
+    },
+    "privacy": {
+      "title": "Privacy Policy",
+      "introduction": {
+        "title": "Introduction",
+        "paragraph1": "This Privacy Policy describes Our policies and procedures on the collection, use and disclosure of Your information when You use the Service and tells You about Your privacy rights and how the law protects You.",
+        "paragraph2": "We use Your Personal data to provide and improve the Service. By using the Service, You agree to the collection and use of information in accordance with this Privacy Policy."
+      },
+      "dataCollection": {
+        "title": "Collecting and Using Your Personal Data",
+        "paragraph1": "While using Our Service, We may ask You to provide Us with certain personally identifiable information that can be used to contact or identify You. Personally identifiable information may include, but is not limited to:",
+        "item1": "Email address",
+        "item2": "First name and last name",
+        "item3": "Phone number"
+      },
+      "dataUsage": {
+        "title": "Use of Your Personal Data",
+        "paragraph1": "The Company may use Personal Data for the following purposes: To provide and maintain our Service, including to monitor the usage of our Service. To manage Your Account: to manage Your registration as a user of the Service. The Personal Data You provide can give You access to different functionalities of the Service that are available to You as a registered user."
+      },
+      "userRights": {
+        "title": "Your Privacy Rights",
+        "paragraph1": "You have the right to access, update or to delete the information We have on You. Whenever made possible, you can access, update or request deletion of Your Personal Data directly within Your account settings section. If you are unable to perform these actions yourself, please contact Us to assist You."
+      },
+      "changes": {
+        "title": "Changes to this Privacy Policy",
+        "paragraph1": "We may update Our Privacy Policy from time to time. We will notify You of any changes by posting the new Privacy Policy on this page. We will let You know via email and/or a prominent notice on Our Service, prior to the change becoming effective and update the 'Last updated' date at the top of this Privacy Policy."
+      },
+      "contact": {
+        "title": "Contact Us",
+        "paragraph1": "If you have any questions about this Privacy Policy, You can contact us: By email: support@eetmad.com"
+      }
+    },
+    "new": {
+      "title": "New"
+    },
+    "edit": {
+      "title": "Edit"
+    },
+    "verification": {
+      "title": "Verification"
+    },
+    "users": {
+      "title": "Users"
+    },
+    "settings": {
+      "title": "Settings"
+    },
+    "reviews": {
+      "title": "Reviews"
+    },
+    "payments": {
+      "title": "Payments"
+    },
+    "setup": {
+      "title": "Setup"
+    },
     "suppliers": {
-      "title": "Suppliers"
+      "title": "Suppliers",
+      "badge": "Suppliers",
+      "subtitle": "Browse our verified suppliers",
+      "searchPlaceholder": "Search suppliers...",
+      "loading": "Loading suppliers...",
+      "error": "Failed to load suppliers",
+      "noSuppliers": "No suppliers found.",
+      "acceptanceRate": "Acceptance",
+      "onTime": "On Time",
+      "notFound": "Supplier not found",
+      "back": "Back",
+      "verified": "Verified",
+      "reviews": "reviews",
+      "onTimeDelivery": "On-Time Delivery",
+      "responseTime": "Response Time",
+      "categories": "Categories",
+      "primary": "Primary",
+      "portfolio": "Portfolio",
+      "certifications": "Certifications",
+      "pages": {
+        "suppliers": {
+          "title": "Title"
+        }
+      }
     },
     "terms": {
+      "title": "Terms and Conditions",
       "pageTitle": "Terms and Conditions",
       "introduction": "Welcome to Eetmad. These Terms and Conditions govern your use of our website and services. By accessing or using our platform, you agree to be bound by these terms.",
       "section1Title": "Acceptance of Terms",
@@ -657,7 +744,12 @@
       "section4Content": "The service and its original content, features, and functionality are and will remain the exclusive property of Eetmad and its licensors. Our trademarks and trade dress may not be used in connection with any product or service without the prior written consent of Eetmad.",
       "section5Title": "Limitation of Liability",
       "section5Content": "In no event shall Eetmad, nor its directors, employees, partners, agents, suppliers, or affiliates, be liable for any indirect, incidental, special, consequential or punitive damages, including without limitation, loss of profits, data, use, goodwill, or other intangible losses, resulting from (i) your access to or use of or inability to access or use the Service; (ii) any conduct or content of any third party on the Service; (iii) any content obtained from the Service; and (iv) unauthorized access, use or alteration of your transmissions or content, whether based on warranty, contract, tort (including negligence) or any other legal theory, whether or not we have been informed of the possibility of such damage, and even if a remedy set forth herein is found to have failed of its essential purpose.",
-      "conclusion": "These Terms and Conditions are effective as of November 16, 2025."
+      "conclusion": "These Terms and Conditions are effective as of November 16, 2025.",
+      "pages": {
+        "terms": {
+          "title": "Title"
+        }
+      }
     },
     "faq": {
       "title": "Frequently Asked Questions",
@@ -700,6 +792,11 @@
           "summary": "Comprehensive verification and rating system",
           "answer": "We verify all suppliers before accepting them on the platform. We request commercial registration and official documents. We have a comprehensive rating system from users. We continuously monitor supplier performance and take action against violators."
         }
+      },
+      "pages": {
+        "faq": {
+          "title": "Title"
+        }
       }
     },
     "howItWorks": {
@@ -721,7 +818,12 @@
       "formTitle": "Send us a Message",
       "submitting": "Sending...",
       "submitSuccess": "Your message has been sent successfully!",
-      "submitError": "Failed to send your message. Please try again later."
+      "submitError": "Failed to send your message. Please try again later.",
+      "pages": {
+        "contact": {
+          "title": "Title"
+        }
+      }
     },
     "categories": {
       "title": "Categories",
@@ -735,72 +837,47 @@
       "error": "Failed to load category",
       "back": "Back",
       "backToCategories": "Back to Categories",
-      "suppliers": "suppliers"
+      "suppliers": "suppliers",
+      "pages": {
+        "categories": {
+          "title": "Title"
+        }
+      }
     },
     "about": {
       "title": "About Us"
     },
-    "privacy": {
-      "title": "Privacy Policy",
-      "introduction": {
-        "title": "Introduction",
-        "paragraph1": "This Privacy Policy describes Our policies and procedures on the collection, use and disclosure of Your information when You use the Service and tells You about Your privacy rights and how the law protects You.",
-        "paragraph2": "We use Your Personal data to provide and improve the Service. By using the Service, You agree to the collection and use of information in accordance with this Privacy Policy."
-      },
-      "dataCollection": {
-        "title": "Collecting and Using Your Personal Data",
-        "paragraph1": "While using Our Service, We may ask You to provide Us with certain personally identifiable information that can be used to contact or identify You. Personally identifiable information may include, but is not limited to:",
-        "item1": "Email address",
-        "item2": "First name and last name",
-        "item3": "Phone number"
-      },
-      "dataUsage": {
-        "title": "Use of Your Personal Data",
-        "paragraph1": "The Company may use Personal Data for the following purposes: To provide and maintain our Service, including to monitor the usage of our Service. To manage Your Account: to manage Your registration as a user of the Service. The Personal Data You provide can give You access to different functionalities of the Service that are available to You as a registered user."
-      },
-      "userRights": {
-        "title": "Your Privacy Rights",
-        "paragraph1": "You have the right to access, update or to delete the information We have on You. Whenever made possible, you can access, update or request deletion of Your Personal Data directly within Your account settings section. If you are unable to perform these actions yourself, please contact Us to assist You."
-      },
-      "changes": {
-        "title": "Changes to this Privacy Policy",
-        "paragraph1": "We may update Our Privacy Policy from time to time. We will notify You of any changes by posting the new Privacy Policy on this page. We will let You know via email and/or a prominent notice on Our Service, prior to the change becoming effective and update the 'Last updated' date at the top of this Privacy Policy."
-      },
-      "contact": {
-        "title": "Contact Us",
-        "paragraph1": "If you have any questions about this Privacy Policy, You can contact us: By email: support@eetmad.com"
-      }
-    },
-    "suppliers": {
-      "title": "Suppliers",
-      "badge": "Suppliers",
-      "subtitle": "Browse our verified suppliers",
-      "searchPlaceholder": "Search suppliers...",
-      "loading": "Loading suppliers...",
-      "error": "Failed to load suppliers",
-      "noSuppliers": "No suppliers found.",
-      "acceptanceRate": "Acceptance",
-      "onTime": "On Time",
-      "notFound": "Supplier not found",
-      "back": "Back",
-      "verified": "Verified",
-      "reviews": "reviews",
-      "onTimeDelivery": "On-Time Delivery",
-      "responseTime": "Response Time",
-      "categories": "Categories",
-      "primary": "Primary",
-      "portfolio": "Portfolio",
-      "certifications": "Certifications"
-    },
     "supplierProfile": {
-      "title": "Supplier Profile",
-      "id": "Supplier ID"
+      "title": "Edit Supplier Profile",
+      "subtitle": "Update your supplier profile information",
+      "loading": "Loading profile...",
+      "serviceDescription": "Service Description",
+      "serviceDescriptionPlaceholder": "Describe your services and expertise...",
+      "cancel": "Cancel",
+      "save": "Save Changes",
+      "saving": "Saving...",
+      "saveError": "Failed to save profile. Please try again.",
+      "id": "Supplier ID",
+      "pages": {
+        "edit": {
+          "title": "Title"
+        }
+      },
+      "edit": {
+        "title": "Title"
+      }
     },
     "dashboard": {
       "title": "Dashboard",
       "subtitle": "Welcome back! Here's an overview of your activity",
       "loading": "Loading dashboard...",
       "currency": "SAR",
+      "timeAgo": {
+        "justNow": "Just now",
+        "minutes": "{count} minute(s) ago",
+        "hours": "{count} hour(s) ago",
+        "days": "{count} day(s) ago"
+      },
       "stats": {
         "totalRequests": "Total Requests",
         "activeProjects": "Active Projects",
@@ -820,18 +897,18 @@
           "total": "Total",
           "active": "Active",
           "completed": "Completed",
-          "cancelled": "Cancelled"
+          "cancelled": "Cancelled",
+          "milestones": "Milestones"
         },
         "recentActivity": {
           "title": "Recent Activity",
           "empty": "No recent activity"
         }
       },
-      "timeAgo": {
-        "justNow": "Just now",
-        "minutes": "{count} minute(s) ago",
-        "hours": "{count} hour(s) ago",
-        "days": "{count} day(s) ago"
+      "pages": {
+        "dashboard": {
+          "title": "Title"
+        }
       }
     },
     "profile": {
@@ -841,71 +918,6 @@
       "error": "Failed to load profile",
       "editProfile": "Edit Profile",
       "notProvided": "Not provided",
-      "reviews": "reviews",
-      "completedProjects": "completed projects",
-      "currency": "SAR",
-      "status": {
-        "active": "Active",
-        "inactive": "Inactive"
-      },
-      "sections": {
-        "contactInfo": {
-          "title": "Contact Information",
-          "email": "Email",
-          "phone": "Phone",
-          "address": "Address",
-          "verified": "Verified",
-          "notVerified": "Not verified"
-        },
-        "companyInfo": {
-          "title": "Company Information",
-          "companyName": "Company Name",
-          "commercialRegister": "Commercial Register"
-        },
-        "stats": {
-          "title": "Quick Stats",
-          "rating": "Rating",
-          "projects": "Projects",
-          "wallet": "Wallet"
-        },
-        "accountInfo": {
-          "title": "Account Information",
-          "memberSince": "Member Since",
-          "lastLogin": "Last Login",
-          "userType": "User Type",
-          "userTypes": {
-            "client": "Client",
-            "supplier": "Supplier",
-            "admin": "Admin"
-          }
-        }
-      },
-      "security": {
-        "title": "Security Settings",
-        "subtitle": "Manage your account security",
-        "back": "Back",
-        "currentPassword": "Current Password",
-        "newPassword": "New Password",
-        "confirmPassword": "Confirm New Password",
-        "saveButton": "Save Changes",
-        "passwordStrength": {
-          "label": "Password Strength",
-          "weak": "Weak",
-          "medium": "Medium",
-          "strong": "Strong"
-        },
-        "securityTip": "Choose a strong password with at least 8 characters, including uppercase and lowercase letters, numbers, and symbols. After changing your password, you will be logged out from all other devices.",
-        "success": {
-          "passwordChanged": "Password changed successfully! You have been logged out from all other devices."
-        },
-        "errors": {
-          "currentPasswordRequired": "Current password is required",
-          "passwordTooShort": "Password must be at least 8 characters",
-          "passwordsNotMatch": "Passwords do not match",
-          "samePassword": "New password must be different from current password",
-          "changePasswordFailed": "Failed to change password. Please check your current password and try again."
-        }
-      },
       "edit": {
         "title": "Edit Profile",
         "back": "Back",
@@ -913,6 +925,7 @@
         "save": "Save Changes",
         "saving": "Saving...",
         "success": "Profile updated successfully!",
+        "security": "Security",
         "sections": {
           "basicInfo": "Basic Information",
           "companyInfo": "Company Information",
@@ -976,6 +989,17 @@
         },
         "errors": {
           "saveFailed": "Failed to save profile. Please try again."
+        },
+        "pages": {
+          "profile": {
+            "title": "Title"
+          },
+          "edit": {
+            "title": "Title"
+          }
+        },
+        "profile": {
+          "title": "Title"
         }
       },
       "security": {
@@ -1001,6 +1025,62 @@
           "passwordsNotMatch": "Passwords do not match",
           "samePassword": "New password must be different from current password",
           "changePasswordFailed": "Failed to change password. Please check your current password and try again."
+        },
+        "subtitle": "Subtitle",
+        "pages": {
+          "profile": {
+            "title": "Title"
+          },
+          "security": {
+            "title": "Title"
+          }
+        },
+        "profile": {
+          "title": "Title"
+        }
+      },
+      "reviews": "reviews",
+      "completedProjects": "completed projects",
+      "currency": "SAR",
+      "status": {
+        "active": "Active",
+        "inactive": "Inactive"
+      },
+      "sections": {
+        "contactInfo": {
+          "title": "Contact Information",
+          "email": "Email",
+          "phone": "Phone",
+          "address": "Address",
+          "verified": "Verified",
+          "notVerified": "Not verified"
+        },
+        "companyInfo": {
+          "title": "Company Information",
+          "companyName": "Company Name",
+          "commercialRegister": "Commercial Register"
+        },
+        "stats": {
+          "title": "Quick Stats",
+          "rating": "Rating",
+          "projects": "Projects",
+          "wallet": "Wallet"
+        },
+        "accountInfo": {
+          "title": "Account Information",
+          "memberSince": "Member Since",
+          "lastLogin": "Last Login",
+          "userType": "User Type",
+          "userTypes": {
+            "client": "Client",
+            "supplier": "Supplier",
+            "admin": "Admin"
+          }
+        }
+      },
+      "pages": {
+        "profile": {
+          "title": "Title"
         }
       }
     },
@@ -1013,6 +1093,9 @@
       "createRequest": "Create Request",
       "loading": "Loading requests...",
       "fetchError": "Failed to load requests. Please try again later.",
+      "edit": {
+        "title": "Title"
+      },
       "noRequests": "No requests found",
       "noMyRequests": "You haven't created any requests yet",
       "noRequestsDescription": "Start by creating your first request to get offers from suppliers",
@@ -1045,7 +1128,6 @@
       "locationNotSpecified": "Location not specified",
       "back": "Back",
       "backToRequests": "Back to Requests",
-      "edit": "Edit",
       "notFound": "Request not found",
       "views": "Views",
       "budget": "Budget",
@@ -1079,6 +1161,20 @@
         "create": "Create Request",
         "update": "Update Request",
         "saving": "Saving..."
+      },
+      "pages": {
+        "requests": {
+          "title": "Title"
+        },
+        "edit": {
+          "title": "Title"
+        },
+        "new": {
+          "title": "Title"
+        }
+      },
+      "new": {
+        "title": "Title"
       }
     },
     "offers": {
@@ -1089,6 +1185,21 @@
       "noOffers": "No offers found",
       "noOffersDescription": "No offers have been submitted for this request yet.",
       "back": "Back",
+      "notFound": "Offer not found",
+      "pages": {
+        "requests": {
+          "title": "Requests"
+        },
+        "offers": {
+          "title": "Offers"
+        },
+        "edit": {
+          "title": "Title"
+        },
+        "new": {
+          "title": "Title"
+        }
+      },
       "currency": "SAR",
       "proposedPrice": "Proposed Price",
       "days": "days",
@@ -1112,9 +1223,10 @@
       "editOffer": "Edit Offer",
       "editOfferSubtitle": "Update your offer details",
       "offerDetails": "Offer Details",
-      "notFound": "Offer not found",
       "backToOffers": "Back to Offers",
-      "edit": "Edit",
+      "edit": {
+        "title": "Title"
+      },
       "withdraw": "Withdraw Offer",
       "confirmWithdraw": "Are you sure you want to withdraw this offer?",
       "estimatedDuration": "Estimated Duration",
@@ -1145,7 +1257,13 @@
         "update": "Update Offer",
         "saving": "Saving..."
       },
-      "saveError": "Failed to save offer. Please try again."
+      "saveError": "Failed to save offer. Please try again.",
+      "new": {
+        "title": "Title"
+      },
+      "requests": {
+        "title": "Title"
+      }
     },
     "projects": {
       "title": "Projects",
@@ -1159,7 +1277,51 @@
       "progress": "Progress",
       "totalAmount": "Total Amount",
       "expectedEndDate": "Expected End",
-      "milestones": "Milestones",
+      "pages": {
+        "projects": {
+          "title": "Projects",
+          "pages": {
+            "projects": {
+              "title": "Projects"
+            },
+            "milestones": {
+              "title": "Milestones"
+            }
+          }
+        },
+        "milestones": {
+          "title": "Milestones"
+        }
+      },
+      "milestonesSection": {
+        "title": "Project Milestones",
+        "loading": "Loading milestones...",
+        "notFound": "Project not found",
+        "totalAmount": "Total Amount",
+        "currency": "SAR",
+        "progress": "Progress",
+        "completedMilestones": "Completed Milestones",
+        "empty": "No milestones found",
+        "amount": "Amount",
+        "dueDate": "Due Date",
+        "paymentStatus": "Payment Status",
+        "paid": "Paid",
+        "pending": "Pending",
+        "deliverables": "Deliverables",
+        "attachments": "Attachments",
+        "notes": "Notes",
+        "statuses": {
+          "pending": "Pending",
+          "in_progress": "In Progress",
+          "completed": "Completed",
+          "approved": "Approved",
+          "rejected": "Rejected"
+        },
+        "actions": {
+          "approve": "Approve",
+          "reject": "Reject"
+        }
+      },
       "approved": "Approved",
       "status": {
         "draft": "Draft",
@@ -1186,33 +1348,9 @@
         "rejected": "Rejected"
       },
       "submitMilestone": "Submit Milestone",
-      "milestones": {
-        "title": "Project Milestones",
-        "loading": "Loading milestones...",
-        "notFound": "Project not found",
-        "currency": "SAR",
-        "totalAmount": "Total Amount",
-        "progress": "Progress",
-        "completedMilestones": "Completed Milestones",
-        "empty": "No milestones found",
-        "amount": "Amount",
-        "dueDate": "Due Date",
-        "paymentStatus": "Payment Status",
-        "paid": "Paid",
-        "pending": "Pending",
-        "deliverables": "Deliverables",
-        "attachments": "Attachments",
-        "notes": "Notes",
-        "statuses": {
-          "pending": "Pending",
-          "in_progress": "In Progress",
-          "completed": "Completed",
-          "approved": "Approved",
-          "rejected": "Rejected"
-        },
-        "actions": {
-          "approve": "Approve",
-          "reject": "Reject"
+      "projects": {
+        "milestones": {
+          "title": "Title"
         }
       }
     },
@@ -1226,7 +1364,12 @@
       "fetchError": "Failed to load portfolio. Please try again later.",
       "noItems": "No portfolio items",
       "noItemsDescription": "Add your first portfolio item to showcase your work",
-      "confirmDelete": "Are you sure you want to delete this portfolio item?"
+      "confirmDelete": "Are you sure you want to delete this portfolio item?",
+      "pages": {
+        "portfolio": {
+          "title": "Title"
+        }
+      }
     },
     "stats": {
       "title": "Statistics",
@@ -1239,7 +1382,12 @@
       "acceptedOffers": "Accepted Offers",
       "totalProjects": "Total Projects",
       "completedProjects": "Completed Projects",
-      "averageRating": "Average Rating"
+      "averageRating": "Average Rating",
+      "pages": {
+        "stats": {
+          "title": "Title"
+        }
+      }
     },
     "supplierSetup": {
       "title": "Supplier Profile Setup",
@@ -1256,18 +1404,15 @@
       "next": "Next",
       "complete": "Complete Setup",
       "saving": "Saving...",
-      "saveError": "Failed to save profile. Please try again."
-    },
-    "supplierProfile": {
-      "title": "Edit Supplier Profile",
-      "subtitle": "Update your supplier profile information",
-      "loading": "Loading profile...",
-      "serviceDescription": "Service Description",
-      "serviceDescriptionPlaceholder": "Describe your services and expertise...",
-      "cancel": "Cancel",
-      "save": "Save Changes",
-      "saving": "Saving...",
-      "saveError": "Failed to save profile. Please try again."
+      "saveError": "Failed to save profile. Please try again.",
+      "pages": {
+        "setup": {
+          "title": "Setup"
+        }
+      },
+      "setup": {
+        "title": "Title"
+      }
     },
     "statistics": {
       "title": "Statistics"
@@ -1320,9 +1465,6 @@
     "analytics": {
       "title": "Analytics"
     },
-    "disputes": {
-      "title": "Disputes"
-    },
     "disputeDetails": {
       "title": "Dispute Details",
       "id": "Dispute ID"
@@ -1335,10 +1477,81 @@
     },
     "verificationQueue": {
       "title": "Verification Queue"
+    },
+    "pages": {
+      "admin": {
+        "title": "Admin"
+      },
+      "disputes": {
+        "title": "Disputes"
+      },
+      "privacy": {
+        "title": "Privacy Policy"
+      },
+      "new": {
+        "title": "New"
+      },
+      "edit": {
+        "title": "Edit"
+      }
     }
   },
   "admin": {
     "title": "Admin Panel",
+    "pages": {
+      "admin": {
+        "title": "Admin"
+      },
+      "analytics": {
+        "title": "Analytics"
+      },
+      "categories": {
+        "title": "Categories"
+      },
+      "dashboard": {
+        "title": "Dashboard"
+      },
+      "disputes": {
+        "title": "Disputes"
+      },
+      "edit": {
+        "title": "Edit"
+      },
+      "new": {
+        "title": "New"
+      },
+      "offers": {
+        "title": "Offers"
+      },
+      "payments": {
+        "title": "Payments"
+      },
+      "projects": {
+        "title": "Projects"
+      },
+      "reports": {
+        "title": "Reports"
+      },
+      "requests": {
+        "title": "Requests"
+      },
+      "reviews": {
+        "title": "Reviews"
+      },
+      "settings": {
+        "title": "Settings"
+      },
+      "suppliers": {
+        "title": "Suppliers"
+      },
+      "users": {
+        "title": "Users"
+      },
+      "verification": {
+        "title": "Verification"
+      }
+    },
+    "iconPlaceholder": "Icon",
     "nav": {
       "dashboard": "Dashboard",
       "users": "Users",
@@ -1531,7 +1744,8 @@
         "progress": "Progress",
         "deadline": "Deadline",
         "status": "Status",
-        "actions": "Actions"
+        "actions": "Actions",
+        "request": "Request"
       },
       "statuses": {
         "draft": "Draft",
@@ -1540,7 +1754,8 @@
         "on_hold": "On Hold",
         "completed": "Completed",
         "cancelled": "Cancelled",
-        "disputed": "Disputed"
+        "disputed": "Disputed",
+        "in_progress": "In Progress"
       }
     },
     "disputes": {
@@ -1613,6 +1828,7 @@
         "actions": "Actions"
       },
       "actions": {
+        "edit": "Edit Category",
         "addCategory": "Add Category"
       },
       "statuses": {
@@ -1621,9 +1837,6 @@
       },
       "loading": "Loading category...",
       "notFound": "Category not found",
-      "actions": {
-        "edit": "Edit Category"
-      },
       "create": {
         "title": "Create Category",
         "description": "Add a new category to the system",
@@ -1906,6 +2119,23 @@
       "actions": "Actions",
       "currency": "SAR",
       "saving": "Saving..."
+    },
+    "admin": {
+      "title": "Title"
+    },
+    "new": {
+      "title": "Title"
+    },
+    "edit": {
+      "title": "Title"
+    },
+    "dev": {
+      "pageNavigator": "Developer Page Navigator",
+      "searchPages": "Search pages...",
+      "dynamic": "[dynamic]",
+      "devModeOnly": "Dev Mode Only",
+      "totalPages": "Total: {count} pages",
+      "noPagesFound": "No pages found"
     }
   }
 }

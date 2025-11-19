@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { useParams, useRouter } from 'next/navigation';
-import { useTranslations } from 'next-intl';
+import { useTranslations, useLocale } from 'next-intl';
 import { motion } from 'framer-motion';
 import { cssVars } from '@/styles/theme';
 import {
@@ -19,11 +19,14 @@ import {
 import type { Project, ProjectMilestone } from '@/lib/types/project.types';
 import { projectsApi } from '@/lib/api/projects';
 import StatusBadge from '@/components/shared/badges/StatusBadge';
+import Breadcrumbs from '@/components/shared/navigation/Breadcrumbs';
 
 export default function ProjectMilestonesPage() {
   const params = useParams();
   const router = useRouter();
   const t = useTranslations('pages.projects');
+  const tPages = useTranslations('pages');
+  const locale = useLocale();
   const projectId = params.id as string;
 
   const [project, setProject] = useState<Project | null>(null);
@@ -66,7 +69,17 @@ export default function ProjectMilestonesPage() {
   if (loading) {
     return (
       <div className="flex h-64 items-center justify-center">
-        <div style={{ color: cssVars.neutral.textSecondary }}>{t('milestones.loading')}</div>
+        <Breadcrumbs
+          items={[
+            { label: t('title'), href: `/${locale}/projects` },
+            // TODO: Replace with actual data for id
+            { label: '{id}' },
+            { label: tPages('projects.milestones.title') },
+          ]}
+          className="mb-6"
+        />
+
+        <div style={{ color: cssVars.neutral.textSecondary }}>{t('milestonesSection.loading')}</div>
       </div>
     );
   }
@@ -74,7 +87,7 @@ export default function ProjectMilestonesPage() {
   if (!project) {
     return (
       <div className="flex h-64 items-center justify-center">
-        <div style={{ color: cssVars.status.error }}>{t('milestones.notFound')}</div>
+        <div style={{ color: cssVars.status.error }}>{t('milestonesSection.notFound')}</div>
       </div>
     );
   }
@@ -96,7 +109,7 @@ export default function ProjectMilestonesPage() {
         </motion.button>
         <div>
           <h1 className="text-3xl font-bold" style={{ color: cssVars.secondary.DEFAULT }}>
-            {t('milestones.title')}
+            {t('milestonesSection.title')}
           </h1>
           <p className="mt-1 text-base" style={{ color: cssVars.neutral.textSecondary }}>
             {project.projectNumber}
@@ -120,12 +133,12 @@ export default function ProjectMilestonesPage() {
               className="mb-2 text-xs font-semibold"
               style={{ color: cssVars.neutral.textMuted }}
             >
-              {t('milestones.totalAmount')}
+              {t('milestonesSection.totalAmount')}
             </div>
             <div className="flex items-center gap-2">
               <DollarSign className="h-5 w-5" style={{ color: cssVars.status.success }} />
               <span className="text-xl font-bold" style={{ color: cssVars.secondary.DEFAULT }}>
-                {project.totalAmount.toLocaleString('ar-SA')} {t('milestones.currency')}
+                {project.totalAmount.toLocaleString('ar-SA')} {t('milestonesSection.currency')}
               </span>
             </div>
           </div>
@@ -134,7 +147,7 @@ export default function ProjectMilestonesPage() {
               className="mb-2 text-xs font-semibold"
               style={{ color: cssVars.neutral.textMuted }}
             >
-              {t('milestones.progress')}
+              {t('milestonesSection.progress')}
             </div>
             <div className="flex items-center gap-2">
               <TrendingUp className="h-5 w-5" style={{ color: cssVars.primary.DEFAULT }} />
@@ -148,7 +161,7 @@ export default function ProjectMilestonesPage() {
               className="mb-2 text-xs font-semibold"
               style={{ color: cssVars.neutral.textMuted }}
             >
-              {t('milestones.completedMilestones')}
+              {t('milestonesSection.completedMilestones')}
             </div>
             <div className="flex items-center gap-2">
               <CheckCircle className="h-5 w-5" style={{ color: cssVars.status.success }} />
@@ -174,7 +187,7 @@ export default function ProjectMilestonesPage() {
               borderColor: cssVars.neutral.border,
             }}
           >
-            <p style={{ color: cssVars.neutral.textSecondary }}>{t('milestones.empty')}</p>
+            <p style={{ color: cssVars.neutral.textSecondary }}>{t('milestonesSection.empty')}</p>
           </div>
         ) : (
           milestones.map((milestone, index) => (
@@ -212,11 +225,11 @@ export default function ProjectMilestonesPage() {
                 <StatusBadge
                   status={milestone.status}
                   labels={{
-                    pending: t('milestones.statuses.pending'),
-                    in_progress: t('milestones.statuses.in_progress'),
-                    completed: t('milestones.statuses.completed'),
-                    approved: t('milestones.statuses.approved'),
-                    rejected: t('milestones.statuses.rejected'),
+                    pending: t('milestonesSection.statuses.pending'),
+                    in_progress: t('milestonesSection.statuses.in_progress'),
+                    completed: t('milestonesSection.statuses.completed'),
+                    approved: t('milestonesSection.statuses.approved'),
+                    rejected: t('milestonesSection.statuses.rejected'),
                   }}
                 />
               </div>
@@ -231,12 +244,12 @@ export default function ProjectMilestonesPage() {
                     className="mb-2 text-xs font-semibold"
                     style={{ color: cssVars.neutral.textMuted }}
                   >
-                    {t('milestones.amount')}
+                    {t('milestonesSection.amount')}
                   </div>
                   <div className="flex items-center gap-2">
                     <DollarSign className="h-4 w-4" style={{ color: cssVars.status.success }} />
                     <span className="font-bold" style={{ color: cssVars.secondary.DEFAULT }}>
-                      {milestone.amount.toLocaleString('ar-SA')} {t('milestones.currency')}
+                      {milestone.amount.toLocaleString('ar-SA')} {t('milestonesSection.currency')}
                     </span>
                   </div>
                 </div>
@@ -245,7 +258,7 @@ export default function ProjectMilestonesPage() {
                     className="mb-2 text-xs font-semibold"
                     style={{ color: cssVars.neutral.textMuted }}
                   >
-                    {t('milestones.dueDate')}
+                    {t('milestonesSection.dueDate')}
                   </div>
                   <div className="flex items-center gap-2">
                     <Calendar className="h-4 w-4" style={{ color: cssVars.neutral.textMuted }} />
@@ -259,7 +272,7 @@ export default function ProjectMilestonesPage() {
                     className="mb-2 text-xs font-semibold"
                     style={{ color: cssVars.neutral.textMuted }}
                   >
-                    {t('milestones.paymentStatus')}
+                    {t('milestonesSection.paymentStatus')}
                   </div>
                   <div className="flex items-center gap-2">
                     {milestone.paymentReleased ? (
@@ -269,14 +282,14 @@ export default function ProjectMilestonesPage() {
                           style={{ color: cssVars.status.success }}
                         />
                         <span style={{ color: cssVars.status.success }}>
-                          {t('milestones.paid')}
+                          {t('milestonesSection.paid')}
                         </span>
                       </>
                     ) : (
                       <>
                         <Clock className="h-4 w-4" style={{ color: cssVars.status.warning }} />
                         <span style={{ color: cssVars.status.warning }}>
-                          {t('milestones.pending')}
+                          {t('milestonesSection.pending')}
                         </span>
                       </>
                     )}
@@ -294,7 +307,7 @@ export default function ProjectMilestonesPage() {
                     className="mb-2 text-xs font-semibold"
                     style={{ color: cssVars.neutral.textMuted }}
                   >
-                    {t('milestones.deliverables')}
+                    {t('milestonesSection.deliverables')}
                   </div>
                   <p style={{ color: cssVars.secondary.DEFAULT }}>{milestone.deliverables}</p>
                 </div>
@@ -307,7 +320,7 @@ export default function ProjectMilestonesPage() {
                     className="mb-2 text-xs font-semibold"
                     style={{ color: cssVars.neutral.textMuted }}
                   >
-                    {t('milestones.attachments')}
+                    {t('milestonesSection.attachments')}
                   </div>
                   <div className="flex flex-wrap gap-2">
                     {milestone.attachments.map((attachment) => (
@@ -347,7 +360,7 @@ export default function ProjectMilestonesPage() {
                     className="mb-2 text-xs font-semibold"
                     style={{ color: cssVars.neutral.textMuted }}
                   >
-                    {t('milestones.notes')}
+                    {t('milestonesSection.notes')}
                   </div>
                   <p style={{ color: cssVars.secondary.DEFAULT }}>{milestone.notes}</p>
                 </div>
@@ -370,7 +383,7 @@ export default function ProjectMilestonesPage() {
                     }}
                   >
                     <CheckCircle className="h-4 w-4" />
-                    {t('milestones.actions.approve')}
+                    {t('milestonesSection.actions.approve')}
                   </motion.button>
                   <motion.button
                     whileHover={{ scale: 1.05 }}
@@ -384,7 +397,7 @@ export default function ProjectMilestonesPage() {
                     }}
                   >
                     <XCircle className="h-4 w-4" />
-                    {t('milestones.actions.reject')}
+                    {t('milestonesSection.actions.reject')}
                   </motion.button>
                 </div>
               )}

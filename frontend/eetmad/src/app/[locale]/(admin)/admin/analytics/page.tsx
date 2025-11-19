@@ -1,6 +1,6 @@
 'use client';
 
-import { useTranslations } from 'next-intl';
+import { useTranslations, useLocale } from 'next-intl';
 import { motion } from 'framer-motion';
 import { cssVars } from '@/styles/theme';
 import {
@@ -15,12 +15,23 @@ import {
 import AdminPageHeader from '@/components/shared/admin/AdminPageHeader';
 import AdminStatCard from '@/components/shared/admin/AdminStatCard';
 import AdminActionButton from '@/components/shared/admin/AdminActionButton';
+import Breadcrumbs from '@/components/shared/navigation/Breadcrumbs';
 
 export default function AnalyticsPage() {
   const t = useTranslations('admin');
+  const tPages = useTranslations('pages');
+  const locale = useLocale();
 
   return (
     <div>
+      <Breadcrumbs
+        items={[
+          { label: tPages('admin.title'), href: `/${locale}/admin` },
+          { label: tPages('analytics.title') },
+        ]}
+        className="mb-6"
+      />
+
       <AdminPageHeader
         title={t('analytics.title')}
         description={t('analytics.description')}

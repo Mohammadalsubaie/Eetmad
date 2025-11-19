@@ -5,15 +5,23 @@ import { Button } from '@/components/ui/Button';
 import { cssVars } from '@/styles/theme';
 import { motion } from 'framer-motion';
 import { Plus } from 'lucide-react';
-import { useTranslations } from 'next-intl';
+import { useTranslations, useLocale } from 'next-intl';
 import { useRouter } from 'next/navigation';
+import Breadcrumbs from '@/components/shared/navigation/Breadcrumbs';
 
 export default function MyRequestsPage() {
   const t = useTranslations('pages.requests');
+  const tPages = useTranslations('pages');
+  const locale = useLocale();
   const router = useRouter();
 
   return (
     <div className="container mx-auto py-8" style={{ backgroundColor: cssVars.neutral.bg }}>
+      <Breadcrumbs
+        items={[{ label: t('title'), href: `/${locale}/requests` }, { label: 'My requests' }]}
+        className="mb-6"
+      />
+
       {/* Header */}
       <div className="mb-8 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
         <div>

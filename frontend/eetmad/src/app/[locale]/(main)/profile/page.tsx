@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { useTranslations } from 'next-intl';
+import { useTranslations, useLocale } from 'next-intl';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 import { cssVars } from '@/styles/theme';
@@ -22,9 +22,12 @@ import {
 } from 'lucide-react';
 import { usersApi } from '@/lib/api/users';
 import type { User as UserType } from '@/lib/types/user.types';
+import Breadcrumbs from '@/components/shared/navigation/Breadcrumbs';
 
 export default function ProfilePage() {
   const t = useTranslations('pages.profile');
+  const tPages = useTranslations('pages');
+  const locale = useLocale();
   const router = useRouter();
   const [user, setUser] = useState<UserType | null>(null);
   const [loading, setLoading] = useState(true);
@@ -71,6 +74,7 @@ export default function ProfilePage() {
 
   return (
     <div className="container mx-auto py-8" style={{ backgroundColor: cssVars.neutral.bg }}>
+      <Breadcrumbs items={[{ label: t('title') }]} className="mb-6" />
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}

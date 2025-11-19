@@ -15,9 +15,11 @@ import {
   Users,
 } from 'lucide-react';
 import { useLocale, useTranslations } from 'next-intl';
+import Breadcrumbs from '@/components/shared/navigation/Breadcrumbs';
 
 export default function HowItWorksPage() {
   const t = useTranslations('biddingPlatform.sections.gettingStarted');
+  const tPages = useTranslations('pages');
   const locale = useLocale();
   const isRTL = locale === 'ar';
 
@@ -95,6 +97,7 @@ export default function HowItWorksPage() {
       </div>
 
       <div className="container relative mx-auto px-4 sm:px-6 lg:px-8">
+        <Breadcrumbs items={[{ label: tPages('howItWorks.title') }]} className="mb-6" />
         {/* Header */}
         <div className="mb-16 text-center">
           <SectionHeader

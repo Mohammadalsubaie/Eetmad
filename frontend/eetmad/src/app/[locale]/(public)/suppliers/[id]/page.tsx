@@ -8,11 +8,13 @@ import { motion } from 'framer-motion';
 import { suppliersApi } from '@/lib/api/suppliers';
 import type { Supplier } from '@/lib/types/supplier.types';
 import { Users, Star, CheckCircle2, ArrowLeft, TrendingUp, Clock, Award } from 'lucide-react';
+import Breadcrumbs from '@/components/shared/navigation/Breadcrumbs';
 
 export default function SupplierDetailPage() {
   const params = useParams();
   const id = params.id as string;
   const t = useTranslations('pages.suppliers');
+  const tPages = useTranslations('pages');
   const locale = useLocale();
   const isRTL = locale === 'ar';
   const router = useRouter();
@@ -45,6 +47,15 @@ export default function SupplierDetailPage() {
         className="flex min-h-screen items-center justify-center"
         style={{ backgroundColor: cssVars.neutral.bg }}
       >
+        <Breadcrumbs
+          items={[
+            { label: t('title'), href: `/${locale}/suppliers` },
+            // TODO: Replace with actual data for id
+            { label: '{id}' },
+          ]}
+          className="mb-6"
+        />
+
         <div className="text-lg font-semibold" style={{ color: cssVars.neutral.textSecondary }}>
           {t('loading') || 'Loading...'}
         </div>

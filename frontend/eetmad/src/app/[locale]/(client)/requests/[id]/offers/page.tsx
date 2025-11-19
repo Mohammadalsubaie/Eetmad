@@ -2,19 +2,22 @@
 
 import { useState, useEffect } from 'react';
 import { useParams, useRouter } from 'next/navigation';
-import { useTranslations } from 'next-intl';
+import { useTranslations, useLocale } from 'next-intl';
 import { motion } from 'framer-motion';
 import { ArrowLeft } from 'lucide-react';
 import { cssVars } from '@/styles/theme';
 import { requestsApi } from '@/lib/api/requests';
 import type { Request } from '@/lib/types/request.types';
 import OffersList from '@/components/features/offers/OffersList';
+import Breadcrumbs from '@/components/shared/navigation/Breadcrumbs';
 
 export default function RequestOffersPage() {
   const params = useParams();
   const router = useRouter();
   const id = params.id as string;
   const t = useTranslations('pages.offers');
+  const tPages = useTranslations('pages');
+  const locale = useLocale();
   const [request, setRequest] = useState<Request | null>(null);
   const [loading, setLoading] = useState(true);
 
@@ -46,6 +49,16 @@ export default function RequestOffersPage() {
   if (loading) {
     return (
       <div className="container mx-auto py-8" style={{ backgroundColor: cssVars.neutral.bg }}>
+        <Breadcrumbs
+          items={[
+            { label: tPages('requests.title'), href: `/${locale}/requests` },
+            // TODO: Replace with actual data for id
+            { label: '{id}' },
+            { label: t('title') },
+          ]}
+          className="mb-6"
+        />
+
         <div className="flex items-center justify-center py-12">
           <div className="text-lg font-medium" style={{ color: cssVars.neutral.textSecondary }}>
             {t('loading')}

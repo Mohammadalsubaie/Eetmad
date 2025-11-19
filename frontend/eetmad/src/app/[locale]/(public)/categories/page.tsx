@@ -1,17 +1,19 @@
 'use client';
 
-import { useState, useEffect, useCallback } from 'react';
-import { useTranslations, useLocale } from 'next-intl';
-import { useRouter } from 'next/navigation';
-import { cssVars } from '@/styles/theme';
-import { motion } from 'framer-motion';
+import Breadcrumbs from '@/components/shared/navigation/Breadcrumbs';
 import { SectionHeader } from '@/components/ui';
 import { categoriesApi } from '@/lib/api/categories';
 import type { Category } from '@/lib/types/category.types';
-import { Package, ArrowRight, TrendingUp } from 'lucide-react';
+import { cssVars } from '@/styles/theme';
+import { motion } from 'framer-motion';
+import { ArrowRight, Package, TrendingUp } from 'lucide-react';
+import { useLocale, useTranslations } from 'next-intl';
+import { useRouter } from 'next/navigation';
+import { useCallback, useEffect, useState } from 'react';
 
 export default function CategoriesPage() {
   const t = useTranslations('pages.categories');
+  const tPages = useTranslations('pages');
   const locale = useLocale();
   const isRTL = locale === 'ar';
   const router = useRouter();
@@ -63,6 +65,7 @@ export default function CategoriesPage() {
       </div>
 
       <div className="container relative mx-auto px-4 sm:px-6 lg:px-8">
+        <Breadcrumbs items={[{ label: t('title') }]} className="mb-6" />
         {/* Header */}
         <div className="mb-12">
           <SectionHeader

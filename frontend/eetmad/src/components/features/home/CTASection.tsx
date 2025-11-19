@@ -48,18 +48,24 @@ const CTASection: React.FC = () => {
             </h2>
 
             <div className="flex flex-col justify-center gap-4 sm:flex-row">
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="flex items-center justify-center gap-3 rounded-2xl px-12 py-5 text-xl font-bold shadow-2xl transition-all"
-                style={{
-                  background: cssVars.gradient.gold,
-                  color: cssVars.secondary.DEFAULT,
-                }}
+              <a
+                href="https://docs.google.com/forms/d/1NzAEs7uruIqcHz0NvVa-xstUp14G1hNig0jzmoyUomQ/edit"
+                target="_blank"
+                rel="noopener noreferrer"
               >
-                {t('primary')}
-                <ArrowRight className="h-6 w-6" />
-              </motion.button>
+                <motion.button
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="flex items-center justify-center gap-3 rounded-2xl px-12 py-5 text-xl font-bold shadow-2xl transition-all"
+                  style={{
+                    background: cssVars.gradient.gold,
+                    color: cssVars.secondary.DEFAULT,
+                  }}
+                >
+                  {t('primary')}
+                  <ArrowRight className="h-6 w-6" />
+                </motion.button>
+              </a>
 
               <motion.button
                 whileHover={{ scale: 1.05 }}

@@ -1,15 +1,17 @@
 'use client';
 
-import AdminPageHeader from '@/components/shared/admin/AdminPageHeader';
-import { categoriesApi } from '@/lib/api/categories';
-import type { Category, UpdateCategoryInput } from '@/lib/types/category.types';
-import { cssVars } from '@/styles/theme';
-import { motion } from 'framer-motion';
-import { ArrowLeft, FolderTree, Save } from 'lucide-react';
-import { useTranslations, useLocale } from 'next-intl';
+import { useState, useEffect } from 'react';
 import { useParams, useRouter } from 'next/navigation';
-import { useEffect, useState } from 'react';
+import { useTranslations, useLocale } from 'next-intl';
+import { motion } from 'framer-motion';
+import { cssVars } from '@/styles/theme';
+import { ArrowLeft, FolderTree, Save } from 'lucide-react';
+import type { UpdateCategoryInput } from '@/lib/types/category.types';
+import { useCategory, useUpdateCategory } from '@/lib/hooks/useCategories';
+import { LoadingSpinner, ErrorMessage, Button } from '@/components/ui';
+import AdminPageHeader from '@/components/shared/admin/AdminPageHeader';
 import Breadcrumbs from '@/components/shared/navigation/Breadcrumbs';
+import CategoryFormFields from '@/components/features/categories/CategoryFormFields';
 
 export default function EditCategoryPage() {
   const params = useParams();
@@ -19,10 +21,8 @@ export default function EditCategoryPage() {
   const locale = useLocale();
   const categoryId = params.id as string;
 
-  const [category, setCategory] = useState<Category | null>(null);
-  const [loading, setLoading] = useState(true);
-  const [submitting, setSubmitting] = useState(false);
-  const [error, setError] = useState<string | null>(null);
+  const { data: category, isLoading, error: fetchError } = useCategory(categoryId);
+  const { updateCategory, isLoading: submitting, error: updateError } = useUpdateCategory();
 
   const [formData, setFormData] = useState<UpdateCategoryInput>({
     nameAr: '',
@@ -35,31 +35,18 @@ export default function EditCategoryPage() {
   });
 
   useEffect(() => {
-    const fetchCategory = async () => {
-      try {
-        setLoading(true);
-        const data = await categoriesApi.getById(categoryId);
-        setCategory(data);
-        setFormData({
-          nameAr: data.nameAr,
-          nameEn: data.nameEn,
-          parentId: data.parentId,
-          icon: data.icon,
-          description: data.description,
-          sortOrder: data.sortOrder,
-          isActive: data.isActive,
-        });
-      } catch (error) {
-        console.error('Failed to fetch category:', error);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    if (categoryId) {
-      fetchCategory();
+    if (category) {
+      setFormData({
+        nameAr: category.nameAr,
+        nameEn: category.nameEn,
+        parentId: category.parentId,
+        icon: category.icon,
+        description: category.description,
+        sortOrder: category.sortOrder,
+        isActive: category.isActive,
+      });
     }
-  }, [categoryId]);
+  }, [category]);
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
@@ -92,43 +79,51 @@ export default function EditCategoryPage() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setSubmitting(true);
-    setError(null);
-
     try {
-      await categoriesApi.update(categoryId, formData);
+      await updateCategory(categoryId, formData);
       router.push(`/admin/categories/${categoryId}`);
     } catch (err) {
-      console.error('Failed to update category:', err);
-      setError(t('categories.edit.error'));
-    } finally {
-      setSubmitting(false);
+      // Error is handled by the hook
     }
   };
 
-  if (loading) {
+  if (isLoading) {
     return (
-      <div className="flex h-64 items-center justify-center">
+      <div>
         <Breadcrumbs
           items={[
             { label: tPages('admin.title'), href: `/${locale}/admin` },
             { label: tPages('categories.title'), href: `/${locale}/admin/categories` },
-            // TODO: Replace with actual data for id
-            { label: '{id}' },
+            { label: categoryId },
             { label: tPages('edit.title') },
           ]}
           className="mb-6"
         />
-
-        <div style={{ color: cssVars.neutral.textSecondary }}>{t('categories.loading')}</div>
+        <div className="flex h-64 items-center justify-center">
+          <LoadingSpinner size="lg" />
+        </div>
       </div>
     );
   }
 
-  if (!category) {
+  if (fetchError || !category) {
     return (
-      <div className="flex h-64 items-center justify-center">
-        <div style={{ color: cssVars.status.error }}>{t('categories.notFound')}</div>
+      <div>
+        <Breadcrumbs
+          items={[
+            { label: tPages('admin.title'), href: `/${locale}/admin` },
+            { label: tPages('categories.title'), href: `/${locale}/admin/categories` },
+            { label: categoryId },
+            { label: tPages('edit.title') },
+          ]}
+          className="mb-6"
+        />
+        <div className="flex h-64 items-center justify-center">
+          <ErrorMessage
+            error={fetchError?.message || t('categories.notFound')}
+            variant="banner"
+          />
+        </div>
       </div>
     );
   }
@@ -166,181 +161,35 @@ export default function EditCategoryPage() {
           borderColor: cssVars.neutral.border,
         }}
       >
-        {error && (
-          <div
-            className="mb-6 rounded-xl border-2 p-4"
-            style={{
-              borderColor: cssVars.status.error,
-              backgroundColor: `color-mix(in srgb, ${cssVars.status.error} 10%, transparent)`,
-            }}
-          >
-            <p style={{ color: cssVars.status.error }}>{error}</p>
+        {updateError && (
+          <div className="mb-6">
+            <ErrorMessage error={updateError.message || t('categories.edit.error')} variant="inline" />
           </div>
         )}
 
-        <div className="space-y-6">
-          {/* Name Arabic */}
-          <div>
-            <label
-              className="mb-2 block text-sm font-semibold"
-              style={{ color: cssVars.secondary.DEFAULT }}
-            >
-              {t('categories.form.nameAr')} *
-            </label>
-            <input
-              type="text"
-              name="nameAr"
-              value={formData.nameAr}
-              onChange={handleChange}
-              required
-              className="w-full rounded-xl border-2 px-4 py-3 outline-none transition-all focus:border-opacity-100"
-              style={{
-                backgroundColor: cssVars.neutral.bg,
-                borderColor: cssVars.neutral.border,
-                color: cssVars.secondary.DEFAULT,
-              }}
-            />
-          </div>
-
-          {/* Name English */}
-          <div>
-            <label
-              className="mb-2 block text-sm font-semibold"
-              style={{ color: cssVars.secondary.DEFAULT }}
-            >
-              {t('categories.form.nameEn')} *
-            </label>
-            <input
-              type="text"
-              name="nameEn"
-              value={formData.nameEn}
-              onChange={handleChange}
-              required
-              className="w-full rounded-xl border-2 px-4 py-3 outline-none transition-all focus:border-opacity-100"
-              style={{
-                backgroundColor: cssVars.neutral.bg,
-                borderColor: cssVars.neutral.border,
-                color: cssVars.secondary.DEFAULT,
-              }}
-            />
-          </div>
-
-          {/* Description */}
-          <div>
-            <label
-              className="mb-2 block text-sm font-semibold"
-              style={{ color: cssVars.secondary.DEFAULT }}
-            >
-              {t('categories.form.description')}
-            </label>
-            <textarea
-              name="description"
-              value={formData.description}
-              onChange={handleChange}
-              rows={4}
-              className="w-full rounded-xl border-2 px-4 py-3 outline-none transition-all focus:border-opacity-100"
-              style={{
-                backgroundColor: cssVars.neutral.bg,
-                borderColor: cssVars.neutral.border,
-                color: cssVars.secondary.DEFAULT,
-              }}
-            />
-          </div>
-
-          {/* Icon */}
-          <div>
-            <label
-              className="mb-2 block text-sm font-semibold"
-              style={{ color: cssVars.secondary.DEFAULT }}
-            >
-              {t('categories.form.icon')}
-            </label>
-            <input
-              type="text"
-              name="icon"
-              value={formData.icon}
-              onChange={handleChange}
-              className="w-full rounded-xl border-2 px-4 py-3 outline-none transition-all focus:border-opacity-100"
-              style={{
-                backgroundColor: cssVars.neutral.bg,
-                borderColor: cssVars.neutral.border,
-                color: cssVars.secondary.DEFAULT,
-              }}
-            />
-          </div>
-
-          {/* Sort Order */}
-          <div>
-            <label
-              className="mb-2 block text-sm font-semibold"
-              style={{ color: cssVars.secondary.DEFAULT }}
-            >
-              {t('categories.form.sortOrder')}
-            </label>
-            <input
-              type="number"
-              name="sortOrder"
-              value={formData.sortOrder}
-              onChange={handleChange}
-              min="0"
-              className="w-full rounded-xl border-2 px-4 py-3 outline-none transition-all focus:border-opacity-100"
-              style={{
-                backgroundColor: cssVars.neutral.bg,
-                borderColor: cssVars.neutral.border,
-                color: cssVars.secondary.DEFAULT,
-              }}
-            />
-          </div>
-
-          {/* Is Active */}
-          <div className="flex items-center gap-3">
-            <input
-              type="checkbox"
-              name="isActive"
-              id="isActive"
-              checked={formData.isActive}
-              onChange={handleChange}
-              className="h-5 w-5 rounded"
-            />
-            <label
-              htmlFor="isActive"
-              className="text-sm font-semibold"
-              style={{ color: cssVars.secondary.DEFAULT }}
-            >
-              {t('categories.form.isActive')}
-            </label>
-          </div>
-        </div>
+        <CategoryFormFields formData={formData} onChange={handleChange} />
 
         {/* Actions */}
         <div className="mt-8 flex justify-end gap-3">
-          <motion.button
-            type="button"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            onClick={() => router.back()}
-            className="rounded-xl px-6 py-3 font-semibold transition-all"
-            style={{
-              backgroundColor: `color-mix(in srgb, ${cssVars.neutral.border} 30%, transparent)`,
-              color: cssVars.neutral.textSecondary,
-            }}
-          >
+          <Button type="button" variant="outline" onClick={() => router.back()}>
             {t('common.cancel')}
-          </motion.button>
-          <motion.button
+          </Button>
+          <Button
             type="submit"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
+            variant="primary"
             disabled={submitting}
-            className="flex items-center gap-2 rounded-xl px-6 py-3 font-semibold transition-all"
-            style={{
-              background: cssVars.gradient.gold,
-              color: cssVars.secondary.DEFAULT,
-            }}
+            icon={Save}
+            iconPosition="left"
           >
-            <Save className="h-4 w-4" />
-            {submitting ? t('common.saving') : t('common.save')}
-          </motion.button>
+            {submitting ? (
+              <>
+                <LoadingSpinner size="sm" className="mr-2" />
+                {t('common.saving')}
+              </>
+            ) : (
+              t('common.save')
+            )}
+          </Button>
         </div>
       </motion.form>
     </div>

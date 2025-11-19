@@ -6,7 +6,7 @@ import { motion } from 'framer-motion';
 import { Plus } from 'lucide-react';
 import { cssVars } from '@/styles/theme';
 import RequestsList from '@/components/features/requests/RequestsList';
-import { Button } from '@/components/ui/Button';
+import { Button } from '@/components/ui';
 import Breadcrumbs from '@/components/shared/navigation/Breadcrumbs';
 
 export default function RequestsPage() {

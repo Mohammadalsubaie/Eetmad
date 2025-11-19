@@ -1,31 +1,26 @@
 'use client';
 
+import { ErrorMessage, LoadingSpinner } from '@/components/ui';
+import { useAuth } from '@/lib/hooks/useAuth';
+import { useRegister } from '@/lib/hooks/useAuthMutations';
 import type { UserType } from '@/lib/types/user.types';
 import { cssVars } from '@/styles/theme';
 import { motion } from 'framer-motion';
-import {
-  ArrowLeft,
-  ArrowRight,
-  Building2,
-  CheckCircle2,
-  Eye,
-  EyeOff,
-  FileText,
-  Lock,
-  Mail,
-  Phone,
-  Sparkles,
-  User,
-} from 'lucide-react';
+import { ArrowLeft, ArrowRight, CheckCircle2, Sparkles } from 'lucide-react';
 import { useLocale, useTranslations } from 'next-intl';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import { useState } from 'react';
+import RegisterFormFields from './RegisterFormFields';
 import UserTypeSelector from './UserTypeSelector';
 
 export default function RegisterForm() {
   const t = useTranslations('auth');
   const locale = useLocale();
+  const router = useRouter();
   const isRTL = locale === 'ar';
+  const { register, isLoading, error } = useRegister();
+  const { register: authRegister } = useAuth();
   const [step, setStep] = useState<'type' | 'details'>('type');
   const [userType, setUserType] = useState<UserType | null>(null);
 
@@ -41,8 +36,7 @@ export default function RegisterForm() {
 
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState('');
+  const [validationError, setValidationError] = useState('');
 
   const handleTypeSelect = (type: UserType) => {
     setUserType(type);
@@ -56,34 +50,49 @@ export default function RegisterForm() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setError('');
+    setValidationError('');
 
     // Validation
     if (password !== confirmPassword) {
-      setError(t('common.passwordsNotMatch'));
+      setValidationError(t('common.passwordsNotMatch'));
       return;
     }
 
     if (!agreeTerms) {
-      setError(t('common.agreeTermsError'));
+      setValidationError(t('common.agreeTermsError'));
       return;
     }
 
-    setIsLoading(true);
+    if (!userType) {
+      setValidationError(t('register.selectUserType'));
+      return;
+    }
 
-    // TODO: Implement actual registration logic
-    setTimeout(() => {
-      console.log('Register:', {
-        userType,
+    try {
+      await register({
         fullName,
         email,
         phoneNumber,
         password,
         companyName,
         commercialReg,
+        userType: userType as 'client' | 'supplier',
       });
-      setIsLoading(false);
-    }, 1500);
+      await authRegister({
+        fullName,
+        email,
+        password,
+        confirmPassword,
+        userType,
+        phoneNumber,
+        companyName,
+        commercialReg,
+        agreeTerms,
+      });
+      router.push('/dashboard');
+    } catch (err) {
+      // Error handled by hook
+    }
   };
 
   return (
@@ -162,19 +171,16 @@ export default function RegisterForm() {
       </div>
 
       {/* Error Message */}
-      {error && (
+      {(error || validationError) && (
         <motion.div
           initial={{ opacity: 0, y: -10 }}
           animate={{ opacity: 1, y: 0 }}
-          className="mb-6 rounded-xl border-2 p-4"
-          style={{
-            backgroundColor: `color-mix(in srgb, ${cssVars.status.error} 10%, transparent)`,
-            borderColor: cssVars.status.error,
-          }}
+          className="mb-6"
         >
-          <p className="text-sm font-semibold" style={{ color: cssVars.status.error }}>
-            {error}
-          </p>
+          <ErrorMessage
+            error={error?.message || validationError || String(error)}
+            variant="inline"
+          />
         </motion.div>
       )}
 
@@ -217,267 +223,29 @@ export default function RegisterForm() {
           animate={{ opacity: 1, x: 0 }}
           className="space-y-4 sm:space-y-5"
         >
-          {/* Full Name */}
-          <div>
-            <label
-              className="mb-1.5 block text-xs font-bold sm:mb-2 sm:text-sm"
-              style={{ color: cssVars.secondary.DEFAULT }}
-            >
-              {t('register.fullName')}
-            </label>
-            <div className="relative">
-              <User
-                className="absolute right-3 top-1/2 h-4 w-4 -translate-y-1/2 sm:right-4 sm:h-5 sm:w-5"
-                style={{ color: cssVars.neutral.textMuted }}
-              />
-              <input
-                type="text"
-                value={fullName}
-                onChange={(e) => setFullName(e.target.value)}
-                required
-                className="w-full rounded-lg border-2 py-2.5 pl-3 pr-10 text-sm font-semibold outline-none transition-all focus:border-opacity-100 sm:rounded-xl sm:py-3 sm:pl-4 sm:pr-12 sm:text-base"
-                style={{
-                  backgroundColor: cssVars.neutral.bg,
-                  color: cssVars.secondary.DEFAULT,
-                  borderColor: cssVars.neutral.border,
-                }}
-              />
-            </div>
-          </div>
-
-          {/* Email */}
-          <div>
-            <label
-              className="mb-2 block text-sm font-bold"
-              style={{ color: cssVars.secondary.DEFAULT }}
-            >
-              {t('common.email')}
-            </label>
-            <div className="relative">
-              <Mail
-                className="absolute right-4 top-1/2 h-5 w-5 -translate-y-1/2"
-                style={{ color: cssVars.neutral.textMuted }}
-              />
-              <input
-                type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                required
-                dir="ltr"
-                className="w-full rounded-lg border-2 py-2.5 pl-3 pr-10 text-sm font-semibold outline-none transition-all focus:border-opacity-100 sm:rounded-xl sm:py-3 sm:pl-4 sm:pr-12 sm:text-base"
-                style={{
-                  backgroundColor: cssVars.neutral.bg,
-                  color: cssVars.secondary.DEFAULT,
-                  borderColor: cssVars.neutral.border,
-                }}
-                placeholder={t('emailPlaceholder')}
-              />
-            </div>
-          </div>
-
-          {/* Phone Number */}
-          <div>
-            <label
-              className="mb-2 block text-sm font-bold"
-              style={{ color: cssVars.secondary.DEFAULT }}
-            >
-              {t('register.phoneNumber')}
-            </label>
-            <div className="relative">
-              <Phone
-                className="absolute right-4 top-1/2 h-5 w-5 -translate-y-1/2"
-                style={{ color: cssVars.neutral.textMuted }}
-              />
-              <input
-                type="tel"
-                value={phoneNumber}
-                onChange={(e) => setPhoneNumber(e.target.value)}
-                required
-                className="w-full rounded-xl border-2 py-3 pl-4 pr-12 font-semibold outline-none transition-all focus:border-opacity-100"
-                style={{
-                  backgroundColor: cssVars.neutral.bg,
-                  color: cssVars.secondary.DEFAULT,
-                  borderColor: cssVars.neutral.border,
-                }}
-              />
-            </div>
-          </div>
-
-          {/* Supplier-specific fields */}
-          {userType === 'supplier' && (
-            <>
-              <div>
-                <label
-                  className="mb-2 block text-sm font-bold"
-                  style={{ color: cssVars.secondary.DEFAULT }}
-                >
-                  {t('register.companyName')}
-                </label>
-                <div className="relative">
-                  <Building2
-                    className="absolute right-4 top-1/2 h-5 w-5 -translate-y-1/2"
-                    style={{ color: cssVars.neutral.textMuted }}
-                  />
-                  <input
-                    type="text"
-                    value={companyName}
-                    onChange={(e) => setCompanyName(e.target.value)}
-                    required
-                    className="w-full rounded-xl border-2 py-3 pl-4 pr-12 font-semibold outline-none transition-all focus:border-opacity-100"
-                    style={{
-                      backgroundColor: cssVars.neutral.bg,
-                      color: cssVars.secondary.DEFAULT,
-                      borderColor: cssVars.neutral.border,
-                    }}
-                  />
-                </div>
-              </div>
-
-              <div>
-                <label
-                  className="mb-2 block text-sm font-bold"
-                  style={{ color: cssVars.secondary.DEFAULT }}
-                >
-                  {t('register.commercialRegistration')}
-                </label>
-                <div className="relative">
-                  <FileText
-                    className="absolute right-4 top-1/2 h-5 w-5 -translate-y-1/2"
-                    style={{ color: cssVars.neutral.textMuted }}
-                  />
-                  <input
-                    type="text"
-                    value={commercialReg}
-                    onChange={(e) => setCommercialReg(e.target.value)}
-                    required
-                    className="w-full rounded-xl border-2 py-3 pl-4 pr-12 font-semibold outline-none transition-all focus:border-opacity-100"
-                    style={{
-                      backgroundColor: cssVars.neutral.bg,
-                      color: cssVars.secondary.DEFAULT,
-                      borderColor: cssVars.neutral.border,
-                    }}
-                  />
-                </div>
-              </div>
-            </>
-          )}
-
-          {/* Password Fields */}
-          <div className="grid gap-4 sm:gap-5 md:grid-cols-2">
-            <div>
-              <label
-                className="mb-2 block text-sm font-bold"
-                style={{ color: cssVars.secondary.DEFAULT }}
-              >
-                {t('common.password')}
-              </label>
-              <div className="relative">
-                <Lock
-                  className="absolute right-4 top-1/2 h-5 w-5 -translate-y-1/2"
-                  style={{ color: cssVars.neutral.textMuted }}
-                />
-                <input
-                  type={showPassword ? 'text' : 'password'}
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  required
-                  minLength={8}
-                  className="w-full rounded-xl border-2 py-3 pl-12 pr-12 font-semibold outline-none transition-all focus:border-opacity-100"
-                  style={{
-                    backgroundColor: cssVars.neutral.bg,
-                    color: cssVars.secondary.DEFAULT,
-                    borderColor: cssVars.neutral.border,
-                  }}
-                  placeholder="••••••••"
-                />
-                <button
-                  type="button"
-                  onClick={() => setShowPassword(!showPassword)}
-                  className="absolute left-4 top-1/2 -translate-y-1/2 transition-all"
-                >
-                  {showPassword ? (
-                    <EyeOff className="h-5 w-5" style={{ color: cssVars.neutral.textMuted }} />
-                  ) : (
-                    <Eye className="h-5 w-5" style={{ color: cssVars.neutral.textMuted }} />
-                  )}
-                </button>
-              </div>
-            </div>
-
-            <div>
-              <label
-                className="mb-2 block text-sm font-bold"
-                style={{ color: cssVars.secondary.DEFAULT }}
-              >
-                {t('common.confirmPassword')}
-              </label>
-              <div className="relative">
-                <Lock
-                  className="absolute right-4 top-1/2 h-5 w-5 -translate-y-1/2"
-                  style={{ color: cssVars.neutral.textMuted }}
-                />
-                <input
-                  type={showConfirmPassword ? 'text' : 'password'}
-                  value={confirmPassword}
-                  onChange={(e) => setConfirmPassword(e.target.value)}
-                  required
-                  minLength={8}
-                  className="w-full rounded-xl border-2 py-3 pl-12 pr-12 font-semibold outline-none transition-all focus:border-opacity-100"
-                  style={{
-                    backgroundColor: cssVars.neutral.bg,
-                    color: cssVars.secondary.DEFAULT,
-                    borderColor: cssVars.neutral.border,
-                  }}
-                  placeholder="••••••••"
-                />
-                <button
-                  type="button"
-                  onClick={() => setShowConfirmPassword(!showConfirmPassword)}
-                  className="absolute left-4 top-1/2 -translate-y-1/2 transition-all"
-                >
-                  {showConfirmPassword ? (
-                    <EyeOff className="h-5 w-5" style={{ color: cssVars.neutral.textMuted }} />
-                  ) : (
-                    <Eye className="h-5 w-5" style={{ color: cssVars.neutral.textMuted }} />
-                  )}
-                </button>
-              </div>
-            </div>
-          </div>
-
-          {/* Terms Agreement */}
-          <label className="flex cursor-pointer items-start gap-2 sm:gap-3">
-            <input
-              type="checkbox"
-              checked={agreeTerms}
-              onChange={(e) => setAgreeTerms(e.target.checked)}
-              required
-              className="mt-0.5 h-4 w-4 cursor-pointer rounded border-2 sm:mt-1 sm:h-5 sm:w-5"
-              style={{ accentColor: cssVars.primary.DEFAULT }}
-            />
-            <span className="text-xs sm:text-sm" style={{ color: cssVars.neutral.textSecondary }}>
-              {t.rich('register.termsAgreement', {
-                terms: (chunks) => (
-                  <Link
-                    href="/terms"
-                    className="font-bold hover:underline"
-                    style={{ color: cssVars.primary.DEFAULT }}
-                  >
-                    {chunks}
-                  </Link>
-                ),
-                privacy: (chunks) => (
-                  <Link
-                    href="/privacy"
-                    className="font-bold hover:underline"
-                    style={{ color: cssVars.primary.DEFAULT }}
-                  >
-                    {chunks}
-                  </Link>
-                ),
-              })}
-            </span>
-          </label>
+          <RegisterFormFields
+            fullName={fullName}
+            email={email}
+            phoneNumber={phoneNumber}
+            password={password}
+            confirmPassword={confirmPassword}
+            companyName={companyName}
+            commercialReg={commercialReg}
+            agreeTerms={agreeTerms}
+            showPassword={showPassword}
+            showConfirmPassword={showConfirmPassword}
+            userType={userType}
+            onFullNameChange={setFullName}
+            onEmailChange={setEmail}
+            onPhoneNumberChange={setPhoneNumber}
+            onPasswordChange={setPassword}
+            onConfirmPasswordChange={setConfirmPassword}
+            onCompanyNameChange={setCompanyName}
+            onCommercialRegChange={setCommercialReg}
+            onAgreeTermsChange={setAgreeTerms}
+            onShowPasswordToggle={() => setShowPassword(!showPassword)}
+            onShowConfirmPasswordToggle={() => setShowConfirmPassword(!showConfirmPassword)}
+          />
 
           {/* Submit Buttons */}
           <div className="flex flex-col gap-3 sm:flex-row">
@@ -508,10 +276,7 @@ export default function RegisterForm() {
               }}
             >
               {isLoading ? (
-                <div
-                  className="h-5 w-5 animate-spin rounded-full border-2 border-t-transparent sm:h-6 sm:w-6"
-                  style={{ borderColor: cssVars.secondary.DEFAULT }}
-                />
+                <LoadingSpinner size="sm" />
               ) : (
                 <>
                   {t('register.submitButton')}

@@ -50,8 +50,24 @@ export interface Session {
   isCurrent: boolean;
 }
 
+/**
+ * Simplified user object returned by auth endpoints.
+ * Contains only essential fields for authentication.
+ */
+export interface AuthUser {
+  id: string;
+  email: string;
+  name: string;
+  userType: UserType;
+  verified?: boolean;
+  avatar?: string;
+  phone?: string;
+  createdAt?: string;
+  updatedAt?: string;
+}
+
 export interface AuthResponse {
-  user: User;
+  user: AuthUser | User;
   token: string;
   refreshToken?: string;
 }

@@ -1,13 +1,12 @@
 'use client';
 
-import { useRouter } from 'next/navigation';
-import { useTranslations } from 'next-intl';
-import { motion } from 'framer-motion';
-import { DollarSign, Calendar, Clock, CheckCircle2, XCircle, AlertCircle } from 'lucide-react';
-import { cssVars } from '@/styles/theme';
+import { Badge, Button } from '@/components/ui';
 import type { Offer } from '@/lib/types/offer.types';
-import { Badge } from '@/components/ui';
-import { Button } from '@/components/ui/Button';
+import { cssVars } from '@/styles/theme';
+import { motion } from 'framer-motion';
+import { AlertCircle, Calendar, CheckCircle2, Clock, DollarSign, XCircle } from 'lucide-react';
+import { useTranslations } from 'next-intl';
+import { useRouter } from 'next/navigation';
 
 interface OfferCardProps {
   offer: Offer;
@@ -166,15 +165,7 @@ export default function OfferCard({
           >
             {t('accept')}
           </Button>
-          <Button
-            onClick={() => onReject?.(offer.id)}
-            variant="outline"
-            className="flex-1"
-            style={{
-              borderColor: cssVars.status.error,
-              color: cssVars.status.error,
-            }}
-          >
+          <Button onClick={() => onReject?.(offer.id)} variant="outline" className="flex-1">
             {t('reject')}
           </Button>
         </div>

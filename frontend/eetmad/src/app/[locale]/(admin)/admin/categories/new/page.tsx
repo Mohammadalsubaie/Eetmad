@@ -1,23 +1,24 @@
 'use client';
 
-import AdminPageHeader from '@/components/shared/admin/AdminPageHeader';
-import { categoriesApi } from '@/lib/api/categories';
-import type { CreateCategoryInput } from '@/lib/types/category.types';
-import { cssVars } from '@/styles/theme';
-import { motion } from 'framer-motion';
-import { ArrowLeft, FolderTree, Save } from 'lucide-react';
-import { useTranslations, useLocale } from 'next-intl';
-import { useRouter } from 'next/navigation';
 import { useState } from 'react';
+import { useRouter } from 'next/navigation';
+import { useTranslations, useLocale } from 'next-intl';
+import { motion } from 'framer-motion';
+import { cssVars } from '@/styles/theme';
+import { ArrowLeft, FolderTree, Save } from 'lucide-react';
+import type { CreateCategoryInput } from '@/lib/types/category.types';
+import { useCreateCategory } from '@/lib/hooks/useCategories';
+import { LoadingSpinner, ErrorMessage, Button } from '@/components/ui';
+import AdminPageHeader from '@/components/shared/admin/AdminPageHeader';
 import Breadcrumbs from '@/components/shared/navigation/Breadcrumbs';
+import CategoryFormFields from '@/components/features/categories/CategoryFormFields';
 
 export default function CreateCategoryPage() {
   const router = useRouter();
   const t = useTranslations('admin');
   const tPages = useTranslations('pages');
   const locale = useLocale();
-  const [submitting, setSubmitting] = useState(false);
-  const [error, setError] = useState<string | null>(null);
+  const { createCategory, isLoading: submitting, error: createError } = useCreateCategory();
 
   const [formData, setFormData] = useState<CreateCategoryInput>({
     nameAr: '',
@@ -60,17 +61,11 @@ export default function CreateCategoryPage() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setSubmitting(true);
-    setError(null);
-
     try {
-      await categoriesApi.create(formData);
+      await createCategory(formData);
       router.push('/admin/categories');
     } catch (err) {
-      console.error('Failed to create category:', err);
-      setError(t('categories.create.error'));
-    } finally {
-      setSubmitting(false);
+      // Error is handled by the hook
     }
   };
 
@@ -116,185 +111,38 @@ export default function CreateCategoryPage() {
           borderColor: cssVars.neutral.border,
         }}
       >
-        {error && (
-          <div
-            className="mb-6 rounded-xl border-2 p-4"
-            style={{
-              borderColor: cssVars.status.error,
-              backgroundColor: `color-mix(in srgb, ${cssVars.status.error} 10%, transparent)`,
-            }}
-          >
-            <p style={{ color: cssVars.status.error }}>{error}</p>
+        {createError && (
+          <div className="mb-6">
+            <ErrorMessage
+              error={createError.message || t('categories.create.error')}
+              variant="inline"
+            />
           </div>
         )}
 
-        <div className="space-y-6">
-          {/* Name Arabic */}
-          <div>
-            <label
-              className="mb-2 block text-sm font-semibold"
-              style={{ color: cssVars.secondary.DEFAULT }}
-            >
-              {t('categories.form.nameAr')} *
-            </label>
-            <input
-              type="text"
-              name="nameAr"
-              value={formData.nameAr}
-              onChange={handleChange}
-              required
-              className="w-full rounded-xl border-2 px-4 py-3 outline-none transition-all focus:border-opacity-100"
-              style={{
-                backgroundColor: cssVars.neutral.bg,
-                borderColor: cssVars.neutral.border,
-                color: cssVars.secondary.DEFAULT,
-              }}
-              placeholder={t('categories.form.nameArPlaceholder')}
-            />
-          </div>
-
-          {/* Name English */}
-          <div>
-            <label
-              className="mb-2 block text-sm font-semibold"
-              style={{ color: cssVars.secondary.DEFAULT }}
-            >
-              {t('categories.form.nameEn')} *
-            </label>
-            <input
-              type="text"
-              name="nameEn"
-              value={formData.nameEn}
-              onChange={handleChange}
-              required
-              className="w-full rounded-xl border-2 px-4 py-3 outline-none transition-all focus:border-opacity-100"
-              style={{
-                backgroundColor: cssVars.neutral.bg,
-                borderColor: cssVars.neutral.border,
-                color: cssVars.secondary.DEFAULT,
-              }}
-              placeholder={t('categories.form.nameEnPlaceholder')}
-            />
-          </div>
-
-          {/* Description */}
-          <div>
-            <label
-              className="mb-2 block text-sm font-semibold"
-              style={{ color: cssVars.secondary.DEFAULT }}
-            >
-              {t('categories.form.description')}
-            </label>
-            <textarea
-              name="description"
-              value={formData.description}
-              onChange={handleChange}
-              rows={4}
-              className="w-full rounded-xl border-2 px-4 py-3 outline-none transition-all focus:border-opacity-100"
-              style={{
-                backgroundColor: cssVars.neutral.bg,
-                borderColor: cssVars.neutral.border,
-                color: cssVars.secondary.DEFAULT,
-              }}
-              placeholder={t('categories.form.descriptionPlaceholder')}
-            />
-          </div>
-
-          {/* Icon */}
-          <div>
-            <label
-              className="mb-2 block text-sm font-semibold"
-              style={{ color: cssVars.secondary.DEFAULT }}
-            >
-              {t('categories.form.icon')}
-            </label>
-            <input
-              type="text"
-              name="icon"
-              value={formData.icon}
-              onChange={handleChange}
-              className="w-full rounded-xl border-2 px-4 py-3 outline-none transition-all focus:border-opacity-100"
-              style={{
-                backgroundColor: cssVars.neutral.bg,
-                borderColor: cssVars.neutral.border,
-                color: cssVars.secondary.DEFAULT,
-              }}
-              placeholder={t('iconPlaceholder')}
-            />
-          </div>
-
-          {/* Sort Order */}
-          <div>
-            <label
-              className="mb-2 block text-sm font-semibold"
-              style={{ color: cssVars.secondary.DEFAULT }}
-            >
-              {t('categories.form.sortOrder')}
-            </label>
-            <input
-              type="number"
-              name="sortOrder"
-              value={formData.sortOrder}
-              onChange={handleChange}
-              min="0"
-              className="w-full rounded-xl border-2 px-4 py-3 outline-none transition-all focus:border-opacity-100"
-              style={{
-                backgroundColor: cssVars.neutral.bg,
-                borderColor: cssVars.neutral.border,
-                color: cssVars.secondary.DEFAULT,
-              }}
-            />
-          </div>
-
-          {/* Is Active */}
-          <div className="flex items-center gap-3">
-            <input
-              type="checkbox"
-              name="isActive"
-              id="isActive"
-              checked={formData.isActive}
-              onChange={handleChange}
-              className="h-5 w-5 rounded"
-            />
-            <label
-              htmlFor="isActive"
-              className="text-sm font-semibold"
-              style={{ color: cssVars.secondary.DEFAULT }}
-            >
-              {t('categories.form.isActive')}
-            </label>
-          </div>
-        </div>
+        <CategoryFormFields formData={formData} onChange={handleChange} />
 
         {/* Actions */}
         <div className="mt-8 flex justify-end gap-3">
-          <motion.button
-            type="button"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            onClick={() => router.back()}
-            className="rounded-xl px-6 py-3 font-semibold transition-all"
-            style={{
-              backgroundColor: `color-mix(in srgb, ${cssVars.neutral.border} 30%, transparent)`,
-              color: cssVars.neutral.textSecondary,
-            }}
-          >
+          <Button type="button" variant="outline" onClick={() => router.back()}>
             {t('common.cancel')}
-          </motion.button>
-          <motion.button
+          </Button>
+          <Button
             type="submit"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
+            variant="primary"
             disabled={submitting}
-            className="flex items-center gap-2 rounded-xl px-6 py-3 font-semibold transition-all"
-            style={{
-              background: cssVars.gradient.gold,
-              color: cssVars.secondary.DEFAULT,
-            }}
+            icon={Save}
+            iconPosition="left"
           >
-            <Save className="h-4 w-4" />
-            {submitting ? t('common.saving') : t('common.save')}
-          </motion.button>
+            {submitting ? (
+              <>
+                <LoadingSpinner size="sm" className="mr-2" />
+                {t('common.saving')}
+              </>
+            ) : (
+              t('common.save')
+            )}
+          </Button>
         </div>
       </motion.form>
     </div>

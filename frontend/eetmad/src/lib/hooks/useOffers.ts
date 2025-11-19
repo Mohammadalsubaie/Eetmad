@@ -11,12 +11,38 @@ export function useOffers(params?: QueryParams) {
   const [error, setError] = useState<Error | null>(null);
 
   useEffect(() => {
+    setIsLoading(true);
+    setError(null);
     offersApi
       .getAll(params)
       .then(setData)
-      .catch(setError)
+      .catch((err) => setError(err instanceof Error ? err : new Error(String(err))))
       .finally(() => setIsLoading(false));
-  }, [params]);
+  }, [JSON.stringify(params)]);
+
+  return { data, isLoading, error };
+}
+
+export function useOffersByRequest(requestId?: string) {
+  const [data, setData] = useState<Offer[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState<Error | null>(null);
+
+  useEffect(() => {
+    if (!requestId) {
+      setIsLoading(false);
+      setData([]);
+      return;
+    }
+
+    setIsLoading(true);
+    setError(null);
+    offersApi
+      .getByRequestId(requestId)
+      .then(setData)
+      .catch((err) => setError(err instanceof Error ? err : new Error(String(err))))
+      .finally(() => setIsLoading(false));
+  }, [requestId]);
 
   return { data, isLoading, error };
 }
@@ -57,4 +83,22 @@ export function useCreateOffer() {
   };
 
   return { mutate, isLoading, error };
+}
+
+export function useMyOffers(params?: QueryParams) {
+  const [data, setData] = useState<Offer[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState<Error | null>(null);
+
+  useEffect(() => {
+    setIsLoading(true);
+    setError(null);
+    offersApi
+      .getMyOffers(params)
+      .then(setData)
+      .catch((err) => setError(err instanceof Error ? err : new Error(String(err))))
+      .finally(() => setIsLoading(false));
+  }, [JSON.stringify(params)]);
+
+  return { data, isLoading, error };
 }

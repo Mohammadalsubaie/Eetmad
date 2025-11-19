@@ -1,47 +1,41 @@
 'use client';
 
+import { Button, Card, ErrorMessage, LoadingSpinner } from '@/components/ui';
+import { useForgotPassword } from '@/lib/hooks/useAuthMutations';
 import { cssVars } from '@/styles/theme';
 import { motion } from 'framer-motion';
 import { ArrowLeft, ArrowRight, CheckCircle2, Mail, Sparkles } from 'lucide-react';
 import { useLocale, useTranslations } from 'next-intl';
 import Link from 'next/link';
 import { useState } from 'react';
-import Card from '@/components/ui/Card/Card';
-import Button from '@/components/ui/Button/Button';
 
 export default function ForgotPasswordForm() {
   const t = useTranslations('auth');
   const locale = useLocale();
   const isRTL = locale === 'ar';
+  const { sendResetLink, isLoading, error, success } = useForgotPassword();
   const [email, setEmail] = useState('');
-  const [isLoading, setIsLoading] = useState(false);
-  const [isSuccess, setIsSuccess] = useState(false);
-  const [error, setError] = useState('');
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setError('');
-    setIsLoading(true);
-
-    // TODO: Implement actual forgot password logic
-    setTimeout(() => {
-      console.log('Forgot password for:', email);
-      setIsSuccess(true);
-      setIsLoading(false);
-    }, 1500);
+    try {
+      await sendResetLink(email);
+    } catch (err) {
+      // Error handled by hook
+    }
   };
 
-  const handleResend = () => {
-    setIsLoading(true);
-    setTimeout(() => {
-      console.log('Resend reset link to:', email);
-      setIsLoading(false);
-    }, 1000);
+  const handleResend = async () => {
+    try {
+      await sendResetLink(email);
+    } catch (err) {
+      // Error handled by hook
+    }
   };
 
   return (
     <Card className="w-full max-w-md p-8 md:p-10">
-      {!isSuccess ? (
+      {!success ? (
         <>
           {/* Header */}
           <div className="mb-8 text-center">
@@ -74,15 +68,9 @@ export default function ForgotPasswordForm() {
             <motion.div
               initial={{ opacity: 0, y: -10 }}
               animate={{ opacity: 1, y: 0 }}
-              className="mb-6 rounded-xl border-2 p-4"
-              style={{
-                backgroundColor: `color-mix(in srgb, ${cssVars.status.error} 10%, transparent)`,
-                borderColor: cssVars.status.error,
-              }}
+              className="mb-6"
             >
-              <p className="text-sm font-semibold" style={{ color: cssVars.status.error }}>
-                {error}
-              </p>
+              <ErrorMessage error={error.message || String(error)} variant="inline" />
             </motion.div>
           )}
 
@@ -131,10 +119,7 @@ export default function ForgotPasswordForm() {
               }}
             >
               {isLoading ? (
-                <div
-                  className="h-6 w-6 animate-spin rounded-full border-2 border-t-transparent"
-                  style={{ borderColor: cssVars.neutral.surface }}
-                />
+                <LoadingSpinner size="sm" />
               ) : (
                 <>
                   {t('forgotPassword.submitButton')}

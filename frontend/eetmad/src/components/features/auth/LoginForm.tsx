@@ -1,35 +1,37 @@
 'use client';
 
+import { Card, ErrorMessage, LoadingSpinner } from '@/components/ui';
+import { useAuth } from '@/lib/hooks/useAuth';
+import { useLogin } from '@/lib/hooks/useAuthMutations';
 import { cssVars } from '@/styles/theme';
 import { motion } from 'framer-motion';
-import { ArrowRight, Eye, EyeOff, Lock, Mail, Sparkles, ArrowLeft } from 'lucide-react';
-import { useTranslations } from 'next-intl';
-import { useLocale } from 'next-intl';
+import { ArrowLeft, ArrowRight, Eye, EyeOff, Lock, Mail, Sparkles } from 'lucide-react';
+import { useLocale, useTranslations } from 'next-intl';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import { useState } from 'react';
-import Card from '@/components/ui/Card/Card';
 
 export default function LoginForm() {
   const t = useTranslations('auth');
   const locale = useLocale();
+  const router = useRouter();
   const isRTL = locale === 'ar';
+  const { login: authLogin } = useAuth();
+  const { login, isLoading, error } = useLogin();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [rememberMe, setRememberMe] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState('');
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setError('');
-    setIsLoading(true);
-
-    // TODO: Implement actual login logic
-    setTimeout(() => {
-      console.log('Login:', { email, password, rememberMe });
-      setIsLoading(false);
-    }, 1500);
+    try {
+      const response = await login({ email, password });
+      await authLogin({ email, password });
+      router.push('/dashboard');
+    } catch (err) {
+      // Error handled by hook
+    }
   };
 
   return (
@@ -68,15 +70,9 @@ export default function LoginForm() {
         <motion.div
           initial={{ opacity: 0, y: -10 }}
           animate={{ opacity: 1, y: 0 }}
-          className="mb-6 rounded-xl border-2 p-4"
-          style={{
-            backgroundColor: `color-mix(in srgb, ${cssVars.status.error} 10%, transparent)`,
-            borderColor: cssVars.status.error,
-          }}
+          className="mb-6"
         >
-          <p className="text-sm font-semibold" style={{ color: cssVars.status.error }}>
-            {error}
-          </p>
+          <ErrorMessage error={error} variant="inline" />
         </motion.div>
       )}
 
@@ -199,10 +195,7 @@ export default function LoginForm() {
           }}
         >
           {isLoading ? (
-            <div
-              className="h-6 w-6 animate-spin rounded-full border-2 border-t-transparent"
-              style={{ borderColor: cssVars.neutral.surface }}
-            />
+            <LoadingSpinner size="sm" />
           ) : (
             <>
               {t('login.submitButton')}

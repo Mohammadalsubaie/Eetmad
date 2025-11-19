@@ -1,62 +1,48 @@
 'use client';
 
-import { useState, useEffect, useCallback } from 'react';
+import { useMemo } from 'react';
 import { useTranslations, useLocale } from 'next-intl';
 import { useParams, useRouter } from 'next/navigation';
 import { cssVars } from '@/styles/theme';
 import { motion } from 'framer-motion';
-import { categoriesApi } from '@/lib/api/categories';
-import type { Category } from '@/lib/types/category.types';
-import { Package, ArrowLeft, TrendingUp, Users } from 'lucide-react';
+import { useCategories } from '@/lib/hooks/useCategories';
+import { ArrowLeft } from 'lucide-react';
 import Link from 'next/link';
+import { LoadingSpinner, ErrorMessage, Button } from '@/components/ui';
 import Breadcrumbs from '@/components/shared/navigation/Breadcrumbs';
+import CategoryHeader from '@/components/features/categories/CategoryHeader';
+import SubcategoriesList from '@/components/features/categories/SubcategoriesList';
 
 export default function CategoryPage() {
   const params = useParams();
   const slug = params.slug as string;
   const t = useTranslations('pages.categories');
-  const tPages = useTranslations('pages');
   const locale = useLocale();
   const isRTL = locale === 'ar';
   const router = useRouter();
-  const [category, setCategory] = useState<Category | null>(null);
-  const [subcategories, setSubcategories] = useState<Category[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
+  const { data: allCategories, isLoading, error } = useCategories();
 
-  const fetchCategory = useCallback(async () => {
-    try {
-      setLoading(true);
-      const allCategories = await categoriesApi.getAll();
-      const foundCategory = allCategories.find(
-        (cat: Category) => cat.slug === slug || cat.id === slug
-      );
-
-      if (foundCategory) {
-        setCategory(foundCategory);
-        // Find subcategories
-        const subs = allCategories.filter(
-          (cat: Category) => cat.parentId === foundCategory.id && cat.isActive
-        );
-        setSubcategories(subs);
-      } else {
-        setError(t('notFound') || 'Category not found');
-      }
-    } catch (err) {
-      console.error('Failed to fetch category:', err);
-      setError(t('error') || 'Failed to load category');
-    } finally {
-      setLoading(false);
+  const { category, subcategories } = useMemo(() => {
+    if (!allCategories || allCategories.length === 0) {
+      return { category: null, subcategories: [] };
     }
-  }, [slug, t]);
 
-  useEffect(() => {
-    if (slug) {
-      fetchCategory();
+    const foundCategory = allCategories.find(
+      (cat) => cat.slug === slug || cat.id === slug
+    );
+
+    if (!foundCategory) {
+      return { category: null, subcategories: [] };
     }
-  }, [slug, fetchCategory]);
 
-  if (loading) {
+    const subs = allCategories.filter(
+      (cat) => cat.parentId === foundCategory.id && cat.isActive
+    );
+
+    return { category: foundCategory, subcategories: subs };
+  }, [allCategories, slug]);
+
+  if (isLoading) {
     return (
       <div
         className="flex min-h-screen items-center justify-center"
@@ -65,15 +51,11 @@ export default function CategoryPage() {
         <Breadcrumbs
           items={[
             { label: t('title'), href: `/${locale}/categories` },
-            // TODO: Replace with actual data for slug
-            { label: '{slug}' },
+            { label: slug },
           ]}
           className="mb-6"
         />
-
-        <div className="text-lg font-semibold" style={{ color: cssVars.neutral.textSecondary }}>
-          {t('loading') || 'Loading...'}
-        </div>
+        <LoadingSpinner size="lg" />
       </div>
     );
   }
@@ -81,32 +63,27 @@ export default function CategoryPage() {
   if (error || !category) {
     return (
       <div className="container mx-auto px-4 py-20" style={{ backgroundColor: cssVars.neutral.bg }}>
-        <div
-          className="rounded-2xl border-2 p-8 text-center"
-          style={{
-            backgroundColor: cssVars.neutral.surface,
-            borderColor: cssVars.status.error,
-          }}
-        >
-          <p style={{ color: cssVars.status.error }}>
-            {error || t('notFound') || 'Category not found'}
-          </p>
-          <Link
-            href="/categories"
-            className="mt-4 inline-block rounded-xl px-6 py-3 font-semibold"
-            style={{
-              backgroundColor: cssVars.primary.DEFAULT,
-              color: cssVars.neutral.bg,
-            }}
-          >
-            {t('backToCategories') || 'Back to Categories'}
+        <Breadcrumbs
+          items={[
+            { label: t('title'), href: `/${locale}/categories` },
+            { label: slug },
+          ]}
+          className="mb-6"
+        />
+        <div className="flex flex-col items-center gap-4">
+          <ErrorMessage
+            error={error?.message || t('notFound') || 'Category not found'}
+            variant="banner"
+          />
+          <Link href="/categories">
+            <Button variant="primary">
+              {t('backToCategories') || 'Back to Categories'}
+            </Button>
           </Link>
         </div>
       </div>
     );
   }
-
-  const categoryName = locale === 'ar' ? category.nameAr : category.nameEn;
 
   return (
     <div
@@ -143,120 +120,8 @@ export default function CategoryPage() {
           {t('back') || 'Back'}
         </motion.button>
 
-        {/* Category Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="mb-12 rounded-3xl border-2 p-8"
-          style={{
-            backgroundColor: cssVars.neutral.surface,
-            borderColor: cssVars.neutral.border,
-          }}
-        >
-          <div className="flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
-            <div className="flex items-center gap-6">
-              <div
-                className="flex h-20 w-20 items-center justify-center rounded-2xl"
-                style={{
-                  backgroundColor: `color-mix(in srgb, ${cssVars.primary.DEFAULT} 15%, transparent)`,
-                }}
-              >
-                {category.icon ? (
-                  <span className="text-4xl">{category.icon}</span>
-                ) : (
-                  <Package className="h-10 w-10" style={{ color: cssVars.primary.DEFAULT }} />
-                )}
-              </div>
-              <div>
-                <h1
-                  className="mb-2 text-4xl font-bold"
-                  style={{ color: cssVars.secondary.DEFAULT }}
-                >
-                  {categoryName}
-                </h1>
-                {category.description && (
-                  <p className="text-lg" style={{ color: cssVars.neutral.textSecondary }}>
-                    {category.description}
-                  </p>
-                )}
-              </div>
-            </div>
-
-            <div className="flex flex-wrap gap-4">
-              {category.requestsCount !== undefined && (
-                <div
-                  className="flex items-center gap-2 rounded-xl px-4 py-2"
-                  style={{
-                    backgroundColor: `color-mix(in srgb, ${cssVars.primary.DEFAULT} 10%, transparent)`,
-                  }}
-                >
-                  <TrendingUp className="h-5 w-5" style={{ color: cssVars.primary.DEFAULT }} />
-                  <span className="font-semibold" style={{ color: cssVars.secondary.DEFAULT }}>
-                    {category.requestsCount} {t('requests') || 'requests'}
-                  </span>
-                </div>
-              )}
-              {category.suppliersCount !== undefined && (
-                <div
-                  className="flex items-center gap-2 rounded-xl px-4 py-2"
-                  style={{
-                    backgroundColor: `color-mix(in srgb, ${cssVars.primary.DEFAULT} 10%, transparent)`,
-                  }}
-                >
-                  <Users className="h-5 w-5" style={{ color: cssVars.primary.DEFAULT }} />
-                  <span className="font-semibold" style={{ color: cssVars.secondary.DEFAULT }}>
-                    {category.suppliersCount} {t('suppliers') || 'suppliers'}
-                  </span>
-                </div>
-              )}
-            </div>
-          </div>
-        </motion.div>
-
-        {/* Subcategories */}
-        {subcategories.length > 0 && (
-          <div className="mb-12">
-            <h2 className="mb-6 text-2xl font-bold" style={{ color: cssVars.secondary.DEFAULT }}>
-              {t('subcategories') || 'Subcategories'}
-            </h2>
-            <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-              {subcategories.map((subcat, index) => {
-                const subcatName = locale === 'ar' ? subcat.nameAr : subcat.nameEn;
-                return (
-                  <motion.div
-                    key={subcat.id}
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: index * 0.1 }}
-                    whileHover={{ y: -4 }}
-                    onClick={() => router.push(`/categories/${subcat.slug || subcat.id}`)}
-                    className="cursor-pointer rounded-2xl border-2 p-4 transition-all hover:shadow-lg"
-                    style={{
-                      backgroundColor: cssVars.neutral.surface,
-                      borderColor: cssVars.neutral.border,
-                    }}
-                  >
-                    <h3
-                      className="mb-2 text-lg font-bold"
-                      style={{ color: cssVars.secondary.DEFAULT }}
-                    >
-                      {subcatName}
-                    </h3>
-                    {subcat.description && (
-                      <p
-                        className="line-clamp-2 text-sm"
-                        style={{ color: cssVars.neutral.textSecondary }}
-                      >
-                        {subcat.description}
-                      </p>
-                    )}
-                  </motion.div>
-                );
-              })}
-            </div>
-          </div>
-        )}
+        <CategoryHeader category={category} />
+        <SubcategoriesList subcategories={subcategories} />
       </div>
     </div>
   );

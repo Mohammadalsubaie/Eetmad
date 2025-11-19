@@ -1,13 +1,13 @@
 'use client';
 
-import { useState } from 'react';
-import { useRouter } from 'next/navigation';
-import { useTranslations } from 'next-intl';
-import { motion } from 'framer-motion';
-import { cssVars } from '@/styles/theme';
-import type { Supplier } from '@/lib/types/supplier.types';
-import { Button, LoadingSpinner, ErrorMessage } from '@/components/ui';
+import { Button, ErrorMessage, LoadingSpinner } from '@/components/ui';
 import { useUpdateSupplierProfile } from '@/lib/hooks/useSupplierMutations';
+import type { Supplier } from '@/lib/types/supplier.types';
+import { cssVars } from '@/styles/theme';
+import { motion } from 'framer-motion';
+import { useTranslations } from 'next-intl';
+import { useRouter } from 'next/navigation';
+import { useState } from 'react';
 
 interface ProfileEditFormProps {
   profile: Supplier;
@@ -93,7 +93,7 @@ export default function ProfileEditForm({ profile, onSuccess }: ProfileEditFormP
         <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }} className="flex-1">
           <Button
             type="submit"
-            disabled={loading}
+            disabled={isLoading}
             className="w-full"
             style={{
               background: cssVars.gradient.gold,

@@ -1,18 +1,24 @@
 'use client';
 
-import { DollarSign } from 'lucide-react';
-import { cssVars } from '@/styles/theme';
-import { useTranslations } from 'next-intl';
-import type { CreateRequestInput } from '@/lib/types/request.types';
 import type { Category } from '@/lib/types/category.types';
+import type { CreateRequestInput } from '@/lib/types/request.types';
+import { cssVars } from '@/styles/theme';
+import { DollarSign } from 'lucide-react';
+import { useTranslations } from 'next-intl';
 
 interface RequestFormFieldsProps {
   formData: CreateRequestInput;
   categories: Category[];
-  onChange: (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => void;
+  onChange: (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
+  ) => void;
 }
 
-export default function RequestFormFields({ formData, categories, onChange }: RequestFormFieldsProps) {
+export default function RequestFormFields({
+  formData,
+  categories,
+  onChange,
+}: RequestFormFieldsProps) {
   const t = useTranslations('pages.requests');
 
   return (
@@ -258,7 +264,7 @@ export default function RequestFormFields({ formData, categories, onChange }: Re
             type="text"
             id="location"
             name="location"
-            value={formData.location || ''}
+            value={typeof formData.location === 'string' ? formData.location : ''}
             onChange={onChange}
             className="w-full rounded-xl border-2 px-4 py-3 text-sm"
             style={{
@@ -289,4 +295,3 @@ export default function RequestFormFields({ formData, categories, onChange }: Re
     </>
   );
 }
-

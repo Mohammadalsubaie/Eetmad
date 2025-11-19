@@ -1,10 +1,10 @@
 'use client';
 
-import { useTranslations } from 'next-intl';
-import { Calendar, CheckCircle, Eye, Flag, XCircle } from 'lucide-react';
-import { cssVars } from '@/styles/theme';
-import type { Report } from '@/lib/types/report.types';
 import type { ColumnConfig } from '@/components/shared/admin/AdminDataTable';
+import type { Report } from '@/lib/types/report.types';
+import { cssVars } from '@/styles/theme';
+import { Calendar, CheckCircle, Eye, Flag, XCircle } from 'lucide-react';
+import { useTranslations } from 'next-intl';
 
 export function useReportsTableColumns(): ColumnConfig<Report>[] {
   const t = useTranslations('admin');
@@ -133,4 +133,3 @@ export function useReportsTableColumns(): ColumnConfig<Report>[] {
     },
   ];
 }
-

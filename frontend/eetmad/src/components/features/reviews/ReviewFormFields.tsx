@@ -1,13 +1,15 @@
 'use client';
 
+import type { CreateReviewInput, UpdateReviewInput } from '@/lib/api/reviews';
 import { cssVars } from '@/styles/theme';
 import { useTranslations } from 'next-intl';
 import RatingInput from './RatingInput';
-import type { CreateReviewInput, UpdateReviewInput } from '@/lib/api/reviews';
 
 interface ReviewFormFieldsProps {
   formData: CreateReviewInput | UpdateReviewInput;
-  onChange: (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => void;
+  onChange: (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
+  ) => void;
   onRatingChange: (name: string, value: number) => void;
   showProjectFields?: boolean;
 }
@@ -99,7 +101,7 @@ export default function ReviewFormFields({
 
       {/* Overall Rating */}
       <RatingInput
-        value={formData.rating}
+        value={formData.rating ?? 0}
         onChange={(value) => onRatingChange('rating', value)}
         size="md"
         label={`${t('reviews.form.rating')} *`}
@@ -205,4 +207,3 @@ export default function ReviewFormFields({
     </div>
   );
 }
-

@@ -2141,6 +2141,7 @@
     },
     "edit": {
       "title": "تعديل"
+    }
     },
     "dev": {
       "pageNavigator": "ملاح الصفحات للمطورين",
@@ -2148,7 +2149,11 @@
       "dynamic": "[ديناميكي]",
       "devModeOnly": "وضع التطوير فقط",
       "totalPages": "الإجمالي: {count} صفحة",
-      "noPagesFound": "لم يتم العثور على صفحات"
-    }
+    "noPagesFound": "لم يتم العثور على صفحات",
+    "themeSwitcher": "مبدل الثيمات",
+    "searchThemes": "بحث في الثيمات...",
+    "currentTheme": "الثيم الحالي",
+    "totalThemes": "الإجمالي: {count} ثيم",
+    "noThemesFound": "لم يتم العثور على ثيمات"
   }
 }

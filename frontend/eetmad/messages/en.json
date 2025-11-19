@@ -2128,6 +2128,7 @@
     },
     "edit": {
       "title": "Title"
+    }
     },
     "dev": {
       "pageNavigator": "Developer Page Navigator",
@@ -2135,7 +2136,11 @@
       "dynamic": "[dynamic]",
       "devModeOnly": "Dev Mode Only",
       "totalPages": "Total: {count} pages",
-      "noPagesFound": "No pages found"
-    }
+    "noPagesFound": "No pages found",
+    "themeSwitcher": "Theme Switcher",
+    "searchThemes": "Search themes...",
+    "currentTheme": "Current Theme",
+    "totalThemes": "Total: {count} themes",
+    "noThemesFound": "No themes found"
   }
 }

@@ -14,53 +14,53 @@
   /* ========== الثيم الفاتح (الافتراضي) ========== */
 
   /* الألوان الأساسية */
-  --color-primary: #2D4263;
-  --color-primary-dark: #1F2E47;
-  --color-primary-darker: #191919;
-  --color-primary-light: #3D5A7C;
+  --color-primary: #4a4947;
+  --color-primary-dark: #3a3735;
+  --color-primary-darker: #2a2624;
+  --color-primary-light: #5f5c5a;
 
   /* اللون الثانوي */
-  --color-secondary: #191919;
-  --color-secondary-darker: #0A0A0A;
+  --color-secondary: #d8d2c2;
+  --color-secondary-darker: #c4bdb0;
 
   /* ألوان الإبراز */
-  --color-accent-primary: #C84B31;
-  --color-accent: #C84B31;
-  --color-accent-secondary: #D75840;
-  --color-accent-dark: #B33F2A;
-  --color-accent-warm: #ECDBBA;
-  --color-accent-light: #FBF6EF;
+  --color-accent-primary: #b17457;
+  --color-accent: #b17457;
+  --color-accent-secondary: #c78b6f;
+  --color-accent-dark: #9a5f44;
+  --color-accent-warm: #d9a586;
+  --color-accent-light: #f5ede6;
 
   /* الألوان المحايدة */
-  --color-neutral-bg: #F9F6F1;
-  --color-neutral-background: #F9F6F1;
-  --color-neutral-surface: #FFFFFF;
-  --color-neutral-surface-alt: #F3EFE7;
-  --color-neutral-border: #E5DFD3;
-  --color-neutral-text-muted: #8A8376;
-  --color-neutral-text-secondary: #4A4539;
-  --color-neutral-light: #C4BAA8;
-  --color-neutral: #A39A89;
-  --color-neutral-dark: #2D4263;
-  --color-neutral-darker: #191919;
-  --color-white: #FFFFFF;
+  --color-neutral-bg: #faf7f0;
+  --color-neutral-background: #faf7f0;
+  --color-neutral-surface: #ffffff;
+  --color-neutral-surface-alt: #f0ede5;
+  --color-neutral-border: #e5e0d5;
+  --color-neutral-text-muted: #a9a5a0;
+  --color-neutral-text-secondary: #6d6966;
+  --color-neutral-light: #d8d2c2;
+  --color-neutral: #b8b3a8;
+  --color-neutral-dark: #4a4947;
+  --color-neutral-darker: #2a2624;
+  --color-white: #ffffff;
 
   /* ألوان الحالة */
-  --color-status-success: #52A366;
-  --color-status-error: #C84B31;
-  --color-status-warning: #E8A54F;
-  --color-status-info: #2D4263;
+  --color-status-success: #6b8f71;
+  --color-status-error: #c95454;
+  --color-status-warning: #d9a586;
+  --color-status-info: #4a4947;
 
   /* التدرجات */
-  --gradient-gold: linear-gradient(135deg, #ECDBBA 0%, #D9C49D 100%);
-  --gradient-primary: linear-gradient(135deg, #2D4263 0%, #191919 100%);
-  --gradient-hero: linear-gradient(180deg, #191919 0%, #2D4263 100%);
-  --gradient-cta: linear-gradient(135deg, #C84B31 0%, #B33F2A 100%);
+  --gradient-gold: linear-gradient(135deg, #c78b6f 0%, #b17457 100%);
+  --gradient-primary: linear-gradient(135deg, #4a4947 0%, #3a3735 100%);
+  --gradient-hero: linear-gradient(180deg, #3a3735 0%, #4a4947 100%);
+  --gradient-cta: linear-gradient(135deg, #4a4947 0%, #b17457 100%);
 
   /* Ring colors with opacity */
-  --ring-primary-dark-20: rgba(31, 46, 71, 0.2);
-  --bg-neutral-light-20: rgba(196, 186, 168, 0.2);
-  --bg-neutral-darker-80: rgba(25, 25, 25, 0.8);
+  --ring-primary-dark-20: rgba(58, 55, 53, 0.2);
+  --bg-neutral-light-20: rgba(216, 210, 194, 0.2);
+  --bg-neutral-darker-80: rgba(42, 38, 36, 0.8);
   --bg-white-10: rgba(255, 255, 255, 0.1);
   --bg-black-10: rgba(0, 0, 0, 0.1);
 
@@ -75,53 +75,53 @@
 /* ========== الثيم الغامق ========== */
 .dark {
   /* الألوان الأساسية - تناسق مع الفاتح */
-  --color-primary: #3D5A7C;
-  --color-primary-dark: #4E6B8F;
-  --color-primary-darker: #5F7CA2;
-  --color-primary-light: #2D4263;
+  --color-primary: #d8d2c2;
+  --color-primary-dark: #e8e3d5;
+  --color-primary-darker: #f0ede5;
+  --color-primary-light: #b8b3a8;
 
   /* اللون الثانوي */
-  --color-secondary: #1F2E47;
-  --color-secondary-darker: #2D3E5A;
+  --color-secondary: #5f5c5a;
+  --color-secondary-darker: #767370;
 
   /* ألوان الإبراز - متناسقة مع الثيم */
-  --color-accent-primary: #D75840;
-  --color-accent: #D75840;
-  --color-accent-secondary: #E5664F;
-  --color-accent-dark: #C84B31;
-  --color-accent-warm: #F0E5D3;
-  --color-accent-light: #2A2318;
+  --color-accent-primary: #c78b6f;
+  --color-accent: #c78b6f;
+  --color-accent-secondary: #d9a586;
+  --color-accent-dark: #b17457;
+  --color-accent-warm: #e8bea0;
+  --color-accent-light: #3d2f26;
 
   /* الألوان المحايدة - معكوسة بشكل ذكي */
-  --color-neutral-bg: #0F0F0F;
-  --color-neutral-background: #0F0F0F;
-  --color-neutral-surface: #191919;
-  --color-neutral-surface-alt: #222222;
-  --color-neutral-border: #2D2D2D;
-  --color-neutral-text-muted: #8A8376;
-  --color-neutral-text-secondary: #C4BAA8;
-  --color-neutral-light: #4A4539;
-  --color-neutral: #6B6454;
-  --color-neutral-dark: #E5DFD3;
-  --color-neutral-darker: #F9F6F1;
-  --color-white: #FFFFFF;
+  --color-neutral-bg: #1c1a18;
+  --color-neutral-background: #1c1a18;
+  --color-neutral-surface: #272421;
+  --color-neutral-surface-alt: #322f2b;
+  --color-neutral-border: #3e3b37;
+  --color-neutral-text-muted: #8a8682;
+  --color-neutral-text-secondary: #b8b3a8;
+  --color-neutral-light: #3a3735;
+  --color-neutral: #6d6966;
+  --color-neutral-dark: #faf7f0;
+  --color-neutral-darker: #faf7f0;
+  --color-white: #ffffff;
 
   /* ألوان الحالة - محسّنة للثيم الغامق */
-  --color-status-success: #5FB876;
-  --color-status-error: #E5664F;
-  --color-status-warning: #F0B562;
-  --color-status-info: #4E6B8F;
+  --color-status-success: #7aa382;
+  --color-status-error: #ef5350;
+  --color-status-warning: #e8bea0;
+  --color-status-info: #d8d2c2;
 
   /* التدرجات - متوافقة مع الثيم الغامق */
-  --gradient-gold: linear-gradient(135deg, #F0E5D3 0%, #ECDBBA 100%);
-  --gradient-primary: linear-gradient(135deg, #3D5A7C 0%, #2D4263 100%);
-  --gradient-hero: linear-gradient(180deg, #191919 0%, #0F0F0F 100%);
-  --gradient-cta: linear-gradient(135deg, #D75840 0%, #C84B31 100%);
+  --gradient-gold: linear-gradient(135deg, #d9a586 0%, #c78b6f 100%);
+  --gradient-primary: linear-gradient(135deg, #d8d2c2 0%, #b8b3a8 100%);
+  --gradient-hero: linear-gradient(180deg, #272421 0%, #3a3735 100%);
+  --gradient-cta: linear-gradient(135deg, #d8d2c2 0%, #c78b6f 100%);
 
   /* Ring colors with opacity - محدّثة */
-  --ring-primary-dark-20: rgba(78, 107, 143, 0.2);
-  --bg-neutral-light-20: rgba(74, 69, 57, 0.2);
-  --bg-neutral-darker-80: rgba(249, 246, 241, 0.1);
+  --ring-primary-dark-20: rgba(232, 227, 213, 0.2);
+  --bg-neutral-light-20: rgba(58, 55, 53, 0.2);
+  --bg-neutral-darker-80: rgba(250, 247, 240, 0.1);
   --bg-white-10: rgba(255, 255, 255, 0.05);
   --bg-black-10: rgba(0, 0, 0, 0.3);
 

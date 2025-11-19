@@ -114,7 +114,9 @@ function setNestedValue(obj: Record<string, unknown>, keyPath: string, value: un
 
 function getNestedValue(obj: Record<string, unknown>, keyPath: string): unknown {
   return keyPath.split('.').reduce((current: unknown, key: string) => {
-    return current && typeof current === 'object' && current !== null ? (current as Record<string, unknown>)[key] : undefined;
+    return current && typeof current === 'object' && current !== null
+      ? (current as Record<string, unknown>)[key]
+      : undefined;
   }, obj as unknown);
 }
 

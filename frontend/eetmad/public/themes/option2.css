@@ -1,4 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;500;600;700;800;900&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -6,7 +5,7 @@
 /**
  * CSS Variables للثيم الفاتح والغامق
  * 
- * الثيم الافتراضي: فاتح
+ * الثيم الافتراضي: فاتح (مبني على ألوان النموذج البديل)
  * للتبديل للثيم الغامق: أضف class="dark" على عنصر html أو body
  */
 
@@ -14,123 +13,107 @@
   /* ========== الثيم الفاتح (الافتراضي) ========== */
 
   /* الألوان الأساسية */
-  --color-primary: #2d4263;
-  --color-primary-dark: #1f2e47;
-  --color-primary-darker: #191919;
-  --color-primary-light: #3d5a7c;
+  --color-primary: #00adb5;
+  --color-primary-dark: #008b91;
+  --color-primary-darker: #006b6f;
+  --color-primary-light: #33bdc4;
 
   /* اللون الثانوي */
-  --color-secondary: #191919;
-  --color-secondary-darker: #0a0a0a;
+  --color-secondary: #393e46;
+  --color-secondary-darker: #222831;
 
   /* ألوان الإبراز */
-  --color-accent-primary: #c84b31;
-  --color-accent: #c84b31;
-  --color-accent-secondary: #d75840;
-  --color-accent-dark: #b33f2a;
-  --color-accent-warm: #ecdbba;
-  --color-accent-light: #fbf6ef;
+  --color-accent-primary: #00adb5;
+  --color-accent: #00adb5;
+  --color-accent-secondary: #33bdc4;
+  --color-accent-dark: #008b91;
+  --color-accent-warm: #00c8d1;
+  --color-accent-light: #e6f9fa;
 
   /* الألوان المحايدة */
-  --color-neutral-bg: #f9f6f1;
-  --color-neutral-background: #f9f6f1;
-  --color-neutral-surface: #ffffff;
-  --color-neutral-surface-alt: #f3efe7;
-  --color-neutral-border: #e5dfd3;
-  --color-neutral-text-muted: #8a8376;
-  --color-neutral-text-secondary: #4a4539;
-  --color-neutral-light: #c4baa8;
-  --color-neutral: #a39a89;
-  --color-neutral-dark: #2d4263;
-  --color-neutral-darker: #191919;
-  --color-white: #ffffff;
+  --color-neutral-bg: #ffffff;
+  --color-neutral-background: #ffffff;
+  --color-neutral-surface: #eeeeee;
+  --color-neutral-surface-alt: #e0e0e0;
+  --color-neutral-border: #cccccc;
+  --color-neutral-text-muted: #9e9e9e;
+  --color-neutral-text-secondary: #757575;
+  --color-neutral-light: #f5f5f5;
+  --color-neutral: #bdbdbd;
+  --color-neutral-dark: #616161;
+  --color-neutral-darker: #222831;
 
   /* ألوان الحالة */
-  --color-status-success: #52a366;
-  --color-status-error: #c84b31;
-  --color-status-warning: #e8a54f;
-  --color-status-info: #2d4263;
+  --color-status-success: #00c853;
+  --color-status-error: #d32f2f;
+  --color-status-warning: #ffb300;
+  --color-status-info: #00adb5;
 
   /* التدرجات */
-  --gradient-gold: linear-gradient(135deg, #ecdbba 0%, #d9c49d 100%);
-  --gradient-primary: linear-gradient(135deg, #2d4263 0%, #191919 100%);
-  --gradient-hero: linear-gradient(180deg, #191919 0%, #2d4263 100%);
-  --gradient-cta: linear-gradient(135deg, #c84b31 0%, #b33f2a 100%);
+  --gradient-gold: linear-gradient(135deg, #00adb5 0%, #00c8d1 100%);
+  --gradient-primary: linear-gradient(135deg, #00adb5 0%, #008b91 100%);
+  --gradient-hero: linear-gradient(180deg, #222831 0%, #393e46 100%);
+  --gradient-cta: linear-gradient(135deg, #00adb5 0%, #393e46 100%);
 
   /* Ring colors with opacity */
-  --ring-primary-dark-20: rgba(31, 46, 71, 0.2);
-  --bg-neutral-light-20: rgba(196, 186, 168, 0.2);
-  --bg-neutral-darker-80: rgba(25, 25, 25, 0.8);
+  --ring-primary-dark-20: rgba(0, 139, 145, 0.2);
+  --bg-neutral-light-20: rgba(238, 238, 238, 0.2);
+  --bg-neutral-darker-80: rgba(34, 40, 49, 0.8);
   --bg-white-10: rgba(255, 255, 255, 0.1);
   --bg-black-10: rgba(0, 0, 0, 0.1);
-
-  /* Shadow colors with opacity - using color-mix with neutral darker */
-  --shadow-color-sm: color-mix(in srgb, var(--color-neutral-darker) 5%, transparent);
-  --shadow-color-md: color-mix(in srgb, var(--color-neutral-darker) 7%, transparent);
-  --shadow-color-lg: color-mix(in srgb, var(--color-neutral-darker) 10%, transparent);
-  --shadow-color-xl: color-mix(in srgb, var(--color-neutral-darker) 15%, transparent);
-  --shadow-color-2xl: color-mix(in srgb, var(--color-neutral-darker) 25%, transparent);
 }
 
 /* ========== الثيم الغامق ========== */
 .dark {
-  /* الألوان الأساسية - تناسق مع الفاتح */
-  --color-primary: #3d5a7c;
-  --color-primary-dark: #4e6b8f;
-  --color-primary-darker: #5f7ca2;
-  --color-primary-light: #2d4263;
+  /* الألوان الأساسية - معكوسة للثيم الغامق */
+  --color-primary: #00adb5;
+  --color-primary-dark: #33bdc4;
+  --color-primary-darker: #66cdd3;
+  --color-primary-light: #008b91;
 
   /* اللون الثانوي */
-  --color-secondary: #1f2e47;
-  --color-secondary-darker: #2d3e5a;
+  --color-secondary: #393e46;
+  --color-secondary-darker: #4a4f58;
 
-  /* ألوان الإبراز - متناسقة مع الثيم */
-  --color-accent-primary: #d75840;
-  --color-accent: #d75840;
-  --color-accent-secondary: #e5664f;
-  --color-accent-dark: #c84b31;
-  --color-accent-warm: #f0e5d3;
-  --color-accent-light: #2a2318;
+  /* ألوان الإبراز - متناسقة مع الثيم الغامق */
+  --color-accent-primary: #00c8d1;
+  --color-accent: #00c8d1;
+  --color-accent-secondary: #33d4dc;
+  --color-accent-dark: #00adb5;
+  --color-accent-warm: #00e0ea;
+  --color-accent-light: #1a3335;
 
   /* الألوان المحايدة - معكوسة بشكل ذكي */
-  --color-neutral-bg: #0f0f0f;
-  --color-neutral-background: #0f0f0f;
-  --color-neutral-surface: #191919;
-  --color-neutral-surface-alt: #222222;
-  --color-neutral-border: #2d2d2d;
-  --color-neutral-text-muted: #8a8376;
-  --color-neutral-text-secondary: #c4baa8;
-  --color-neutral-light: #4a4539;
-  --color-neutral: #6b6454;
-  --color-neutral-dark: #e5dfd3;
-  --color-neutral-darker: #f9f6f1;
-  --color-white: #ffffff;
+  --color-neutral-bg: #222831;
+  --color-neutral-background: #222831;
+  --color-neutral-surface: #393e46;
+  --color-neutral-surface-alt: #4a4f58;
+  --color-neutral-border: #5b6069;
+  --color-neutral-text-muted: #9e9e9e;
+  --color-neutral-text-secondary: #bdbdbd;
+  --color-neutral-light: #4a4f58;
+  --color-neutral: #757575;
+  --color-neutral-dark: #e0e0e0;
+  --color-neutral-darker: #eeeeee;
 
   /* ألوان الحالة - محسّنة للثيم الغامق */
-  --color-status-success: #5fb876;
-  --color-status-error: #e5664f;
-  --color-status-warning: #f0b562;
-  --color-status-info: #4e6b8f;
+  --color-status-success: #00e676;
+  --color-status-error: #ff5252;
+  --color-status-warning: #ffd740;
+  --color-status-info: #00adb5;
 
   /* التدرجات - متوافقة مع الثيم الغامق */
-  --gradient-gold: linear-gradient(135deg, #f0e5d3 0%, #ecdbba 100%);
-  --gradient-primary: linear-gradient(135deg, #3d5a7c 0%, #2d4263 100%);
-  --gradient-hero: linear-gradient(180deg, #191919 0%, #0f0f0f 100%);
-  --gradient-cta: linear-gradient(135deg, #d75840 0%, #c84b31 100%);
+  --gradient-gold: linear-gradient(135deg, #00c8d1 0%, #00e0ea 100%);
+  --gradient-primary: linear-gradient(135deg, #00adb5 0%, #008b91 100%);
+  --gradient-hero: linear-gradient(180deg, #222831 0%, #393e46 100%);
+  --gradient-cta: linear-gradient(135deg, #00adb5 0%, #393e46 100%);
 
   /* Ring colors with opacity - محدّثة */
-  --ring-primary-dark-20: rgba(78, 107, 143, 0.2);
-  --bg-neutral-light-20: rgba(74, 69, 57, 0.2);
-  --bg-neutral-darker-80: rgba(249, 246, 241, 0.1);
+  --ring-primary-dark-20: rgba(51, 189, 196, 0.2);
+  --bg-neutral-light-20: rgba(74, 79, 88, 0.2);
+  --bg-neutral-darker-80: rgba(238, 238, 238, 0.1);
   --bg-white-10: rgba(255, 255, 255, 0.05);
   --bg-black-10: rgba(0, 0, 0, 0.3);
-
-  /* Shadow colors with opacity - using color-mix with neutral darker */
-  --shadow-color-sm: color-mix(in srgb, var(--color-neutral-darker) 5%, transparent);
-  --shadow-color-md: color-mix(in srgb, var(--color-neutral-darker) 7%, transparent);
-  --shadow-color-lg: color-mix(in srgb, var(--color-neutral-darker) 10%, transparent);
-  --shadow-color-xl: color-mix(in srgb, var(--color-neutral-darker) 15%, transparent);
-  --shadow-color-2xl: color-mix(in srgb, var(--color-neutral-darker) 25%, transparent);
 }
 
 /* ========================================
@@ -334,23 +317,6 @@
     @apply mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8;
   }
 
-  /* Arabic font (applies when layout sets .rtl for Arabic locale) */
-  .rtl {
-    font-family:
-      'Cairo',
-      -apple-system,
-      BlinkMacSystemFont,
-      'Segoe UI',
-      'Roboto',
-      'Helvetica Neue',
-      Arial,
-      'Noto Sans',
-      sans-serif,
-      'Apple Color Emoji',
-      'Segoe UI Emoji',
-      'Segoe UI Symbol' !important;
-  }
-
   .container-sm {
     @apply mx-auto w-full max-w-4xl px-4 sm:px-6 lg:px-8;
   }
@@ -448,7 +414,7 @@
   }
 
   .input-error:focus {
-    box-shadow: 0 0 0 2px rgba(239, 68, 68, 0.2);
+    box-shadow: 0 0 0 2px rgba(211, 47, 47, 0.2);
   }
 
   /* Badge */

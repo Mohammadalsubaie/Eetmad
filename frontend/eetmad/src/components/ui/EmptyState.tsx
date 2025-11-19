@@ -1,6 +1,6 @@
 // src/components/shared/data-display/EmptyState.tsx
 
-import { Button } from '@/components/ui/Button';
+import { Button } from '@/components/ui';
 import { cn } from '@/lib/utils/cn';
 import { LucideIcon } from 'lucide-react';
 import React from 'react';

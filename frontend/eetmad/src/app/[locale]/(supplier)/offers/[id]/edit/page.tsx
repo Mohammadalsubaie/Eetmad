@@ -1,13 +1,12 @@
 'use client';
 
-import { useState, useEffect, useCallback } from 'react';
 import { useParams, useRouter } from 'next/navigation';
 import { useTranslations, useLocale } from 'next-intl';
 import { motion } from 'framer-motion';
 import { ArrowLeft } from 'lucide-react';
 import { cssVars } from '@/styles/theme';
-import { offersApi } from '@/lib/api/offers';
-import type { Offer } from '@/lib/types/offer.types';
+import { useOffer } from '@/lib/hooks/useOffers';
+import { LoadingSpinner, ErrorMessage, Button } from '@/components/ui';
 import OfferForm from '@/components/features/offers/OfferForm';
 import Breadcrumbs from '@/components/shared/navigation/Breadcrumbs';
 
@@ -18,40 +17,21 @@ export default function EditOfferPage() {
   const t = useTranslations('pages.offers');
   const tPages = useTranslations('pages');
   const locale = useLocale();
-  const [offer, setOffer] = useState<Offer | null>(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
+  const { data: offer, isLoading, error } = useOffer(id);
 
-  const fetchOffer = useCallback(
-    async (offerId: string) => {
-      try {
-        setLoading(true);
-        setError(null);
-        const data = await offersApi.getById(offerId);
-        setOffer(data);
-      } catch (err) {
-        console.error('Failed to fetch offer:', err);
-        setError(t('fetchError'));
-      } finally {
-        setLoading(false);
-      }
-    },
-    [t]
-  );
-
-  useEffect(() => {
-    if (id) {
-      fetchOffer(id);
-    }
-  }, [id, fetchOffer]);
-
-  if (loading) {
+  if (isLoading) {
     return (
       <div className="container mx-auto py-8" style={{ backgroundColor: cssVars.neutral.bg }}>
+        <Breadcrumbs
+          items={[
+            { label: t('title'), href: `/${locale}/offers` },
+            { label: id },
+            { label: tPages('edit.title') },
+          ]}
+          className="mb-6"
+        />
         <div className="flex items-center justify-center py-12">
-          <div className="text-lg font-medium" style={{ color: cssVars.neutral.textSecondary }}>
-            {t('loading')}
-          </div>
+          <LoadingSpinner size="lg" />
         </div>
       </div>
     );
@@ -60,18 +40,22 @@ export default function EditOfferPage() {
   if (error || !offer) {
     return (
       <div className="container mx-auto py-8" style={{ backgroundColor: cssVars.neutral.bg }}>
-        <div
-          className="rounded-2xl border-2 p-8 text-center"
-          style={{ borderColor: cssVars.status.error }}
-        >
-          <p style={{ color: cssVars.status.error }}>{error || t('notFound')}</p>
-          <button
-            onClick={() => router.push('/offers')}
-            className="mt-4 text-sm font-medium underline"
-            style={{ color: cssVars.primary.DEFAULT }}
-          >
+        <Breadcrumbs
+          items={[
+            { label: t('title'), href: `/${locale}/offers` },
+            { label: id },
+            { label: tPages('edit.title') },
+          ]}
+          className="mb-6"
+        />
+        <div className="flex flex-col items-center gap-4">
+          <ErrorMessage
+            error={error?.message || t('notFound')}
+            variant="banner"
+          />
+          <Button onClick={() => router.push('/offers')} variant="primary">
             {t('backToOffers')}
-          </button>
+          </Button>
         </div>
       </div>
     );

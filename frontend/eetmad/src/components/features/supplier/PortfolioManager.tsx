@@ -1,46 +1,22 @@
 'use client';
 
-import { useState, useEffect, useCallback } from 'react';
 import { useTranslations } from 'next-intl';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { Plus, Edit, Trash2, Image as ImageIcon } from 'lucide-react';
 import { cssVars } from '@/styles/theme';
-import { suppliersApi } from '@/lib/api/suppliers';
-import type { PortfolioItem } from '@/lib/types/supplier.types';
-import { Button } from '@/components/ui/Button';
-import EmptyState from '@/components/ui/EmptyState';
+import { usePortfolio } from '@/lib/hooks/useSupplier';
+import { Button, EmptyState, LoadingSpinner, ErrorMessage } from '@/components/ui';
 
 export default function PortfolioManager() {
   const t = useTranslations('pages.portfolio');
-  const [items, setItems] = useState<PortfolioItem[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
-
-  const fetchPortfolio = useCallback(async () => {
-    try {
-      setLoading(true);
-      setError(null);
-      const profile = await suppliersApi.getMyProfile();
-      setItems(profile.portfolio || []);
-    } catch (err) {
-      console.error('Failed to fetch portfolio:', err);
-      setError(t('fetchError'));
-    } finally {
-      setLoading(false);
-    }
-  }, [t]);
-
-  useEffect(() => {
-    fetchPortfolio();
-  }, [fetchPortfolio]);
+  const { items, isLoading, error, refetch, deleteItem } = usePortfolio();
 
   const handleDelete = async (id: string) => {
     if (!confirm(t('confirmDelete'))) return;
 
     try {
-      await suppliersApi.deletePortfolioItem(id);
-      fetchPortfolio();
+      await deleteItem(id);
     } catch (err) {
       console.error('Failed to delete item:', err);
     }
@@ -53,22 +29,12 @@ export default function PortfolioManager() {
     });
   };
 
-  if (loading) {
-    return (
-      <div className="flex items-center justify-center py-12">
-        <div className="text-lg font-medium" style={{ color: cssVars.neutral.textSecondary }}>
-          {t('loading')}
-        </div>
-      </div>
-    );
+  if (isLoading) {
+    return <LoadingSpinner text={t('loading')} />;
   }
 
   if (error) {
-    return (
-      <div className="rounded-xl border-2 p-4" style={{ borderColor: cssVars.status.error }}>
-        <p style={{ color: cssVars.status.error }}>{error}</p>
-      </div>
-    );
+    return <ErrorMessage error={error} />;
   }
 
   return (

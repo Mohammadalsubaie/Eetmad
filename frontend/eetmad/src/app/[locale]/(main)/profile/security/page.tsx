@@ -6,7 +6,7 @@ import { motion } from 'framer-motion';
 import { ArrowLeft } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import ChangePasswordForm from '@/components/features/profile/ChangePasswordForm';
-import { Button } from '@/components/ui/Button';
+import { Button } from '@/components/ui';
 import Breadcrumbs from '@/components/shared/navigation/Breadcrumbs';
 
 export default function ProfileSecurityPage() {

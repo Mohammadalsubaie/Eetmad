@@ -4,20 +4,17 @@ import { useState } from 'react';
 import { useTranslations } from 'next-intl';
 import { motion } from 'framer-motion';
 import { cssVars } from '@/styles/theme';
-import { contactApi } from '@/lib/api/contact';
+import { useContactForm } from '@/lib/hooks/useContact';
 import type { ContactFormInput } from '@/lib/types/contact.types';
+import { LoadingSpinner, ErrorMessage, Button } from '@/components/ui';
 
 export default function ContactForm() {
   const t = useTranslations('pages.contact');
+  const { submit, isSubmitting, error, response } = useContactForm();
   const [formData, setFormData] = useState<ContactFormInput>({
     name: '',
     email: '',
     subject: '',
-    message: '',
-  });
-  const [loading, setLoading] = useState(false);
-  const [status, setStatus] = useState<{ type: 'success' | 'error' | ''; message: string }>({
-    type: '',
     message: '',
   });
 
@@ -27,22 +24,13 @@ export default function ContactForm() {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setLoading(true);
-    setStatus({ type: '', message: '' });
-
     try {
-      const response = await contactApi.submitContactForm(formData);
-      if (response.success) {
-        setStatus({ type: 'success', message: response.message });
+      const result = await submit(formData);
+      if (result.success) {
         setFormData({ name: '', email: '', subject: '', message: '' }); // Clear form
-      } else {
-        setStatus({ type: 'error', message: response.message || t('submitError') });
       }
-    } catch (error) {
-      console.error('Contact form submission error:', error);
-      setStatus({ type: 'error', message: t('submitError') });
-    } finally {
-      setLoading(false);
+    } catch (err) {
+      // Error is handled by the hook
     }
   };
 
@@ -162,20 +150,19 @@ export default function ContactForm() {
           ></textarea>
         </div>
 
-        {status.message && (
+        {error && <ErrorMessage error={error} variant="inline" />}
+
+        {response && response.success && (
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            className={`rounded-md p-3 text-center ${
-              status.type === 'success' ? 'text-green-700' : 'text-red-700'
-            }`}
+            className="rounded-md p-3 text-center"
             style={{
-              backgroundColor:
-                status.type === 'success' ? cssVars.status.success : cssVars.status.error,
-              color: status.type === 'success' ? 'white' : 'white', // Ensure text is readable on status background
+              backgroundColor: cssVars.status.success,
+              color: 'white',
             }}
           >
-            {status.message}
+            {response.message}
           </motion.div>
         )}
 
@@ -183,16 +170,23 @@ export default function ContactForm() {
           type="submit"
           whileHover={{ scale: 1.02 }}
           whileTap={{ scale: 0.98 }}
-          disabled={loading}
+          disabled={isSubmitting}
           className="w-full rounded-md py-3 text-lg font-semibold"
           style={{
             background: cssVars.gradient.gold,
             color: cssVars.secondary.DEFAULT,
-            opacity: loading ? 0.7 : 1,
-            cursor: loading ? 'not-allowed' : 'pointer',
+            opacity: isSubmitting ? 0.7 : 1,
+            cursor: isSubmitting ? 'not-allowed' : 'pointer',
           }}
         >
-          {loading ? t('submitting') : t('submitButton')}
+          {isSubmitting ? (
+            <span className="flex items-center justify-center gap-2">
+              <LoadingSpinner size="sm" />
+              {t('submitting')}
+            </span>
+          ) : (
+            t('submitButton')
+          )}
         </motion.button>
       </form>
     </motion.div>

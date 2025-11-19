@@ -1,52 +1,27 @@
 'use client';
 
-import { useState, useEffect, useCallback } from 'react';
 import { useTranslations, useLocale } from 'next-intl';
 import { useRouter } from 'next/navigation';
 import { motion } from 'framer-motion';
 import { Plus } from 'lucide-react';
 import { cssVars } from '@/styles/theme';
-import { offersApi } from '@/lib/api/offers';
-import type { Offer } from '@/lib/types/offer.types';
+import { useMyOffers } from '@/lib/hooks/useOffers';
 import OfferCard from '@/components/features/offers/OfferCard';
-import EmptyState from '@/components/ui/EmptyState';
-import { Button } from '@/components/ui/Button';
+import { EmptyState, Button, LoadingSpinner, ErrorMessage } from '@/components/ui';
 import Breadcrumbs from '@/components/shared/navigation/Breadcrumbs';
 
 export default function OffersPage() {
   const t = useTranslations('pages.offers');
-  const tPages = useTranslations('pages');
   const locale = useLocale();
   const router = useRouter();
-  const [offers, setOffers] = useState<Offer[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
+  const { data: offers, isLoading, error } = useMyOffers();
 
-  const fetchOffers = useCallback(async () => {
-    try {
-      setLoading(true);
-      setError(null);
-      const data = await offersApi.getMyOffers();
-      setOffers(data);
-    } catch (err) {
-      console.error('Failed to fetch offers:', err);
-      setError(t('fetchError'));
-    } finally {
-      setLoading(false);
-    }
-  }, [t]);
-
-  useEffect(() => {
-    fetchOffers();
-  }, [fetchOffers]);
-
-  if (loading) {
+  if (isLoading) {
     return (
       <div className="container mx-auto py-8" style={{ backgroundColor: cssVars.neutral.bg }}>
+        <Breadcrumbs items={[{ label: t('title') }]} className="mb-6" />
         <div className="flex items-center justify-center py-12">
-          <div className="text-lg font-medium" style={{ color: cssVars.neutral.textSecondary }}>
-            {t('loading')}
-          </div>
+          <LoadingSpinner size="lg" />
         </div>
       </div>
     );
@@ -80,10 +55,12 @@ export default function OffersPage() {
         </motion.div>
       </div>
 
-      {/* Error State */}
       {error && (
-        <div className="mb-6 rounded-xl border-2 p-4" style={{ borderColor: cssVars.status.error }}>
-          <p style={{ color: cssVars.status.error }}>{error}</p>
+        <div className="mb-6">
+          <ErrorMessage
+            error={error.message || t('fetchError')}
+            variant="banner"
+          />
         </div>
       )}
 

@@ -5,7 +5,7 @@ import { useTranslations } from 'next-intl';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Filter, X } from 'lucide-react';
 import { cssVars } from '@/styles/theme';
-import { Button } from '@/components/ui/Button';
+import { Button } from '@/components/ui';
 import type {
   RequestStatus,
   RequestFilters as RequestFiltersType,

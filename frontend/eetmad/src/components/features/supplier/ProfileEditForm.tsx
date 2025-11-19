@@ -5,9 +5,9 @@ import { useRouter } from 'next/navigation';
 import { useTranslations } from 'next-intl';
 import { motion } from 'framer-motion';
 import { cssVars } from '@/styles/theme';
-import { suppliersApi } from '@/lib/api/suppliers';
 import type { Supplier } from '@/lib/types/supplier.types';
-import { Button } from '@/components/ui/Button';
+import { Button, LoadingSpinner, ErrorMessage } from '@/components/ui';
+import { useUpdateSupplierProfile } from '@/lib/hooks/useSupplierMutations';
 
 interface ProfileEditFormProps {
   profile: Supplier;
@@ -17,8 +17,7 @@ interface ProfileEditFormProps {
 export default function ProfileEditForm({ profile, onSuccess }: ProfileEditFormProps) {
   const t = useTranslations('pages.supplierProfile');
   const router = useRouter();
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState<string | null>(null);
+  const { update, isLoading, error } = useUpdateSupplierProfile();
   const [selectedCategories] = useState<string[]>(
     profile.categories?.map((c) => c.categoryId) || []
   );
@@ -28,11 +27,9 @@ export default function ProfileEditForm({ profile, onSuccess }: ProfileEditFormP
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setLoading(true);
-    setError(null);
 
     try {
-      await suppliersApi.updateProfile({
+      await update({
         serviceDescription: formData.serviceDescription,
         categories: selectedCategories.map((catId, index) => ({
           categoryId: catId,
@@ -46,20 +43,13 @@ export default function ProfileEditForm({ profile, onSuccess }: ProfileEditFormP
         router.push('/profile');
       }
     } catch (err) {
-      console.error('Failed to update profile:', err);
-      setError(t('saveError'));
-    } finally {
-      setLoading(false);
+      // Error handled by hook
     }
   };
 
   return (
     <form onSubmit={handleSubmit} className="space-y-6">
-      {error && (
-        <div className="rounded-xl border-2 p-4" style={{ borderColor: cssVars.status.error }}>
-          <p style={{ color: cssVars.status.error }}>{error}</p>
-        </div>
-      )}
+      {error && <ErrorMessage error={error.message || String(error)} variant="inline" />}
 
       {/* Service Description */}
       <div>
@@ -110,7 +100,14 @@ export default function ProfileEditForm({ profile, onSuccess }: ProfileEditFormP
               color: cssVars.secondary.DEFAULT,
             }}
           >
-            {loading ? t('saving') : t('save')}
+            {isLoading ? (
+              <>
+                <LoadingSpinner size="sm" />
+                {t('saving')}
+              </>
+            ) : (
+              t('save')
+            )}
           </Button>
         </motion.div>
       </div>

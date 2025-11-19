@@ -1,23 +1,21 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { useTranslations } from 'next-intl';
 import { motion } from 'framer-motion';
 import { Check, ArrowRight, ArrowLeft } from 'lucide-react';
 import { cssVars } from '@/styles/theme';
-import { suppliersApi } from '@/lib/api/suppliers';
-import { categoriesApi } from '@/lib/api/categories';
-import type { Category } from '@/lib/types/category.types';
-import { Button } from '@/components/ui/Button';
+import { Button, LoadingSpinner, ErrorMessage } from '@/components/ui';
+import { useCategories } from '@/lib/hooks/useCategories';
+import { useUpdateSupplierProfile } from '@/lib/hooks/useSupplierMutations';
 
 export default function ProfileSetupWizard() {
   const t = useTranslations('pages.supplierSetup');
   const router = useRouter();
+  const { data: categories, isLoading: categoriesLoading } = useCategories();
+  const { update, isLoading, error } = useUpdateSupplierProfile();
   const [step, setStep] = useState(1);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState<string | null>(null);
-  const [categories, setCategories] = useState<Category[]>([]);
   const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
   const [formData, setFormData] = useState({
     serviceDescription: '',
@@ -26,24 +24,9 @@ export default function ProfileSetupWizard() {
 
   const totalSteps = 2;
 
-  useEffect(() => {
-    fetchCategories();
-  }, []);
-
-  const fetchCategories = async () => {
-    try {
-      const data = await categoriesApi.getAll();
-      setCategories(data);
-    } catch (err) {
-      console.error('Failed to fetch categories:', err);
-    }
-  };
-
   const handleSubmit = async () => {
     try {
-      setLoading(true);
-      setError(null);
-      await suppliersApi.updateProfile({
+      await update({
         serviceDescription: formData.serviceDescription,
         categories: selectedCategories.map((catId) => ({
           categoryId: catId,
@@ -52,10 +35,7 @@ export default function ProfileSetupWizard() {
       });
       router.push('/portfolio');
     } catch (err) {
-      console.error('Failed to setup profile:', err);
-      setError(t('saveError'));
-    } finally {
-      setLoading(false);
+      // Error handled by hook
     }
   };
 
@@ -89,10 +69,12 @@ export default function ProfileSetupWizard() {
       </div>
 
       {error && (
-        <div className="rounded-xl border-2 p-4" style={{ borderColor: cssVars.status.error }}>
-          <p style={{ color: cssVars.status.error }}>{error}</p>
+        <div className="mb-6">
+          <ErrorMessage error={error.message || String(error)} variant="inline" />
         </div>
       )}
+
+      {categoriesLoading && <LoadingSpinner />}
 
       {/* Step 1: Categories */}
       {step === 1 && (
@@ -231,14 +213,21 @@ export default function ProfileSetupWizard() {
         ) : (
           <Button
             onClick={handleSubmit}
-            disabled={loading || !formData.serviceDescription}
+            disabled={isLoading || !formData.serviceDescription}
             className="flex items-center gap-2"
             style={{
               background: cssVars.gradient.gold,
               color: cssVars.secondary.DEFAULT,
             }}
           >
-            {loading ? t('saving') : t('complete')}
+            {isLoading ? (
+              <>
+                <LoadingSpinner size="sm" />
+                {t('saving')}
+              </>
+            ) : (
+              t('complete')
+            )}
           </Button>
         )}
       </div>

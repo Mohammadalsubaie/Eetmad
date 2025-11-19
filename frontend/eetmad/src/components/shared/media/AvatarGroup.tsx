@@ -1,4 +1,4 @@
-export default function Avatargroup() {
+export default function AvatarGroup() {
   // TODO: Implement AvatarGroup component
   return null;
 }

@@ -1,0 +1,62 @@
+/**
+ * Mock verification document data
+ */
+
+import type { VerificationDocument } from '@/lib/types/verification.types';
+
+export const mockVerificationDocuments: VerificationDocument[] = [
+  {
+    id: '1',
+    userId: 'user-1',
+    documentType: 'commercial_register',
+    documentNumber: '1234567890',
+    documentUrl: '/documents/cr-1.pdf',
+    backDocumentUrl: null,
+    status: 'pending',
+    submittedAt: '2024-03-15T10:30:00Z',
+    reviewedAt: null,
+    reviewedBy: null,
+    reviewNotes: null,
+    rejectionReason: null,
+    expiryDate: '2025-12-31',
+    metadata: null,
+    createdAt: '2024-03-15T10:30:00Z',
+    updatedAt: '2024-03-15T10:30:00Z',
+  },
+  {
+    id: '2',
+    userId: 'user-2',
+    documentType: 'national_id',
+    documentNumber: '1098765432',
+    documentUrl: '/documents/id-2.pdf',
+    backDocumentUrl: null,
+    status: 'pending',
+    submittedAt: '2024-03-16T14:20:00Z',
+    reviewedAt: null,
+    reviewedBy: null,
+    reviewNotes: null,
+    rejectionReason: null,
+    expiryDate: '2028-06-30',
+    metadata: null,
+    createdAt: '2024-03-16T14:20:00Z',
+    updatedAt: '2024-03-16T14:20:00Z',
+  },
+  {
+    id: '3',
+    userId: 'user-3',
+    documentType: 'tax_certificate',
+    documentNumber: '300123456789012',
+    documentUrl: '/documents/tax-3.pdf',
+    backDocumentUrl: null,
+    status: 'approved',
+    submittedAt: '2024-03-10T09:15:00Z',
+    reviewedAt: '2024-03-11T11:00:00Z',
+    reviewedBy: 'admin-1',
+    reviewNotes: null,
+    rejectionReason: null,
+    expiryDate: null,
+    metadata: null,
+    createdAt: '2024-03-10T09:15:00Z',
+    updatedAt: '2024-03-11T11:00:00Z',
+  },
+];

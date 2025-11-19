@@ -1,4 +1,4 @@
-export default function Certificatemanager() {
+export default function CertificateManager() {
   // TODO: Implement CertificateManager component
   return null;
 }

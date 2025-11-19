@@ -1,4 +1,4 @@
-export default function Ratinginput() {
+export default function RatingInput() {
   // TODO: Implement RatingInput component
   return null;
 }

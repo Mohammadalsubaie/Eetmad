@@ -1,4 +1,4 @@
-export default function Requesttimeline() {
+export default function RequestTimeline() {
   // TODO: Implement RequestTimeline component
   return null;
 }

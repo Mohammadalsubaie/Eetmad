@@ -1,4 +1,4 @@
-export default function Notificationpreferences() {
+export default function NotificationPreferences() {
   // TODO: Implement NotificationPreferences component
   return null;
 }

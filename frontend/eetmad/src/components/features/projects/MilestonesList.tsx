@@ -1,4 +1,4 @@
-export default function Milestoneslist() {
+export default function MilestonesList() {
   // TODO: Implement MilestonesList component
   return null;
 }

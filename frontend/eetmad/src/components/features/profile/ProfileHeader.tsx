@@ -1,4 +1,4 @@
-export default function Profileheader() {
+export default function ProfileHeader() {
   // TODO: Implement ProfileHeader component
   return null;
 }

@@ -1,4 +1,4 @@
-export default function Profilecompletion() {
+export default function ProfileCompletion() {
   // TODO: Implement ProfileCompletion component
   return null;
 }

@@ -1,4 +1,4 @@
-export default function Ratingdisplay() {
+export default function RatingDisplay() {
   // TODO: Implement RatingDisplay component
   return null;
 }

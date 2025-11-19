@@ -26,5 +26,4 @@ __pycache__/
 # Misc
 *.local
 *.cache/
-docs/docs
 

@@ -1,4 +1,4 @@
-export default function Reportbutton() {
+export default function ReportButton() {
   // TODO: Implement ReportButton component
   return null;
 }

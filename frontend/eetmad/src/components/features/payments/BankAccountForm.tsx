@@ -1,4 +1,4 @@
-export default function Bankaccountform() {
+export default function BankAccountForm() {
   // TODO: Implement BankAccountForm component
   return null;
 }

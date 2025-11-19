@@ -1,4 +1,4 @@
-export default function Imagegallery() {
+export default function ImageGallery() {
   // TODO: Implement ImageGallery component
   return null;
 }

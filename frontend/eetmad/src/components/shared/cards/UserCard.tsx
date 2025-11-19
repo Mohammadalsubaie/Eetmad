@@ -1,4 +1,4 @@
-export default function Usercard() {
+export default function UserCard() {
   // TODO: Implement UserCard component
   return null;
 }

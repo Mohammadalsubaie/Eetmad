@@ -1,4 +1,4 @@
-export default function Avatarupload() {
+export default function AvatarUpload() {
   // TODO: Implement AvatarUpload component
   return null;
 }

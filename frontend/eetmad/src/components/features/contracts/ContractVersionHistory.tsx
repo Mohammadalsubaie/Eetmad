@@ -1,4 +1,4 @@
-export default function Contractversionhistory() {
+export default function ContractVersionHistory() {
   // TODO: Implement ContractVersionHistory component
   return null;
 }

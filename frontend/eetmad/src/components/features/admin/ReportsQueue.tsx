@@ -1,4 +1,4 @@
-export default function Reportsqueue() {
+export default function ReportsQueue() {
   // TODO: Implement ReportsQueue component
   return null;
 }

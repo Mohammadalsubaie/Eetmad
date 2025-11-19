@@ -1,4 +1,4 @@
-export default function Mobilebottomnav() {
+export default function MobileBottomNav() {
   // TODO: Implement MobileBottomNav component
   return null;
 }

@@ -1,8 +1,9 @@
 'use client';
 
-import { useState, useEffect } from 'react';
-import { loginUser, registerUser, logoutUser } from '@/lib/api/auth';
+import { loginUser, logoutUser, registerUser } from '@/lib/api/auth';
+import type { AuthResponse, LoginCredentials, RegisterData } from '@/lib/types/auth.types';
 import type { User } from '@/lib/types/user.types';
+import { useEffect, useState } from 'react';
 
 export function useAuth() {
   const [user, setUser] = useState<User | null>(null);
@@ -18,52 +19,97 @@ export function useAuth() {
     }
   }, []);
 
-  const login = async (email: string, password: string) => {
+  const login = async (credentials: LoginCredentials): Promise<AuthResponse> => {
     setIsLoading(true);
     try {
-      const response = await loginUser({ email, password });
+      const response = await loginUser({
+        email: credentials.email,
+        password: credentials.password,
+      });
+      const now = new Date().toISOString();
       const userData: User = {
         id: response.user.id,
         email: response.user.email,
-        name: response.user.name,
+        fullName: response.user.name,
         userType: response.user.userType,
-        verified: response.user.verified ?? false,
-        avatar: response.user.avatar,
-        phone: response.user.phone,
-        createdAt: response.user.createdAt || new Date().toISOString(),
-        updatedAt: response.user.updatedAt || new Date().toISOString(),
+        phone: response.user.phone ?? '',
+        isEmailVerified: response.user.verified ?? false,
+        isPhoneVerified: false,
+        status: 'active',
+        avatar: response.user.avatar ?? '',
+        dateOfBirth: null,
+        nationalId: null,
+        companyName: null,
+        commercialRegister: null,
+        taxNumber: null,
+        averageRating: 0,
+        totalReviews: 0,
+        completedProjects: 0,
+        walletBalance: 0,
+        address: {},
+        notificationPreferences: {},
+        createdAt: response.user.createdAt || now,
+        updatedAt: response.user.updatedAt || now,
+        lastLoginAt: now,
       };
       setUser(userData);
       localStorage.setItem('token', response.token);
-      return response;
+      return {
+        user: userData,
+        token: response.token,
+        refreshToken: undefined,
+      };
     } finally {
       setIsLoading(false);
     }
   };
 
-  const register = async (data: {
-    name: string;
-    email: string;
-    password: string;
-    userType: 'client' | 'supplier';
-  }) => {
+  const register = async (data: RegisterData): Promise<AuthResponse> => {
     setIsLoading(true);
     try {
-      const response = await registerUser(data);
+      // Map RegisterData to API format (fullName -> name, and ensure userType is only 'client' | 'supplier')
+      // RegisterData.userType can be 'client' | 'supplier' | 'admin', but API only accepts 'client' | 'supplier'
+      const userType = data.userType === 'admin' ? 'client' : data.userType;
+      const apiData = {
+        name: data.fullName,
+        email: data.email,
+        password: data.password,
+        userType: userType as 'client' | 'supplier',
+      };
+      const response = await registerUser(apiData);
+      const now = new Date().toISOString();
       const userData: User = {
         id: response.user.id,
         email: response.user.email,
-        name: response.user.name,
+        fullName: response.user.name,
         userType: response.user.userType,
-        verified: response.user.verified ?? false,
-        avatar: response.user.avatar,
-        phone: response.user.phone,
-        createdAt: response.user.createdAt || new Date().toISOString(),
-        updatedAt: response.user.updatedAt || new Date().toISOString(),
+        phone: data.phoneNumber ?? response.user.phone ?? '',
+        isEmailVerified: response.user.verified ?? false,
+        isPhoneVerified: false,
+        status: 'active',
+        avatar: response.user.avatar ?? '',
+        dateOfBirth: null,
+        nationalId: null,
+        companyName: data.companyName ?? null,
+        commercialRegister: data.commercialReg ?? null,
+        taxNumber: null,
+        averageRating: 0,
+        totalReviews: 0,
+        completedProjects: 0,
+        walletBalance: 0,
+        address: {},
+        notificationPreferences: {},
+        createdAt: response.user.createdAt || now,
+        updatedAt: response.user.updatedAt || now,
+        lastLoginAt: now,
       };
       setUser(userData);
       localStorage.setItem('token', response.token);
-      return response;
+      return {
+        user: userData,
+        token: response.token,
+        refreshToken: undefined,
+      };
     } finally {
       setIsLoading(false);
     }

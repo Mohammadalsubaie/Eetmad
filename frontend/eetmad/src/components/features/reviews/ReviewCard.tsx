@@ -1,4 +1,4 @@
-export default function Reviewcard() {
+export default function ReviewCard() {
   // TODO: Implement ReviewCard component
   return null;
 }

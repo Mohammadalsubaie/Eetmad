@@ -1,4 +1,4 @@
-export default function Portfolioitemform() {
+export default function PortfolioItemForm() {
   // TODO: Implement PortfolioItemForm component
   return null;
 }

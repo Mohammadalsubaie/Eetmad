@@ -1,4 +1,4 @@
-export default function Notificationslist() {
+export default function NotificationsList() {
   // TODO: Implement NotificationsList component
   return null;
 }

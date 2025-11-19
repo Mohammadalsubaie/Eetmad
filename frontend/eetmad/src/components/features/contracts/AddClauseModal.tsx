@@ -1,4 +1,4 @@
-export default function Addclausemodal() {
+export default function AddClauseModal() {
   // TODO: Implement AddClauseModal component
   return null;
 }

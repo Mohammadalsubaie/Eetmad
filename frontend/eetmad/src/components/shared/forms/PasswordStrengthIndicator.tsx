@@ -1,4 +1,4 @@
-export default function Passwordstrengthindicator() {
+export default function PasswordStrengthIndicator() {
   // TODO: Implement PasswordStrengthIndicator component
   return null;
 }

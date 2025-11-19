@@ -1,3 +1,7 @@
+import { Footer } from '@/components/shared/layouts/Footer';
+import { Header } from '@/components/shared/layouts/Header';
+import PageNavigator from '@/components/shared/dev/PageNavigator';
+import ThemeSwitcher from '@/components/shared/dev/ThemeSwitcher';
 import { routing } from '@/i18n/routing';
 import { NextIntlClientProvider } from 'next-intl';
 import { getMessages } from 'next-intl/server';
@@ -13,7 +17,7 @@ export default async function LocaleLayout({
   const { locale } = await params;
 
   // Ensure that the incoming `locale` is valid
-  if (!routing.locales.includes(locale as any)) {
+  if (!routing.locales.includes(locale as (typeof routing.locales)[number])) {
     notFound();
   }
 
@@ -24,7 +28,12 @@ export default async function LocaleLayout({
   return (
     <NextIntlClientProvider messages={messages}>
       <div className={locale === 'ar' ? 'rtl' : 'ltr'} dir={locale === 'ar' ? 'rtl' : 'ltr'}>
+        <Header />
         {children}
+        <Footer />
+        {/* Developer Tools - Only in development mode */}
+        <PageNavigator />
+        <ThemeSwitcher />
       </div>
     </NextIntlClientProvider>
   );

@@ -93,3 +93,11 @@ export interface FeaturedRequest extends Request {
   categoryName: string;
   categoryIcon?: string;
 }
+
+export interface RequestFilters {
+  status?: RequestStatus | '';
+  categoryId?: string;
+  budgetMin?: string | number;
+  budgetMax?: string | number;
+  [key: string]: string | number | RequestStatus | undefined;
+}

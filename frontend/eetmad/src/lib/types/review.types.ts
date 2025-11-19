@@ -25,6 +25,17 @@ export interface Review {
   updatedAt: string;
 }
 
+export interface UpdateReviewInput {
+  rating: number;
+  title: string;
+  comment: string;
+  qualityRating?: number;
+  communicationRating?: number;
+  timelinessRating?: number;
+  professionalismRating?: number;
+  response: string | null;
+}
+
 export interface ReviewStats {
   averageRating: number;
   totalReviews: number;

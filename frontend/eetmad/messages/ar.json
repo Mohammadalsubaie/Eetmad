@@ -2142,13 +2142,13 @@
     "edit": {
       "title": "تعديل"
     }
-    },
-    "dev": {
-      "pageNavigator": "ملاح الصفحات للمطورين",
-      "searchPages": "بحث في الصفحات...",
-      "dynamic": "[ديناميكي]",
-      "devModeOnly": "وضع التطوير فقط",
-      "totalPages": "الإجمالي: {count} صفحة",
+  },
+  "dev": {
+    "pageNavigator": "ملاح الصفحات للمطورين",
+    "searchPages": "بحث في الصفحات...",
+    "dynamic": "[ديناميكي]",
+    "devModeOnly": "وضع التطوير فقط",
+    "totalPages": "الإجمالي: {count} صفحة",
     "noPagesFound": "لم يتم العثور على صفحات",
     "themeSwitcher": "مبدل الثيمات",
     "searchThemes": "بحث في الثيمات...",

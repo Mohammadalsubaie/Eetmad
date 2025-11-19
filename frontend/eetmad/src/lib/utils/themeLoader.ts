@@ -47,7 +47,7 @@ export function removeTheme(): void {
 
 /**
  * Get all available theme options
- * 
+ *
  * ⚠️ When adding a new theme:
  * 1. Update the length number below to match your total theme count
  * 2. See docs/design/ADDING_NEW_THEME.md for full instructions
@@ -63,4 +63,3 @@ export function getAvailableThemes(): ThemeOption[] {
 export function getThemeDisplayName(theme: ThemeOption): string {
   return theme.charAt(0).toUpperCase() + theme.slice(1).replace(/([A-Z])/g, ' $1');
 }
-

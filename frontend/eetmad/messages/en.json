@@ -2129,13 +2129,13 @@
     "edit": {
       "title": "Title"
     }
-    },
-    "dev": {
-      "pageNavigator": "Developer Page Navigator",
-      "searchPages": "Search pages...",
-      "dynamic": "[dynamic]",
-      "devModeOnly": "Dev Mode Only",
-      "totalPages": "Total: {count} pages",
+  },
+  "dev": {
+    "pageNavigator": "Developer Page Navigator",
+    "searchPages": "Search pages...",
+    "dynamic": "[dynamic]",
+    "devModeOnly": "Dev Mode Only",
+    "totalPages": "Total: {count} pages",
     "noPagesFound": "No pages found",
     "themeSwitcher": "Theme Switcher",
     "searchThemes": "Search themes...",

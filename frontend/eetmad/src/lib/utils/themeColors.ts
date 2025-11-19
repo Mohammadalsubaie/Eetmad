@@ -1,7 +1,7 @@
 /**
  * Theme color palettes for preview
  * Extracted from theme CSS files
- * 
+ *
  * ⚠️ When adding a new theme:
  * 1. Extract colors from your theme CSS file (see ADDING_NEW_THEME.md)
  * 2. Add the new theme's color palette below
@@ -27,7 +27,7 @@ export const themeColorPalettes: Record<string, ThemeColors> = {
     accent: '#00adb5',
     background: '#ffffff',
     text: '#222831',
-      },
+  },
   option3: {
     primary: '#6b8a7a',
     accent: '#b7b597',
@@ -51,7 +51,7 @@ export const themeColorPalettes: Record<string, ThemeColors> = {
     accent: '#f0e5cf',
     background: '#f7f6f2',
     text: '#2e3f52',
-      },
+  },
   option7: {
     primary: '#447d9b',
     accent: '#fe7743',
@@ -69,7 +69,7 @@ export const themeColorPalettes: Record<string, ThemeColors> = {
     accent: '#faf6e9',
     background: '#fffdf6',
     text: '#212121',
-      },
+  },
   option10: {
     primary: '#536162',
     accent: '#c06014',
@@ -81,7 +81,7 @@ export const themeColorPalettes: Record<string, ThemeColors> = {
     accent: '#787a91',
     background: '#f5f5f7',
     text: '#0f044c',
-      },
+  },
   option12: {
     primary: '#4a4947',
     accent: '#b17457',
@@ -105,8 +105,8 @@ export const themeColorPalettes: Record<string, ThemeColors> = {
     accent: '#dfd0b8',
     background: '#f5eddf',
     text: '#222831',
-      },
-    };
+  },
+};
 
 /**
  * Get color palette for a theme

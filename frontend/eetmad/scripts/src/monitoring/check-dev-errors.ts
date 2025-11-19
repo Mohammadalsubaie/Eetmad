@@ -46,7 +46,10 @@ function testKeyAccess(messages: Record<string, unknown>, namespace: string, key
   }
 }
 
-function findCommonIssues(enMessages: Record<string, unknown>, arMessages: Record<string, unknown>): string[] {
+function findCommonIssues(
+  enMessages: Record<string, unknown>,
+  arMessages: Record<string, unknown>
+): string[] {
   const issues: string[] = [];
 
   // Check for common missing patterns

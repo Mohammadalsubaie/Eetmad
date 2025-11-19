@@ -114,7 +114,9 @@ function extractTranslationKeys(
  */
 function getNestedValue(obj: Record<string, unknown>, path: string): unknown {
   return path.split('.').reduce((current: unknown, key: string) => {
-    return current && typeof current === 'object' && current !== null ? (current as Record<string, unknown>)[key] : undefined;
+    return current && typeof current === 'object' && current !== null
+      ? (current as Record<string, unknown>)[key]
+      : undefined;
   }, obj as unknown);
 }
 
@@ -139,14 +141,21 @@ function keyExists(translations: TranslationFile, namespace: string, key: string
 /**
  * Get the structure of a namespace in translation file
  */
-function getNamespaceStructure(translations: TranslationFile, namespace: string): Record<string, unknown> | null {
+function getNamespaceStructure(
+  translations: TranslationFile,
+  namespace: string
+): Record<string, unknown> | null {
   return getNestedValue(translations, namespace) || null;
 }
 
 /**
  * Compare two objects and find differences
  */
-function compareStructures(obj1: Record<string, unknown>, obj2: Record<string, unknown>, path: string = ''): string[] {
+function compareStructures(
+  obj1: Record<string, unknown>,
+  obj2: Record<string, unknown>,
+  path: string = ''
+): string[] {
   const differences: string[] = [];
 
   if (obj1 === null || obj1 === undefined) {

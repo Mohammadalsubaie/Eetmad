@@ -6,14 +6,17 @@ import type { Review } from '@/lib/types/review.types';
 import { cssVars } from '@/styles/theme';
 import { motion } from 'framer-motion';
 import { ArrowLeft, Save, Star } from 'lucide-react';
-import { useTranslations } from 'next-intl';
+import { useTranslations, useLocale } from 'next-intl';
 import { useParams, useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
+import Breadcrumbs from '@/components/shared/navigation/Breadcrumbs';
 
 export default function EditReviewPage() {
   const params = useParams();
   const router = useRouter();
   const t = useTranslations('admin');
+  const tPages = useTranslations('pages');
+  const locale = useLocale();
   const reviewId = params.id as string;
 
   const [review, setReview] = useState<Review | null>(null);
@@ -94,6 +97,17 @@ export default function EditReviewPage() {
   if (loading) {
     return (
       <div className="flex h-64 items-center justify-center">
+        <Breadcrumbs
+          items={[
+            { label: tPages('admin.title'), href: `/${locale}/admin` },
+            { label: tPages('reviews.title'), href: `/${locale}/admin/reviews` },
+            // TODO: Replace with actual data for id
+            { label: '{id}' },
+            { label: tPages('edit.title') },
+          ]}
+          className="mb-6"
+        />
+
         <div style={{ color: cssVars.neutral.textSecondary }}>{t('reviews.loading')}</div>
       </div>
     );

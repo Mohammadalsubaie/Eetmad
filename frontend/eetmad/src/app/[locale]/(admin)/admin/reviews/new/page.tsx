@@ -2,18 +2,21 @@
 
 import { useState } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
-import { useTranslations } from 'next-intl';
+import { useTranslations, useLocale } from 'next-intl';
 import { motion } from 'framer-motion';
 import { cssVars } from '@/styles/theme';
 import { ArrowLeft, Save, Star } from 'lucide-react';
 import type { CreateReviewInput } from '@/lib/api/reviews';
 import { reviewsApi } from '@/lib/api/reviews';
 import AdminPageHeader from '@/components/shared/admin/AdminPageHeader';
+import Breadcrumbs from '@/components/shared/navigation/Breadcrumbs';
 
 export default function CreateReviewPage() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const t = useTranslations('admin');
+  const tPages = useTranslations('pages');
+  const locale = useLocale();
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
@@ -71,6 +74,15 @@ export default function CreateReviewPage() {
 
   return (
     <div>
+      <Breadcrumbs
+        items={[
+          { label: tPages('admin.title'), href: `/${locale}/admin` },
+          { label: tPages('reviews.title'), href: `/${locale}/admin/reviews` },
+          { label: tPages('new.title') },
+        ]}
+        className="mb-6"
+      />
+
       {/* Header */}
       <div className="mb-6 flex items-center gap-4">
         <motion.button

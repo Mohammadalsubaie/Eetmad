@@ -6,12 +6,15 @@ import { suppliersApi } from '@/lib/api/suppliers';
 import type { Supplier } from '@/lib/types/supplier.types';
 import { cssVars } from '@/styles/theme';
 import { CheckCircle, Eye, Shield, ShoppingBag, Star, XCircle } from 'lucide-react';
-import { useTranslations } from 'next-intl';
+import { useTranslations, useLocale } from 'next-intl';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
+import Breadcrumbs from '@/components/shared/navigation/Breadcrumbs';
 
 export default function SuppliersManagementPage() {
   const t = useTranslations('admin');
+  const tPages = useTranslations('pages');
+  const locale = useLocale();
   const router = useRouter();
   const [loading, setLoading] = useState(false);
   const [suppliers, setSuppliers] = useState<Supplier[]>([]);
@@ -208,6 +211,14 @@ export default function SuppliersManagementPage() {
 
   return (
     <div>
+      <Breadcrumbs
+        items={[
+          { label: tPages('admin.title'), href: `/${locale}/admin` },
+          { label: tPages('suppliers.title') },
+        ]}
+        className="mb-6"
+      />
+
       <AdminPageHeader
         title={t('suppliers.title')}
         description={t('suppliers.description')}

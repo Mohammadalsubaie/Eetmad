@@ -6,11 +6,14 @@ import { adminApi } from '@/lib/api/admin';
 import type { Report } from '@/lib/types/report.types';
 import { cssVars } from '@/styles/theme';
 import { Calendar, CheckCircle, Eye, Flag, XCircle } from 'lucide-react';
-import { useTranslations } from 'next-intl';
+import { useTranslations, useLocale } from 'next-intl';
 import { useEffect, useState } from 'react';
+import Breadcrumbs from '@/components/shared/navigation/Breadcrumbs';
 
 export default function ReportsPage() {
   const t = useTranslations('admin');
+  const tPages = useTranslations('pages');
+  const locale = useLocale();
   const [loading, setLoading] = useState(false);
   const [reports, setReports] = useState<Report[]>([]);
 
@@ -210,6 +213,14 @@ export default function ReportsPage() {
 
   return (
     <div>
+      <Breadcrumbs
+        items={[
+          { label: tPages('admin.title'), href: `/${locale}/admin` },
+          { label: tPages('reports.title') },
+        ]}
+        className="mb-6"
+      />
+
       <AdminPageHeader
         title={t('reports.title')}
         description={t('reports.description')}

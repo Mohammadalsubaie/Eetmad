@@ -1,14 +1,17 @@
 'use client';
 
-import { useTranslations } from 'next-intl';
+import { useTranslations, useLocale } from 'next-intl';
 import { motion } from 'framer-motion';
 import { cssVars } from '@/styles/theme';
 import { Settings, Save, Globe, DollarSign, Mail, Shield, Bell, Database } from 'lucide-react';
 import AdminPageHeader from '@/components/shared/admin/AdminPageHeader';
 import AdminActionButton from '@/components/shared/admin/AdminActionButton';
+import Breadcrumbs from '@/components/shared/navigation/Breadcrumbs';
 
 export default function AdminSettingsPage() {
   const t = useTranslations('admin');
+  const tPages = useTranslations('pages');
+  const locale = useLocale();
 
   const settingsSections = [
     {
@@ -51,6 +54,14 @@ export default function AdminSettingsPage() {
 
   return (
     <div>
+      <Breadcrumbs
+        items={[
+          { label: tPages('admin.title'), href: `/${locale}/admin` },
+          { label: tPages('settings.title') },
+        ]}
+        className="mb-6"
+      />
+
       <AdminPageHeader
         title={t('settings.title')}
         description={t('settings.description')}

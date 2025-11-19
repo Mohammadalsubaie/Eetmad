@@ -1,20 +1,28 @@
 'use client';
 
-import { useTranslations } from 'next-intl';
+import { useTranslations, useLocale } from 'next-intl';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { motion } from 'framer-motion';
 import { ArrowLeft } from 'lucide-react';
 import { cssVars } from '@/styles/theme';
 import OfferForm from '@/components/features/offers/OfferForm';
+import Breadcrumbs from '@/components/shared/navigation/Breadcrumbs';
 
 export default function NewOfferPage() {
   const t = useTranslations('pages.offers');
+  const tPages = useTranslations('pages');
+  const locale = useLocale();
   const router = useRouter();
   const searchParams = useSearchParams();
   const requestId = searchParams.get('requestId') || undefined;
 
   return (
     <div className="container mx-auto py-8" style={{ backgroundColor: cssVars.neutral.bg }}>
+      <Breadcrumbs
+        items={[{ label: t('title'), href: `/${locale}/offers` }, { label: tPages('new.title') }]}
+        className="mb-6"
+      />
+
       {/* Back Button */}
       <motion.button
         whileHover={{ x: -4 }}

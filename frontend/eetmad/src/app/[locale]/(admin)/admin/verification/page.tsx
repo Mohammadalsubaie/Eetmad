@@ -17,11 +17,14 @@ import {
   ShieldCheck,
   XCircle,
 } from 'lucide-react';
-import { useTranslations } from 'next-intl';
+import { useTranslations, useLocale } from 'next-intl';
 import { useEffect, useState } from 'react';
+import Breadcrumbs from '@/components/shared/navigation/Breadcrumbs';
 
 export default function VerificationPage() {
   const t = useTranslations('admin');
+  const tPages = useTranslations('pages');
+  const locale = useLocale();
   const [loading, setLoading] = useState(false);
   const [documents, setDocuments] = useState<VerificationDocument[]>([]);
 
@@ -250,6 +253,14 @@ export default function VerificationPage() {
 
   return (
     <div>
+      <Breadcrumbs
+        items={[
+          { label: tPages('admin.title'), href: `/${locale}/admin` },
+          { label: tPages('verification.title') },
+        ]}
+        className="mb-6"
+      />
+
       <AdminPageHeader
         title={t('verification.title')}
         description={t('verification.description')}

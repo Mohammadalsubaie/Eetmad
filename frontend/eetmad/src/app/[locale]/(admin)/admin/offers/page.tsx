@@ -7,12 +7,15 @@ import { offersApi } from '@/lib/api/offers';
 import type { Offer } from '@/lib/types/offer.types';
 import { cssVars } from '@/styles/theme';
 import { Briefcase, Calendar, Clock, DollarSign, Eye } from 'lucide-react';
-import { useTranslations } from 'next-intl';
+import { useTranslations, useLocale } from 'next-intl';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
+import Breadcrumbs from '@/components/shared/navigation/Breadcrumbs';
 
 export default function OffersManagementPage() {
   const t = useTranslations('admin');
+  const tPages = useTranslations('pages');
+  const locale = useLocale();
   const router = useRouter();
   const [loading, setLoading] = useState(false);
   const [offers, setOffers] = useState<Offer[]>([]);
@@ -179,6 +182,14 @@ export default function OffersManagementPage() {
 
   return (
     <div>
+      <Breadcrumbs
+        items={[
+          { label: tPages('admin.title'), href: `/${locale}/admin` },
+          { label: tPages('offers.title') },
+        ]}
+        className="mb-6"
+      />
+
       <AdminPageHeader
         title={t('offers.title')}
         description={t('offers.description')}

@@ -1,12 +1,12 @@
 'use client';
 
-import { useRouter } from 'next/navigation';
-import { useTranslations } from 'next-intl';
-import { motion } from 'framer-motion';
-import { Calendar, DollarSign, TrendingUp, CheckCircle2, Clock, AlertCircle } from 'lucide-react';
-import { cssVars } from '@/styles/theme';
-import type { Project } from '@/lib/types/project.types';
 import { Badge } from '@/components/ui';
+import type { Project } from '@/lib/types/project.types';
+import { cssVars } from '@/styles/theme';
+import { motion } from 'framer-motion';
+import { AlertCircle, Calendar, CheckCircle2, Clock, DollarSign, TrendingUp } from 'lucide-react';
+import { useTranslations } from 'next-intl';
+import { useRouter } from 'next/navigation';
 
 interface ProjectCardProps {
   project: Project;

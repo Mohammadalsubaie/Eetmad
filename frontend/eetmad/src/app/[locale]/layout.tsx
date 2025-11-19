@@ -1,5 +1,6 @@
 import { Footer } from '@/components/shared/layouts/Footer';
 import { Header } from '@/components/shared/layouts/Header';
+import PageNavigator from '@/components/shared/dev/PageNavigator';
 import { routing } from '@/i18n/routing';
 import { NextIntlClientProvider } from 'next-intl';
 import { getMessages } from 'next-intl/server';
@@ -29,6 +30,8 @@ export default async function LocaleLayout({
         <Header />
         {children}
         <Footer />
+        {/* Developer Page Navigator - Only in development mode */}
+        <PageNavigator />
       </div>
     </NextIntlClientProvider>
   );

@@ -1,11 +1,14 @@
 'use client';
 
-import { useTranslations } from 'next-intl';
+import { useTranslations, useLocale } from 'next-intl';
 import { cssVars } from '@/styles/theme';
 import { motion } from 'framer-motion';
+import Breadcrumbs from '@/components/shared/navigation/Breadcrumbs';
 
 export default function AboutPage() {
   const t = useTranslations('biddingPlatform');
+  const tPages = useTranslations('pages');
+  const locale = useLocale();
 
   return (
     <motion.div
@@ -15,6 +18,8 @@ export default function AboutPage() {
       className="container mx-auto px-4 py-12"
       style={{ backgroundColor: cssVars.neutral.bg, minHeight: '100vh' }}
     >
+      <Breadcrumbs items={[{ label: tPages('about.title') }]} className="mb-6" />
+
       <h1
         className="mb-6 text-center text-5xl font-extrabold"
         style={{ color: cssVars.secondary.DEFAULT }}

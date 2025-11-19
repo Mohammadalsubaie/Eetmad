@@ -8,12 +8,15 @@ import { adminApi } from '@/lib/api/admin';
 import type { User } from '@/lib/types/user.types';
 import { cssVars } from '@/styles/theme';
 import { Ban, CheckCircle, Download, Eye, Mail, Plus, Shield, Users, XCircle } from 'lucide-react';
-import { useTranslations } from 'next-intl';
+import { useTranslations, useLocale } from 'next-intl';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
+import Breadcrumbs from '@/components/shared/navigation/Breadcrumbs';
 
 export default function AdminUsersPage() {
   const t = useTranslations('admin');
+  const tPages = useTranslations('pages');
+  const locale = useLocale();
   const router = useRouter();
   const [loading, setLoading] = useState(false);
   const [users, setUsers] = useState<User[]>([]);
@@ -268,6 +271,14 @@ export default function AdminUsersPage() {
 
   return (
     <div>
+      <Breadcrumbs
+        items={[
+          { label: tPages('admin.title'), href: `/${locale}/admin` },
+          { label: tPages('users.title') },
+        ]}
+        className="mb-6"
+      />
+
       <AdminPageHeader
         title={t('users.title')}
         description={t('users.description')}

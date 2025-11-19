@@ -6,11 +6,13 @@ import { motion } from 'framer-motion';
 import { ChevronDown, ChevronUp, HelpCircle } from 'lucide-react';
 import { useLocale, useTranslations } from 'next-intl';
 import { useState } from 'react';
+import Breadcrumbs from '@/components/shared/navigation/Breadcrumbs';
 
 const faqKeys = ['timelines', 'offers', 'payments', 'quality'] as const;
 
 export default function FAQPage() {
   const t = useTranslations('pages.faq');
+  const tPages = useTranslations('pages');
   const [activeKey, setActiveKey] = useState<string | null>(faqKeys[0]);
   const locale = useLocale();
   const isRTL = locale === 'ar';
@@ -38,6 +40,7 @@ export default function FAQPage() {
       </div>
 
       <div className="container relative mx-auto">
+        <Breadcrumbs items={[{ label: t('title') }]} className="mb-6" />
         <div className="mb-12">
           <SectionHeader
             badge={t('eyebrow')}

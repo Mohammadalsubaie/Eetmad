@@ -7,11 +7,14 @@ import { categoriesApi } from '@/lib/api/categories';
 import type { Category } from '@/lib/types/category.types';
 import { cssVars } from '@/styles/theme';
 import { ChevronRight, Edit, Eye, EyeOff, FolderTree, Plus, Trash2 } from 'lucide-react';
-import { useTranslations } from 'next-intl';
+import { useTranslations, useLocale } from 'next-intl';
 import { useEffect, useState } from 'react';
+import Breadcrumbs from '@/components/shared/navigation/Breadcrumbs';
 
 export default function CategoriesManagementPage() {
   const t = useTranslations('admin');
+  const tPages = useTranslations('pages');
+  const locale = useLocale();
   const [loading, setLoading] = useState(false);
   const [categories, setCategories] = useState<Category[]>([]);
 
@@ -139,6 +142,14 @@ export default function CategoriesManagementPage() {
 
   return (
     <div>
+      <Breadcrumbs
+        items={[
+          { label: tPages('admin.title'), href: `/${locale}/admin` },
+          { label: tPages('categories.title') },
+        ]}
+        className="mb-6"
+      />
+
       <AdminPageHeader
         title={t('categories.title')}
         description={t('categories.description')}

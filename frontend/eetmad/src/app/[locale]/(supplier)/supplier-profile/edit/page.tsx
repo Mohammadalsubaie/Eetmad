@@ -2,14 +2,17 @@
 
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import { useTranslations } from 'next-intl';
+import { useTranslations, useLocale } from 'next-intl';
 import { cssVars } from '@/styles/theme';
 import { suppliersApi } from '@/lib/api/suppliers';
 import type { Supplier } from '@/lib/types/supplier.types';
 import ProfileEditForm from '@/components/features/supplier/ProfileEditForm';
+import Breadcrumbs from '@/components/shared/navigation/Breadcrumbs';
 
 export default function SupplierProfileEditPage() {
   const t = useTranslations('pages.supplierProfile');
+  const tPages = useTranslations('pages');
+  const locale = useLocale();
   const router = useRouter();
   const [profile, setProfile] = useState<Supplier | null>(null);
   const [loading, setLoading] = useState(true);
@@ -44,6 +47,13 @@ export default function SupplierProfileEditPage() {
 
   return (
     <div className="container mx-auto py-8" style={{ backgroundColor: cssVars.neutral.bg }}>
+      <Breadcrumbs
+        items={[
+          { label: 'Supplier profile', href: `/${locale}/supplier-profile` },
+          { label: tPages('edit.title') },
+        ]}
+        className="mb-6"
+      />
       {/* Header */}
       <div className="mb-8">
         <h1 className="mb-2 text-4xl font-bold" style={{ color: cssVars.secondary.DEFAULT }}>

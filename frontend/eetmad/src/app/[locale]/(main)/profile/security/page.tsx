@@ -1,19 +1,30 @@
 'use client';
 
-import { useTranslations } from 'next-intl';
+import { useTranslations, useLocale } from 'next-intl';
 import { cssVars } from '@/styles/theme';
 import { motion } from 'framer-motion';
 import { ArrowLeft } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import ChangePasswordForm from '@/components/features/profile/ChangePasswordForm';
 import { Button } from '@/components/ui/Button';
+import Breadcrumbs from '@/components/shared/navigation/Breadcrumbs';
 
 export default function ProfileSecurityPage() {
   const t = useTranslations('pages.profile.security');
+  const tPages = useTranslations('pages');
+  const locale = useLocale();
   const router = useRouter();
 
   return (
     <div className="container mx-auto py-8" style={{ backgroundColor: cssVars.neutral.bg }}>
+      <Breadcrumbs
+        items={[
+          { label: tPages('profile.title'), href: `/${locale}/profile` },
+          { label: t('title') },
+        ]}
+        className="mb-6"
+      />
+
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}

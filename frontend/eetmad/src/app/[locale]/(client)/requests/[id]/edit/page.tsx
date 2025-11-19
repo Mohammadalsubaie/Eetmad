@@ -6,15 +6,18 @@ import type { Request } from '@/lib/types/request.types';
 import { cssVars } from '@/styles/theme';
 import { motion } from 'framer-motion';
 import { ArrowLeft } from 'lucide-react';
-import { useTranslations } from 'next-intl';
+import { useTranslations, useLocale } from 'next-intl';
 import { useParams, useRouter } from 'next/navigation';
 import { useEffect, useState, useCallback } from 'react';
+import Breadcrumbs from '@/components/shared/navigation/Breadcrumbs';
 
 export default function EditRequestPage() {
   const params = useParams();
   const router = useRouter();
   const id = params.id as string;
   const t = useTranslations('pages.requests');
+  const tPages = useTranslations('pages');
+  const locale = useLocale();
   const [request, setRequest] = useState<Request | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -76,6 +79,14 @@ export default function EditRequestPage() {
 
   return (
     <div className="container mx-auto py-8" style={{ backgroundColor: cssVars.neutral.bg }}>
+      <Breadcrumbs
+        items={[
+          { label: t('title'), href: `/${locale}/requests` },
+          { label: request.title || `#${id}`, href: `/${locale}/requests/${id}` },
+          { label: tPages('edit.title') },
+        ]}
+        className="mb-6"
+      />
       {/* Back Button */}
       <motion.button
         whileHover={{ x: -4 }}
@@ -90,7 +101,7 @@ export default function EditRequestPage() {
       {/* Header */}
       <div className="mb-8">
         <h1 className="mb-2 text-4xl font-bold" style={{ color: cssVars.secondary.DEFAULT }}>
-          {t('edit')} {request.title}
+          {t('edit.title')} {request.title}
         </h1>
         <p className="text-base" style={{ color: cssVars.neutral.textSecondary }}>
           {t('editSubtitle')}

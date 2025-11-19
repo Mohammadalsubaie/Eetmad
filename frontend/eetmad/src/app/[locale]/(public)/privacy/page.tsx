@@ -1,16 +1,20 @@
 'use client';
 
 import { cssVars } from '@/styles/theme';
-import { useTranslations } from 'next-intl';
+import { useTranslations, useLocale } from 'next-intl';
+import Breadcrumbs from '@/components/shared/navigation/Breadcrumbs';
 
 export default function PrivacyPage() {
   const t = useTranslations('pages');
+  const locale = useLocale();
 
   return (
     <div
       className="container mx-auto px-4 py-8"
       style={{ backgroundColor: cssVars.neutral.bg, color: cssVars.neutral.textSecondary }}
     >
+      <Breadcrumbs items={[{ label: t('privacy.title') }]} className="mb-6" />
+
       <h1 style={{ color: cssVars.primary.DEFAULT }}>{t('privacy.title')}</h1>
       <div
         className="container mx-auto px-4 py-8"

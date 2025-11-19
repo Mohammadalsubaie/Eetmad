@@ -6,12 +6,15 @@ import { paymentsApi } from '@/lib/api/payments';
 import type { Payment } from '@/lib/types/payment.types';
 import { cssVars } from '@/styles/theme';
 import { Calendar, CheckCircle, Clock, CreditCard, DollarSign, Eye } from 'lucide-react';
-import { useTranslations } from 'next-intl';
+import { useTranslations, useLocale } from 'next-intl';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
+import Breadcrumbs from '@/components/shared/navigation/Breadcrumbs';
 
 export default function PaymentsManagementPage() {
   const t = useTranslations('admin');
+  const tPages = useTranslations('pages');
+  const locale = useLocale();
   const router = useRouter();
   const [loading, setLoading] = useState(false);
   const [payments, setPayments] = useState<Payment[]>([]);
@@ -222,6 +225,14 @@ export default function PaymentsManagementPage() {
 
   return (
     <div>
+      <Breadcrumbs
+        items={[
+          { label: tPages('admin.title'), href: `/${locale}/admin` },
+          { label: tPages('payments.title') },
+        ]}
+        className="mb-6"
+      />
+
       <AdminPageHeader
         title={t('payments.title')}
         description={t('payments.description')}

@@ -7,12 +7,15 @@ import { requestsApi } from '@/lib/api/requests';
 import type { Request } from '@/lib/types/request.types';
 import { cssVars } from '@/styles/theme';
 import { Calendar, DollarSign, Eye, FileText } from 'lucide-react';
-import { useTranslations } from 'next-intl';
+import { useTranslations, useLocale } from 'next-intl';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
+import Breadcrumbs from '@/components/shared/navigation/Breadcrumbs';
 
 export default function RequestsManagementPage() {
   const t = useTranslations('admin');
+  const tPages = useTranslations('pages');
+  const locale = useLocale();
   const router = useRouter();
   const [loading, setLoading] = useState(false);
   const [requests, setRequests] = useState<Request[]>([]);
@@ -176,6 +179,14 @@ export default function RequestsManagementPage() {
 
   return (
     <div>
+      <Breadcrumbs
+        items={[
+          { label: tPages('admin.title'), href: `/${locale}/admin` },
+          { label: tPages('requests.title') },
+        ]}
+        className="mb-6"
+      />
+
       <AdminPageHeader
         title={t('requests.title')}
         description={t('requests.description')}

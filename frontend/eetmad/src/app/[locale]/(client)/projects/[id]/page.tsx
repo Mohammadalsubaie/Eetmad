@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useCallback } from 'react';
 import { useParams, useRouter } from 'next/navigation';
-import { useTranslations } from 'next-intl';
+import { useTranslations, useLocale } from 'next-intl';
 import { motion } from 'framer-motion';
 import {
   ArrowLeft,
@@ -19,12 +19,15 @@ import { projectsApi } from '@/lib/api/projects';
 import type { Project } from '@/lib/types/project.types';
 import { Badge } from '@/components/ui';
 import { Button } from '@/components/ui/Button';
+import Breadcrumbs from '@/components/shared/navigation/Breadcrumbs';
 
 export default function ProjectDetailPage() {
   const params = useParams();
   const router = useRouter();
   const id = params.id as string;
   const t = useTranslations('pages.projects');
+  const tPages = useTranslations('pages');
+  const locale = useLocale();
   const [project, setProject] = useState<Project | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -138,6 +141,13 @@ export default function ProjectDetailPage() {
 
   return (
     <div className="container mx-auto py-8" style={{ backgroundColor: cssVars.neutral.bg }}>
+      <Breadcrumbs
+        items={[
+          { label: t('title'), href: `/${locale}/projects` },
+          { label: project.projectNumber || `#${id}` },
+        ]}
+        className="mb-6"
+      />
       {/* Back Button */}
       <motion.button
         whileHover={{ x: -4 }}

@@ -9,6 +9,7 @@ import { SectionHeader } from '@/components/ui';
 import { suppliersApi } from '@/lib/api/suppliers';
 import type { Supplier } from '@/lib/types/supplier.types';
 import { Users, Star, CheckCircle2, ArrowRight, Search } from 'lucide-react';
+import Breadcrumbs from '@/components/shared/navigation/Breadcrumbs';
 
 export default function SuppliersPage() {
   const t = useTranslations('pages.suppliers');

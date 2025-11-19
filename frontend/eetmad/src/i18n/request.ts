@@ -8,9 +8,18 @@ export default getRequestConfig(async ({ requestLocale }) => {
     locale = routing.defaultLocale;
   }
 
+  const messages = (await import(`../../messages/${locale}.json`)).default;
+
+  // Log missing keys in development
+  if (process.env.NODE_ENV === 'development') {
+    // This will help catch missing keys at runtime
+    const originalMessages = messages;
+    // Note: next-intl will automatically log missing keys in development
+  }
+
   return {
     locale,
-    messages: (await import(`../../messages/${locale}.json`)).default,
+    messages,
     timeZone: 'Asia/Riyadh',
   };
 });

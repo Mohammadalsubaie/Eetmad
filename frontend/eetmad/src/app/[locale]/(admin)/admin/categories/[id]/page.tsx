@@ -17,14 +17,17 @@ import {
   TrendingUp,
   Users,
 } from 'lucide-react';
-import { useTranslations } from 'next-intl';
+import { useTranslations, useLocale } from 'next-intl';
 import { useParams, useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
+import Breadcrumbs from '@/components/shared/navigation/Breadcrumbs';
 
 export default function CategoryDetailPage() {
   const params = useParams();
   const router = useRouter();
   const t = useTranslations('admin');
+  const tPages = useTranslations('pages');
+  const locale = useLocale();
   const categoryId = params.id as string;
 
   const [category, setCategory] = useState<Category | null>(null);
@@ -51,6 +54,16 @@ export default function CategoryDetailPage() {
   if (loading) {
     return (
       <div className="flex h-64 items-center justify-center">
+        <Breadcrumbs
+          items={[
+            { label: tPages('admin.title'), href: `/${locale}/admin` },
+            { label: tPages('categories.title'), href: `/${locale}/admin/categories` },
+            // TODO: Replace with actual data for id
+            { label: '{id}' },
+          ]}
+          className="mb-6"
+        />
+
         <div style={{ color: cssVars.neutral.textSecondary }}>{t('categories.loading')}</div>
       </div>
     );

@@ -1,7 +1,5 @@
 \*\*Build frontend pages and components
 
-frontend/eetmad/src/app/[locale]/(admin) pages and components that not already build also check if there is public important pages that should be built
-
 following ALL guidelines, rules, and examples in `docs/build-prompt.md`\*\*
 
 ## Critical Rules:

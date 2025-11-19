@@ -6,12 +6,15 @@ import { adminApi } from '@/lib/api/admin';
 import type { Dispute } from '@/lib/types/dispute.types';
 import { cssVars } from '@/styles/theme';
 import { AlertTriangle, Calendar, CheckCircle, Eye, MessageSquare, XCircle } from 'lucide-react';
-import { useTranslations } from 'next-intl';
+import { useTranslations, useLocale } from 'next-intl';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
+import Breadcrumbs from '@/components/shared/navigation/Breadcrumbs';
 
 export default function DisputesPage() {
   const t = useTranslations('admin');
+  const tPages = useTranslations('pages');
+  const locale = useLocale();
   const router = useRouter();
   const [loading, setLoading] = useState(false);
   const [disputes, setDisputes] = useState<Dispute[]>([]);
@@ -262,6 +265,14 @@ export default function DisputesPage() {
 
   return (
     <div>
+      <Breadcrumbs
+        items={[
+          { label: tPages('admin.title'), href: `/${locale}/admin` },
+          { label: tPages('disputes.title') },
+        ]}
+        className="mb-6"
+      />
+
       <AdminPageHeader
         title={t('disputes.title')}
         description={t('disputes.description')}

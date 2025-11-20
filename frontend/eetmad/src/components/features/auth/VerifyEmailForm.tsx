@@ -1,25 +1,36 @@
 'use client';
 
+import { Button, Card, ErrorMessage, LoadingSpinner } from '@/components/ui';
+import { useVerifyEmail } from '@/lib/hooks/useAuthMutations';
 import { cssVars } from '@/styles/theme';
 import { motion } from 'framer-motion';
 import { ArrowLeft, ArrowRight, CheckCircle2, RefreshCw, Sparkles } from 'lucide-react';
 import { useLocale, useTranslations } from 'next-intl';
 import Link from 'next/link';
+import { useRouter, useSearchParams } from 'next/navigation';
 import { useEffect, useRef, useState } from 'react';
-import Card from '@/components/ui/Card/Card';
-import Button from '@/components/ui/Button/Button';
 
 export default function VerifyEmailForm() {
   const t = useTranslations('auth');
   const locale = useLocale();
+  const router = useRouter();
+  const searchParams = useSearchParams();
+  const token = searchParams.get('token') || '';
   const isRTL = locale === 'ar';
+  const { verify, isLoading, error, success } = useVerifyEmail();
   const [code, setCode] = useState(['', '', '', '', '', '']);
-  const [isLoading, setIsLoading] = useState(false);
-  const [isSuccess, setIsSuccess] = useState(false);
-  const [error, setError] = useState('');
   const [email] = useState('user@example.com'); // TODO: Get from query params or context
   const [canResend, setCanResend] = useState(true);
   const [resendTimer, setResendTimer] = useState(0);
+  const [validationError, setValidationError] = useState('');
+
+  useEffect(() => {
+    if (success) {
+      setTimeout(() => {
+        router.push('/login');
+      }, 2000);
+    }
+  }, [success, router]);
 
   const inputRefs = useRef<(HTMLInputElement | null)[]>([]);
 
@@ -40,7 +51,7 @@ export default function VerifyEmailForm() {
     const newCode = [...code];
     newCode[index] = value.slice(-1); // Only take the last digit
     setCode(newCode);
-    setError('');
+    setValidationError('');
 
     // Auto-focus next input
     if (value && index < 5) {
@@ -87,24 +98,22 @@ export default function VerifyEmailForm() {
     const codeToVerify = verificationCode || code.join('');
 
     if (codeToVerify.length !== 6) {
-      setError(t('verifyEmail.error'));
+      setValidationError(t('verifyEmail.error'));
       return;
     }
 
-    setError('');
-    setIsLoading(true);
+    setValidationError('');
 
-    // TODO: Implement actual verification logic
-    setTimeout(() => {
-      console.log('Verify email with code:', codeToVerify);
-      setIsSuccess(true);
-      setIsLoading(false);
+    if (!token) {
+      setValidationError(t('verifyEmail.invalidToken'));
+      return;
+    }
 
-      // Redirect after success
-      setTimeout(() => {
-        window.location.href = '/login';
-      }, 2000);
-    }, 1500);
+    try {
+      await verify(token);
+    } catch (err) {
+      // Error handled by hook
+    }
   };
 
   const handleResend = () => {
@@ -121,7 +130,7 @@ export default function VerifyEmailForm() {
 
   return (
     <Card className="w-full max-w-md p-4 sm:p-6 md:p-8">
-      {!isSuccess ? (
+      {!success ? (
         <>
           {/* Header */}
           <div className="mb-6 text-center sm:mb-8">
@@ -153,19 +162,16 @@ export default function VerifyEmailForm() {
           </div>
 
           {/* Error Message */}
-          {error && (
+          {(error || validationError) && (
             <motion.div
               initial={{ opacity: 0, y: -10 }}
               animate={{ opacity: 1, y: 0 }}
-              className="mb-6 rounded-xl border-2 p-4"
-              style={{
-                backgroundColor: `color-mix(in srgb, ${cssVars.status.error} 10%, transparent)`,
-                borderColor: cssVars.status.error,
-              }}
+              className="mb-6"
             >
-              <p className="text-sm font-semibold" style={{ color: cssVars.status.error }}>
-                {error}
-              </p>
+              <ErrorMessage
+                error={error?.message || validationError || String(error)}
+                variant="inline"
+              />
             </motion.div>
           )}
 
@@ -237,10 +243,7 @@ export default function VerifyEmailForm() {
             }}
           >
             {isLoading ? (
-              <div
-                className="h-5 w-5 animate-spin rounded-full border-2 border-t-transparent sm:h-6 sm:w-6"
-                style={{ borderColor: cssVars.secondary.DEFAULT }}
-              />
+              <LoadingSpinner size="sm" />
             ) : (
               <>
                 {t('verifyEmail.submitButton')}

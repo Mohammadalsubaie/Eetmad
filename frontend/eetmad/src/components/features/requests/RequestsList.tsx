@@ -1,14 +1,14 @@
 'use client';
 
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useMemo } from 'react';
 import { useTranslations } from 'next-intl';
-import { cssVars } from '@/styles/theme';
-import { requestsApi } from '@/lib/api/requests';
-import type { Request, RequestFilters } from '@/lib/types/request.types';
+import type { RequestFilters } from '@/lib/types/request.types';
+import { useRequests, useMyRequests } from '@/lib/hooks/useRequests';
 import RequestCard from './RequestCard';
 import RequestFiltersComponent from './RequestFilters';
 import RequestSearch from './RequestSearch';
-import EmptyState from '@/components/ui/EmptyState';
+import { EmptyState, LoadingSpinner, ErrorMessage } from '@/components/ui';
+import { ResourceGrid } from '@/components/shared/data-display';
 
 interface RequestsListProps {
   showMyRequests?: boolean;
@@ -17,68 +17,35 @@ interface RequestsListProps {
 
 export default function RequestsList({ showMyRequests = false, filters }: RequestsListProps) {
   const t = useTranslations('pages.requests');
-  const [requests, setRequests] = useState<Request[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
   const [searchQuery, setSearchQuery] = useState('');
   const [activeFilters, setActiveFilters] = useState<RequestFilters>(filters || {});
 
-  const fetchRequests = useCallback(async () => {
-    try {
-      setLoading(true);
-      setError(null);
-      const params = {
-        ...activeFilters,
-        ...(searchQuery && { search: searchQuery }),
-      };
-      const data = showMyRequests
-        ? await requestsApi.getMyRequests(params)
-        : await requestsApi.getAll(params);
-      setRequests(data);
-    } catch (err) {
-      console.error('Failed to fetch requests:', err);
-      setError(t('fetchError'));
-    } finally {
-      setLoading(false);
-    }
-  }, [showMyRequests, activeFilters, searchQuery, t]);
+  const combinedFilters = useMemo(
+    () => ({
+      ...activeFilters,
+      ...(searchQuery && { search: searchQuery }),
+    }),
+    [activeFilters, searchQuery]
+  );
 
-  useEffect(() => {
-    fetchRequests();
-  }, [fetchRequests]);
+  const { data: requests, isLoading, error } = showMyRequests
+    ? useMyRequests(combinedFilters)
+    : useRequests(combinedFilters);
 
   const handleSearch = (query: string) => {
     setSearchQuery(query);
-    // Debounce search - fetch after user stops typing
-    const timeoutId = setTimeout(() => {
-      fetchRequests();
-    }, 500);
-    return () => clearTimeout(timeoutId);
   };
 
   const handleFilterChange = (newFilters: RequestFilters) => {
     setActiveFilters(newFilters);
   };
 
-  if (loading) {
-    return (
-      <div className="flex items-center justify-center py-12">
-        <div className="text-lg font-medium" style={{ color: cssVars.neutral.textSecondary }}>
-          {t('loading')}
-        </div>
-      </div>
-    );
+  if (isLoading) {
+    return <LoadingSpinner text={t('loading')} />;
   }
 
   if (error) {
-    return (
-      <div
-        className="rounded-2xl border-2 p-8 text-center"
-        style={{ borderColor: cssVars.status.error }}
-      >
-        <p style={{ color: cssVars.status.error }}>{error}</p>
-      </div>
-    );
+    return <ErrorMessage error={error} />;
   }
 
   return (
@@ -96,11 +63,11 @@ export default function RequestsList({ showMyRequests = false, filters }: Reques
           description={t('noRequestsDescription')}
         />
       ) : (
-        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+        <ResourceGrid columns={{ default: 1, md: 2, lg: 3 }}>
           {requests.map((request) => (
             <RequestCard key={request.id} request={request} />
           ))}
-        </div>
+        </ResourceGrid>
       )}
     </div>
   );

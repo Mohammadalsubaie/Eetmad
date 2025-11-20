@@ -2,186 +2,20 @@
 
 import AdminDataTable from '@/components/shared/admin/AdminDataTable';
 import AdminPageHeader from '@/components/shared/admin/AdminPageHeader';
-import { reviewsApi } from '@/lib/api/reviews';
-import type { Review } from '@/lib/types/review.types';
-import { cssVars } from '@/styles/theme';
-import { Calendar, CheckCircle, Eye, Star, XCircle } from 'lucide-react';
+import { useReviews } from '@/lib/hooks/useReviews';
+import { Star } from 'lucide-react';
 import { useTranslations, useLocale } from 'next-intl';
 import { useRouter } from 'next/navigation';
-import { useEffect, useState } from 'react';
 import Breadcrumbs from '@/components/shared/navigation/Breadcrumbs';
+import { useReviewsTableColumns } from '@/components/features/admin/ReviewsTableColumns';
 
 export default function ReviewsManagementPage() {
   const t = useTranslations('admin');
   const tPages = useTranslations('pages');
   const locale = useLocale();
   const router = useRouter();
-  const [loading, setLoading] = useState(false);
-  const [reviews, setReviews] = useState<Review[]>([]);
-
-  useEffect(() => {
-    const fetchReviews = async () => {
-      try {
-        setLoading(true);
-        const data = await reviewsApi.getAll();
-        setReviews(Array.isArray(data) ? data : []);
-      } catch (error) {
-        console.error('Failed to fetch reviews:', error);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchReviews();
-  }, []);
-
-  // Old inline mock data removed - now using API
-  /*
-  const [reviews] = useState<Review[]>([
-    {
-      id: '1',
-      projectId: 'project-1',
-      reviewerId: 'client-1',
-      reviewedId: 'supplier-1',
-      rating: 5,
-      reviewType: 'client_to_supplier',
-      title: 'عمل ممتاز',
-      comment: 'عمل ممتاز ومحترف جداً',
-      qualityRating: 5,
-      communicationRating: 5,
-      timelinessRating: 5,
-      professionalismRating: 5,
-      isVerified: true,
-      status: 'published',
-      response: null,
-      respondedAt: null,
-      helpfulCount: 12,
-      notHelpfulCount: 0,
-      createdAt: '2024-03-15T10:00:00Z',
-      updatedAt: '2024-03-15T10:00:00Z',
-    },
-    {
-      id: '2',
-      projectId: 'project-2',
-      reviewerId: 'client-2',
-      reviewedId: 'supplier-2',
-      rating: 4,
-      reviewType: 'client_to_supplier',
-      title: 'جيد جداً',
-      comment: 'جيد جداً لكن كان هناك بعض التأخير',
-      qualityRating: 5,
-      communicationRating: 4,
-      timelinessRating: 3,
-      professionalismRating: 4,
-      isVerified: true,
-      status: 'published',
-      response: null,
-      respondedAt: null,
-      helpfulCount: 8,
-      notHelpfulCount: 1,
-      createdAt: '2024-03-14T09:00:00Z',
-      updatedAt: '2024-03-14T09:00:00Z',
-    },
-  ]);
-  */
-
-  const columns = [
-    {
-      key: 'rating',
-      header: t('reviews.table.rating'),
-      render: (review: Review) => (
-        <div className="flex items-center gap-3">
-          <div
-            className="flex h-10 w-10 items-center justify-center rounded-xl font-bold"
-            style={{
-              backgroundColor: `color-mix(in srgb, ${cssVars.status.warning} 15%, transparent)`,
-              color: cssVars.status.warning,
-            }}
-          >
-            {review.rating}
-          </div>
-          <div className="flex gap-1">
-            {[...Array(5)].map((_, i) => (
-              <Star
-                key={i}
-                className="h-4 w-4"
-                style={{
-                  color: i < review.rating ? cssVars.status.warning : cssVars.neutral.border,
-                  fill: i < review.rating ? cssVars.status.warning : 'none',
-                }}
-              />
-            ))}
-          </div>
-        </div>
-      ),
-    },
-    {
-      key: 'comment',
-      header: t('reviews.table.comment'),
-      render: (review: Review) => (
-        <div>
-          <div className="font-semibold" style={{ color: cssVars.secondary.DEFAULT }}>
-            {review.comment.substring(0, 50)}...
-          </div>
-          <div className="text-xs" style={{ color: cssVars.neutral.textMuted }}>
-            مشروع #{review.projectId.slice(0, 8)}
-          </div>
-        </div>
-      ),
-    },
-    {
-      key: 'helpfulCount',
-      header: t('reviews.table.helpful'),
-      render: (review: Review) => (
-        <span className="font-bold" style={{ color: cssVars.secondary.DEFAULT }}>
-          {review.helpfulCount}
-        </span>
-      ),
-    },
-    {
-      key: 'createdAt',
-      header: t('reviews.table.date'),
-      render: (review: Review) => (
-        <div className="flex items-center gap-2">
-          <Calendar className="h-4 w-4" style={{ color: cssVars.neutral.textMuted }} />
-          <span style={{ color: cssVars.neutral.textSecondary }}>
-            {new Date(review.createdAt).toLocaleDateString('ar-SA')}
-          </span>
-        </div>
-      ),
-    },
-    {
-      key: 'isVerified',
-      header: t('reviews.table.verified'),
-      render: (review: Review) => (
-        <div className="flex items-center gap-1">
-          {review.isVerified ? (
-            <CheckCircle className="h-5 w-5" style={{ color: cssVars.status.success }} />
-          ) : (
-            <XCircle className="h-5 w-5" style={{ color: cssVars.status.error }} />
-          )}
-        </div>
-      ),
-    },
-    {
-      key: 'actions',
-      header: t('reviews.table.actions'),
-      render: (review: Review) => (
-        <button
-          onClick={(e) => {
-            e.stopPropagation();
-            router.push(`/admin/reviews/${review.id}`);
-          }}
-          className="rounded-lg p-2 transition-all hover:bg-opacity-80"
-          style={{
-            backgroundColor: `color-mix(in srgb, ${cssVars.primary.DEFAULT} 10%, transparent)`,
-          }}
-        >
-          <Eye className="h-4 w-4" style={{ color: cssVars.primary.DEFAULT }} />
-        </button>
-      ),
-    },
-  ];
+  const { reviews, isLoading } = useReviews();
+  const columns = useReviewsTableColumns();
 
   return (
     <div>
@@ -204,7 +38,7 @@ export default function ReviewsManagementPage() {
         columns={columns}
         searchPlaceholder={t('reviews.search')}
         onRowClick={(review) => router.push(`/admin/reviews/${review.id}`)}
-        isLoading={loading}
+        isLoading={isLoading}
         emptyMessage={t('reviews.empty')}
       />
     </div>

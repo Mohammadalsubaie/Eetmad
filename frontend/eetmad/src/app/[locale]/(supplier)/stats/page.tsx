@@ -1,10 +1,11 @@
 'use client';
 
-import { useState, useEffect, useCallback } from 'react';
+import { useMemo } from 'react';
 import { useTranslations, useLocale } from 'next-intl';
 import { DollarSign, TrendingUp, CheckCircle2, Star, Package, Award } from 'lucide-react';
 import { cssVars } from '@/styles/theme';
-import { suppliersApi } from '@/lib/api/suppliers';
+import { useSupplierStatistics } from '@/lib/hooks/useSupplier';
+import { LoadingSpinner, ErrorMessage } from '@/components/ui';
 import StatCard from '@/components/shared/cards/StatCard';
 import Breadcrumbs from '@/components/shared/navigation/Breadcrumbs';
 
@@ -19,41 +20,28 @@ interface SupplierStats {
 
 export default function StatsPage() {
   const t = useTranslations('pages.stats');
-  const tPages = useTranslations('pages');
   const locale = useLocale();
-  const [stats, setStats] = useState<SupplierStats | null>(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
-
-  const fetchStats = useCallback(async () => {
-    try {
-      setLoading(true);
-      setError(null);
-      const data = await suppliersApi.getStatistics();
-      setStats(data);
-    } catch (err) {
-      console.error('Failed to fetch stats:', err);
-      setError(t('fetchError'));
-    } finally {
-      setLoading(false);
-    }
-  }, [t]);
-
-  useEffect(() => {
-    fetchStats();
-  }, [fetchStats]);
+  const { stats, isLoading, error } = useSupplierStatistics();
 
   const formatCurrency = (amount: number) => {
     return `${amount.toLocaleString()} ${t('currency')}`;
   };
 
-  if (loading) {
+  const { acceptanceRate, completionRate } = useMemo(() => {
+    if (!stats) return { acceptanceRate: 0, completionRate: 0 };
+    const acceptance =
+      stats.totalOffers > 0 ? Math.round((stats.acceptedOffers / stats.totalOffers) * 100) : 0;
+    const completion =
+      stats.totalProjects > 0 ? Math.round((stats.completedProjects / stats.totalProjects) * 100) : 0;
+    return { acceptanceRate: acceptance, completionRate: completion };
+  }, [stats]);
+
+  if (isLoading) {
     return (
       <div className="container mx-auto py-8" style={{ backgroundColor: cssVars.neutral.bg }}>
+        <Breadcrumbs items={[{ label: t('title') }]} className="mb-6" />
         <div className="flex items-center justify-center py-12">
-          <div className="text-lg font-medium" style={{ color: cssVars.neutral.textSecondary }}>
-            {t('loading')}
-          </div>
+          <LoadingSpinner size="lg" />
         </div>
       </div>
     );
@@ -62,21 +50,14 @@ export default function StatsPage() {
   if (error || !stats) {
     return (
       <div className="container mx-auto py-8" style={{ backgroundColor: cssVars.neutral.bg }}>
-        <div
-          className="rounded-2xl border-2 p-8 text-center"
-          style={{ borderColor: cssVars.status.error }}
-        >
-          <p style={{ color: cssVars.status.error }}>{error || t('fetchError')}</p>
-        </div>
+        <Breadcrumbs items={[{ label: t('title') }]} className="mb-6" />
+        <ErrorMessage
+          error={error?.message || t('fetchError')}
+          variant="banner"
+        />
       </div>
     );
   }
-
-  const acceptanceRate =
-    stats.totalOffers > 0 ? Math.round((stats.acceptedOffers / stats.totalOffers) * 100) : 0;
-
-  const completionRate =
-    stats.totalProjects > 0 ? Math.round((stats.completedProjects / stats.totalProjects) * 100) : 0;
 
   return (
     <div className="container mx-auto py-8" style={{ backgroundColor: cssVars.neutral.bg }}>

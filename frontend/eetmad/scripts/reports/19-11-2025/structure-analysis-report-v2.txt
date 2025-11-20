@@ -1,0 +1,179 @@
+================================================================================
+📊 COMPONENT & PAGE STRUCTURE ANALYSIS REPORT (v2)
+================================================================================
+
+🏥 STRUCTURE HEALTH
+--------------------------------------------------------------------------------
+⚠️ Health Score: 65/100
+
+⚠️  Warnings:
+   • 130 exports appear to be unused
+
+📦 COMPONENT STATISTICS
+--------------------------------------------------------------------------------
+Total Component Exports: 287
+Exports in Use: 140
+Unused Exports: 130
+
+Component Distribution:
+   features/features                        199 exports (101 used, 51%)
+   shared/shared                             59 exports (20 used, 34%)
+   ui/ui                                     29 exports (13 used, 45%)
+
+📄 PAGE STATISTICS
+--------------------------------------------------------------------------------
+Total Pages: 61
+Pages by Route Group:
+   admin                23 pages
+   auth                 5 pages
+   client               9 pages
+   main                 4 pages
+   public               10 pages
+   root                 1 pages
+   supplier             9 pages
+
+🚫 UNUSED EXPORTS (Top 20)
+--------------------------------------------------------------------------------
+   • AnalyticsDashboard.AnalyticsDashboard (features/features)
+   • AuditLogViewer.AuditLogViewer (features/features)
+   • CategoryManager.CategoryManager (features/features)
+   • DisputeReview.DisputeReview (features/features)
+   • ReportsQueue.ReportsQueue (features/features)
+   • SystemSettings.SystemSettings (features/features)
+   • UserManagement.UserManagement (features/features)
+   • VerificationQueue.VerificationQueue (features/features)
+   • CategoryBreadcrumb.CategoryBreadcrumb (features/features)
+   • FavoriteButton.FavoriteButton (features/features)
+   • ReportButton.ReportButton (features/features)
+   • SavedSearches.SavedSearches (features/features)
+   • SearchWithFilters.SearchWithFilters (features/features)
+   • ShareButton.ShareButton (features/features)
+   • AddClauseModal.AddClauseModal (features/features)
+   • ContractVersionHistory.ContractVersionHistory (features/features)
+   • ContractViewer.ContractViewer (features/features)
+   • DownloadContractButton.DownloadContractButton (features/features)
+   • SignatureModal.SignatureModal (features/features)
+   • DisputeDetail.DisputeDetail (features/features)
+   ... and 110 more
+
+⭐ MOST USED EXPORTS
+--------------------------------------------------------------------------------
+   Breadcrumbs                    used in 54 pages (shared/shared)
+   ErrorMessage                   used in 39 pages (ui/ui)
+   LoadingSpinner                 used in 38 pages (ui/ui)
+   Button                         used in 25 pages (ui/ui)
+   AdminPageHeader                used in 22 pages (shared/shared)
+   AdminDataTable                 used in 12 pages (shared/shared)
+   EmptyState                     used in  9 pages (ui/ui)
+   AdminActionButton              used in  7 pages (shared/shared)
+   StatusBadge                    used in  7 pages (shared/shared)
+   Card                           used in  6 pages (ui/ui)
+
+🔗 PAGE CONNECTIVITY
+--------------------------------------------------------------------------------
+Pages with Most Outgoing Links:
+   /                                        30 links
+   /requests/[id]/edit                      6 links
+   /offers/[id]/edit                        5 links
+   /admin/categories/[id]/edit              4 links
+   /admin/categories/[id]                   4 links
+   /admin/categories/new                    4 links
+   /admin/reviews/[id]/edit                 4 links
+   /admin/reviews/[id]                      4 links
+   /admin/reviews/new                       4 links
+   /projects/[id]                           4 links
+
+📋 COMPONENT USAGE BY PAGE
+--------------------------------------------------------------------------------
+
+/offers/[id] (supplier):
+   Exports used: 13
+   • LoadingSpinner
+   • ErrorMessage
+   • Button
+   • Breadcrumbs
+   • OfferHeader
+   ... and 3 more
+
+/admin/payments/[id] (admin):
+   Exports used: 12
+   • LoadingSpinner
+   • ErrorMessage
+   • AdminPageHeader
+   • Breadcrumbs
+   • PaymentOverviewCard
+   ... and 5 more
+
+/admin/dashboard (admin):
+   Exports used: 11
+   • LoadingSpinner
+   • ErrorMessage
+   • AdminPageHeader
+   • Breadcrumbs
+   • AdminDashboardStats
+   ... and 4 more
+
+/projects/[id] (client):
+   Exports used: 11
+   • LoadingSpinner
+   • ErrorMessage
+   • Button
+   • Breadcrumbs
+   • ProjectHeader
+   ... and 4 more
+
+/stats (supplier):
+   Exports used: 11
+   • LoadingSpinner
+   • ErrorMessage
+   • StatCard
+   • Breadcrumbs
+
+/supplier-projects/[id] (supplier):
+   Exports used: 11
+   • LoadingSpinner
+   • ErrorMessage
+   • Button
+   • Breadcrumbs
+   • ProjectHeader
+   ... and 4 more
+
+/admin/categories/[id]/edit (admin):
+   Exports used: 10
+   • LoadingSpinner
+   • ErrorMessage
+   • Button
+   • AdminPageHeader
+   • Breadcrumbs
+   ... and 1 more
+
+/admin/categories/[id] (admin):
+   Exports used: 10
+   • LoadingSpinner
+   • ErrorMessage
+   • AdminActionButton
+   • AdminPageHeader
+   • Breadcrumbs
+   ... and 4 more
+
+/admin/reviews/[id]/edit (admin):
+   Exports used: 10
+   • LoadingSpinner
+   • ErrorMessage
+   • Button
+   • AdminPageHeader
+   • Breadcrumbs
+   ... and 1 more
+
+/admin/reviews/[id] (admin):
+   Exports used: 10
+   • LoadingSpinner
+   • ErrorMessage
+   • AdminActionButton
+   • AdminPageHeader
+   • Breadcrumbs
+   ... and 4 more
+
+================================================================================
+Report generated at: 11/19/2025, 10:58:05 PM
+================================================================================

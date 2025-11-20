@@ -30,9 +30,9 @@ interface ValidationResult {
   missingInEn: string[];
   missingInAr: string[];
   structureMismatch: boolean;
-  expectedStructure: Record<string, unknown>;
-  actualStructureEn: Record<string, unknown>;
-  actualStructureAr: Record<string, unknown>;
+  expectedStructure: Record<string, unknown> | null;
+  actualStructureEn: Record<string, unknown> | null;
+  actualStructureAr: Record<string, unknown> | null;
 }
 
 /**
@@ -145,15 +145,19 @@ function getNamespaceStructure(
   translations: TranslationFile,
   namespace: string
 ): Record<string, unknown> | null {
-  return getNestedValue(translations, namespace) || null;
+  const value = getNestedValue(translations, namespace);
+  if (value && typeof value === 'object' && value !== null && !Array.isArray(value)) {
+    return value as Record<string, unknown>;
+  }
+  return null;
 }
 
 /**
  * Compare two objects and find differences
  */
 function compareStructures(
-  obj1: Record<string, unknown>,
-  obj2: Record<string, unknown>,
+  obj1: Record<string, unknown> | null,
+  obj2: Record<string, unknown> | null,
   path: string = ''
 ): string[] {
   const differences: string[] = [];
@@ -190,7 +194,26 @@ function compareStructures(
     } else if (!(key in obj2)) {
       differences.push(`${newPath}: Missing in second object`);
     } else {
-      differences.push(...compareStructures(obj1[key], obj2[key], newPath));
+      const val1 = obj1[key];
+      const val2 = obj2[key];
+      if (
+        val1 &&
+        val2 &&
+        typeof val1 === 'object' &&
+        typeof val2 === 'object' &&
+        val1 !== null &&
+        val2 !== null &&
+        !Array.isArray(val1) &&
+        !Array.isArray(val2)
+      ) {
+        differences.push(
+          ...compareStructures(
+            val1 as Record<string, unknown>,
+            val2 as Record<string, unknown>,
+            newPath
+          )
+        );
+      }
     }
   }
 

@@ -1,21 +1,22 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import { Column } from '@/lib/types/column.type';
 import { cssVars } from '@/styles/theme';
+import { motion } from 'framer-motion';
 import { ChevronLeft, ChevronRight, Search } from 'lucide-react';
-import { useState } from 'react';
 import { useTranslations } from 'next-intl';
+import { useState } from 'react';
 
-interface Column<T> {
-  key: string;
-  header: string;
-  render?: (item: T) => React.ReactNode;
-  sortable?: boolean;
-}
+/**
+ * Admin-specific column configuration type.
+ * This is an alias for Column<T> to maintain architectural separation
+ * where admin components reference admin-specific types.
+ */
+export type ColumnConfig<T> = Column<T>;
 
 interface AdminDataTableProps<T> {
   data: T[];
-  columns: Column<T>[];
+  columns: ColumnConfig<T>[];
   searchPlaceholder?: string;
   onRowClick?: (item: T) => void;
   isLoading?: boolean;
@@ -138,7 +139,7 @@ export default function AdminDataTable<T extends { id: string }>({
                       {column.render
                         ? column.render(item)
                         : String(
-                            ((item as unknown as Record<string, unknown>)[column.key] as
+                            ((item as unknown as Record<string, unknown>)[String(column.key)] as
                               | string
                               | number
                               | boolean

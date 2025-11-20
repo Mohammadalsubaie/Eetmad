@@ -1,90 +1,75 @@
 'use client';
 
-import { useState } from 'react';
+import { Card, ErrorMessage, LoadingSpinner } from '@/components/ui';
+import { useResetPassword } from '@/lib/hooks/useAuthMutations';
 import { cssVars } from '@/styles/theme';
-import { useTranslations, useLocale } from 'next-intl';
 import { motion } from 'framer-motion';
 import {
-  Lock,
+  ArrowLeft,
+  ArrowRight,
+  CheckCircle2,
   Eye,
   EyeOff,
-  ArrowRight,
-  ArrowLeft,
-  Sparkles,
-  CheckCircle2,
+  Lock,
   Shield,
+  Sparkles,
 } from 'lucide-react';
-import Card from '@/components/ui/Card/Card';
+import { useLocale, useTranslations } from 'next-intl';
+import { useRouter, useSearchParams } from 'next/navigation';
+import { useEffect, useState } from 'react';
 
 export default function ResetPasswordForm() {
   const t = useTranslations('auth');
   const locale = useLocale();
+  const router = useRouter();
+  const searchParams = useSearchParams();
+  const token = searchParams.get('token') || '';
   const isRTL = locale === 'ar';
+  const { reset, isLoading, error, success } = useResetPassword();
   const [newPassword, setNewPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
-  const [isSuccess, setIsSuccess] = useState(false);
-  const [error, setError] = useState('');
+  const [validationError, setValidationError] = useState('');
+
+  useEffect(() => {
+    if (success) {
+      setTimeout(() => {
+        router.push('/login');
+      }, 2000);
+    }
+  }, [success, router]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setError('');
+    setValidationError('');
 
     // Validation
     if (newPassword.length < 8) {
-      setError(t('common.passwordTooShort'));
+      setValidationError(t('common.passwordTooShort'));
       return;
     }
 
     if (newPassword !== confirmPassword) {
-      setError(t('common.passwordsNotMatch'));
+      setValidationError(t('common.passwordsNotMatch'));
       return;
     }
 
-    setIsLoading(true);
+    if (!token) {
+      setValidationError(t('resetPassword.invalidToken'));
+      return;
+    }
 
-    // TODO: Implement actual reset password logic
-    setTimeout(() => {
-      console.log('Reset password');
-      setIsSuccess(true);
-      setIsLoading(false);
-
-      // Redirect to login after 2 seconds
-      setTimeout(() => {
-        window.location.href = '/login';
-      }, 2000);
-    }, 1500);
+    try {
+      await reset(token, newPassword);
+    } catch (err) {
+      // Error handled by hook
+    }
   };
-
-  // Password strength indicator
-  const getPasswordStrength = () => {
-    if (newPassword.length === 0) return { label: '', strength: 0, color: cssVars.neutral.border };
-    if (newPassword.length < 8)
-      return {
-        label: t('common.passwordStrength.weak'),
-        strength: 33,
-        color: cssVars.status.error,
-      };
-    if (newPassword.length < 12)
-      return {
-        label: t('common.passwordStrength.medium'),
-        strength: 66,
-        color: cssVars.status.warning,
-      };
-    return {
-      label: t('common.passwordStrength.strong'),
-      strength: 100,
-      color: cssVars.status.success,
-    };
-  };
-
-  const strength = getPasswordStrength();
 
   return (
     <Card className="w-full max-w-md p-8 md:p-10">
-      {!isSuccess ? (
+      {!success ? (
         <>
           {/* Header */}
           <div className="mb-8 text-center">
@@ -113,19 +98,16 @@ export default function ResetPasswordForm() {
           </div>
 
           {/* Error Message */}
-          {error && (
+          {(error || validationError) && (
             <motion.div
               initial={{ opacity: 0, y: -10 }}
               animate={{ opacity: 1, y: 0 }}
-              className="mb-6 rounded-xl border-2 p-4"
-              style={{
-                backgroundColor: `color-mix(in srgb, ${cssVars.status.error} 10%, transparent)`,
-                borderColor: cssVars.status.error,
-              }}
+              className="mb-6"
             >
-              <p className="text-sm font-semibold" style={{ color: cssVars.status.error }}>
-                {error}
-              </p>
+              <ErrorMessage
+                error={error?.message || validationError || String(error)}
+                variant="inline"
+              />
             </motion.div>
           )}
 
@@ -170,35 +152,6 @@ export default function ResetPasswordForm() {
                   )}
                 </button>
               </div>
-
-              {/* Password Strength Indicator */}
-              {newPassword.length > 0 && (
-                <div className="mt-2">
-                  <div className="mb-1 flex items-center justify-between">
-                    <span
-                      className="text-xs font-semibold"
-                      style={{ color: cssVars.neutral.textSecondary }}
-                    >
-                      {t('common.passwordStrength.label')}
-                    </span>
-                    <span className="text-xs font-bold" style={{ color: strength.color }}>
-                      {strength.label}
-                    </span>
-                  </div>
-                  <div
-                    className="h-2 w-full overflow-hidden rounded-full"
-                    style={{ backgroundColor: cssVars.neutral.border }}
-                  >
-                    <motion.div
-                      initial={{ width: 0 }}
-                      animate={{ width: `${strength.strength}%` }}
-                      transition={{ duration: 0.3 }}
-                      className="h-full rounded-full"
-                      style={{ backgroundColor: strength.color }}
-                    />
-                  </div>
-                </div>
-              )}
             </div>
 
             {/* Confirm Password Field */}
@@ -268,10 +221,7 @@ export default function ResetPasswordForm() {
               }}
             >
               {isLoading ? (
-                <div
-                  className="h-6 w-6 animate-spin rounded-full border-2 border-t-transparent"
-                  style={{ borderColor: cssVars.neutral.surface }}
-                />
+                <LoadingSpinner size="sm" />
               ) : (
                 <>
                   {t('resetPassword.submitButton')}

@@ -1,15 +1,17 @@
 'use client';
 
+import ReviewFormFields from '@/components/features/reviews/ReviewFormFields';
 import AdminPageHeader from '@/components/shared/admin/AdminPageHeader';
-import { reviewsApi, type UpdateReviewInput } from '@/lib/api/reviews';
-import type { Review } from '@/lib/types/review.types';
+import Breadcrumbs from '@/components/shared/navigation/Breadcrumbs';
+import { Button, ErrorMessage, LoadingSpinner } from '@/components/ui';
+import type { UpdateReviewInput } from '@/lib/api/reviews';
+import { useReview, useUpdateReview } from '@/lib/hooks/useReviews';
 import { cssVars } from '@/styles/theme';
 import { motion } from 'framer-motion';
 import { ArrowLeft, Save, Star } from 'lucide-react';
-import { useTranslations, useLocale } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
 import { useParams, useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
-import Breadcrumbs from '@/components/shared/navigation/Breadcrumbs';
 
 export default function EditReviewPage() {
   const params = useParams();
@@ -19,10 +21,8 @@ export default function EditReviewPage() {
   const locale = useLocale();
   const reviewId = params.id as string;
 
-  const [review, setReview] = useState<Review | null>(null);
-  const [loading, setLoading] = useState(true);
-  const [submitting, setSubmitting] = useState(false);
-  const [error, setError] = useState<string | null>(null);
+  const { review, isLoading: loading, error: fetchError } = useReview(reviewId);
+  const { updateReview, isLoading: submitting, error: updateError } = useUpdateReview();
 
   const [formData, setFormData] = useState<UpdateReviewInput>({
     rating: 5,
@@ -36,34 +36,23 @@ export default function EditReviewPage() {
   });
 
   useEffect(() => {
-    const fetchReview = async () => {
-      try {
-        setLoading(true);
-        const data = await reviewsApi.getById(reviewId);
-        setReview(data);
-        setFormData({
-          rating: data.rating,
-          title: data.title,
-          comment: data.comment,
-          qualityRating: data.qualityRating || undefined,
-          communicationRating: data.communicationRating || undefined,
-          timelinessRating: data.timelinessRating || undefined,
-          professionalismRating: data.professionalismRating || undefined,
-          response: data.response || undefined,
-        });
-      } catch (error) {
-        console.error('Failed to fetch review:', error);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    if (reviewId) {
-      fetchReview();
+    if (review) {
+      setFormData({
+        rating: review.rating,
+        title: review.title,
+        comment: review.comment,
+        qualityRating: review.qualityRating || undefined,
+        communicationRating: review.communicationRating || undefined,
+        timelinessRating: review.timelinessRating || undefined,
+        professionalismRating: review.professionalismRating || undefined,
+        response: review.response || undefined,
+      });
     }
-  }, [reviewId]);
+  }, [review]);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
+  ) => {
     const { name, value } = e.target;
     setFormData((prev: UpdateReviewInput) => ({
       ...prev,
@@ -80,43 +69,48 @@ export default function EditReviewPage() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setSubmitting(true);
-    setError(null);
-
     try {
-      await reviewsApi.update(reviewId, formData);
+      await updateReview(reviewId, formData);
       router.push(`/admin/reviews/${reviewId}`);
     } catch (err) {
-      console.error('Failed to update review:', err);
-      setError(t('reviews.edit.error'));
-    } finally {
-      setSubmitting(false);
+      // Error is handled by the hook
     }
   };
 
   if (loading) {
     return (
-      <div className="flex h-64 items-center justify-center">
+      <div>
         <Breadcrumbs
           items={[
             { label: tPages('admin.title'), href: `/${locale}/admin` },
             { label: tPages('reviews.title'), href: `/${locale}/admin/reviews` },
-            // TODO: Replace with actual data for id
-            { label: '{id}' },
+            { label: reviewId },
             { label: tPages('edit.title') },
           ]}
           className="mb-6"
         />
-
-        <div style={{ color: cssVars.neutral.textSecondary }}>{t('reviews.loading')}</div>
+        <div className="flex h-64 items-center justify-center">
+          <LoadingSpinner size="lg" />
+        </div>
       </div>
     );
   }
 
-  if (!review) {
+  if (fetchError || !review) {
     return (
-      <div className="flex h-64 items-center justify-center">
-        <div style={{ color: cssVars.status.error }}>{t('reviews.notFound')}</div>
+      <div>
+        <Breadcrumbs
+          items={[
+            { label: tPages('admin.title'), href: `/${locale}/admin` },
+            { label: tPages('reviews.title'), href: `/${locale}/admin/reviews` },
+            { label: reviewId },
+            { label: tPages('edit.title') },
+          ]}
+          className="mb-6"
+        />
+        <div className="flex h-64 items-center justify-center">
+          <ErrorMessage error={fetchError?.message || t('reviews.notFound')} variant="banner" />
+        </div>
       </div>
     );
   }
@@ -154,297 +148,40 @@ export default function EditReviewPage() {
           borderColor: cssVars.neutral.border,
         }}
       >
-        {error && (
-          <div
-            className="mb-6 rounded-xl border-2 p-4"
-            style={{
-              borderColor: cssVars.status.error,
-              backgroundColor: `color-mix(in srgb, ${cssVars.status.error} 10%, transparent)`,
-            }}
-          >
-            <p style={{ color: cssVars.status.error }}>{error}</p>
+        {updateError && (
+          <div className="mb-6">
+            <ErrorMessage error={updateError.message || t('reviews.edit.error')} variant="inline" />
           </div>
         )}
 
-        <div className="space-y-6">
-          {/* Overall Rating */}
-          <div>
-            <label
-              className="mb-2 block text-sm font-semibold"
-              style={{ color: cssVars.secondary.DEFAULT }}
-            >
-              {t('reviews.form.rating')} *
-            </label>
-            <div className="flex items-center gap-2">
-              {[1, 2, 3, 4, 5].map((rating) => (
-                <motion.button
-                  key={rating}
-                  type="button"
-                  whileHover={{ scale: 1.1 }}
-                  whileTap={{ scale: 0.9 }}
-                  onClick={() => handleRatingChange('rating', rating)}
-                  className="rounded-lg p-2 transition-all"
-                  style={{
-                    backgroundColor:
-                      (formData.rating ?? 0) >= rating
-                        ? `color-mix(in srgb, ${cssVars.status.warning} 15%, transparent)`
-                        : 'transparent',
-                  }}
-                >
-                  <Star
-                    className="h-6 w-6"
-                    style={{
-                      color:
-                        (formData.rating ?? 0) >= rating
-                          ? cssVars.status.warning
-                          : cssVars.neutral.border,
-                      fill: (formData.rating ?? 0) >= rating ? cssVars.status.warning : 'none',
-                    }}
-                  />
-                </motion.button>
-              ))}
-            </div>
-          </div>
-
-          {/* Title */}
-          <div>
-            <label
-              className="mb-2 block text-sm font-semibold"
-              style={{ color: cssVars.secondary.DEFAULT }}
-            >
-              {t('reviews.form.title')} *
-            </label>
-            <input
-              type="text"
-              name="title"
-              value={formData.title}
-              onChange={handleChange}
-              required
-              className="w-full rounded-xl border-2 px-4 py-3 outline-none transition-all focus:border-opacity-100"
-              style={{
-                backgroundColor: cssVars.neutral.bg,
-                borderColor: cssVars.neutral.border,
-                color: cssVars.secondary.DEFAULT,
-              }}
-            />
-          </div>
-
-          {/* Comment */}
-          <div>
-            <label
-              className="mb-2 block text-sm font-semibold"
-              style={{ color: cssVars.secondary.DEFAULT }}
-            >
-              {t('reviews.form.comment')} *
-            </label>
-            <textarea
-              name="comment"
-              value={formData.comment}
-              onChange={handleChange}
-              required
-              rows={6}
-              className="w-full rounded-xl border-2 px-4 py-3 outline-none transition-all focus:border-opacity-100"
-              style={{
-                backgroundColor: cssVars.neutral.bg,
-                borderColor: cssVars.neutral.border,
-                color: cssVars.secondary.DEFAULT,
-              }}
-            />
-          </div>
-
-          {/* Sub-ratings */}
-          <div className="grid gap-4 sm:grid-cols-2">
-            <div>
-              <label
-                className="mb-2 block text-sm font-semibold"
-                style={{ color: cssVars.secondary.DEFAULT }}
-              >
-                {t('reviews.form.qualityRating')}
-              </label>
-              <div className="flex items-center gap-2">
-                {[1, 2, 3, 4, 5].map((rating) => (
-                  <motion.button
-                    key={rating}
-                    type="button"
-                    whileHover={{ scale: 1.1 }}
-                    whileTap={{ scale: 0.9 }}
-                    onClick={() => handleRatingChange('qualityRating', rating)}
-                    className="rounded-lg p-1 transition-all"
-                  >
-                    <Star
-                      className="h-4 w-4"
-                      style={{
-                        color:
-                          (formData.qualityRating || 0) >= rating
-                            ? cssVars.status.warning
-                            : cssVars.neutral.border,
-                        fill:
-                          (formData.qualityRating || 0) >= rating ? cssVars.status.warning : 'none',
-                      }}
-                    />
-                  </motion.button>
-                ))}
-              </div>
-            </div>
-
-            <div>
-              <label
-                className="mb-2 block text-sm font-semibold"
-                style={{ color: cssVars.secondary.DEFAULT }}
-              >
-                {t('reviews.form.communicationRating')}
-              </label>
-              <div className="flex items-center gap-2">
-                {[1, 2, 3, 4, 5].map((rating) => (
-                  <motion.button
-                    key={rating}
-                    type="button"
-                    whileHover={{ scale: 1.1 }}
-                    whileTap={{ scale: 0.9 }}
-                    onClick={() => handleRatingChange('communicationRating', rating)}
-                    className="rounded-lg p-1 transition-all"
-                  >
-                    <Star
-                      className="h-4 w-4"
-                      style={{
-                        color:
-                          (formData.communicationRating || 0) >= rating
-                            ? cssVars.status.warning
-                            : cssVars.neutral.border,
-                        fill:
-                          (formData.communicationRating || 0) >= rating
-                            ? cssVars.status.warning
-                            : 'none',
-                      }}
-                    />
-                  </motion.button>
-                ))}
-              </div>
-            </div>
-
-            <div>
-              <label
-                className="mb-2 block text-sm font-semibold"
-                style={{ color: cssVars.secondary.DEFAULT }}
-              >
-                {t('reviews.form.timelinessRating')}
-              </label>
-              <div className="flex items-center gap-2">
-                {[1, 2, 3, 4, 5].map((rating) => (
-                  <motion.button
-                    key={rating}
-                    type="button"
-                    whileHover={{ scale: 1.1 }}
-                    whileTap={{ scale: 0.9 }}
-                    onClick={() => handleRatingChange('timelinessRating', rating)}
-                    className="rounded-lg p-1 transition-all"
-                  >
-                    <Star
-                      className="h-4 w-4"
-                      style={{
-                        color:
-                          (formData.timelinessRating || 0) >= rating
-                            ? cssVars.status.warning
-                            : cssVars.neutral.border,
-                        fill:
-                          (formData.timelinessRating || 0) >= rating
-                            ? cssVars.status.warning
-                            : 'none',
-                      }}
-                    />
-                  </motion.button>
-                ))}
-              </div>
-            </div>
-
-            <div>
-              <label
-                className="mb-2 block text-sm font-semibold"
-                style={{ color: cssVars.secondary.DEFAULT }}
-              >
-                {t('reviews.form.professionalismRating')}
-              </label>
-              <div className="flex items-center gap-2">
-                {[1, 2, 3, 4, 5].map((rating) => (
-                  <motion.button
-                    key={rating}
-                    type="button"
-                    whileHover={{ scale: 1.1 }}
-                    whileTap={{ scale: 0.9 }}
-                    onClick={() => handleRatingChange('professionalismRating', rating)}
-                    className="rounded-lg p-1 transition-all"
-                  >
-                    <Star
-                      className="h-4 w-4"
-                      style={{
-                        color:
-                          (formData.professionalismRating || 0) >= rating
-                            ? cssVars.status.warning
-                            : cssVars.neutral.border,
-                        fill:
-                          (formData.professionalismRating || 0) >= rating
-                            ? cssVars.status.warning
-                            : 'none',
-                      }}
-                    />
-                  </motion.button>
-                ))}
-              </div>
-            </div>
-          </div>
-
-          {/* Response */}
-          <div>
-            <label
-              className="mb-2 block text-sm font-semibold"
-              style={{ color: cssVars.secondary.DEFAULT }}
-            >
-              {t('reviews.form.response')}
-            </label>
-            <textarea
-              name="response"
-              value={formData.response || ''}
-              onChange={handleChange}
-              rows={4}
-              className="w-full rounded-xl border-2 px-4 py-3 outline-none transition-all focus:border-opacity-100"
-              style={{
-                backgroundColor: cssVars.neutral.bg,
-                borderColor: cssVars.neutral.border,
-                color: cssVars.secondary.DEFAULT,
-              }}
-            />
-          </div>
-        </div>
+        <ReviewFormFields
+          formData={formData}
+          onChange={handleChange}
+          onRatingChange={handleRatingChange}
+          showProjectFields={false}
+        />
 
         {/* Actions */}
         <div className="mt-8 flex justify-end gap-3">
-          <motion.button
-            type="button"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            onClick={() => router.back()}
-            className="rounded-xl px-6 py-3 font-semibold transition-all"
-            style={{
-              backgroundColor: `color-mix(in srgb, ${cssVars.neutral.border} 30%, transparent)`,
-              color: cssVars.neutral.textSecondary,
-            }}
-          >
+          <Button type="button" variant="outline" onClick={() => router.back()}>
             {t('common.cancel')}
-          </motion.button>
-          <motion.button
+          </Button>
+          <Button
             type="submit"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
+            variant="primary"
             disabled={submitting}
-            className="flex items-center gap-2 rounded-xl px-6 py-3 font-semibold transition-all"
-            style={{
-              background: cssVars.gradient.gold,
-              color: cssVars.secondary.DEFAULT,
-            }}
+            icon={Save}
+            iconPosition="left"
           >
-            <Save className="h-4 w-4" />
-            {submitting ? t('common.saving') : t('common.save')}
-          </motion.button>
+            {submitting ? (
+              <>
+                <LoadingSpinner size="sm" className="mr-2" />
+                {t('common.saving')}
+              </>
+            ) : (
+              t('common.save')
+            )}
+          </Button>
         </div>
       </motion.form>
     </div>

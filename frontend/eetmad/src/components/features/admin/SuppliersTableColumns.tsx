@@ -1,11 +1,11 @@
 'use client';
 
-import { useRouter } from 'next/navigation';
-import { useTranslations } from 'next-intl';
-import { CheckCircle, Eye, Shield, Star, XCircle } from 'lucide-react';
-import { cssVars } from '@/styles/theme';
-import type { Supplier } from '@/lib/types/supplier.types';
 import type { ColumnConfig } from '@/components/shared/admin/AdminDataTable';
+import type { Supplier } from '@/lib/types/supplier.types';
+import { cssVars } from '@/styles/theme';
+import { CheckCircle, Eye, Shield, Star, XCircle } from 'lucide-react';
+import { useTranslations } from 'next-intl';
+import { useRouter } from 'next/navigation';
 
 export function useSuppliersTableColumns(): ColumnConfig<Supplier>[] {
   const t = useTranslations('admin');
@@ -47,7 +47,7 @@ export function useSuppliersTableColumns(): ColumnConfig<Supplier>[] {
             {(supplier.rating ?? 0).toFixed(1)}
           </span>
           <span className="text-xs" style={{ color: cssVars.neutral.textMuted }}>
-            ({(supplier.totalReviews ?? 0)})
+            ({supplier.totalReviews ?? 0})
           </span>
         </div>
       ),
@@ -122,4 +122,3 @@ export function useSuppliersTableColumns(): ColumnConfig<Supplier>[] {
     },
   ];
 }
-

@@ -1,11 +1,11 @@
 'use client';
 
-import { useRouter } from 'next/navigation';
-import { useTranslations } from 'next-intl';
-import { Calendar, CheckCircle, Eye, Star, XCircle } from 'lucide-react';
-import { cssVars } from '@/styles/theme';
-import type { Review } from '@/lib/types/review.types';
 import type { ColumnConfig } from '@/components/shared/admin/AdminDataTable';
+import type { Review } from '@/lib/types/review.types';
+import { cssVars } from '@/styles/theme';
+import { Calendar, CheckCircle, Eye, Star, XCircle } from 'lucide-react';
+import { useTranslations } from 'next-intl';
+import { useRouter } from 'next/navigation';
 
 export function useReviewsTableColumns(): ColumnConfig<Review>[] {
   const t = useTranslations('admin');
@@ -109,4 +109,3 @@ export function useReviewsTableColumns(): ColumnConfig<Review>[] {
     },
   ];
 }
-

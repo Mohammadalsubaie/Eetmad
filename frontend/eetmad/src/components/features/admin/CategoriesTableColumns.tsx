@@ -115,4 +115,3 @@ export function useCategoriesTableColumns(): ColumnConfig<Category>[] {
     },
   ];
 }
-

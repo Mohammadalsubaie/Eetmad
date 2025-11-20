@@ -1,12 +1,12 @@
 'use client';
 
-import { useRouter } from 'next/navigation';
-import { useTranslations } from 'next-intl';
-import { Calendar, DollarSign, Eye, FileText } from 'lucide-react';
-import { cssVars } from '@/styles/theme';
+import type { ColumnConfig } from '@/components/shared/admin/AdminDataTable';
 import StatusBadge from '@/components/shared/badges/StatusBadge';
 import type { Request } from '@/lib/types/request.types';
-import type { ColumnConfig } from '@/components/shared/admin/AdminDataTable';
+import { cssVars } from '@/styles/theme';
+import { Calendar, DollarSign, Eye, FileText } from 'lucide-react';
+import { useTranslations } from 'next-intl';
+import { useRouter } from 'next/navigation';
 
 export function useRequestsTableColumns(): ColumnConfig<Request>[] {
   const t = useTranslations('admin');
@@ -99,4 +99,3 @@ export function useRequestsTableColumns(): ColumnConfig<Request>[] {
     },
   ];
 }
-

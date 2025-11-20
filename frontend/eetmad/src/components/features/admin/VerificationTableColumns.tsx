@@ -1,10 +1,10 @@
 'use client';
 
-import { useTranslations } from 'next-intl';
-import { Building2, Calendar, CheckCircle, Eye, FileText, XCircle } from 'lucide-react';
-import { cssVars } from '@/styles/theme';
-import type { VerificationDocument } from '@/lib/types/verification.types';
 import type { ColumnConfig } from '@/components/shared/admin/AdminDataTable';
+import type { VerificationDocument } from '@/lib/types/verification.types';
+import { cssVars } from '@/styles/theme';
+import { Building2, Calendar, CheckCircle, Eye, FileText, XCircle } from 'lucide-react';
+import { useTranslations } from 'next-intl';
 
 interface VerificationTableColumnsProps {
   onApprove: (docId: string) => void;
@@ -152,4 +152,3 @@ export function useVerificationTableColumns({
     },
   ];
 }
-

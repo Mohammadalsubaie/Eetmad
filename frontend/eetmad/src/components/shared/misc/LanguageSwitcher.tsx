@@ -21,6 +21,13 @@ export function LanguageSwitcher() {
   const handleLanguageChange = (newLocale: string) => {
     if (newLocale === locale) return;
 
+    // Save locale preference to localStorage and cookie
+    if (typeof window !== 'undefined') {
+      localStorage.setItem('locale', newLocale);
+      // Set cookie that expires in 1 year
+      document.cookie = `NEXT_LOCALE=${newLocale}; path=/; max-age=${365 * 24 * 60 * 60}; SameSite=Lax`;
+    }
+
     startTransition(() => {
       // Remove current locale from pathname and add new one
       const pathWithoutLocale = pathname.replace(`/${locale}`, '');

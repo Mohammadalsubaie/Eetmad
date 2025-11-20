@@ -23,8 +23,8 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
   useEffect(() => {
     const stored = localStorage.getItem('theme') as Theme | null;
     const storedThemeOption = localStorage.getItem('themeOption') as ThemeOption | null;
-    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-    const initialTheme = stored || (prefersDark ? 'dark' : 'light');
+    // Always default to light if no stored preference
+    const initialTheme = stored || 'light';
 
     // eslint-disable-next-line react-hooks/set-state-in-effect
     setThemeState(initialTheme);

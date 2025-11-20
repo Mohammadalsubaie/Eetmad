@@ -2,15 +2,7 @@
 
 import { cssVars } from '@/styles/theme';
 import { motion } from 'framer-motion';
-import {
-  Activity,
-  ArrowRight,
-  Building2,
-  DollarSign,
-  Play,
-  Sparkles,
-  TrendingUp,
-} from 'lucide-react';
+import { Activity, ArrowRight, Building2, DollarSign, Sparkles, TrendingUp } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 import React from 'react';
 
@@ -66,7 +58,7 @@ const HeroSection: React.FC = () => {
 
             {/* Main Heading */}
             <h1
-              className="mb-6 text-5xl font-bold leading-tight lg:text-6xl xl:text-7xl"
+              className="mb-6 text-4xl font-bold leading-tight lg:text-3xl xl:text-5xl"
               style={{ color: cssVars.neutral.bg }}
             >
               {t('title')} <span style={{ color: cssVars.accent.warm }}>{t('titleHighlight')}</span>{' '}
@@ -83,82 +75,26 @@ const HeroSection: React.FC = () => {
 
             {/* CTA Buttons */}
             <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="flex items-center gap-3 rounded-2xl px-10 py-4 text-lg font-bold shadow-2xl transition-all"
-                style={{
-                  background: cssVars.gradient.gold,
-                  color: cssVars.primary.DEFAULT,
-                }}
+              <a
+                href="https://docs.google.com/forms/d/1NzAEs7uruIqcHz0NvVa-xstUp14G1hNig0jzmoyUomQ/edit"
+                target="_blank"
+                rel="noopener noreferrer"
               >
-                {t('exploreButton')}
-                <ArrowRight className="h-6 w-6" />
-              </motion.button>
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="flex items-center gap-3 rounded-2xl border-2 px-10 py-4 text-lg font-bold transition-all"
-                style={{
-                  borderColor: cssVars.accent.DEFAULT,
-                  color: cssVars.neutral.bg,
-                  backgroundColor: 'transparent',
-                }}
-              >
-                <Play className="h-6 w-6" />
-                {t('videoButton')}
-              </motion.button>
+                <motion.button
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="flex items-center gap-3 rounded-2xl px-10 py-4 text-lg font-bold shadow-2xl transition-all"
+                  style={{
+                    background: cssVars.gradient.gold,
+                    color: cssVars.primary.DEFAULT,
+                  }}
+                >
+                  {t('exploreButton')}
+                  <ArrowRight className="h-6 w-6" />
+                </motion.button>
+              </a>
             </div>
           </motion.div>
-        </div>
-
-        {/* Stats Grid */}
-        <div className="grid grid-cols-2 gap-6 lg:grid-cols-4">
-          {stats.map((stat, idx) => {
-            const Icon = stat.icon;
-            return (
-              <motion.div
-                key={stat.key}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: idx * 0.1 }}
-                whileHover={{ y: -5 }}
-                className="rounded-2xl border p-6 backdrop-blur-sm"
-                style={{
-                  backgroundColor: `color-mix(in srgb, ${cssVars.neutral.bg} 10%, transparent)`,
-                  borderColor: `color-mix(in srgb, ${cssVars.accent.DEFAULT} 20%, transparent)`,
-                }}
-              >
-                <div className="mb-4 flex items-center justify-between">
-                  <div
-                    className="flex h-12 w-12 items-center justify-center rounded-xl"
-                    style={{
-                      backgroundColor: `color-mix(in srgb, ${cssVars.accent.warm} 20%, transparent)`,
-                    }}
-                  >
-                    <Icon className="h-6 w-6" style={{ color: cssVars.accent.warm }} />
-                  </div>
-                  <div
-                    className="flex items-center gap-1 rounded-lg px-2.5 py-1"
-                    style={{
-                      backgroundColor: `color-mix(in srgb, ${cssVars.status.success} 20%, transparent)`,
-                    }}
-                  >
-                    <TrendingUp className="h-3.5 w-3.5" style={{ color: cssVars.status.success }} />
-                    <span className="text-xs font-bold" style={{ color: cssVars.status.success }}>
-                      {t(`stats.${stat.key}.change`)}
-                    </span>
-                  </div>
-                </div>
-                <div className="mb-1 text-3xl font-bold" style={{ color: cssVars.neutral.bg }}>
-                  {t(`stats.${stat.key}.value`)}
-                </div>
-                <div className="text-sm font-semibold" style={{ color: cssVars.accent.DEFAULT }}>
-                  {t(`stats.${stat.key}.label`)}
-                </div>
-              </motion.div>
-            );
-          })}
         </div>
       </div>
     </section>

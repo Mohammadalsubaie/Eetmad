@@ -6,9 +6,10 @@
   "nav": {
     "home": "الرئيسية",
     "about": "من نحن",
-    "requests": "الطلبات",
+    "categories": "الفئات",
     "suppliers": "الموردين",
     "contact": "اتصل بنا",
+    "requests": "الطلبات",
     "toggleMenu": "تبديل القائمة",
     "projects": "المشاريع",
     "organizations": "الجهات",
@@ -73,7 +74,7 @@
       "titleHighlight": "واستقبل أفضل العروض",
       "titleEnd": "",
       "subtitle": "منصة موثوقة تربط المواهب بالفرص  . شفافية كاملة، عمليات سلسة، ونجاح مشترك",
-      "exploreButton": "استكشف الفرص",
+      "exploreButton": "انظم واستشكف الفرص",
       "videoButton": "شاهد الفيديو",
       "stats": {
         "activeProjects": {

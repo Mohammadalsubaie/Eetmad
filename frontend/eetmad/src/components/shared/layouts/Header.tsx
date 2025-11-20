@@ -6,24 +6,43 @@ import { useTheme } from '@/contexts/ThemeContext';
 import { cssVars } from '@/styles/theme';
 import { motion } from 'framer-motion';
 import { Bell, Menu, Sparkles, Target, User, X } from 'lucide-react';
-import { useTranslations } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { useState } from 'react';
 
 export function Header() {
   const t = useTranslations('nav');
+  const locale = useLocale();
+  const pathname = usePathname();
   const [showMobileMenu, setShowMobileMenu] = useState(false);
   const [hasNotifications] = useState(true);
   const { theme } = useTheme();
   const isDark = theme === 'dark';
 
   const navItems = [
-    { key: 'home', href: '/' },
-    { key: 'projects', href: '/projects' },
-    { key: 'organizations', href: '/organizations' },
-    { key: 'resources', href: '/resources' },
-    { key: 'support', href: '/support' },
+    { key: 'home', href: '/', disabled: false },
+    { key: 'about', href: '/about', disabled: false },
+    { key: 'categories', href: '/categories', disabled: false },
+    { key: 'suppliers', href: '/suppliers', disabled: false },
+    { key: 'contact', href: '/contact', disabled: false },
+    { key: 'projects', href: '/projects', disabled: true },
+    { key: 'organizations', href: '/organizations', disabled: true },
+    { key: 'resources', href: '/resources', disabled: true },
+    { key: 'support', href: '/support', disabled: true },
   ];
+
+  // Helper function to check if a nav item is active
+  const isActive = (href: string) => {
+    // Remove locale from pathname for comparison
+    const pathWithoutLocale = pathname.replace(`/${locale}`, '') || '/';
+    // For home, check if path is exactly '/' or just the locale
+    if (href === '/') {
+      return pathWithoutLocale === '/' || pathname === `/${locale}`;
+    }
+    // For other routes, check if pathname starts with the href
+    return pathWithoutLocale === href || pathWithoutLocale.startsWith(`${href}/`);
+  };
 
   return (
     <header
@@ -71,24 +90,28 @@ export function Header() {
 
           {/* Desktop Navigation */}
           <nav className="hidden items-center gap-1 lg:flex">
-            {navItems.map((item, idx) => (
-              <Link key={item.key} href={item.href}>
-                <motion.button
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="rounded-xl px-5 py-2.5 font-semibold transition-all"
-                  style={{
-                    color: idx === 0 ? cssVars.accent.warm : cssVars.neutral.textMuted,
-                    backgroundColor:
-                      idx === 0
-                        ? `color-mix(in srgb, ${cssVars.accent.warm} 10%, transparent)`
-                        : 'transparent',
-                  }}
-                >
-                  {t(item.key)}
-                </motion.button>
-              </Link>
-            ))}
+            {navItems
+              .filter((item) => !item.disabled)
+              .map((item) => {
+                const active = isActive(item.href);
+                return (
+                  <Link key={item.key} href={item.href}>
+                    <motion.button
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                      className="rounded-xl px-5 py-2.5 font-semibold transition-all"
+                      style={{
+                        color: active ? cssVars.accent.warm : cssVars.neutral.textMuted,
+                        backgroundColor: active
+                          ? `color-mix(in srgb, ${cssVars.accent.warm} 10%, transparent)`
+                          : 'transparent',
+                      }}
+                    >
+                      {t(item.key)}
+                    </motion.button>
+                  </Link>
+                );
+              })}
           </nav>
 
           {/* Desktop Actions */}
@@ -163,22 +186,33 @@ export function Header() {
             }}
           >
             <div className="space-y-2">
-              {navItems.map((item) => (
-                <Link key={item.key} href={item.href}>
-                  <button
-                    className="w-full rounded-xl px-4 py-3 text-start font-semibold transition-all hover:bg-opacity-10"
-                    style={{
-                      color: isDark ? cssVars.neutral.darker : cssVars.neutral.bg,
-                      backgroundColor: isDark
-                        ? `color-mix(in srgb, ${cssVars.neutral.textMuted} 10%, transparent)`
-                        : `color-mix(in srgb, ${cssVars.neutral.textMuted} 5%, transparent)`,
-                    }}
-                    onClick={() => setShowMobileMenu(false)}
-                  >
-                    {t(item.key)}
-                  </button>
-                </Link>
-              ))}
+              {navItems
+                .filter((item) => !item.disabled)
+                .map((item) => {
+                  const active = isActive(item.href);
+                  return (
+                    <Link key={item.key} href={item.href}>
+                      <button
+                        className="w-full rounded-xl px-4 py-3 text-start font-semibold transition-all hover:bg-opacity-10"
+                        style={{
+                          color: active
+                            ? cssVars.accent.warm
+                            : isDark
+                              ? cssVars.neutral.darker
+                              : cssVars.neutral.bg,
+                          backgroundColor: active
+                            ? `color-mix(in srgb, ${cssVars.accent.warm} 10%, transparent)`
+                            : isDark
+                              ? `color-mix(in srgb, ${cssVars.neutral.textMuted} 10%, transparent)`
+                              : `color-mix(in srgb, ${cssVars.neutral.textMuted} 5%, transparent)`,
+                        }}
+                        onClick={() => setShowMobileMenu(false)}
+                      >
+                        {t(item.key)}
+                      </button>
+                    </Link>
+                  );
+                })}
 
               <Link href="/login">
                 <button
@@ -187,6 +221,7 @@ export function Header() {
                     background: cssVars.gradient.gold,
                     color: cssVars.secondary.DEFAULT,
                   }}
+                  onClick={() => setShowMobileMenu(false)}
                 >
                   <User className="h-5 w-5" />
                   <span>{t('myAccount')}</span>

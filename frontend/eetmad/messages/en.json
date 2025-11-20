@@ -6,9 +6,10 @@
   "nav": {
     "home": "Home",
     "about": "About",
-    "requests": "Requests",
+    "categories": "Categories",
     "suppliers": "Suppliers",
     "contact": "Contact",
+    "requests": "Requests",
     "toggleMenu": "Toggle menu",
     "projects": "Projects",
     "organizations": "Organizations",

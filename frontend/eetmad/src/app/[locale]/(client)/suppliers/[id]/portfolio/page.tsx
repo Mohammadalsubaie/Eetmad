@@ -97,7 +97,13 @@ export default function SupplierPortfolioPage() {
                 }}
               >
                 {item.images && item.images.length > 0 ? (
-                  <Image src={item.images[0]} alt={item.title} width={800} height={256} className="h-64 w-full object-cover" />
+                  <Image
+                    src={item.images[0]}
+                    alt={item.title}
+                    width={800}
+                    height={256}
+                    className="h-64 w-full object-cover"
+                  />
                 ) : (
                   <div
                     className="flex h-64 w-full items-center justify-center"

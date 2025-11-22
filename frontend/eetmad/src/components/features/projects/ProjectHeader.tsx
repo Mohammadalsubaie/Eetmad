@@ -33,24 +33,21 @@ export default function ProjectHeader({ project, variant = 'client' }: ProjectHe
     }
   };
 
-  const getStatusIcon = (status: string) => {
-    switch (status) {
-      case 'completed':
-        return CheckCircle2;
-      case 'active':
-        return TrendingUp;
-      case 'pending_contract':
-      case 'on_hold':
-        return Clock;
-      case 'cancelled':
-      case 'disputed':
-        return AlertCircle;
-      default:
-        return Clock;
-    }
+  const renderStatusIcon = () => {
+    const IconComponent =
+      project.status === 'completed'
+        ? CheckCircle2
+        : project.status === 'active'
+          ? TrendingUp
+          : project.status === 'pending_contract' || project.status === 'on_hold'
+            ? Clock
+            : project.status === 'cancelled' || project.status === 'disputed'
+              ? AlertCircle
+              : Clock;
+
+    return <IconComponent className="mr-1 h-3 w-3" />;
   };
 
-  const StatusIcon = getStatusIcon(project.status);
   const statusColor = getStatusColor(project.status);
 
   return (
@@ -71,7 +68,7 @@ export default function ProjectHeader({ project, variant = 'client' }: ProjectHe
                       : 'info'
                 }
               >
-                <StatusIcon className="mr-1 h-3 w-3" />
+                {renderStatusIcon()}
                 {t(`status.${project.status}`)}
               </Badge>
             ) : (
@@ -82,7 +79,7 @@ export default function ProjectHeader({ project, variant = 'client' }: ProjectHe
                   borderColor: statusColor,
                 }}
               >
-                <StatusIcon className="mr-1 h-3 w-3" />
+                {renderStatusIcon()}
                 {t(`status.${project.status}`)}
               </Badge>
             )}

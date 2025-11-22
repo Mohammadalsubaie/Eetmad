@@ -53,22 +53,24 @@ export default function ContractCard({ contract, onView }: ContractCardProps) {
     }
   };
 
-  const getStatusIcon = (status: string) => {
-    switch (status) {
-      case 'signed':
-        return CheckCircle2;
-      case 'pending_client_signature':
-      case 'pending_supplier_signature':
-        return Clock;
-      case 'cancelled':
-      case 'expired':
-        return XCircle;
-      default:
-        return FileText;
-    }
-  };
+  const renderStatusIcon = () => {
+    const IconComponent =
+      contract.status === 'signed'
+        ? CheckCircle2
+        : contract.status === 'pending_client_signature' ||
+            contract.status === 'pending_supplier_signature'
+          ? Clock
+          : contract.status === 'cancelled' || contract.status === 'expired'
+            ? XCircle
+            : FileText;
 
-  const StatusIcon = getStatusIcon(contract.status);
+    return (
+      <IconComponent
+        className="h-6 w-6 flex-shrink-0"
+        style={{ color: getStatusColor(contract.status) }}
+      />
+    );
+  };
 
   return (
     <motion.div
@@ -128,10 +130,7 @@ export default function ContractCard({ contract, onView }: ContractCardProps) {
             {t('contract')} #{contract.id.slice(-6)}
           </h3>
         </div>
-        <StatusIcon
-          className="h-6 w-6 flex-shrink-0"
-          style={{ color: getStatusColor(contract.status) }}
-        />
+        {renderStatusIcon()}
       </div>
 
       {/* Contract Preview */}

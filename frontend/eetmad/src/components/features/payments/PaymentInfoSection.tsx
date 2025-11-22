@@ -68,4 +68,3 @@ export default function PaymentInfoSection({ payment }: PaymentInfoSectionProps)
     </motion.div>
   );
 }
-

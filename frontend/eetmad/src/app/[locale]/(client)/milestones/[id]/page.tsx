@@ -3,9 +3,24 @@
 import { useParams, useRouter } from 'next/navigation';
 import { useLocale, useTranslations } from 'next-intl';
 import { motion } from 'framer-motion';
-import { ArrowLeft, Edit, CheckCircle2, XCircle, DollarSign, Calendar, Download, FileText, Clock } from 'lucide-react';
+import {
+  ArrowLeft,
+  Edit,
+  CheckCircle2,
+  XCircle,
+  DollarSign,
+  Calendar,
+  Download,
+  FileText,
+  Clock,
+} from 'lucide-react';
 import { cssVars } from '@/styles/theme';
-import { useMilestone, useApproveMilestone, useRejectMilestone, useCompleteMilestone } from '@/lib/hooks/useMilestones';
+import {
+  useMilestone,
+  useApproveMilestone,
+  useRejectMilestone,
+  useCompleteMilestone,
+} from '@/lib/hooks/useMilestones';
 import { LoadingSpinner, ErrorMessage, Button } from '@/components/ui';
 import Breadcrumbs from '@/components/shared/navigation/Breadcrumbs';
 import StatusBadge from '@/components/shared/badges/StatusBadge';
@@ -55,7 +70,10 @@ export default function MilestoneDetailPage() {
     return (
       <div className="container mx-auto py-8" style={{ backgroundColor: cssVars.neutral.bg }}>
         <Breadcrumbs
-          items={[{ label: t('milestonesSection.title'), href: `/${locale}/milestones` }, { label: id }]}
+          items={[
+            { label: t('milestonesSection.title'), href: `/${locale}/milestones` },
+            { label: id },
+          ]}
           className="mb-6"
         />
         <div className="flex items-center justify-center py-12">
@@ -69,7 +87,10 @@ export default function MilestoneDetailPage() {
     return (
       <div className="container mx-auto py-8" style={{ backgroundColor: cssVars.neutral.bg }}>
         <Breadcrumbs
-          items={[{ label: t('milestonesSection.title'), href: `/${locale}/milestones` }, { label: id }]}
+          items={[
+            { label: t('milestonesSection.title'), href: `/${locale}/milestones` },
+            { label: id },
+          ]}
           className="mb-6"
         />
         <ErrorMessage error={error?.message || t('milestonesSection.notFound')} variant="banner" />
@@ -95,7 +116,10 @@ export default function MilestoneDetailPage() {
         items={[
           { label: t('title'), href: `/${locale}/projects` },
           { label: milestone.projectId, href: `/${locale}/projects/${milestone.projectId}` },
-          { label: t('milestonesSection.title'), href: `/${locale}/projects/${milestone.projectId}/milestones` },
+          {
+            label: t('milestonesSection.title'),
+            href: `/${locale}/projects/${milestone.projectId}/milestones`,
+          },
           { label: milestone.title },
         ]}
         className="mb-6"
@@ -162,10 +186,7 @@ export default function MilestoneDetailPage() {
               borderColor: cssVars.neutral.border,
             }}
           >
-            <h2
-              className="mb-4 text-xl font-bold"
-              style={{ color: cssVars.secondary.DEFAULT }}
-            >
+            <h2 className="mb-4 text-xl font-bold" style={{ color: cssVars.secondary.DEFAULT }}>
               {t('milestonesSection.details')}
             </h2>
             <div className="grid gap-4 md:grid-cols-2">
@@ -203,13 +224,13 @@ export default function MilestoneDetailPage() {
                 borderColor: cssVars.neutral.border,
               }}
             >
-              <h2
-                className="mb-4 text-xl font-bold"
-                style={{ color: cssVars.secondary.DEFAULT }}
-              >
+              <h2 className="mb-4 text-xl font-bold" style={{ color: cssVars.secondary.DEFAULT }}>
                 {t('milestonesSection.deliverables')}
               </h2>
-              <p className="text-sm leading-relaxed" style={{ color: cssVars.neutral.textSecondary }}>
+              <p
+                className="text-sm leading-relaxed"
+                style={{ color: cssVars.neutral.textSecondary }}
+              >
                 {milestone.deliverables}
               </p>
             </div>
@@ -224,10 +245,7 @@ export default function MilestoneDetailPage() {
                 borderColor: cssVars.neutral.border,
               }}
             >
-              <h2
-                className="mb-4 text-xl font-bold"
-                style={{ color: cssVars.secondary.DEFAULT }}
-              >
+              <h2 className="mb-4 text-xl font-bold" style={{ color: cssVars.secondary.DEFAULT }}>
                 {t('milestonesSection.attachments')}
               </h2>
               <div className="space-y-2">
@@ -245,7 +263,10 @@ export default function MilestoneDetailPage() {
                   >
                     <div className="flex items-center gap-2">
                       <FileText className="h-4 w-4" style={{ color: cssVars.primary.DEFAULT }} />
-                      <span className="text-sm font-medium" style={{ color: cssVars.secondary.DEFAULT }}>
+                      <span
+                        className="text-sm font-medium"
+                        style={{ color: cssVars.secondary.DEFAULT }}
+                      >
                         {attachment.filePath.split('/').pop()}
                       </span>
                     </div>
@@ -265,13 +286,13 @@ export default function MilestoneDetailPage() {
                 borderColor: cssVars.neutral.border,
               }}
             >
-              <h2
-                className="mb-4 text-xl font-bold"
-                style={{ color: cssVars.secondary.DEFAULT }}
-              >
+              <h2 className="mb-4 text-xl font-bold" style={{ color: cssVars.secondary.DEFAULT }}>
                 {t('milestonesSection.notes')}
               </h2>
-              <p className="text-sm leading-relaxed" style={{ color: cssVars.neutral.textSecondary }}>
+              <p
+                className="text-sm leading-relaxed"
+                style={{ color: cssVars.neutral.textSecondary }}
+              >
                 {milestone.notes}
               </p>
             </div>
@@ -345,10 +366,7 @@ export default function MilestoneDetailPage() {
               borderColor: cssVars.neutral.border,
             }}
           >
-            <h3
-              className="mb-4 text-lg font-bold"
-              style={{ color: cssVars.secondary.DEFAULT }}
-            >
+            <h3 className="mb-4 text-lg font-bold" style={{ color: cssVars.secondary.DEFAULT }}>
               {t('milestonesSection.paymentStatus')}
             </h3>
             <div className="flex items-center gap-2">
@@ -374,4 +392,3 @@ export default function MilestoneDetailPage() {
     </div>
   );
 }
-

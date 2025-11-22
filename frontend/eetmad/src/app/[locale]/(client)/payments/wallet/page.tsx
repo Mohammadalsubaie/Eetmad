@@ -61,10 +61,7 @@ export default function WalletPage() {
   return (
     <div className="container mx-auto py-8" style={{ backgroundColor: cssVars.neutral.bg }}>
       <Breadcrumbs
-        items={[
-          { label: t('title'), href: `/${locale}/payments` },
-          { label: t('wallet') },
-        ]}
+        items={[{ label: t('title'), href: `/${locale}/payments` }, { label: t('wallet') }]}
         className="mb-6"
       />
 
@@ -217,4 +214,3 @@ export default function WalletPage() {
     </div>
   );
 }
-

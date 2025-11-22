@@ -18,10 +18,7 @@ export default function NewContractPage() {
   return (
     <div className="container mx-auto py-8" style={{ backgroundColor: cssVars.neutral.bg }}>
       <Breadcrumbs
-        items={[
-          { label: t('title'), href: `/${locale}/contracts` },
-          { label: t('newContract') },
-        ]}
+        items={[{ label: t('title'), href: `/${locale}/contracts` }, { label: t('newContract') }]}
         className="mb-6"
       />
 
@@ -54,12 +51,8 @@ export default function NewContractPage() {
           borderColor: cssVars.neutral.border,
         }}
       >
-        <ContractForm
-          projectId={projectId}
-          onSuccess={() => router.push(`/${locale}/contracts`)}
-        />
+        <ContractForm projectId={projectId} onSuccess={() => router.push(`/${locale}/contracts`)} />
       </div>
     </div>
   );
 }
-

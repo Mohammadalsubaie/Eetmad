@@ -53,7 +53,12 @@ export default function DisputeForm({ projectId, onSuccess }: DisputeFormProps) 
     try {
       const dispute = await createDispute({
         ...formData,
-        category: formData.category as 'quality' | 'delivery' | 'payment' | 'communication' | 'other',
+        category: formData.category as
+          | 'quality'
+          | 'delivery'
+          | 'payment'
+          | 'communication'
+          | 'other',
         priority: formData.priority as 'low' | 'medium' | 'high' | 'urgent',
         evidence: evidenceFiles.length > 0 ? evidenceFiles : undefined,
       });
@@ -246,7 +251,10 @@ export default function DisputeForm({ projectId, onSuccess }: DisputeFormProps) 
                 >
                   <div className="flex items-center gap-2">
                     <FileText className="h-4 w-4" style={{ color: cssVars.primary.DEFAULT }} />
-                    <span className="text-sm font-medium" style={{ color: cssVars.secondary.DEFAULT }}>
+                    <span
+                      className="text-sm font-medium"
+                      style={{ color: cssVars.secondary.DEFAULT }}
+                    >
                       {file.name}
                     </span>
                   </div>

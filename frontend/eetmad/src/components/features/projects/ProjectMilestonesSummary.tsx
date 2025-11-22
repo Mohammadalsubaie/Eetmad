@@ -29,10 +29,7 @@ export default function ProjectMilestonesSummary({
     >
       <div className="grid gap-4 sm:grid-cols-3">
         <div>
-          <div
-            className="mb-2 text-xs font-semibold"
-            style={{ color: cssVars.neutral.textMuted }}
-          >
+          <div className="mb-2 text-xs font-semibold" style={{ color: cssVars.neutral.textMuted }}>
             {t('milestonesSection.totalAmount')}
           </div>
           <div className="flex items-center gap-2">
@@ -43,10 +40,7 @@ export default function ProjectMilestonesSummary({
           </div>
         </div>
         <div>
-          <div
-            className="mb-2 text-xs font-semibold"
-            style={{ color: cssVars.neutral.textMuted }}
-          >
+          <div className="mb-2 text-xs font-semibold" style={{ color: cssVars.neutral.textMuted }}>
             {t('milestonesSection.progress')}
           </div>
           <div className="flex items-center gap-2">
@@ -57,10 +51,7 @@ export default function ProjectMilestonesSummary({
           </div>
         </div>
         <div>
-          <div
-            className="mb-2 text-xs font-semibold"
-            style={{ color: cssVars.neutral.textMuted }}
-          >
+          <div className="mb-2 text-xs font-semibold" style={{ color: cssVars.neutral.textMuted }}>
             {t('milestonesSection.completedMilestones')}
           </div>
           <div className="flex items-center gap-2">
@@ -75,4 +66,3 @@ export default function ProjectMilestonesSummary({
     </motion.div>
   );
 }
-

@@ -22,7 +22,10 @@ export default function SupplierDetailPage() {
   if (isLoading) {
     return (
       <div className="container mx-auto py-8" style={{ backgroundColor: cssVars.neutral.bg }}>
-        <Breadcrumbs items={[{ label: t('title'), href: `/${locale}/suppliers` }, { label: id }]} className="mb-6" />
+        <Breadcrumbs
+          items={[{ label: t('title'), href: `/${locale}/suppliers` }, { label: id }]}
+          className="mb-6"
+        />
         <div className="flex items-center justify-center py-12">
           <LoadingSpinner size="lg" />
         </div>
@@ -33,7 +36,10 @@ export default function SupplierDetailPage() {
   if (error || !supplier) {
     return (
       <div className="container mx-auto py-8" style={{ backgroundColor: cssVars.neutral.bg }}>
-        <Breadcrumbs items={[{ label: t('title'), href: `/${locale}/suppliers` }, { label: id }]} className="mb-6" />
+        <Breadcrumbs
+          items={[{ label: t('title'), href: `/${locale}/suppliers` }, { label: id }]}
+          className="mb-6"
+        />
         <ErrorMessage error={error?.message || t('supplierNotFound')} variant="banner" />
       </div>
     );
@@ -41,7 +47,10 @@ export default function SupplierDetailPage() {
 
   return (
     <div className="container mx-auto py-8" style={{ backgroundColor: cssVars.neutral.bg }}>
-      <Breadcrumbs items={[{ label: t('title'), href: `/${locale}/suppliers` }, { label: supplier.id }]} className="mb-6" />
+      <Breadcrumbs
+        items={[{ label: t('title'), href: `/${locale}/suppliers` }, { label: supplier.id }]}
+        className="mb-6"
+      />
 
       {/* Header */}
       <div className="mb-8">
@@ -148,28 +157,32 @@ export default function SupplierDetailPage() {
             borderColor: cssVars.neutral.border,
           }}
         >
-          <h2
-            className="mb-4 text-xl font-bold"
-            style={{ color: cssVars.secondary.DEFAULT }}
-          >
+          <h2 className="mb-4 text-xl font-bold" style={{ color: cssVars.secondary.DEFAULT }}>
             {t('categories')}
           </h2>
           <div className="flex flex-wrap gap-2">
-            {supplier.categories.map((cat: { id: string; category?: { nameEn?: string }; categoryId: string; isPrimary: boolean }) => (
-              <Badge
-                key={cat.id}
-                style={{
-                  backgroundColor: cat.isPrimary
-                    ? `color-mix(in srgb, ${cssVars.primary.DEFAULT} 15%, transparent)`
-                    : `color-mix(in srgb, ${cssVars.neutral.border} 15%, transparent)`,
-                  color: cat.isPrimary ? cssVars.primary.DEFAULT : cssVars.neutral.textSecondary,
-                  borderColor: cat.isPrimary ? cssVars.primary.DEFAULT : cssVars.neutral.border,
-                }}
-              >
-                {cat.category?.nameEn || cat.categoryId}
-                {cat.isPrimary && ` (${t('primary')})`}
-              </Badge>
-            ))}
+            {supplier.categories.map(
+              (cat: {
+                id: string;
+                category?: { nameEn?: string };
+                categoryId: string;
+                isPrimary: boolean;
+              }) => (
+                <Badge
+                  key={cat.id}
+                  style={{
+                    backgroundColor: cat.isPrimary
+                      ? `color-mix(in srgb, ${cssVars.primary.DEFAULT} 15%, transparent)`
+                      : `color-mix(in srgb, ${cssVars.neutral.border} 15%, transparent)`,
+                    color: cat.isPrimary ? cssVars.primary.DEFAULT : cssVars.neutral.textSecondary,
+                    borderColor: cat.isPrimary ? cssVars.primary.DEFAULT : cssVars.neutral.border,
+                  }}
+                >
+                  {cat.category?.nameEn || cat.categoryId}
+                  {cat.isPrimary && ` (${t('primary')})`}
+                </Badge>
+              )
+            )}
           </div>
         </div>
       )}
@@ -183,36 +196,37 @@ export default function SupplierDetailPage() {
             borderColor: cssVars.neutral.border,
           }}
         >
-          <h2
-            className="mb-4 text-xl font-bold"
-            style={{ color: cssVars.secondary.DEFAULT }}
-          >
+          <h2 className="mb-4 text-xl font-bold" style={{ color: cssVars.secondary.DEFAULT }}>
             {t('portfolio')}
           </h2>
           <div className="grid gap-4 md:grid-cols-3">
-            {supplier.portfolio.slice(0, 6).map((item: { id: string; images?: string[]; title: string; description: string }) => (
-              <div
-                key={item.id}
-                className="overflow-hidden rounded-xl border-2"
-                style={{ borderColor: cssVars.neutral.border }}
-              >
-                {item.images && item.images.length > 0 && (
-                  <img
-                    src={item.images[0]}
-                    alt={item.title}
-                    className="h-48 w-full object-cover"
-                  />
-                )}
-                <div className="p-4">
-                  <h3 className="mb-1 font-bold" style={{ color: cssVars.secondary.DEFAULT }}>
-                    {item.title}
-                  </h3>
-                  <p className="text-sm" style={{ color: cssVars.neutral.textSecondary }}>
-                    {item.description}
-                  </p>
-                </div>
-              </div>
-            ))}
+            {supplier.portfolio
+              .slice(0, 6)
+              .map(
+                (item: { id: string; images?: string[]; title: string; description: string }) => (
+                  <div
+                    key={item.id}
+                    className="overflow-hidden rounded-xl border-2"
+                    style={{ borderColor: cssVars.neutral.border }}
+                  >
+                    {item.images && item.images.length > 0 && (
+                      <img
+                        src={item.images[0]}
+                        alt={item.title}
+                        className="h-48 w-full object-cover"
+                      />
+                    )}
+                    <div className="p-4">
+                      <h3 className="mb-1 font-bold" style={{ color: cssVars.secondary.DEFAULT }}>
+                        {item.title}
+                      </h3>
+                      <p className="text-sm" style={{ color: cssVars.neutral.textSecondary }}>
+                        {item.description}
+                      </p>
+                    </div>
+                  </div>
+                )
+              )}
           </div>
         </div>
       )}
@@ -226,30 +240,36 @@ export default function SupplierDetailPage() {
             borderColor: cssVars.neutral.border,
           }}
         >
-          <h2
-            className="mb-4 text-xl font-bold"
-            style={{ color: cssVars.secondary.DEFAULT }}
-          >
+          <h2 className="mb-4 text-xl font-bold" style={{ color: cssVars.secondary.DEFAULT }}>
             {t('certifications')}
           </h2>
           <div className="grid gap-4 md:grid-cols-2">
-            {supplier.certifications.map((cert: { id: string; name: string; issuer: string; issuedAt: string; expiryDate: string | null; fileUrl: string }) => (
-              <div
-                key={cert.id}
-                className="rounded-lg border-2 p-4"
-                style={{ borderColor: cssVars.neutral.border }}
-              >
-                <h3 className="mb-1 font-bold" style={{ color: cssVars.secondary.DEFAULT }}>
-                  {cert.name}
-                </h3>
-                <p className="text-sm" style={{ color: cssVars.neutral.textMuted }}>
-                  {t('issuedBy')}: {cert.issuer}
-                </p>
-                <p className="text-xs" style={{ color: cssVars.neutral.textMuted }}>
-                  {t('issuedAt')}: {new Date(cert.issuedAt).toLocaleDateString()}
-                </p>
-              </div>
-            ))}
+            {supplier.certifications.map(
+              (cert: {
+                id: string;
+                name: string;
+                issuer: string;
+                issuedAt: string;
+                expiryDate: string | null;
+                fileUrl: string;
+              }) => (
+                <div
+                  key={cert.id}
+                  className="rounded-lg border-2 p-4"
+                  style={{ borderColor: cssVars.neutral.border }}
+                >
+                  <h3 className="mb-1 font-bold" style={{ color: cssVars.secondary.DEFAULT }}>
+                    {cert.name}
+                  </h3>
+                  <p className="text-sm" style={{ color: cssVars.neutral.textMuted }}>
+                    {t('issuedBy')}: {cert.issuer}
+                  </p>
+                  <p className="text-xs" style={{ color: cssVars.neutral.textMuted }}>
+                    {t('issuedAt')}: {new Date(cert.issuedAt).toLocaleDateString()}
+                  </p>
+                </div>
+              )
+            )}
           </div>
         </div>
       )}
@@ -262,10 +282,7 @@ export default function SupplierDetailPage() {
           borderColor: cssVars.neutral.border,
         }}
       >
-        <h2
-          className="mb-4 text-xl font-bold"
-          style={{ color: cssVars.secondary.DEFAULT }}
-        >
+        <h2 className="mb-4 text-xl font-bold" style={{ color: cssVars.secondary.DEFAULT }}>
           {t('reviews')}
         </h2>
         <ReviewsList supplierId={id} />
@@ -273,4 +290,3 @@ export default function SupplierDetailPage() {
     </div>
   );
 }
-

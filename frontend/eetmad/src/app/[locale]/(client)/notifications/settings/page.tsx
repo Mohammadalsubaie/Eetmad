@@ -36,10 +36,7 @@ export default function NotificationsSettingsPage() {
   return (
     <div className="container mx-auto py-8" style={{ backgroundColor: cssVars.neutral.bg }}>
       <Breadcrumbs
-        items={[
-          { label: t('title'), href: `/${locale}/notifications` },
-          { label: t('settings') },
-        ]}
+        items={[{ label: t('title'), href: `/${locale}/notifications` }, { label: t('settings') }]}
         className="mb-6"
       />
 
@@ -66,10 +63,7 @@ export default function NotificationsSettingsPage() {
 
       {/* Channel Settings */}
       <div className="mb-8">
-        <h2
-          className="mb-4 text-2xl font-bold"
-          style={{ color: cssVars.secondary.DEFAULT }}
-        >
+        <h2 className="mb-4 text-2xl font-bold" style={{ color: cssVars.secondary.DEFAULT }}>
           {t('channels')}
         </h2>
         <div className="space-y-4">
@@ -105,7 +99,7 @@ export default function NotificationsSettingsPage() {
                 }}
               >
                 <span
-                  className={`absolute top-0.5 left-0.5 h-5 w-5 rounded-full bg-white transition-transform ${
+                  className={`absolute left-0.5 top-0.5 h-5 w-5 rounded-full bg-white transition-transform ${
                     settings.inApp ? 'translate-x-5' : 'translate-x-0'
                   }`}
                 />
@@ -145,7 +139,7 @@ export default function NotificationsSettingsPage() {
                 }}
               >
                 <span
-                  className={`absolute top-0.5 left-0.5 h-5 w-5 rounded-full bg-white transition-transform ${
+                  className={`absolute left-0.5 top-0.5 h-5 w-5 rounded-full bg-white transition-transform ${
                     settings.email ? 'translate-x-5' : 'translate-x-0'
                   }`}
                 />
@@ -179,13 +173,11 @@ export default function NotificationsSettingsPage() {
                   settings.sms ? 'bg-primary' : 'bg-neutral-border'
                 }`}
                 style={{
-                  backgroundColor: settings.sms
-                    ? cssVars.primary.DEFAULT
-                    : cssVars.neutral.border,
+                  backgroundColor: settings.sms ? cssVars.primary.DEFAULT : cssVars.neutral.border,
                 }}
               >
                 <span
-                  className={`absolute top-0.5 left-0.5 h-5 w-5 rounded-full bg-white transition-transform ${
+                  className={`absolute left-0.5 top-0.5 h-5 w-5 rounded-full bg-white transition-transform ${
                     settings.sms ? 'translate-x-5' : 'translate-x-0'
                   }`}
                 />
@@ -219,13 +211,11 @@ export default function NotificationsSettingsPage() {
                   settings.push ? 'bg-primary' : 'bg-neutral-border'
                 }`}
                 style={{
-                  backgroundColor: settings.push
-                    ? cssVars.primary.DEFAULT
-                    : cssVars.neutral.border,
+                  backgroundColor: settings.push ? cssVars.primary.DEFAULT : cssVars.neutral.border,
                 }}
               >
                 <span
-                  className={`absolute top-0.5 left-0.5 h-5 w-5 rounded-full bg-white transition-transform ${
+                  className={`absolute left-0.5 top-0.5 h-5 w-5 rounded-full bg-white transition-transform ${
                     settings.push ? 'translate-x-5' : 'translate-x-0'
                   }`}
                 />
@@ -237,10 +227,7 @@ export default function NotificationsSettingsPage() {
 
       {/* Type Settings */}
       <div>
-        <h2
-          className="mb-4 text-2xl font-bold"
-          style={{ color: cssVars.secondary.DEFAULT }}
-        >
+        <h2 className="mb-4 text-2xl font-bold" style={{ color: cssVars.secondary.DEFAULT }}>
           {t('notificationTypes')}
         </h2>
         <div className="grid gap-4 md:grid-cols-2">
@@ -277,7 +264,7 @@ export default function NotificationsSettingsPage() {
                 }}
               >
                 <span
-                  className={`absolute top-0.5 left-0.5 h-5 w-5 rounded-full bg-white transition-transform ${
+                  className={`absolute left-0.5 top-0.5 h-5 w-5 rounded-full bg-white transition-transform ${
                     settings[key as keyof typeof settings] ? 'translate-x-5' : 'translate-x-0'
                   }`}
                 />
@@ -289,4 +276,3 @@ export default function NotificationsSettingsPage() {
     </div>
   );
 }
-

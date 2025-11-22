@@ -22,4 +22,3 @@ export function useFaq(params?: QueryParams) {
 
   return { data, isLoading, error };
 }
-

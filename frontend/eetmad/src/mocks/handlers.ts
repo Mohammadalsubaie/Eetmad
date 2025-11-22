@@ -329,7 +329,7 @@ export const handlers = [
   }),
 
   http.post('/api/v1/wallet/deposit', async ({ request }) => {
-    const body = await request.json() as { amount: number; method: string };
+    const body = (await request.json()) as { amount: number; method: string };
     const newTransaction: WalletTransaction = {
       id: `wallet-txn-${Date.now()}`,
       userId: mockWallet.userId,
@@ -350,7 +350,7 @@ export const handlers = [
   }),
 
   http.post('/api/v1/wallet/withdraw', async ({ request }) => {
-    const body = await request.json() as { amount: number; bankAccountId: string };
+    const body = (await request.json()) as { amount: number; bankAccountId: string };
     const newTransaction: WalletTransaction = {
       id: `wallet-txn-${Date.now()}`,
       userId: mockWallet.userId,

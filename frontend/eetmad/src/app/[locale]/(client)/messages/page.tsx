@@ -32,7 +32,7 @@ export default function MessagesPage() {
             </h1>
             {unreadCount > 0 && (
               <div
-                className="flex h-8 w-8 items-center justify-center rounded-full font-bold text-sm"
+                className="flex h-8 w-8 items-center justify-center rounded-full text-sm font-bold"
                 style={{
                   backgroundColor: cssVars.status.error,
                   color: cssVars.neutral.bg,
@@ -102,4 +102,3 @@ export default function MessagesPage() {
     </div>
   );
 }
-

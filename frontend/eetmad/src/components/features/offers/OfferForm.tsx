@@ -44,7 +44,6 @@ export default function OfferForm({ offer, requestId, onSuccess }: OfferFormProp
     warrantyDetails: offer?.warrantyDetails || undefined,
   });
 
-
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value, type } = e.target;
 

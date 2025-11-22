@@ -9,10 +9,14 @@ export const mockContracts: Contract[] = [
     id: 'contract-1',
     contractNumber: 'CNT-2025-001',
     projectId: '1',
-    contractText: 'This contract outlines the terms and conditions for the website development project...',
-    termsAndConditions: '1. The supplier agrees to deliver the project within the specified timeframe.\n2. The client agrees to make payments according to the payment schedule.\n3. Both parties agree to maintain confidentiality.',
-    paymentTerms: 'Payment will be made in three installments: 30% upon signing, 40% at milestone completion, and 30% upon final delivery.',
-    deliverables: '1. Fully functional website\n2. Source code\n3. Documentation\n4. Training session',
+    contractText:
+      'This contract outlines the terms and conditions for the website development project...',
+    termsAndConditions:
+      '1. The supplier agrees to deliver the project within the specified timeframe.\n2. The client agrees to make payments according to the payment schedule.\n3. Both parties agree to maintain confidentiality.',
+    paymentTerms:
+      'Payment will be made in three installments: 30% upon signing, 40% at milestone completion, and 30% upon final delivery.',
+    deliverables:
+      '1. Fully functional website\n2. Source code\n3. Documentation\n4. Training session',
     warrantyTerms: 'The supplier provides a 6-month warranty for all delivered work.',
     clientSignature: null,
     supplierSignature: null,
@@ -29,10 +33,14 @@ export const mockContracts: Contract[] = [
     id: 'contract-2',
     contractNumber: 'CNT-2025-002',
     projectId: '2',
-    contractText: 'This contract outlines the terms and conditions for the mobile app development project...',
-    termsAndConditions: '1. The supplier agrees to deliver the project within the specified timeframe.\n2. The client agrees to make payments according to the payment schedule.\n3. Both parties agree to maintain confidentiality.',
-    paymentTerms: 'Payment will be made in four installments: 25% upon signing, 25% at first milestone, 25% at second milestone, and 25% upon final delivery.',
-    deliverables: '1. Mobile application (iOS and Android)\n2. Source code\n3. Documentation\n4. App store submission',
+    contractText:
+      'This contract outlines the terms and conditions for the mobile app development project...',
+    termsAndConditions:
+      '1. The supplier agrees to deliver the project within the specified timeframe.\n2. The client agrees to make payments according to the payment schedule.\n3. Both parties agree to maintain confidentiality.',
+    paymentTerms:
+      'Payment will be made in four installments: 25% upon signing, 25% at first milestone, 25% at second milestone, and 25% upon final delivery.',
+    deliverables:
+      '1. Mobile application (iOS and Android)\n2. Source code\n3. Documentation\n4. App store submission',
     warrantyTerms: 'The supplier provides a 12-month warranty for all delivered work.',
     clientSignature: 'signature-hash-1',
     supplierSignature: 'signature-hash-2',
@@ -52,8 +60,10 @@ export const mockContracts: Contract[] = [
     contractNumber: 'CNT-2025-003',
     projectId: '3',
     contractText: 'This contract outlines the terms and conditions for the branding project...',
-    termsAndConditions: '1. The supplier agrees to deliver the project within the specified timeframe.\n2. The client agrees to make payments according to the payment schedule.\n3. Both parties agree to maintain confidentiality.',
-    paymentTerms: 'Payment will be made in two installments: 50% upon signing and 50% upon final delivery.',
+    termsAndConditions:
+      '1. The supplier agrees to deliver the project within the specified timeframe.\n2. The client agrees to make payments according to the payment schedule.\n3. Both parties agree to maintain confidentiality.',
+    paymentTerms:
+      'Payment will be made in two installments: 50% upon signing and 50% upon final delivery.',
     deliverables: '1. Logo design\n2. Brand guidelines\n3. Business cards\n4. Letterhead design',
     warrantyTerms: null,
     clientSignature: null,
@@ -68,4 +78,3 @@ export const mockContracts: Contract[] = [
     updatedAt: new Date(Date.now() - 1 * 24 * 60 * 60 * 1000).toISOString(),
   },
 ];
-

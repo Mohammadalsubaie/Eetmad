@@ -19,4 +19,3 @@ export function HtmlLangUpdater() {
 
   return null;
 }
-

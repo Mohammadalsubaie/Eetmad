@@ -46,7 +46,6 @@ export default function RequestForm({ request, onSuccess }: RequestFormProps) {
     location: request?.location || undefined,
   });
 
-
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
   ) => {

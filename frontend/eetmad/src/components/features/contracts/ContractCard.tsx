@@ -208,4 +208,3 @@ export default function ContractCard({ contract, onView }: ContractCardProps) {
     </motion.div>
   );
 }
-

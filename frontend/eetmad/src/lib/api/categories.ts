@@ -6,7 +6,8 @@ import type {
   Category,
 } from '@/lib/types/category.types';
 
-const USE_MOCKS = process.env.NEXT_PUBLIC_USE_MOCKS === 'true' || process.env.NODE_ENV === 'development';
+const USE_MOCKS =
+  process.env.NEXT_PUBLIC_USE_MOCKS === 'true' || process.env.NODE_ENV === 'development';
 
 export const categoriesApi = {
   getAll: async () => {

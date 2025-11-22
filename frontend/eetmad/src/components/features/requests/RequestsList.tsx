@@ -28,9 +28,11 @@ export default function RequestsList({ showMyRequests = false, filters }: Reques
     [activeFilters, searchQuery]
   );
 
-  const { data: requests, isLoading, error } = showMyRequests
-    ? useMyRequests(combinedFilters)
-    : useRequests(combinedFilters);
+  const {
+    data: requests,
+    isLoading,
+    error,
+  } = showMyRequests ? useMyRequests(combinedFilters) : useRequests(combinedFilters);
 
   const handleSearch = (query: string) => {
     setSearchQuery(query);

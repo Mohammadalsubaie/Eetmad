@@ -29,9 +29,7 @@ export default function SupplierCard({ supplier, index }: SupplierCardProps) {
       className="group cursor-pointer overflow-hidden rounded-3xl border-2 shadow-lg transition-all hover:shadow-2xl"
       style={{
         backgroundColor: cssVars.neutral.surface,
-        borderColor: supplier.isVerified
-          ? cssVars.status.success
-          : cssVars.neutral.border,
+        borderColor: supplier.isVerified ? cssVars.status.success : cssVars.neutral.border,
       }}
     >
       <div className="p-6">
@@ -47,25 +45,16 @@ export default function SupplierCard({ supplier, index }: SupplierCardProps) {
             </div>
             <div>
               <div className="mb-1 flex items-center gap-2">
-                <h3
-                  className="text-xl font-bold"
-                  style={{ color: cssVars.secondary.DEFAULT }}
-                >
+                <h3 className="text-xl font-bold" style={{ color: cssVars.secondary.DEFAULT }}>
                   {supplier.businessName || 'Supplier'}
                 </h3>
                 {supplier.isVerified && (
-                  <CheckCircle2
-                    className="h-5 w-5"
-                    style={{ color: cssVars.status.success }}
-                  />
+                  <CheckCircle2 className="h-5 w-5" style={{ color: cssVars.status.success }} />
                 )}
               </div>
               {supplier.rating !== undefined && (
                 <div className="flex items-center gap-1">
-                  <Star
-                    className="h-4 w-4 fill-current"
-                    style={{ color: cssVars.accent.warm }}
-                  />
+                  <Star className="h-4 w-4 fill-current" style={{ color: cssVars.accent.warm }} />
                   <span
                     className="text-sm font-semibold"
                     style={{ color: cssVars.neutral.textSecondary }}
@@ -83,10 +72,7 @@ export default function SupplierCard({ supplier, index }: SupplierCardProps) {
         </div>
 
         {supplier.serviceDescription && (
-          <p
-            className="mb-4 line-clamp-2 text-sm"
-            style={{ color: cssVars.neutral.textSecondary }}
-          >
+          <p className="mb-4 line-clamp-2 text-sm" style={{ color: cssVars.neutral.textSecondary }}>
             {supplier.serviceDescription}
           </p>
         )}
@@ -95,9 +81,7 @@ export default function SupplierCard({ supplier, index }: SupplierCardProps) {
           <div className="mb-4 flex flex-wrap gap-2">
             {supplier.categories.slice(0, 3).map((cat) => {
               const catName =
-                locale === 'ar'
-                  ? cat.category?.nameAr
-                  : cat.category?.nameEn || 'Category';
+                locale === 'ar' ? cat.category?.nameAr : cat.category?.nameEn || 'Category';
               return (
                 <span
                   key={cat.id}
@@ -128,10 +112,7 @@ export default function SupplierCard({ supplier, index }: SupplierCardProps) {
         <div className="flex items-center gap-4 text-sm">
           {supplier.acceptanceRate !== undefined && (
             <div>
-              <span
-                className="font-semibold"
-                style={{ color: cssVars.neutral.textSecondary }}
-              >
+              <span className="font-semibold" style={{ color: cssVars.neutral.textSecondary }}>
                 {t('acceptanceRate') || 'Acceptance'}:{' '}
               </span>
               <span className="font-bold" style={{ color: cssVars.primary.DEFAULT }}>
@@ -141,10 +122,7 @@ export default function SupplierCard({ supplier, index }: SupplierCardProps) {
           )}
           {supplier.onTimeDelivery !== undefined && (
             <div>
-              <span
-                className="font-semibold"
-                style={{ color: cssVars.neutral.textSecondary }}
-              >
+              <span className="font-semibold" style={{ color: cssVars.neutral.textSecondary }}>
                 {t('onTime') || 'On Time'}:{' '}
               </span>
               <span className="font-bold" style={{ color: cssVars.status.success }}>
@@ -157,4 +135,3 @@ export default function SupplierCard({ supplier, index }: SupplierCardProps) {
     </motion.div>
   );
 }
-

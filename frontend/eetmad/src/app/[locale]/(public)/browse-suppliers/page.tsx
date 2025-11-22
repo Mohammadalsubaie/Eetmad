@@ -73,7 +73,10 @@ export default function SuppliersPage() {
         )}
 
         {error && !isLoading && (
-          <ErrorMessage error={error.message || t('error') || 'Failed to load suppliers'} variant="banner" />
+          <ErrorMessage
+            error={error.message || t('error') || 'Failed to load suppliers'}
+            variant="banner"
+          />
         )}
 
         {!isLoading && !error && (
@@ -82,7 +85,11 @@ export default function SuppliersPage() {
               <EmptyState
                 icon={Users}
                 title={t('noSuppliers') || 'No suppliers found'}
-                description={searchQuery ? t('noResults') || 'Try adjusting your search' : t('emptyState') || 'No suppliers available'}
+                description={
+                  searchQuery
+                    ? t('noResults') || 'Try adjusting your search'
+                    : t('emptyState') || 'No suppliers available'
+                }
               />
             ) : (
               <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">

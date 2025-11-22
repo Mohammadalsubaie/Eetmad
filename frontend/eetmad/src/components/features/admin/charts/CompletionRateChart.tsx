@@ -71,9 +71,17 @@ export default function CompletionRateChart({ data }: CompletionRateChartProps) 
     color: item.color || DEFAULT_COLORS[index % DEFAULT_COLORS.length],
   }));
 
-  const renderCustomLabel = ({ cx, cy, midAngle, innerRadius, outerRadius, percent, payload }: any) => {
+  const renderCustomLabel = ({
+    cx,
+    cy,
+    midAngle,
+    innerRadius,
+    outerRadius,
+    percent,
+    payload,
+  }: any) => {
     if (percent < 0.08) return null; // Don't show label for very small slices
-    
+
     const RADIAN = Math.PI / 180;
     const radius = innerRadius + (outerRadius - innerRadius) * 0.5;
     const x = cx + radius * Math.cos(-midAngle * RADIAN);
@@ -86,8 +94,8 @@ export default function CompletionRateChart({ data }: CompletionRateChartProps) 
         fill={cssVars.neutral.surface}
         textAnchor="middle"
         dominantBaseline="central"
-        style={{ 
-          fontSize: '18px', 
+        style={{
+          fontSize: '18px',
           fontWeight: 'bold',
           textShadow: `0 1px 3px color-mix(in srgb, ${cssVars.neutral.darker} 50%, transparent)`,
         }}
@@ -116,8 +124,8 @@ export default function CompletionRateChart({ data }: CompletionRateChartProps) 
           endAngle={-270}
         >
           {chartData.map((entry, index) => (
-            <Cell 
-              key={`cell-${index}`} 
+            <Cell
+              key={`cell-${index}`}
               fill={entry.color}
               style={{
                 filter: `drop-shadow(0 2px 4px color-mix(in srgb, ${cssVars.neutral.darker} 10%, transparent))`,
@@ -134,11 +142,13 @@ export default function CompletionRateChart({ data }: CompletionRateChartProps) 
           verticalAlign="bottom"
           align="center"
           formatter={(value, entry: any) => (
-            <span style={{ 
-              color: cssVars.neutral.darker, 
-              fontSize: '16px', 
-              fontWeight: 500,
-            }}>
+            <span
+              style={{
+                color: cssVars.neutral.darker,
+                fontSize: '16px',
+                fontWeight: 500,
+              }}
+            >
               {value}: {entry.payload.value.toFixed(1)}%
             </span>
           )}
@@ -147,4 +157,3 @@ export default function CompletionRateChart({ data }: CompletionRateChartProps) 
     </ResponsiveContainer>
   );
 }
-

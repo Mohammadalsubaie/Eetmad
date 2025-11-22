@@ -16,7 +16,11 @@ export default function EditSupplierProfilePage() {
   const locale = useLocale();
   const router = useRouter();
   const { data: profile, isLoading: loadingProfile } = useMySupplierProfile();
-  const { mutate: updateProfile, isLoading: updating, error: updateError } = useUpdateSupplierProfile();
+  const {
+    mutate: updateProfile,
+    isLoading: updating,
+    error: updateError,
+  } = useUpdateSupplierProfile();
 
   const [formData, setFormData] = useState({
     serviceDescription: '',
@@ -40,9 +44,10 @@ export default function EditSupplierProfilePage() {
     const { name, value } = e.target;
     setFormData((prev) => ({
       ...prev,
-      [name]: name === 'responseTime' || name === 'acceptanceRate' || name === 'onTimeDelivery'
-        ? parseFloat(value) || 0
-        : value,
+      [name]:
+        name === 'responseTime' || name === 'acceptanceRate' || name === 'onTimeDelivery'
+          ? parseFloat(value) || 0
+          : value,
     }));
   };
 
@@ -60,7 +65,10 @@ export default function EditSupplierProfilePage() {
   if (loadingProfile) {
     return (
       <div className="container mx-auto py-8" style={{ backgroundColor: cssVars.neutral.bg }}>
-        <Breadcrumbs items={[{ label: t('myProfile'), href: `/${locale}/suppliers/me` }, { label: t('edit') }]} className="mb-6" />
+        <Breadcrumbs
+          items={[{ label: t('myProfile'), href: `/${locale}/suppliers/me` }, { label: t('edit') }]}
+          className="mb-6"
+        />
         <div className="flex items-center justify-center py-12">
           <LoadingSpinner size="lg" />
         </div>
@@ -71,7 +79,10 @@ export default function EditSupplierProfilePage() {
   if (!profile) {
     return (
       <div className="container mx-auto py-8" style={{ backgroundColor: cssVars.neutral.bg }}>
-        <Breadcrumbs items={[{ label: t('myProfile'), href: `/${locale}/suppliers/me` }, { label: t('edit') }]} className="mb-6" />
+        <Breadcrumbs
+          items={[{ label: t('myProfile'), href: `/${locale}/suppliers/me` }, { label: t('edit') }]}
+          className="mb-6"
+        />
         <ErrorMessage error={t('profileNotFound')} variant="banner" />
       </div>
     );
@@ -79,7 +90,10 @@ export default function EditSupplierProfilePage() {
 
   return (
     <div className="container mx-auto py-8" style={{ backgroundColor: cssVars.neutral.bg }}>
-      <Breadcrumbs items={[{ label: t('myProfile'), href: `/${locale}/suppliers/me` }, { label: t('edit') }]} className="mb-6" />
+      <Breadcrumbs
+        items={[{ label: t('myProfile'), href: `/${locale}/suppliers/me` }, { label: t('edit') }]}
+        className="mb-6"
+      />
 
       {/* Back Button */}
       <motion.button
@@ -104,7 +118,9 @@ export default function EditSupplierProfilePage() {
 
       {/* Form */}
       <form onSubmit={handleSubmit} className="space-y-6">
-        {updateError && <ErrorMessage error={updateError.message || String(updateError)} variant="inline" />}
+        {updateError && (
+          <ErrorMessage error={updateError.message || String(updateError)} variant="inline" />
+        )}
 
         {/* Service Description */}
         <div
@@ -241,4 +257,3 @@ export default function EditSupplierProfilePage() {
     </div>
   );
 }
-

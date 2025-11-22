@@ -119,10 +119,7 @@ export default function EditCategoryPage() {
           className="mb-6"
         />
         <div className="flex h-64 items-center justify-center">
-          <ErrorMessage
-            error={fetchError?.message || t('categories.notFound')}
-            variant="banner"
-          />
+          <ErrorMessage error={fetchError?.message || t('categories.notFound')} variant="banner" />
         </div>
       </div>
     );
@@ -163,7 +160,10 @@ export default function EditCategoryPage() {
       >
         {updateError && (
           <div className="mb-6">
-            <ErrorMessage error={updateError.message || t('categories.edit.error')} variant="inline" />
+            <ErrorMessage
+              error={updateError.message || t('categories.edit.error')}
+              variant="inline"
+            />
           </div>
         )}
 

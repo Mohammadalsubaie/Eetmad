@@ -12,9 +12,11 @@ interface ConversationsListProps {
 
 export default function ConversationsList({ status, currentUserId }: ConversationsListProps) {
   const t = useTranslations('pages.messages');
-  const { data: conversations, isLoading, error } = useConversations(
-    status ? { status } : undefined
-  );
+  const {
+    data: conversations,
+    isLoading,
+    error,
+  } = useConversations(status ? { status } : undefined);
 
   if (isLoading) {
     return <LoadingSpinner text={t('loading')} />;
@@ -27,10 +29,7 @@ export default function ConversationsList({ status, currentUserId }: Conversatio
   return (
     <div className="space-y-3">
       {conversations.length === 0 ? (
-        <EmptyState
-          title={t('noConversations')}
-          description={t('noConversationsDescription')}
-        />
+        <EmptyState title={t('noConversations')} description={t('noConversationsDescription')} />
       ) : (
         conversations.map((conversation) => (
           <ConversationCard

@@ -3,7 +3,8 @@ import type { QueryParams } from '@/lib/types/common.types';
 import type { Dispute, DisputeEvidence, DisputeMessage } from '@/lib/types/dispute.types';
 import { mockDisputes } from '@/mocks/data/disputes';
 
-const USE_MOCKS = process.env.NEXT_PUBLIC_USE_MOCKS === 'true' || process.env.NODE_ENV === 'development';
+const USE_MOCKS =
+  process.env.NEXT_PUBLIC_USE_MOCKS === 'true' || process.env.NODE_ENV === 'development';
 
 export interface CreateDisputeInput {
   projectId: string;
@@ -112,11 +113,15 @@ export const disputesApi = {
     if (evidence.description) {
       formData.append('description', evidence.description);
     }
-    const { data } = await apiClient.post<DisputeEvidence>(`/v1/disputes/${id}/evidence`, formData, {
-      headers: {
-        'Content-Type': 'multipart/form-data',
-      },
-    });
+    const { data } = await apiClient.post<DisputeEvidence>(
+      `/v1/disputes/${id}/evidence`,
+      formData,
+      {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      }
+    );
     return data;
   },
 

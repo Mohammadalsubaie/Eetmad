@@ -1,6 +1,16 @@
 'use client';
 
-import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Legend, Cell } from 'recharts';
+import {
+  BarChart,
+  Bar,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  ResponsiveContainer,
+  Legend,
+  Cell,
+} from 'recharts';
 import { useTranslations } from 'next-intl';
 import { cssVars } from '@/styles/theme';
 
@@ -22,7 +32,7 @@ const CustomTooltip = ({ active, payload, label }: any) => {
     const value = payload[0].value;
     const total = payload[0].payload.total || value;
     const percentage = total > 0 ? ((value / total) * 100).toFixed(1) : 0;
-    
+
     return (
       <div
         style={{
@@ -71,24 +81,21 @@ const CustomTooltip = ({ active, payload, label }: any) => {
 export default function ProjectsByCategoryChart({ data }: ProjectsByCategoryChartProps) {
   const t = useTranslations('admin.analytics.charts.projectsByCategoryDetails');
   const total = data.reduce((sum, item) => sum + item.projects, 0);
-  const dataWithTotal = data.map(item => ({ ...item, total }));
+  const dataWithTotal = data.map((item) => ({ ...item, total }));
 
   return (
     <ResponsiveContainer width="100%" height={550}>
-      <BarChart
-        data={dataWithTotal}
-        margin={{ top: 10, right: 20, left: 0, bottom: 100 }}
-      >
-        <CartesianGrid 
-          strokeDasharray="3 3" 
+      <BarChart data={dataWithTotal} margin={{ top: 10, right: 20, left: 0, bottom: 100 }}>
+        <CartesianGrid
+          strokeDasharray="3 3"
           stroke={cssVars.neutral.border}
           opacity={0.2}
           vertical={false}
         />
-        <XAxis 
-          dataKey="category" 
-          tick={{ 
-            fill: cssVars.neutral.textSecondary, 
+        <XAxis
+          dataKey="category"
+          tick={{
+            fill: cssVars.neutral.textSecondary,
             fontSize: 13,
             fontWeight: 500,
           }}
@@ -102,9 +109,9 @@ export default function ProjectsByCategoryChart({ data }: ProjectsByCategoryChar
           dy={14}
           dx={-5}
         />
-        <YAxis 
-          tick={{ 
-            fill: cssVars.neutral.textSecondary, 
+        <YAxis
+          tick={{
+            fill: cssVars.neutral.textSecondary,
             fontSize: 14,
             fontWeight: 500,
           }}
@@ -115,7 +122,7 @@ export default function ProjectsByCategoryChart({ data }: ProjectsByCategoryChar
           dx={-5}
         />
         <Tooltip content={<CustomTooltip />} />
-        <Legend 
+        <Legend
           wrapperStyle={{ paddingTop: '16px', fontSize: '16px' }}
           iconSize={22}
           formatter={(value) => (
@@ -124,16 +131,16 @@ export default function ProjectsByCategoryChart({ data }: ProjectsByCategoryChar
             </span>
           )}
         />
-        <Bar 
-          dataKey="projects" 
+        <Bar
+          dataKey="projects"
           name={t('label')}
           radius={[12, 12, 0, 0]}
           animationDuration={1000}
           animationEasing="ease-out"
         >
           {data.map((entry, index) => (
-            <Cell 
-              key={`cell-${index}`} 
+            <Cell
+              key={`cell-${index}`}
               fill={COLORS[index % COLORS.length]}
               style={{
                 transition: 'opacity 0.3s',
@@ -145,4 +152,3 @@ export default function ProjectsByCategoryChart({ data }: ProjectsByCategoryChar
     </ResponsiveContainer>
   );
 }
-

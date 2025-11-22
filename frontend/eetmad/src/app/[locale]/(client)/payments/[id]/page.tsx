@@ -142,10 +142,7 @@ export default function PaymentDetailPage() {
             borderColor: cssVars.neutral.border,
           }}
         >
-          <h2
-            className="mb-4 text-xl font-bold"
-            style={{ color: cssVars.secondary.DEFAULT }}
-          >
+          <h2 className="mb-4 text-xl font-bold" style={{ color: cssVars.secondary.DEFAULT }}>
             {t('paymentInfo')}
           </h2>
           <div className="space-y-3">
@@ -153,7 +150,10 @@ export default function PaymentDetailPage() {
               <p className="text-xs font-semibold" style={{ color: cssVars.neutral.textMuted }}>
                 {t('transactionId')}
               </p>
-              <p className="text-sm font-mono font-medium" style={{ color: cssVars.secondary.DEFAULT }}>
+              <p
+                className="font-mono text-sm font-medium"
+                style={{ color: cssVars.secondary.DEFAULT }}
+              >
                 {payment.transactionId}
               </p>
             </div>
@@ -212,10 +212,7 @@ export default function PaymentDetailPage() {
             borderColor: cssVars.neutral.border,
           }}
         >
-          <h2
-            className="mb-4 text-xl font-bold"
-            style={{ color: cssVars.secondary.DEFAULT }}
-          >
+          <h2 className="mb-4 text-xl font-bold" style={{ color: cssVars.secondary.DEFAULT }}>
             {t('timeline')}
           </h2>
           <div className="space-y-3">
@@ -295,4 +292,3 @@ export default function PaymentDetailPage() {
     </div>
   );
 }
-

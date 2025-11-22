@@ -41,10 +41,7 @@ export default function CategoryHeader({ category }: CategoryHeaderProps) {
             )}
           </div>
           <div>
-            <h1
-              className="mb-2 text-4xl font-bold"
-              style={{ color: cssVars.secondary.DEFAULT }}
-            >
+            <h1 className="mb-2 text-4xl font-bold" style={{ color: cssVars.secondary.DEFAULT }}>
               {categoryName}
             </h1>
             {category.description && (
@@ -87,4 +84,3 @@ export default function CategoryHeader({ category }: CategoryHeaderProps) {
     </motion.div>
   );
 }
-

@@ -30,4 +30,3 @@ export function useChangePassword() {
 
   return { changePassword, isLoading, error, success };
 }
-

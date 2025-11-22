@@ -1165,6 +1165,7 @@
       },
       "error": "Failed to load profile",
       "editProfile": "Edit Profile",
+      "settings": "Settings",
       "notProvided": "Not provided",
       "edit": {
         "title": "Edit Profile",

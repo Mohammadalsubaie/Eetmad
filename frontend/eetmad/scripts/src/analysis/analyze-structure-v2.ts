@@ -2,7 +2,7 @@
 
 /**
  * Enhanced Component and Page Structure Analyzer v2
- * 
+ *
  * This is a complete rebuild from scratch to fix issues in v1:
  * - Properly tracks hooks exports (useTableColumns, etc.)
  * - Tracks component usage in imported components
@@ -118,7 +118,7 @@ function resolvePath(importPath: string, fromFile?: string): string | null {
       // Try different extensions
       if (fs.existsSync(resolvedPath + '.tsx')) return resolvedPath + '.tsx';
       if (fs.existsSync(resolvedPath + '.ts')) return resolvedPath + '.ts';
-      
+
       // Try directory with index
       if (fs.existsSync(resolvedPath) && fs.statSync(resolvedPath).isDirectory()) {
         if (fs.existsSync(path.join(resolvedPath, 'index.tsx')))
@@ -126,7 +126,7 @@ function resolvePath(importPath: string, fromFile?: string): string | null {
         if (fs.existsSync(path.join(resolvedPath, 'index.ts')))
           return path.join(resolvedPath, 'index.ts');
       }
-      
+
       return null;
     }
   }
@@ -138,7 +138,7 @@ function resolvePath(importPath: string, fromFile?: string): string | null {
 
     if (fs.existsSync(resolvedPath + '.tsx')) return resolvedPath + '.tsx';
     if (fs.existsSync(resolvedPath + '.ts')) return resolvedPath + '.ts';
-    
+
     if (fs.existsSync(resolvedPath) && fs.statSync(resolvedPath).isDirectory()) {
       if (fs.existsSync(path.join(resolvedPath, 'index.tsx')))
         return path.join(resolvedPath, 'index.tsx');
@@ -174,13 +174,11 @@ function extractExports(filePath: string, content: string): ExportInfo[] {
   }
 
   // Named function/const exports
-  const namedExports = content.matchAll(
-    /export\s+(?:const|function|class)\s+(\w+)/g
-  );
+  const namedExports = content.matchAll(/export\s+(?:const|function|class)\s+(\w+)/g);
   for (const match of namedExports) {
     const exportName = match[1];
     const isHook = exportName.startsWith('use') && /^use[A-Z]/.test(exportName);
-    
+
     exports.push({
       name: exportName,
       type: isHook ? 'hook' : 'named',
@@ -189,9 +187,7 @@ function extractExports(filePath: string, content: string): ExportInfo[] {
   }
 
   // Type/interface exports
-  const typeExports = content.matchAll(
-    /export\s+(?:type|interface)\s+(\w+)/g
-  );
+  const typeExports = content.matchAll(/export\s+(?:type|interface)\s+(\w+)/g);
   for (const match of typeExports) {
     exports.push({
       name: match[1],
@@ -215,9 +211,7 @@ function extractExports(filePath: string, content: string): ExportInfo[] {
   }
 
   // Re-exports: export * from './file'
-  const reexportAllMatch = content.matchAll(
-    /export\s+\*\s+from\s+['"]([^'"]+)['"]/g
-  );
+  const reexportAllMatch = content.matchAll(/export\s+\*\s+from\s+['"]([^'"]+)['"]/g);
   for (const match of reexportAllMatch) {
     const reexportPath = resolvePath(match[1], filePath);
     if (reexportPath && fs.existsSync(reexportPath)) {
@@ -238,13 +232,15 @@ function extractExports(filePath: string, content: string): ExportInfo[] {
     /export\s+{\s*([^}]+)\s*}\s+from\s+['"]([^'"]+)['"]/g
   );
   for (const match of reexportNamedMatch) {
-    const names = match[1].split(',').map(n => {
+    const names = match[1].split(',').map((n) => {
       const trimmed = n.trim();
       const aliasMatch = trimmed.match(/(\w+)\s+as\s+(\w+)/);
-      return aliasMatch ? { original: aliasMatch[1], alias: aliasMatch[2] } : { original: trimmed, alias: trimmed };
+      return aliasMatch
+        ? { original: aliasMatch[1], alias: aliasMatch[2] }
+        : { original: trimmed, alias: trimmed };
     });
     const reexportPath = resolvePath(match[2], filePath);
-    
+
     for (const { original, alias } of names) {
       if (original !== 'default') {
         exports.push({
@@ -285,7 +281,7 @@ function extractImports(content: string, fromFile: string): ImportInfo[] {
       source.startsWith('../')
     ) {
       const resolved = resolvePath(source, fromFile);
-      
+
       const namedImports = (match.groups?.named || match.groups?.namedOnly || '')
         .split(',')
         .map((i) => {
@@ -387,7 +383,9 @@ function extractUsage(content: string, imports: ImportInfo[], filePath: string):
       while ((funcMatch = funcRegex.exec(content)) !== null) {
         const line = content.substring(0, funcMatch.index).split('\n').length;
         // Skip if already found as hook
-        if (!usages.some(u => u.exportName === name && u.line === line && u.usageType === 'hook')) {
+        if (
+          !usages.some((u) => u.exportName === name && u.line === line && u.usageType === 'hook')
+        ) {
           usages.push({
             componentName: imported.name,
             exportName: name,
@@ -486,28 +484,28 @@ function extractLinks(content: string, importedComponents: Map<string, string>):
 
   // Also check imported components for links (recursively)
   const processedForLinks = new Set<string>();
-  
+
   function extractLinksRecursive(componentPath: string): LinkInfo[] {
     if (processedForLinks.has(componentPath)) return [];
     if (!fs.existsSync(componentPath)) return [];
-    
+
     processedForLinks.add(componentPath);
     const componentLinks: LinkInfo[] = [];
-    
+
     try {
       const componentContent = fs.readFileSync(componentPath, 'utf-8');
       const componentImports = extractImports(componentContent, componentPath);
       const nestedImports = new Map<string, string>();
-      
+
       for (const imp of componentImports) {
         if (imp.resolvedPath && !processedForLinks.has(imp.resolvedPath)) {
           nestedImports.set(imp.source, imp.resolvedPath);
         }
       }
-      
+
       const directLinks = extractLinks(componentContent, new Map());
       componentLinks.push(...directLinks);
-      
+
       // Recursively check nested imports
       for (const nestedPath of nestedImports.values()) {
         if (nestedPath.includes('/components/')) {
@@ -517,7 +515,7 @@ function extractLinks(content: string, importedComponents: Map<string, string>):
     } catch (e) {
       // Skip if can't read
     }
-    
+
     return componentLinks;
   }
 
@@ -634,7 +632,7 @@ function findPages(dir: string, routeGroup: string = '', baseRoute: string = '')
 
       const imports = extractImports(content, fullPath);
       const importedComponents = new Map<string, string>();
-      
+
       for (const imp of imports) {
         if (imp.resolvedPath) {
           importedComponents.set(imp.source, imp.resolvedPath);
@@ -783,7 +781,12 @@ function analyzeStructure(): AnalysisResult {
   for (const comp of allComponents) {
     const unused: string[] = [];
     for (const exp of comp.exports) {
-      if (!componentUsage.has(exp.name) && !exp.isReexport && exp.type !== 'type' && exp.type !== 'interface') {
+      if (
+        !componentUsage.has(exp.name) &&
+        !exp.isReexport &&
+        exp.type !== 'type' &&
+        exp.type !== 'interface'
+      ) {
         unused.push(exp.name);
       }
     }
@@ -865,8 +868,11 @@ function generateReport(result: AnalysisResult): string {
   lines.push('-'.repeat(80));
   lines.push(`Total Component Exports: ${result.components.size}`);
   lines.push(`Exports in Use: ${result.componentUsage.size}`);
-  
-  const totalUnused = Array.from(result.unusedExports.values()).reduce((sum, arr) => sum + arr.length, 0);
+
+  const totalUnused = Array.from(result.unusedExports.values()).reduce(
+    (sum, arr) => sum + arr.length,
+    0
+  );
   lines.push(`Unused Exports: ${totalUnused}`);
   lines.push('');
 
@@ -913,10 +919,10 @@ function generateReport(result: AnalysisResult): string {
   if (totalUnused > 0) {
     lines.push('🚫 UNUSED EXPORTS (Top 20)');
     lines.push('-'.repeat(80));
-    
+
     const allUnused: Array<{ component: string; export: string; category: string }> = [];
     for (const [componentName, exports] of result.unusedExports.entries()) {
-      const comp = Array.from(result.components.values()).find(c => c.name === componentName);
+      const comp = Array.from(result.components.values()).find((c) => c.name === componentName);
       if (comp) {
         for (const exp of exports) {
           allUnused.push({
@@ -931,7 +937,7 @@ function generateReport(result: AnalysisResult): string {
     allUnused.slice(0, 20).forEach(({ component, export: exp, category }) => {
       lines.push(`   • ${component}.${exp} (${category})`);
     });
-    
+
     if (allUnused.length > 20) {
       lines.push(`   ... and ${allUnused.length - 20} more`);
     }
@@ -992,7 +998,7 @@ function generateReport(result: AnalysisResult): string {
   pagesWithComponents.forEach((page) => {
     lines.push(`\n${page.route} (${page.routeGroup || 'root'}):`);
     lines.push(`   Exports used: ${page.usages.length}`);
-    const uniqueExports = [...new Set(page.usages.map(u => u.exportName))];
+    const uniqueExports = [...new Set(page.usages.map((u) => u.exportName))];
     uniqueExports.slice(0, 5).forEach((exp) => {
       lines.push(`   • ${exp}`);
     });
@@ -1036,4 +1042,3 @@ if (require.main === module) {
 }
 
 export { analyzeStructure, generateReport };
-

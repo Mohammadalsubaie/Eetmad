@@ -102,10 +102,7 @@ export default function ProjectHeader({ project, variant = 'client' }: ProjectHe
       {project.status === 'active' && (
         <div className="mb-4">
           <div className="mb-2 flex items-center justify-between">
-            <span
-              className="text-sm font-medium"
-              style={{ color: cssVars.neutral.textSecondary }}
-            >
+            <span className="text-sm font-medium" style={{ color: cssVars.neutral.textSecondary }}>
               {t('progress')}
             </span>
             <span className="text-sm font-bold" style={{ color: cssVars.primary.DEFAULT }}>
@@ -131,4 +128,3 @@ export default function ProjectHeader({ project, variant = 'client' }: ProjectHe
     </div>
   );
 }
-

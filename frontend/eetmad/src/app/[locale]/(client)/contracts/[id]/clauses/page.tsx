@@ -146,10 +146,7 @@ export default function ContractClausesPage() {
             borderColor: cssVars.neutral.border,
           }}
         >
-          <h3
-            className="mb-4 text-xl font-bold"
-            style={{ color: cssVars.secondary.DEFAULT }}
-          >
+          <h3 className="mb-4 text-xl font-bold" style={{ color: cssVars.secondary.DEFAULT }}>
             {t('addClause')}
           </h3>
           <div className="space-y-4">
@@ -258,4 +255,3 @@ export default function ContractClausesPage() {
     </div>
   );
 }
-

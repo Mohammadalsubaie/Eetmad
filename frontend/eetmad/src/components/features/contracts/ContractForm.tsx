@@ -6,7 +6,11 @@ import { useTranslations, useLocale } from 'next-intl';
 import { motion } from 'framer-motion';
 import { FileText } from 'lucide-react';
 import { cssVars } from '@/styles/theme';
-import type { Contract, CreateContractInput, UpdateContractInput } from '@/lib/types/contract.types';
+import type {
+  Contract,
+  CreateContractInput,
+  UpdateContractInput,
+} from '@/lib/types/contract.types';
 import { Button, ErrorMessage, LoadingSpinner } from '@/components/ui';
 import { useCreateContract, useUpdateContract } from '@/lib/hooks/useContracts';
 import Input from '@/components/ui/Input/Input';
@@ -264,4 +268,3 @@ export default function ContractForm({ contract, projectId, onSuccess }: Contrac
     </form>
   );
 }
-

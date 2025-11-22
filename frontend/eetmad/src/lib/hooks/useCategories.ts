@@ -2,7 +2,11 @@
 
 import { useState, useEffect } from 'react';
 import { categoriesApi } from '@/lib/api/categories';
-import type { Category, UpdateCategoryInput, CreateCategoryInput } from '@/lib/types/category.types';
+import type {
+  Category,
+  UpdateCategoryInput,
+  CreateCategoryInput,
+} from '@/lib/types/category.types';
 
 export function useCategories() {
   const [data, setData] = useState<Category[]>([]);
@@ -96,4 +100,3 @@ export function useCreateCategory() {
     error,
   };
 }
-

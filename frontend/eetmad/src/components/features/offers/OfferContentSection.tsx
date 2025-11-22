@@ -10,10 +10,7 @@ interface OfferContentSectionProps {
   type: 'technicalProposal' | 'deliverables' | 'paymentTerms' | 'warrantyDetails';
 }
 
-export default function OfferContentSection({
-  offer,
-  type,
-}: OfferContentSectionProps) {
+export default function OfferContentSection({ offer, type }: OfferContentSectionProps) {
   const t = useTranslations('pages.offers');
 
   const content = {
@@ -57,4 +54,3 @@ export default function OfferContentSection({
     </div>
   );
 }
-

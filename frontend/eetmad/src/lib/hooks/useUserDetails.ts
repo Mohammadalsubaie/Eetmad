@@ -37,4 +37,3 @@ export function useUserDetails(userId: string | null) {
     error,
   };
 }
-

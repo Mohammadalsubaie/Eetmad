@@ -87,14 +87,11 @@ export default function ConversationCard({
             backgroundColor: `color-mix(in srgb, ${cssVars.primary.DEFAULT} 15%, transparent)`,
           }}
         >
-          <MessageCircle
-            className="h-6 w-6"
-            style={{ color: cssVars.primary.DEFAULT }}
-          />
+          <MessageCircle className="h-6 w-6" style={{ color: cssVars.primary.DEFAULT }} />
         </div>
 
         {/* Content */}
-        <div className="flex-1 min-w-0">
+        <div className="min-w-0 flex-1">
           <div className="mb-1 flex items-center justify-between gap-2">
             <div className="flex items-center gap-2">
               <h3
@@ -115,9 +112,7 @@ export default function ConversationCard({
                     borderColor: getStatusColor(conversation.status),
                   }}
                 >
-                  {conversation.status === 'archived' ? (
-                    <Archive className="mr-1 h-3 w-3" />
-                  ) : null}
+                  {conversation.status === 'archived' ? <Archive className="mr-1 h-3 w-3" /> : null}
                   {t(`status.${conversation.status}`)}
                 </Badge>
               )}
@@ -132,9 +127,7 @@ export default function ConversationCard({
             <p
               className="mb-2 line-clamp-2 text-sm"
               style={{
-                color: isUnread
-                  ? cssVars.secondary.DEFAULT
-                  : cssVars.neutral.textSecondary,
+                color: isUnread ? cssVars.secondary.DEFAULT : cssVars.neutral.textSecondary,
                 fontWeight: isUnread ? '600' : '400',
               }}
             >
@@ -174,7 +167,7 @@ export default function ConversationCard({
             </div>
             {isUnread && (
               <div
-                className="flex h-6 w-6 items-center justify-center rounded-full font-bold text-xs"
+                className="flex h-6 w-6 items-center justify-center rounded-full text-xs font-bold"
                 style={{
                   backgroundColor: cssVars.primary.DEFAULT,
                   color: cssVars.neutral.bg,
@@ -184,10 +177,7 @@ export default function ConversationCard({
               </div>
             )}
             {!isUnread && lastMessage && lastMessage.isRead && (
-              <CheckCircle2
-                className="h-4 w-4"
-                style={{ color: cssVars.status.success }}
-              />
+              <CheckCircle2 className="h-4 w-4" style={{ color: cssVars.status.success }} />
             )}
           </div>
         </div>
@@ -195,4 +185,3 @@ export default function ConversationCard({
     </motion.div>
   );
 }
-

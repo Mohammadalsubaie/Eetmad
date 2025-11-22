@@ -74,4 +74,3 @@ export const mockAnalyticsData: AnalyticsData = {
     growthRate: 94.5,
   },
 };
-

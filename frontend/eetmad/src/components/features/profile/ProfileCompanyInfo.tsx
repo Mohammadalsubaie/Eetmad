@@ -74,4 +74,3 @@ export default function ProfileCompanyInfo({ user }: ProfileCompanyInfoProps) {
     </motion.div>
   );
 }
-

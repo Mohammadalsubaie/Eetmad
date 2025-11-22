@@ -52,12 +52,8 @@ export default function UserProfilePage() {
       {/* Header */}
       <div className="mb-8">
         <div className="mb-6 flex items-center gap-6">
-          <div className="border-4 rounded-full" style={{ borderColor: cssVars.primary.DEFAULT }}>
-            <Avatar
-              src={user.avatar}
-              alt={user.fullName}
-              size="xl"
-            />
+          <div className="rounded-full border-4" style={{ borderColor: cssVars.primary.DEFAULT }}>
+            <Avatar src={user.avatar} alt={user.fullName} size="xl" />
           </div>
           <div>
             <h1 className="mb-2 text-4xl font-bold" style={{ color: cssVars.secondary.DEFAULT }}>
@@ -171,10 +167,7 @@ export default function UserProfilePage() {
             borderColor: cssVars.neutral.border,
           }}
         >
-          <h2
-            className="mb-6 text-xl font-bold"
-            style={{ color: cssVars.secondary.DEFAULT }}
-          >
+          <h2 className="mb-6 text-xl font-bold" style={{ color: cssVars.secondary.DEFAULT }}>
             {t('contactInformation')}
           </h2>
           <div className="space-y-4">
@@ -208,7 +201,12 @@ export default function UserProfilePage() {
                     {t('address')}
                   </p>
                   <p className="text-sm" style={{ color: cssVars.secondary.DEFAULT }}>
-                    {[user.address.street, user.address.city, user.address.state, user.address.country]
+                    {[
+                      user.address.street,
+                      user.address.city,
+                      user.address.state,
+                      user.address.country,
+                    ]
                       .filter(Boolean)
                       .join(', ')}
                   </p>
@@ -227,16 +225,16 @@ export default function UserProfilePage() {
               borderColor: cssVars.neutral.border,
             }}
           >
-            <h2
-              className="mb-6 text-xl font-bold"
-              style={{ color: cssVars.secondary.DEFAULT }}
-            >
+            <h2 className="mb-6 text-xl font-bold" style={{ color: cssVars.secondary.DEFAULT }}>
               {t('companyInformation')}
             </h2>
             <div className="space-y-4">
               {user.companyName && (
                 <div>
-                  <p className="mb-1 text-xs font-semibold" style={{ color: cssVars.neutral.textMuted }}>
+                  <p
+                    className="mb-1 text-xs font-semibold"
+                    style={{ color: cssVars.neutral.textMuted }}
+                  >
                     {t('companyName')}
                   </p>
                   <p className="text-sm font-medium" style={{ color: cssVars.secondary.DEFAULT }}>
@@ -246,7 +244,10 @@ export default function UserProfilePage() {
               )}
               {user.commercialRegister && (
                 <div>
-                  <p className="mb-1 text-xs font-semibold" style={{ color: cssVars.neutral.textMuted }}>
+                  <p
+                    className="mb-1 text-xs font-semibold"
+                    style={{ color: cssVars.neutral.textMuted }}
+                  >
                     {t('commercialRegister')}
                   </p>
                   <p className="text-sm font-medium" style={{ color: cssVars.secondary.DEFAULT }}>
@@ -256,7 +257,10 @@ export default function UserProfilePage() {
               )}
               {user.taxNumber && (
                 <div>
-                  <p className="mb-1 text-xs font-semibold" style={{ color: cssVars.neutral.textMuted }}>
+                  <p
+                    className="mb-1 text-xs font-semibold"
+                    style={{ color: cssVars.neutral.textMuted }}
+                  >
                     {t('taxNumber')}
                   </p>
                   <p className="text-sm font-medium" style={{ color: cssVars.secondary.DEFAULT }}>
@@ -271,4 +275,3 @@ export default function UserProfilePage() {
     </div>
   );
 }
-

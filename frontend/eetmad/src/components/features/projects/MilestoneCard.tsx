@@ -1,7 +1,15 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { Calendar, CheckCircle, Clock, DollarSign, Download, FileText, XCircle } from 'lucide-react';
+import {
+  Calendar,
+  CheckCircle,
+  Clock,
+  DollarSign,
+  Download,
+  FileText,
+  XCircle,
+} from 'lucide-react';
 import { cssVars } from '@/styles/theme';
 import { useTranslations } from 'next-intl';
 import StatusBadge from '@/components/shared/badges/StatusBadge';
@@ -72,10 +80,7 @@ export default function MilestoneCard({
         style={{ borderColor: cssVars.neutral.border }}
       >
         <div>
-          <div
-            className="mb-2 text-xs font-semibold"
-            style={{ color: cssVars.neutral.textMuted }}
-          >
+          <div className="mb-2 text-xs font-semibold" style={{ color: cssVars.neutral.textMuted }}>
             {t('milestonesSection.amount')}
           </div>
           <div className="flex items-center gap-2">
@@ -86,10 +91,7 @@ export default function MilestoneCard({
           </div>
         </div>
         <div>
-          <div
-            className="mb-2 text-xs font-semibold"
-            style={{ color: cssVars.neutral.textMuted }}
-          >
+          <div className="mb-2 text-xs font-semibold" style={{ color: cssVars.neutral.textMuted }}>
             {t('milestonesSection.dueDate')}
           </div>
           <div className="flex items-center gap-2">
@@ -100,10 +102,7 @@ export default function MilestoneCard({
           </div>
         </div>
         <div>
-          <div
-            className="mb-2 text-xs font-semibold"
-            style={{ color: cssVars.neutral.textMuted }}
-          >
+          <div className="mb-2 text-xs font-semibold" style={{ color: cssVars.neutral.textMuted }}>
             {t('milestonesSection.paymentStatus')}
           </div>
           <div className="flex items-center gap-2">
@@ -130,10 +129,7 @@ export default function MilestoneCard({
           className="mb-4 rounded-xl border-2 p-4"
           style={{ borderColor: cssVars.neutral.border }}
         >
-          <div
-            className="mb-2 text-xs font-semibold"
-            style={{ color: cssVars.neutral.textMuted }}
-          >
+          <div className="mb-2 text-xs font-semibold" style={{ color: cssVars.neutral.textMuted }}>
             {t('milestonesSection.deliverables')}
           </div>
           <p style={{ color: cssVars.secondary.DEFAULT }}>{milestone.deliverables}</p>
@@ -143,10 +139,7 @@ export default function MilestoneCard({
       {/* Attachments */}
       {milestone.attachments && milestone.attachments.length > 0 && (
         <div className="mb-4">
-          <div
-            className="mb-2 text-xs font-semibold"
-            style={{ color: cssVars.neutral.textMuted }}
-          >
+          <div className="mb-2 text-xs font-semibold" style={{ color: cssVars.neutral.textMuted }}>
             {t('milestonesSection.attachments')}
           </div>
           <div className="flex flex-wrap gap-2">
@@ -183,10 +176,7 @@ export default function MilestoneCard({
           className="mb-4 rounded-xl border-2 p-4"
           style={{ borderColor: cssVars.neutral.border }}
         >
-          <div
-            className="mb-2 text-xs font-semibold"
-            style={{ color: cssVars.neutral.textMuted }}
-          >
+          <div className="mb-2 text-xs font-semibold" style={{ color: cssVars.neutral.textMuted }}>
             {t('milestonesSection.notes')}
           </div>
           <p style={{ color: cssVars.secondary.DEFAULT }}>{milestone.notes}</p>
@@ -195,10 +185,7 @@ export default function MilestoneCard({
 
       {/* Actions */}
       {milestone.status === 'completed' && onApprove && onReject && (
-        <div
-          className="flex gap-3 border-t pt-4"
-          style={{ borderColor: cssVars.neutral.border }}
-        >
+        <div className="flex gap-3 border-t pt-4" style={{ borderColor: cssVars.neutral.border }}>
           <Button
             variant="primary"
             onClick={() => onApprove(milestone.id)}
@@ -225,4 +212,3 @@ export default function MilestoneCard({
     </motion.div>
   );
 }
-

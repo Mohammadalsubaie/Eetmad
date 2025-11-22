@@ -3,7 +3,15 @@
 import { useRouter } from 'next/navigation';
 import { useTranslations, useLocale } from 'next-intl';
 import { motion } from 'framer-motion';
-import { Star, ThumbsUp, ThumbsDown, MessageSquare, Calendar, CheckCircle2, User } from 'lucide-react';
+import {
+  Star,
+  ThumbsUp,
+  ThumbsDown,
+  MessageSquare,
+  Calendar,
+  CheckCircle2,
+  User,
+} from 'lucide-react';
 import { cssVars } from '@/styles/theme';
 import type { Review } from '@/lib/types/review.types';
 import { Badge } from '@/components/ui';
@@ -71,16 +79,16 @@ export default function ReviewCard({ review, onView }: ReviewCardProps) {
                 </h3>
                 {review.isVerified && (
                   <div title={t('verified')}>
-                    <CheckCircle2
-                      className="h-5 w-5"
-                      style={{ color: cssVars.status.success }}
-                    />
+                    <CheckCircle2 className="h-5 w-5" style={{ color: cssVars.status.success }} />
                   </div>
                 )}
               </div>
               <div className="mb-2 flex items-center gap-2">
                 {renderStars(review.rating)}
-                <span className="text-sm font-semibold" style={{ color: cssVars.secondary.DEFAULT }}>
+                <span
+                  className="text-sm font-semibold"
+                  style={{ color: cssVars.secondary.DEFAULT }}
+                >
                   {review.rating}/5
                 </span>
                 <Badge

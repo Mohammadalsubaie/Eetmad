@@ -1,6 +1,15 @@
 'use client';
 
-import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Legend } from 'recharts';
+import {
+  AreaChart,
+  Area,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  ResponsiveContainer,
+  Legend,
+} from 'recharts';
 import { useTranslations } from 'next-intl';
 import { cssVars } from '@/styles/theme';
 
@@ -84,13 +93,10 @@ const CustomTooltip = ({ active, payload, label, t }: any) => {
 
 export default function MonthlyRevenueChart({ data }: MonthlyRevenueChartProps) {
   const t = useTranslations('admin.analytics.charts.monthlyRevenueDetails');
-  
+
   return (
     <ResponsiveContainer width="100%" height={550}>
-      <AreaChart
-        data={data}
-        margin={{ top: 10, right: 20, left: 0, bottom: 70 }}
-      >
+      <AreaChart data={data} margin={{ top: 10, right: 20, left: 0, bottom: 70 }}>
         <defs>
           <linearGradient id="colorRevenue" x1="0" y1="0" x2="0" y2="1">
             <stop offset="0%" stopColor={cssVars.status.success} stopOpacity={0.9} />
@@ -103,16 +109,16 @@ export default function MonthlyRevenueChart({ data }: MonthlyRevenueChartProps) 
             <stop offset="100%" stopColor={cssVars.accent.primary} stopOpacity={0.05} />
           </linearGradient>
         </defs>
-        <CartesianGrid 
-          strokeDasharray="3 3" 
+        <CartesianGrid
+          strokeDasharray="3 3"
           stroke={cssVars.neutral.border}
           opacity={0.2}
           vertical={false}
         />
-        <XAxis 
-          dataKey="month" 
-          tick={{ 
-            fill: cssVars.neutral.textSecondary, 
+        <XAxis
+          dataKey="month"
+          tick={{
+            fill: cssVars.neutral.textSecondary,
             fontSize: 14,
             fontWeight: 500,
           }}
@@ -126,9 +132,9 @@ export default function MonthlyRevenueChart({ data }: MonthlyRevenueChartProps) 
           dy={12}
           dx={-5}
         />
-        <YAxis 
-          tick={{ 
-            fill: cssVars.neutral.textSecondary, 
+        <YAxis
+          tick={{
+            fill: cssVars.neutral.textSecondary,
             fontSize: 14,
             fontWeight: 500,
           }}
@@ -140,7 +146,7 @@ export default function MonthlyRevenueChart({ data }: MonthlyRevenueChartProps) 
           dx={-5}
         />
         <Tooltip content={<CustomTooltip t={t} />} />
-        <Legend 
+        <Legend
           wrapperStyle={{ paddingTop: '16px', fontSize: '16px' }}
           iconSize={22}
           formatter={(value) => (
@@ -176,4 +182,3 @@ export default function MonthlyRevenueChart({ data }: MonthlyRevenueChartProps) 
     </ResponsiveContainer>
   );
 }
-

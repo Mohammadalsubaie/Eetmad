@@ -56,4 +56,3 @@ export default function UserVerificationInfo({ user }: UserVerificationInfoProps
     </motion.div>
   );
 }
-

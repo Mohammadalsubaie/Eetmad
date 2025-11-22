@@ -6,7 +6,12 @@ import { useLocale, useTranslations } from 'next-intl';
 import { motion } from 'framer-motion';
 import { ArrowLeft, Lock, Bell, Trash2, AlertTriangle } from 'lucide-react';
 import { cssVars } from '@/styles/theme';
-import { useProfile, useChangePassword, useUpdateNotificationPreferences, useDeleteAccount } from '@/lib/hooks/useUsers';
+import {
+  useProfile,
+  useChangePassword,
+  useUpdateNotificationPreferences,
+  useDeleteAccount,
+} from '@/lib/hooks/useUsers';
 import { LoadingSpinner, ErrorMessage, Button } from '@/components/ui';
 import Breadcrumbs from '@/components/shared/navigation/Breadcrumbs';
 import Input from '@/components/ui/Input/Input';
@@ -16,8 +21,13 @@ export default function ProfileSettingsPage() {
   const locale = useLocale();
   const router = useRouter();
   const { data: profile, isLoading: loadingProfile } = useProfile();
-  const { mutate: changePassword, isLoading: changingPassword, error: passwordError } = useChangePassword();
-  const { mutate: updatePreferences, isLoading: updatingPreferences } = useUpdateNotificationPreferences();
+  const {
+    mutate: changePassword,
+    isLoading: changingPassword,
+    error: passwordError,
+  } = useChangePassword();
+  const { mutate: updatePreferences, isLoading: updatingPreferences } =
+    useUpdateNotificationPreferences();
   const { mutate: deleteAccount, isLoading: deletingAccount } = useDeleteAccount();
 
   const [passwordData, setPasswordData] = useState({
@@ -100,7 +110,7 @@ export default function ProfileSettingsPage() {
       ...prev,
       [category]: {
         ...prev[category],
-        [key]: !prev[category][key as keyof typeof prev[typeof category]],
+        [key]: !prev[category][key as keyof (typeof prev)[typeof category]],
       },
     }));
   };
@@ -130,7 +140,10 @@ export default function ProfileSettingsPage() {
   if (loadingProfile) {
     return (
       <div className="container mx-auto py-8" style={{ backgroundColor: cssVars.neutral.bg }}>
-        <Breadcrumbs items={[{ label: t('title'), href: `/${locale}/profile` }, { label: t('settings') }]} className="mb-6" />
+        <Breadcrumbs
+          items={[{ label: t('title'), href: `/${locale}/profile` }, { label: t('settings') }]}
+          className="mb-6"
+        />
         <div className="flex items-center justify-center py-12">
           <LoadingSpinner size="lg" />
         </div>
@@ -140,7 +153,10 @@ export default function ProfileSettingsPage() {
 
   return (
     <div className="container mx-auto py-8" style={{ backgroundColor: cssVars.neutral.bg }}>
-      <Breadcrumbs items={[{ label: t('title'), href: `/${locale}/profile` }, { label: t('settings') }]} className="mb-6" />
+      <Breadcrumbs
+        items={[{ label: t('title'), href: `/${locale}/profile` }, { label: t('settings') }]}
+        className="mb-6"
+      />
 
       {/* Back Button */}
       <motion.button
@@ -178,10 +194,16 @@ export default function ProfileSettingsPage() {
               {t('changePassword')}
             </h2>
           </div>
-          {passwordError && <ErrorMessage error={passwordError.message || String(passwordError)} variant="inline" />}
+          {passwordError && (
+            <ErrorMessage error={passwordError.message || String(passwordError)} variant="inline" />
+          )}
           <form onSubmit={handlePasswordSubmit} className="space-y-4">
             <div>
-              <label htmlFor="currentPassword" className="mb-2 block text-sm font-bold" style={{ color: cssVars.secondary.DEFAULT }}>
+              <label
+                htmlFor="currentPassword"
+                className="mb-2 block text-sm font-bold"
+                style={{ color: cssVars.secondary.DEFAULT }}
+              >
                 {t('currentPassword')}
               </label>
               <Input
@@ -195,7 +217,11 @@ export default function ProfileSettingsPage() {
               />
             </div>
             <div>
-              <label htmlFor="newPassword" className="mb-2 block text-sm font-bold" style={{ color: cssVars.secondary.DEFAULT }}>
+              <label
+                htmlFor="newPassword"
+                className="mb-2 block text-sm font-bold"
+                style={{ color: cssVars.secondary.DEFAULT }}
+              >
                 {t('newPassword')}
               </label>
               <Input
@@ -210,7 +236,11 @@ export default function ProfileSettingsPage() {
               />
             </div>
             <div>
-              <label htmlFor="confirmPassword" className="mb-2 block text-sm font-bold" style={{ color: cssVars.secondary.DEFAULT }}>
+              <label
+                htmlFor="confirmPassword"
+                className="mb-2 block text-sm font-bold"
+                style={{ color: cssVars.secondary.DEFAULT }}
+              >
                 {t('confirmPassword')}
               </label>
               <Input
@@ -363,4 +393,3 @@ export default function ProfileSettingsPage() {
     </div>
   );
 }
-

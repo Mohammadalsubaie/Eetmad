@@ -95,16 +95,10 @@ export default function SignContractPage() {
           borderColor: cssVars.neutral.border,
         }}
       >
-        <h2
-          className="mb-2 text-xl font-bold"
-          style={{ color: cssVars.secondary.DEFAULT }}
-        >
+        <h2 className="mb-2 text-xl font-bold" style={{ color: cssVars.secondary.DEFAULT }}>
           {contract.contractNumber}
         </h2>
-        <p
-          className="line-clamp-3 text-sm"
-          style={{ color: cssVars.neutral.textSecondary }}
-        >
+        <p className="line-clamp-3 text-sm" style={{ color: cssVars.neutral.textSecondary }}>
           {contract.contractText}
         </p>
       </div>
@@ -118,4 +112,3 @@ export default function SignContractPage() {
     </div>
   );
 }
-

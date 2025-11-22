@@ -94,7 +94,9 @@ export default function NewConversationPage() {
           borderColor: cssVars.neutral.border,
         }}
       >
-        {error && <ErrorMessage error={error.message || String(error)} variant="inline" className="mb-4" />}
+        {error && (
+          <ErrorMessage error={error.message || String(error)} variant="inline" className="mb-4" />
+        )}
 
         {/* Search Users */}
         <div className="mb-6">
@@ -119,7 +121,10 @@ export default function NewConversationPage() {
         {/* Selected Users */}
         {selectedUsers.length > 0 && (
           <div className="mb-6">
-            <label className="mb-2 block text-sm font-bold" style={{ color: cssVars.secondary.DEFAULT }}>
+            <label
+              className="mb-2 block text-sm font-bold"
+              style={{ color: cssVars.secondary.DEFAULT }}
+            >
               {t('selectedUsers')} ({selectedUsers.length})
             </label>
             <div className="flex flex-wrap gap-2">
@@ -134,7 +139,10 @@ export default function NewConversationPage() {
                       borderColor: cssVars.primary.DEFAULT,
                     }}
                   >
-                    <span className="text-sm font-medium" style={{ color: cssVars.secondary.DEFAULT }}>
+                    <span
+                      className="text-sm font-medium"
+                      style={{ color: cssVars.secondary.DEFAULT }}
+                    >
                       {user?.name}
                     </span>
                     <button
@@ -154,7 +162,10 @@ export default function NewConversationPage() {
         {/* Users List */}
         {searchQuery && (
           <div className="mb-6 max-h-64 overflow-y-auto">
-            <label className="mb-2 block text-sm font-bold" style={{ color: cssVars.secondary.DEFAULT }}>
+            <label
+              className="mb-2 block text-sm font-bold"
+              style={{ color: cssVars.secondary.DEFAULT }}
+            >
               {t('users')}
             </label>
             <div className="space-y-2">
@@ -269,4 +280,3 @@ export default function NewConversationPage() {
     </div>
   );
 }
-

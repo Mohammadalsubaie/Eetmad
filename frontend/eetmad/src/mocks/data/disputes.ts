@@ -58,7 +58,8 @@ export const mockDisputes: Dispute[] = [
     raisedBy: 'user-1',
     against: 'supplier-3',
     subject: 'Quality Issues',
-    description: 'The delivered work does not meet the quality standards specified in the contract.',
+    description:
+      'The delivered work does not meet the quality standards specified in the contract.',
     category: 'quality',
     evidence: [
       {

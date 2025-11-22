@@ -29,7 +29,9 @@ export default function ProfileStats({ user }: ProfileStatsProps) {
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2">
             <Star className="h-5 w-5" style={{ color: cssVars.accent.warm }} />
-            <span style={{ color: cssVars.neutral.textSecondary }}>{t('sections.stats.rating')}</span>
+            <span style={{ color: cssVars.neutral.textSecondary }}>
+              {t('sections.stats.rating')}
+            </span>
           </div>
           <span className="font-bold" style={{ color: cssVars.secondary.DEFAULT }}>
             {user.averageRating.toFixed(1)}
@@ -49,7 +51,9 @@ export default function ProfileStats({ user }: ProfileStatsProps) {
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2">
             <Wallet className="h-5 w-5" style={{ color: cssVars.accent.warm }} />
-            <span style={{ color: cssVars.neutral.textSecondary }}>{t('sections.stats.wallet')}</span>
+            <span style={{ color: cssVars.neutral.textSecondary }}>
+              {t('sections.stats.wallet')}
+            </span>
           </div>
           <span className="font-bold" style={{ color: cssVars.secondary.DEFAULT }}>
             {user.walletBalance.toLocaleString()} {t('currency')}
@@ -59,4 +63,3 @@ export default function ProfileStats({ user }: ProfileStatsProps) {
     </motion.div>
   );
 }
-

@@ -58,7 +58,10 @@ export default function EditMilestonePage() {
         items={[
           { label: t('title'), href: `/${locale}/projects` },
           { label: milestone.projectId, href: `/${locale}/projects/${milestone.projectId}` },
-          { label: t('milestonesSection.title'), href: `/${locale}/projects/${milestone.projectId}/milestones` },
+          {
+            label: t('milestonesSection.title'),
+            href: `/${locale}/projects/${milestone.projectId}/milestones`,
+          },
           { label: milestone.title, href: `/${locale}/milestones/${id}` },
           { label: t('milestonesSection.edit') },
         ]}
@@ -103,4 +106,3 @@ export default function EditMilestonePage() {
     </div>
   );
 }
-

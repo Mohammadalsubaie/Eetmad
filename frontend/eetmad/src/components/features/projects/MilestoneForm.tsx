@@ -6,7 +6,11 @@ import { useTranslations } from 'next-intl';
 import { motion } from 'framer-motion';
 import { DollarSign, Calendar } from 'lucide-react';
 import { cssVars } from '@/styles/theme';
-import type { ProjectMilestone, CreateMilestoneInput, UpdateMilestoneInput } from '@/lib/types/project.types';
+import type {
+  ProjectMilestone,
+  CreateMilestoneInput,
+  UpdateMilestoneInput,
+} from '@/lib/types/project.types';
 import { Button, ErrorMessage } from '@/components/ui';
 import { useCreateMilestone, useUpdateMilestone } from '@/lib/hooks/useMilestones';
 import Input from '@/components/ui/Input/Input';
@@ -232,7 +236,11 @@ export default function MilestoneForm({ milestone, projectId, onSuccess }: Miles
               color: cssVars.secondary.DEFAULT,
             }}
           >
-            {submitting ? t('milestonesSection.form.saving') : isEdit ? t('milestonesSection.form.update') : t('milestonesSection.form.create')}
+            {submitting
+              ? t('milestonesSection.form.saving')
+              : isEdit
+                ? t('milestonesSection.form.update')
+                : t('milestonesSection.form.create')}
           </Button>
         </motion.div>
       </div>

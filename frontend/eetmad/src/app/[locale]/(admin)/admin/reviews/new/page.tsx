@@ -111,7 +111,10 @@ export default function CreateReviewPage() {
       >
         {createError && (
           <div className="mb-6">
-            <ErrorMessage error={createError.message || t('reviews.create.error')} variant="inline" />
+            <ErrorMessage
+              error={createError.message || t('reviews.create.error')}
+              variant="inline"
+            />
           </div>
         )}
 
@@ -124,11 +127,7 @@ export default function CreateReviewPage() {
 
         {/* Actions */}
         <div className="mt-8 flex justify-end gap-3">
-          <Button
-            type="button"
-            variant="outline"
-            onClick={() => router.back()}
-          >
+          <Button type="button" variant="outline" onClick={() => router.back()}>
             {t('common.cancel')}
           </Button>
           <Button

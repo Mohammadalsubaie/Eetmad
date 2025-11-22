@@ -1,9 +1,15 @@
 import apiClient from './client';
-import type { Conversation, Message, CreateConversationInput, CreateMessageInput } from '@/lib/types/message.types';
+import type {
+  Conversation,
+  Message,
+  CreateConversationInput,
+  CreateMessageInput,
+} from '@/lib/types/message.types';
 import type { QueryParams } from '@/lib/types/common.types';
 import { mockConversations, mockMessages } from '@/mocks/data/messages';
 
-const USE_MOCKS = process.env.NEXT_PUBLIC_USE_MOCKS === 'true' || process.env.NODE_ENV === 'development';
+const USE_MOCKS =
+  process.env.NEXT_PUBLIC_USE_MOCKS === 'true' || process.env.NODE_ENV === 'development';
 
 export const messagesApi = {
   // Conversations
@@ -80,7 +86,9 @@ export const messagesApi = {
       return mockMessages.filter((m) => m.conversationId === conversationId);
     }
     try {
-      const { data } = await apiClient.get(`/v1/conversations/${conversationId}/messages`, { params });
+      const { data } = await apiClient.get(`/v1/conversations/${conversationId}/messages`, {
+        params,
+      });
       return data;
     } catch (error) {
       console.warn('API call failed, using mock data:', error);
@@ -148,10 +156,7 @@ export const messagesApi = {
   },
 
   // System Messages
-  sendSystemMessage: async (
-    conversationId: string,
-    content: string
-  ): Promise<Message> => {
+  sendSystemMessage: async (conversationId: string, content: string): Promise<Message> => {
     const { data } = await apiClient.post<Message>(
       `/v1/conversations/${conversationId}/system-message`,
       { content }

@@ -114,10 +114,7 @@ export default function CancelProjectPage() {
           borderColor: cssVars.status.error,
         }}
       >
-        <h2
-          className="mb-4 text-xl font-bold"
-          style={{ color: cssVars.secondary.DEFAULT }}
-        >
+        <h2 className="mb-4 text-xl font-bold" style={{ color: cssVars.secondary.DEFAULT }}>
           {project.projectNumber}
         </h2>
         <p className="text-sm" style={{ color: cssVars.neutral.textSecondary }}>
@@ -190,4 +187,3 @@ export default function CancelProjectPage() {
     </div>
   );
 }
-

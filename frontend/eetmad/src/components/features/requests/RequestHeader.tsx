@@ -141,4 +141,3 @@ export default function RequestHeader({ request, requestId }: RequestHeaderProps
     </div>
   );
 }
-

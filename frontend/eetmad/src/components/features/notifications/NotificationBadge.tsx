@@ -10,7 +10,10 @@ interface NotificationBadgeProps {
   showCount?: boolean;
 }
 
-export default function NotificationBadge({ className = '', showCount = true }: NotificationBadgeProps) {
+export default function NotificationBadge({
+  className = '',
+  showCount = true,
+}: NotificationBadgeProps) {
   const { data: unreadCount } = useUnreadCount();
 
   if (!showCount || unreadCount === 0) {
@@ -27,7 +30,7 @@ export default function NotificationBadge({ className = '', showCount = true }: 
       <motion.div
         initial={{ scale: 0 }}
         animate={{ scale: 1 }}
-        className="absolute -right-2 -top-2 flex h-5 w-5 items-center justify-center rounded-full font-bold text-xs"
+        className="absolute -right-2 -top-2 flex h-5 w-5 items-center justify-center rounded-full text-xs font-bold"
         style={{
           backgroundColor: cssVars.status.error,
           color: cssVars.neutral.bg,
@@ -38,4 +41,3 @@ export default function NotificationBadge({ className = '', showCount = true }: 
     </div>
   );
 }
-

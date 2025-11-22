@@ -107,10 +107,7 @@ export default function DashboardRecentActivity({
       </div>
 
       {recentActivity.length === 0 ? (
-        <EmptyState
-          title={t('sections.recentActivity.empty')}
-          description=""
-        />
+        <EmptyState title={t('sections.recentActivity.empty')} description="" />
       ) : (
         <div className="space-y-4">
           {recentActivity.map((activity, index) => {
@@ -164,4 +161,3 @@ export default function DashboardRecentActivity({
     </motion.div>
   );
 }
-

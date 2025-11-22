@@ -189,4 +189,3 @@ export function useDeleteAccount() {
 
   return { mutate, isLoading, error };
 }
-

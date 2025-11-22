@@ -70,4 +70,3 @@ export default function PaymentProjectSection({ payment }: PaymentProjectSection
     </motion.div>
   );
 }
-

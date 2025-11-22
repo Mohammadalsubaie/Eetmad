@@ -1264,7 +1264,10 @@ export default function ManualReviewNavigator() {
                     filterStatus === 'reviewed'
                       ? `color-mix(in srgb, ${cssVars.status.success} 15%, transparent)`
                       : 'transparent',
-                  color: filterStatus === 'reviewed' ? cssVars.status.success : cssVars.neutral.textSecondary,
+                  color:
+                    filterStatus === 'reviewed'
+                      ? cssVars.status.success
+                      : cssVars.neutral.textSecondary,
                 }}
               >
                 مكتمل ({stats.reviewed})
@@ -1279,7 +1282,10 @@ export default function ManualReviewNavigator() {
                     filterStatus === 'issues'
                       ? `color-mix(in srgb, ${cssVars.status.warning} 15%, transparent)`
                       : 'transparent',
-                  color: filterStatus === 'issues' ? cssVars.status.warning : cssVars.neutral.textSecondary,
+                  color:
+                    filterStatus === 'issues'
+                      ? cssVars.status.warning
+                      : cssVars.neutral.textSecondary,
                 }}
               >
                 مشاكل ({stats.issues})

@@ -11,12 +11,7 @@ interface RatingInputProps {
   label?: string;
 }
 
-export default function RatingInput({
-  value,
-  onChange,
-  size = 'md',
-  label,
-}: RatingInputProps) {
+export default function RatingInput({ value, onChange, size = 'md', label }: RatingInputProps) {
   const iconSize = size === 'sm' ? 'h-4 w-4' : size === 'lg' ? 'h-8 w-8' : 'h-6 w-6';
 
   return (
@@ -42,8 +37,7 @@ export default function RatingInput({
             <Star
               className={iconSize}
               style={{
-                color:
-                  value >= rating ? cssVars.status.warning : cssVars.neutral.border,
+                color: value >= rating ? cssVars.status.warning : cssVars.neutral.border,
                 fill: value >= rating ? cssVars.status.warning : 'none',
               }}
             />

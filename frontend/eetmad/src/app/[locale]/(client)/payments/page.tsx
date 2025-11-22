@@ -17,7 +17,11 @@ export default function PaymentsPage() {
   const locale = useLocale();
   const router = useRouter();
   const [activeTab, setActiveTab] = useState<'all' | 'pending'>('all');
-  const { data: payments, isLoading, error } = activeTab === 'pending' ? usePendingPayments() : usePayments();
+  const {
+    data: payments,
+    isLoading,
+    error,
+  } = activeTab === 'pending' ? usePendingPayments() : usePayments();
 
   if (isLoading) {
     return (
@@ -140,4 +144,3 @@ export default function PaymentsPage() {
     </div>
   );
 }
-

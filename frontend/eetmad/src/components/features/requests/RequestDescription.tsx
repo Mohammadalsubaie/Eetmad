@@ -28,4 +28,3 @@ export default function RequestDescription({ request }: RequestDescriptionProps)
     </div>
   );
 }
-

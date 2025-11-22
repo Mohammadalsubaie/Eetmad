@@ -118,7 +118,9 @@ export default function DeliveryProofPage() {
           borderColor: cssVars.neutral.border,
         }}
       >
-        {error && <ErrorMessage error={error.message || String(error)} variant="inline" className="mb-6" />}
+        {error && (
+          <ErrorMessage error={error.message || String(error)} variant="inline" className="mb-6" />
+        )}
 
         {/* Files Upload */}
         <div className="mb-6">
@@ -168,7 +170,10 @@ export default function DeliveryProofPage() {
                   >
                     <div className="flex items-center gap-2">
                       <FileText className="h-4 w-4" style={{ color: cssVars.primary.DEFAULT }} />
-                      <span className="text-sm font-medium" style={{ color: cssVars.secondary.DEFAULT }}>
+                      <span
+                        className="text-sm font-medium"
+                        style={{ color: cssVars.secondary.DEFAULT }}
+                      >
                         {file.name}
                       </span>
                     </div>
@@ -244,4 +249,3 @@ export default function DeliveryProofPage() {
     </div>
   );
 }
-

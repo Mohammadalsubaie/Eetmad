@@ -138,10 +138,16 @@ export default function DisputeCard({ dispute, onView }: DisputeCardProps) {
           <div className="mb-3 space-y-2">
             {dispute.disputeNumber && (
               <div className="flex items-center gap-2">
-                <span className="text-xs font-semibold" style={{ color: cssVars.neutral.textMuted }}>
+                <span
+                  className="text-xs font-semibold"
+                  style={{ color: cssVars.neutral.textMuted }}
+                >
                   {t('disputeNumber')}:
                 </span>
-                <span className="text-xs font-mono" style={{ color: cssVars.neutral.textSecondary }}>
+                <span
+                  className="font-mono text-xs"
+                  style={{ color: cssVars.neutral.textSecondary }}
+                >
                   {dispute.disputeNumber}
                 </span>
               </div>
@@ -174,4 +180,3 @@ export default function DisputeCard({ dispute, onView }: DisputeCardProps) {
     </motion.div>
   );
 }
-

@@ -80,10 +80,7 @@ export default function ReviewOverviewCard({ review }: ReviewOverviewCardProps) 
       </div>
 
       {/* Comment */}
-      <div
-        className="mb-6 rounded-xl border-2 p-4"
-        style={{ borderColor: cssVars.neutral.border }}
-      >
+      <div className="mb-6 rounded-xl border-2 p-4" style={{ borderColor: cssVars.neutral.border }}>
         <p style={{ color: cssVars.secondary.DEFAULT }}>{review.comment}</p>
       </div>
 
@@ -111,9 +108,7 @@ export default function ReviewOverviewCard({ review }: ReviewOverviewCardProps) 
                     className="h-4 w-4"
                     style={{
                       color:
-                        i < review.qualityRating!
-                          ? cssVars.status.warning
-                          : cssVars.neutral.border,
+                        i < review.qualityRating! ? cssVars.status.warning : cssVars.neutral.border,
                       fill: i < review.qualityRating! ? cssVars.status.warning : 'none',
                     }}
                   />
@@ -201,4 +196,3 @@ export default function ReviewOverviewCard({ review }: ReviewOverviewCardProps) 
     </motion.div>
   );
 }
-

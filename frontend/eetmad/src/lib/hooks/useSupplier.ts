@@ -218,4 +218,3 @@ export function useSupplierStatistics() {
 
   return { stats, isLoading, error };
 }
-

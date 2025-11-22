@@ -136,9 +136,7 @@ export default function NotificationCard({
         backgroundColor: notification.isRead
           ? cssVars.neutral.surface
           : `color-mix(in srgb, ${cssVars.primary.DEFAULT} 5%, transparent)`,
-        borderColor: notification.isRead
-          ? cssVars.neutral.border
-          : cssVars.primary.DEFAULT,
+        borderColor: notification.isRead ? cssVars.neutral.border : cssVars.primary.DEFAULT,
         borderLeftWidth: notification.isRead ? '2px' : '4px',
       }}
       onClick={handleClick}
@@ -155,7 +153,7 @@ export default function NotificationCard({
         </div>
 
         {/* Content */}
-        <div className="flex-1 min-w-0">
+        <div className="min-w-0 flex-1">
           <div className="mb-1 flex items-start justify-between gap-2">
             <div className="flex-1">
               <h3
@@ -206,4 +204,3 @@ export default function NotificationCard({
     </motion.div>
   );
 }
-

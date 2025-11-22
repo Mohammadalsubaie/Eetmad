@@ -2,10 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { disputesApi } from '@/lib/api/disputes';
-import type {
-  Dispute,
-  DisputeMessage,
-} from '@/lib/types/dispute.types';
+import type { Dispute, DisputeMessage } from '@/lib/types/dispute.types';
 import type {
   CreateDisputeInput,
   UpdateDisputeInput,
@@ -228,4 +225,3 @@ export function useAddDisputeMessage() {
 
   return { mutate, isLoading, error };
 }
-

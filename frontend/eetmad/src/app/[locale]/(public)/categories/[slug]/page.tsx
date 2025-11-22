@@ -27,17 +27,13 @@ export default function CategoryPage() {
       return { category: null, subcategories: [] };
     }
 
-    const foundCategory = allCategories.find(
-      (cat) => cat.slug === slug || cat.id === slug
-    );
+    const foundCategory = allCategories.find((cat) => cat.slug === slug || cat.id === slug);
 
     if (!foundCategory) {
       return { category: null, subcategories: [] };
     }
 
-    const subs = allCategories.filter(
-      (cat) => cat.parentId === foundCategory.id && cat.isActive
-    );
+    const subs = allCategories.filter((cat) => cat.parentId === foundCategory.id && cat.isActive);
 
     return { category: foundCategory, subcategories: subs };
   }, [allCategories, slug]);
@@ -49,10 +45,7 @@ export default function CategoryPage() {
         style={{ backgroundColor: cssVars.neutral.bg }}
       >
         <Breadcrumbs
-          items={[
-            { label: t('title'), href: `/${locale}/categories` },
-            { label: slug },
-          ]}
+          items={[{ label: t('title'), href: `/${locale}/categories` }, { label: slug }]}
           className="mb-6"
         />
         <LoadingSpinner size="lg" />
@@ -64,10 +57,7 @@ export default function CategoryPage() {
     return (
       <div className="container mx-auto px-4 py-20" style={{ backgroundColor: cssVars.neutral.bg }}>
         <Breadcrumbs
-          items={[
-            { label: t('title'), href: `/${locale}/categories` },
-            { label: slug },
-          ]}
+          items={[{ label: t('title'), href: `/${locale}/categories` }, { label: slug }]}
           className="mb-6"
         />
         <div className="flex flex-col items-center gap-4">
@@ -76,9 +66,7 @@ export default function CategoryPage() {
             variant="banner"
           />
           <Link href="/categories">
-            <Button variant="primary">
-              {t('backToCategories') || 'Back to Categories'}
-            </Button>
+            <Button variant="primary">{t('backToCategories') || 'Back to Categories'}</Button>
           </Link>
         </div>
       </div>

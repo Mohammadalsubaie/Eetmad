@@ -13,7 +13,11 @@ interface ProjectActionsProps {
   variant?: 'client' | 'supplier';
 }
 
-export default function ProjectActions({ project, projectId, variant = 'client' }: ProjectActionsProps) {
+export default function ProjectActions({
+  project,
+  projectId,
+  variant = 'client',
+}: ProjectActionsProps) {
   const t = useTranslations('pages.projects');
   const router = useRouter();
 
@@ -54,4 +58,3 @@ export default function ProjectActions({ project, projectId, variant = 'client' 
     </Button>
   );
 }
-

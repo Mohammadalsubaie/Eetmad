@@ -4,7 +4,8 @@ import { mockRequests } from '@/mocks/data/requests';
 import apiClient from './client';
 import { shouldUseMocks } from '@/lib/utils/mockHelper';
 
-const USE_MOCKS = process.env.NEXT_PUBLIC_USE_MOCKS === 'true' || process.env.NODE_ENV === 'development';
+const USE_MOCKS =
+  process.env.NEXT_PUBLIC_USE_MOCKS === 'true' || process.env.NODE_ENV === 'development';
 
 export const requestsApi = {
   // Request Management
@@ -152,7 +153,9 @@ export const requestsApi = {
   },
 
   getByCategory: async (categoryId: string, params?: QueryParams): Promise<Request[]> => {
-    const { data } = await apiClient.get<Request[]>(`/v1/requests/category/${categoryId}`, { params });
+    const { data } = await apiClient.get<Request[]>(`/v1/requests/category/${categoryId}`, {
+      params,
+    });
     return data;
   },
 

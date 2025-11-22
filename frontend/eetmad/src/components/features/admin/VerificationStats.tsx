@@ -46,4 +46,3 @@ export default function VerificationStats({ documents }: VerificationStatsProps)
 
   return <AdminStatsSummary items={stats} />;
 }
-

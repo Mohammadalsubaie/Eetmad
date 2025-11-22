@@ -97,4 +97,3 @@ export default function SupplierStats({ supplier }: SupplierStatsProps) {
     </div>
   );
 }
-

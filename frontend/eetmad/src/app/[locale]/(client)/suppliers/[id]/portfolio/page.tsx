@@ -1,5 +1,6 @@
 'use client';
 
+import Image from 'next/image';
 import { useParams } from 'next/navigation';
 import { useLocale, useTranslations } from 'next-intl';
 import { Image as ImageIcon } from 'lucide-react';
@@ -75,56 +76,66 @@ export default function SupplierPortfolioPage() {
 
       {/* Portfolio Items */}
       {portfolio.length === 0 ? (
-        <EmptyState
-          title={t('noPortfolioItems')}
-          description={t('noPortfolioItemsDescription')}
-        />
+        <EmptyState title={t('noPortfolioItems')} description={t('noPortfolioItemsDescription')} />
       ) : (
         <ResourceGrid columns={{ default: 1, md: 2, lg: 3 }}>
-          {portfolio.map((item: { id: string; title: string; description: string; images?: string[]; category?: string; completedAt?: string }) => (
-            <div
-              key={item.id}
-              className="overflow-hidden rounded-2xl border-2 shadow-md transition-all hover:shadow-lg"
-              style={{
-                backgroundColor: cssVars.neutral.surface,
-                borderColor: cssVars.neutral.border,
-              }}
-            >
-              {item.images && item.images.length > 0 ? (
-                <img
-                  src={item.images[0]}
-                  alt={item.title}
-                  className="h-64 w-full object-cover"
-                />
-              ) : (
-                <div
-                  className="flex h-64 w-full items-center justify-center"
-                  style={{ backgroundColor: cssVars.neutral.bg }}
-                >
-                  <ImageIcon className="h-12 w-12" style={{ color: cssVars.neutral.textMuted }} />
-                </div>
-              )}
-              <div className="p-6">
-                <h3 className="mb-2 text-xl font-bold" style={{ color: cssVars.secondary.DEFAULT }}>
-                  {item.title}
-                </h3>
-                <p className="mb-4 text-sm leading-relaxed" style={{ color: cssVars.neutral.textSecondary }}>
-                  {item.description}
-                </p>
-                <div className="flex items-center justify-between">
-                  <span className="text-xs font-semibold" style={{ color: cssVars.neutral.textMuted }}>
-                    {item.category}
-                  </span>
-                  <span className="text-xs" style={{ color: cssVars.neutral.textMuted }}>
-                    {item.completedAt ? new Date(item.completedAt).toLocaleDateString() : ''}
-                  </span>
+          {portfolio.map(
+            (item: {
+              id: string;
+              title: string;
+              description: string;
+              images?: string[];
+              category?: string;
+              completedAt?: string;
+            }) => (
+              <div
+                key={item.id}
+                className="overflow-hidden rounded-2xl border-2 shadow-md transition-all hover:shadow-lg"
+                style={{
+                  backgroundColor: cssVars.neutral.surface,
+                  borderColor: cssVars.neutral.border,
+                }}
+              >
+                {item.images && item.images.length > 0 ? (
+                  <Image src={item.images[0]} alt={item.title} width={800} height={256} className="h-64 w-full object-cover" />
+                ) : (
+                  <div
+                    className="flex h-64 w-full items-center justify-center"
+                    style={{ backgroundColor: cssVars.neutral.bg }}
+                  >
+                    <ImageIcon className="h-12 w-12" style={{ color: cssVars.neutral.textMuted }} />
+                  </div>
+                )}
+                <div className="p-6">
+                  <h3
+                    className="mb-2 text-xl font-bold"
+                    style={{ color: cssVars.secondary.DEFAULT }}
+                  >
+                    {item.title}
+                  </h3>
+                  <p
+                    className="mb-4 text-sm leading-relaxed"
+                    style={{ color: cssVars.neutral.textSecondary }}
+                  >
+                    {item.description}
+                  </p>
+                  <div className="flex items-center justify-between">
+                    <span
+                      className="text-xs font-semibold"
+                      style={{ color: cssVars.neutral.textMuted }}
+                    >
+                      {item.category}
+                    </span>
+                    <span className="text-xs" style={{ color: cssVars.neutral.textMuted }}>
+                      {item.completedAt ? new Date(item.completedAt).toLocaleDateString() : ''}
+                    </span>
+                  </div>
                 </div>
               </div>
-            </div>
-          ))}
+            )
+          )}
         </ResourceGrid>
       )}
     </div>
   );
 }
-

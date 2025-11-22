@@ -62,4 +62,3 @@ export default function AdminDashboardRevenue({ stats }: AdminDashboardRevenuePr
     </motion.div>
   );
 }
-

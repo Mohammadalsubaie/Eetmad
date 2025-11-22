@@ -3,7 +3,18 @@
 import { useRouter } from 'next/navigation';
 import { useLocale, useTranslations } from 'next-intl';
 import { motion } from 'framer-motion';
-import { Edit, Settings, Mail, Phone, MapPin, Calendar, Building, Star, Wallet, Briefcase } from 'lucide-react';
+import {
+  Edit,
+  Settings,
+  Mail,
+  Phone,
+  MapPin,
+  Calendar,
+  Building,
+  Star,
+  Wallet,
+  Briefcase,
+} from 'lucide-react';
 import { cssVars } from '@/styles/theme';
 import { useProfile, useUserStatistics } from '@/lib/hooks/useUsers';
 import { LoadingSpinner, ErrorMessage, Button } from '@/components/ui';
@@ -54,12 +65,8 @@ export default function ProfilePage() {
       <div className="mb-8">
         <div className="mb-6 flex items-center justify-between">
           <div className="flex items-center gap-6">
-            <div className="border-4 rounded-full" style={{ borderColor: cssVars.primary.DEFAULT }}>
-              <Avatar
-                src={profile.avatar}
-                alt={profile.fullName}
-                size="xl"
-              />
+            <div className="rounded-full border-4" style={{ borderColor: cssVars.primary.DEFAULT }}>
+              <Avatar src={profile.avatar} alt={profile.fullName} size="xl" />
             </div>
             <div>
               <h1 className="mb-2 text-4xl font-bold" style={{ color: cssVars.secondary.DEFAULT }}>
@@ -95,7 +102,7 @@ export default function ProfilePage() {
               variant="outline"
               icon={Edit}
             >
-              {t('edit')}
+              {t('editProfile')}
             </Button>
             <Button
               onClick={() => router.push(`/${locale}/profile/settings`)}
@@ -192,10 +199,7 @@ export default function ProfilePage() {
             borderColor: cssVars.neutral.border,
           }}
         >
-          <h2
-            className="mb-6 text-xl font-bold"
-            style={{ color: cssVars.secondary.DEFAULT }}
-          >
+          <h2 className="mb-6 text-xl font-bold" style={{ color: cssVars.secondary.DEFAULT }}>
             {t('personalInformation')}
           </h2>
           <div className="space-y-4">
@@ -259,16 +263,16 @@ export default function ProfilePage() {
               borderColor: cssVars.neutral.border,
             }}
           >
-            <h2
-              className="mb-6 text-xl font-bold"
-              style={{ color: cssVars.secondary.DEFAULT }}
-            >
+            <h2 className="mb-6 text-xl font-bold" style={{ color: cssVars.secondary.DEFAULT }}>
               {t('companyInformation')}
             </h2>
             <div className="space-y-4">
               {profile.companyName && (
                 <div>
-                  <p className="mb-1 text-xs font-semibold" style={{ color: cssVars.neutral.textMuted }}>
+                  <p
+                    className="mb-1 text-xs font-semibold"
+                    style={{ color: cssVars.neutral.textMuted }}
+                  >
                     {t('companyName')}
                   </p>
                   <p className="text-sm font-medium" style={{ color: cssVars.secondary.DEFAULT }}>
@@ -278,7 +282,10 @@ export default function ProfilePage() {
               )}
               {profile.commercialRegister && (
                 <div>
-                  <p className="mb-1 text-xs font-semibold" style={{ color: cssVars.neutral.textMuted }}>
+                  <p
+                    className="mb-1 text-xs font-semibold"
+                    style={{ color: cssVars.neutral.textMuted }}
+                  >
                     {t('commercialRegister')}
                   </p>
                   <p className="text-sm font-medium" style={{ color: cssVars.secondary.DEFAULT }}>
@@ -288,7 +295,10 @@ export default function ProfilePage() {
               )}
               {profile.taxNumber && (
                 <div>
-                  <p className="mb-1 text-xs font-semibold" style={{ color: cssVars.neutral.textMuted }}>
+                  <p
+                    className="mb-1 text-xs font-semibold"
+                    style={{ color: cssVars.neutral.textMuted }}
+                  >
                     {t('taxNumber')}
                   </p>
                   <p className="text-sm font-medium" style={{ color: cssVars.secondary.DEFAULT }}>
@@ -309,10 +319,7 @@ export default function ProfilePage() {
               borderColor: cssVars.neutral.border,
             }}
           >
-            <h2
-              className="mb-6 text-xl font-bold"
-              style={{ color: cssVars.secondary.DEFAULT }}
-            >
+            <h2 className="mb-6 text-xl font-bold" style={{ color: cssVars.secondary.DEFAULT }}>
               {t('address')}
             </h2>
             <div className="flex items-start gap-3">
@@ -341,4 +348,3 @@ export default function ProfilePage() {
     </div>
   );
 }
-

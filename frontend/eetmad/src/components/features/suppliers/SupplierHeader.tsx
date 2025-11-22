@@ -50,10 +50,7 @@ export default function SupplierHeader({ supplier }: SupplierHeaderProps) {
             {supplier.rating !== undefined && (
               <div className="mb-2 flex items-center gap-2">
                 <Star className="h-5 w-5 fill-current" style={{ color: cssVars.accent.warm }} />
-                <span
-                  className="text-lg font-bold"
-                  style={{ color: cssVars.secondary.DEFAULT }}
-                >
+                <span className="text-lg font-bold" style={{ color: cssVars.secondary.DEFAULT }}>
                   {supplier.rating.toFixed(1)}
                 </span>
                 <span className="text-sm" style={{ color: cssVars.neutral.textSecondary }}>
@@ -72,4 +69,3 @@ export default function SupplierHeader({ supplier }: SupplierHeaderProps) {
     </motion.div>
   );
 }
-

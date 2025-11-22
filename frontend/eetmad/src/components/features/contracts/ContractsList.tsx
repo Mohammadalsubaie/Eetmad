@@ -12,9 +12,7 @@ interface ContractsListProps {
 
 export default function ContractsList({ projectId }: ContractsListProps) {
   const t = useTranslations('pages.contracts');
-  const { data: contracts, isLoading, error } = useContracts(
-    projectId ? { projectId } : undefined
-  );
+  const { data: contracts, isLoading, error } = useContracts(projectId ? { projectId } : undefined);
 
   if (isLoading) {
     return <LoadingSpinner text={t('loading')} />;
@@ -27,10 +25,7 @@ export default function ContractsList({ projectId }: ContractsListProps) {
   return (
     <div className="space-y-6">
       {contracts.length === 0 ? (
-        <EmptyState
-          title={t('noContracts')}
-          description={t('noContractsDescription')}
-        />
+        <EmptyState title={t('noContracts')} description={t('noContractsDescription')} />
       ) : (
         <ResourceGrid columns={{ default: 1, md: 2, lg: 3 }}>
           {contracts.map((contract) => (
@@ -41,4 +36,3 @@ export default function ContractsList({ projectId }: ContractsListProps) {
     </div>
   );
 }
-

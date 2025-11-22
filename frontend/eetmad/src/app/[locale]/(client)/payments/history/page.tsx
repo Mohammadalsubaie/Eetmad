@@ -21,10 +21,7 @@ export default function PaymentHistoryPage() {
     return (
       <div className="container mx-auto py-8" style={{ backgroundColor: cssVars.neutral.bg }}>
         <Breadcrumbs
-          items={[
-            { label: t('title'), href: `/${locale}/payments` },
-            { label: t('history') },
-          ]}
+          items={[{ label: t('title'), href: `/${locale}/payments` }, { label: t('history') }]}
           className="mb-6"
         />
         <div className="flex items-center justify-center py-12">
@@ -38,10 +35,7 @@ export default function PaymentHistoryPage() {
     return (
       <div className="container mx-auto py-8" style={{ backgroundColor: cssVars.neutral.bg }}>
         <Breadcrumbs
-          items={[
-            { label: t('title'), href: `/${locale}/payments` },
-            { label: t('history') },
-          ]}
+          items={[{ label: t('title'), href: `/${locale}/payments` }, { label: t('history') }]}
           className="mb-6"
         />
         <ErrorMessage error={error} variant="banner" />
@@ -52,10 +46,7 @@ export default function PaymentHistoryPage() {
   return (
     <div className="container mx-auto py-8" style={{ backgroundColor: cssVars.neutral.bg }}>
       <Breadcrumbs
-        items={[
-          { label: t('title'), href: `/${locale}/payments` },
-          { label: t('history') },
-        ]}
+        items={[{ label: t('title'), href: `/${locale}/payments` }, { label: t('history') }]}
         className="mb-6"
       />
 
@@ -93,4 +84,3 @@ export default function PaymentHistoryPage() {
     </div>
   );
 }
-

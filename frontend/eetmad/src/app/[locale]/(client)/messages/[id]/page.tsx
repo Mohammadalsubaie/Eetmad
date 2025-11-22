@@ -6,7 +6,13 @@ import { useLocale, useTranslations } from 'next-intl';
 import { motion } from 'framer-motion';
 import { ArrowLeft, MoreVertical, Archive, Trash2, Bell, BellOff } from 'lucide-react';
 import { cssVars } from '@/styles/theme';
-import { useConversation, useMessages, useSendMessage, useDeleteMessage, useUpdateMessage } from '@/lib/hooks/useMessages';
+import {
+  useConversation,
+  useMessages,
+  useSendMessage,
+  useDeleteMessage,
+  useUpdateMessage,
+} from '@/lib/hooks/useMessages';
 import { LoadingSpinner, ErrorMessage, Button } from '@/components/ui';
 import Breadcrumbs from '@/components/shared/navigation/Breadcrumbs';
 import MessageBubble from '@/components/features/messages/MessageBubble';
@@ -100,7 +106,10 @@ export default function ConversationPage() {
   }
 
   return (
-    <div className="flex h-[calc(100vh-200px)] flex-col" style={{ backgroundColor: cssVars.neutral.bg }}>
+    <div
+      className="flex h-[calc(100vh-200px)] flex-col"
+      style={{ backgroundColor: cssVars.neutral.bg }}
+    >
       {/* Header */}
       <div
         className="flex items-center justify-between border-b-2 p-4"
@@ -204,7 +213,10 @@ export default function ConversationPage() {
       <div className="border-t-2 p-4" style={{ borderColor: cssVars.neutral.border }}>
         <div className="mx-auto max-w-4xl">
           {isEditing ? (
-            <div className="mb-2 rounded-lg border-2 p-2" style={{ borderColor: cssVars.primary.DEFAULT }}>
+            <div
+              className="mb-2 rounded-lg border-2 p-2"
+              style={{ borderColor: cssVars.primary.DEFAULT }}
+            >
               <div className="mb-2 flex items-center justify-between">
                 <span className="text-xs font-semibold" style={{ color: cssVars.primary.DEFAULT }}>
                   {t('editing')}
@@ -229,4 +241,3 @@ export default function ConversationPage() {
     </div>
   );
 }
-

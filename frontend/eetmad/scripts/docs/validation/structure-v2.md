@@ -65,6 +65,7 @@ The report is saved to `scripts/structure-analysis-report-v2.txt` and includes:
 ### Export vs Component
 
 v2 tracks **exports** rather than just component names. This means:
+
 - A single file can export multiple things (default component, hooks, types)
 - Each export is tracked separately
 - Unused exports are identified even if the file has other used exports
@@ -72,11 +73,13 @@ v2 tracks **exports** rather than just component names. This means:
 ### Health Score
 
 The health score is calculated based on:
+
 - **Issues** (broken imports, etc.): -10 points each
 - **Warnings** (unused exports, isolated pages): -5 points each
 - **Unused exports**: -0.5 points each (max -30)
 
 **Score Interpretation:**
+
 - 80-100: ✅ Excellent structure
 - 60-79: ⚠️ Good, but has some issues
 - 0-59: ❌ Needs attention
@@ -86,6 +89,7 @@ The health score is calculated based on:
 ### Export Detection
 
 The analyzer detects:
+
 - Default exports: `export default function ComponentName`
 - Named exports: `export function ComponentName` or `export const ComponentName`
 - Hooks: Named exports starting with `use` (e.g., `useTableColumns`)
@@ -95,6 +99,7 @@ The analyzer detects:
 ### Usage Detection
 
 The analyzer finds usage in:
+
 - JSX: `<ComponentName />`
 - Function calls: `ComponentName()`
 - Hook calls: `useHookName()`
@@ -103,6 +108,7 @@ The analyzer finds usage in:
 ### Link Detection
 
 The analyzer finds links in:
+
 - Next.js `<Link>` components
 - `href` properties
 - `router.push()` and `router.replace()` calls
@@ -146,4 +152,3 @@ If links are missing:
 1. Check if they're in imported components (v2 should find them)
 2. Verify the link syntax matches supported patterns
 3. Check for dynamic routes (template literals)
-

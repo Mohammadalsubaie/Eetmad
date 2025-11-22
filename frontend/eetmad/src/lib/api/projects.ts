@@ -3,7 +3,8 @@ import type { QueryParams } from '@/lib/types/common.types';
 import type { Project, ProjectMilestone } from '@/lib/types/project.types';
 import { mockProjects } from '@/mocks/data/projects';
 
-const USE_MOCKS = process.env.NEXT_PUBLIC_USE_MOCKS === 'true' || process.env.NODE_ENV === 'development';
+const USE_MOCKS =
+  process.env.NEXT_PUBLIC_USE_MOCKS === 'true' || process.env.NODE_ENV === 'development';
 
 export const projectsApi = {
   // Get all projects
@@ -128,12 +129,16 @@ export const projectsApi = {
   },
 
   rejectDelivery: async (id: string, reason: string): Promise<Project> => {
-    const { data } = await apiClient.patch<Project>(`/v1/projects/${id}/reject-delivery`, { reason });
+    const { data } = await apiClient.patch<Project>(`/v1/projects/${id}/reject-delivery`, {
+      reason,
+    });
     return data;
   },
 
   requestRevision: async (id: string, notes: string): Promise<Project> => {
-    const { data } = await apiClient.post<Project>(`/v1/projects/${id}/request-revision`, { notes });
+    const { data } = await apiClient.post<Project>(`/v1/projects/${id}/request-revision`, {
+      notes,
+    });
     return data;
   },
 

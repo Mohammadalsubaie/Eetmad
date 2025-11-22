@@ -57,10 +57,7 @@ export default function SuppliersPage() {
       ) : error ? (
         <ErrorMessage error={error.message || String(error)} variant="banner" />
       ) : suppliers.length === 0 ? (
-        <EmptyState
-          title={t('noSuppliers')}
-          description={t('noSuppliersDescription')}
-        />
+        <EmptyState title={t('noSuppliers')} description={t('noSuppliersDescription')} />
       ) : (
         <ResourceGrid columns={{ default: 1, md: 2, lg: 3 }}>
           {suppliers.map((supplier, index) => (
@@ -71,4 +68,3 @@ export default function SuppliersPage() {
     </div>
   );
 }
-

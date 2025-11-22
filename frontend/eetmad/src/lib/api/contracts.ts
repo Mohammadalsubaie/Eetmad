@@ -8,7 +8,8 @@ import type {
 } from '@/lib/types/contract.types';
 import { mockContracts } from '@/mocks/data/contracts';
 
-const USE_MOCKS = process.env.NEXT_PUBLIC_USE_MOCKS === 'true' || process.env.NODE_ENV === 'development';
+const USE_MOCKS =
+  process.env.NEXT_PUBLIC_USE_MOCKS === 'true' || process.env.NODE_ENV === 'development';
 
 export const contractsApi = {
   // Get all contracts
@@ -113,10 +114,7 @@ export const contractsApi = {
   },
 
   // Add custom clause
-  addClause: async (
-    id: string,
-    clause: Record<string, unknown>
-  ): Promise<Contract> => {
+  addClause: async (id: string, clause: Record<string, unknown>): Promise<Contract> => {
     const { data } = await apiClient.post<Contract>(`/v1/contracts/${id}/clauses`, clause);
     return data;
   },

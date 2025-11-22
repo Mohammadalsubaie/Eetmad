@@ -33,10 +33,7 @@ export default function RequestDetailsCard({ request }: RequestDetailsCardProps)
       </h3>
       <div className="space-y-4">
         <div>
-          <p
-            className="mb-1 text-xs font-medium"
-            style={{ color: cssVars.neutral.textMuted }}
-          >
+          <p className="mb-1 text-xs font-medium" style={{ color: cssVars.neutral.textMuted }}>
             {t('deadline')}
           </p>
           <div className="flex items-center gap-2">
@@ -48,18 +45,13 @@ export default function RequestDetailsCard({ request }: RequestDetailsCardProps)
         </div>
         {request.location && (
           <div>
-            <p
-              className="mb-1 text-xs font-medium"
-              style={{ color: cssVars.neutral.textMuted }}
-            >
+            <p className="mb-1 text-xs font-medium" style={{ color: cssVars.neutral.textMuted }}>
               {t('location')}
             </p>
             <div className="flex items-center gap-2">
               <MapPin className="h-4 w-4" style={{ color: cssVars.primary.DEFAULT }} />
               <p className="text-sm font-medium" style={{ color: cssVars.secondary.DEFAULT }}>
-                {request.location.city ||
-                  request.location.region ||
-                  t('locationNotSpecified')}
+                {request.location.city || request.location.region || t('locationNotSpecified')}
               </p>
             </div>
           </div>
@@ -80,4 +72,3 @@ export default function RequestDetailsCard({ request }: RequestDetailsCardProps)
     </div>
   );
 }
-

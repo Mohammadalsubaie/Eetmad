@@ -39,4 +39,3 @@ export default function PaymentNotesSection({ payment }: PaymentNotesSectionProp
     </motion.div>
   );
 }
-

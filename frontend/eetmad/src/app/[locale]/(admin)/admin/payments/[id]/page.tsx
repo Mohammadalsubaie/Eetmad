@@ -56,10 +56,7 @@ export default function PaymentDetailPage() {
           className="mb-6"
         />
         <div className="flex h-64 items-center justify-center">
-          <ErrorMessage
-            error={error?.message || t('payments.notFound')}
-            variant="banner"
-          />
+          <ErrorMessage error={error?.message || t('payments.notFound')} variant="banner" />
         </div>
       </div>
     );

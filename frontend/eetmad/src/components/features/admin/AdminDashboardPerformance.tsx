@@ -62,4 +62,3 @@ export default function AdminDashboardPerformance({ stats }: AdminDashboardPerfo
     </motion.div>
   );
 }
-

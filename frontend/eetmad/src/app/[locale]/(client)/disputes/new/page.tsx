@@ -18,10 +18,7 @@ export default function NewDisputePage() {
   return (
     <div className="container mx-auto py-8" style={{ backgroundColor: cssVars.neutral.bg }}>
       <Breadcrumbs
-        items={[
-          { label: t('title'), href: `/${locale}/disputes` },
-          { label: t('newDispute') },
-        ]}
+        items={[{ label: t('title'), href: `/${locale}/disputes` }, { label: t('newDispute') }]}
         className="mb-6"
       />
 
@@ -57,12 +54,8 @@ export default function NewDisputePage() {
           borderColor: cssVars.neutral.border,
         }}
       >
-        <DisputeForm
-          projectId={projectId}
-          onSuccess={() => router.push(`/${locale}/disputes`)}
-        />
+        <DisputeForm projectId={projectId} onSuccess={() => router.push(`/${locale}/disputes`)} />
       </div>
     </div>
   );
 }
-

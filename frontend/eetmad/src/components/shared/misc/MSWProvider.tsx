@@ -14,8 +14,7 @@ export function MSWProvider({ children }: { children: React.ReactNode }) {
       // Only initialize MSW in development mode and if USE_MOCKS is enabled
       const shouldUseMocks =
         process.env.NODE_ENV === 'development' &&
-        (process.env.NEXT_PUBLIC_USE_MOCKS === 'true' ||
-          typeof window !== 'undefined');
+        (process.env.NEXT_PUBLIC_USE_MOCKS === 'true' || typeof window !== 'undefined');
 
       if (shouldUseMocks) {
         try {
@@ -47,4 +46,3 @@ export function MSWProvider({ children }: { children: React.ReactNode }) {
 
   return <>{children}</>;
 }
-

@@ -12,12 +12,15 @@ interface DisputesListProps {
 
 export default function DisputesList({ filter = 'all' }: DisputesListProps) {
   const t = useTranslations('pages.disputes');
-  const { data: disputes, isLoading, error } =
-    filter === 'pending'
-      ? usePendingDisputes()
-      : filter === 'resolved'
-        ? useResolvedDisputes()
-        : useDisputes();
+  const {
+    data: disputes,
+    isLoading,
+    error,
+  } = filter === 'pending'
+    ? usePendingDisputes()
+    : filter === 'resolved'
+      ? useResolvedDisputes()
+      : useDisputes();
 
   if (isLoading) {
     return <LoadingSpinner text={t('loading')} />;
@@ -30,10 +33,7 @@ export default function DisputesList({ filter = 'all' }: DisputesListProps) {
   return (
     <div className="space-y-6">
       {disputes.length === 0 ? (
-        <EmptyState
-          title={t('noDisputes')}
-          description={t('noDisputesDescription')}
-        />
+        <EmptyState title={t('noDisputes')} description={t('noDisputesDescription')} />
       ) : (
         <ResourceGrid columns={{ default: 1, md: 2, lg: 3 }}>
           {disputes.map((dispute) => (
@@ -44,4 +44,3 @@ export default function DisputesList({ filter = 'all' }: DisputesListProps) {
     </div>
   );
 }
-

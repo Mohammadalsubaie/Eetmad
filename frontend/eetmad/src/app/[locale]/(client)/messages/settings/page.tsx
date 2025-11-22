@@ -28,10 +28,7 @@ export default function MessagesSettingsPage() {
   return (
     <div className="container mx-auto py-8" style={{ backgroundColor: cssVars.neutral.bg }}>
       <Breadcrumbs
-        items={[
-          { label: t('title'), href: `/${locale}/messages` },
-          { label: t('settings') },
-        ]}
+        items={[{ label: t('title'), href: `/${locale}/messages` }, { label: t('settings') }]}
         className="mb-6"
       />
 
@@ -90,7 +87,7 @@ export default function MessagesSettingsPage() {
               }}
             >
               <span
-                className={`absolute top-0.5 left-0.5 h-5 w-5 rounded-full bg-white transition-transform ${
+                className={`absolute left-0.5 top-0.5 h-5 w-5 rounded-full bg-white transition-transform ${
                   settings.emailNotifications ? 'translate-x-5' : 'translate-x-0'
                 }`}
               />
@@ -130,7 +127,7 @@ export default function MessagesSettingsPage() {
               }}
             >
               <span
-                className={`absolute top-0.5 left-0.5 h-5 w-5 rounded-full bg-white transition-transform ${
+                className={`absolute left-0.5 top-0.5 h-5 w-5 rounded-full bg-white transition-transform ${
                   settings.pushNotifications ? 'translate-x-5' : 'translate-x-0'
                 }`}
               />
@@ -170,7 +167,7 @@ export default function MessagesSettingsPage() {
               }}
             >
               <span
-                className={`absolute top-0.5 left-0.5 h-5 w-5 rounded-full bg-white transition-transform ${
+                className={`absolute left-0.5 top-0.5 h-5 w-5 rounded-full bg-white transition-transform ${
                   settings.soundEnabled ? 'translate-x-5' : 'translate-x-0'
                 }`}
               />
@@ -210,7 +207,7 @@ export default function MessagesSettingsPage() {
               }}
             >
               <span
-                className={`absolute top-0.5 left-0.5 h-5 w-5 rounded-full bg-white transition-transform ${
+                className={`absolute left-0.5 top-0.5 h-5 w-5 rounded-full bg-white transition-transform ${
                   settings.autoMarkAsRead ? 'translate-x-5' : 'translate-x-0'
                 }`}
               />
@@ -221,4 +218,3 @@ export default function MessagesSettingsPage() {
     </div>
   );
 }
-

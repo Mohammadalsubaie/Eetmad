@@ -11,9 +11,16 @@ interface NotificationsListProps {
   type?: string;
 }
 
-export default function NotificationsList({ showUnreadOnly = false, type }: NotificationsListProps) {
+export default function NotificationsList({
+  showUnreadOnly = false,
+  type,
+}: NotificationsListProps) {
   const t = useTranslations('pages.notifications');
-  const { data: notifications, isLoading, error } = showUnreadOnly
+  const {
+    data: notifications,
+    isLoading,
+    error,
+  } = showUnreadOnly
     ? useUnreadNotifications(type ? { type } : undefined)
     : useNotifications(type ? { type } : undefined);
   const { mutate: markAsRead } = useMarkAsRead();
@@ -42,7 +49,9 @@ export default function NotificationsList({ showUnreadOnly = false, type }: Noti
       {notifications.length === 0 ? (
         <EmptyState
           title={showUnreadOnly ? t('noUnreadNotifications') : t('noNotifications')}
-          description={showUnreadOnly ? t('noUnreadNotificationsDescription') : t('noNotificationsDescription')}
+          description={
+            showUnreadOnly ? t('noUnreadNotificationsDescription') : t('noNotificationsDescription')
+          }
         />
       ) : (
         notifications.map((notification) => (

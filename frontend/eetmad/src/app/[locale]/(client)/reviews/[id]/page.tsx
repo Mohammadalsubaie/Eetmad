@@ -151,10 +151,7 @@ export default function ReviewDetailPage() {
   return (
     <div className="container mx-auto py-8" style={{ backgroundColor: cssVars.neutral.bg }}>
       <Breadcrumbs
-        items={[
-          { label: t('title'), href: `/${locale}/reviews` },
-          { label: review.title },
-        ]}
+        items={[{ label: t('title'), href: `/${locale}/reviews` }, { label: review.title }]}
         className="mb-6"
       />
 
@@ -223,10 +220,7 @@ export default function ReviewDetailPage() {
               borderColor: cssVars.neutral.border,
             }}
           >
-            <h2
-              className="mb-4 text-xl font-bold"
-              style={{ color: cssVars.secondary.DEFAULT }}
-            >
+            <h2 className="mb-4 text-xl font-bold" style={{ color: cssVars.secondary.DEFAULT }}>
               {t('comment')}
             </h2>
             <p className="text-sm leading-relaxed" style={{ color: cssVars.neutral.textSecondary }}>
@@ -246,16 +240,16 @@ export default function ReviewDetailPage() {
                 borderColor: cssVars.neutral.border,
               }}
             >
-              <h2
-                className="mb-4 text-xl font-bold"
-                style={{ color: cssVars.secondary.DEFAULT }}
-              >
+              <h2 className="mb-4 text-xl font-bold" style={{ color: cssVars.secondary.DEFAULT }}>
                 {t('detailedRatings')}
               </h2>
               <div className="grid gap-4 md:grid-cols-2">
                 {review.qualityRating && (
                   <div>
-                    <p className="mb-2 text-sm font-semibold" style={{ color: cssVars.neutral.textMuted }}>
+                    <p
+                      className="mb-2 text-sm font-semibold"
+                      style={{ color: cssVars.neutral.textMuted }}
+                    >
                       {t('quality')}
                     </p>
                     <div className="flex">{renderStars(review.qualityRating)}</div>
@@ -263,7 +257,10 @@ export default function ReviewDetailPage() {
                 )}
                 {review.communicationRating && (
                   <div>
-                    <p className="mb-2 text-sm font-semibold" style={{ color: cssVars.neutral.textMuted }}>
+                    <p
+                      className="mb-2 text-sm font-semibold"
+                      style={{ color: cssVars.neutral.textMuted }}
+                    >
                       {t('communication')}
                     </p>
                     <div className="flex">{renderStars(review.communicationRating)}</div>
@@ -271,7 +268,10 @@ export default function ReviewDetailPage() {
                 )}
                 {review.timelinessRating && (
                   <div>
-                    <p className="mb-2 text-sm font-semibold" style={{ color: cssVars.neutral.textMuted }}>
+                    <p
+                      className="mb-2 text-sm font-semibold"
+                      style={{ color: cssVars.neutral.textMuted }}
+                    >
                       {t('timeliness')}
                     </p>
                     <div className="flex">{renderStars(review.timelinessRating)}</div>
@@ -279,7 +279,10 @@ export default function ReviewDetailPage() {
                 )}
                 {review.professionalismRating && (
                   <div>
-                    <p className="mb-2 text-sm font-semibold" style={{ color: cssVars.neutral.textMuted }}>
+                    <p
+                      className="mb-2 text-sm font-semibold"
+                      style={{ color: cssVars.neutral.textMuted }}
+                    >
                       {t('professionalism')}
                     </p>
                     <div className="flex">{renderStars(review.professionalismRating)}</div>
@@ -324,10 +327,7 @@ export default function ReviewDetailPage() {
                 borderColor: cssVars.neutral.border,
               }}
             >
-              <h3
-                className="mb-4 text-lg font-bold"
-                style={{ color: cssVars.secondary.DEFAULT }}
-              >
+              <h3 className="mb-4 text-lg font-bold" style={{ color: cssVars.secondary.DEFAULT }}>
                 {t('addResponse')}
               </h3>
               <div className="space-y-3">
@@ -439,10 +439,7 @@ export default function ReviewDetailPage() {
               borderColor: cssVars.neutral.border,
             }}
           >
-            <h3
-              className="mb-4 text-lg font-bold"
-              style={{ color: cssVars.secondary.DEFAULT }}
-            >
+            <h3 className="mb-4 text-lg font-bold" style={{ color: cssVars.secondary.DEFAULT }}>
               {t('stats')}
             </h3>
             <div className="space-y-3">
@@ -469,4 +466,3 @@ export default function ReviewDetailPage() {
     </div>
   );
 }
-

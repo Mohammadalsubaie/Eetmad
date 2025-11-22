@@ -36,10 +36,7 @@ export default function SupplierPortfolio({ supplier }: SupplierPortfolioProps) 
               borderColor: cssVars.neutral.border,
             }}
           >
-            <h3
-              className="mb-2 text-lg font-bold"
-              style={{ color: cssVars.secondary.DEFAULT }}
-            >
+            <h3 className="mb-2 text-lg font-bold" style={{ color: cssVars.secondary.DEFAULT }}>
               {item.title}
             </h3>
             {item.description && (
@@ -64,4 +61,3 @@ export default function SupplierPortfolio({ supplier }: SupplierPortfolioProps) 
     </motion.div>
   );
 }
-

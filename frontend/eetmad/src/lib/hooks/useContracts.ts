@@ -2,7 +2,11 @@
 
 import { useState, useEffect } from 'react';
 import { contractsApi } from '@/lib/api/contracts';
-import type { Contract, CreateContractInput, UpdateContractInput } from '@/lib/types/contract.types';
+import type {
+  Contract,
+  CreateContractInput,
+  UpdateContractInput,
+} from '@/lib/types/contract.types';
 import type { QueryParams } from '@/lib/types/common.types';
 
 export function useContracts(params?: QueryParams) {
@@ -169,4 +173,3 @@ export function useSignContract() {
 
   return { mutate, isLoading, error };
 }
-

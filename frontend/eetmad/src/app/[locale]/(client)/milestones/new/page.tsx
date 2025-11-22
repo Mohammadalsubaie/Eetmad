@@ -25,7 +25,10 @@ export default function NewMilestonePage() {
         items={[
           { label: t('title'), href: `/${locale}/projects` },
           { label: defaultProjectId, href: `/${locale}/projects/${defaultProjectId}` },
-          { label: t('milestonesSection.title'), href: `/${locale}/projects/${defaultProjectId}/milestones` },
+          {
+            label: t('milestonesSection.title'),
+            href: `/${locale}/projects/${defaultProjectId}/milestones`,
+          },
           { label: t('milestonesSection.new') },
         ]}
         className="mb-6"
@@ -68,4 +71,3 @@ export default function NewMilestonePage() {
     </div>
   );
 }
-

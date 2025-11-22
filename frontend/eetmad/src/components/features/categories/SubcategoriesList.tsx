@@ -43,10 +43,7 @@ export default function SubcategoriesList({ subcategories }: SubcategoriesListPr
                 borderColor: cssVars.neutral.border,
               }}
             >
-              <h3
-                className="mb-2 text-lg font-bold"
-                style={{ color: cssVars.secondary.DEFAULT }}
-              >
+              <h3 className="mb-2 text-lg font-bold" style={{ color: cssVars.secondary.DEFAULT }}>
                 {subcatName}
               </h3>
               {subcat.description && (
@@ -64,4 +61,3 @@ export default function SubcategoriesList({ subcategories }: SubcategoriesListPr
     </div>
   );
 }
-

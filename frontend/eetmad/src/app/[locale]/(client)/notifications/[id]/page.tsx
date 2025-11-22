@@ -6,7 +6,11 @@ import { useLocale, useTranslations } from 'next-intl';
 import { motion } from 'framer-motion';
 import { ArrowLeft, CheckCircle2, Clock, ExternalLink, Trash2 } from 'lucide-react';
 import { cssVars } from '@/styles/theme';
-import { useNotification, useMarkAsRead, useDeleteNotification } from '@/lib/hooks/useNotifications';
+import {
+  useNotification,
+  useMarkAsRead,
+  useDeleteNotification,
+} from '@/lib/hooks/useNotifications';
 import { LoadingSpinner, ErrorMessage, Button } from '@/components/ui';
 import Breadcrumbs from '@/components/shared/navigation/Breadcrumbs';
 import NotificationCard from '@/components/features/notifications/NotificationCard';
@@ -105,10 +109,7 @@ export default function NotificationDetailPage() {
           borderColor: cssVars.neutral.border,
         }}
       >
-        <h2
-          className="mb-4 text-2xl font-bold"
-          style={{ color: cssVars.secondary.DEFAULT }}
-        >
+        <h2 className="mb-4 text-2xl font-bold" style={{ color: cssVars.secondary.DEFAULT }}>
           {t('details')}
         </h2>
         <div className="space-y-3">
@@ -203,4 +204,3 @@ export default function NotificationDetailPage() {
     </div>
   );
 }
-

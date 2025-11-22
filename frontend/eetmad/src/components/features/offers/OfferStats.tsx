@@ -60,4 +60,3 @@ export default function OfferStats({ offer }: OfferStatsProps) {
     </div>
   );
 }
-

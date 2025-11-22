@@ -58,10 +58,10 @@ export function useUsersTableColumns() {
                   : cssVars.primary.DEFAULT,
           }}
         >
-          {user.userType === 'supplier' 
-            ? t('users.types.supplier') 
-            : user.userType === 'admin' 
-              ? t('users.types.admin') 
+          {user.userType === 'supplier'
+            ? t('users.types.supplier')
+            : user.userType === 'admin'
+              ? t('users.types.admin')
               : t('users.types.client')}
         </span>
       ),
@@ -166,4 +166,3 @@ export function useUsersTableColumns() {
     },
   ];
 }
-

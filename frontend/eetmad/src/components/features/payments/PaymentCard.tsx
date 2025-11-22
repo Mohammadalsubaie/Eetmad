@@ -153,10 +153,16 @@ export default function PaymentCard({ payment, onView }: PaymentCardProps) {
             </div>
             {payment.transactionId && (
               <div className="flex items-center gap-2">
-                <span className="text-xs font-semibold" style={{ color: cssVars.neutral.textMuted }}>
+                <span
+                  className="text-xs font-semibold"
+                  style={{ color: cssVars.neutral.textMuted }}
+                >
                   {t('transactionId')}:
                 </span>
-                <span className="text-xs font-mono" style={{ color: cssVars.neutral.textSecondary }}>
+                <span
+                  className="font-mono text-xs"
+                  style={{ color: cssVars.neutral.textSecondary }}
+                >
                   {payment.transactionId}
                 </span>
               </div>
@@ -178,4 +184,3 @@ export default function PaymentCard({ payment, onView }: PaymentCardProps) {
     </motion.div>
   );
 }
-

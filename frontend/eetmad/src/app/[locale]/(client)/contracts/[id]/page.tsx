@@ -148,11 +148,7 @@ export default function ContractDetailPage() {
                 {t('edit')}
               </Button>
             )}
-            <Button
-              onClick={handleDownload}
-              variant="outline"
-              icon={Download}
-            >
+            <Button onClick={handleDownload} variant="outline" icon={Download}>
               {t('download')}
             </Button>
             {contract.status !== 'signed' && (
@@ -184,10 +180,7 @@ export default function ContractDetailPage() {
               borderColor: cssVars.neutral.border,
             }}
           >
-            <h2
-              className="mb-4 text-2xl font-bold"
-              style={{ color: cssVars.secondary.DEFAULT }}
-            >
+            <h2 className="mb-4 text-2xl font-bold" style={{ color: cssVars.secondary.DEFAULT }}>
               {t('contractText')}
             </h2>
             <div
@@ -206,10 +199,7 @@ export default function ContractDetailPage() {
               borderColor: cssVars.neutral.border,
             }}
           >
-            <h2
-              className="mb-4 text-2xl font-bold"
-              style={{ color: cssVars.secondary.DEFAULT }}
-            >
+            <h2 className="mb-4 text-2xl font-bold" style={{ color: cssVars.secondary.DEFAULT }}>
               {t('termsAndConditions')}
             </h2>
             <div
@@ -228,10 +218,7 @@ export default function ContractDetailPage() {
               borderColor: cssVars.neutral.border,
             }}
           >
-            <h2
-              className="mb-4 text-2xl font-bold"
-              style={{ color: cssVars.secondary.DEFAULT }}
-            >
+            <h2 className="mb-4 text-2xl font-bold" style={{ color: cssVars.secondary.DEFAULT }}>
               {t('paymentTerms')}
             </h2>
             <div
@@ -250,10 +237,7 @@ export default function ContractDetailPage() {
               borderColor: cssVars.neutral.border,
             }}
           >
-            <h2
-              className="mb-4 text-2xl font-bold"
-              style={{ color: cssVars.secondary.DEFAULT }}
-            >
+            <h2 className="mb-4 text-2xl font-bold" style={{ color: cssVars.secondary.DEFAULT }}>
               {t('deliverables')}
             </h2>
             <div
@@ -273,10 +257,7 @@ export default function ContractDetailPage() {
                 borderColor: cssVars.neutral.border,
               }}
             >
-              <h2
-                className="mb-4 text-2xl font-bold"
-                style={{ color: cssVars.secondary.DEFAULT }}
-              >
+              <h2 className="mb-4 text-2xl font-bold" style={{ color: cssVars.secondary.DEFAULT }}>
                 {t('warrantyTerms')}
               </h2>
               <div
@@ -299,10 +280,7 @@ export default function ContractDetailPage() {
               borderColor: cssVars.neutral.border,
             }}
           >
-            <h3
-              className="mb-4 text-xl font-bold"
-              style={{ color: cssVars.secondary.DEFAULT }}
-            >
+            <h3 className="mb-4 text-xl font-bold" style={{ color: cssVars.secondary.DEFAULT }}>
               {t('contractInfo')}
             </h3>
             <div className="space-y-3">
@@ -343,10 +321,7 @@ export default function ContractDetailPage() {
               borderColor: cssVars.neutral.border,
             }}
           >
-            <h3
-              className="mb-4 text-xl font-bold"
-              style={{ color: cssVars.secondary.DEFAULT }}
-            >
+            <h3 className="mb-4 text-xl font-bold" style={{ color: cssVars.secondary.DEFAULT }}>
               {t('signatures')}
             </h3>
             <div className="space-y-3">
@@ -394,4 +369,3 @@ export default function ContractDetailPage() {
     </div>
   );
 }
-

@@ -119,9 +119,7 @@ export default function ContractVersionsPage() {
               style={{
                 backgroundColor: cssVars.neutral.surface,
                 borderColor:
-                  version.id === contract.id
-                    ? cssVars.primary.DEFAULT
-                    : cssVars.neutral.border,
+                  version.id === contract.id ? cssVars.primary.DEFAULT : cssVars.neutral.border,
               }}
             >
               <div className="flex items-start justify-between gap-4">
@@ -158,10 +156,7 @@ export default function ContractVersionsPage() {
                       expired: cssVars.status.error,
                     }}
                   />
-                  <p
-                    className="mt-2 text-sm"
-                    style={{ color: cssVars.neutral.textMuted }}
-                  >
+                  <p className="mt-2 text-sm" style={{ color: cssVars.neutral.textMuted }}>
                     {formatDate(version.createdAt)}
                   </p>
                 </div>
@@ -180,4 +175,3 @@ export default function ContractVersionsPage() {
     </div>
   );
 }
-

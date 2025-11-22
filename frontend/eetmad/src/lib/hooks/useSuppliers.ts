@@ -292,4 +292,3 @@ export function useSupplierStatistics() {
 
   return { data, isLoading, error };
 }
-

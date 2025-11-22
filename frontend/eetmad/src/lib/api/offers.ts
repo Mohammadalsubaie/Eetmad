@@ -3,7 +3,8 @@ import type { CreateOfferInput, UpdateOfferInput, Offer } from '@/lib/types/offe
 import { mockOffers } from '@/mocks/data/offers';
 import apiClient from './client';
 
-const USE_MOCKS = process.env.NEXT_PUBLIC_USE_MOCKS === 'true' || process.env.NODE_ENV === 'development';
+const USE_MOCKS =
+  process.env.NEXT_PUBLIC_USE_MOCKS === 'true' || process.env.NODE_ENV === 'development';
 
 export const offersApi = {
   // Offer Management

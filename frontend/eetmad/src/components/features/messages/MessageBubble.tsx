@@ -15,12 +15,7 @@ interface MessageBubbleProps {
   currentUserId?: string;
 }
 
-export default function MessageBubble({
-  message,
-  isOwn,
-  onDelete,
-  onEdit,
-}: MessageBubbleProps) {
+export default function MessageBubble({ message, isOwn, onDelete, onEdit }: MessageBubbleProps) {
   const t = useTranslations('pages.messages');
 
   const formatTime = (dateString: string) => {
@@ -138,9 +133,7 @@ export default function MessageBubble({
 
           {/* Message Footer */}
           <div className="flex items-center gap-2">
-            <span className="text-xs opacity-70">
-              {formatTime(message.createdAt)}
-            </span>
+            <span className="text-xs opacity-70">{formatTime(message.createdAt)}</span>
             {isOwn && (
               <>
                 {message.isRead ? (

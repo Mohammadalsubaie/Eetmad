@@ -16,15 +16,14 @@ export default function NewReviewPage() {
   const t = useTranslations('pages.reviews');
   const projectId = searchParams.get('projectId') || '1'; // Default for testing
   const reviewedId = searchParams.get('reviewedId') || 'supplier-1'; // Default for testing
-  const reviewType = (searchParams.get('reviewType') as 'client_to_supplier' | 'supplier_to_client') || 'client_to_supplier';
+  const reviewType =
+    (searchParams.get('reviewType') as 'client_to_supplier' | 'supplier_to_client') ||
+    'client_to_supplier';
 
   return (
     <div className="container mx-auto py-8" style={{ backgroundColor: cssVars.neutral.bg }}>
       <Breadcrumbs
-        items={[
-          { label: t('title'), href: `/${locale}/reviews` },
-          { label: t('newReview') },
-        ]}
+        items={[{ label: t('title'), href: `/${locale}/reviews` }, { label: t('newReview') }]}
         className="mb-6"
       />
 
@@ -70,4 +69,3 @@ export default function NewReviewPage() {
     </div>
   );
 }
-

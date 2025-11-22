@@ -67,4 +67,3 @@ export function useReports(params?: QueryParams) {
 
   return { reports, isLoading, error };
 }
-

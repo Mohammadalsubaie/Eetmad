@@ -3,7 +3,8 @@ import type { ProjectMilestone } from '@/lib/types/project.types';
 import type { QueryParams } from '@/lib/types/common.types';
 import { mockMilestones } from '@/mocks/data/milestones';
 
-const USE_MOCKS = process.env.NEXT_PUBLIC_USE_MOCKS === 'true' || process.env.NODE_ENV === 'development';
+const USE_MOCKS =
+  process.env.NEXT_PUBLIC_USE_MOCKS === 'true' || process.env.NODE_ENV === 'development';
 
 export interface CreateMilestoneInput {
   projectId: string;
@@ -55,8 +56,8 @@ export const milestonesApi = {
       };
     }
     try {
-    const { data } = await apiClient.get<ProjectMilestone>(`/v1/milestones/${id}`);
-    return data;
+      const { data } = await apiClient.get<ProjectMilestone>(`/v1/milestones/${id}`);
+      return data;
     } catch (error) {
       console.warn('API call failed, using mock data:', error);
       const milestone = mockMilestones.find((m) => m.id === id);
@@ -69,11 +70,13 @@ export const milestonesApi = {
     if (USE_MOCKS) {
       console.log('📦 Using mock milestones by project data');
       const projectMilestones = mockMilestones.filter((m) => m.projectId === projectId);
-      return projectMilestones.length > 0 ? projectMilestones.map((m) => ({ ...m })) : mockMilestones.slice(0, 2).map((m) => ({ ...m, projectId }));
+      return projectMilestones.length > 0
+        ? projectMilestones.map((m) => ({ ...m }))
+        : mockMilestones.slice(0, 2).map((m) => ({ ...m, projectId }));
     }
     try {
-    const { data } = await apiClient.get(`/v1/milestones/project/${projectId}`, { params });
-    return data;
+      const { data } = await apiClient.get(`/v1/milestones/project/${projectId}`, { params });
+      return data;
     } catch (error) {
       console.warn('API call failed, using mock data:', error);
       return mockMilestones.filter((m) => m.projectId === projectId).map((m) => ({ ...m }));
@@ -88,7 +91,9 @@ export const milestonesApi = {
 
   // Get completed milestones
   getCompleted: async (projectId: string, params?: QueryParams): Promise<ProjectMilestone[]> => {
-    const { data } = await apiClient.get(`/v1/milestones/project/${projectId}/completed`, { params });
+    const { data } = await apiClient.get(`/v1/milestones/project/${projectId}/completed`, {
+      params,
+    });
     return data;
   },
 
@@ -133,7 +138,9 @@ export const milestonesApi = {
 
   // Release payment
   releasePayment: async (id: string): Promise<ProjectMilestone> => {
-    const { data } = await apiClient.patch<ProjectMilestone>(`/v1/milestones/${id}/release-payment`);
+    const { data } = await apiClient.patch<ProjectMilestone>(
+      `/v1/milestones/${id}/release-payment`
+    );
     return data;
   },
 
@@ -159,4 +166,3 @@ export const milestonesApi = {
     await apiClient.put(`/v1/milestones/project/${projectId}/reorder`, { milestoneIds });
   },
 };
-

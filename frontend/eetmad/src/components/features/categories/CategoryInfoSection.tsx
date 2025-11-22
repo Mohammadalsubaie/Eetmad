@@ -72,4 +72,3 @@ export default function CategoryInfoSection({ category }: CategoryInfoSectionPro
     </motion.div>
   );
 }
-

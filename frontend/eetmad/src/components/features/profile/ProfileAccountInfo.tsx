@@ -58,4 +58,3 @@ export default function ProfileAccountInfo({ user }: ProfileAccountInfoProps) {
     </motion.div>
   );
 }
-

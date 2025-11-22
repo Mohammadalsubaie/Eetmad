@@ -1,6 +1,15 @@
 'use client';
 
-import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Legend } from 'recharts';
+import {
+  LineChart,
+  Line,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  ResponsiveContainer,
+  Legend,
+} from 'recharts';
 import { useTranslations } from 'next-intl';
 import { cssVars } from '@/styles/theme';
 
@@ -67,29 +76,26 @@ const CustomTooltip = ({ active, payload, label }: any) => {
 
 export default function UserGrowthChart({ data }: UserGrowthChartProps) {
   const t = useTranslations('admin.analytics.charts.userGrowthDetails');
-  
+
   return (
     <ResponsiveContainer width="100%" height={550}>
-      <LineChart
-        data={data}
-        margin={{ top: 10, right: 20, left: 0, bottom: 70 }}
-      >
+      <LineChart data={data} margin={{ top: 10, right: 20, left: 0, bottom: 70 }}>
         <defs>
           <linearGradient id="userGradient" x1="0" y1="0" x2="0" y2="1">
             <stop offset="0%" stopColor={cssVars.primary.DEFAULT} stopOpacity={0.8} />
             <stop offset="100%" stopColor={cssVars.primary.DEFAULT} stopOpacity={0.1} />
           </linearGradient>
         </defs>
-        <CartesianGrid 
-          strokeDasharray="3 3" 
+        <CartesianGrid
+          strokeDasharray="3 3"
           stroke={cssVars.neutral.border}
           opacity={0.2}
           vertical={false}
         />
-        <XAxis 
-          dataKey="month" 
-          tick={{ 
-            fill: cssVars.neutral.textSecondary, 
+        <XAxis
+          dataKey="month"
+          tick={{
+            fill: cssVars.neutral.textSecondary,
             fontSize: 14,
             fontWeight: 500,
           }}
@@ -103,9 +109,9 @@ export default function UserGrowthChart({ data }: UserGrowthChartProps) {
           dy={12}
           dx={-5}
         />
-        <YAxis 
-          tick={{ 
-            fill: cssVars.neutral.textSecondary, 
+        <YAxis
+          tick={{
+            fill: cssVars.neutral.textSecondary,
             fontSize: 14,
             fontWeight: 500,
           }}
@@ -117,7 +123,7 @@ export default function UserGrowthChart({ data }: UserGrowthChartProps) {
           dx={-5}
         />
         <Tooltip content={<CustomTooltip />} />
-        <Legend 
+        <Legend
           wrapperStyle={{ paddingTop: '16px', fontSize: '16px' }}
           iconType="line"
           iconSize={22}
@@ -132,13 +138,13 @@ export default function UserGrowthChart({ data }: UserGrowthChartProps) {
           dataKey="users"
           stroke={cssVars.primary.DEFAULT}
           strokeWidth={5}
-          dot={{ 
-            fill: cssVars.primary.DEFAULT, 
+          dot={{
+            fill: cssVars.primary.DEFAULT,
             r: 8,
             strokeWidth: 3,
             stroke: cssVars.neutral.surface,
           }}
-          activeDot={{ 
+          activeDot={{
             r: 12,
             strokeWidth: 3,
             stroke: cssVars.neutral.surface,
@@ -154,13 +160,13 @@ export default function UserGrowthChart({ data }: UserGrowthChartProps) {
           stroke={cssVars.status.success}
           strokeWidth={4.5}
           strokeDasharray="6 4"
-          dot={{ 
-            fill: cssVars.status.success, 
+          dot={{
+            fill: cssVars.status.success,
             r: 7,
             strokeWidth: 3,
             stroke: cssVars.neutral.surface,
           }}
-          activeDot={{ 
+          activeDot={{
             r: 11,
             strokeWidth: 3,
             stroke: cssVars.neutral.surface,
@@ -174,4 +180,3 @@ export default function UserGrowthChart({ data }: UserGrowthChartProps) {
     </ResponsiveContainer>
   );
 }
-

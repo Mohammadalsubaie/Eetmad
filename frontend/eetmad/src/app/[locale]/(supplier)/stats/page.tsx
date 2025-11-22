@@ -32,7 +32,9 @@ export default function StatsPage() {
     const acceptance =
       stats.totalOffers > 0 ? Math.round((stats.acceptedOffers / stats.totalOffers) * 100) : 0;
     const completion =
-      stats.totalProjects > 0 ? Math.round((stats.completedProjects / stats.totalProjects) * 100) : 0;
+      stats.totalProjects > 0
+        ? Math.round((stats.completedProjects / stats.totalProjects) * 100)
+        : 0;
     return { acceptanceRate: acceptance, completionRate: completion };
   }, [stats]);
 
@@ -51,10 +53,7 @@ export default function StatsPage() {
     return (
       <div className="container mx-auto py-8" style={{ backgroundColor: cssVars.neutral.bg }}>
         <Breadcrumbs items={[{ label: t('title') }]} className="mb-6" />
-        <ErrorMessage
-          error={error?.message || t('fetchError')}
-          variant="banner"
-        />
+        <ErrorMessage error={error?.message || t('fetchError')} variant="banner" />
       </div>
     );
   }

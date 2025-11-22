@@ -9,7 +9,11 @@ import { cssVars } from '@/styles/theme';
 import NotificationsList from '@/components/features/notifications/NotificationsList';
 import { Button } from '@/components/ui';
 import Breadcrumbs from '@/components/shared/navigation/Breadcrumbs';
-import { useUnreadCount, useMarkAllAsRead, useClearAllNotifications } from '@/lib/hooks/useNotifications';
+import {
+  useUnreadCount,
+  useMarkAllAsRead,
+  useClearAllNotifications,
+} from '@/lib/hooks/useNotifications';
 
 export default function NotificationsPage() {
   const t = useTranslations('pages.notifications');
@@ -46,7 +50,7 @@ export default function NotificationsPage() {
             </h1>
             {unreadCount > 0 && (
               <div
-                className="flex h-8 w-8 items-center justify-center rounded-full font-bold text-sm"
+                className="flex h-8 w-8 items-center justify-center rounded-full text-sm font-bold"
                 style={{
                   backgroundColor: cssVars.status.error,
                   color: cssVars.neutral.bg,
@@ -158,4 +162,3 @@ export default function NotificationsPage() {
     </div>
   );
 }
-

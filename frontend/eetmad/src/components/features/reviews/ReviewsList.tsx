@@ -13,7 +13,11 @@ interface ReviewsListProps {
 
 export default function ReviewsList({ projectId, supplierId }: ReviewsListProps) {
   const t = useTranslations('pages.reviews');
-  const { data: reviews, isLoading, error } = projectId
+  const {
+    data: reviews,
+    isLoading,
+    error,
+  } = projectId
     ? useReviewsByProject(projectId)
     : supplierId
       ? useReviewsBySupplier(supplierId)
@@ -30,10 +34,7 @@ export default function ReviewsList({ projectId, supplierId }: ReviewsListProps)
   return (
     <div className="space-y-6">
       {reviews.length === 0 ? (
-        <EmptyState
-          title={t('noReviews')}
-          description={t('noReviewsDescription')}
-        />
+        <EmptyState title={t('noReviews')} description={t('noReviewsDescription')} />
       ) : (
         <ResourceGrid columns={{ default: 1, md: 2, lg: 3 }}>
           {reviews.map((review) => (

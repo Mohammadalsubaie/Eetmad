@@ -123,4 +123,3 @@ export default function OfferHeader({ offer, offerId }: OfferHeaderProps) {
     </div>
   );
 }
-

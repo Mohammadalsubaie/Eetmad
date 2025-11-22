@@ -16,11 +16,7 @@ interface ContractSigningProps {
   onSuccess?: () => void;
 }
 
-export default function ContractSigning({
-  contract,
-  userRole,
-  onSuccess,
-}: ContractSigningProps) {
+export default function ContractSigning({ contract, userRole, onSuccess }: ContractSigningProps) {
   const t = useTranslations('pages.contracts');
   const { mutate: signContract, isLoading, error } = useSignContract();
   const [signature, setSignature] = useState('');
@@ -69,10 +65,7 @@ export default function ContractSigning({
     >
       {/* Header */}
       <div className="mb-6">
-        <h3
-          className="mb-2 text-2xl font-bold"
-          style={{ color: cssVars.secondary.DEFAULT }}
-        >
+        <h3 className="mb-2 text-2xl font-bold" style={{ color: cssVars.secondary.DEFAULT }}>
           {t('signing.title')}
         </h3>
         <p className="text-sm" style={{ color: cssVars.neutral.textSecondary }}>
@@ -87,9 +80,7 @@ export default function ContractSigning({
           className="flex items-center justify-between rounded-xl border-2 p-4"
           style={{
             backgroundColor: `color-mix(in srgb, ${cssVars.neutral.bg} 50%, transparent)`,
-            borderColor: contract.clientSignature
-              ? cssVars.status.success
-              : cssVars.neutral.border,
+            borderColor: contract.clientSignature ? cssVars.status.success : cssVars.neutral.border,
           }}
         >
           <div className="flex items-center gap-3">
@@ -231,4 +222,3 @@ export default function ContractSigning({
     </div>
   );
 }
-

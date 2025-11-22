@@ -35,4 +35,3 @@ export default function SupplierSearchBar({ searchQuery, onSearchChange }: Suppl
     </div>
   );
 }
-

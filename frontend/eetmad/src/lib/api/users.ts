@@ -1,8 +1,14 @@
 import apiClient from './client';
-import type { UpdateUserProfileData, User, UserAddress, NotificationPreferences } from '@/lib/types/user.types';
+import type {
+  UpdateUserProfileData,
+  User,
+  UserAddress,
+  NotificationPreferences,
+} from '@/lib/types/user.types';
 import { mockUser } from '@/mocks/data/users';
 
-const USE_MOCKS = process.env.NEXT_PUBLIC_USE_MOCKS === 'true' || process.env.NODE_ENV === 'development';
+const USE_MOCKS =
+  process.env.NEXT_PUBLIC_USE_MOCKS === 'true' || process.env.NODE_ENV === 'development';
 
 export interface ChangePasswordData {
   currentPassword: string;
@@ -82,7 +88,10 @@ export const usersApi = {
   updateNotificationPreferences: async (
     preferences: Partial<NotificationPreferences>
   ): Promise<User> => {
-    const { data } = await apiClient.put<User>('/v1/users/me/notification-preferences', preferences);
+    const { data } = await apiClient.put<User>(
+      '/v1/users/me/notification-preferences',
+      preferences
+    );
     return data;
   },
 
@@ -114,7 +123,11 @@ export const usersApi = {
   },
 
   // Admin Only
-  getAllUsers: async (params?: { page?: number; limit?: number; search?: string }): Promise<User[]> => {
+  getAllUsers: async (params?: {
+    page?: number;
+    limit?: number;
+    search?: string;
+  }): Promise<User[]> => {
     const { data } = await apiClient.get<User[]>('/v1/users', { params });
     return data;
   },

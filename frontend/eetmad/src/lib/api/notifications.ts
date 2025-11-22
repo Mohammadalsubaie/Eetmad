@@ -3,7 +3,8 @@ import type { Notification, NotificationType } from '@/lib/types/notification.ty
 import type { QueryParams } from '@/lib/types/common.types';
 import { mockNotifications } from '@/mocks/data/notifications';
 
-const USE_MOCKS = process.env.NEXT_PUBLIC_USE_MOCKS === 'true' || process.env.NODE_ENV === 'development';
+const USE_MOCKS =
+  process.env.NEXT_PUBLIC_USE_MOCKS === 'true' || process.env.NODE_ENV === 'development';
 
 export const notificationsApi = {
   // Get all notifications
@@ -33,7 +34,9 @@ export const notificationsApi = {
       }
       // If still not found, return first notification as fallback
       if (!notification) {
-        console.warn(`Notification with ID "${id}" not found, using first notification as fallback`);
+        console.warn(
+          `Notification with ID "${id}" not found, using first notification as fallback`
+        );
         notification = mockNotifications[0];
       }
       return { ...notification };

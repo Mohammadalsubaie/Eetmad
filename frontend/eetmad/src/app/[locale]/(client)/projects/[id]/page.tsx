@@ -27,10 +27,7 @@ export default function ProjectDetailPage() {
     return (
       <div className="container mx-auto py-8" style={{ backgroundColor: cssVars.neutral.bg }}>
         <Breadcrumbs
-          items={[
-            { label: t('title'), href: `/${locale}/projects` },
-            { label: id },
-          ]}
+          items={[{ label: t('title'), href: `/${locale}/projects` }, { label: id }]}
           className="mb-6"
         />
         <div className="flex items-center justify-center py-12">
@@ -44,17 +41,11 @@ export default function ProjectDetailPage() {
     return (
       <div className="container mx-auto py-8" style={{ backgroundColor: cssVars.neutral.bg }}>
         <Breadcrumbs
-          items={[
-            { label: t('title'), href: `/${locale}/projects` },
-            { label: id },
-          ]}
+          items={[{ label: t('title'), href: `/${locale}/projects` }, { label: id }]}
           className="mb-6"
         />
         <div className="flex flex-col items-center gap-4">
-          <ErrorMessage
-            error={error?.message || t('notFound')}
-            variant="banner"
-          />
+          <ErrorMessage error={error?.message || t('notFound')} variant="banner" />
           <Button onClick={() => router.push('/projects')} variant="primary">
             {t('backToProjects')}
           </Button>

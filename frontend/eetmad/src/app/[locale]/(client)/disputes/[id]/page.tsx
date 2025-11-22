@@ -194,41 +194,46 @@ export default function DisputeDetailPage() {
                 borderColor: cssVars.neutral.border,
               }}
             >
-              <h2
-                className="mb-4 text-xl font-bold"
-                style={{ color: cssVars.secondary.DEFAULT }}
-              >
+              <h2 className="mb-4 text-xl font-bold" style={{ color: cssVars.secondary.DEFAULT }}>
                 {t('evidence')}
               </h2>
               <div className="space-y-2">
-                {dispute.evidence.map((evidence: { id: string; filePath: string; fileType: string; description?: string; uploadedAt: string }) => (
-                  <a
-                    key={evidence.id}
-                    href={evidence.filePath}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center justify-between rounded-lg border-2 p-3 transition-all hover:shadow-md"
-                    style={{
-                      backgroundColor: `color-mix(in srgb, ${cssVars.primary.DEFAULT} 10%, transparent)`,
-                      borderColor: cssVars.primary.DEFAULT,
-                    }}
-                  >
-                    <div className="flex items-center gap-3">
-                      <FileText className="h-5 w-5" style={{ color: cssVars.primary.DEFAULT }} />
-                      <div>
-                        <p className="font-semibold" style={{ color: cssVars.secondary.DEFAULT }}>
-                          {evidence.filePath.split('/').pop()}
-                        </p>
-                        {evidence.description && (
-                          <p className="text-xs" style={{ color: cssVars.neutral.textMuted }}>
-                            {evidence.description}
+                {dispute.evidence.map(
+                  (evidence: {
+                    id: string;
+                    filePath: string;
+                    fileType: string;
+                    description?: string;
+                    uploadedAt: string;
+                  }) => (
+                    <a
+                      key={evidence.id}
+                      href={evidence.filePath}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center justify-between rounded-lg border-2 p-3 transition-all hover:shadow-md"
+                      style={{
+                        backgroundColor: `color-mix(in srgb, ${cssVars.primary.DEFAULT} 10%, transparent)`,
+                        borderColor: cssVars.primary.DEFAULT,
+                      }}
+                    >
+                      <div className="flex items-center gap-3">
+                        <FileText className="h-5 w-5" style={{ color: cssVars.primary.DEFAULT }} />
+                        <div>
+                          <p className="font-semibold" style={{ color: cssVars.secondary.DEFAULT }}>
+                            {evidence.filePath.split('/').pop()}
                           </p>
-                        )}
+                          {evidence.description && (
+                            <p className="text-xs" style={{ color: cssVars.neutral.textMuted }}>
+                              {evidence.description}
+                            </p>
+                          )}
+                        </div>
                       </div>
-                    </div>
-                    <Download className="h-5 w-5" style={{ color: cssVars.primary.DEFAULT }} />
-                  </a>
-                ))}
+                      <Download className="h-5 w-5" style={{ color: cssVars.primary.DEFAULT }} />
+                    </a>
+                  )
+                )}
               </div>
             </div>
           )}
@@ -241,13 +246,10 @@ export default function DisputeDetailPage() {
               borderColor: cssVars.neutral.border,
             }}
           >
-            <h2
-              className="mb-4 text-xl font-bold"
-              style={{ color: cssVars.secondary.DEFAULT }}
-            >
+            <h2 className="mb-4 text-xl font-bold" style={{ color: cssVars.secondary.DEFAULT }}>
               {t('messages')}
             </h2>
-            <div className="space-y-4 max-h-96 overflow-y-auto">
+            <div className="max-h-96 space-y-4 overflow-y-auto">
               {messagesLoading ? (
                 <LoadingSpinner />
               ) : messages.length === 0 ? (
@@ -267,7 +269,10 @@ export default function DisputeDetailPage() {
                     <div className="mb-2 flex items-center justify-between">
                       <div className="flex items-center gap-2">
                         <User className="h-4 w-4" style={{ color: cssVars.neutral.textMuted }} />
-                        <span className="text-xs font-semibold" style={{ color: cssVars.neutral.textMuted }}>
+                        <span
+                          className="text-xs font-semibold"
+                          style={{ color: cssVars.neutral.textMuted }}
+                        >
                           {message.isInternal ? t('internalNote') : t('message')}
                         </span>
                       </div>
@@ -319,10 +324,7 @@ export default function DisputeDetailPage() {
                 borderColor: cssVars.neutral.border,
               }}
             >
-              <h2
-                className="mb-4 text-xl font-bold"
-                style={{ color: cssVars.secondary.DEFAULT }}
-              >
+              <h2 className="mb-4 text-xl font-bold" style={{ color: cssVars.secondary.DEFAULT }}>
                 {t('addEvidence')}
               </h2>
               <div className="space-y-3">
@@ -337,7 +339,10 @@ export default function DisputeDetailPage() {
                   }}
                 />
                 {evidenceFile && (
-                  <div className="flex items-center justify-between rounded-lg border-2 p-3" style={{ borderColor: cssVars.primary.DEFAULT }}>
+                  <div
+                    className="flex items-center justify-between rounded-lg border-2 p-3"
+                    style={{ borderColor: cssVars.primary.DEFAULT }}
+                  >
                     <span className="text-sm" style={{ color: cssVars.secondary.DEFAULT }}>
                       {evidenceFile.name}
                     </span>
@@ -370,10 +375,7 @@ export default function DisputeDetailPage() {
               borderColor: cssVars.neutral.border,
             }}
           >
-            <h3
-              className="mb-4 text-xl font-bold"
-              style={{ color: cssVars.secondary.DEFAULT }}
-            >
+            <h3 className="mb-4 text-xl font-bold" style={{ color: cssVars.secondary.DEFAULT }}>
               {t('disputeInfo')}
             </h3>
             <div className="space-y-3">
@@ -417,10 +419,7 @@ export default function DisputeDetailPage() {
             >
               <div className="mb-2 flex items-center gap-2">
                 <CheckCircle2 className="h-5 w-5" style={{ color: cssVars.status.success }} />
-                <h3
-                  className="text-lg font-bold"
-                  style={{ color: cssVars.status.success }}
-                >
+                <h3 className="text-lg font-bold" style={{ color: cssVars.status.success }}>
                   {t('resolution')}
                 </h3>
               </div>
@@ -451,4 +450,3 @@ export default function DisputeDetailPage() {
     </div>
   );
 }
-

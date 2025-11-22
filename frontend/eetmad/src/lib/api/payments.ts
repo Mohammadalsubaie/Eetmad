@@ -11,7 +11,8 @@ import type {
 } from '@/lib/types/payment.types';
 import { mockPayments, mockWallet, mockWalletTransactions } from '@/mocks/data/payments';
 
-const USE_MOCKS = process.env.NEXT_PUBLIC_USE_MOCKS === 'true' || process.env.NODE_ENV === 'development';
+const USE_MOCKS =
+  process.env.NEXT_PUBLIC_USE_MOCKS === 'true' || process.env.NODE_ENV === 'development';
 
 export const paymentsApi = {
   // Get all payments
@@ -195,10 +196,7 @@ export const paymentsApi = {
     return data;
   },
 
-  partialRefund: async (
-    id: string,
-    refundData: RefundRequestInput
-  ): Promise<Refund> => {
+  partialRefund: async (id: string, refundData: RefundRequestInput): Promise<Refund> => {
     const { data } = await apiClient.post<Refund>(`/v1/payments/${id}/refund/partial`, refundData);
     return data;
   },

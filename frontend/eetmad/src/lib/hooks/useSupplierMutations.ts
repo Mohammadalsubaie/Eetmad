@@ -25,4 +25,3 @@ export function useUpdateSupplierProfile() {
 
   return { update, isLoading, error };
 }
-

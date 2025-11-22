@@ -11,14 +11,21 @@ export function useNotifications(params?: QueryParams) {
   const [error, setError] = useState<Error | null>(null);
 
   useEffect(() => {
-    setIsLoading(true);
-    setError(null);
-    notificationsApi
-      .getAll(params)
-      .then(setData)
-      .catch((err) => setError(err instanceof Error ? err : new Error(String(err))))
-      .finally(() => setIsLoading(false));
-  }, [JSON.stringify(params)]);
+    const fetchNotifications = async () => {
+      setIsLoading(true);
+      setError(null);
+      try {
+        const data = await notificationsApi.getAll(params);
+        setData(data);
+      } catch (err) {
+        setError(err instanceof Error ? err : new Error(String(err)));
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchNotifications();
+  }, [params]);
 
   return { data, isLoading, error };
 }
@@ -29,14 +36,25 @@ export function useNotification(id: string) {
   const [error, setError] = useState<Error | null>(null);
 
   useEffect(() => {
-    if (!id) return;
-    setIsLoading(true);
-    setError(null);
-    notificationsApi
-      .getById(id)
-      .then(setData)
-      .catch((err) => setError(err instanceof Error ? err : new Error(String(err))))
-      .finally(() => setIsLoading(false));
+    if (!id) {
+      setIsLoading(false);
+      return;
+    }
+
+    const fetchNotification = async () => {
+      setIsLoading(true);
+      setError(null);
+      try {
+        const data = await notificationsApi.getById(id);
+        setData(data);
+      } catch (err) {
+        setError(err instanceof Error ? err : new Error(String(err)));
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchNotification();
   }, [id]);
 
   return { data, isLoading, error };
@@ -48,14 +66,21 @@ export function useUnreadNotifications(params?: QueryParams) {
   const [error, setError] = useState<Error | null>(null);
 
   useEffect(() => {
-    setIsLoading(true);
-    setError(null);
-    notificationsApi
-      .getUnread(params)
-      .then(setData)
-      .catch((err) => setError(err instanceof Error ? err : new Error(String(err))))
-      .finally(() => setIsLoading(false));
-  }, [JSON.stringify(params)]);
+    const fetchUnread = async () => {
+      setIsLoading(true);
+      setError(null);
+      try {
+        const data = await notificationsApi.getUnread(params);
+        setData(data);
+      } catch (err) {
+        setError(err instanceof Error ? err : new Error(String(err)));
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchUnread();
+  }, [params]);
 
   return { data, isLoading, error };
 }
@@ -66,13 +91,20 @@ export function useUnreadCount() {
   const [error, setError] = useState<Error | null>(null);
 
   useEffect(() => {
-    setIsLoading(true);
-    setError(null);
-    notificationsApi
-      .getUnreadCount()
-      .then((result) => setData(result.count))
-      .catch((err) => setError(err instanceof Error ? err : new Error(String(err))))
-      .finally(() => setIsLoading(false));
+    const fetchUnreadCount = async () => {
+      setIsLoading(true);
+      setError(null);
+      try {
+        const result = await notificationsApi.getUnreadCount();
+        setData(result.count);
+      } catch (err) {
+        setError(err instanceof Error ? err : new Error(String(err)));
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchUnreadCount();
   }, []);
 
   return { data, isLoading, error };
@@ -84,14 +116,21 @@ export function useNotificationsByType(type: NotificationType, params?: QueryPar
   const [error, setError] = useState<Error | null>(null);
 
   useEffect(() => {
-    setIsLoading(true);
-    setError(null);
-    notificationsApi
-      .getByType(type, params)
-      .then(setData)
-      .catch((err) => setError(err instanceof Error ? err : new Error(String(err))))
-      .finally(() => setIsLoading(false));
-  }, [type, JSON.stringify(params)]);
+    const fetchByType = async () => {
+      setIsLoading(true);
+      setError(null);
+      try {
+        const data = await notificationsApi.getByType(type, params);
+        setData(data);
+      } catch (err) {
+        setError(err instanceof Error ? err : new Error(String(err)));
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchByType();
+  }, [type, params]);
 
   return { data, isLoading, error };
 }

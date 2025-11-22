@@ -38,14 +38,21 @@ export function useDisputes(params?: QueryParams) {
   const [error, setError] = useState<Error | null>(null);
 
   useEffect(() => {
-    setIsLoading(true);
-    setError(null);
-    adminApi
-      .getDisputes(params)
-      .then((data) => setDisputes(Array.isArray(data) ? data : []))
-      .catch((err) => setError(err instanceof Error ? err : new Error(String(err))))
-      .finally(() => setIsLoading(false));
-  }, [JSON.stringify(params)]);
+    const fetchDisputes = async () => {
+      setIsLoading(true);
+      setError(null);
+      try {
+        const data = await adminApi.getDisputes(params);
+        setDisputes(Array.isArray(data) ? data : []);
+      } catch (err) {
+        setError(err instanceof Error ? err : new Error(String(err)));
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchDisputes();
+  }, [params]);
 
   return { disputes, isLoading, error };
 }
@@ -56,14 +63,21 @@ export function useReports(params?: QueryParams) {
   const [error, setError] = useState<Error | null>(null);
 
   useEffect(() => {
-    setIsLoading(true);
-    setError(null);
-    adminApi
-      .getReports(params)
-      .then((data) => setReports(Array.isArray(data) ? data : []))
-      .catch((err) => setError(err instanceof Error ? err : new Error(String(err))))
-      .finally(() => setIsLoading(false));
-  }, [JSON.stringify(params)]);
+    const fetchReports = async () => {
+      setIsLoading(true);
+      setError(null);
+      try {
+        const data = await adminApi.getReports(params);
+        setReports(Array.isArray(data) ? data : []);
+      } catch (err) {
+        setError(err instanceof Error ? err : new Error(String(err)));
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchReports();
+  }, [params]);
 
   return { reports, isLoading, error };
 }

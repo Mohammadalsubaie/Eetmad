@@ -11,14 +11,21 @@ export function useOffers(params?: QueryParams) {
   const [error, setError] = useState<Error | null>(null);
 
   useEffect(() => {
-    setIsLoading(true);
-    setError(null);
-    offersApi
-      .getAll(params)
-      .then(setData)
-      .catch((err) => setError(err instanceof Error ? err : new Error(String(err))))
-      .finally(() => setIsLoading(false));
-  }, [JSON.stringify(params)]);
+    const fetchOffers = async () => {
+      setIsLoading(true);
+      setError(null);
+      try {
+        const data = await offersApi.getAll(params);
+        setData(data);
+      } catch (err) {
+        setError(err instanceof Error ? err : new Error(String(err)));
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchOffers();
+  }, [params]);
 
   return { data, isLoading, error };
 }
@@ -29,14 +36,25 @@ export function useOffer(id: string) {
   const [error, setError] = useState<Error | null>(null);
 
   useEffect(() => {
-    if (!id) return;
-    setIsLoading(true);
-    setError(null);
-    offersApi
-      .getById(id)
-      .then(setData)
-      .catch((err) => setError(err instanceof Error ? err : new Error(String(err))))
-      .finally(() => setIsLoading(false));
+    if (!id) {
+      setIsLoading(false);
+      return;
+    }
+
+    const fetchOffer = async () => {
+      setIsLoading(true);
+      setError(null);
+      try {
+        const data = await offersApi.getById(id);
+        setData(data);
+      } catch (err) {
+        setError(err instanceof Error ? err : new Error(String(err)));
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchOffer();
   }, [id]);
 
   return { data, isLoading, error };
@@ -48,15 +66,26 @@ export function useOffersByRequest(requestId: string, params?: QueryParams) {
   const [error, setError] = useState<Error | null>(null);
 
   useEffect(() => {
-    if (!requestId) return;
-    setIsLoading(true);
-    setError(null);
-    offersApi
-      .getByRequestId(requestId, params)
-      .then(setData)
-      .catch((err) => setError(err instanceof Error ? err : new Error(String(err))))
-      .finally(() => setIsLoading(false));
-  }, [requestId, JSON.stringify(params)]);
+    if (!requestId) {
+      setIsLoading(false);
+      return;
+    }
+
+    const fetchOffers = async () => {
+      setIsLoading(true);
+      setError(null);
+      try {
+        const data = await offersApi.getByRequestId(requestId, params);
+        setData(data);
+      } catch (err) {
+        setError(err instanceof Error ? err : new Error(String(err)));
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchOffers();
+  }, [requestId, params]);
 
   return { data, isLoading, error };
 }
@@ -67,14 +96,21 @@ export function useMyOffers(params?: QueryParams) {
   const [error, setError] = useState<Error | null>(null);
 
   useEffect(() => {
-    setIsLoading(true);
-    setError(null);
-    offersApi
-      .getMyOffers(params)
-      .then(setData)
-      .catch((err) => setError(err instanceof Error ? err : new Error(String(err))))
-      .finally(() => setIsLoading(false));
-  }, [JSON.stringify(params)]);
+    const fetchMyOffers = async () => {
+      setIsLoading(true);
+      setError(null);
+      try {
+        const data = await offersApi.getMyOffers(params);
+        setData(data);
+      } catch (err) {
+        setError(err instanceof Error ? err : new Error(String(err)));
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchMyOffers();
+  }, [params]);
 
   return { data, isLoading, error };
 }

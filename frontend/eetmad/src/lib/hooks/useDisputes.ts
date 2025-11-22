@@ -17,14 +17,21 @@ export function useDisputes(params?: QueryParams) {
   const [error, setError] = useState<Error | null>(null);
 
   useEffect(() => {
-    setIsLoading(true);
-    setError(null);
-    disputesApi
-      .getAll(params)
-      .then(setData)
-      .catch((err) => setError(err instanceof Error ? err : new Error(String(err))))
-      .finally(() => setIsLoading(false));
-  }, [JSON.stringify(params)]);
+    const fetchDisputes = async () => {
+      setIsLoading(true);
+      setError(null);
+      try {
+        const data = await disputesApi.getAll(params);
+        setData(data);
+      } catch (err) {
+        setError(err instanceof Error ? err : new Error(String(err)));
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchDisputes();
+  }, [params]);
 
   return { data, isLoading, error };
 }
@@ -35,14 +42,25 @@ export function useDispute(id: string) {
   const [error, setError] = useState<Error | null>(null);
 
   useEffect(() => {
-    if (!id) return;
-    setIsLoading(true);
-    setError(null);
-    disputesApi
-      .getById(id)
-      .then(setData)
-      .catch((err) => setError(err instanceof Error ? err : new Error(String(err))))
-      .finally(() => setIsLoading(false));
+    if (!id) {
+      setIsLoading(false);
+      return;
+    }
+
+    const fetchDispute = async () => {
+      setIsLoading(true);
+      setError(null);
+      try {
+        const data = await disputesApi.getById(id);
+        setData(data);
+      } catch (err) {
+        setError(err instanceof Error ? err : new Error(String(err)));
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchDispute();
   }, [id]);
 
   return { data, isLoading, error };
@@ -54,14 +72,21 @@ export function usePendingDisputes(params?: QueryParams) {
   const [error, setError] = useState<Error | null>(null);
 
   useEffect(() => {
-    setIsLoading(true);
-    setError(null);
-    disputesApi
-      .getPending(params)
-      .then(setData)
-      .catch((err) => setError(err instanceof Error ? err : new Error(String(err))))
-      .finally(() => setIsLoading(false));
-  }, [JSON.stringify(params)]);
+    const fetchPending = async () => {
+      setIsLoading(true);
+      setError(null);
+      try {
+        const data = await disputesApi.getPending(params);
+        setData(data);
+      } catch (err) {
+        setError(err instanceof Error ? err : new Error(String(err)));
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchPending();
+  }, [params]);
 
   return { data, isLoading, error };
 }
@@ -72,14 +97,21 @@ export function useResolvedDisputes(params?: QueryParams) {
   const [error, setError] = useState<Error | null>(null);
 
   useEffect(() => {
-    setIsLoading(true);
-    setError(null);
-    disputesApi
-      .getResolved(params)
-      .then(setData)
-      .catch((err) => setError(err instanceof Error ? err : new Error(String(err))))
-      .finally(() => setIsLoading(false));
-  }, [JSON.stringify(params)]);
+    const fetchResolved = async () => {
+      setIsLoading(true);
+      setError(null);
+      try {
+        const data = await disputesApi.getResolved(params);
+        setData(data);
+      } catch (err) {
+        setError(err instanceof Error ? err : new Error(String(err)));
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchResolved();
+  }, [params]);
 
   return { data, isLoading, error };
 }
@@ -90,13 +122,20 @@ export function useDisputeStatistics() {
   const [error, setError] = useState<Error | null>(null);
 
   useEffect(() => {
-    setIsLoading(true);
-    setError(null);
-    disputesApi
-      .getStatistics()
-      .then(setData)
-      .catch((err) => setError(err instanceof Error ? err : new Error(String(err))))
-      .finally(() => setIsLoading(false));
+    const fetchStatistics = async () => {
+      setIsLoading(true);
+      setError(null);
+      try {
+        const data = await disputesApi.getStatistics();
+        setData(data);
+      } catch (err) {
+        setError(err instanceof Error ? err : new Error(String(err)));
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchStatistics();
   }, []);
 
   return { data, isLoading, error };
@@ -108,15 +147,26 @@ export function useDisputeMessages(disputeId: string, params?: QueryParams) {
   const [error, setError] = useState<Error | null>(null);
 
   useEffect(() => {
-    if (!disputeId) return;
-    setIsLoading(true);
-    setError(null);
-    disputesApi
-      .getMessages(disputeId, params)
-      .then(setData)
-      .catch((err) => setError(err instanceof Error ? err : new Error(String(err))))
-      .finally(() => setIsLoading(false));
-  }, [disputeId, JSON.stringify(params)]);
+    if (!disputeId) {
+      setIsLoading(false);
+      return;
+    }
+
+    const fetchMessages = async () => {
+      setIsLoading(true);
+      setError(null);
+      try {
+        const data = await disputesApi.getMessages(disputeId, params);
+        setData(data);
+      } catch (err) {
+        setError(err instanceof Error ? err : new Error(String(err)));
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchMessages();
+  }, [disputeId, params]);
 
   return { data, isLoading, error };
 }

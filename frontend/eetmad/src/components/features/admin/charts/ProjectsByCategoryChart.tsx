@@ -27,7 +27,16 @@ const COLORS = [
   cssVars.secondary.DEFAULT,
 ];
 
-const CustomTooltip = ({ active, payload, label }: any) => {
+interface CustomTooltipProps {
+  active?: boolean;
+  payload?: Array<{
+    value?: number;
+    payload?: { total?: number };
+  }>;
+  label?: string;
+}
+
+const CustomTooltip = ({ active, payload, label }: CustomTooltipProps) => {
   if (active && payload && payload.length) {
     const value = payload[0].value;
     const total = payload[0].payload.total || value;

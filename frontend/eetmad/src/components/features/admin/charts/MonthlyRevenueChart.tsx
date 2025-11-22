@@ -17,7 +17,20 @@ interface MonthlyRevenueChartProps {
   data: Array<{ month: string; revenue: number; target: number }>;
 }
 
-const CustomTooltip = ({ active, payload, label, t }: any) => {
+interface CustomTooltipProps {
+  active?: boolean;
+  payload?: Array<{
+    dataKey?: string;
+    name?: string;
+    value?: number;
+    color?: string;
+    payload?: { revenue?: number; target?: number };
+  }>;
+  label?: string;
+  t: (key: string) => string;
+}
+
+const CustomTooltip = ({ active, payload, label, t }: CustomTooltipProps) => {
   if (active && payload && payload.length) {
     return (
       <div
@@ -39,10 +52,10 @@ const CustomTooltip = ({ active, payload, label, t }: any) => {
         >
           {label}
         </p>
-        {payload.map((entry: any, index: number) => {
+        {payload.map((entry, index: number) => {
           const isRevenue = entry.dataKey === 'revenue';
-          const percentage = entry.payload.target
-            ? ((entry.payload.revenue / entry.payload.target) * 100).toFixed(1)
+          const percentage = entry.payload?.target
+            ? ((entry.payload.revenue || 0) / entry.payload.target) * 100
             : null;
           return (
             <div key={index}>
@@ -67,10 +80,10 @@ const CustomTooltip = ({ active, payload, label, t }: any) => {
                 />
                 <span style={{ fontWeight: '600' }}>{entry.name}:</span>
                 <span style={{ fontWeight: 'bold' }}>
-                  {entry.value.toLocaleString()} {t('currency')}
+                  {entry.value?.toLocaleString()} {t('currency')}
                 </span>
               </p>
-              {isRevenue && percentage && (
+              {isRevenue && percentage !== null && (
                 <p
                   style={{
                     color: cssVars.neutral.textSecondary,
@@ -79,7 +92,7 @@ const CustomTooltip = ({ active, payload, label, t }: any) => {
                     marginRight: '18px',
                   }}
                 >
-                  {parseFloat(percentage) >= 100 ? '✅' : '📊'} {percentage}% {t('ofTarget')}
+                  {percentage >= 100 ? '✅' : '📊'} {percentage.toFixed(1)}% {t('ofTarget')}
                 </p>
               )}
             </div>

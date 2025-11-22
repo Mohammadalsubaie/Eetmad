@@ -1,10 +1,9 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { useTranslations } from 'next-intl';
 import { motion } from 'framer-motion';
-import { DollarSign } from 'lucide-react';
 import { cssVars } from '@/styles/theme';
 import type { Offer, CreateOfferInput } from '@/lib/types/offer.types';
 import { Button, ErrorMessage, LoadingSpinner } from '@/components/ui';
@@ -30,13 +29,20 @@ export default function OfferForm({ offer, requestId, onSuccess }: OfferFormProp
   const submitting = isCreating || isUpdating;
   const error = createError || updateError;
 
+  const getDefaultStartDate = () => {
+    if (offer?.startDate) {
+      return new Date(offer.startDate).toISOString().split('T')[0];
+    }
+    const defaultDate = new Date();
+    defaultDate.setDate(defaultDate.getDate() + 7);
+    return defaultDate.toISOString().split('T')[0];
+  };
+
   const [formData, setFormData] = useState<CreateOfferInput>({
     requestId: offer?.requestId || requestId || '',
     proposedPrice: offer?.proposedPrice || 0,
     estimatedDuration: offer?.estimatedDuration || 30,
-    startDate: offer?.startDate
-      ? new Date(offer.startDate).toISOString().split('T')[0]
-      : new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toISOString().split('T')[0],
+    startDate: getDefaultStartDate(),
     technicalProposal: offer?.technicalProposal || '',
     deliverables: offer?.deliverables || '',
     paymentTerms: offer?.paymentTerms || '',
@@ -75,7 +81,7 @@ export default function OfferForm({ offer, requestId, onSuccess }: OfferFormProp
       } else {
         router.push('/offers');
       }
-    } catch (err) {
+    } catch {
       // Error handled by hook
     }
   };

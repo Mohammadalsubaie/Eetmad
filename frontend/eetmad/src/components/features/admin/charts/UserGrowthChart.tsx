@@ -17,7 +17,17 @@ interface UserGrowthChartProps {
   data: Array<{ month: string; users: number; growth: number }>;
 }
 
-const CustomTooltip = ({ active, payload, label }: any) => {
+interface CustomTooltipProps {
+  active?: boolean;
+  payload?: Array<{
+    name?: string;
+    value?: number;
+    color?: string;
+  }>;
+  label?: string;
+}
+
+const CustomTooltip = ({ active, payload, label }: CustomTooltipProps) => {
   if (active && payload && payload.length) {
     return (
       <div
@@ -39,7 +49,7 @@ const CustomTooltip = ({ active, payload, label }: any) => {
         >
           {label}
         </p>
-        {payload.map((entry: any, index: number) => (
+        {payload.map((entry, index: number) => (
           <p
             key={index}
             style={{

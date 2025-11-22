@@ -14,7 +14,6 @@ import {
   X,
   Zap,
 } from 'lucide-react';
-import { useLocale } from 'next-intl';
 import { useEffect, useState } from 'react';
 import ManualReviewNavigator from './ManualReviewNavigator';
 
@@ -34,7 +33,7 @@ interface TestSuiteTemplate {
   type: TestSuiteType;
   name: string;
   description: string;
-  icon: any;
+  icon: React.ComponentType<{ className?: string }>;
   color: string;
   defaultPages: string[];
   defaultChecklist: string[];
@@ -166,17 +165,15 @@ export default function FocusedTestSuite() {
   const [newSuiteName, setNewSuiteName] = useState('');
   const [newSuiteDescription, setNewSuiteDescription] = useState('');
   const [showNavigator, setShowNavigator] = useState(false);
-  const locale = useLocale();
-
-  if (process.env.NODE_ENV !== 'development') {
-    return null;
-  }
 
   useEffect(() => {
     const saved = localStorage.getItem(STORAGE_KEY);
     if (saved) {
       try {
-        setTestSuites(JSON.parse(saved));
+        const parsed = JSON.parse(saved);
+        setTimeout(() => {
+          setTestSuites(parsed);
+        }, 0);
       } catch (e) {
         console.error('Failed to load test suites:', e);
       }
@@ -188,6 +185,10 @@ export default function FocusedTestSuite() {
       localStorage.setItem(STORAGE_KEY, JSON.stringify(testSuites));
     }
   }, [testSuites]);
+
+  if (process.env.NODE_ENV !== 'development') {
+    return null;
+  }
 
   const createTestSuite = (type: TestSuiteType, name: string, description: string) => {
     const template = TEST_SUITE_TEMPLATES.find((t) => t.type === type);
@@ -218,20 +219,6 @@ export default function FocusedTestSuite() {
         setSelectedSuite(null);
       }
     }
-  };
-
-  const toggleChecklistItem = (suiteId: string, itemIndex: number) => {
-    setTestSuites((prev) =>
-      prev.map((suite) => {
-        if (suite.id === suiteId) {
-          const newChecklist = [...suite.checklist];
-          // For simplicity, we'll just mark the suite as completed if all items are checked
-          // In a real implementation, you'd track individual item states
-          return suite;
-        }
-        return suite;
-      })
-    );
   };
 
   const startTestSuite = (suite: TestSuite) => {

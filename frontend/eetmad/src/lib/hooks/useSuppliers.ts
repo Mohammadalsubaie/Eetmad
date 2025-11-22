@@ -1,11 +1,9 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import { suppliersApi } from '@/lib/api/suppliers';
 import type {
   SupplierProfile,
-  PortfolioItem,
-  Certification,
   WorkingHours,
   CreateSupplierProfileData,
   UpdateSupplierProfileData,
@@ -19,15 +17,24 @@ export function useSuppliers(params?: QueryParams) {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<Error | null>(null);
 
+  const paramsString = useMemo(() => JSON.stringify(params), [params]);
+
   useEffect(() => {
-    setIsLoading(true);
-    setError(null);
-    suppliersApi
-      .getAll(params)
-      .then(setData)
-      .catch((err) => setError(err instanceof Error ? err : new Error(String(err))))
-      .finally(() => setIsLoading(false));
-  }, [JSON.stringify(params)]);
+    const fetchSuppliers = async () => {
+      setIsLoading(true);
+      setError(null);
+      try {
+        const data = await suppliersApi.getAll(params);
+        setData(data);
+      } catch (err) {
+        setError(err instanceof Error ? err : new Error(String(err)));
+      } finally {
+        setIsLoading(false);
+      }
+    };
+    fetchSuppliers();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [paramsString]);
 
   return { data, isLoading, error };
 }
@@ -39,13 +46,19 @@ export function useSupplier(id: string) {
 
   useEffect(() => {
     if (!id) return;
-    setIsLoading(true);
-    setError(null);
-    suppliersApi
-      .getById(id)
-      .then(setData)
-      .catch((err) => setError(err instanceof Error ? err : new Error(String(err))))
-      .finally(() => setIsLoading(false));
+    const fetchSupplier = async () => {
+      setIsLoading(true);
+      setError(null);
+      try {
+        const data = await suppliersApi.getById(id);
+        setData(data);
+      } catch (err) {
+        setError(err instanceof Error ? err : new Error(String(err)));
+      } finally {
+        setIsLoading(false);
+      }
+    };
+    fetchSupplier();
   }, [id]);
 
   return { data, isLoading, error };
@@ -57,13 +70,19 @@ export function useMySupplierProfile() {
   const [error, setError] = useState<Error | null>(null);
 
   useEffect(() => {
-    setIsLoading(true);
-    setError(null);
-    suppliersApi
-      .getMyProfile()
-      .then(setData)
-      .catch((err) => setError(err instanceof Error ? err : new Error(String(err))))
-      .finally(() => setIsLoading(false));
+    const fetchMyProfile = async () => {
+      setIsLoading(true);
+      setError(null);
+      try {
+        const data = await suppliersApi.getMyProfile();
+        setData(data);
+      } catch (err) {
+        setError(err instanceof Error ? err : new Error(String(err)));
+      } finally {
+        setIsLoading(false);
+      }
+    };
+    fetchMyProfile();
   }, []);
 
   return { data, isLoading, error };
@@ -276,18 +295,31 @@ export function useRequestVerification() {
 }
 
 export function useSupplierStatistics() {
-  const [data, setData] = useState<any>(null);
+  const [data, setData] = useState<{
+    totalProjects?: number;
+    completedProjects?: number;
+    activeProjects?: number;
+    totalRevenue?: number;
+    averageRating?: number;
+    totalReviews?: number;
+  } | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<Error | null>(null);
 
   useEffect(() => {
-    setIsLoading(true);
-    setError(null);
-    suppliersApi
-      .getStatistics()
-      .then(setData)
-      .catch((err) => setError(err instanceof Error ? err : new Error(String(err))))
-      .finally(() => setIsLoading(false));
+    const fetchStatistics = async () => {
+      setIsLoading(true);
+      setError(null);
+      try {
+        const statistics = await suppliersApi.getStatistics();
+        setData(statistics);
+      } catch (err) {
+        setError(err instanceof Error ? err : new Error(String(err)));
+      } finally {
+        setIsLoading(false);
+      }
+    };
+    fetchStatistics();
   }, []);
 
   return { data, isLoading, error };

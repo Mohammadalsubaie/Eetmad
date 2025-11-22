@@ -24,7 +24,7 @@ export default function PaymentDetailPage() {
   const locale = useLocale();
   const paymentId = params.id as string;
 
-  const { payment, isLoading, error } = usePayment(paymentId);
+  const { data: payment, isLoading, error } = usePayment(paymentId);
 
   if (isLoading) {
     return (

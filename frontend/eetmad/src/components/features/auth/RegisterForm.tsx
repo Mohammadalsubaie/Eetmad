@@ -89,7 +89,7 @@ export default function RegisterForm() {
         commercialReg,
         agreeTerms,
       });
-      router.push('/dashboard');
+      router.push(`/${locale}/dashboard`);
     } catch (err) {
       // Error handled by hook
     }

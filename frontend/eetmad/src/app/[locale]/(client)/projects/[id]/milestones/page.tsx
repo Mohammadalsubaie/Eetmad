@@ -6,6 +6,7 @@ import { motion } from 'framer-motion';
 import { cssVars } from '@/styles/theme';
 import { ArrowLeft } from 'lucide-react';
 import { useProjectMilestones } from '@/lib/hooks/useProjects';
+import { useApproveMilestone, useRejectMilestone } from '@/lib/hooks/useMilestones';
 import { LoadingSpinner, ErrorMessage, EmptyState } from '@/components/ui';
 import Breadcrumbs from '@/components/shared/navigation/Breadcrumbs';
 import ProjectMilestonesSummary from '@/components/features/projects/ProjectMilestonesSummary';
@@ -21,14 +22,28 @@ export default function ProjectMilestonesPage() {
 
   const { project, milestones, isLoading, error } = useProjectMilestones(projectId);
 
+  const { mutate: approveMilestone, isLoading: approving } = useApproveMilestone();
+  const { mutate: rejectMilestone, isLoading: rejecting } = useRejectMilestone();
+
   const handleApprove = async (milestoneId: string) => {
-    // TODO: Implement approve milestone
-    console.log('Approve milestone:', milestoneId);
+    if (confirm(t('milestonesSection.confirmApprove'))) {
+      try {
+        await approveMilestone(milestoneId);
+      } catch (err) {
+        console.error('Failed to approve milestone:', err);
+      }
+    }
   };
 
   const handleReject = async (milestoneId: string) => {
-    // TODO: Implement reject milestone
-    console.log('Reject milestone:', milestoneId);
+    const reason = prompt(t('milestonesSection.rejectReasonPrompt'));
+    if (reason) {
+      try {
+        await rejectMilestone(milestoneId, reason);
+      } catch (err) {
+        console.error('Failed to reject milestone:', err);
+      }
+    }
   };
 
   if (isLoading) {
@@ -38,7 +53,7 @@ export default function ProjectMilestonesPage() {
           items={[
             { label: t('title'), href: `/${locale}/projects` },
             { label: projectId },
-            { label: tPages('projects.milestones.title') },
+            { label: t('milestonesSection.title') },
           ]}
           className="mb-6"
         />
@@ -56,7 +71,7 @@ export default function ProjectMilestonesPage() {
           items={[
             { label: t('title'), href: `/${locale}/projects` },
             { label: projectId },
-            { label: tPages('projects.milestones.title') },
+            { label: t('milestonesSection.title') },
           ]}
           className="mb-6"
         />

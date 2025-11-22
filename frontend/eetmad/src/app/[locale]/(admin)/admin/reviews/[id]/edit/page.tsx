@@ -4,7 +4,7 @@ import ReviewFormFields from '@/components/features/reviews/ReviewFormFields';
 import AdminPageHeader from '@/components/shared/admin/AdminPageHeader';
 import Breadcrumbs from '@/components/shared/navigation/Breadcrumbs';
 import { Button, ErrorMessage, LoadingSpinner } from '@/components/ui';
-import type { UpdateReviewInput } from '@/lib/api/reviews';
+import type { UpdateReviewInput } from '@/lib/types/review.types';
 import { useReview, useUpdateReview } from '@/lib/hooks/useReviews';
 import { cssVars } from '@/styles/theme';
 import { motion } from 'framer-motion';
@@ -21,8 +21,8 @@ export default function EditReviewPage() {
   const locale = useLocale();
   const reviewId = params.id as string;
 
-  const { review, isLoading: loading, error: fetchError } = useReview(reviewId);
-  const { updateReview, isLoading: submitting, error: updateError } = useUpdateReview();
+  const { data: review, isLoading: loading, error: fetchError } = useReview(reviewId);
+  const { mutate: updateReview, isLoading: submitting, error: updateError } = useUpdateReview();
 
   const [formData, setFormData] = useState<UpdateReviewInput>({
     rating: 5,

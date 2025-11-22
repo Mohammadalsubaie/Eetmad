@@ -6,7 +6,7 @@ import { useTranslations, useLocale } from 'next-intl';
 import { motion } from 'framer-motion';
 import { cssVars } from '@/styles/theme';
 import { ArrowLeft, Save, Star } from 'lucide-react';
-import type { CreateReviewInput } from '@/lib/api/reviews';
+import type { CreateReviewInput } from '@/lib/types/review.types';
 import { useCreateReview } from '@/lib/hooks/useReviews';
 import { LoadingSpinner, ErrorMessage, Button } from '@/components/ui';
 import AdminPageHeader from '@/components/shared/admin/AdminPageHeader';
@@ -19,7 +19,7 @@ export default function CreateReviewPage() {
   const t = useTranslations('admin');
   const tPages = useTranslations('pages');
   const locale = useLocale();
-  const { createReview, isLoading, error: createError } = useCreateReview();
+  const { mutate: createReview, isLoading, error: createError } = useCreateReview();
 
   const projectId = searchParams.get('projectId') || '';
   const reviewedId = searchParams.get('reviewedId') || '';

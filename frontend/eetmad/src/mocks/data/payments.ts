@@ -2,7 +2,7 @@
  * Mock payment data
  */
 
-import type { Payment } from '@/lib/types/payment.types';
+import type { Payment, Wallet, WalletTransaction } from '@/lib/types/payment.types';
 
 export const mockPayments: Payment[] = [
   {
@@ -85,5 +85,82 @@ export const mockPayments: Payment[] = [
     refundAmount: null,
     createdAt: new Date(Date.now() - 2 * 24 * 60 * 60 * 1000).toISOString(),
     updatedAt: new Date(Date.now() - 2 * 24 * 60 * 60 * 1000).toISOString(),
+  },
+];
+
+// Mock wallet data
+export const mockWallet: Wallet = {
+  id: 'wallet-1',
+  userId: '1',
+  balance: 5000,
+  currency: 'SAR',
+};
+
+// Mock wallet transactions data
+export const mockWalletTransactions: WalletTransaction[] = [
+  {
+    id: 'wallet-txn-1',
+    userId: '1',
+    amount: 1000,
+    type: 'deposit',
+    referenceType: 'payment',
+    referenceId: 'payment-1',
+    balanceBefore: 4000,
+    balanceAfter: 5000,
+    description: 'Deposit via credit card',
+    status: 'completed',
+    createdAt: new Date(Date.now() - 1 * 24 * 60 * 60 * 1000).toISOString(),
+  },
+  {
+    id: 'wallet-txn-2',
+    userId: '1',
+    amount: 500,
+    type: 'payment',
+    referenceType: 'payment',
+    referenceId: 'payment-2',
+    balanceBefore: 4500,
+    balanceAfter: 4000,
+    description: 'Payment for project milestone',
+    status: 'completed',
+    createdAt: new Date(Date.now() - 3 * 24 * 60 * 60 * 1000).toISOString(),
+  },
+  {
+    id: 'wallet-txn-3',
+    userId: '1',
+    amount: 2000,
+    type: 'deposit',
+    referenceType: 'payment',
+    referenceId: 'payment-3',
+    balanceBefore: 2500,
+    balanceAfter: 4500,
+    description: 'Deposit via bank transfer',
+    status: 'completed',
+    createdAt: new Date(Date.now() - 5 * 24 * 60 * 60 * 1000).toISOString(),
+  },
+  {
+    id: 'wallet-txn-4',
+    userId: '1',
+    amount: 300,
+    type: 'refund',
+    referenceType: 'refund',
+    referenceId: 'refund-1',
+    balanceBefore: 2200,
+    balanceAfter: 2500,
+    description: 'Refund for cancelled project',
+    status: 'completed',
+    createdAt: new Date(Date.now() - 7 * 24 * 60 * 60 * 1000).toISOString(),
+  },
+  {
+    id: 'wallet-txn-5',
+    userId: '1',
+    amount: 1500,
+    type: 'deposit',
+    referenceType: 'payment',
+    referenceId: 'payment-4',
+    balanceBefore: 700,
+    balanceAfter: 2200,
+    description: 'Deposit via credit card',
+    status: 'completed',
+    createdAt: new Date(Date.now() - 10 * 24 * 60 * 60 * 1000).toISOString(),
   },
 ];

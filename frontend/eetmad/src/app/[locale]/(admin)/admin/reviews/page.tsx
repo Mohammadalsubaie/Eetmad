@@ -14,7 +14,7 @@ export default function ReviewsManagementPage() {
   const tPages = useTranslations('pages');
   const locale = useLocale();
   const router = useRouter();
-  const { reviews, isLoading } = useReviews();
+  const { data: reviews, isLoading } = useReviews();
   const columns = useReviewsTableColumns();
 
   return (

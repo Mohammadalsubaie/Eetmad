@@ -146,16 +146,6 @@ export default function HowItWorksPage() {
                   {t('cards.owners.description')}
                 </p>
               </div>
-              <div
-                className="flex h-16 w-16 items-center justify-center rounded-2xl"
-                style={{
-                  background: cssVars.gradient.gold,
-                }}
-              >
-                <span className="text-2xl font-bold" style={{ color: cssVars.secondary.DEFAULT }}>
-                  {t('cards.owners.badge')}
-                </span>
-              </div>
             </div>
 
             <div className="space-y-4">
@@ -243,16 +233,6 @@ export default function HowItWorksPage() {
                 <p className="text-base" style={{ color: cssVars.neutral.textSecondary }}>
                   {t('cards.providers.description')}
                 </p>
-              </div>
-              <div
-                className="flex h-16 w-16 items-center justify-center rounded-2xl"
-                style={{
-                  background: cssVars.gradient.gold,
-                }}
-              >
-                <span className="text-2xl font-bold" style={{ color: cssVars.secondary.DEFAULT }}>
-                  {t('cards.providers.badge')}
-                </span>
               </div>
             </div>
 

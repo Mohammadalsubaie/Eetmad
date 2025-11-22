@@ -79,3 +79,213 @@ export function useProjectMilestones(projectId: string | null) {
     error,
   };
 }
+
+export function useStartProject() {
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState<Error | null>(null);
+
+  const mutate = async (id: string) => {
+    setIsLoading(true);
+    setError(null);
+    try {
+      const result = await projectsApi.start(id);
+      setIsLoading(false);
+      return result;
+    } catch (err) {
+      setError(err as Error);
+      setIsLoading(false);
+      throw err;
+    }
+  };
+
+  return { mutate, isLoading, error };
+}
+
+export function useCompleteProject() {
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState<Error | null>(null);
+
+  const mutate = async (id: string) => {
+    setIsLoading(true);
+    setError(null);
+    try {
+      const result = await projectsApi.complete(id);
+      setIsLoading(false);
+      return result;
+    } catch (err) {
+      setError(err as Error);
+      setIsLoading(false);
+      throw err;
+    }
+  };
+
+  return { mutate, isLoading, error };
+}
+
+export function useCancelProject() {
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState<Error | null>(null);
+
+  const mutate = async (id: string, reason?: string) => {
+    setIsLoading(true);
+    setError(null);
+    try {
+      const result = await projectsApi.cancel(id, reason);
+      setIsLoading(false);
+      return result;
+    } catch (err) {
+      setError(err as Error);
+      setIsLoading(false);
+      throw err;
+    }
+  };
+
+  return { mutate, isLoading, error };
+}
+
+export function usePauseProject() {
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState<Error | null>(null);
+
+  const mutate = async (id: string) => {
+    setIsLoading(true);
+    setError(null);
+    try {
+      const result = await projectsApi.pause(id);
+      setIsLoading(false);
+      return result;
+    } catch (err) {
+      setError(err as Error);
+      setIsLoading(false);
+      throw err;
+    }
+  };
+
+  return { mutate, isLoading, error };
+}
+
+export function useResumeProject() {
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState<Error | null>(null);
+
+  const mutate = async (id: string) => {
+    setIsLoading(true);
+    setError(null);
+    try {
+      const result = await projectsApi.resume(id);
+      setIsLoading(false);
+      return result;
+    } catch (err) {
+      setError(err as Error);
+      setIsLoading(false);
+      throw err;
+    }
+  };
+
+  return { mutate, isLoading, error };
+}
+
+export function useUpdateProjectProgress() {
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState<Error | null>(null);
+
+  const mutate = async (id: string, progress: number) => {
+    setIsLoading(true);
+    setError(null);
+    try {
+      const result = await projectsApi.updateProgress(id, progress);
+      setIsLoading(false);
+      return result;
+    } catch (err) {
+      setError(err as Error);
+      setIsLoading(false);
+      throw err;
+    }
+  };
+
+  return { mutate, isLoading, error };
+}
+
+export function useAddDeliveryProof() {
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState<Error | null>(null);
+
+  const mutate = async (id: string, files: File[], notes?: string) => {
+    setIsLoading(true);
+    setError(null);
+    try {
+      const result = await projectsApi.addDeliveryProof(id, files, notes);
+      setIsLoading(false);
+      return result;
+    } catch (err) {
+      setError(err as Error);
+      setIsLoading(false);
+      throw err;
+    }
+  };
+
+  return { mutate, isLoading, error };
+}
+
+export function useApproveDelivery() {
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState<Error | null>(null);
+
+  const mutate = async (id: string) => {
+    setIsLoading(true);
+    setError(null);
+    try {
+      const result = await projectsApi.approveDelivery(id);
+      setIsLoading(false);
+      return result;
+    } catch (err) {
+      setError(err as Error);
+      setIsLoading(false);
+      throw err;
+    }
+  };
+
+  return { mutate, isLoading, error };
+}
+
+export function useRejectDelivery() {
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState<Error | null>(null);
+
+  const mutate = async (id: string, reason: string) => {
+    setIsLoading(true);
+    setError(null);
+    try {
+      const result = await projectsApi.rejectDelivery(id, reason);
+      setIsLoading(false);
+      return result;
+    } catch (err) {
+      setError(err as Error);
+      setIsLoading(false);
+      throw err;
+    }
+  };
+
+  return { mutate, isLoading, error };
+}
+
+export function useRequestRevision() {
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState<Error | null>(null);
+
+  const mutate = async (id: string, notes: string) => {
+    setIsLoading(true);
+    setError(null);
+    try {
+      const result = await projectsApi.requestRevision(id, notes);
+      setIsLoading(false);
+      return result;
+    } catch (err) {
+      setError(err as Error);
+      setIsLoading(false);
+      throw err;
+    }
+  };
+
+  return { mutate, isLoading, error };
+}

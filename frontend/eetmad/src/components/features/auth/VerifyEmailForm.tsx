@@ -27,7 +27,7 @@ export default function VerifyEmailForm() {
   useEffect(() => {
     if (success) {
       setTimeout(() => {
-        router.push('/login');
+        router.push(`/${locale}/login`);
       }, 2000);
     }
   }, [success, router]);

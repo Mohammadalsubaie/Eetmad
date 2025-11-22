@@ -18,7 +18,7 @@ export default function Navbar() {
     { href: `/${locale}`, label: t('home') },
     { href: `/${locale}/about`, label: t('about') },
     { href: `/${locale}/requests`, label: t('requests') },
-    { href: `/${locale}/suppliers`, label: t('suppliers') },
+    { href: `/${locale}/browse-suppliers`, label: t('suppliers') },
     { href: `/${locale}/contact`, label: t('contact') },
   ];
 
@@ -28,7 +28,7 @@ export default function Navbar() {
         <div className="flex h-16 items-center justify-between">
           {/* Logo */}
           <Link href={`/${locale}`} className="text-2xl font-bold text-primary">
-            Eetmad
+            {t('brandName')}
           </Link>
 
           {/* Desktop Navigation */}

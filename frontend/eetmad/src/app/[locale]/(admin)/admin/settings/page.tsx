@@ -16,37 +16,37 @@ export default function AdminSettingsPage() {
   const settingsSections = [
     {
       id: 'general',
-      title: 'الإعدادات العامة',
+      title: t('settings.sections.general'),
       icon: Globe,
       color: cssVars.primary.DEFAULT,
     },
     {
       id: 'payment',
-      title: 'إعدادات الدفع',
+      title: t('settings.sections.payment'),
       icon: DollarSign,
       color: cssVars.status.success,
     },
     {
       id: 'email',
-      title: 'إعدادات البريد',
+      title: t('settings.sections.email'),
       icon: Mail,
       color: cssVars.status.info,
     },
     {
       id: 'security',
-      title: 'الأمان والخصوصية',
+      title: t('settings.sections.security'),
       icon: Shield,
       color: cssVars.status.warning,
     },
     {
       id: 'notifications',
-      title: 'الإشعارات',
+      title: t('settings.sections.notifications'),
       icon: Bell,
       color: cssVars.accent.primary,
     },
     {
       id: 'database',
-      title: 'قاعدة البيانات',
+      title: t('settings.sections.database'),
       icon: Database,
       color: cssVars.secondary.DEFAULT,
     },

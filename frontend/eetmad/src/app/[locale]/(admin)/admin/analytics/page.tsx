@@ -1,26 +1,69 @@
 'use client';
 
-import { useTranslations, useLocale } from 'next-intl';
-import { motion } from 'framer-motion';
-import { cssVars } from '@/styles/theme';
-import {
-  BarChart3,
-  TrendingUp,
-  Users,
-  DollarSign,
-  Activity,
-  Download,
-  Calendar,
-} from 'lucide-react';
+import CompletionRateChart from '@/components/features/admin/charts/CompletionRateChart';
+import MonthlyRevenueChart from '@/components/features/admin/charts/MonthlyRevenueChart';
+import ProjectsByCategoryChart from '@/components/features/admin/charts/ProjectsByCategoryChart';
+import UserGrowthChart from '@/components/features/admin/charts/UserGrowthChart';
+import AdminActionButton from '@/components/shared/admin/AdminActionButton';
 import AdminPageHeader from '@/components/shared/admin/AdminPageHeader';
 import AdminStatCard from '@/components/shared/admin/AdminStatCard';
-import AdminActionButton from '@/components/shared/admin/AdminActionButton';
 import Breadcrumbs from '@/components/shared/navigation/Breadcrumbs';
+import { useAnalytics } from '@/lib/hooks/useAnalytics';
+import { cssVars } from '@/styles/theme';
+import { motion } from 'framer-motion';
+import {
+  Activity,
+  BarChart3,
+  Calendar,
+  DollarSign,
+  Download,
+  TrendingUp,
+  Users,
+} from 'lucide-react';
+import { useLocale, useTranslations } from 'next-intl';
 
 export default function AnalyticsPage() {
   const t = useTranslations('admin');
   const tPages = useTranslations('pages');
   const locale = useLocale();
+  const { data, isLoading, error } = useAnalytics();
+
+  // Add colors to completion rate data
+  const completionRateData =
+    data?.completionRate.map((item, index) => {
+      const colors = [cssVars.status.success, cssVars.status.warning, cssVars.status.error];
+      return {
+        ...item,
+        color: item.color || colors[index % colors.length],
+      };
+    }) || [];
+
+  if (isLoading) {
+    return (
+      <div className="flex h-96 items-center justify-center">
+        <p style={{ color: cssVars.neutral.textSecondary }}>{t('analytics.loading')}</p>
+      </div>
+    );
+  }
+
+  if (error || !data) {
+    return (
+      <div className="flex h-96 items-center justify-center">
+        <p style={{ color: cssVars.status.error }}>{error?.message || t('analytics.error')}</p>
+      </div>
+    );
+  }
+
+  const formatRevenue = (value: number) => {
+    if (value >= 1000000) {
+      return `${(value / 1000000).toFixed(1)}${t('analytics.currency.million')}`;
+    }
+    return `${(value / 1000).toFixed(0)}${t('analytics.currency.thousand')}`;
+  };
+
+  const formatNumber = (value: number) => {
+    return value.toLocaleString();
+  };
 
   return (
     <div>
@@ -56,7 +99,7 @@ export default function AnalyticsPage() {
       <div className="mb-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
         <AdminStatCard
           title={t('analytics.stats.totalUsers')}
-          value="1,247"
+          value={formatNumber(data.stats.totalUsers)}
           change="+12%"
           trend="up"
           icon={Users}
@@ -64,7 +107,7 @@ export default function AnalyticsPage() {
         />
         <AdminStatCard
           title={t('analytics.stats.totalRevenue')}
-          value="2.8M ر.س"
+          value={formatRevenue(data.stats.totalRevenue)}
           change="+18%"
           trend="up"
           icon={DollarSign}
@@ -72,7 +115,7 @@ export default function AnalyticsPage() {
         />
         <AdminStatCard
           title={t('analytics.stats.activeProjects')}
-          value="156"
+          value={formatNumber(data.stats.activeProjects)}
           change="+24%"
           trend="up"
           icon={Activity}
@@ -80,7 +123,7 @@ export default function AnalyticsPage() {
         />
         <AdminStatCard
           title={t('analytics.stats.growthRate')}
-          value="94.5%"
+          value={`${data.stats.growthRate.toFixed(1)}%`}
           change="+5%"
           trend="up"
           icon={TrendingUp}
@@ -88,83 +131,132 @@ export default function AnalyticsPage() {
         />
       </div>
 
-      {/* Charts Placeholders */}
+      {/* Charts */}
       <div className="mb-8 grid gap-6 lg:grid-cols-2">
         <motion.div
-          whileHover={{ y: -4 }}
-          className="rounded-2xl border-2 p-6 shadow-md"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.4, ease: 'easeOut' }}
+          whileHover={{ y: -6, scale: 1.01 }}
+          className="rounded-2xl border-2 p-6 shadow-lg transition-shadow duration-300"
           style={{
             backgroundColor: cssVars.neutral.surface,
             borderColor: cssVars.neutral.border,
+            boxShadow: `0 4px 6px -1px color-mix(in srgb, ${cssVars.neutral.darker} 10%, transparent), 0 2px 4px -1px color-mix(in srgb, ${cssVars.neutral.darker} 6%, transparent)`,
           }}
         >
-          <h3 className="mb-4 text-xl font-bold" style={{ color: cssVars.secondary.DEFAULT }}>
-            {t('analytics.charts.userGrowth')}
-          </h3>
-          <div
-            className="flex h-64 items-center justify-center rounded-xl"
-            style={{ backgroundColor: cssVars.neutral.bg }}
-          >
-            <p style={{ color: cssVars.neutral.textMuted }}>{t('analytics.charts.placeholder')}</p>
+          <div className="mb-4 flex items-center justify-between">
+            <h3 className="text-xl font-bold" style={{ color: cssVars.secondary.DEFAULT }}>
+              {t('analytics.charts.userGrowth')}
+            </h3>
+            <div
+              className="rounded-lg px-3 py-1 text-xs font-semibold"
+              style={{
+                backgroundColor: `${cssVars.primary.DEFAULT}15`,
+                color: cssVars.primary.DEFAULT,
+              }}
+            >
+              +8.4%
+            </div>
+          </div>
+          <div className="rounded-xl p-3" style={{ backgroundColor: cssVars.neutral.bg }}>
+            <UserGrowthChart data={data.userGrowth} />
           </div>
         </motion.div>
 
         <motion.div
-          whileHover={{ y: -4 }}
-          className="rounded-2xl border-2 p-6 shadow-md"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.4, delay: 0.1, ease: 'easeOut' }}
+          whileHover={{ y: -6, scale: 1.01 }}
+          className="rounded-2xl border-2 p-6 shadow-lg transition-shadow duration-300"
           style={{
             backgroundColor: cssVars.neutral.surface,
             borderColor: cssVars.neutral.border,
+            boxShadow: `0 4px 6px -1px color-mix(in srgb, ${cssVars.neutral.darker} 10%, transparent), 0 2px 4px -1px color-mix(in srgb, ${cssVars.neutral.darker} 6%, transparent)`,
           }}
         >
-          <h3 className="mb-4 text-xl font-bold" style={{ color: cssVars.secondary.DEFAULT }}>
-            {t('analytics.charts.monthlyRevenue')}
-          </h3>
-          <div
-            className="flex h-64 items-center justify-center rounded-xl"
-            style={{ backgroundColor: cssVars.neutral.bg }}
-          >
-            <p style={{ color: cssVars.neutral.textMuted }}>{t('analytics.charts.placeholder')}</p>
+          <div className="mb-4 flex items-center justify-between">
+            <h3 className="text-xl font-bold" style={{ color: cssVars.secondary.DEFAULT }}>
+              {t('analytics.charts.monthlyRevenue')}
+            </h3>
+            <div
+              className="rounded-lg px-3 py-1 text-xs font-semibold"
+              style={{
+                backgroundColor: `${cssVars.status.success}15`,
+                color: cssVars.status.success,
+              }}
+            >
+              +18%
+            </div>
+          </div>
+          <div className="rounded-xl p-3" style={{ backgroundColor: cssVars.neutral.bg }}>
+            <MonthlyRevenueChart data={data.monthlyRevenue} />
           </div>
         </motion.div>
       </div>
 
       <div className="grid gap-6 lg:grid-cols-2">
         <motion.div
-          whileHover={{ y: -4 }}
-          className="rounded-2xl border-2 p-6 shadow-md"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.4, delay: 0.2, ease: 'easeOut' }}
+          whileHover={{ y: -6, scale: 1.01 }}
+          className="rounded-2xl border-2 p-6 shadow-lg transition-shadow duration-300"
           style={{
             backgroundColor: cssVars.neutral.surface,
             borderColor: cssVars.neutral.border,
+            boxShadow: `0 4px 6px -1px color-mix(in srgb, ${cssVars.neutral.darker} 10%, transparent), 0 2px 4px -1px color-mix(in srgb, ${cssVars.neutral.darker} 6%, transparent)`,
           }}
         >
-          <h3 className="mb-4 text-xl font-bold" style={{ color: cssVars.secondary.DEFAULT }}>
-            {t('analytics.charts.projectsByCategory')}
-          </h3>
-          <div
-            className="flex h-64 items-center justify-center rounded-xl"
-            style={{ backgroundColor: cssVars.neutral.bg }}
-          >
-            <p style={{ color: cssVars.neutral.textMuted }}>{t('analytics.charts.placeholder')}</p>
+          <div className="mb-4 flex items-center justify-between">
+            <h3 className="text-xl font-bold" style={{ color: cssVars.secondary.DEFAULT }}>
+              {t('analytics.charts.projectsByCategory')}
+            </h3>
+            <div
+              className="rounded-lg px-3 py-1 text-xs font-semibold"
+              style={{
+                backgroundColor: `${cssVars.status.info}15`,
+                color: cssVars.status.info,
+              }}
+            >
+              {data.projectsByCategory.reduce((sum, item) => sum + item.projects, 0)}{' '}
+              {t('analytics.common.project')}
+            </div>
+          </div>
+          <div className="rounded-xl p-3" style={{ backgroundColor: cssVars.neutral.bg }}>
+            <ProjectsByCategoryChart data={data.projectsByCategory} />
           </div>
         </motion.div>
 
         <motion.div
-          whileHover={{ y: -4 }}
-          className="rounded-2xl border-2 p-6 shadow-md"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.4, delay: 0.3, ease: 'easeOut' }}
+          whileHover={{ y: -6, scale: 1.01 }}
+          className="rounded-2xl border-2 p-6 shadow-lg transition-shadow duration-300"
           style={{
             backgroundColor: cssVars.neutral.surface,
             borderColor: cssVars.neutral.border,
+            boxShadow: `0 4px 6px -1px color-mix(in srgb, ${cssVars.neutral.darker} 10%, transparent), 0 2px 4px -1px color-mix(in srgb, ${cssVars.neutral.darker} 6%, transparent)`,
           }}
         >
-          <h3 className="mb-4 text-xl font-bold" style={{ color: cssVars.secondary.DEFAULT }}>
-            {t('analytics.charts.completionRate')}
-          </h3>
-          <div
-            className="flex h-64 items-center justify-center rounded-xl"
-            style={{ backgroundColor: cssVars.neutral.bg }}
-          >
-            <p style={{ color: cssVars.neutral.textMuted }}>{t('analytics.charts.placeholder')}</p>
+          <div className="mb-4 flex items-center justify-between">
+            <h3 className="text-xl font-bold" style={{ color: cssVars.secondary.DEFAULT }}>
+              {t('analytics.charts.completionRate')}
+            </h3>
+            <div
+              className="rounded-lg px-3 py-1 text-xs font-semibold"
+              style={{
+                backgroundColor: `${cssVars.status.success}15`,
+                color: cssVars.status.success,
+              }}
+            >
+              {completionRateData[0]?.value.toFixed(1)}%
+            </div>
+          </div>
+          <div className="rounded-xl p-3" style={{ backgroundColor: cssVars.neutral.bg }}>
+            <CompletionRateChart data={completionRateData} />
           </div>
         </motion.div>
       </div>

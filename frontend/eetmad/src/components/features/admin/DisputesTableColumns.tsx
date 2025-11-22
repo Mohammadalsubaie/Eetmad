@@ -75,10 +75,10 @@ export function useDisputesTableColumns(): ColumnConfig<Dispute>[] {
           }}
         >
           {dispute.priority === 'high'
-            ? 'عالية'
+            ? t('disputes.priority.high')
             : dispute.priority === 'medium'
-              ? 'متوسطة'
-              : 'منخفضة'}
+              ? t('disputes.priority.medium')
+              : t('disputes.priority.low')}
         </span>
       ),
     },

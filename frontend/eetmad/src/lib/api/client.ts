@@ -26,6 +26,7 @@ apiClient.interceptors.request.use(
 apiClient.interceptors.response.use(
   (response) => response,
   (error) => {
+    // Only handle 401 errors, let other errors pass through for mock fallback
     if (error.response?.status === 401) {
       // Handle unauthorized access
       if (typeof window !== 'undefined') {
@@ -33,6 +34,8 @@ apiClient.interceptors.response.use(
         window.location.href = '/login';
       }
     }
+    // For network errors or 404/500 errors, let them pass through
+    // so API functions can catch them and use mock data fallback
     return Promise.reject(error);
   }
 );

@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { useTranslations } from 'next-intl';
+import { useTranslations, useLocale } from 'next-intl';
 import { motion } from 'framer-motion';
 import { Check, ArrowRight, ArrowLeft } from 'lucide-react';
 import { cssVars } from '@/styles/theme';
@@ -12,6 +12,7 @@ import { useUpdateSupplierProfile } from '@/lib/hooks/useSupplierMutations';
 
 export default function ProfileSetupWizard() {
   const t = useTranslations('pages.supplierSetup');
+  const locale = useLocale();
   const router = useRouter();
   const { data: categories, isLoading: categoriesLoading } = useCategories();
   const { update, isLoading, error } = useUpdateSupplierProfile();
@@ -33,7 +34,7 @@ export default function ProfileSetupWizard() {
           isPrimary: catId === selectedCategories[0],
         })),
       });
-      router.push('/portfolio');
+      router.push(`/${locale}/portfolio`);
     } catch (err) {
       // Error handled by hook
     }

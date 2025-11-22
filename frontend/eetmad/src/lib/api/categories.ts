@@ -6,38 +6,42 @@ import type {
   Category,
 } from '@/lib/types/category.types';
 
-const USE_MOCKS = process.env.NEXT_PUBLIC_USE_MOCKS === 'true';
+const USE_MOCKS = process.env.NEXT_PUBLIC_USE_MOCKS === 'true' || process.env.NODE_ENV === 'development';
 
 export const categoriesApi = {
   getAll: async () => {
+    if (USE_MOCKS) {
+      console.log('📦 Using mock categories data');
+      return mockCategories;
+    }
     try {
       const { data } = await apiClient.get('/v1/categories');
       return data;
     } catch (error) {
-      // Fallback to mock data if API fails or in development
-      if (USE_MOCKS || process.env.NODE_ENV === 'development') {
-        console.warn('Using mock categories data');
-        return mockCategories;
-      }
-      throw error;
+      console.warn('API call failed, using mock data:', error);
+      return mockCategories;
     }
   },
 
   getById: async (id: string) => {
+    if (USE_MOCKS) {
+      console.log('📦 Using mock category data');
+      const category = mockCategories.find((cat) => cat.id === id || cat.slug === id);
+      if (!category) {
+        throw new Error('Category not found');
+      }
+      return category;
+    }
     try {
       const { data } = await apiClient.get(`/v1/categories/${id}`);
       return data;
     } catch (error) {
-      // Fallback to mock data if API fails or in development
-      if (USE_MOCKS || process.env.NODE_ENV === 'development') {
-        console.warn('Using mock category data');
-        const category = mockCategories.find((cat) => cat.id === id || cat.slug === id);
-        if (!category) {
-          throw new Error('Category not found');
-        }
-        return category;
+      console.warn('API call failed, using mock data:', error);
+      const category = mockCategories.find((cat) => cat.id === id || cat.slug === id);
+      if (!category) {
+        throw new Error('Category not found');
       }
-      throw error;
+      return category;
     }
   },
 

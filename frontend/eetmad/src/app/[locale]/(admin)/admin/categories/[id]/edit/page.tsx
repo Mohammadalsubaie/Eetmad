@@ -36,15 +36,19 @@ export default function EditCategoryPage() {
 
   useEffect(() => {
     if (category) {
-      setFormData({
-        nameAr: category.nameAr,
-        nameEn: category.nameEn,
-        parentId: category.parentId,
-        icon: category.icon,
-        description: category.description,
-        sortOrder: category.sortOrder,
-        isActive: category.isActive,
-      });
+      // Use setTimeout to avoid synchronous setState in effect
+      const timer = setTimeout(() => {
+        setFormData({
+          nameAr: category.nameAr,
+          nameEn: category.nameEn,
+          parentId: category.parentId,
+          icon: category.icon,
+          description: category.description,
+          sortOrder: category.sortOrder,
+          isActive: category.isActive,
+        });
+      }, 0);
+      return () => clearTimeout(timer);
     }
   }, [category]);
 
@@ -82,7 +86,7 @@ export default function EditCategoryPage() {
     try {
       await updateCategory(categoryId, formData);
       router.push(`/admin/categories/${categoryId}`);
-    } catch (err) {
+    } catch {
       // Error is handled by the hook
     }
   };

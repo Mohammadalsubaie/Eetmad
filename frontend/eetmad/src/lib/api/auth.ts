@@ -62,3 +62,39 @@ export const getCurrentUser = async () => {
   const response = await apiClient.get('/auth/me');
   return response.data;
 };
+
+export const verifyPhone = async (code: string, phone?: string): Promise<void> => {
+  await apiClient.post('/auth/verify-phone', { code, phone });
+};
+
+export const resendVerification = async (
+  type: 'email' | 'phone',
+  email?: string,
+  phone?: string
+): Promise<void> => {
+  await apiClient.post('/auth/resend-verification', { type, email, phone });
+};
+
+export const logoutAll = async (): Promise<void> => {
+  await apiClient.post('/auth/logout-all');
+};
+
+// Two-Factor Authentication
+export const enable2FA = async (): Promise<{ qrCode: string; secret: string }> => {
+  const response = await apiClient.post<{ qrCode: string; secret: string }>('/auth/2fa/enable');
+  return response.data;
+};
+
+export const disable2FA = async (password: string): Promise<void> => {
+  await apiClient.post('/auth/2fa/disable', { password });
+};
+
+export const verify2FA = async (code: string): Promise<{ verified: boolean }> => {
+  const response = await apiClient.post<{ verified: boolean }>('/auth/2fa/verify', { code });
+  return response.data;
+};
+
+export const getBackupCodes = async (): Promise<{ codes: string[] }> => {
+  const response = await apiClient.get<{ codes: string[] }>('/auth/2fa/backup-codes');
+  return response.data;
+};

@@ -5,7 +5,6 @@ import Section from '@/components/shared/layouts/Section';
 
 import { Quote, Star } from 'lucide-react';
 import { useTranslations } from 'next-intl';
-import React from 'react';
 
 interface Testimonial {
   id: number;

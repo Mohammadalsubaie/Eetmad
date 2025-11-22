@@ -145,4 +145,3 @@ export function useVerifyEmail() {
 
   return { verify, isLoading, error, success };
 }
-

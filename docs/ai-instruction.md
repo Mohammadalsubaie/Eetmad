@@ -9,7 +9,7 @@ following ALL guidelines, rules, and examples in `docs/build-prompt.md`\*\*
 3. ✅ Use types from `@/lib/types` - NEVER create inline types
 4. ✅ Match API endpoints from `docs/docs/endpoints.md` exactly
 5. ✅ Match design style from `docs/design-sample.md` exactly
-6. ✅ Use mock data from `frontend/eetmad/src/mocks/data/` for testing
+6. ✅ Use mock data from `frontend/eetmad/src/mocks/data/` for testing NEVER create file mock data in the project, use the file in the mocks folder
 7. ✅ Add translations to `frontend/eetmad/messages/en.json` and `frontend/eetmad/messages/ar.json`
 
 ## Translation Guidelines:

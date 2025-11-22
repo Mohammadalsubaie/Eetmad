@@ -65,9 +65,7 @@ export default function ReviewInfoSection({ review }: ReviewInfoSectionProps) {
           </span>
         </div>
         <div className="flex justify-between">
-          <span style={{ color: cssVars.neutral.textSecondary }}>
-            {t('reviews.detail.status')}
-          </span>
+          <span style={{ color: cssVars.neutral.textSecondary }}>{t('reviews.detail.status')}</span>
           <span className="font-semibold" style={{ color: cssVars.secondary.DEFAULT }}>
             {t(`reviews.statuses.${review.status}`)}
           </span>
@@ -76,4 +74,3 @@ export default function ReviewInfoSection({ review }: ReviewInfoSectionProps) {
     </motion.div>
   );
 }
-

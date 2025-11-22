@@ -47,4 +47,3 @@ export function useUpdateRequest() {
 
   return { update, isLoading, error };
 }
-

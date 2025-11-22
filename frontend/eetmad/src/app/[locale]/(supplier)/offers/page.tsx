@@ -57,10 +57,7 @@ export default function OffersPage() {
 
       {error && (
         <div className="mb-6">
-          <ErrorMessage
-            error={error.message || t('fetchError')}
-            variant="banner"
-          />
+          <ErrorMessage error={error.message || t('fetchError')} variant="banner" />
         </div>
       )}
 

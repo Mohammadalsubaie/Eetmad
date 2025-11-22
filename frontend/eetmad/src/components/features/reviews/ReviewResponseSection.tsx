@@ -40,4 +40,3 @@ export default function ReviewResponseSection({ review }: ReviewResponseSectionP
     </motion.div>
   );
 }
-

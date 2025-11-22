@@ -25,15 +25,28 @@ export interface Review {
   updatedAt: string;
 }
 
-export interface UpdateReviewInput {
+export interface CreateReviewInput {
+  projectId: string;
+  reviewedId: string;
   rating: number;
+  reviewType: ReviewType;
   title: string;
   comment: string;
   qualityRating?: number;
   communicationRating?: number;
   timelinessRating?: number;
   professionalismRating?: number;
-  response: string | null;
+}
+
+export interface UpdateReviewInput {
+  rating?: number;
+  title?: string;
+  comment?: string;
+  qualityRating?: number;
+  communicationRating?: number;
+  timelinessRating?: number;
+  professionalismRating?: number;
+  response?: string | null;
 }
 
 export interface ReviewStats {

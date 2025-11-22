@@ -2,7 +2,7 @@
 
 import { Edit, Eye, Tag, DollarSign, Clock } from 'lucide-react';
 import { cssVars } from '@/styles/theme';
-import { useTranslations } from 'next-intl';
+import { useTranslations, useLocale } from 'next-intl';
 import { useRouter } from 'next/navigation';
 import { Button } from '@/components/ui';
 import type { Request } from '@/lib/types/request.types';
@@ -14,6 +14,7 @@ interface RequestHeaderProps {
 
 export default function RequestHeader({ request, requestId }: RequestHeaderProps) {
   const t = useTranslations('pages.requests');
+  const locale = useLocale();
   const router = useRouter();
 
   const getStatusColor = (status: string) => {
@@ -76,7 +77,7 @@ export default function RequestHeader({ request, requestId }: RequestHeaderProps
           </h1>
         </div>
         <Button
-          onClick={() => router.push(`/requests/${requestId}/edit`)}
+          onClick={() => router.push(`/${locale}/requests/${requestId}/edit`)}
           variant="outline"
           className="flex items-center gap-2"
           style={{
@@ -140,4 +141,3 @@ export default function RequestHeader({ request, requestId }: RequestHeaderProps
     </div>
   );
 }
-

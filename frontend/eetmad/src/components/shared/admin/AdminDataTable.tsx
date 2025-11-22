@@ -31,12 +31,12 @@ export default function AdminDataTable<T extends { id: string }>({
   isLoading = false,
   emptyMessage,
 }: AdminDataTableProps<T>) {
-  const t = useTranslations('admin');
+  const t = useTranslations('common');
   const [searchQuery, setSearchQuery] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 10;
 
-  const filteredData = data; // Add search logic if needed
+  const filteredData = data || []; // Add search logic if needed
   const totalPages = Math.ceil(filteredData.length / itemsPerPage);
   const startIndex = (currentPage - 1) * itemsPerPage;
   const paginatedData = filteredData.slice(startIndex, startIndex + itemsPerPage);
@@ -58,7 +58,7 @@ export default function AdminDataTable<T extends { id: string }>({
           />
           <input
             type="text"
-            placeholder={searchPlaceholder ?? t('common.search')}
+            placeholder={searchPlaceholder ?? t('search')}
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             className="w-full rounded-xl border-2 py-3 pe-4 ps-12 outline-none transition-all focus:border-opacity-100"
@@ -95,7 +95,7 @@ export default function AdminDataTable<T extends { id: string }>({
                     className="text-lg font-semibold"
                     style={{ color: cssVars.neutral.textSecondary }}
                   >
-                    {t('common.loading')}
+                    {t('loading')}
                   </div>
                 </td>
               </tr>
@@ -106,7 +106,7 @@ export default function AdminDataTable<T extends { id: string }>({
                     className="text-lg font-semibold"
                     style={{ color: cssVars.neutral.textSecondary }}
                   >
-                    {emptyMessage ?? t('common.noData')}
+                    {emptyMessage ?? t('noData')}
                   </div>
                 </td>
               </tr>

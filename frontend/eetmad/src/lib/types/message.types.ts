@@ -40,3 +40,17 @@ export interface Message {
   createdAt: string;
   updatedAt: string;
 }
+
+export interface CreateConversationInput {
+  requestId?: string | null;
+  offerId?: string | null;
+  projectId?: string | null;
+  participantIds: string[];
+  initialMessage?: string;
+}
+
+export interface CreateMessageInput {
+  content: string;
+  messageType?: MessageType;
+  attachments?: File[];
+}

@@ -24,7 +24,7 @@ export default function PaymentDetailPage() {
   const locale = useLocale();
   const paymentId = params.id as string;
 
-  const { payment, isLoading, error } = usePayment(paymentId);
+  const { data: payment, isLoading, error } = usePayment(paymentId);
 
   if (isLoading) {
     return (
@@ -56,10 +56,7 @@ export default function PaymentDetailPage() {
           className="mb-6"
         />
         <div className="flex h-64 items-center justify-center">
-          <ErrorMessage
-            error={error?.message || t('payments.notFound')}
-            variant="banner"
-          />
+          <ErrorMessage error={error?.message || t('payments.notFound')} variant="banner" />
         </div>
       </div>
     );

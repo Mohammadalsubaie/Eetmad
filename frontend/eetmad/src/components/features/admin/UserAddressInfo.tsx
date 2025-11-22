@@ -47,4 +47,3 @@ export default function UserAddressInfo({ user }: UserAddressInfoProps) {
     </motion.div>
   );
 }
-

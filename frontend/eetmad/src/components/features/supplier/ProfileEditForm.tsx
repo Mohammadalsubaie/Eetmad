@@ -5,7 +5,7 @@ import { useUpdateSupplierProfile } from '@/lib/hooks/useSupplierMutations';
 import type { Supplier } from '@/lib/types/supplier.types';
 import { cssVars } from '@/styles/theme';
 import { motion } from 'framer-motion';
-import { useTranslations } from 'next-intl';
+import { useTranslations, useLocale } from 'next-intl';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 
@@ -16,6 +16,7 @@ interface ProfileEditFormProps {
 
 export default function ProfileEditForm({ profile, onSuccess }: ProfileEditFormProps) {
   const t = useTranslations('pages.supplierProfile');
+  const locale = useLocale();
   const router = useRouter();
   const { update, isLoading, error } = useUpdateSupplierProfile();
   const [selectedCategories] = useState<string[]>(
@@ -40,7 +41,7 @@ export default function ProfileEditForm({ profile, onSuccess }: ProfileEditFormP
       if (onSuccess) {
         onSuccess();
       } else {
-        router.push('/profile');
+        router.push(`/${locale}/profile`);
       }
     } catch (err) {
       // Error handled by hook

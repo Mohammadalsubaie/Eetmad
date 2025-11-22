@@ -50,4 +50,3 @@ export default function AdminDashboardStats({ stats }: AdminDashboardStatsProps)
     </div>
   );
 }
-

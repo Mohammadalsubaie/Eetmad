@@ -86,4 +86,3 @@ export default function UserPersonalInfo({ user }: UserPersonalInfoProps) {
     </motion.div>
   );
 }
-

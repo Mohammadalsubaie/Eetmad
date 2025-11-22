@@ -114,4 +114,3 @@ export function useProjectsTableColumns(): ColumnConfig<Project>[] {
     },
   ];
 }
-

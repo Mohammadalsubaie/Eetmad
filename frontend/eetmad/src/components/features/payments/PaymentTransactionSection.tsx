@@ -74,4 +74,3 @@ export default function PaymentTransactionSection({ payment }: PaymentTransactio
     </motion.div>
   );
 }
-

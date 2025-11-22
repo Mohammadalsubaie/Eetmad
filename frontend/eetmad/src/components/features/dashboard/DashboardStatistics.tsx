@@ -116,4 +116,3 @@ export default function DashboardStatistics({ statistics }: DashboardStatisticsP
     </div>
   );
 }
-

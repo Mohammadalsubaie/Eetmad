@@ -60,18 +60,12 @@ export default function CategoryCard({
           />
         </div>
 
-        <h3
-          className="mb-2 text-2xl font-bold"
-          style={{ color: cssVars.secondary.DEFAULT }}
-        >
+        <h3 className="mb-2 text-2xl font-bold" style={{ color: cssVars.secondary.DEFAULT }}>
           {categoryName}
         </h3>
 
         {category.description && (
-          <p
-            className="mb-4 line-clamp-2 text-sm"
-            style={{ color: cssVars.neutral.textSecondary }}
-          >
+          <p className="mb-4 line-clamp-2 text-sm" style={{ color: cssVars.neutral.textSecondary }}>
             {category.description}
           </p>
         )}
@@ -79,10 +73,7 @@ export default function CategoryCard({
         <div className="flex items-center gap-4">
           {category.requestsCount !== undefined && (
             <div className="flex items-center gap-2">
-              <TrendingUp
-                className="h-4 w-4"
-                style={{ color: cssVars.primary.DEFAULT }}
-              />
+              <TrendingUp className="h-4 w-4" style={{ color: cssVars.primary.DEFAULT }} />
               <span
                 className="text-sm font-semibold"
                 style={{ color: cssVars.neutral.textSecondary }}
@@ -92,10 +83,7 @@ export default function CategoryCard({
             </div>
           )}
           {subcategories.length > 0 && (
-            <span
-              className="text-sm font-semibold"
-              style={{ color: cssVars.primary.DEFAULT }}
-            >
+            <span className="text-sm font-semibold" style={{ color: cssVars.primary.DEFAULT }}>
               {subcategories.length} {t('subcategories') || 'subcategories'}
             </span>
           )}
@@ -104,4 +92,3 @@ export default function CategoryCard({
     </motion.div>
   );
 }
-

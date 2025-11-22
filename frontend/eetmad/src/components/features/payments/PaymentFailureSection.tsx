@@ -40,4 +40,3 @@ export default function PaymentFailureSection({ payment }: PaymentFailureSection
     </motion.div>
   );
 }
-

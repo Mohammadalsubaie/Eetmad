@@ -34,7 +34,10 @@ const ErrorMessage: React.FC<ErrorMessageProps> = ({
         className={cn('flex items-start gap-2 rounded-lg border-2 p-3', className)}
         style={{ borderColor: cssVars.status.error }}
       >
-        <AlertCircle className="mt-0.5 h-5 w-5 flex-shrink-0" style={{ color: cssVars.status.error }} />
+        <AlertCircle
+          className="mt-0.5 h-5 w-5 flex-shrink-0"
+          style={{ color: cssVars.status.error }}
+        />
         <div className="flex-1">
           <p className="text-sm font-medium" style={{ color: cssVars.status.error }}>
             {errorTitle}
@@ -63,7 +66,10 @@ const ErrorMessage: React.FC<ErrorMessageProps> = ({
         style={{ borderColor: cssVars.status.error, backgroundColor: `${cssVars.status.error}10` }}
       >
         <div className="flex items-start gap-3">
-          <AlertCircle className="mt-0.5 h-5 w-5 flex-shrink-0" style={{ color: cssVars.status.error }} />
+          <AlertCircle
+            className="mt-0.5 h-5 w-5 flex-shrink-0"
+            style={{ color: cssVars.status.error }}
+          />
           <div className="flex-1">
             <p className="font-medium" style={{ color: cssVars.status.error }}>
               {errorTitle}
@@ -99,10 +105,7 @@ const ErrorMessage: React.FC<ErrorMessageProps> = ({
       className={cn('rounded-2xl border-2 p-8 text-center', className)}
       style={{ borderColor: cssVars.status.error }}
     >
-      <AlertCircle
-        className="mx-auto mb-4 h-12 w-12"
-        style={{ color: cssVars.status.error }}
-      />
+      <AlertCircle className="mx-auto mb-4 h-12 w-12" style={{ color: cssVars.status.error }} />
       <h3 className="mb-2 text-lg font-semibold" style={{ color: cssVars.status.error }}>
         {errorTitle}
       </h3>

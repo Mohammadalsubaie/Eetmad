@@ -75,4 +75,3 @@ export default function AdminDashboardAlerts({ stats }: AdminDashboardAlertsProp
     </div>
   );
 }
-

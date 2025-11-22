@@ -1,9 +1,11 @@
+import ManualReviewNavigator from '@/components/shared/dev/ManualReviewNavigator';
 import PageNavigator from '@/components/shared/dev/PageNavigator';
 import ThemeSwitcher from '@/components/shared/dev/ThemeSwitcher';
 import { Footer } from '@/components/shared/layouts/Footer';
 import { Header } from '@/components/shared/layouts/Header';
 import { HtmlLangUpdater } from '@/components/shared/misc/HtmlLangUpdater';
 import { LocaleInitializer } from '@/components/shared/misc/LocaleInitializer';
+import { MSWProvider } from '@/components/shared/misc/MSWProvider';
 import { routing } from '@/i18n/routing';
 import type { Metadata } from 'next';
 import { NextIntlClientProvider } from 'next-intl';
@@ -45,16 +47,19 @@ export default async function LocaleLayout({
 
   return (
     <NextIntlClientProvider messages={messages}>
-      <HtmlLangUpdater />
-      <LocaleInitializer />
-      <div className={locale === 'ar' ? 'rtl' : 'ltr'} dir={locale === 'ar' ? 'rtl' : 'ltr'}>
-        <Header />
-        {children}
-        <Footer />
-        {/* Developer Tools - Only in development mode */}
-        <PageNavigator />
-        <ThemeSwitcher />
-      </div>
+      <MSWProvider>
+        <HtmlLangUpdater />
+        <LocaleInitializer />
+        <div className={locale === 'ar' ? 'rtl' : 'ltr'} dir={locale === 'ar' ? 'rtl' : 'ltr'}>
+          <Header />
+          {children}
+          <Footer />
+          {/* Developer Tools - Only in development mode */}
+          <PageNavigator />
+          <ManualReviewNavigator />
+          <ThemeSwitcher />
+        </div>
+      </MSWProvider>
     </NextIntlClientProvider>
   );
 }

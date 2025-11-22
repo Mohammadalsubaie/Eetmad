@@ -78,3 +78,24 @@ export interface Project {
   createdAt: string;
   updatedAt: string;
 }
+
+export interface CreateMilestoneInput {
+  projectId: string;
+  title: string;
+  description: string;
+  amount: number;
+  dueDate: string;
+  deliverables?: string;
+  sortOrder?: number;
+}
+
+export interface UpdateMilestoneInput {
+  title?: string;
+  description?: string;
+  amount?: number;
+  dueDate?: string;
+  status?: MilestoneStatus;
+  deliverables?: string;
+  notes?: string;
+  sortOrder?: number;
+}

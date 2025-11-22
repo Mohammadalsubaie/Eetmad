@@ -1,6 +1,6 @@
 'use client';
 
-import type { CreateReviewInput, UpdateReviewInput } from '@/lib/api/reviews';
+import type { CreateReviewInput, UpdateReviewInput } from '@/lib/types/review.types';
 import { cssVars } from '@/styles/theme';
 import { useTranslations } from 'next-intl';
 import RatingInput from './RatingInput';

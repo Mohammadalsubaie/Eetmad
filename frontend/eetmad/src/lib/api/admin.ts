@@ -4,10 +4,12 @@ import { mockUsers } from '@/mocks/data/users';
 import { mockDisputes } from '@/mocks/data/disputes';
 import { mockReports } from '@/mocks/data/reports';
 import { mockVerificationDocuments } from '@/mocks/data/verification';
+import { mockAnalyticsData } from '@/mocks/data/analytics';
 import type { User } from '@/lib/types/user.types';
 import type { Dispute } from '@/lib/types/dispute.types';
 import type { Report } from '@/lib/types/report.types';
 import type { VerificationDocument } from '@/lib/types/verification.types';
+import type { AnalyticsData } from '@/mocks/data/analytics';
 
 const USE_MOCKS = process.env.NEXT_PUBLIC_USE_MOCKS === 'true';
 
@@ -86,19 +88,14 @@ export const adminApi = {
     }
   },
 
-  getAnalytics: async () => {
+  getAnalytics: async (): Promise<AnalyticsData> => {
     try {
       const { data } = await apiClient.get('/admin/analytics');
       return data;
     } catch (error) {
       if (USE_MOCKS || process.env.NODE_ENV === 'development') {
         console.warn('Using mock analytics data');
-        return {
-          totalUsers: 150,
-          totalRevenue: 500000,
-          activeProjects: 25,
-          growthRate: 12.5,
-        };
+        return mockAnalyticsData;
       }
       throw error;
     }

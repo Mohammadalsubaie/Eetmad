@@ -50,7 +50,7 @@ export default function ThemeSwitcher() {
       {/* Toggle Button */}
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="fixed bottom-20 right-4 z-50 flex h-12 w-12 items-center justify-center rounded-full shadow-lg transition-all hover:scale-110"
+        className="fixed bottom-36 right-4 z-50 flex h-12 w-12 items-center justify-center rounded-full shadow-lg transition-all hover:scale-110"
         style={{
           backgroundColor: cssVars.primary.DEFAULT,
           color: cssVars.neutral.bg,
@@ -126,7 +126,7 @@ export default function ThemeSwitcher() {
                 className="mb-2 flex w-full items-center justify-between rounded-lg px-3 py-2 text-sm font-semibold transition-colors hover:opacity-80"
                 style={{ color: cssVars.primary.DEFAULT }}
               >
-                <span>Themes</span>
+                <span>{t('themes')}</span>
                 {expandedGroups.has('Themes') ? (
                   <ChevronDown className="h-4 w-4" />
                 ) : (
@@ -172,22 +172,22 @@ export default function ThemeSwitcher() {
                             <div
                               className="h-8 w-8 rounded-l"
                               style={{ backgroundColor: colors.primary }}
-                              title="Primary"
+                              title={t('primary')}
                             />
                             <div
                               className="h-8 w-8"
                               style={{ backgroundColor: colors.accent }}
-                              title="Accent"
+                              title={t('accent')}
                             />
                             <div
                               className="h-8 w-8"
                               style={{ backgroundColor: colors.background }}
-                              title="Background"
+                              title={t('background')}
                             />
                             <div
                               className="h-8 w-8 rounded-r"
                               style={{ backgroundColor: colors.text }}
-                              title="Text"
+                              title={t('text')}
                             />
                           </div>
                           <div className="flex-1">

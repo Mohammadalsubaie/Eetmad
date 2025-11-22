@@ -47,4 +47,3 @@ export function useUpdateOffer() {
 
   return { update, isLoading, error };
 }
-

@@ -43,9 +43,7 @@ export default function SupplierCategories({ supplier }: SupplierCategoriesProps
               }}
             >
               {catName}
-              {cat.isPrimary && (
-                <span className="ms-2 text-xs">({t('primary') || 'Primary'})</span>
-              )}
+              {cat.isPrimary && <span className="ms-2 text-xs">({t('primary') || 'Primary'})</span>}
             </span>
           );
         })}
@@ -53,4 +51,3 @@ export default function SupplierCategories({ supplier }: SupplierCategoriesProps
     </motion.div>
   );
 }
-

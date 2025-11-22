@@ -1,7 +1,10 @@
 {
   "common": {
     "home": "الصفحة الرئيسية",
-    "components": "المكونات"
+    "components": "المكونات",
+    "loading": "جاري التحميل...",
+    "noData": "لا توجد بيانات",
+    "search": "بحث..."
   },
   "nav": {
     "home": "الرئيسية",
@@ -19,11 +22,11 @@
     "notifications": "الإشعارات",
     "menu": "القائمة",
     "brandName": "عروض",
-    "brandTagline": "بوابة المنافسات  "
+    "brandTagline": "بوابة المنافسات"
   },
   "footer": {
     "brandName": "عروض",
-    "brandDescription": "منصة موثوقة تربط المواهب بالفرص   بشفافية واحترافية عالية",
+    "brandDescription": "منصة موثوقة تربط المواهب بالفرص بشفافية واحترافية عالية",
     "quickLinks": {
       "title": "روابط سريعة",
       "projects": "المشاريع",
@@ -73,8 +76,8 @@
       "title": "اطلب",
       "titleHighlight": "واستقبل أفضل العروض",
       "titleEnd": "",
-      "subtitle": "منصة موثوقة تربط المواهب بالفرص  . شفافية كاملة، عمليات سلسة، ونجاح مشترك",
-      "exploreButton": "انظم واستشكف الفرص",
+      "subtitle": "منصة موثوقة تربط المواهب بالفرص. شفافية كاملة، عمليات سلسة، ونجاح مشترك",
+      "exploreButton": "انضم واستكشف الفرص",
       "videoButton": "شاهد الفيديو",
       "stats": {
         "activeProjects": {
@@ -100,7 +103,7 @@
       }
     },
     "cta": {
-      "title": "ابدأ اليوم واطلق أول منافسة لك",
+      "title": "ابدأ اليوم وأطلق أول منافسة لك",
       "primary": "أريد رفع طلب",
       "secondary": "أريد تقديم عروض"
     },
@@ -177,7 +180,7 @@
       }
     },
     "howItWorks": {
-      "title": "كيف يعمل",
+      "title": "كيف تبدأ ",
       "description": "البدء سهل - فقط اتبع هذه الخطوات البسيطة",
       "steps": {
         "write": {
@@ -258,11 +261,11 @@
     },
     "about": {
       "title": "عن منصتنا",
-      "description": "نحن ملتزمون بربط المواهب بالفرص  ، وتعزيز الشفافية والكفاءة والنجاح المشترك.",
+      "description": "نحن ملتزمون بربط المواهب بالفرص، وتعزيز الشفافية والكفاءة والنجاح المشترك.",
       "missionTitle": "مهمتنا",
-      "missionDescription": "تمكين الأفراد والشركات من خلال توفير منصة سلسة وشفافة للمناقصات  ، وضمان الوصول العادل والنتائج المثلى لجميع المشاركين.",
+      "missionDescription": "تمكين الأفراد والشركات من خلال توفير منصة سلسة وشفافة للمناقصات، وضمان الوصول العادل والنتائج المثلى لجميع المشاركين.",
       "visionTitle": "رؤيتنا",
-      "visionDescription": "أن نكون المنصة الرائدة للمشتريات  ، المعترف بها لابتكارنا ونزاهتنا والتزامنا بتنمية المجتمع والنمو الاقتصادي.",
+      "visionDescription": "أن نكون المنصة الرائدة للمشتريات، المعترف بها لابتكارنا ونزاهتنا والتزامنا بتنمية المجتمع والنمو الاقتصادي.",
       "ourValuesTitle": "قيمنا الأساسية",
       "value1": "الشفافية",
       "value2": "النزاهة",
@@ -450,7 +453,7 @@
       },
       "gettingStarted": {
         "eyebrow": "ابدأ الآن",
-        "title": "كيف تبدأ مع منصتنا",
+        "title": "كيف تبدأ مع  منصتنا",
         "subtitle": "خطوات بسيطة للبدء في الحصول على أفضل العروض",
         "cards": {
           "owners": {
@@ -512,7 +515,7 @@
         },
         "pages": {
           "howItWorks": {
-            "title": "كيف يعمل"
+            "title": "كيف تبدأ "
           }
         }
       }
@@ -568,6 +571,7 @@
       "title": "إنشاء حسابك",
       "subtitle": "انضم إلى منصتنا وابدأ رحلتك",
       "badge": "ابدأ مجاناً",
+      "selectUserType": "يرجى اختيار نوع الحساب",
       "fullName": "الاسم الكامل",
       "phoneNumber": "رقم الهاتف",
       "companyName": "اسم الشركة",
@@ -625,6 +629,7 @@
       "resendButton": "إعادة إرسال الرمز",
       "success": "تم التحقق من البريد الإلكتروني بنجاح!",
       "error": "رمز التحقق غير صحيح",
+      "invalidToken": "رابط التحقق غير صالح أو منتهي الصلاحية",
       "codeSent": "تم إرسال رمز التحقق إلى {email}",
       "resendSuccess": "تم إرسال رمز جديد بنجاح!"
     },
@@ -660,7 +665,72 @@
       "title": "الإدارة"
     },
     "disputes": {
-      "title": "النزاعات"
+      "title": "النزاعات",
+      "subtitle": "إدارة وحل النزاعات",
+      "loading": "جاري تحميل النزاعات...",
+      "noDisputes": "لا توجد نزاعات",
+      "noDisputesDescription": "ليس لديك أي نزاعات حتى الآن.",
+      "newDispute": "نزاع جديد",
+      "newDisputeDescription": "رفع نزاع جديد لمشروع",
+      "all": "الكل",
+      "pending": "معلق",
+      "resolved": "محلول",
+      "search": "بحث عن نزاع...",
+      "disputeNotFound": "النزاع غير موجود",
+      "disputeInfo": "معلومات النزاع",
+      "disputeNumber": "رقم النزاع",
+      "evidence": "الأدلة",
+      "evidenceFiles": "ملفات أدلة",
+      "messages": "الرسائل",
+      "noMessages": "لا توجد رسائل بعد",
+      "typeMessage": "اكتب رسالة...",
+      "send": "إرسال",
+      "sending": "جاري الإرسال...",
+      "addEvidence": "إضافة دليل",
+      "uploadEvidence": "رفع دليل",
+      "upload": "رفع",
+      "uploading": "جاري الرفع...",
+      "subject": "الموضوع",
+      "subjectPlaceholder": "أدخل موضوع النزاع",
+      "description": "الوصف",
+      "descriptionPlaceholder": "اوصف النزاع بالتفصيل...",
+      "categoryLabel": "الفئة",
+      "priorityLabel": "الأولوية",
+      "projectId": "معرف المشروع",
+      "projectIdPlaceholder": "أدخل معرف المشروع",
+      "optional": "اختياري",
+      "cancel": "إلغاء",
+      "submit": "تقديم النزاع",
+      "submitting": "جاري التقديم...",
+      "close": "إغلاق النزاع",
+      "confirmClose": "هل أنت متأكد من إغلاق هذا النزاع؟",
+      "createdAt": "تاريخ الإنشاء",
+      "resolvedAt": "تاريخ الحل",
+      "resolution": "الحل",
+      "internalNote": "ملاحظة داخلية",
+      "message": "رسالة",
+      "notAvailable": "غير متاح",
+      "back": "رجوع",
+      "status": {
+        "open": "مفتوح",
+        "in_review": "قيد المراجعة",
+        "resolved": "محلول",
+        "closed": "مغلق",
+        "escalated": "متصاعد"
+      },
+      "priority": {
+        "low": "منخفضة",
+        "medium": "متوسطة",
+        "high": "عالية",
+        "urgent": "عاجلة"
+      },
+      "category": {
+        "quality": "الجودة",
+        "delivery": "التسليم",
+        "payment": "الدفع",
+        "communication": "التواصل",
+        "other": "أخرى"
+      }
     },
     "privacy": {
       "title": "سياسة الخصوصية",
@@ -703,16 +773,171 @@
       "title": "التحقق"
     },
     "users": {
-      "title": "المستخدمين"
+      "title": "الملف الشخصي للمستخدم",
+      "loading": "جاري تحميل المستخدم...",
+      "error": "فشل تحميل المستخدم",
+      "notFound": "المستخدم غير موجود",
+      "back": "رجوع",
+      "memberSince": "عضو منذ",
+      "stats": {
+        "projects": "المشاريع",
+        "wallet": "المحفظة"
+      },
+      "accountInfo": {
+        "title": "معلومات الحساب",
+        "memberSince": "عضو منذ",
+        "lastLogin": "آخر تسجيل دخول",
+        "userType": "نوع المستخدم",
+        "userTypes": {
+          "client": "عميل",
+          "supplier": "مورد",
+          "admin": "مدير"
+        }
+      },
+      "address": "العنوان",
+      "averageRating": "متوسط التقييم",
+      "commercialRegister": "السجل التجاري",
+      "companyInformation": "معلومات الشركة",
+      "companyName": "اسم الشركة",
+      "completedProjects": "المشاريع المكتملة",
+      "contactInformation": "معلومات الاتصال",
+      "email": "البريد الإلكتروني",
+      "notAvailable": "غير متوفر",
+      "phone": "الهاتف",
+      "taxNumber": "الرقم الضريبي",
+      "totalReviews": "إجمالي التقييمات",
+      "userNotFound": "المستخدم غير موجود",
+      "verified": "موثق"
     },
     "settings": {
       "title": "الإعدادات"
     },
     "reviews": {
-      "title": "التقييمات"
+      "title": "التقييمات",
+      "subtitle": "عرض وإدارة جميع التقييمات",
+      "newReview": "تقييم جديد",
+      "newReviewDescription": "شارك تجربتك وساعد الآخرين على اتخاذ قرارات مستنيرة",
+      "loading": "جاري تحميل التقييمات...",
+      "noReviews": "لا توجد تقييمات",
+      "noReviewsDescription": "لا توجد تقييمات بعد.",
+      "reviewNotFound": "التقييم غير موجود",
+      "missingRequiredParams": "معرف المشروع ومعرف المراجع مطلوبان",
+      "back": "رجوع",
+      "verified": "موثق",
+      "overallRating": "التقييم الإجمالي",
+      "titlePlaceholder": "أدخل عنوان التقييم",
+      "comment": "التعليق",
+      "commentPlaceholder": "شارك تجربتك...",
+      "detailedRatings": "التقييمات التفصيلية",
+      "quality": "الجودة",
+      "communication": "التواصل",
+      "timeliness": "الالتزام بالمواعيد",
+      "professionalism": "الاحترافية",
+      "optional": "اختياري",
+      "submit": "إرسال التقييم",
+      "update": "تحديث التقييم",
+      "submitting": "جاري الإرسال...",
+      "response": "الرد",
+      "addResponse": "إضافة رد",
+      "responsePlaceholder": "اكتب ردك...",
+      "submitResponse": "إرسال الرد",
+      "responding": "جاري الرد...",
+      "helpful": "مفيد",
+      "notHelpful": "غير مفيد",
+      "stats": "الإحصائيات",
+      "confirmDelete": "هل أنت متأكد من حذف هذا التقييم؟",
+      "edit": "تعديل",
+      "delete": "حذف",
+      "report": "إبلاغ",
+      "reportReasonPrompt": "يرجى تقديم سبب الإبلاغ عن هذا التقييم",
+      "reportSubmitted": "تم إرسال البلاغ بنجاح",
+      "notAvailable": "غير متوفر",
+      "type": {
+        "client_to_supplier": "عميل إلى مورد",
+        "supplier_to_client": "مورد إلى عميل"
+      },
+      "cancel": "إلغاء"
     },
     "payments": {
-      "title": "المدفوعات"
+      "title": "المدفوعات",
+      "addFunds": "إضافة أموال",
+      "addFundsAmountPrompt": "أدخل المبلغ المراد إضافته",
+      "all": "الكل",
+      "amount": "المبلغ",
+      "amountPlaceholder": "أدخل المبلغ",
+      "back": "رجوع",
+      "balance": "الرصيد",
+      "cancel": "إلغاء",
+      "completedAt": "تاريخ الإتمام",
+      "confirmCancel": "هل أنت متأكد من إلغاء هذه الدفعة؟",
+      "createdAt": "تاريخ الإنشاء",
+      "failureReason": "سبب الفشل",
+      "history": "السجل",
+      "historyDescription": "عرض سجل المدفوعات الكامل",
+      "initiate": "بدء الدفع",
+      "initiatePayment": "بدء الدفع",
+      "initiatePaymentDescription": "بدء عملية دفع جديدة",
+      "method": {
+        "bank_transfer": "تحويل بنكي",
+        "credit_card": "بطاقة ائتمان",
+        "debit_card": "بطاقة خصم",
+        "wallet": "محفظة"
+      },
+      "milestoneId": "معرف المرحلة",
+      "milestoneIdPlaceholder": "أدخل معرف المرحلة (اختياري)",
+      "netAmount": "المبلغ الصافي",
+      "noPayments": "لا توجد مدفوعات",
+      "noPaymentsDescription": "ليس لديك أي مدفوعات بعد.",
+      "noPendingPayments": "لا توجد مدفوعات معلقة",
+      "noTransactions": "لا توجد معاملات",
+      "notAvailable": "غير متاح",
+      "notCompleted": "لم يكتمل",
+      "notes": "ملاحظات",
+      "notesPlaceholder": "ملاحظات إضافية (اختياري)",
+      "optional": "اختياري",
+      "paymentGateway": "بوابة الدفع",
+      "paymentInfo": "معلومات الدفع",
+      "paymentMethod": "طريقة الدفع",
+      "paymentNotFound": "الدفعة غير موجودة",
+      "paymentType": "نوع الدفعة",
+      "pending": "معلق",
+      "platformFee": "رسوم المنصة",
+      "processing": "جاري المعالجة...",
+      "projectId": "معرف المشروع",
+      "projectIdPlaceholder": "أدخل معرف المشروع",
+      "refundReasonPrompt": "يرجى تقديم سبب الاسترداد",
+      "refundedAt": "تاريخ الاسترداد",
+      "requestRefund": "طلب استرداد",
+      "status": {
+        "cancelled": "ملغى",
+        "completed": "مكتمل",
+        "failed": "فاشل",
+        "pending": "معلق",
+        "processing": "قيد المعالجة",
+        "refunded": "مسترد"
+      },
+      "transactionType": {
+        "deposit": "إيداع",
+        "withdrawal": "سحب",
+        "payment": "دفع",
+        "refund": "استرداد",
+        "commission": "عمولة",
+        "fee": "رسوم"
+      },
+      "subtitle": "إدارة جميع المدفوعات والمعاملات",
+      "timeline": "الجدول الزمني",
+      "transactionId": "معرف المعاملة",
+      "transactions": "المعاملات",
+      "type": {
+        "deposit": "دفعة مقدمة",
+        "final": "دفعة نهائية",
+        "milestone": "دفعة مرحلة"
+      },
+      "viewAll": "عرض الكل",
+      "wallet": "المحفظة",
+      "walletDescription": "إدارة رصيد المحفظة والمعاملات",
+      "walletNotFound": "المحفظة غير موجودة",
+      "withdraw": "سحب"
     },
     "setup": {
       "title": "الإعداد"
@@ -787,7 +1012,7 @@
       }
     },
     "howItWorks": {
-      "title": "كيف يعمل"
+      "title": "كيف تبدأ "
     },
     "contact": {
       "title": "اتصل بنا",
@@ -818,6 +1043,7 @@
       "subtitle": "استكشف جميع الفئات المتاحة",
       "loading": "جاري تحميل الفئات...",
       "noCategories": "لا توجد فئات متاحة في الوقت الحالي.",
+      "emptyState": "لا توجد بيانات",
       "requests": "طلبات",
       "subcategories": "فئات فرعية",
       "notFound": "الفئة غير موجودة",
@@ -842,23 +1068,55 @@
       "loading": "جاري تحميل الموردين...",
       "error": "فشل تحميل الموردين",
       "noSuppliers": "لم يتم العثور على موردين.",
+      "noSuppliersDescription": "لا يوجد موردين متاحين حالياً.",
       "acceptanceRate": "معدل القبول",
       "onTime": "في الوقت المحدد",
       "notFound": "المورد غير موجود",
+      "supplierNotFound": "المورد غير موجود",
       "back": "رجوع",
       "verified": "معتمد",
       "reviews": "تقييمات",
       "onTimeDelivery": "التسليم في الوقت المحدد",
       "responseTime": "وقت الاستجابة",
+      "minutes": "دقائق",
       "categories": "الفئات",
       "primary": "أساسي",
       "portfolio": "المعرض",
+      "portfolioDescription": "عرض جميع عناصر المحفظة من هذا المورد",
+      "noPortfolioItems": "لا توجد عناصر في المحفظة",
+      "noPortfolioItemsDescription": "لم يضف هذا المورد أي عناصر في المحفظة بعد.",
       "certifications": "الشهادات",
+      "issuedBy": "صادر من",
+      "issuedAt": "تاريخ الإصدار",
+      "myProfile": "ملف المورد الخاص بي",
+      "profileNotFound": "الملف الشخصي غير موجود",
+      "edit": "تعديل",
+      "averageRating": "متوسط التقييم",
+      "totalProjects": "إجمالي المشاريع",
+      "totalEarnings": "إجمالي الأرباح",
+      "currency": "ريال",
+      "viewPortfolio": "عرض المحفظة",
+      "viewPortfolioDescription": "إدارة عناصر محفظتك",
+      "editProfile": "تعديل الملف الشخصي",
+      "editProfileDescription": "تحديث معلومات ملف المورد الخاص بك",
+      "editProfileTitle": "تعديل ملف المورد",
+      "createProfile": "إنشاء ملف مورد",
+      "serviceDescription": "وصف الخدمة",
+      "serviceDescriptionPlaceholder": "اوصف خدماتك...",
+      "workingHours": "ساعات العمل",
+      "performanceMetrics": "مؤشرات الأداء",
+      "save": "حفظ",
+      "saving": "جاري الحفظ...",
+      "cancel": "إلغاء",
       "pages": {
         "suppliers": {
           "title": "الموردين"
         }
-      }
+      },
+      "emptyState": "لا توجد بيانات",
+      "noResults": "لا توجد نتائج",
+      "portfolioItems": "عناصر المحفظة",
+      "supplierProfile": "ملف المورد"
     },
     "dashboard": {
       "title": "لوحة التحكم",
@@ -910,15 +1168,41 @@
       "loading": "جاري تحميل الملف الشخصي...",
       "error": "فشل تحميل الملف الشخصي",
       "editProfile": "تعديل الملف الشخصي",
+      "settings": "الإعدادات",
+      "userType": {
+        "client": "عميل",
+        "supplier": "مورد",
+        "admin": "مدير"
+      },
       "notProvided": "غير متوفر",
       "edit": {
         "title": "تعديل الملف الشخصي",
+        "subtitle": "تحديث معلومات ملفك الشخصي",
         "back": "رجوع",
         "loading": "جاري تحميل الملف الشخصي...",
         "save": "حفظ التغييرات",
         "saving": "جاري الحفظ...",
         "success": "تم تحديث الملف الشخصي بنجاح!",
         "security": "الأمان",
+        "avatar": "الصورة الشخصية",
+        "uploadAvatar": "رفع صورة شخصية",
+        "uploading": "جاري الرفع...",
+        "cancel": "إلغاء",
+        "personalInformation": "المعلومات الشخصية",
+        "companyInformation": "معلومات الشركة",
+        "address": "العنوان",
+        "fullName": "الاسم الكامل",
+        "phone": "الهاتف",
+        "dateOfBirth": "تاريخ الميلاد",
+        "nationalId": "رقم الهوية الوطنية",
+        "companyName": "اسم الشركة",
+        "commercialRegister": "السجل التجاري",
+        "taxNumber": "الرقم الضريبي",
+        "street": "عنوان الشارع",
+        "city": "المدينة",
+        "state": "المنطقة",
+        "country": "الدولة",
+        "postalCode": "الرمز البريدي",
         "sections": {
           "basicInfo": "المعلومات الأساسية",
           "companyInfo": "معلومات الشركة",
@@ -926,73 +1210,67 @@
           "socialLinks": "روابط التواصل والموقع الإلكتروني"
         },
         "fields": {
+          "street": {
+            "placeholder": "أدخل اسم الشارع"
+          },
+          "city": {
+            "placeholder": "أدخل اسم المدينة"
+          },
+          "state": {
+            "placeholder": "أدخل اسم المنطقة"
+          },
+          "country": {
+            "placeholder": "أدخل اسم الدولة"
+          },
+          "postalCode": {
+            "placeholder": "أدخل الرمز البريدي"
+          },
           "fullName": {
-            "placeholder": "الاسم الكامل"
+            "placeholder": "أدخل الاسم الكامل"
           },
           "phone": {
-            "placeholder": "رقم الهاتف"
+            "placeholder": "أدخل رقم الهاتف"
           },
           "dateOfBirth": {
-            "placeholder": "تاريخ الميلاد"
+            "placeholder": "اختر تاريخ الميلاد"
           },
           "nationalId": {
-            "placeholder": "رقم الهوية الوطنية"
+            "placeholder": "أدخل رقم الهوية الوطنية"
+          },
+          "companyName": {
+            "placeholder": "أدخل اسم الشركة"
+          },
+          "commercialRegister": {
+            "placeholder": "أدخل رقم السجل التجاري"
+          },
+          "taxNumber": {
+            "placeholder": "أدخل الرقم الضريبي"
+          },
+          "website": {
+            "placeholder": "https://example.com"
+          },
+          "linkedin": {
+            "placeholder": "https://linkedin.com/in/username"
+          },
+          "twitter": {
+            "placeholder": "https://twitter.com/username"
+          },
+          "github": {
+            "placeholder": "https://github.com/username"
           },
           "bio": {
             "label": "نبذة عنك",
-            "placeholder": "أخبرنا عن نفسك...",
-            "maxLength": "حرف"
-          },
-          "companyName": {
-            "placeholder": "اسم الشركة"
-          },
-          "commercialRegister": {
-            "placeholder": "رقم السجل التجاري"
-          },
-          "taxNumber": {
-            "placeholder": "الرقم الضريبي"
-          },
-          "street": {
-            "placeholder": "عنوان الشارع"
-          },
-          "city": {
-            "placeholder": "المدينة"
-          },
-          "state": {
-            "placeholder": "المنطقة/المحافظة"
-          },
-          "country": {
-            "placeholder": "الدولة"
-          },
-          "postalCode": {
-            "placeholder": "الرمز البريدي"
-          },
-          "website": {
-            "placeholder": "رابط الموقع الإلكتروني"
-          },
-          "linkedin": {
-            "placeholder": "رابط ملف LinkedIn"
-          },
-          "twitter": {
-            "placeholder": "رابط ملف Twitter"
-          },
-          "github": {
-            "placeholder": "رابط ملف GitHub"
+            "placeholder": "اكتب نبذة مختصرة عنك...",
+            "maxLength": "حد أقصى"
           }
         },
         "errors": {
-          "saveFailed": "فشل حفظ الملف الشخصي. يرجى المحاولة مرة أخرى."
+          "saveFailed": "فشل حفظ التغييرات. يرجى المحاولة مرة أخرى."
         },
-        "pages": {
-          "profile": {
-            "title": "الملف الشخصي"
-          },
-          "edit": {
-            "title": "تعديل الملف الشخصي"
-          }
-        },
-        "profile": {
-          "title": "الملف الشخصي"
+        "userType": {
+          "client": "عميل",
+          "supplier": "مورد",
+          "admin": "مدير"
         }
       },
       "security": {
@@ -1030,10 +1308,10 @@
         },
         "profile": {
           "title": "الملف الشخصي"
-        }
+        },
+        "changing": "جاري التغيير..."
       },
       "reviews": "تقييم",
-      "completedProjects": "مشروع مكتمل",
       "currency": "ريال",
       "status": {
         "active": "نشط",
@@ -1075,7 +1353,127 @@
         "profile": {
           "title": "الملف الشخصي"
         }
-      }
+      },
+      "notifications": {
+        "requests": "الطلبات",
+        "offers": "العروض",
+        "messages": "الرسائل",
+        "reviews": "التقييمات",
+        "system": "النظام",
+        "important": "مهم",
+        "security": "الأمان"
+      },
+      "profile": {
+        "completedProjects": "المشاريع المكتملة",
+        "memberSince": "عضو منذ",
+        "address": "العنوان",
+        "avatar": "الصورة الشخصية",
+        "averageRating": "متوسط التقييم",
+        "back": "رجوع",
+        "cancel": "إلغاء",
+        "changePassword": "تغيير كلمة المرور",
+        "changing": "جاري التغيير...",
+        "city": "المدينة",
+        "commercialRegister": "السجل التجاري",
+        "companyInformation": "معلومات الشركة",
+        "companyName": "اسم الشركة",
+        "confirmDeleteAccount": "هل أنت متأكد من حذف حسابك؟",
+        "confirmDeleteAccountFinal": "سيتم حذف حسابك نهائياً. اكتب DELETE للتأكيد.",
+        "confirmPassword": "تأكيد كلمة المرور",
+        "country": "الدولة",
+        "currentPassword": "كلمة المرور الحالية",
+        "dangerZone": "منطقة الخطر",
+        "dateOfBirth": "تاريخ الميلاد",
+        "deleteAccount": "حذف الحساب",
+        "deleteAccountWarning": "بمجرد حذف حسابك، لا يمكن التراجع. يرجى التأكد.",
+        "deleting": "جاري الحذف...",
+        "editDescription": "تحديث معلومات ملفك الشخصي",
+        "email": "البريد الإلكتروني",
+        "emailNotifications": "إشعارات البريد الإلكتروني",
+        "fullName": "الاسم الكامل",
+        "nationalId": "رقم الهوية الوطنية",
+        "newPassword": "كلمة المرور الجديدة",
+        "notAvailable": "غير متوفر",
+        "notificationPreferences": "تفضيلات الإشعارات",
+        "passwordChanged": "تم تغيير كلمة المرور بنجاح",
+        "passwordsDoNotMatch": "كلمات المرور غير متطابقة",
+        "personalInformation": "المعلومات الشخصية",
+        "phone": "الهاتف",
+        "postalCode": "الرمز البريدي",
+        "preferencesSaved": "تم حفظ التفضيلات بنجاح",
+        "profileNotFound": "الملف الشخصي غير موجود",
+        "pushNotifications": "الإشعارات الفورية",
+        "save": "حفظ",
+        "saving": "جاري الحفظ...",
+        "settings": "الإعدادات",
+        "settingsDescription": "إدارة إعدادات حسابك وتفضيلاتك",
+        "smsNotifications": "إشعارات الرسائل النصية",
+        "state": "المنطقة/المحافظة",
+        "street": "عنوان الشارع",
+        "taxNumber": "الرقم الضريبي",
+        "totalReviews": "إجمالي التقييمات",
+        "uploadAvatar": "رفع صورة شخصية",
+        "uploading": "جاري الرفع...",
+        "verified": "موثق",
+        "walletBalance": "رصيد المحفظة",
+        "userType": {
+          "client": "عميل",
+          "supplier": "مورد",
+          "admin": "مدير"
+        }
+      },
+      "profileNotFound": "الملف الشخصي غير موجود",
+      "back": "رجوع",
+      "editDescription": "تحديث معلومات ملفك الشخصي",
+      "avatar": "الصورة الشخصية",
+      "uploading": "جاري الرفع...",
+      "uploadAvatar": "رفع صورة شخصية",
+      "personalInformation": "المعلومات الشخصية",
+      "fullName": "الاسم الكامل",
+      "phone": "الهاتف",
+      "dateOfBirth": "تاريخ الميلاد",
+      "nationalId": "رقم الهوية الوطنية",
+      "companyInformation": "معلومات الشركة",
+      "companyName": "اسم الشركة",
+      "commercialRegister": "السجل التجاري",
+      "taxNumber": "الرقم الضريبي",
+      "address": "العنوان",
+      "street": "عنوان الشارع",
+      "city": "المدينة",
+      "state": "المنطقة/المحافظة",
+      "country": "الدولة",
+      "postalCode": "الرمز البريدي",
+      "cancel": "إلغاء",
+      "saving": "جاري الحفظ...",
+      "save": "حفظ",
+      "notAvailable": "غير متوفر",
+      "verified": "موثق",
+      "settings": "الإعدادات",
+      "averageRating": "متوسط التقييم",
+      "completedProjects": "المشاريع المكتملة",
+      "totalReviews": "إجمالي التقييمات",
+      "walletBalance": "رصيد المحفظة",
+      "email": "البريد الإلكتروني",
+      "passwordsDoNotMatch": "كلمات المرور غير متطابقة",
+      "passwordChanged": "تم تغيير كلمة المرور بنجاح",
+      "preferencesSaved": "تم حفظ التفضيلات بنجاح",
+      "confirmDeleteAccount": "هل أنت متأكد من حذف حسابك؟",
+      "confirmDeleteAccountFinal": "سيتم حذف حسابك نهائياً. اكتب DELETE للتأكيد.",
+      "settingsDescription": "إدارة إعدادات حسابك وتفضيلاتك",
+      "changePassword": "تغيير كلمة المرور",
+      "currentPassword": "كلمة المرور الحالية",
+      "newPassword": "كلمة المرور الجديدة",
+      "confirmPassword": "تأكيد كلمة المرور",
+      "changing": "جاري التغيير...",
+      "notificationPreferences": "تفضيلات الإشعارات",
+      "emailNotifications": "إشعارات البريد الإلكتروني",
+      "pushNotifications": "الإشعارات الفورية",
+      "smsNotifications": "إشعارات الرسائل النصية",
+      "dangerZone": "منطقة الخطر",
+      "deleteAccountWarning": "بمجرد حذف حسابك، لا يمكن التراجع. يرجى التأكد.",
+      "deleting": "جاري الحذف...",
+      "deleteAccount": "حذف الحساب",
+      "memberSince": "عضو منذ"
     },
     "security": {
       "title": "إعدادات الأمان"
@@ -1153,7 +1551,10 @@
         "cancel": "إلغاء",
         "create": "إنشاء طلب",
         "update": "تحديث الطلب",
-        "saving": "جاري الحفظ..."
+        "saving": "جاري الحفظ...",
+        "expectedDurationPlaceholder": "أدخل المدة المتوقعة",
+        "location": "الموقع",
+        "locationPlaceholder": "أدخل موقع العمل"
       },
       "pages": {
         "requests": {
@@ -1285,9 +1686,34 @@
         }
       },
       "milestonesSection": {
-        "title": "مراحل المشروع",
+        "title": "المراحل",
+        "description": "عرض وإدارة جميع المراحل",
+        "new": "مرحلة جديدة",
+        "newDescription": "إضافة مرحلة جديدة للمشروع",
+        "emptyDescription": "ابدأ بإنشاء مرحلة جديدة",
+        "edit": "تعديل المرحلة",
+        "editDescription": "تحديث تفاصيل المرحلة",
+        "details": "التفاصيل",
         "loading": "جاري تحميل المراحل...",
-        "notFound": "المشروع غير موجود",
+        "notFound": "المرحلة غير موجودة",
+        "complete": "إكمال المرحلة",
+        "confirmApprove": "هل أنت متأكد من اعتماد هذه المرحلة؟",
+        "rejectReasonPrompt": "يرجى تقديم سبب الرفض",
+        "completeNotesPrompt": "إضافة ملاحظات الإكمال (اختياري)",
+        "form": {
+          "title": "العنوان",
+          "titlePlaceholder": "أدخل عنوان المرحلة",
+          "description": "الوصف",
+          "descriptionPlaceholder": "اوصف المرحلة...",
+          "amount": "المبلغ",
+          "amountPlaceholder": "أدخل المبلغ",
+          "dueDate": "تاريخ الاستحقاق",
+          "deliverables": "المخرجات",
+          "deliverablesPlaceholder": "اذكر المخرجات (اختياري)...",
+          "create": "إنشاء المرحلة",
+          "update": "تحديث المرحلة",
+          "saving": "جاري الحفظ..."
+        },
         "currency": "ر.س",
         "totalAmount": "المبلغ الإجمالي",
         "progress": "التقدم",
@@ -1295,12 +1721,12 @@
         "empty": "لا توجد مراحل",
         "amount": "المبلغ",
         "dueDate": "تاريخ الاستحقاق",
-        "paymentStatus": "حالة الدفع",
-        "paid": "مدفوع",
-        "pending": "معلق",
         "deliverables": "المخرجات",
         "attachments": "المرفقات",
         "notes": "ملاحظات",
+        "paymentStatus": "حالة الدفع",
+        "paid": "مدفوع",
+        "pending": "معلق",
         "statuses": {
           "pending": "قيد الانتظار",
           "in_progress": "قيد التنفيذ",
@@ -1313,9 +1739,12 @@
           "reject": "رفض"
         }
       },
+      "projectIdRequired": "معرف المشروع مطلوب",
       "progress": "التقدم",
       "totalAmount": "المبلغ الإجمالي",
       "expectedEndDate": "تاريخ الانتهاء المتوقع",
+      "optional": "اختياري",
+      "cancel": "إلغاء",
       "approved": "معتمد",
       "status": {
         "draft": "مسودة",
@@ -1342,10 +1771,135 @@
         "rejected": "مرفوض"
       },
       "submitMilestone": "تقديم مرحلة",
+      "start": "بدء",
+      "startProject": "بدء المشروع",
+      "startProjectDescription": "بدء العمل على هذا المشروع",
+      "startProjectInfo": "بدء هذا المشروع سيحدده كنشط ويبدأ الجدول الزمني.",
+      "starting": "جاري البدء...",
+      "confirmStart": "هل أنت متأكد من بدء هذا المشروع؟",
+      "complete": "إكمال",
+      "completeProject": "إكمال المشروع",
+      "completeProjectDescription": "تحديد هذا المشروع كمكتمل",
+      "completeProjectInfo": "إكمال هذا المشروع سينهي جميع الأعمال ويغلق المشروع.",
+      "completing": "جاري الإكمال...",
+      "confirmComplete": "هل أنت متأكد من إكمال هذا المشروع؟",
+      "progressWarning": "التقدم الحالي",
+      "cancelProject": "إلغاء المشروع",
+      "cancelProjectDescription": "إلغاء هذا المشروع بشكل دائم",
+      "cancelProjectWarning": "إلغاء هذا المشروع سيتوقف عن جميع الأعمال ولا يمكن التراجع عنه. يرجى تقديم سبب.",
+      "cancelReason": "سبب الإلغاء",
+      "cancelReasonPlaceholder": "يرجى شرح سبب إلغاء هذا المشروع...",
+      "cancelling": "جاري الإلغاء...",
+      "confirmCancel": "تأكيد الإلغاء",
+      "reasonRequired": "يرجى تقديم سبب الإلغاء",
+      "deliveryProof": "إثبات التسليم",
+      "deliveryProofDescription": "رفع إثبات تسليم المشروع",
+      "deliveryFiles": "ملفات التسليم",
+      "uploadFiles": "رفع الملفات",
+      "uploadFilesDescription": "انقر للرفع أو اسحب وأفلت الملفات هنا",
+      "deliveryNotes": "ملاحظات التسليم",
+      "deliveryNotesPlaceholder": "أضف أي ملاحظات إضافية حول التسليم...",
+      "uploading": "جاري الرفع...",
+      "submit": "إرسال",
+      "filesRequired": "يرجى رفع ملف واحد على الأقل",
+      "projectNotFound": "المشروع غير موجود",
       "projects": {
         "milestones": {
           "title": "المراحل"
         }
+      }
+    },
+    "contracts": {
+      "title": "العقود",
+      "subtitle": "عرض وإدارة جميع عقودك",
+      "loading": "جاري تحميل العقود...",
+      "noContracts": "لا توجد عقود",
+      "noContractsDescription": "ليس لديك أي عقود بعد.",
+      "contract": "العقد",
+      "contractNumber": "رقم العقد",
+      "contractDetails": "تفاصيل العقد",
+      "contractInfo": "معلومات العقد",
+      "contractText": "نص العقد",
+      "termsAndConditions": "الشروط والأحكام",
+      "paymentTerms": "شروط الدفع",
+      "deliverables": "المخرجات",
+      "warrantyTerms": "شروط الضمان",
+      "templateUsed": "القالب المستخدم",
+      "version": "الإصدار",
+      "signatures": "التوقيعات",
+      "clientSignature": "توقيع العميل",
+      "supplierSignature": "توقيع المورد",
+      "notSigned": "غير موقع",
+      "createContract": "إنشاء عقد",
+      "newContract": "عقد جديد",
+      "newContractDescription": "إنشاء عقد جديد لمشروعك",
+      "editContract": "تعديل العقد",
+      "editContractDescription": "تحديث تفاصيل العقد",
+      "edit": "تعديل",
+      "sign": "توقيع",
+      "signContract": "توقيع العقد",
+      "signContractDescription": "مراجعة وتوقيع العقد",
+      "download": "تحميل",
+      "viewVersions": "عرض الإصدارات",
+      "manageClauses": "إدارة البنود",
+      "back": "رجوع",
+      "backToContracts": "العودة إلى العقود",
+      "notFound": "العقد غير موجود",
+      "status": {
+        "draft": "مسودة",
+        "pending_client_signature": "في انتظار توقيع العميل",
+        "pending_supplier_signature": "في انتظار توقيع المورد",
+        "signed": "موقع",
+        "cancelled": "ملغى",
+        "expired": "منتهي الصلاحية"
+      },
+      "versions": "الإصدارات",
+      "versionsDescription": "عرض جميع إصدارات هذا العقد",
+      "currentVersion": "الإصدار الحالي",
+      "noVersions": "لا توجد إصدارات",
+      "view": "عرض",
+      "clauses": "البنود",
+      "clausesDescription": "إدارة بنود مخصصة لهذا العقد",
+      "addClause": "إضافة بند",
+      "add": "إضافة",
+      "noClauses": "لا توجد بنود مخصصة",
+      "clauseKeyPlaceholder": "مفتاح البند (مثال: الدعم_الإضافي)",
+      "clauseValuePlaceholder": "قيمة البند",
+      "delete": "حذف",
+      "confirmDeleteClause": "هل أنت متأكد من حذف هذا البند؟",
+      "cancel": "إلغاء",
+      "signing": {
+        "title": "توقيع العقد",
+        "description": "يرجى مراجعة العقد وتقديم توقيعك",
+        "clientSignature": "توقيع العميل",
+        "supplierSignature": "توقيع المورد",
+        "pending": "معلق",
+        "signatureLabel": "توقيعك",
+        "signaturePlaceholder": "أدخل توقيعك",
+        "signatureHint": "اكتب اسمك الكامل كتوقيع",
+        "signing": "جاري التوقيع...",
+        "sign": "توقيع العقد",
+        "alreadySigned": "لقد وقعت هذا العقد بالفعل",
+        "fullySigned": "العقد موقع بالكامل",
+        "fullySignedDescription": "كلا الطرفين وقع هذا العقد"
+      },
+      "form": {
+        "contractText": "نص العقد",
+        "contractTextPlaceholder": "أدخل نص العقد الرئيسي...",
+        "termsAndConditions": "الشروط والأحكام",
+        "termsAndConditionsPlaceholder": "أدخل الشروط والأحكام...",
+        "paymentTerms": "شروط الدفع",
+        "paymentTermsPlaceholder": "أدخل شروط الدفع...",
+        "deliverables": "المخرجات",
+        "deliverablesPlaceholder": "أدخل المخرجات...",
+        "warrantyTerms": "شروط الضمان",
+        "warrantyTermsPlaceholder": "أدخل شروط الضمان (اختياري)...",
+        "templateUsed": "القالب المستخدم",
+        "templateUsedPlaceholder": "أدخل اسم القالب (اختياري)...",
+        "cancel": "إلغاء",
+        "create": "إنشاء عقد",
+        "update": "تحديث العقد",
+        "saving": "جاري الحفظ..."
       }
     },
     "portfolio": {
@@ -1474,7 +2028,7 @@
       "id": "رقم المستخدم"
     },
     "categoryManagement": {
-      "title": "إدارة الفئات"
+      "title": "إدارة الـفئات"
     },
     "analytics": {
       "title": "التحليلات"
@@ -1507,7 +2061,140 @@
       },
       "edit": {
         "title": "تعديل"
+      },
+      "projects": {
+        "milestones": {
+          "title": "المراحل"
+        }
+      },
+      "users": {
+        "userType": {
+          "client": "عميل",
+          "supplier": "مورد",
+          "admin": "مدير"
+        }
       }
+    },
+    "messages": {
+      "title": "الرسائل",
+      "subtitle": "التواصل مع الموردين والعملاء",
+      "loading": "جاري تحميل المحادثات...",
+      "noConversations": "لا توجد محادثات",
+      "noConversationsDescription": "ابدأ محادثة جديدة للبدء",
+      "conversation": "محادثة",
+      "conversationAboutRequest": "محادثة حول الطلب",
+      "conversationAboutProject": "محادثة حول المشروع",
+      "newConversation": "محادثة جديدة",
+      "newConversationDescription": "بدء محادثة مع مستخدمين آخرين",
+      "status": {
+        "active": "نشط",
+        "archived": "مؤرشف",
+        "closed": "مغلق"
+      },
+      "active": "نشط",
+      "archived": "مؤرشف",
+      "request": "الطلب",
+      "project": "المشروع",
+      "participants": "المشاركون",
+      "noMessages": "لا توجد رسائل بعد. ابدأ المحادثة!",
+      "typeMessage": "اكتب رسالة...",
+      "send": "إرسال",
+      "sending": "جاري الإرسال...",
+      "edit": "تعديل",
+      "delete": "حذف",
+      "confirmDeleteMessage": "هل أنت متأكد من حذف هذه الرسالة؟",
+      "conversationNotFound": "المحادثة غير موجودة",
+      "editing": "جاري التعديل...",
+      "editMessagePlaceholder": "عدّل رسالتك...",
+      "cancel": "إلغاء",
+      "archive": "أرشفة",
+      "unarchive": "إلغاء الأرشفة",
+      "mute": "كتم",
+      "unmute": "إلغاء الكتم",
+      "searchUsers": "البحث عن المستخدمين",
+      "searchUsersPlaceholder": "البحث بالاسم أو البريد الإلكتروني...",
+      "selectedUsers": "المستخدمون المحددون",
+      "users": "المستخدمون",
+      "noUsersFound": "لم يتم العثور على مستخدمين",
+      "initialMessage": "الرسالة الأولية",
+      "optional": "اختياري",
+      "initialMessagePlaceholder": "اكتب رسالة أولية (اختياري)...",
+      "creating": "جاري الإنشاء...",
+      "createConversation": "إنشاء محادثة",
+      "settings": "الإعدادات",
+      "settingsDescription": "إدارة تفضيلات الرسائل",
+      "emailNotifications": "إشعارات البريد الإلكتروني",
+      "emailNotificationsDescription": "تلقي إشعارات البريد الإلكتروني للرسائل الجديدة",
+      "pushNotifications": "الإشعارات الفورية",
+      "pushNotificationsDescription": "تلقي إشعارات فورية للرسائل الجديدة",
+      "soundEnabled": "تفعيل الصوت",
+      "soundEnabledDescription": "تشغيل الصوت عند استلام رسائل جديدة",
+      "autoMarkAsRead": "وضع علامة مقروءة تلقائياً",
+      "autoMarkAsReadDescription": "وضع علامة مقروءة تلقائياً عند عرض الرسائل",
+      "back": "رجوع"
+    },
+    "notifications": {
+      "all": "الكل",
+      "back": "رجوع",
+      "channels": "القنوات",
+      "clearAll": "مسح الكل",
+      "confirmClearAll": "هل أنت متأكد من حذف جميع الإشعارات؟ لا يمكن التراجع عن هذا الإجراء.",
+      "confirmDelete": "هل أنت متأكد من حذف هذا الإشعار؟",
+      "confirmMarkAllAsRead": "هل أنت متأكد من وضع علامة مقروءة على جميع الإشعارات؟",
+      "contractNotifications": "إشعارات العقود",
+      "createdAt": "تاريخ الإنشاء",
+      "daysAgo": "منذ {count} يوم",
+      "delete": "حذف",
+      "details": "التفاصيل",
+      "disputeNotifications": "إشعارات النزاعات",
+      "emailNotifications": "إشعارات البريد الإلكتروني",
+      "emailNotificationsDescription": "تلقي إشعارات عبر البريد الإلكتروني",
+      "hoursAgo": "منذ {count} ساعة",
+      "inAppNotifications": "الإشعارات داخل التطبيق",
+      "inAppNotificationsDescription": "تلقي إشعارات داخل التطبيق",
+      "justNow": "الآن",
+      "loading": "جاري تحميل الإشعارات...",
+      "markAllAsRead": "وضع علامة مقروءة على الكل",
+      "messageNotifications": "إشعارات الرسائل",
+      "minutesAgo": "منذ {count} دقيقة",
+      "noNotifications": "لا توجد إشعارات",
+      "noNotificationsDescription": "لا توجد إشعارات جديدة حالياً!",
+      "noUnreadNotifications": "لا توجد إشعارات غير مقروءة",
+      "noUnreadNotificationsDescription": "تم قراءة جميع الإشعارات",
+      "notificationNotFound": "الإشعار غير موجود",
+      "notificationTypes": "أنواع الإشعارات",
+      "typeLabel": "النوع",
+      "type": {
+        "request": "طلب",
+        "offer": "عرض",
+        "project": "مشروع",
+        "message": "رسالة",
+        "payment": "دفع",
+        "contract": "عقد",
+        "review": "تقييم",
+        "dispute": "نزاع",
+        "system": "نظام",
+        "verification": "تحقق"
+      },
+      "offerNotifications": "إشعارات العروض",
+      "paymentNotifications": "إشعارات المدفوعات",
+      "projectNotifications": "إشعارات المشاريع",
+      "pushNotifications": "الإشعارات الفورية",
+      "pushNotificationsDescription": "تلقي إشعارات فورية على جهازك",
+      "read": "مقروء",
+      "readAt": "تاريخ القراءة",
+      "reference": "المرجع",
+      "requestNotifications": "إشعارات الطلبات",
+      "settings": "الإعدادات",
+      "settingsDescription": "إدارة تفضيلات الإشعارات",
+      "smsNotifications": "إشعارات الرسائل النصية",
+      "smsNotificationsDescription": "تلقي إشعارات عبر الرسائل النصية",
+      "status": "الحالة",
+      "subtitle": "ابق على اطلاع بجميع أنشطتك",
+      "systemNotifications": "إشعارات النظام",
+      "title": "الإشعارات",
+      "unread": "غير مقروء",
+      "viewRelated": "عرض المرتبط"
     }
   },
   "admin": {
@@ -1586,6 +2273,7 @@
     "dashboard": {
       "title": "لوحة التحكم",
       "description": "نظرة عامة على المنصة",
+      "error": "حدث خطأ في تحميل البيانات",
       "stats": {
         "totalUsers": "إجمالي المستخدمين",
         "totalSuppliers": "إجمالي الموردين",
@@ -1648,6 +2336,13 @@
         "client": "عميل",
         "supplier": "مورد",
         "admin": "مسؤول"
+      },
+      "users": {
+        "types": {
+          "supplier": "مورد",
+          "admin": "مسؤول",
+          "client": "عميل"
+        }
       },
       "statuses": {
         "active": "نشط",
@@ -1785,6 +2480,11 @@
         "actions": "الإجراءات"
       },
       "priorities": {
+        "high": "عالية",
+        "medium": "متوسطة",
+        "low": "منخفضة"
+      },
+      "priority": {
         "high": "عالية",
         "medium": "متوسطة",
         "low": "منخفضة"
@@ -2079,14 +2779,39 @@
     "analytics": {
       "title": "التحليلات والتقارير",
       "description": "إحصائيات وتحليلات المنصة",
+      "loading": "جاري التحميل...",
+      "error": "حدث خطأ في تحميل البيانات",
+      "common": {
+        "project": "مشروع"
+      },
+      "currency": {
+        "million": "M ر.س",
+        "thousand": "K ر.س"
+      },
       "actions": {
         "selectPeriod": "اختيار الفترة",
         "exportReport": "تصدير تقرير"
       },
       "charts": {
         "userGrowth": "نمو المستخدمين",
+        "userGrowthDetails": {
+          "title": "نمو المستخدمين",
+          "usersLabel": "المستخدمين",
+          "growthLabel": "النمو %"
+        },
         "monthlyRevenue": "الإيرادات الشهرية",
+        "monthlyRevenueDetails": {
+          "title": "الإيرادات الشهرية",
+          "revenueLabel": "الإيرادات",
+          "targetLabel": "الهدف",
+          "currency": "ر.س",
+          "ofTarget": "من الهدف"
+        },
         "projectsByCategory": "توزيع المشاريع حسب الفئة",
+        "projectsByCategoryDetails": {
+          "title": "توزيع المشاريع حسب الفئة",
+          "label": "المشاريع"
+        },
         "completionRate": "معدل إتمام المشاريع",
         "placeholder": "مخطط"
       },
@@ -2155,6 +2880,11 @@
     "searchThemes": "بحث في الثيمات...",
     "currentTheme": "الثيم الحالي",
     "totalThemes": "الإجمالي: {count} ثيم",
-    "noThemesFound": "لم يتم العثور على ثيمات"
+    "noThemesFound": "لم يتم العثور على ثيمات",
+    "themes": "الثيمات",
+    "background": "الخلفية",
+    "primary": "الأساسي",
+    "accent": "التمييز",
+    "text": "النص"
   }
 }

@@ -15,9 +15,11 @@ interface OffersListProps {
 
 export default function OffersList({ requestId, onAccept, onReject }: OffersListProps) {
   const t = useTranslations('pages.offers');
-  const { data: offers, isLoading, error } = requestId
-    ? useOffersByRequest(requestId)
-    : useOffers();
+  const {
+    data: offers,
+    isLoading,
+    error,
+  } = requestId ? useOffersByRequest(requestId) : useOffers();
 
   const handleAccept = async (offerId: string) => {
     try {

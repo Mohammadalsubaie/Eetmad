@@ -47,4 +47,3 @@ export default function ProjectPaymentInfo({ project }: ProjectPaymentInfoProps)
     </div>
   );
 }
-

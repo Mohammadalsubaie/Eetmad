@@ -10,9 +10,7 @@ interface CategoryTimestampsSectionProps {
   category: Category;
 }
 
-export default function CategoryTimestampsSection({
-  category,
-}: CategoryTimestampsSectionProps) {
+export default function CategoryTimestampsSection({ category }: CategoryTimestampsSectionProps) {
   const t = useTranslations('admin');
 
   return (
@@ -54,4 +52,3 @@ export default function CategoryTimestampsSection({
     </motion.div>
   );
 }
-

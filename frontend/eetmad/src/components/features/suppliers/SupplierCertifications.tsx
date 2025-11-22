@@ -51,4 +51,3 @@ export default function SupplierCertifications({ supplier }: SupplierCertificati
     </motion.div>
   );
 }
-

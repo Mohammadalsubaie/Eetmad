@@ -91,4 +91,3 @@ export default function UserBasicInfo({ user }: UserBasicInfoProps) {
     </motion.div>
   );
 }
-

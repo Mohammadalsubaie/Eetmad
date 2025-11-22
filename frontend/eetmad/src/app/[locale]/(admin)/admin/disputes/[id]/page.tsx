@@ -6,7 +6,7 @@ import Breadcrumbs from '@/components/shared/navigation/Breadcrumbs';
 
 export default function DisputeDetailPage() {
   const params = useParams();
-  const t = useTranslations('pages');
+  const tPages = useTranslations('pages');
   const locale = useLocale();
   const disputeId = params.id as string;
 
@@ -14,17 +14,17 @@ export default function DisputeDetailPage() {
     <div>
       <Breadcrumbs
         items={[
-          { label: t('admin.title'), href: `/${locale}/admin` },
-          { label: t('disputes.title'), href: `/${locale}/admin/disputes` },
+          { label: tPages('admin.title'), href: `/${locale}/admin` },
+          { label: tPages('disputes.title'), href: `/${locale}/admin/disputes` },
           // TODO: Replace with actual data for id
           { label: '{id}' },
         ]}
         className="mb-6"
       />
 
-      <h1>{t('disputeDetails.title')}</h1>
+      <h1>{tPages('disputeDetails.title')}</h1>
       <p>
-        {t('disputeDetails.id')}: {disputeId}
+        {tPages('disputeDetails.id')}: {disputeId}
       </p>
       {/* Dispute details will be implemented here */}
     </div>

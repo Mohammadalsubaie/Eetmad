@@ -28,7 +28,7 @@ export default function LoginForm() {
     try {
       const response = await login({ email, password });
       await authLogin({ email, password });
-      router.push('/dashboard');
+      router.push(`/${locale}/dashboard`);
     } catch (err) {
       // Error handled by hook
     }

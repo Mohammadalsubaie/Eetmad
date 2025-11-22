@@ -49,10 +49,7 @@ export default function EditRequestPage() {
           className="mb-6"
         />
         <div className="flex flex-col items-center gap-4">
-          <ErrorMessage
-            error={error?.message || t('notFound')}
-            variant="banner"
-          />
+          <ErrorMessage error={error?.message || t('notFound')} variant="banner" />
           <Button onClick={() => router.push('/requests')} variant="primary">
             {t('backToRequests')}
           </Button>

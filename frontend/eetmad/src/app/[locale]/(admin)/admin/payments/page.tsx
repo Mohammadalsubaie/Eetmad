@@ -14,7 +14,7 @@ export default function PaymentsManagementPage() {
   const tPages = useTranslations('pages');
   const locale = useLocale();
   const router = useRouter();
-  const { payments, isLoading } = usePayments();
+  const { data: payments, isLoading } = usePayments();
   const columns = usePaymentsTableColumns();
 
   return (

@@ -35,7 +35,7 @@ export default function ResetPasswordForm() {
   useEffect(() => {
     if (success) {
       setTimeout(() => {
-        router.push('/login');
+        router.push(`/${locale}/login`);
       }, 2000);
     }
   }, [success, router]);

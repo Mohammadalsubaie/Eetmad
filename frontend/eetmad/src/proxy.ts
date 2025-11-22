@@ -8,14 +8,14 @@ const intlMiddleware = createMiddleware(routing);
 
 export default function middleware(request: NextRequest) {
   const pathname = request.nextUrl.pathname;
-  
+
   // Check for locale preference in cookie
   const localeCookie = request.cookies.get('NEXT_LOCALE');
-  
+
   // Check if pathname already has a valid locale
   const pathLocale = pathname.split('/')[1];
   const hasValidLocale = routing.locales.includes(pathLocale as any);
-  
+
   // If we have a cookie preference and the path doesn't have a locale (or has a different one)
   if (localeCookie && routing.locales.includes(localeCookie.value as any)) {
     // If path doesn't have a locale prefix, add it
@@ -24,7 +24,7 @@ export default function middleware(request: NextRequest) {
       url.pathname = `/${localeCookie.value}${pathname === '/' ? '' : pathname}`;
       return NextResponse.redirect(url);
     }
-    
+
     // If path has a different locale than the cookie, redirect to preferred locale
     if (hasValidLocale && pathLocale !== localeCookie.value) {
       const url = request.nextUrl.clone();
@@ -32,7 +32,7 @@ export default function middleware(request: NextRequest) {
       return NextResponse.redirect(url);
     }
   }
-  
+
   // Let next-intl middleware handle the rest
   return intlMiddleware(request);
 }

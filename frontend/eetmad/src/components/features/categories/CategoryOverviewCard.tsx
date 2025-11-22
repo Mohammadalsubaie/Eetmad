@@ -135,4 +135,3 @@ export default function CategoryOverviewCard({ category }: CategoryOverviewCardP
     </motion.div>
   );
 }
-

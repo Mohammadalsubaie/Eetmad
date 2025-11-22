@@ -23,7 +23,7 @@ export default function ReviewDetailPage() {
   const locale = useLocale();
   const reviewId = params.id as string;
 
-  const { review, isLoading, error } = useReview(reviewId);
+  const { data: review, isLoading, error } = useReview(reviewId);
 
   if (isLoading) {
     return (

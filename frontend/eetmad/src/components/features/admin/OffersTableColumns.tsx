@@ -108,4 +108,3 @@ export function useOffersTableColumns(): ColumnConfig<Offer>[] {
     },
   ];
 }
-

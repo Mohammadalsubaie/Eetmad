@@ -26,10 +26,7 @@ export default function OfferDetailPage() {
     return (
       <div className="container mx-auto py-8" style={{ backgroundColor: cssVars.neutral.bg }}>
         <Breadcrumbs
-          items={[
-            { label: t('title'), href: `/${locale}/offers` },
-            { label: id },
-          ]}
+          items={[{ label: t('title'), href: `/${locale}/offers` }, { label: id }]}
           className="mb-6"
         />
         <div className="flex items-center justify-center py-12">
@@ -43,21 +40,12 @@ export default function OfferDetailPage() {
     return (
       <div className="container mx-auto py-8" style={{ backgroundColor: cssVars.neutral.bg }}>
         <Breadcrumbs
-          items={[
-            { label: t('title'), href: `/${locale}/offers` },
-            { label: id },
-          ]}
+          items={[{ label: t('title'), href: `/${locale}/offers` }, { label: id }]}
           className="mb-6"
         />
         <div className="flex flex-col items-center gap-4">
-          <ErrorMessage
-            error={error?.message || t('notFound')}
-            variant="banner"
-          />
-          <Button
-            onClick={() => router.push('/offers')}
-            variant="primary"
-          >
+          <ErrorMessage error={error?.message || t('notFound')} variant="banner" />
+          <Button onClick={() => router.push('/offers')} variant="primary">
             {t('backToOffers')}
           </Button>
         </div>

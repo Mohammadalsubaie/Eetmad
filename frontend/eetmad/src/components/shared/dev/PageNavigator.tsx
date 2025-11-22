@@ -21,8 +21,8 @@ const ALL_PAGES: PageRoute[] = [
   { path: 'how-it-works', label: 'How It Works', group: 'Public' },
   { path: 'categories', label: 'Categories', group: 'Public' },
   { path: 'categories/[slug]', label: 'Category Detail', group: 'Public', isDynamic: true },
-  { path: 'suppliers', label: 'Suppliers', group: 'Public' },
-  { path: 'suppliers/[id]', label: 'Supplier Detail', group: 'Public', isDynamic: true },
+  { path: 'browse-suppliers', label: 'Browse Suppliers', group: 'Public' },
+  { path: 'browse-suppliers/[id]', label: 'Supplier Detail', group: 'Public', isDynamic: true },
   { path: 'contact', label: 'Contact', group: 'Public' },
   { path: 'faq', label: 'FAQ', group: 'Public' },
   { path: 'terms', label: 'Terms', group: 'Public' },
@@ -37,19 +37,45 @@ const ALL_PAGES: PageRoute[] = [
 
   // Main pages
   { path: 'dashboard', label: 'Dashboard', group: 'Main' },
-  { path: 'profile', label: 'Profile', group: 'Main' },
-  { path: 'profile/edit', label: 'Edit Profile', group: 'Main' },
-  { path: 'profile/security', label: 'Security', group: 'Main' },
 
   // Client pages
-  { path: 'requests', label: 'Requests', group: 'Client' },
-  { path: 'requests/new', label: 'New Request', group: 'Client' },
-  { path: 'requests/my-requests', label: 'My Requests', group: 'Client' },
-  { path: 'requests/[id]', label: 'Request Detail', group: 'Client', isDynamic: true },
-  { path: 'requests/[id]/edit', label: 'Edit Request', group: 'Client', isDynamic: true },
-  { path: 'requests/[id]/offers', label: 'Request Offers', group: 'Client', isDynamic: true },
+  { path: 'profile', label: 'Profile', group: 'Client' },
+  { path: 'profile/edit', label: 'Edit Profile', group: 'Client' },
+  { path: 'profile/settings', label: 'Profile Settings', group: 'Client' },
+
+  { path: 'contracts', label: 'Contracts', group: 'Client' },
+  { path: 'contracts/new', label: 'New Contract', group: 'Client' },
+  { path: 'contracts/[id]', label: 'Contract Detail', group: 'Client', isDynamic: true },
+  { path: 'contracts/[id]/edit', label: 'Edit Contract', group: 'Client', isDynamic: true },
+  { path: 'contracts/[id]/sign', label: 'Sign Contract', group: 'Client', isDynamic: true },
+  { path: 'contracts/[id]/versions', label: 'Contract Versions', group: 'Client', isDynamic: true },
+  { path: 'contracts/[id]/clauses', label: 'Contract Clauses', group: 'Client', isDynamic: true },
+
+  { path: 'disputes', label: 'Disputes', group: 'Client' },
+  { path: 'disputes/new', label: 'New Dispute', group: 'Client' },
+  { path: 'disputes/[id]', label: 'Dispute Detail', group: 'Client', isDynamic: true },
+
+  { path: 'messages', label: 'Messages', group: 'Client' },
+  { path: 'messages/new', label: 'New Message', group: 'Client' },
+  { path: 'messages/[id]', label: 'Conversation', group: 'Client', isDynamic: true },
+  { path: 'messages/settings', label: 'Message Settings', group: 'Client' },
+
+  { path: 'notifications', label: 'Notifications', group: 'Client' },
+  { path: 'notifications/[id]', label: 'Notification Detail', group: 'Client', isDynamic: true },
+  { path: 'notifications/settings', label: 'Notification Settings', group: 'Client' },
+
+  { path: 'payments', label: 'Payments', group: 'Client' },
+  { path: 'payments/initiate', label: 'Initiate Payment', group: 'Client' },
+  { path: 'payments/wallet', label: 'Wallet', group: 'Client' },
+  { path: 'payments/history', label: 'Payment History', group: 'Client' },
+  { path: 'payments/[id]', label: 'Payment Detail', group: 'Client', isDynamic: true },
+
   { path: 'projects', label: 'Projects', group: 'Client' },
   { path: 'projects/[id]', label: 'Project Detail', group: 'Client', isDynamic: true },
+  { path: 'projects/[id]/start', label: 'Start Project', group: 'Client', isDynamic: true },
+  { path: 'projects/[id]/complete', label: 'Complete Project', group: 'Client', isDynamic: true },
+  { path: 'projects/[id]/cancel', label: 'Cancel Project', group: 'Client', isDynamic: true },
+  { path: 'projects/[id]/delivery', label: 'Delivery Proof', group: 'Client', isDynamic: true },
   {
     path: 'projects/[id]/milestones',
     label: 'Project Milestones',
@@ -57,13 +83,42 @@ const ALL_PAGES: PageRoute[] = [
     isDynamic: true,
   },
 
+  { path: 'milestones', label: 'Milestones', group: 'Client' },
+  { path: 'milestones/new', label: 'New Milestone', group: 'Client' },
+  { path: 'milestones/[id]', label: 'Milestone Detail', group: 'Client', isDynamic: true },
+  { path: 'milestones/[id]/edit', label: 'Edit Milestone', group: 'Client', isDynamic: true },
+
+  { path: 'requests', label: 'Requests', group: 'Client' },
+  { path: 'requests/new', label: 'New Request', group: 'Client' },
+  { path: 'requests/my-requests', label: 'My Requests', group: 'Client' },
+  { path: 'requests/[id]', label: 'Request Detail', group: 'Client', isDynamic: true },
+  { path: 'requests/[id]/edit', label: 'Edit Request', group: 'Client', isDynamic: true },
+  { path: 'requests/[id]/offers', label: 'Request Offers', group: 'Client', isDynamic: true },
+
+  { path: 'reviews', label: 'Reviews', group: 'Client' },
+  { path: 'reviews/new', label: 'New Review', group: 'Client' },
+  { path: 'reviews/[id]', label: 'Review Detail', group: 'Client', isDynamic: true },
+
+  { path: 'suppliers', label: 'Suppliers', group: 'Client' },
+  { path: 'suppliers/me', label: 'My Supplier Profile', group: 'Client' },
+  { path: 'suppliers/me/edit', label: 'Edit My Supplier Profile', group: 'Client' },
+  { path: 'suppliers/[id]', label: 'Supplier Detail', group: 'Client', isDynamic: true },
+  {
+    path: 'suppliers/[id]/portfolio',
+    label: 'Supplier Portfolio',
+    group: 'Client',
+    isDynamic: true,
+  },
+
+  { path: 'users/[id]', label: 'User Profile', group: 'Client', isDynamic: true },
+
   // Supplier pages
-  { path: 'offers', label: 'Offers', group: 'Supplier' },
+  { path: 'offers', label: 'My Offers', group: 'Supplier' },
   { path: 'offers/new', label: 'New Offer', group: 'Supplier' },
   { path: 'offers/[id]', label: 'Offer Detail', group: 'Supplier', isDynamic: true },
   { path: 'offers/[id]/edit', label: 'Edit Offer', group: 'Supplier', isDynamic: true },
-  { path: 'portfolio', label: 'Portfolio', group: 'Supplier' },
-  { path: 'stats', label: 'Stats', group: 'Supplier' },
+  { path: 'portfolio', label: 'My Portfolio', group: 'Supplier' },
+  { path: 'stats', label: 'My Stats', group: 'Supplier' },
   { path: 'supplier-profile/setup', label: 'Profile Setup', group: 'Supplier' },
   { path: 'supplier-profile/edit', label: 'Edit Supplier Profile', group: 'Supplier' },
   { path: 'supplier-projects/[id]', label: 'Supplier Project', group: 'Supplier', isDynamic: true },

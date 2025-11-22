@@ -18,7 +18,7 @@ export function LocaleInitializer() {
     // Set cookie that expires in 1 year
     if (typeof window !== 'undefined') {
       document.cookie = `NEXT_LOCALE=${currentLocale}; path=/; max-age=${365 * 24 * 60 * 60}; SameSite=Lax`;
-      
+
       // Also update localStorage if it doesn't match current locale
       if (!storedLocale || storedLocale !== locale) {
         localStorage.setItem('locale', locale);
@@ -28,4 +28,3 @@ export function LocaleInitializer() {
 
   return null;
 }
-

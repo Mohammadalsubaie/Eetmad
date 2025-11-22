@@ -57,7 +57,7 @@ export default function SupplierProfileEditPage() {
           className="rounded-2xl border-2 p-8"
           style={{ backgroundColor: cssVars.neutral.surface, borderColor: cssVars.neutral.border }}
         >
-          <ProfileEditForm profile={profile} onSuccess={() => router.push('/profile')} />
+          <ProfileEditForm profile={profile} onSuccess={() => router.push(`/${locale}/profile`)} />
         </div>
       )}
     </div>

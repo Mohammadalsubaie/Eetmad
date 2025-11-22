@@ -69,10 +69,7 @@ export default function PaymentOverviewCard({ payment }: PaymentOverviewCardProp
         style={{ borderColor: cssVars.neutral.border }}
       >
         <div>
-          <div
-            className="mb-2 text-xs font-semibold"
-            style={{ color: cssVars.neutral.textMuted }}
-          >
+          <div className="mb-2 text-xs font-semibold" style={{ color: cssVars.neutral.textMuted }}>
             {t('payments.detail.netAmount')}
           </div>
           <div className="flex items-center gap-2">
@@ -84,10 +81,7 @@ export default function PaymentOverviewCard({ payment }: PaymentOverviewCardProp
         </div>
 
         <div>
-          <div
-            className="mb-2 text-xs font-semibold"
-            style={{ color: cssVars.neutral.textMuted }}
-          >
+          <div className="mb-2 text-xs font-semibold" style={{ color: cssVars.neutral.textMuted }}>
             {t('payments.detail.platformFee')}
           </div>
           <div className="flex items-center gap-2">
@@ -99,10 +93,7 @@ export default function PaymentOverviewCard({ payment }: PaymentOverviewCardProp
         </div>
 
         <div>
-          <div
-            className="mb-2 text-xs font-semibold"
-            style={{ color: cssVars.neutral.textMuted }}
-          >
+          <div className="mb-2 text-xs font-semibold" style={{ color: cssVars.neutral.textMuted }}>
             {t('payments.detail.paymentMethod')}
           </div>
           <div className="flex items-center gap-2">
@@ -116,4 +107,3 @@ export default function PaymentOverviewCard({ payment }: PaymentOverviewCardProp
     </motion.div>
   );
 }
-

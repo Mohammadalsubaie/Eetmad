@@ -12,15 +12,32 @@ interface DisputesListProps {
 
 export default function DisputesList({ filter = 'all' }: DisputesListProps) {
   const t = useTranslations('pages.disputes');
+  // Always call all hooks to avoid conditional hook calls
+  const { data: allDisputes, isLoading: isLoadingAll, error: errorAll } = useDisputes();
+
   const {
-    data: disputes,
-    isLoading,
-    error,
-  } = filter === 'pending'
-    ? usePendingDisputes()
-    : filter === 'resolved'
-      ? useResolvedDisputes()
-      : useDisputes();
+    data: pendingDisputes,
+    isLoading: isLoadingPending,
+    error: errorPending,
+  } = usePendingDisputes();
+
+  const {
+    data: resolvedDisputes,
+    isLoading: isLoadingResolved,
+    error: errorResolved,
+  } = useResolvedDisputes();
+
+  // Select data based on filter
+  const disputes =
+    filter === 'pending' ? pendingDisputes : filter === 'resolved' ? resolvedDisputes : allDisputes;
+  const isLoading =
+    filter === 'pending'
+      ? isLoadingPending
+      : filter === 'resolved'
+        ? isLoadingResolved
+        : isLoadingAll;
+  const error =
+    filter === 'pending' ? errorPending : filter === 'resolved' ? errorResolved : errorAll;
 
   if (isLoading) {
     return <LoadingSpinner text={t('loading')} />;

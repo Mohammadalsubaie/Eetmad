@@ -16,13 +16,23 @@ export default function NotificationsList({
   type,
 }: NotificationsListProps) {
   const t = useTranslations('pages.notifications');
+  // Always call both hooks to avoid conditional hook calls
   const {
-    data: notifications,
-    isLoading,
-    error,
-  } = showUnreadOnly
-    ? useUnreadNotifications(type ? { type } : undefined)
-    : useNotifications(type ? { type } : undefined);
+    data: allNotifications,
+    isLoading: isLoadingAll,
+    error: errorAll,
+  } = useNotifications(type ? { type } : undefined);
+
+  const {
+    data: unreadNotifications,
+    isLoading: isLoadingUnread,
+    error: errorUnread,
+  } = useUnreadNotifications(type ? { type } : undefined);
+
+  // Select data based on showUnreadOnly
+  const notifications = showUnreadOnly ? unreadNotifications : allNotifications;
+  const isLoading = showUnreadOnly ? isLoadingUnread : isLoadingAll;
+  const error = showUnreadOnly ? errorUnread : errorAll;
   const { mutate: markAsRead } = useMarkAsRead();
   const { mutate: deleteNotification } = useDeleteNotification();
 

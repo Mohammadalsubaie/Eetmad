@@ -177,7 +177,10 @@ export default function SuccessStoriesSection() {
               <p className="text-4xl font-black" style={{ color: cssVars.secondary.DEFAULT }}>
                 500+
               </p>
-              <p className="text-base font-bold" style={{ color: cssVars.secondary.DEFAULT, opacity: 0.8 }}>
+              <p
+                className="text-base font-bold"
+                style={{ color: cssVars.secondary.DEFAULT, opacity: 0.8 }}
+              >
                 {t('totalProjects')}
               </p>
             </div>
@@ -189,7 +192,10 @@ export default function SuccessStoriesSection() {
               <p className="text-4xl font-black" style={{ color: cssVars.secondary.DEFAULT }}>
                 95%
               </p>
-              <p className="text-base font-bold" style={{ color: cssVars.secondary.DEFAULT, opacity: 0.8 }}>
+              <p
+                className="text-base font-bold"
+                style={{ color: cssVars.secondary.DEFAULT, opacity: 0.8 }}
+              >
                 {t('satisfactionRate')}
               </p>
             </div>
@@ -201,7 +207,10 @@ export default function SuccessStoriesSection() {
               <p className="text-4xl font-black" style={{ color: cssVars.secondary.DEFAULT }}>
                 48
               </p>
-              <p className="text-base font-bold" style={{ color: cssVars.secondary.DEFAULT, opacity: 0.8 }}>
+              <p
+                className="text-base font-bold"
+                style={{ color: cssVars.secondary.DEFAULT, opacity: 0.8 }}
+              >
                 {t('avgResponseTime')}
               </p>
             </div>

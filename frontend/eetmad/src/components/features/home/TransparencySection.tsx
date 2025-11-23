@@ -85,21 +85,21 @@ export default function TransparencySection() {
                   className="flex h-16 w-16 items-center justify-center rounded-2xl shadow-xl"
                   style={{ background: cssVars.gradient.gold }}
                 >
-                  <Shield 
-                    className="h-8 w-8" 
-                    style={{ 
-                      color: isDark 
-                        ? cssVars.neutral.darker  // في Dark Mode: #f0f5f4 (فاتح جداً) على gradient.gold
-                        : cssVars.secondary.DEFAULT  // في Light Mode: #536765 (داكن) على gradient.gold
-                    }} 
+                  <Shield
+                    className="h-8 w-8"
+                    style={{
+                      color: isDark
+                        ? cssVars.neutral.darker // في Dark Mode: #f0f5f4 (فاتح جداً) على gradient.gold
+                        : cssVars.secondary.DEFAULT, // في Light Mode: #536765 (داكن) على gradient.gold
+                    }}
                   />
                 </div>
                 <h3
                   className="text-3xl font-bold lg:text-4xl"
-                  style={{ 
-                    color: isDark 
-                      ? cssVars.neutral.darker  // في Dark Mode: #f0f5f4 (فاتح جداً) على neutral.surface (داكن)
-                      : cssVars.secondary.DEFAULT  // في Light Mode: #536765 (داكن) على neutral.surface (فاتح)
+                  style={{
+                    color: isDark
+                      ? cssVars.neutral.darker // في Dark Mode: #f0f5f4 (فاتح جداً) على neutral.surface (داكن)
+                      : cssVars.secondary.DEFAULT, // في Light Mode: #536765 (داكن) على neutral.surface (فاتح)
                   }}
                 >
                   {t('mainCard.title')}
@@ -135,12 +135,12 @@ export default function TransparencySection() {
                     >
                       <CheckCircle2 className="h-4 w-4" style={{ color: cssVars.status.success }} />
                     </div>
-                    <p 
-                      className="text-base font-bold" 
-                      style={{ 
-                        color: isDark 
-                          ? cssVars.neutral.darker  // في Dark Mode: #f0f5f4 (فاتح جداً) على neutral.bg (داكن)
-                          : cssVars.secondary.DEFAULT  // في Light Mode: #536765 (داكن) على neutral.bg (فاتح)
+                    <p
+                      className="text-base font-bold"
+                      style={{
+                        color: isDark
+                          ? cssVars.neutral.darker // في Dark Mode: #f0f5f4 (فاتح جداً) على neutral.bg (داكن)
+                          : cssVars.secondary.DEFAULT, // في Light Mode: #536765 (داكن) على neutral.bg (فاتح)
                       }}
                     >
                       {t(`mainCard.points.${point}`)}
@@ -184,12 +184,12 @@ export default function TransparencySection() {
                   />
                 </div>
 
-                <h4 
-                  className="mb-3 text-xl font-bold" 
-                  style={{ 
-                    color: isDark 
-                      ? cssVars.neutral.darker  // في Dark Mode: #f0f5f4 (فاتح جداً) على neutral.surface (داكن)
-                      : cssVars.secondary.DEFAULT  // في Light Mode: #536765 (داكن) على neutral.surface (فاتح)
+                <h4
+                  className="mb-3 text-xl font-bold"
+                  style={{
+                    color: isDark
+                      ? cssVars.neutral.darker // في Dark Mode: #f0f5f4 (فاتح جداً) على neutral.surface (داكن)
+                      : cssVars.secondary.DEFAULT, // في Light Mode: #536765 (داكن) على neutral.surface (فاتح)
                   }}
                 >
                   {t(`features.${feature.key}.title`)}

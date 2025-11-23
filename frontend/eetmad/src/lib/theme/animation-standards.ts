@@ -1,6 +1,6 @@
 /**
  * Animation Standards
- * 
+ *
  * توحيد Animation Styles و Timing في النظام لضمان الاتساق
  */
 
@@ -149,4 +149,3 @@ export const staggerItem: Variants = {
     },
   },
 };
-

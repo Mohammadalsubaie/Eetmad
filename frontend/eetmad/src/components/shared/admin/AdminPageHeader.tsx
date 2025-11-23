@@ -18,28 +18,37 @@ export default function AdminPageHeader({
   action,
 }: AdminPageHeaderProps) {
   return (
-    <div className="mb-6 sm:mb-8 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+    <div className="mb-6 flex flex-col gap-4 sm:mb-8 sm:flex-row sm:items-center sm:justify-between">
       <div className="flex items-center gap-3 sm:gap-4">
         {Icon && (
           <div
-            className="flex h-10 w-10 sm:h-12 sm:w-12 md:h-14 md:w-14 items-center justify-center rounded-xl sm:rounded-2xl shadow-md flex-shrink-0"
+            className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-xl shadow-md sm:h-12 sm:w-12 sm:rounded-2xl md:h-14 md:w-14"
             style={{ background: cssVars.gradient.primary }}
           >
-            <Icon className="h-5 w-5 sm:h-6 sm:w-6 md:h-7 md:w-7" style={{ color: cssVars.neutral.surface }} />
+            <Icon
+              className="h-5 w-5 sm:h-6 sm:w-6 md:h-7 md:w-7"
+              style={{ color: cssVars.neutral.surface }}
+            />
           </div>
         )}
         <div className="min-w-0 flex-1">
-          <h1 className="text-xl sm:text-2xl md:text-3xl font-bold truncate" style={{ color: cssVars.secondary.DEFAULT }}>
+          <h1
+            className="truncate text-xl font-bold sm:text-2xl md:text-3xl"
+            style={{ color: cssVars.secondary.DEFAULT }}
+          >
             {title}
           </h1>
           {description && (
-            <p className="mt-1 text-sm sm:text-base line-clamp-2" style={{ color: cssVars.neutral.textSecondary }}>
+            <p
+              className="mt-1 line-clamp-2 text-sm sm:text-base"
+              style={{ color: cssVars.neutral.textSecondary }}
+            >
               {description}
             </p>
           )}
         </div>
       </div>
-      {action && <div className="flex-shrink-0 w-full sm:w-auto">{action}</div>}
+      {action && <div className="w-full flex-shrink-0 sm:w-auto">{action}</div>}
     </div>
   );
 }

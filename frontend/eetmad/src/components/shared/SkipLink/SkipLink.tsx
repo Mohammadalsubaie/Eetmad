@@ -10,10 +10,10 @@ interface SkipLinkProps {
 
 /**
  * SkipLink Component
- * 
+ *
  * يوفر رابط للتنقل السريع للمستخدمين الذين يستخدمون لوحة المفاتيح.
  * يظهر عند الضغط على Tab ويختفي بعد التنقل.
- * 
+ *
  * @example
  * <SkipLink href="#main-content">تخطي إلى المحتوى الرئيسي</SkipLink>
  */
@@ -49,4 +49,3 @@ const SkipLink: React.FC<SkipLinkProps> = ({ href, children }) => {
 };
 
 export default SkipLink;
-

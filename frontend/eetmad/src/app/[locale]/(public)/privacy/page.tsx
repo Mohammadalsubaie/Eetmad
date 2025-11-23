@@ -9,17 +9,11 @@ export default function PrivacyPage() {
   const locale = useLocale();
 
   return (
-    <div
-      className="container mx-auto px-4 py-8"
-      style={{ backgroundColor: cssVars.neutral.bg }}
-    >
+    <div className="container mx-auto px-4 py-8" style={{ backgroundColor: cssVars.neutral.bg }}>
       <Breadcrumbs items={[{ label: t('privacy.title') }]} className="mb-6" />
 
       <h1 style={{ color: cssVars.secondary.DEFAULT }}>{t('privacy.title')}</h1>
-      <div
-        className="container mx-auto px-4 py-8"
-        style={{ backgroundColor: cssVars.neutral.bg }}
-      >
+      <div className="container mx-auto px-4 py-8" style={{ backgroundColor: cssVars.neutral.bg }}>
         <h2 className="mb-6 text-3xl font-bold" style={{ color: cssVars.secondary.DEFAULT }}>
           {t('privacy.introduction.title')}
         </h2>

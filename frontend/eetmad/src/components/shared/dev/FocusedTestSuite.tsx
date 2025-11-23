@@ -279,7 +279,7 @@ export default function FocusedTestSuite() {
     <>
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="fixed bottom-20 right-2 sm:bottom-32 sm:right-4 z-50 flex h-12 w-12 items-center justify-center rounded-full shadow-lg transition-all hover:scale-110 touch-manipulation"
+        className="fixed bottom-20 right-2 z-50 flex h-12 w-12 touch-manipulation items-center justify-center rounded-full shadow-lg transition-all hover:scale-110 sm:bottom-32 sm:right-4"
         style={{
           backgroundColor: cssVars.secondary.DEFAULT,
           color: cssVars.neutral.bg,
@@ -309,7 +309,7 @@ export default function FocusedTestSuite() {
             </div>
             <button
               onClick={() => setIsOpen(false)}
-              className="rounded-lg p-1 transition-colors hover:opacity-80 touch-manipulation min-h-[44px] min-w-[44px] flex items-center justify-center"
+              className="flex min-h-[44px] min-w-[44px] touch-manipulation items-center justify-center rounded-lg p-1 transition-colors hover:opacity-80"
               style={{ color: cssVars.neutral.textSecondary }}
             >
               <X className="h-5 w-5" />
@@ -322,7 +322,7 @@ export default function FocusedTestSuite() {
                 <div className="mb-4">
                   <button
                     onClick={() => setShowCreateModal(true)}
-                    className="w-full rounded-lg border-2 border-dashed px-4 py-3 text-sm font-medium transition-colors hover:opacity-80 touch-manipulation min-h-[44px]"
+                    className="min-h-[44px] w-full touch-manipulation rounded-lg border-2 border-dashed px-4 py-3 text-sm font-medium transition-colors hover:opacity-80"
                     style={{
                       borderColor: cssVars.neutral.border,
                       color: cssVars.primary.DEFAULT,
@@ -387,7 +387,7 @@ export default function FocusedTestSuite() {
                             </div>
                             <button
                               onClick={() => deleteTestSuite(suite.id)}
-                              className="ml-2 rounded p-1 transition-colors hover:opacity-80 touch-manipulation min-h-[44px] min-w-[44px] flex items-center justify-center"
+                              className="ml-2 flex min-h-[44px] min-w-[44px] touch-manipulation items-center justify-center rounded p-1 transition-colors hover:opacity-80"
                               style={{ color: cssVars.neutral.textSecondary }}
                             >
                               <X className="h-4 w-4" />
@@ -396,7 +396,7 @@ export default function FocusedTestSuite() {
                           <div className="mt-3 flex gap-2">
                             <button
                               onClick={() => startTestSuite(suite)}
-                              className="flex flex-1 items-center justify-center gap-2 rounded-lg px-3 py-2 text-xs font-medium transition-colors hover:opacity-80 touch-manipulation min-h-[44px]"
+                              className="flex min-h-[44px] flex-1 touch-manipulation items-center justify-center gap-2 rounded-lg px-3 py-2 text-xs font-medium transition-colors hover:opacity-80"
                               style={{
                                 backgroundColor: `color-mix(in srgb, ${color} 15%, transparent)`,
                                 color,
@@ -407,7 +407,7 @@ export default function FocusedTestSuite() {
                             </button>
                             <button
                               onClick={() => setSelectedSuite(suite)}
-                              className="rounded-lg px-3 py-2 text-xs transition-colors hover:opacity-80 touch-manipulation min-h-[44px] min-w-[44px]"
+                              className="min-h-[44px] min-w-[44px] touch-manipulation rounded-lg px-3 py-2 text-xs transition-colors hover:opacity-80"
                               style={{
                                 backgroundColor: `color-mix(in srgb, ${cssVars.neutral.border} 20%, transparent)`,
                                 color: cssVars.neutral.DEFAULT,
@@ -442,7 +442,7 @@ export default function FocusedTestSuite() {
                             setNewSuiteName(template.name);
                             setNewSuiteDescription(template.description);
                           }}
-                          className={`rounded-lg border-2 p-3 text-left transition-colors touch-manipulation min-h-[44px] ${
+                          className={`min-h-[44px] touch-manipulation rounded-lg border-2 p-3 text-left transition-colors ${
                             newSuiteType === template.type ? 'ring-2' : ''
                           }`}
                           style={{
@@ -485,7 +485,7 @@ export default function FocusedTestSuite() {
                         value={newSuiteName}
                         onChange={(e) => setNewSuiteName(e.target.value)}
                         placeholder="اسم السلسلة..."
-                        className="w-full rounded border-2 px-3 py-2 text-sm focus:outline-none focus:ring-2 touch-manipulation"
+                        className="w-full touch-manipulation rounded border-2 px-3 py-2 text-sm focus:outline-none focus:ring-2"
                         style={{
                           backgroundColor: cssVars.neutral.bg,
                           borderColor: cssVars.neutral.border,
@@ -504,7 +504,7 @@ export default function FocusedTestSuite() {
                         value={newSuiteDescription}
                         onChange={(e) => setNewSuiteDescription(e.target.value)}
                         placeholder="وصف السلسلة..."
-                        className="w-full rounded border-2 px-3 py-2 text-sm focus:outline-none focus:ring-2 touch-manipulation"
+                        className="w-full touch-manipulation rounded border-2 px-3 py-2 text-sm focus:outline-none focus:ring-2"
                         style={{
                           backgroundColor: cssVars.neutral.bg,
                           borderColor: cssVars.neutral.border,
@@ -520,7 +520,7 @@ export default function FocusedTestSuite() {
                             createTestSuite(newSuiteType, newSuiteName, newSuiteDescription);
                           }
                         }}
-                        className="flex-1 rounded-lg px-4 py-2 text-sm font-medium transition-colors hover:opacity-80 touch-manipulation min-h-[44px]"
+                        className="min-h-[44px] flex-1 touch-manipulation rounded-lg px-4 py-2 text-sm font-medium transition-colors hover:opacity-80"
                         style={{
                           backgroundColor: cssVars.primary.DEFAULT,
                           color: cssVars.neutral.bg,
@@ -535,7 +535,7 @@ export default function FocusedTestSuite() {
                           setNewSuiteName('');
                           setNewSuiteDescription('');
                         }}
-                        className="flex-1 rounded-lg border-2 px-4 py-2 text-sm font-medium transition-colors hover:opacity-80 touch-manipulation min-h-[44px]"
+                        className="min-h-[44px] flex-1 touch-manipulation rounded-lg border-2 px-4 py-2 text-sm font-medium transition-colors hover:opacity-80"
                         style={{
                           borderColor: cssVars.neutral.border,
                           color: cssVars.neutral.DEFAULT,

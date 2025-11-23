@@ -82,11 +82,11 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
           borderColor: cssVars.neutral.border,
         }}
       >
-        <div className="flex h-14 sm:h-16 items-center justify-between px-3 sm:px-4 lg:px-6">
+        <div className="flex h-14 items-center justify-between px-3 sm:h-16 sm:px-4 lg:px-6">
           <div className="flex items-center gap-2 sm:gap-4">
             <button
               onClick={() => setSidebarOpen(!sidebarOpen)}
-              className="hidden rounded-xl p-2.5 transition-all hover:bg-opacity-80 active:scale-95 touch-manipulation lg:block"
+              className="hidden touch-manipulation rounded-xl p-2.5 transition-all hover:bg-opacity-80 active:scale-95 lg:block"
               style={{
                 backgroundColor: `color-mix(in srgb, ${cssVars.primary.DEFAULT} 10%, transparent)`,
                 minWidth: '44px',
@@ -98,7 +98,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
 
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="rounded-xl p-2.5 transition-all hover:bg-opacity-80 active:scale-95 touch-manipulation lg:hidden"
+              className="touch-manipulation rounded-xl p-2.5 transition-all hover:bg-opacity-80 active:scale-95 lg:hidden"
               style={{
                 backgroundColor: `color-mix(in srgb, ${cssVars.primary.DEFAULT} 10%, transparent)`,
                 minWidth: '44px',
@@ -108,7 +108,10 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
               <Menu className="h-5 w-5" style={{ color: cssVars.primary.DEFAULT }} />
             </button>
 
-            <h1 className="text-lg sm:text-xl font-bold" style={{ color: cssVars.secondary.DEFAULT }}>
+            <h1
+              className="text-lg font-bold sm:text-xl"
+              style={{ color: cssVars.secondary.DEFAULT }}
+            >
               {t('title')}
             </h1>
           </div>
@@ -117,16 +120,19 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="relative rounded-xl p-2.5 sm:p-3 transition-all touch-manipulation active:scale-95"
+              className="relative touch-manipulation rounded-xl p-2.5 transition-all active:scale-95 sm:p-3"
               style={{
                 backgroundColor: `color-mix(in srgb, ${cssVars.neutral.border} 30%, transparent)`,
                 minWidth: '44px',
                 minHeight: '44px',
               }}
             >
-              <Bell className="h-5 w-5 sm:h-5 sm:w-5" style={{ color: cssVars.neutral.textSecondary }} />
+              <Bell
+                className="h-5 w-5 sm:h-5 sm:w-5"
+                style={{ color: cssVars.neutral.textSecondary }}
+              />
               <span
-                className="absolute right-1.5 top-1.5 sm:right-2 sm:top-2 h-2 w-2 sm:h-2.5 sm:w-2.5 animate-pulse rounded-full ring-2 ring-white"
+                className="absolute right-1.5 top-1.5 h-2 w-2 animate-pulse rounded-full ring-2 ring-white sm:right-2 sm:top-2 sm:h-2.5 sm:w-2.5"
                 style={{ backgroundColor: cssVars.status.error }}
               />
             </motion.button>
@@ -134,7 +140,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="flex items-center gap-1.5 sm:gap-2 rounded-xl px-3 sm:px-4 py-2.5 transition-all touch-manipulation active:scale-95"
+              className="flex touch-manipulation items-center gap-1.5 rounded-xl px-3 py-2.5 transition-all active:scale-95 sm:gap-2 sm:px-4"
               style={{
                 backgroundColor: `color-mix(in srgb, ${cssVars.neutral.border} 30%, transparent)`,
                 minWidth: '44px',
@@ -142,10 +148,13 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
               }}
             >
               <div
-                className="h-8 w-8 sm:h-8 sm:w-8 rounded-lg flex-shrink-0"
+                className="h-8 w-8 flex-shrink-0 rounded-lg sm:h-8 sm:w-8"
                 style={{ backgroundColor: cssVars.primary.DEFAULT }}
               />
-              <ChevronDown className="hidden sm:block h-4 w-4 flex-shrink-0" style={{ color: cssVars.neutral.textSecondary }} />
+              <ChevronDown
+                className="hidden h-4 w-4 flex-shrink-0 sm:block"
+                style={{ color: cssVars.neutral.textSecondary }}
+              />
             </motion.button>
           </div>
         </div>
@@ -171,7 +180,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
                   <Link key={item.id} href={item.href}>
                     <motion.div
                       whileHover={{ x: 4 }}
-                      className={`flex items-center justify-between rounded-xl px-3 sm:px-4 py-3 sm:py-3 transition-all touch-manipulation active:scale-[0.98] min-h-[44px] ${
+                      className={`flex min-h-[44px] touch-manipulation items-center justify-between rounded-xl px-3 py-3 transition-all active:scale-[0.98] sm:px-4 sm:py-3 ${
                         isActive(item.href) ? 'shadow-md' : ''
                       }`}
                       style={{
@@ -185,11 +194,13 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
                     >
                       <div className="flex items-center gap-2 sm:gap-3">
                         <item.icon className="h-4 w-4 sm:h-5 sm:w-5" />
-                        <span className="text-sm sm:text-base font-semibold">{t(item.labelKey)}</span>
+                        <span className="text-sm font-semibold sm:text-base">
+                          {t(item.labelKey)}
+                        </span>
                       </div>
                       {item.badge && (
                         <span
-                          className="rounded-full px-1.5 sm:px-2 py-0.5 text-xs font-bold"
+                          className="rounded-full px-1.5 py-0.5 text-xs font-bold sm:px-2"
                           style={{
                             backgroundColor: cssVars.status.error,
                             color: cssVars.neutral.surface,
@@ -204,14 +215,14 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
 
                 <motion.button
                   whileHover={{ x: 4 }}
-                  className="flex w-full items-center gap-2 sm:gap-3 rounded-xl px-3 sm:px-4 py-3 sm:py-3 transition-all touch-manipulation active:scale-[0.98] min-h-[44px]"
+                  className="flex min-h-[44px] w-full touch-manipulation items-center gap-2 rounded-xl px-3 py-3 transition-all active:scale-[0.98] sm:gap-3 sm:px-4 sm:py-3"
                   style={{
                     backgroundColor: 'transparent',
                     color: cssVars.status.error,
                   }}
                 >
                   <LogOut className="h-4 w-4 sm:h-5 sm:w-5" />
-                  <span className="text-sm sm:text-base font-semibold">{t('nav.logout')}</span>
+                  <span className="text-sm font-semibold sm:text-base">{t('nav.logout')}</span>
                 </motion.button>
               </nav>
             </motion.aside>
@@ -227,7 +238,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
                 transition={{ duration: 0.2 }}
-                className="fixed inset-0 z-40 bg-black/60 backdrop-blur-sm lg:hidden touch-none"
+                className="fixed inset-0 z-40 touch-none bg-black/60 backdrop-blur-sm lg:hidden"
                 onClick={() => setMobileMenuOpen(false)}
               />
               <motion.aside
@@ -235,7 +246,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
                 animate={{ x: 0 }}
                 exit={{ x: '100%' }}
                 transition={{ type: 'spring', damping: 25, stiffness: 300 }}
-                className="fixed right-0 top-0 z-50 h-full w-[85vw] max-w-sm sm:w-80 overflow-y-auto lg:hidden shadow-2xl"
+                className="fixed right-0 top-0 z-50 h-full w-[85vw] max-w-sm overflow-y-auto shadow-2xl sm:w-80 lg:hidden"
                 style={{
                   backgroundColor: cssVars.neutral.surface,
                   boxShadow: `0 0 20px color-mix(in srgb, ${cssVars.neutral.darker} 30%, transparent)`,
@@ -245,12 +256,15 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
                   className="flex items-center justify-between border-b p-3 sm:p-4"
                   style={{ borderColor: cssVars.neutral.border }}
                 >
-                  <h2 className="text-base sm:text-lg font-bold" style={{ color: cssVars.secondary.DEFAULT }}>
+                  <h2
+                    className="text-base font-bold sm:text-lg"
+                    style={{ color: cssVars.secondary.DEFAULT }}
+                  >
                     {t('title')}
                   </h2>
                   <button
                     onClick={() => setMobileMenuOpen(false)}
-                    className="rounded-xl p-2.5 touch-manipulation active:scale-95 transition-all"
+                    className="touch-manipulation rounded-xl p-2.5 transition-all active:scale-95"
                     style={{
                       backgroundColor: `color-mix(in srgb, ${cssVars.neutral.border} 30%, transparent)`,
                       minWidth: '44px',
@@ -265,7 +279,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
                   {navItems.map((item) => (
                     <Link key={item.id} href={item.href} onClick={() => setMobileMenuOpen(false)}>
                       <div
-                        className={`flex items-center justify-between rounded-xl px-3 sm:px-4 py-3 sm:py-3 transition-all touch-manipulation active:scale-[0.98] min-h-[44px] ${
+                        className={`flex min-h-[44px] touch-manipulation items-center justify-between rounded-xl px-3 py-3 transition-all active:scale-[0.98] sm:px-4 sm:py-3 ${
                           isActive(item.href) ? 'shadow-md' : ''
                         }`}
                         style={{
@@ -279,11 +293,13 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
                       >
                         <div className="flex items-center gap-2 sm:gap-3">
                           <item.icon className="h-5 w-5" />
-                          <span className="text-sm sm:text-base font-semibold">{t(item.labelKey)}</span>
+                          <span className="text-sm font-semibold sm:text-base">
+                            {t(item.labelKey)}
+                          </span>
                         </div>
                         {item.badge && (
                           <span
-                            className="rounded-full px-1.5 sm:px-2 py-0.5 text-xs font-bold"
+                            className="rounded-full px-1.5 py-0.5 text-xs font-bold sm:px-2"
                             style={{
                               backgroundColor: cssVars.status.error,
                               color: cssVars.neutral.surface,

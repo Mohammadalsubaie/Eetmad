@@ -73,19 +73,22 @@ export default function PaymentDetailPage() {
         className="mb-6"
       />
       {/* Header */}
-      <div className="mb-4 sm:mb-6 flex items-start sm:items-center gap-2 sm:gap-4">
+      <div className="mb-4 flex items-start gap-2 sm:mb-6 sm:items-center sm:gap-4">
         <motion.button
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
           onClick={() => router.back()}
-          className="rounded-xl p-2 transition-all flex-shrink-0"
+          className="flex-shrink-0 rounded-xl p-2 transition-all"
           style={{
             backgroundColor: `color-mix(in srgb, ${cssVars.neutral.border} 30%, transparent)`,
           }}
         >
-          <ArrowLeft className="h-4 w-4 sm:h-5 sm:w-5" style={{ color: cssVars.neutral.textSecondary }} />
+          <ArrowLeft
+            className="h-4 w-4 sm:h-5 sm:w-5"
+            style={{ color: cssVars.neutral.textSecondary }}
+          />
         </motion.button>
-        <div className="flex-1 min-w-0">
+        <div className="min-w-0 flex-1">
           <AdminPageHeader
             title={t('payments.detail.title', { id: payment.transactionId })}
             description={t('payments.detail.description')}

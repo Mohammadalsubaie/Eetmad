@@ -86,13 +86,13 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     // تحديد Animation Props حسب الـ variant
     const getAnimationProps = () => {
       if (disabled) return {};
-      
+
       if (variant === 'outline' || variant === 'ghost') {
         return {
           transition: { duration: animationDuration.fast, ease: easing.easeOut },
         };
       }
-      
+
       return {
         whileHover: hoverProps.scale.whileHover,
         whileTap: hoverProps.scale.whileTap,

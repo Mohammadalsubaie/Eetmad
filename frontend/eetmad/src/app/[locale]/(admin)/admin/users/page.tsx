@@ -62,7 +62,12 @@ export default function AdminUsersPage() {
               variant="secondary"
               size="sm"
             />
-            <AdminActionButton label={t('users.actions.addUser')} icon={Plus} variant="primary" size="sm" />
+            <AdminActionButton
+              label={t('users.actions.addUser')}
+              icon={Plus}
+              variant="primary"
+              size="sm"
+            />
           </div>
         }
       />

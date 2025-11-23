@@ -54,7 +54,7 @@ export default function AdminDataTable<T extends { id: string }>({
       <div className="border-b p-3 sm:p-4" style={{ borderColor: cssVars.neutral.border }}>
         <div className="relative">
           <Search
-            className="absolute end-3 sm:end-4 top-1/2 h-4 w-4 sm:h-5 sm:w-5 -translate-y-1/2"
+            className="absolute end-3 top-1/2 h-4 w-4 -translate-y-1/2 sm:end-4 sm:h-5 sm:w-5"
             style={{ color: cssVars.neutral.textMuted }}
           />
           <input
@@ -62,7 +62,7 @@ export default function AdminDataTable<T extends { id: string }>({
             placeholder={searchPlaceholder ?? t('search')}
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="w-full rounded-xl border-2 py-3 sm:py-3 pe-3 sm:pe-4 ps-11 sm:ps-12 text-base sm:text-base outline-none transition-all focus:border-opacity-100 touch-manipulation min-h-[44px]"
+            className="min-h-[44px] w-full touch-manipulation rounded-xl border-2 py-3 pe-3 ps-11 text-base outline-none transition-all focus:border-opacity-100 sm:py-3 sm:pe-4 sm:ps-12 sm:text-base"
             style={{
               backgroundColor: cssVars.neutral.bg,
               borderColor: cssVars.neutral.border,
@@ -73,8 +73,8 @@ export default function AdminDataTable<T extends { id: string }>({
       </div>
 
       {/* Table */}
-      <div className="overflow-x-auto -mx-2 sm:mx-0">
-        <div className="min-w-full inline-block align-middle">
+      <div className="-mx-2 overflow-x-auto sm:mx-0">
+        <div className="inline-block min-w-full align-middle">
           <div className="overflow-hidden">
             <table className="min-w-full divide-y divide-gray-200">
               <thead className="hidden md:table-header-group">
@@ -82,7 +82,7 @@ export default function AdminDataTable<T extends { id: string }>({
                   {columns.map((column) => (
                     <th
                       key={String(column.key)}
-                      className="px-4 lg:px-6 py-3 lg:py-4 text-start text-xs sm:text-sm font-bold"
+                      className="px-4 py-3 text-start text-xs font-bold sm:text-sm lg:px-6 lg:py-4"
                       style={{ color: cssVars.secondary.DEFAULT }}
                     >
                       {column.header}
@@ -93,9 +93,9 @@ export default function AdminDataTable<T extends { id: string }>({
               <tbody className="md:divide-y md:divide-gray-200">
                 {isLoading ? (
                   <tr>
-                    <td colSpan={columns.length} className="px-4 py-8 sm:py-12 text-center">
+                    <td colSpan={columns.length} className="px-4 py-8 text-center sm:py-12">
                       <div
-                        className="text-sm sm:text-base lg:text-lg font-semibold"
+                        className="text-sm font-semibold sm:text-base lg:text-lg"
                         style={{ color: cssVars.neutral.textSecondary }}
                       >
                         {t('loading')}
@@ -104,9 +104,9 @@ export default function AdminDataTable<T extends { id: string }>({
                   </tr>
                 ) : paginatedData.length === 0 ? (
                   <tr>
-                    <td colSpan={columns.length} className="px-4 py-8 sm:py-12 text-center">
+                    <td colSpan={columns.length} className="px-4 py-8 text-center sm:py-12">
                       <div
-                        className="text-sm sm:text-base lg:text-lg font-semibold"
+                        className="text-sm font-semibold sm:text-base lg:text-lg"
                         style={{ color: cssVars.neutral.textSecondary }}
                       >
                         {emptyMessage ?? t('noData')}
@@ -123,13 +123,13 @@ export default function AdminDataTable<T extends { id: string }>({
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: index * 0.03, duration: 0.2 }}
                         onClick={() => onRowClick?.(item)}
-                        className={`md:hidden transition-all active:scale-[0.98] border-0 ${
+                        className={`border-0 transition-all active:scale-[0.98] md:hidden ${
                           onRowClick ? 'cursor-pointer' : ''
                         }`}
                         whileTap={onRowClick ? { scale: 0.98 } : {}}
                         style={{ border: 'none' }}
                       >
-                        <td className="p-0 border-0" style={{ border: 'none' }}>
+                        <td className="border-0 p-0" style={{ border: 'none' }}>
                           <div
                             className="mx-3 my-2 rounded-xl border-2 p-4 shadow-sm transition-all active:shadow-md"
                             style={{
@@ -146,42 +146,44 @@ export default function AdminDataTable<T extends { id: string }>({
                             }}
                           >
                             <div className="space-y-3">
-                              {columns.slice(0, Math.min(3, columns.length)).map((column, colIndex) => (
-                                <div
-                                  key={String(column.key)}
-                                  className={`flex justify-between items-start gap-3 ${
-                                    colIndex < Math.min(3, columns.length) - 1 ? 'border-b pb-3' : ''
-                                  }`}
-                                  style={{
-                                    borderColor: `color-mix(in srgb, ${cssVars.neutral.border} 50%, transparent)`,
-                                  }}
-                                >
-                                  <span
-                                    className="text-xs font-bold flex-shrink-0 min-w-[90px]"
-                                    style={{ color: cssVars.neutral.textSecondary }}
+                              {columns
+                                .slice(0, Math.min(3, columns.length))
+                                .map((column, colIndex) => (
+                                  <div
+                                    key={String(column.key)}
+                                    className={`flex items-start justify-between gap-3 ${
+                                      colIndex < Math.min(3, columns.length) - 1
+                                        ? 'border-b pb-3'
+                                        : ''
+                                    }`}
+                                    style={{
+                                      borderColor: `color-mix(in srgb, ${cssVars.neutral.border} 50%, transparent)`,
+                                    }}
                                   >
-                                    {column.header}
-                                  </span>
-                                  <span
-                                    className="text-sm font-semibold text-right flex-1 break-words"
-                                    style={{ color: cssVars.secondary.DEFAULT }}
-                                  >
-                                    {column.render
-                                      ? column.render(item)
-                                      : String(
-                                          ((item as unknown as Record<string, unknown>)[String(column.key)] as
-                                            | string
-                                            | number
-                                            | boolean
-                                            | null
-                                            | undefined) ?? '-'
-                                        )}
-                                  </span>
-                                </div>
-                              ))}
+                                    <span
+                                      className="min-w-[90px] flex-shrink-0 text-xs font-bold"
+                                      style={{ color: cssVars.neutral.textSecondary }}
+                                    >
+                                      {column.header}
+                                    </span>
+                                    <span
+                                      className="flex-1 break-words text-right text-sm font-semibold"
+                                      style={{ color: cssVars.secondary.DEFAULT }}
+                                    >
+                                      {column.render
+                                        ? column.render(item)
+                                        : String(
+                                            ((item as unknown as Record<string, unknown>)[
+                                              String(column.key)
+                                            ] as string | number | boolean | null | undefined) ??
+                                              '-'
+                                          )}
+                                    </span>
+                                  </div>
+                                ))}
                               {columns.length > 3 && onRowClick && (
                                 <div
-                                  className="flex items-center justify-center gap-2 pt-2 mt-2 border-t"
+                                  className="mt-2 flex items-center justify-center gap-2 border-t pt-2"
                                   style={{
                                     borderColor: `color-mix(in srgb, ${cssVars.primary.DEFAULT} 20%, transparent)`,
                                   }}
@@ -192,7 +194,10 @@ export default function AdminDataTable<T extends { id: string }>({
                                   >
                                     عرض التفاصيل
                                   </span>
-                                  <ChevronLeft className="h-3 w-3 rtl:rotate-180" style={{ color: cssVars.primary.DEFAULT }} />
+                                  <ChevronLeft
+                                    className="h-3 w-3 rtl:rotate-180"
+                                    style={{ color: cssVars.primary.DEFAULT }}
+                                  />
                                 </div>
                               )}
                             </div>
@@ -206,7 +211,7 @@ export default function AdminDataTable<T extends { id: string }>({
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: index * 0.05 }}
                         onClick={() => onRowClick?.(item)}
-                        className={`hidden md:table-row border-t transition-all ${onRowClick ? 'cursor-pointer hover:bg-opacity-50' : ''}`}
+                        className={`hidden border-t transition-all md:table-row ${onRowClick ? 'cursor-pointer hover:bg-opacity-50' : ''}`}
                         style={{
                           borderColor: cssVars.neutral.border,
                         }}
@@ -221,18 +226,15 @@ export default function AdminDataTable<T extends { id: string }>({
                         {columns.map((column) => (
                           <td
                             key={String(column.key)}
-                            className="px-4 lg:px-6 py-3 lg:py-4 text-xs sm:text-sm whitespace-nowrap"
+                            className="whitespace-nowrap px-4 py-3 text-xs sm:text-sm lg:px-6 lg:py-4"
                             style={{ color: cssVars.neutral.textSecondary }}
                           >
                             {column.render
                               ? column.render(item)
                               : String(
-                                  ((item as unknown as Record<string, unknown>)[String(column.key)] as
-                                    | string
-                                    | number
-                                    | boolean
-                                    | null
-                                    | undefined) ?? '-'
+                                  ((item as unknown as Record<string, unknown>)[
+                                    String(column.key)
+                                  ] as string | number | boolean | null | undefined) ?? '-'
                                 )}
                           </td>
                         ))}
@@ -249,10 +251,13 @@ export default function AdminDataTable<T extends { id: string }>({
       {/* Pagination */}
       {totalPages > 1 && (
         <div
-          className="flex flex-col sm:flex-row items-center justify-between gap-3 sm:gap-0 border-t px-3 sm:px-4 lg:px-6 py-3 sm:py-4"
+          className="flex flex-col items-center justify-between gap-3 border-t px-3 py-3 sm:flex-row sm:gap-0 sm:px-4 sm:py-4 lg:px-6"
           style={{ borderColor: cssVars.neutral.border }}
         >
-          <div className="text-xs sm:text-sm font-semibold text-center sm:text-start" style={{ color: cssVars.neutral.textSecondary }}>
+          <div
+            className="text-center text-xs font-semibold sm:text-start sm:text-sm"
+            style={{ color: cssVars.neutral.textSecondary }}
+          >
             عرض {startIndex + 1}-{Math.min(startIndex + itemsPerPage, filteredData.length)} من{' '}
             {filteredData.length}
           </div>
@@ -262,22 +267,25 @@ export default function AdminDataTable<T extends { id: string }>({
               whileTap={{ scale: 0.95 }}
               onClick={() => setCurrentPage((p) => Math.max(1, p - 1))}
               disabled={currentPage === 1}
-              className="flex h-11 w-11 sm:h-10 sm:w-10 items-center justify-center rounded-xl transition-all disabled:opacity-50 touch-manipulation active:scale-95"
+              className="flex h-11 w-11 touch-manipulation items-center justify-center rounded-xl transition-all active:scale-95 disabled:opacity-50 sm:h-10 sm:w-10"
               style={{
                 backgroundColor: `color-mix(in srgb, ${cssVars.primary.DEFAULT} 10%, transparent)`,
               }}
             >
-              <ChevronRight className="h-5 w-5 sm:h-5 sm:w-5" style={{ color: cssVars.primary.DEFAULT }} />
+              <ChevronRight
+                className="h-5 w-5 sm:h-5 sm:w-5"
+                style={{ color: cssVars.primary.DEFAULT }}
+              />
             </motion.button>
 
-            <div className="hidden sm:flex items-center gap-1.5 sm:gap-2">
+            <div className="hidden items-center gap-1.5 sm:flex sm:gap-2">
               {Array.from({ length: Math.min(5, totalPages) }, (_, i) => i + 1).map((page) => (
                 <motion.button
                   key={page}
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                   onClick={() => setCurrentPage(page)}
-                  className="flex h-10 w-10 sm:h-10 sm:w-10 items-center justify-center rounded-xl text-sm sm:text-sm font-bold transition-all touch-manipulation active:scale-95"
+                  className="flex h-10 w-10 touch-manipulation items-center justify-center rounded-xl text-sm font-bold transition-all active:scale-95 sm:h-10 sm:w-10 sm:text-sm"
                   style={{
                     backgroundColor:
                       currentPage === page
@@ -290,7 +298,10 @@ export default function AdminDataTable<T extends { id: string }>({
                 </motion.button>
               ))}
             </div>
-            <div className="sm:hidden text-xs sm:text-sm font-bold px-2" style={{ color: cssVars.primary.DEFAULT }}>
+            <div
+              className="px-2 text-xs font-bold sm:hidden sm:text-sm"
+              style={{ color: cssVars.primary.DEFAULT }}
+            >
               {currentPage} / {totalPages}
             </div>
 
@@ -299,12 +310,15 @@ export default function AdminDataTable<T extends { id: string }>({
               whileTap={{ scale: 0.95 }}
               onClick={() => setCurrentPage((p) => Math.min(totalPages, p + 1))}
               disabled={currentPage === totalPages}
-              className="flex h-11 w-11 sm:h-10 sm:w-10 items-center justify-center rounded-xl transition-all disabled:opacity-50 touch-manipulation active:scale-95"
+              className="flex h-11 w-11 touch-manipulation items-center justify-center rounded-xl transition-all active:scale-95 disabled:opacity-50 sm:h-10 sm:w-10"
               style={{
                 backgroundColor: `color-mix(in srgb, ${cssVars.primary.DEFAULT} 10%, transparent)`,
               }}
             >
-              <ChevronLeft className="h-5 w-5 sm:h-5 sm:w-5" style={{ color: cssVars.primary.DEFAULT }} />
+              <ChevronLeft
+                className="h-5 w-5 sm:h-5 sm:w-5"
+                style={{ color: cssVars.primary.DEFAULT }}
+              />
             </motion.button>
           </div>
         </div>

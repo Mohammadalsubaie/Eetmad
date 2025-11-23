@@ -92,7 +92,11 @@ export function Header() {
           </Link>
 
           {/* Desktop Navigation */}
-          <nav role="navigation" aria-label={t('mainNavigation')} className="hidden items-center gap-1 lg:flex">
+          <nav
+            role="navigation"
+            aria-label={t('mainNavigation')}
+            className="hidden items-center gap-1 lg:flex"
+          >
             {navItems
               .filter((item) => !item.disabled)
               .map((item) => {
@@ -130,7 +134,11 @@ export function Header() {
               }}
               aria-label={t('notifications')}
             >
-              <Bell className="h-5 w-5" style={{ color: cssVars.neutral.textMuted }} aria-hidden="true" />
+              <Bell
+                className="h-5 w-5"
+                style={{ color: cssVars.neutral.textMuted }}
+                aria-hidden="true"
+              />
               {hasNotifications && (
                 <span
                   className="absolute end-2 top-2 h-2 w-2 animate-pulse rounded-full"
@@ -160,7 +168,7 @@ export function Header() {
             <LanguageSwitcher />
             <button
               onClick={() => setShowMobileMenu(!showMobileMenu)}
-              className="rounded-xl p-3 min-h-[44px] min-w-[44px]"
+              className="min-h-[44px] min-w-[44px] rounded-xl p-3"
               style={{
                 backgroundColor: `color-mix(in srgb, ${cssVars.neutral.textMuted} 15%, transparent)`,
               }}
@@ -169,9 +177,17 @@ export function Header() {
               aria-controls="mobile-menu"
             >
               {showMobileMenu ? (
-                <X className="h-6 w-6" style={{ color: cssVars.neutral.textMuted }} aria-hidden="true" />
+                <X
+                  className="h-6 w-6"
+                  style={{ color: cssVars.neutral.textMuted }}
+                  aria-hidden="true"
+                />
               ) : (
-                <Menu className="h-6 w-6" style={{ color: cssVars.neutral.textMuted }} aria-hidden="true" />
+                <Menu
+                  className="h-6 w-6"
+                  style={{ color: cssVars.neutral.textMuted }}
+                  aria-hidden="true"
+                />
               )}
             </button>
           </div>
@@ -201,7 +217,7 @@ export function Header() {
                   return (
                     <Link key={item.key} href={item.href}>
                       <button
-                        className="w-full rounded-xl px-4 py-3 text-start font-semibold transition-all hover:bg-opacity-10 min-h-[44px]"
+                        className="min-h-[44px] w-full rounded-xl px-4 py-3 text-start font-semibold transition-all hover:bg-opacity-10"
                         style={{
                           color: active
                             ? cssVars.accent.warm
@@ -225,7 +241,7 @@ export function Header() {
 
               <Link href="/login">
                 <button
-                  className="flex w-full items-center gap-3 rounded-xl px-4 py-3 font-bold shadow-lg transition-all min-h-[44px]"
+                  className="flex min-h-[44px] w-full items-center gap-3 rounded-xl px-4 py-3 font-bold shadow-lg transition-all"
                   style={{
                     background: cssVars.gradient.gold,
                     color: cssVars.secondary.DEFAULT,

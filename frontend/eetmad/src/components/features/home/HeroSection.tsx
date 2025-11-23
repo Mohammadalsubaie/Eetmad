@@ -62,10 +62,10 @@ const HeroSection: React.FC = () => {
             {/* Main Heading */}
             <h1
               className="mb-6 text-4xl font-bold leading-tight lg:text-3xl xl:text-5xl"
-              style={{ 
-                color: isDark 
-                  ? cssVars.neutral.darker  // في Dark Mode: #f0f5f4 (فاتح جداً) على primary (فاتح قليلاً)
-                  : cssVars.neutral.bg  // في Light Mode: #faf8f1 (فاتح) على primary (داكن)
+              style={{
+                color: isDark
+                  ? cssVars.neutral.darker // في Dark Mode: #f0f5f4 (فاتح جداً) على primary (فاتح قليلاً)
+                  : cssVars.neutral.bg, // في Light Mode: #faf8f1 (فاتح) على primary (داكن)
               }}
             >
               {t('title')} <span style={{ color: cssVars.accent.warm }}>{t('titleHighlight')}</span>{' '}
@@ -75,10 +75,10 @@ const HeroSection: React.FC = () => {
             {/* Subtitle */}
             <p
               className="mb-10 text-xl leading-relaxed lg:text-2xl"
-              style={{ 
-                color: isDark 
-                  ? cssVars.neutral.darker  // في Dark Mode: #f0f5f4 (فاتح جداً) على primary (فاتح قليلاً)
-                  : cssVars.neutral.bg  // في Light Mode: #faf8f1 (فاتح) على primary (داكن)
+              style={{
+                color: isDark
+                  ? cssVars.neutral.darker // في Dark Mode: #f0f5f4 (فاتح جداً) على primary (فاتح قليلاً)
+                  : cssVars.neutral.bg, // في Light Mode: #faf8f1 (فاتح) على primary (داكن)
               }}
             >
               {t('subtitle')}

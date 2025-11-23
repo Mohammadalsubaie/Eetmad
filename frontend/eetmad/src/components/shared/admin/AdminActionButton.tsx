@@ -56,11 +56,11 @@ export default function AdminActionButton({
       whileTap={{ scale: disabled ? 1 : 0.98 }}
       onClick={onClick}
       disabled={disabled}
-      className={`flex items-center justify-center gap-2 sm:gap-2.5 rounded-xl font-bold shadow-md transition-all disabled:cursor-not-allowed disabled:opacity-50 whitespace-nowrap active:shadow-sm touch-manipulation ${sizeStyles[size]}`}
+      className={`flex touch-manipulation items-center justify-center gap-2 whitespace-nowrap rounded-xl font-bold shadow-md transition-all active:shadow-sm disabled:cursor-not-allowed disabled:opacity-50 sm:gap-2.5 ${sizeStyles[size]}`}
       style={variantStyles[variant]}
       title={label}
     >
-      {Icon && <Icon className="h-5 w-5 sm:h-5 sm:w-5 flex-shrink-0" />}
+      {Icon && <Icon className="h-5 w-5 flex-shrink-0 sm:h-5 sm:w-5" />}
       <span className="hidden min-[380px]:inline">{label}</span>
     </motion.button>
   );

@@ -63,30 +63,33 @@ export default function AdminUserDetailPage() {
         className="mb-6"
       />
       {/* Header */}
-      <div className="mb-4 sm:mb-6 flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4">
+      <div className="mb-4 flex flex-col gap-2 sm:mb-6 sm:flex-row sm:items-center sm:gap-4">
         <motion.button
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
           onClick={() => router.back()}
-          className="rounded-xl p-2 transition-all flex-shrink-0 self-start"
+          className="flex-shrink-0 self-start rounded-xl p-2 transition-all"
           style={{
             backgroundColor: `color-mix(in srgb, ${cssVars.neutral.border} 30%, transparent)`,
           }}
         >
-          <ArrowLeft className="h-4 w-4 sm:h-5 sm:w-5" style={{ color: cssVars.neutral.textSecondary }} />
+          <ArrowLeft
+            className="h-4 w-4 sm:h-5 sm:w-5"
+            style={{ color: cssVars.neutral.textSecondary }}
+          />
         </motion.button>
-        <div className="flex-1 min-w-0">
+        <div className="min-w-0 flex-1">
           <AdminPageHeader
             title={user.fullName}
             description={t('users.detail.description')}
             icon={UserIcon}
             action={
-              <div className="flex flex-wrap gap-2 sm:gap-3 mt-4 sm:mt-0">
+              <div className="mt-4 flex flex-wrap gap-2 sm:mt-0 sm:gap-3">
                 <motion.button
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                   onClick={handleSuspend}
-                  className="flex items-center gap-2 rounded-xl px-3 sm:px-4 py-2 text-sm sm:text-base font-semibold transition-all w-full sm:w-auto justify-center"
+                  className="flex w-full items-center justify-center gap-2 rounded-xl px-3 py-2 text-sm font-semibold transition-all sm:w-auto sm:px-4 sm:text-base"
                   style={{
                     backgroundColor: `color-mix(in srgb, ${cssVars.status.warning} 10%, transparent)`,
                     color: cssVars.status.warning,
@@ -99,7 +102,7 @@ export default function AdminUserDetailPage() {
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                   onClick={handleBan}
-                  className="flex items-center gap-2 rounded-xl px-3 sm:px-4 py-2 text-sm sm:text-base font-semibold transition-all w-full sm:w-auto justify-center"
+                  className="flex w-full items-center justify-center gap-2 rounded-xl px-3 py-2 text-sm font-semibold transition-all sm:w-auto sm:px-4 sm:text-base"
                   style={{
                     backgroundColor: `color-mix(in srgb, ${cssVars.status.error} 10%, transparent)`,
                     color: cssVars.status.error,

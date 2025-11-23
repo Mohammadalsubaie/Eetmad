@@ -88,10 +88,10 @@ export default function GettingStartedSection() {
                   <div>
                     <p
                       className="text-xs font-bold uppercase tracking-[0.3em]"
-                      style={{ 
-                        color: isDark 
-                          ? cssVars.primary.darker  // في Dark Mode: #a4c5ca (فاتح) على #242929 (داكن)
-                          : cssVars.primary.DEFAULT  // في Light Mode: #34656d (داكن) على #ffffff (فاتح)
+                      style={{
+                        color: isDark
+                          ? cssVars.primary.darker // في Dark Mode: #a4c5ca (فاتح) على #242929 (داكن)
+                          : cssVars.primary.DEFAULT, // في Light Mode: #34656d (داكن) على #ffffff (فاتح)
                       }}
                     >
                       {t(`cards.${card.key}.tagline`)}
@@ -109,17 +109,15 @@ export default function GettingStartedSection() {
                   style={{
                     backgroundColor: `color-mix(in srgb, ${cssVars.primary.DEFAULT} 15%, transparent)`,
                     borderColor: cssVars.primary.DEFAULT,
-                    color: isDark 
-                      ? cssVars.primary.darker  // في Dark Mode: #a4c5ca (فاتح) على خلفية داكنة
-                      : cssVars.primary.DEFAULT,  // في Light Mode: #34656d (داكن) على خلفية فاتحة
+                    color: isDark
+                      ? cssVars.primary.darker // في Dark Mode: #a4c5ca (فاتح) على خلفية داكنة
+                      : cssVars.primary.DEFAULT, // في Light Mode: #34656d (داكن) على خلفية فاتحة
                   }}
                 >
                   <div
                     className="h-2 w-2 animate-pulse rounded-full"
-                    style={{ 
-                      backgroundColor: isDark 
-                        ? cssVars.primary.darker 
-                        : cssVars.primary.DEFAULT 
+                    style={{
+                      backgroundColor: isDark ? cssVars.primary.darker : cssVars.primary.DEFAULT,
                     }}
                   />
                   {t(`cards.${card.key}.badge`)}

@@ -86,9 +86,11 @@ export default function FAQSection() {
                         backgroundColor: isActive
                           ? cssVars.primary.DEFAULT
                           : cssVars.neutral.surfaceAlt,
-                        color: isActive 
-                          ? cssVars.neutral.bg 
-                          : (isDark ? cssVars.primary.darker : cssVars.primary.DEFAULT),  // في Dark Mode: #a4c5ca على #2d3433
+                        color: isActive
+                          ? cssVars.neutral.bg
+                          : isDark
+                            ? cssVars.primary.darker
+                            : cssVars.primary.DEFAULT, // في Dark Mode: #a4c5ca على #2d3433
                       }}
                     >
                       {index + 1}
@@ -97,8 +99,10 @@ export default function FAQSection() {
                       <p
                         className="mb-1 text-xl font-bold transition-colors duration-300"
                         style={{
-                          color: isActive 
-                            ? (isDark ? cssVars.primary.darker : cssVars.primary.DEFAULT)  // في Dark Mode: #a4c5ca على خلفية داكنة
+                          color: isActive
+                            ? isDark
+                              ? cssVars.primary.darker
+                              : cssVars.primary.DEFAULT // في Dark Mode: #a4c5ca على خلفية داكنة
                             : cssVars.secondary.DEFAULT,
                         }}
                       >
@@ -120,13 +124,13 @@ export default function FAQSection() {
                     {isActive ? (
                       <ChevronUp className="h-5 w-5" style={{ color: cssVars.neutral.bg }} />
                     ) : (
-                      <ChevronDown 
-                        className="h-5 w-5" 
-                        style={{ 
-                          color: isDark 
-                            ? cssVars.primary.darker  // في Dark Mode: #a4c5ca على #2d3433
-                            : cssVars.primary.DEFAULT 
-                        }} 
+                      <ChevronDown
+                        className="h-5 w-5"
+                        style={{
+                          color: isDark
+                            ? cssVars.primary.darker // في Dark Mode: #a4c5ca على #2d3433
+                            : cssVars.primary.DEFAULT,
+                        }}
                       />
                     )}
                   </div>

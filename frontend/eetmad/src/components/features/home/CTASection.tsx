@@ -46,12 +46,12 @@ const CTASection: React.FC = () => {
               <FileText className="h-12 w-12" style={{ color: cssVars.secondary.DEFAULT }} />
             </div>
 
-            <h2 
-              className="mb-6 text-5xl font-bold" 
-              style={{ 
-                color: isDark 
-                  ? cssVars.neutral.darker  // في Dark Mode: #f0f5f4 (فاتح جداً) على gradient.cta (فاتح قليلاً)
-                  : cssVars.neutral.bg  // في Light Mode: #faf8f1 (فاتح) على gradient.cta (داكن)
+            <h2
+              className="mb-6 text-5xl font-bold"
+              style={{
+                color: isDark
+                  ? cssVars.neutral.darker // في Dark Mode: #f0f5f4 (فاتح جداً) على gradient.cta (فاتح قليلاً)
+                  : cssVars.neutral.bg, // في Light Mode: #faf8f1 (فاتح) على gradient.cta (داكن)
               }}
             >
               {t('title')}

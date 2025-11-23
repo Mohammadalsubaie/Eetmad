@@ -64,19 +64,22 @@ export default function CategoryDetailPage() {
   return (
     <div>
       {/* Header */}
-      <div className="mb-4 sm:mb-6 flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4">
+      <div className="mb-4 flex flex-col gap-2 sm:mb-6 sm:flex-row sm:items-center sm:gap-4">
         <motion.button
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
           onClick={() => router.back()}
-          className="rounded-xl p-2 transition-all flex-shrink-0 self-start"
+          className="flex-shrink-0 self-start rounded-xl p-2 transition-all"
           style={{
             backgroundColor: `color-mix(in srgb, ${cssVars.neutral.border} 30%, transparent)`,
           }}
         >
-          <ArrowLeft className="h-4 w-4 sm:h-5 sm:w-5" style={{ color: cssVars.neutral.textSecondary }} />
+          <ArrowLeft
+            className="h-4 w-4 sm:h-5 sm:w-5"
+            style={{ color: cssVars.neutral.textSecondary }}
+          />
         </motion.button>
-        <div className="flex-1 min-w-0">
+        <div className="min-w-0 flex-1">
           <AdminPageHeader
             title={category.nameAr}
             description={category.nameEn}

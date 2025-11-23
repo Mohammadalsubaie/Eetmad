@@ -300,6 +300,7 @@ export function useSupplierStatistics() {
     completedProjects?: number;
     activeProjects?: number;
     totalRevenue?: number;
+    totalEarnings?: number;
     averageRating?: number;
     totalReviews?: number;
   } | null>(null);

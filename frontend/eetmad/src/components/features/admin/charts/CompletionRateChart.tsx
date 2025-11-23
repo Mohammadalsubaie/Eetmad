@@ -17,19 +17,24 @@ const DEFAULT_COLORS = [
 interface CustomTooltipProps {
   active?: boolean;
   payload?: Array<{
+    name?: string;
     value?: number;
-    payload?: { value?: number };
+    color?: string;
+    payload?: { value?: number; color?: string };
   }>;
 }
 
 const CustomTooltip = ({ active, payload }: CustomTooltipProps) => {
   if (active && payload && payload.length) {
     const data = payload[0];
+    const color = data.payload?.color || data.color || DEFAULT_COLORS[0];
+    const name = data.name || '';
+    const value = data.value ?? 0;
     return (
       <div
         style={{
           backgroundColor: cssVars.neutral.surface,
-          border: `2px solid ${data.payload.color || data.color}`,
+          border: `2px solid ${color}`,
           borderRadius: '12px',
           padding: '12px 16px',
           boxShadow: `0 4px 12px color-mix(in srgb, ${cssVars.neutral.darker} 15%, transparent)`,
@@ -51,21 +56,21 @@ const CustomTooltip = ({ active, payload }: CustomTooltipProps) => {
               display: 'inline-block',
               width: '12px',
               height: '12px',
-              backgroundColor: data.payload.color || data.color,
+              backgroundColor: color,
               borderRadius: '50%',
             }}
           />
-          {data.name}
+          {name}
         </p>
         <p
           style={{
-            color: data.payload.color || data.color,
+            color: color,
             fontSize: '18px',
             fontWeight: 'bold',
             margin: '4px 0',
           }}
         >
-          {data.value.toFixed(1)}%
+          {value.toFixed(1)}%
         </p>
       </div>
     );

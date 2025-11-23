@@ -456,7 +456,9 @@ export default function FocusedTestSuite() {
                                 : cssVars.neutral.border,
                           }}
                         >
-                          <Icon className="mb-1 h-5 w-5" style={{ color: template.color }} />
+                          <div style={{ color: template.color }}>
+                            <Icon className="mb-1 h-5 w-5" />
+                          </div>
                           <div
                             className="text-xs font-medium"
                             style={{ color: cssVars.neutral.DEFAULT }}

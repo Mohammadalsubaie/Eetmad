@@ -1,10 +1,13 @@
 'use client';
 
 import { useTranslations } from 'next-intl';
-import { useNotifications, useUnreadNotifications } from '@/lib/hooks/useNotifications';
+import {
+  useNotifications,
+  useUnreadNotifications,
+  useMarkAsRead,
+} from '@/lib/hooks/useNotifications';
 import NotificationCard from './NotificationCard';
 import { EmptyState, LoadingSpinner, ErrorMessage } from '@/components/ui';
-import { useMarkAsRead, useDeleteNotification } from '@/lib/hooks/useNotifications';
 
 interface NotificationsListProps {
   showUnreadOnly?: boolean;
@@ -34,16 +37,9 @@ export default function NotificationsList({
   const isLoading = showUnreadOnly ? isLoadingUnread : isLoadingAll;
   const error = showUnreadOnly ? errorUnread : errorAll;
   const { mutate: markAsRead } = useMarkAsRead();
-  const { mutate: deleteNotification } = useDeleteNotification();
 
   const handleMarkAsRead = (id: string) => {
     markAsRead(id);
-  };
-
-  const handleDelete = (id: string) => {
-    if (confirm(t('confirmDelete'))) {
-      deleteNotification(id);
-    }
   };
 
   if (isLoading) {
@@ -69,7 +65,6 @@ export default function NotificationsList({
             key={notification.id}
             notification={notification}
             onMarkAsRead={handleMarkAsRead}
-            onDelete={handleDelete}
           />
         ))
       )}

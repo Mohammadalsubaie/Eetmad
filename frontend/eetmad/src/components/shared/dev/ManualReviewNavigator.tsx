@@ -1,5 +1,18 @@
 'use client';
 
+import { mockCategories } from '@/mocks/data/categories';
+import { mockContracts } from '@/mocks/data/contracts';
+import { mockDisputes } from '@/mocks/data/disputes';
+import { mockConversations } from '@/mocks/data/messages';
+import { mockMilestones } from '@/mocks/data/milestones';
+import { mockNotifications } from '@/mocks/data/notifications';
+import { mockOffers } from '@/mocks/data/offers';
+import { mockPayments } from '@/mocks/data/payments';
+import { mockProjects } from '@/mocks/data/projects';
+import { mockRequests } from '@/mocks/data/requests';
+import { mockReviews } from '@/mocks/data/reviews';
+import { mockSuppliers } from '@/mocks/data/suppliers';
+import { mockUsers } from '@/mocks/data/users';
 import { cssVars } from '@/styles/theme';
 import {
   AlertCircle,
@@ -193,27 +206,27 @@ const ALL_PAGES: PageRoute[] = [
 const STORAGE_KEY = 'manual-review-sessions';
 const CURRENT_SESSION_KEY = 'manual-review-current-session';
 
-// Mock data IDs for dynamic routes
+// Mock data IDs for dynamic routes - extracted from actual mock data
 const MOCK_IDS: Record<string, string> = {
-  '[slug]': 'tech-solutions',
-  '[id]': '1',
-  'notifications/[id]': 'notif-1',
-  'messages/[id]': 'conv-1',
-  'contracts/[id]': 'contract-1',
-  'projects/[id]': '1',
-  'milestones/[id]': 'milestone-1',
-  'reviews/[id]': 'review-1',
-  'disputes/[id]': 'dispute-1',
-  'payments/[id]': 'payment-1',
-  'requests/[id]': '1',
-  'offers/[id]': 'offer-1',
-  'suppliers/[id]': '1',
-  'users/[id]': '1',
-  'admin/categories/[id]': '1',
-  'admin/users/[id]': '1',
-  'admin/disputes/[id]': 'dispute-1',
-  'admin/payments/[id]': 'payment-1',
-  'admin/reviews/[id]': 'review-1',
+  '[slug]': mockCategories[0]?.slug || 'tech-solutions',
+  '[id]': mockProjects[0]?.id || '1',
+  'notifications/[id]': mockNotifications[0]?.id || 'notif-1',
+  'messages/[id]': mockConversations[0]?.id || 'conv-1',
+  'contracts/[id]': mockContracts[0]?.id || 'contract-1',
+  'projects/[id]': mockProjects[0]?.id || '1',
+  'milestones/[id]': mockMilestones[0]?.id || 'milestone-1',
+  'reviews/[id]': mockReviews[0]?.id || 'review-1',
+  'disputes/[id]': mockDisputes[0]?.id || 'dispute-1',
+  'payments/[id]': mockPayments[0]?.id || 'payment-1',
+  'requests/[id]': mockRequests[0]?.id || '1',
+  'offers/[id]': mockOffers[0]?.id || 'offer-1',
+  'suppliers/[id]': mockSuppliers[0]?.id || '1',
+  'users/[id]': mockUsers[0]?.id || '1',
+  'admin/categories/[id]': mockCategories[0]?.id || '1',
+  'admin/users/[id]': mockUsers[0]?.id || '1',
+  'admin/disputes/[id]': mockDisputes[0]?.id || 'dispute-1',
+  'admin/payments/[id]': mockPayments[0]?.id || 'payment-1',
+  'admin/reviews/[id]': mockReviews[0]?.id || 'review-1',
 };
 
 const STATUS_OPTIONS: {

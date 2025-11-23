@@ -1,5 +1,4 @@
 import ManualReviewNavigator from '@/components/shared/dev/ManualReviewNavigator';
-import PageNavigator from '@/components/shared/dev/PageNavigator';
 import ThemeSwitcher from '@/components/shared/dev/ThemeSwitcher';
 import { Footer } from '@/components/shared/layouts/Footer';
 import { Header } from '@/components/shared/layouts/Header';
@@ -60,10 +59,13 @@ export default async function LocaleLayout({
             {children}
           </main>
           <Footer />
-          {/* Developer Tools - Only in development mode */}
-          <PageNavigator />
-          <ManualReviewNavigator />
-          <ThemeSwitcher />
+
+          {process.env.NODE_ENV === 'production' && (
+            <>
+              <ManualReviewNavigator />
+              <ThemeSwitcher />
+            </>
+          )}
         </div>
       </MSWProvider>
     </NextIntlClientProvider>

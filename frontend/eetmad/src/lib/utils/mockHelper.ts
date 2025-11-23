@@ -7,7 +7,7 @@ export const shouldUseMocks = (): boolean => {
   const isDemo = process.env.NEXT_PUBLIC_ENV === 'demo';
   const useMocksEnabled = process.env.NEXT_PUBLIC_USE_MOCKS === 'true';
   const isDevelopment = process.env.NODE_ENV === 'development';
-  
+
   if (typeof window === 'undefined') {
     // Server-side: check env vars
     return isDevelopment || isDemo || useMocksEnabled;

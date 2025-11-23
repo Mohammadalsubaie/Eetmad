@@ -1,4 +1,3 @@
-import apiClient from './client';
 import type { QueryParams } from '@/lib/types/common.types';
 import type {
   Contract,
@@ -7,6 +6,7 @@ import type {
 } from '@/lib/types/contract.types';
 import { mockContracts } from '@/mocks/data/contracts';
 import { USE_MOCKS } from './_mockHelper';
+import apiClient from './client';
 
 export const contractsApi = {
   // Get all contracts

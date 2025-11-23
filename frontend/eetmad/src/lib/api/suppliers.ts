@@ -7,6 +7,7 @@ import type {
 } from '@/lib/types/supplier.types';
 import { mockSuppliers } from '@/mocks/data/suppliers';
 import apiClient from './client';
+import { USE_MOCKS } from './_mockHelper';
 
 // Re-export types for convenience
 export type {
@@ -49,9 +50,6 @@ export interface CertificationData {
   fileUrl: string;
   certificateNumber?: string;
 }
-
-const USE_MOCKS =
-  process.env.NEXT_PUBLIC_USE_MOCKS === 'true' || process.env.NODE_ENV === 'development';
 
 export const suppliersApi = {
   // Supplier Management

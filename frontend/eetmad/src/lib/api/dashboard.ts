@@ -1,4 +1,5 @@
 import apiClient from './client';
+import { USE_MOCKS } from './_mockHelper';
 
 export interface DashboardOverview {
   totalRequests: number;
@@ -44,8 +45,6 @@ export interface RecentActivity {
   timestamp: string;
   link?: string;
 }
-
-const USE_MOCKS = process.env.NEXT_PUBLIC_USE_MOCKS === 'true';
 
 // Mock data
 const mockOverview: DashboardOverview = {

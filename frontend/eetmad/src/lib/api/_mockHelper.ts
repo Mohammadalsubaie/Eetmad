@@ -1,9 +1,12 @@
 /**
  * Helper to check if we should use mock data
  * This is used across all API files
+ * Works in all environments: development, demo, and production when enabled
  */
 export const USE_MOCKS =
-  process.env.NEXT_PUBLIC_USE_MOCKS === 'true' || process.env.NODE_ENV === 'development';
+  process.env.NEXT_PUBLIC_USE_MOCKS === 'true' ||
+  process.env.NEXT_PUBLIC_ENV === 'demo' ||
+  process.env.NODE_ENV === 'development';
 
 export const useMockData = <T>(mockData: T, apiCall: () => Promise<T>): Promise<T> => {
   if (USE_MOCKS) {

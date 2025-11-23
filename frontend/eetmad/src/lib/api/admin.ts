@@ -10,8 +10,7 @@ import type { Dispute } from '@/lib/types/dispute.types';
 import type { Report } from '@/lib/types/report.types';
 import type { VerificationDocument } from '@/lib/types/verification.types';
 import type { AnalyticsData } from '@/mocks/data/analytics';
-
-const USE_MOCKS = process.env.NEXT_PUBLIC_USE_MOCKS === 'true';
+import { USE_MOCKS } from './_mockHelper';
 
 export const adminApi = {
   getUsers: async (params?: QueryParams) => {

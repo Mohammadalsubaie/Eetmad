@@ -7,9 +7,7 @@ import type {
 } from '@/lib/types/review.types';
 import { mockReviews } from '@/mocks/data/reviews';
 import apiClient from './client';
-
-const USE_MOCKS =
-  process.env.NEXT_PUBLIC_USE_MOCKS === 'true' || process.env.NODE_ENV === 'development';
+import { USE_MOCKS } from './_mockHelper';
 
 export const reviewsApi = {
   // Get all reviews

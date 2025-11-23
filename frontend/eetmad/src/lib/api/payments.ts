@@ -5,14 +5,11 @@ import type {
   Wallet,
   WalletTransaction,
   Refund,
-  CreatePaymentInput,
   InitiatePaymentInput,
   RefundRequestInput,
 } from '@/lib/types/payment.types';
 import { mockPayments, mockWallet, mockWalletTransactions } from '@/mocks/data/payments';
-
-const USE_MOCKS =
-  process.env.NEXT_PUBLIC_USE_MOCKS === 'true' || process.env.NODE_ENV === 'development';
+import { USE_MOCKS } from './_mockHelper';
 
 export const paymentsApi = {
   // Get all payments

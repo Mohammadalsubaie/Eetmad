@@ -1,11 +1,8 @@
 import type { QueryParams } from '@/lib/types/common.types';
-import type { CreateRequestInput, UpdateRequestInput, Request } from '@/lib/types/request.types';
+import type { CreateRequestInput, Request, UpdateRequestInput } from '@/lib/types/request.types';
 import { mockRequests } from '@/mocks/data/requests';
+import { USE_MOCKS } from './_mockHelper';
 import apiClient from './client';
-import { shouldUseMocks } from '@/lib/utils/mockHelper';
-
-const USE_MOCKS =
-  process.env.NEXT_PUBLIC_USE_MOCKS === 'true' || process.env.NODE_ENV === 'development';
 
 export const requestsApi = {
   // Request Management

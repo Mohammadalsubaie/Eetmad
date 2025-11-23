@@ -2,9 +2,7 @@ import apiClient from './client';
 import type { QueryParams } from '@/lib/types/common.types';
 import type { Project, ProjectMilestone } from '@/lib/types/project.types';
 import { mockProjects } from '@/mocks/data/projects';
-
-const USE_MOCKS =
-  process.env.NEXT_PUBLIC_USE_MOCKS === 'true' || process.env.NODE_ENV === 'development';
+import { USE_MOCKS } from './_mockHelper';
 
 export const projectsApi = {
   // Get all projects

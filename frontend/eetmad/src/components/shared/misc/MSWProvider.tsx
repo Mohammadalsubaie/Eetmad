@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react';
 
 /**
- * MSW Provider - Initializes MSW worker in development mode
+ * MSW Provider - Initializes MSW worker in development, demo, and production mode
  * This component should be added to the root layout
  */
 export function MSWProvider({ children }: { children: React.ReactNode }) {
@@ -11,10 +11,15 @@ export function MSWProvider({ children }: { children: React.ReactNode }) {
 
   useEffect(() => {
     const initMsw = async () => {
-      // Only initialize MSW in development mode and if USE_MOCKS is enabled
+      // Initialize MSW when enabled via environment variables
+      // Works in all environments: development, demo, and production
+      // MSW only works in the browser (client-side)
+      const isDemo = process.env.NEXT_PUBLIC_ENV === 'demo';
+      const useMocksEnabled = process.env.NEXT_PUBLIC_USE_MOCKS === 'true';
+      const isDevelopment = process.env.NODE_ENV === 'development';
+
       const shouldUseMocks =
-        process.env.NODE_ENV === 'development' &&
-        (process.env.NEXT_PUBLIC_USE_MOCKS === 'true' || typeof window !== 'undefined');
+        typeof window !== 'undefined' && (isDevelopment || isDemo || useMocksEnabled);
 
       if (shouldUseMocks) {
         try {
@@ -39,8 +44,8 @@ export function MSWProvider({ children }: { children: React.ReactNode }) {
     initMsw();
   }, []);
 
-  // Don't render children until MSW is ready (in development)
-  if (!mswReady && process.env.NODE_ENV === 'development') {
+  // Don't render children until MSW is ready
+  if (!mswReady) {
     return null;
   }
 

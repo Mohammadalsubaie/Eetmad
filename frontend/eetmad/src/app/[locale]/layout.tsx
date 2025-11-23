@@ -60,12 +60,8 @@ export default async function LocaleLayout({
           </main>
           <Footer />
 
-          {process.env.NODE_ENV === 'production' && (
-            <>
-              <ManualReviewNavigator />
-              <ThemeSwitcher />
-            </>
-          )}
+          <ManualReviewNavigator />
+          <ThemeSwitcher />
         </div>
       </MSWProvider>
     </NextIntlClientProvider>

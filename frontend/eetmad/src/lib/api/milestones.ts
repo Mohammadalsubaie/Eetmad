@@ -2,9 +2,7 @@ import apiClient from './client';
 import type { ProjectMilestone } from '@/lib/types/project.types';
 import type { QueryParams } from '@/lib/types/common.types';
 import { mockMilestones } from '@/mocks/data/milestones';
-
-const USE_MOCKS =
-  process.env.NEXT_PUBLIC_USE_MOCKS === 'true' || process.env.NODE_ENV === 'development';
+import { USE_MOCKS } from './_mockHelper';
 
 export interface CreateMilestoneInput {
   projectId: string;

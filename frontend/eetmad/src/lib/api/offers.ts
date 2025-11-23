@@ -2,9 +2,7 @@ import type { QueryParams } from '@/lib/types/common.types';
 import type { CreateOfferInput, UpdateOfferInput, Offer } from '@/lib/types/offer.types';
 import { mockOffers } from '@/mocks/data/offers';
 import apiClient from './client';
-
-const USE_MOCKS =
-  process.env.NEXT_PUBLIC_USE_MOCKS === 'true' || process.env.NODE_ENV === 'development';
+import { USE_MOCKS } from './_mockHelper';
 
 export const offersApi = {
   // Offer Management

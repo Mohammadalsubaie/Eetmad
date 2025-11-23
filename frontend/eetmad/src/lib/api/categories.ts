@@ -6,9 +6,7 @@ import type {
   Category,
   CategoryTree,
 } from '@/lib/types/category.types';
-
-const USE_MOCKS =
-  process.env.NEXT_PUBLIC_USE_MOCKS === 'true' || process.env.NODE_ENV === 'development';
+import { USE_MOCKS } from './_mockHelper';
 
 export const categoriesApi = {
   getAll: async (): Promise<Category[]> => {

@@ -7,9 +7,7 @@ import type {
 } from '@/lib/types/message.types';
 import type { QueryParams } from '@/lib/types/common.types';
 import { mockConversations, mockMessages } from '@/mocks/data/messages';
-
-const USE_MOCKS =
-  process.env.NEXT_PUBLIC_USE_MOCKS === 'true' || process.env.NODE_ENV === 'development';
+import { USE_MOCKS } from './_mockHelper';
 
 export const messagesApi = {
   // Conversations

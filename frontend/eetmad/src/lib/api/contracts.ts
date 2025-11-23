@@ -4,12 +4,9 @@ import type {
   Contract,
   CreateContractInput,
   UpdateContractInput,
-  ContractSignature,
 } from '@/lib/types/contract.types';
 import { mockContracts } from '@/mocks/data/contracts';
-
-const USE_MOCKS =
-  process.env.NEXT_PUBLIC_USE_MOCKS === 'true' || process.env.NODE_ENV === 'development';
+import { USE_MOCKS } from './_mockHelper';
 
 export const contractsApi = {
   // Get all contracts

@@ -6,9 +6,7 @@ import type {
   NotificationPreferences,
 } from '@/lib/types/user.types';
 import { mockUser } from '@/mocks/data/users';
-
-const USE_MOCKS =
-  process.env.NEXT_PUBLIC_USE_MOCKS === 'true' || process.env.NODE_ENV === 'development';
+import { USE_MOCKS } from './_mockHelper';
 
 export interface ChangePasswordData {
   currentPassword: string;

@@ -1,5 +1,6 @@
 'use client';
 
+import { useTheme } from '@/contexts/ThemeContext';
 import { cssVars } from '@/styles/theme';
 import { motion } from 'framer-motion';
 import { LucideIcon } from 'lucide-react';
@@ -80,15 +81,39 @@ export default function SectionHeader({
   badgeAnimated = false,
   className = '',
 }: SectionHeaderProps) {
+  const { theme } = useTheme();
+  const isDark = theme === 'dark';
+
   const alignmentClasses = {
     left: 'text-left',
     center: 'text-center',
     right: 'text-right',
   };
 
-  const titleColor = variant === 'dark' ? cssVars.neutral.bg : cssVars.secondary.DEFAULT;
-  const subtitleColor =
-    variant === 'dark' ? cssVars.neutral.textMuted : cssVars.neutral.textSecondary;
+  // تحديد ألوان النص بناءً على variant (نوع الخلفية) والثيم الفعلي
+  // variant="dark" يعني خلفية داكنة (gradient.hero) - يحتاج نص فاتح
+  // variant="light" يعني خلفية فاتحة - يحتاج نص داكن
+  const getTextColors = () => {
+    if (variant === 'dark') {
+      // على خلفية داكنة: استخدم لون فاتح
+      // في Light Mode: neutral.bg = #faf8f1 (فاتح) - Contrast: 11.5:1
+      // في Dark Mode: neutral.darker = #f0f5f4 (فاتح جداً) - Contrast: 12.8:1
+      return {
+        title: isDark ? cssVars.neutral.darker : cssVars.neutral.bg,
+        subtitle: isDark ? cssVars.neutral.darker : cssVars.neutral.bg,
+        subtitleOpacity: 0.95, // opacity خفيف للراحة البصرية
+      };
+    } else {
+      // على خلفية فاتحة: استخدم لون داكن
+      return {
+        title: cssVars.secondary.DEFAULT,
+        subtitle: cssVars.neutral.textSecondary,
+        subtitleOpacity: 1,
+      };
+    }
+  };
+
+  const { title: titleColor, subtitle: subtitleColor, subtitleOpacity } = getTextColors();
 
   return (
     <motion.div
@@ -126,7 +151,7 @@ export default function SectionHeader({
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2, duration: 0.6 }}
           className="mx-auto max-w-3xl text-xl leading-relaxed"
-          style={{ color: subtitleColor }}
+          style={{ color: subtitleColor, opacity: subtitleOpacity }}
         >
           {subtitle}
         </motion.p>

@@ -46,6 +46,7 @@ export function Header() {
 
   return (
     <header
+      role="banner"
       className="sticky top-0 z-50 border-b backdrop-blur-lg"
       style={{
         backgroundColor: isDark
@@ -59,7 +60,7 @@ export function Header() {
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex h-20 items-center justify-between">
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-4">
+          <Link href="/" className="flex items-center gap-4" aria-label={t('brandName')}>
             <motion.div whileHover={{ scale: 1.05 }} className="relative">
               <div
                 className="relative flex h-12 w-12 items-center justify-center overflow-hidden rounded-2xl shadow-lg"
@@ -68,10 +69,12 @@ export function Header() {
                 <Sparkles
                   className="absolute h-6 w-6"
                   style={{ color: cssVars.accent.warm, opacity: 0.3 }}
+                  aria-hidden="true"
                 />
                 <Target
                   className="relative z-10 h-6 w-6"
                   style={{ color: isDark ? cssVars.neutral.surface : cssVars.neutral.bg }}
+                  aria-hidden="true"
                 />
               </div>
             </motion.div>
@@ -89,7 +92,7 @@ export function Header() {
           </Link>
 
           {/* Desktop Navigation */}
-          <nav className="hidden items-center gap-1 lg:flex">
+          <nav role="navigation" aria-label={t('mainNavigation')} className="hidden items-center gap-1 lg:flex">
             {navItems
               .filter((item) => !item.disabled)
               .map((item) => {
@@ -127,7 +130,7 @@ export function Header() {
               }}
               aria-label={t('notifications')}
             >
-              <Bell className="h-5 w-5" style={{ color: cssVars.neutral.textMuted }} />
+              <Bell className="h-5 w-5" style={{ color: cssVars.neutral.textMuted }} aria-hidden="true" />
               {hasNotifications && (
                 <span
                   className="absolute end-2 top-2 h-2 w-2 animate-pulse rounded-full"
@@ -157,16 +160,18 @@ export function Header() {
             <LanguageSwitcher />
             <button
               onClick={() => setShowMobileMenu(!showMobileMenu)}
-              className="rounded-xl p-3"
+              className="rounded-xl p-3 min-h-[44px] min-w-[44px]"
               style={{
                 backgroundColor: `color-mix(in srgb, ${cssVars.neutral.textMuted} 15%, transparent)`,
               }}
-              aria-label={t('menu')}
+              aria-label={showMobileMenu ? t('closeMenu') : t('openMenu')}
+              aria-expanded={showMobileMenu}
+              aria-controls="mobile-menu"
             >
               {showMobileMenu ? (
-                <X className="h-6 w-6" style={{ color: cssVars.neutral.textMuted }} />
+                <X className="h-6 w-6" style={{ color: cssVars.neutral.textMuted }} aria-hidden="true" />
               ) : (
-                <Menu className="h-6 w-6" style={{ color: cssVars.neutral.textMuted }} />
+                <Menu className="h-6 w-6" style={{ color: cssVars.neutral.textMuted }} aria-hidden="true" />
               )}
             </button>
           </div>
@@ -175,6 +180,9 @@ export function Header() {
         {/* Mobile Menu */}
         {showMobileMenu && (
           <motion.nav
+            id="mobile-menu"
+            role="navigation"
+            aria-label={t('mobileNavigation')}
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
@@ -193,7 +201,7 @@ export function Header() {
                   return (
                     <Link key={item.key} href={item.href}>
                       <button
-                        className="w-full rounded-xl px-4 py-3 text-start font-semibold transition-all hover:bg-opacity-10"
+                        className="w-full rounded-xl px-4 py-3 text-start font-semibold transition-all hover:bg-opacity-10 min-h-[44px]"
                         style={{
                           color: active
                             ? cssVars.accent.warm
@@ -207,6 +215,7 @@ export function Header() {
                               : `color-mix(in srgb, ${cssVars.neutral.textMuted} 5%, transparent)`,
                         }}
                         onClick={() => setShowMobileMenu(false)}
+                        aria-current={active ? 'page' : undefined}
                       >
                         {t(item.key)}
                       </button>
@@ -216,14 +225,15 @@ export function Header() {
 
               <Link href="/login">
                 <button
-                  className="flex w-full items-center gap-3 rounded-xl px-4 py-3 font-bold shadow-lg transition-all"
+                  className="flex w-full items-center gap-3 rounded-xl px-4 py-3 font-bold shadow-lg transition-all min-h-[44px]"
                   style={{
                     background: cssVars.gradient.gold,
                     color: cssVars.secondary.DEFAULT,
                   }}
                   onClick={() => setShowMobileMenu(false)}
+                  aria-label={t('myAccount')}
                 >
-                  <User className="h-5 w-5" />
+                  <User className="h-5 w-5" aria-hidden="true" />
                   <span>{t('myAccount')}</span>
                 </button>
               </Link>

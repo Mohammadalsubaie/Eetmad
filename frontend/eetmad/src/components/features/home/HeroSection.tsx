@@ -5,9 +5,12 @@ import { motion } from 'framer-motion';
 import { Activity, ArrowRight, Building2, DollarSign, Sparkles, TrendingUp } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 import React from 'react';
+import { useTheme } from '@/contexts/ThemeContext';
 
 const HeroSection: React.FC = () => {
   const t = useTranslations('home.hero');
+  const { theme } = useTheme();
+  const isDark = theme === 'dark';
 
   const stats = [
     { key: 'activeProjects', icon: Activity },
@@ -59,7 +62,11 @@ const HeroSection: React.FC = () => {
             {/* Main Heading */}
             <h1
               className="mb-6 text-4xl font-bold leading-tight lg:text-3xl xl:text-5xl"
-              style={{ color: cssVars.neutral.bg }}
+              style={{ 
+                color: isDark 
+                  ? cssVars.neutral.darker  // في Dark Mode: #f0f5f4 (فاتح جداً) على primary (فاتح قليلاً)
+                  : cssVars.neutral.bg  // في Light Mode: #faf8f1 (فاتح) على primary (داكن)
+              }}
             >
               {t('title')} <span style={{ color: cssVars.accent.warm }}>{t('titleHighlight')}</span>{' '}
               {t('titleEnd')}
@@ -68,7 +75,11 @@ const HeroSection: React.FC = () => {
             {/* Subtitle */}
             <p
               className="mb-10 text-xl leading-relaxed lg:text-2xl"
-              style={{ color: cssVars.accent.DEFAULT }}
+              style={{ 
+                color: isDark 
+                  ? cssVars.neutral.darker  // في Dark Mode: #f0f5f4 (فاتح جداً) على primary (فاتح قليلاً)
+                  : cssVars.neutral.bg  // في Light Mode: #faf8f1 (فاتح) على primary (داكن)
+              }}
             >
               {t('subtitle')}
             </p>
@@ -86,7 +97,7 @@ const HeroSection: React.FC = () => {
                   className="flex items-center gap-3 rounded-2xl px-10 py-4 text-lg font-bold shadow-2xl transition-all"
                   style={{
                     background: cssVars.gradient.gold,
-                    color: cssVars.primary.DEFAULT,
+                    color: cssVars.secondary.DEFAULT,
                   }}
                 >
                   {t('exploreButton')}

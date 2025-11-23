@@ -2,6 +2,7 @@
 
 'use client';
 
+import { animationDuration, easing, animationVariants } from '@/lib/theme/animation-standards';
 import { cn } from '@/lib/utils/cn';
 import { cssVars } from '@/styles/theme';
 import { motion } from 'framer-motion';
@@ -33,18 +34,34 @@ const LoadingSpinner: React.FC<LoadingSpinnerProps> = ({
   const spinner = (
     <motion.div
       className="flex flex-col items-center gap-3"
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 0.3 }}
+      initial={animationVariants.fadeIn.initial}
+      animate={animationVariants.fadeIn.animate}
+      transition={animationVariants.fadeIn.transition}
     >
-      <Loader2
-        className={cn('animate-spin', sizeStyles[size], className)}
-        style={{ color: cssVars.primary.DEFAULT }}
-      />
+      <motion.div
+        animate={{ rotate: 360 }}
+        transition={{
+          duration: 1,
+          repeat: Infinity,
+          ease: 'linear',
+        }}
+      >
+        <Loader2
+          className={cn(sizeStyles[size], className)}
+          style={{ color: cssVars.primary.DEFAULT }}
+          aria-hidden="true"
+        />
+      </motion.div>
       {text && (
-        <p className="text-sm" style={{ color: cssVars.neutral.textSecondary }}>
+        <motion.p
+          className="text-sm"
+          style={{ color: cssVars.neutral.textSecondary }}
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.1, duration: animationDuration.normal, ease: easing.easeOut }}
+        >
           {text}
-        </p>
+        </motion.p>
       )}
     </motion.div>
   );

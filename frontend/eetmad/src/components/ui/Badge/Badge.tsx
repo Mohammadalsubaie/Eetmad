@@ -1,4 +1,6 @@
+import { animationDuration, easing, hoverProps } from '@/lib/theme/animation-standards';
 import { cssVars } from '@/styles/theme';
+import { motion } from 'framer-motion';
 import { LucideIcon } from 'lucide-react';
 import React from 'react';
 
@@ -10,6 +12,8 @@ export interface BadgeProps {
   children: React.ReactNode;
   className?: string;
   style?: React.CSSProperties;
+  'aria-label'?: string;
+  role?: 'status' | 'alert';
 }
 
 const Badge: React.FC<BadgeProps> = ({
@@ -18,6 +22,9 @@ const Badge: React.FC<BadgeProps> = ({
   children,
   className = '',
   style,
+  'aria-label': ariaLabel,
+  role = variant === 'error' ? 'alert' : 'status',
+  ...props
 }) => {
   const baseStyles = 'inline-flex items-center gap-1.5 rounded-lg px-3 py-1.5 text-xs font-bold';
 
@@ -54,10 +61,26 @@ const Badge: React.FC<BadgeProps> = ({
   };
 
   return (
-    <div className={`${baseStyles} ${className}`} style={{ ...getVariantStyles(), ...style }}>
-      {Icon && <Icon className="h-3.5 w-3.5" />}
+    <motion.div
+      className={`${baseStyles} ${className}`}
+      style={{ ...getVariantStyles(), ...style }}
+      role={role}
+      aria-label={ariaLabel || (typeof children === 'string' ? children : undefined)}
+      whileHover={{ scale: 1.05 }}
+      whileTap={{ scale: 0.95 }}
+      transition={{ duration: animationDuration.fast, ease: easing.easeOut }}
+      {...props}
+    >
+      {Icon && (
+        <motion.span
+          animate={{ rotate: [0, 10, -10, 0] }}
+          transition={{ duration: 2, repeat: Infinity, repeatDelay: 3 }}
+        >
+          <Icon className="h-3.5 w-3.5" aria-hidden="true" />
+        </motion.span>
+      )}
       {children}
-    </div>
+    </motion.div>
   );
 };
 

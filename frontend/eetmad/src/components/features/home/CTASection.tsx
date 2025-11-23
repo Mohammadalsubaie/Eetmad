@@ -8,9 +8,12 @@ import { motion } from 'framer-motion';
 import { ArrowRight, FileText, Gift } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 import React from 'react';
+import { useTheme } from '@/contexts/ThemeContext';
 // test design
 const CTASection: React.FC = () => {
   const t = useTranslations('home.cta');
+  const { theme } = useTheme();
+  const isDark = theme === 'dark';
 
   return (
     <section
@@ -43,7 +46,14 @@ const CTASection: React.FC = () => {
               <FileText className="h-12 w-12" style={{ color: cssVars.secondary.DEFAULT }} />
             </div>
 
-            <h2 className="mb-6 text-5xl font-bold" style={{ color: cssVars.neutral.bg }}>
+            <h2 
+              className="mb-6 text-5xl font-bold" 
+              style={{ 
+                color: isDark 
+                  ? cssVars.neutral.darker  // في Dark Mode: #f0f5f4 (فاتح جداً) على gradient.cta (فاتح قليلاً)
+                  : cssVars.neutral.bg  // في Light Mode: #faf8f1 (فاتح) على gradient.cta (داكن)
+              }}
+            >
               {t('title')}
             </h2>
 
@@ -72,8 +82,8 @@ const CTASection: React.FC = () => {
                 whileTap={{ scale: 0.95 }}
                 className="flex items-center justify-center gap-3 rounded-2xl border-2 px-12 py-5 text-xl font-bold transition-all"
                 style={{
-                  borderColor: cssVars.neutral.bg,
-                  color: cssVars.neutral.bg,
+                  borderColor: isDark ? cssVars.neutral.darker : cssVars.neutral.bg,
+                  color: isDark ? cssVars.neutral.darker : cssVars.neutral.bg,
                   backgroundColor: 'transparent',
                 }}
               >

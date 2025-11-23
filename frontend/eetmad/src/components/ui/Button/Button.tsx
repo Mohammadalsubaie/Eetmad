@@ -1,5 +1,6 @@
 'use client';
 
+import { animationDuration, easing, hoverProps } from '@/lib/theme/animation-standards';
 import { cssVars } from '@/styles/theme';
 import { HTMLMotionProps, motion } from 'framer-motion';
 import { LucideIcon } from 'lucide-react';
@@ -33,7 +34,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     ref
   ) => {
     const baseStyles =
-      'inline-flex items-center justify-center gap-3 font-bold transition-all rounded-2xl disabled:opacity-50 disabled:cursor-not-allowed';
+      'inline-flex items-center justify-center gap-3 font-bold transition-all rounded-2xl disabled:opacity-50 disabled:cursor-not-allowed focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-primary touch-manipulation active:scale-95';
 
     const variantStyles = {
       primary: 'shadow-2xl',
@@ -43,10 +44,10 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     };
 
     const sizeStyles = {
-      sm: 'px-6 py-2 text-sm',
-      md: 'px-8 py-3 text-base',
-      lg: 'px-10 py-4 text-lg',
-      xl: 'px-12 py-5 text-xl',
+      sm: 'px-6 py-2 text-sm min-h-[44px] min-w-[44px] md:min-h-0 md:min-w-0',
+      md: 'px-8 py-3 text-base min-h-[44px] min-w-[44px] md:min-h-0 md:min-w-0',
+      lg: 'px-10 py-4 text-lg min-h-[44px] min-w-[44px] md:min-h-0 md:min-w-0',
+      xl: 'px-12 py-5 text-xl min-h-[44px] min-w-[44px] md:min-h-0 md:min-w-0',
     };
 
     const [isHovered, setIsHovered] = useState(false);
@@ -82,15 +83,30 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       }
     };
 
+    // تحديد Animation Props حسب الـ variant
+    const getAnimationProps = () => {
+      if (disabled) return {};
+      
+      if (variant === 'outline' || variant === 'ghost') {
+        return {
+          transition: { duration: animationDuration.fast, ease: easing.easeOut },
+        };
+      }
+      
+      return {
+        whileHover: hoverProps.scale.whileHover,
+        whileTap: hoverProps.scale.whileTap,
+        transition: hoverProps.scale.transition,
+      };
+    };
+
     return (
       <motion.button
         ref={ref}
-        whileHover={
-          disabled ? undefined : variant === 'outline' || variant === 'ghost' ? {} : { scale: 1.05 }
-        }
-        whileTap={disabled ? undefined : { scale: 0.95 }}
+        {...getAnimationProps()}
         className={`${baseStyles} ${variantStyles[variant]} ${sizeStyles[size]} ${fullWidth ? 'w-full' : ''} ${className}`}
         style={getVariantStyle()}
+        aria-label={props['aria-label'] || (typeof children === 'string' ? children : undefined)}
         onMouseEnter={(e) => {
           if (!disabled) setIsHovered(true);
           props.onMouseEnter?.(e);

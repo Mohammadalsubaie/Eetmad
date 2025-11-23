@@ -17,7 +17,7 @@ export default function TermsPage() {
     >
       <Breadcrumbs items={[{ label: t('title') }]} className="mb-6" />
 
-      <h1 className="mb-8 text-4xl font-bold" style={{ color: cssVars.primary.DEFAULT }}>
+      <h1 className="mb-8 text-4xl font-bold" style={{ color: cssVars.secondary.DEFAULT }}>
         {t('pageTitle')}
       </h1>
       <TermsContent />

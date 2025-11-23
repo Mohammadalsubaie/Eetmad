@@ -22,7 +22,11 @@
     "notifications": "الإشعارات",
     "menu": "القائمة",
     "brandName": "عروض",
-    "brandTagline": "بوابة المنافسات"
+    "brandTagline": "بوابة المنافسات",
+    "mainNavigation": "التنقل الرئيسي",
+    "openMenu": "فتح القائمة",
+    "closeMenu": "إغلاق القائمة",
+    "mobileNavigation": "التنقل المحمول"
   },
   "footer": {
     "brandName": "عروض",

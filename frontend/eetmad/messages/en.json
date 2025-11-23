@@ -22,7 +22,11 @@
     "notifications": "Notifications",
     "menu": "Menu",
     "brandName": "Opportunities Platform",
-    "brandTagline": "Government Bidding Portal"
+    "brandTagline": "Government Bidding Portal",
+    "mainNavigation": "Main Navigation",
+    "openMenu": "Open Menu",
+    "closeMenu": "Close Menu",
+    "mobileNavigation": "Mobile Navigation"
   },
   "footer": {
     "brandName": "Opportunities Platform",

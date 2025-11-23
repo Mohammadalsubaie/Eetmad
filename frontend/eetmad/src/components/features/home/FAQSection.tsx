@@ -6,6 +6,7 @@ import { motion } from 'framer-motion';
 import { ChevronDown, ChevronUp, HelpCircle } from 'lucide-react';
 import { useLocale, useTranslations } from 'next-intl';
 import { useState } from 'react';
+import { useTheme } from '@/contexts/ThemeContext';
 
 const faqKeys = ['timelines', 'offers', 'payments', 'quality'] as const;
 
@@ -14,6 +15,8 @@ export default function FAQSection() {
   const [activeKey, setActiveKey] = useState<string | null>(faqKeys[0]);
   const locale = useLocale();
   const isRTL = locale === 'ar';
+  const { theme } = useTheme();
+  const isDark = theme === 'dark';
   const toggleKey = (key: string) => {
     setActiveKey((prev) => (prev === key ? null : key));
   };
@@ -83,7 +86,11 @@ export default function FAQSection() {
                         backgroundColor: isActive
                           ? cssVars.primary.DEFAULT
                           : cssVars.neutral.surfaceAlt,
-                        color: isActive ? cssVars.neutral.bg : cssVars.primary.DEFAULT,
+                        color: isActive
+                          ? cssVars.neutral.bg
+                          : isDark
+                            ? cssVars.primary.darker
+                            : cssVars.primary.DEFAULT, // في Dark Mode: #a4c5ca على #2d3433
                       }}
                     >
                       {index + 1}
@@ -92,7 +99,11 @@ export default function FAQSection() {
                       <p
                         className="mb-1 text-xl font-bold transition-colors duration-300"
                         style={{
-                          color: isActive ? cssVars.primary.DEFAULT : cssVars.secondary.DEFAULT,
+                          color: isActive
+                            ? isDark
+                              ? cssVars.primary.darker
+                              : cssVars.primary.DEFAULT // في Dark Mode: #a4c5ca على خلفية داكنة
+                            : cssVars.secondary.DEFAULT,
                         }}
                       >
                         {t(`items.${key}.question`)}
@@ -113,7 +124,14 @@ export default function FAQSection() {
                     {isActive ? (
                       <ChevronUp className="h-5 w-5" style={{ color: cssVars.neutral.bg }} />
                     ) : (
-                      <ChevronDown className="h-5 w-5" style={{ color: cssVars.primary.DEFAULT }} />
+                      <ChevronDown
+                        className="h-5 w-5"
+                        style={{
+                          color: isDark
+                            ? cssVars.primary.darker // في Dark Mode: #a4c5ca على #2d3433
+                            : cssVars.primary.DEFAULT,
+                        }}
+                      />
                     )}
                   </div>
                 </button>

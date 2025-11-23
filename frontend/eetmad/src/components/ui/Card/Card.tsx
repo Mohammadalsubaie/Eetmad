@@ -1,3 +1,4 @@
+import { animationDuration, easing, hoverProps } from '@/lib/theme/animation-standards';
 import { cssVars } from '@/styles/theme';
 import { motion } from 'framer-motion';
 import React from 'react';
@@ -10,6 +11,9 @@ export interface CardProps {
   className?: string;
   hoverable?: boolean;
   onClick?: () => void;
+  'aria-label'?: string;
+  'aria-labelledby'?: string;
+  role?: 'article' | 'region' | 'group';
 }
 
 const Card: React.FC<CardProps> = ({
@@ -18,6 +22,10 @@ const Card: React.FC<CardProps> = ({
   className = '',
   hoverable = false,
   onClick,
+  'aria-label': ariaLabel,
+  'aria-labelledby': ariaLabelledBy,
+  role = onClick ? 'button' : 'article',
+  ...props
 }) => {
   const baseStyles = 'relative overflow-hidden rounded-3xl border-2 shadow-lg transition-all';
 
@@ -34,10 +42,10 @@ const Card: React.FC<CardProps> = ({
   };
 
   const CardComponent = hoverable ? motion.div : 'div';
-  const hoverProps = hoverable
+  const cardHoverProps = hoverable
     ? {
-        whileHover: { y: -8 },
-        transition: { duration: 0.3 },
+        ...hoverProps.lift,
+        transition: { duration: animationDuration.normal, ease: easing.easeOut },
       }
     : {};
 
@@ -46,7 +54,12 @@ const Card: React.FC<CardProps> = ({
       className={`${baseStyles} ${hoverable ? 'cursor-pointer hover:shadow-2xl' : ''} ${className}`}
       style={getVariantStyles()}
       onClick={onClick}
-      {...hoverProps}
+      role={onClick ? 'button' : role}
+      aria-label={onClick && !ariaLabel && !ariaLabelledBy ? 'Card' : ariaLabel}
+      aria-labelledby={ariaLabelledBy}
+      tabIndex={onClick ? 0 : undefined}
+      {...cardHoverProps}
+      {...props}
     >
       {variant === 'featured' && (
         <div

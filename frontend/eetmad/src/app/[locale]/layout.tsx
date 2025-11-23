@@ -6,6 +6,7 @@ import { Header } from '@/components/shared/layouts/Header';
 import { HtmlLangUpdater } from '@/components/shared/misc/HtmlLangUpdater';
 import { LocaleInitializer } from '@/components/shared/misc/LocaleInitializer';
 import { MSWProvider } from '@/components/shared/misc/MSWProvider';
+import SkipLink from '@/components/shared/SkipLink/SkipLink';
 import { routing } from '@/i18n/routing';
 import type { Metadata } from 'next';
 import { NextIntlClientProvider } from 'next-intl';
@@ -51,8 +52,13 @@ export default async function LocaleLayout({
         <HtmlLangUpdater />
         <LocaleInitializer />
         <div className={locale === 'ar' ? 'rtl' : 'ltr'} dir={locale === 'ar' ? 'rtl' : 'ltr'}>
+          <SkipLink href="#main-content">
+            {locale === 'ar' ? 'تخطي إلى المحتوى الرئيسي' : 'Skip to main content'}
+          </SkipLink>
           <Header />
-          {children}
+          <main id="main-content" tabIndex={-1}>
+            {children}
+          </main>
           <Footer />
           {/* Developer Tools - Only in development mode */}
           <PageNavigator />

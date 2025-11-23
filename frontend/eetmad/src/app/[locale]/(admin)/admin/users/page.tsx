@@ -49,18 +49,25 @@ export default function AdminUsersPage() {
         description={t('users.description')}
         icon={Users}
         action={
-          <div className="flex gap-3">
+          <div className="flex flex-wrap gap-2 sm:gap-3">
             <AdminActionButton
               label={t('users.actions.sendEmail')}
               icon={Mail}
               variant="secondary"
+              size="sm"
             />
             <AdminActionButton
               label={t('users.actions.export')}
               icon={Download}
               variant="secondary"
+              size="sm"
             />
-            <AdminActionButton label={t('users.actions.addUser')} icon={Plus} variant="primary" />
+            <AdminActionButton
+              label={t('users.actions.addUser')}
+              icon={Plus}
+              variant="primary"
+              size="sm"
+            />
           </div>
         }
       />

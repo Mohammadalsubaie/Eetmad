@@ -1,17 +1,17 @@
 'use client';
 
-import { useState } from 'react';
-import { useRouter, useSearchParams } from 'next/navigation';
-import { useTranslations, useLocale } from 'next-intl';
-import { motion } from 'framer-motion';
-import { cssVars } from '@/styles/theme';
-import { ArrowLeft, Save, Star } from 'lucide-react';
-import type { CreateReviewInput } from '@/lib/types/review.types';
-import { useCreateReview } from '@/lib/hooks/useReviews';
-import { LoadingSpinner, ErrorMessage, Button } from '@/components/ui';
+import ReviewFormFields from '@/components/features/reviews/ReviewFormFields';
 import AdminPageHeader from '@/components/shared/admin/AdminPageHeader';
 import Breadcrumbs from '@/components/shared/navigation/Breadcrumbs';
-import ReviewFormFields from '@/components/features/reviews/ReviewFormFields';
+import { Button, ErrorMessage, LoadingSpinner } from '@/components/ui';
+import { useCreateReview } from '@/lib/hooks/useReviews';
+import type { CreateReviewInput } from '@/lib/types/review.types';
+import { cssVars } from '@/styles/theme';
+import { motion } from 'framer-motion';
+import { ArrowLeft, Save, Star } from 'lucide-react';
+import { useLocale, useTranslations } from 'next-intl';
+import { useRouter, useSearchParams } from 'next/navigation';
+import { useState } from 'react';
 
 export default function CreateReviewPage() {
   const router = useRouter();
@@ -79,23 +79,28 @@ export default function CreateReviewPage() {
       />
 
       {/* Header */}
-      <div className="mb-6 flex items-center gap-4">
+      <div className="mb-4 flex items-start gap-2 sm:mb-6 sm:items-center sm:gap-4">
         <motion.button
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
           onClick={() => router.back()}
-          className="rounded-xl p-2 transition-all"
+          className="flex-shrink-0 rounded-xl p-2 transition-all"
           style={{
             backgroundColor: `color-mix(in srgb, ${cssVars.neutral.border} 30%, transparent)`,
           }}
         >
-          <ArrowLeft className="h-5 w-5" style={{ color: cssVars.neutral.textSecondary }} />
+          <ArrowLeft
+            className="h-4 w-4 sm:h-5 sm:w-5"
+            style={{ color: cssVars.neutral.textSecondary }}
+          />
         </motion.button>
-        <AdminPageHeader
-          title={t('reviews.create.title')}
-          description={t('reviews.create.description')}
-          icon={Star}
-        />
+        <div className="min-w-0 flex-1">
+          <AdminPageHeader
+            title={t('reviews.create.title')}
+            description={t('reviews.create.description')}
+            icon={Star}
+          />
+        </div>
       </div>
 
       {/* Form */}
@@ -103,7 +108,7 @@ export default function CreateReviewPage() {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         onSubmit={handleSubmit}
-        className="rounded-2xl border-2 p-6 shadow-md"
+        className="rounded-xl border-2 p-4 shadow-md sm:rounded-2xl sm:p-6"
         style={{
           backgroundColor: cssVars.neutral.surface,
           borderColor: cssVars.neutral.border,
@@ -126,8 +131,13 @@ export default function CreateReviewPage() {
         />
 
         {/* Actions */}
-        <div className="mt-8 flex justify-end gap-3">
-          <Button type="button" variant="outline" onClick={() => router.back()}>
+        <div className="mt-6 flex flex-col-reverse justify-end gap-3 sm:mt-8 sm:flex-row">
+          <Button
+            type="button"
+            variant="outline"
+            onClick={() => router.back()}
+            className="w-full sm:w-auto"
+          >
             {t('common.cancel')}
           </Button>
           <Button
@@ -136,6 +146,7 @@ export default function CreateReviewPage() {
             disabled={isLoading}
             icon={Save}
             iconPosition="left"
+            className="w-full sm:w-auto"
           >
             {isLoading ? (
               <>

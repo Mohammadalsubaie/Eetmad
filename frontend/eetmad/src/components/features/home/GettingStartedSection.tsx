@@ -5,6 +5,7 @@ import { cssVars } from '@/styles/theme';
 import { motion } from 'framer-motion';
 import { ArrowLeft, ClipboardList, Handshake, Sparkles } from 'lucide-react';
 import { useTranslations } from 'next-intl';
+import { useTheme } from '@/contexts/ThemeContext';
 
 const cards = [
   {
@@ -25,6 +26,8 @@ const stepKeys = ['step1', 'step2', 'step3', 'step4'] as const;
 
 export default function GettingStartedSection() {
   const t = useTranslations('biddingPlatform.sections.gettingStarted');
+  const { theme } = useTheme();
+  const isDark = theme === 'dark';
 
   return (
     <section
@@ -85,7 +88,11 @@ export default function GettingStartedSection() {
                   <div>
                     <p
                       className="text-xs font-bold uppercase tracking-[0.3em]"
-                      style={{ color: cssVars.primary.DEFAULT }}
+                      style={{
+                        color: isDark
+                          ? cssVars.primary.darker // في Dark Mode: #a4c5ca (فاتح) على #242929 (داكن)
+                          : cssVars.primary.DEFAULT, // في Light Mode: #34656d (داكن) على #ffffff (فاتح)
+                      }}
                     >
                       {t(`cards.${card.key}.tagline`)}
                     </p>
@@ -102,12 +109,16 @@ export default function GettingStartedSection() {
                   style={{
                     backgroundColor: `color-mix(in srgb, ${cssVars.primary.DEFAULT} 15%, transparent)`,
                     borderColor: cssVars.primary.DEFAULT,
-                    color: cssVars.primary.DEFAULT,
+                    color: isDark
+                      ? cssVars.primary.darker // في Dark Mode: #a4c5ca (فاتح) على خلفية داكنة
+                      : cssVars.primary.DEFAULT, // في Light Mode: #34656d (داكن) على خلفية فاتحة
                   }}
                 >
                   <div
                     className="h-2 w-2 animate-pulse rounded-full"
-                    style={{ backgroundColor: cssVars.primary.DEFAULT }}
+                    style={{
+                      backgroundColor: isDark ? cssVars.primary.darker : cssVars.primary.DEFAULT,
+                    }}
                   />
                   {t(`cards.${card.key}.badge`)}
                 </div>

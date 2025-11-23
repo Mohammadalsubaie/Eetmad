@@ -65,7 +65,7 @@ export default function ExploreCategoriesSection() {
             </div>
             <p
               className="relative text-sm font-bold uppercase tracking-[0.2em]"
-              style={{ color: cssVars.neutral.textMuted }}
+              style={{ color: cssVars.neutral.bg, opacity: 0.9 }}
             >
               {t('insight.title')}
             </p>
@@ -74,7 +74,7 @@ export default function ExploreCategoriesSection() {
             </h3>
             <p
               className="relative text-base font-semibold"
-              style={{ color: cssVars.neutral.textMuted }}
+              style={{ color: cssVars.neutral.bg, opacity: 0.9 }}
             >
               {t('insight.description')}
             </p>

@@ -353,6 +353,18 @@ export default function ManualReviewNavigator() {
   const [expandedGroups, setExpandedGroups] = useState<Set<string>>(
     new Set(['Public', 'Auth', 'Main', 'Client', 'Supplier', 'Admin'])
   );
+
+  useEffect(() => {
+    // On mobile, expand all groups by default for easier access
+    const checkMobile = () => {
+      if (window.innerWidth < 640) {
+        setExpandedGroups(new Set(['Public', 'Auth', 'Main', 'Client', 'Supplier', 'Admin']));
+      }
+    };
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
   const [sessions, setSessions] = useState<TestSession[]>([]);
   const [currentSessionId, setCurrentSessionId] = useState<string | null>(null);
   const [reviews, setReviews] = useState<Record<string, PageReview>>({});
@@ -820,7 +832,7 @@ export default function ManualReviewNavigator() {
     <>
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="fixed bottom-20 right-4 z-50 flex h-12 w-12 items-center justify-center rounded-full shadow-lg transition-all hover:scale-110"
+        className="fixed bottom-8 right-2 z-50 flex h-12 w-12 touch-manipulation items-center justify-center rounded-full shadow-lg transition-all hover:scale-110 sm:bottom-20 sm:right-4"
         style={{
           backgroundColor: cssVars.secondary.DEFAULT,
           color: cssVars.neutral.bg,
@@ -832,46 +844,44 @@ export default function ManualReviewNavigator() {
 
       {isOpen && (
         <div
-          className="fixed right-4 top-4 z-50 flex h-[calc(100vh-2rem)] w-96 flex-col rounded-2xl border-2 shadow-2xl"
+          className="fixed right-0 top-0 z-50 flex h-screen w-full flex-col rounded-none border-0 shadow-2xl sm:right-4 sm:top-4 sm:h-[calc(100vh-2rem)] sm:w-96 sm:rounded-2xl sm:border-2"
           style={{
             backgroundColor: cssVars.neutral.surface,
             borderColor: cssVars.neutral.border,
           }}
         >
+          {/* Header */}
           <div
-            className="flex items-center justify-between border-b-2 p-4"
+            className="flex items-center justify-between border-b-2 p-3 sm:p-4"
             style={{ borderColor: cssVars.neutral.border }}
           >
-            <div className="flex items-center gap-2">
-              <ClipboardCheck className="h-5 w-5" style={{ color: cssVars.secondary.DEFAULT }} />
-              <div>
-                <h2 className="text-lg font-bold" style={{ color: cssVars.secondary.DEFAULT }}>
+            <div className="flex min-w-0 flex-1 items-center gap-2">
+              <ClipboardCheck
+                className="h-5 w-5 flex-shrink-0"
+                style={{ color: cssVars.secondary.DEFAULT }}
+              />
+              <div className="min-w-0 flex-1">
+                <h2
+                  className="truncate text-base font-bold sm:text-lg"
+                  style={{ color: cssVars.secondary.DEFAULT }}
+                >
                   مراجعة يدوية
                 </h2>
                 {Array.isArray(sessions) && sessions.find((s) => s.id === currentSessionId) && (
-                  <>
-                    <div
-                      className="text-xs opacity-70"
-                      style={{ color: cssVars.neutral.textMuted }}
-                    >
-                      {sessions.find((s) => s.id === currentSessionId)?.name}
-                    </div>
-                    {sessions.find((s) => s.id === currentSessionId)?.testerName && (
-                      <div
-                        className="text-xs opacity-60"
-                        style={{ color: cssVars.neutral.textMuted }}
-                      >
-                        مختبر: {sessions.find((s) => s.id === currentSessionId)?.testerName}
-                      </div>
-                    )}
-                  </>
+                  <div
+                    className="hidden truncate text-xs opacity-70 sm:block"
+                    style={{ color: cssVars.neutral.textMuted }}
+                    title={sessions.find((s) => s.id === currentSessionId)?.name}
+                  >
+                    {sessions.find((s) => s.id === currentSessionId)?.name}
+                  </div>
                 )}
               </div>
             </div>
-            <div className="flex items-center gap-2">
+            <div className="flex flex-shrink-0 items-center gap-1 sm:gap-2">
               <button
                 onClick={() => setShowSessionManager(!showSessionManager)}
-                className="rounded-lg p-1.5 transition-colors hover:opacity-80"
+                className="flex hidden min-h-[44px] min-w-[44px] touch-manipulation items-center justify-center rounded-lg p-1.5 transition-colors hover:opacity-80 sm:flex sm:p-2"
                 style={{ color: cssVars.neutral.textSecondary }}
                 title="إدارة الجلسات"
               >
@@ -879,7 +889,7 @@ export default function ManualReviewNavigator() {
               </button>
               <button
                 onClick={() => setIsOpen(false)}
-                className="rounded-lg p-1 transition-colors hover:opacity-80"
+                className="flex min-h-[44px] min-w-[44px] touch-manipulation items-center justify-center rounded-lg p-1 transition-colors hover:opacity-80 sm:p-1.5"
                 style={{ color: cssVars.neutral.textSecondary }}
               >
                 <X className="h-5 w-5" />
@@ -887,6 +897,46 @@ export default function ManualReviewNavigator() {
             </div>
           </div>
 
+          {/* Quick Stats Bar - Mobile Only */}
+          <div
+            className="grid grid-cols-4 gap-1 border-b-2 p-2 sm:hidden"
+            style={{ borderColor: cssVars.neutral.border }}
+          >
+            <div className="text-center">
+              <div className="text-lg font-bold" style={{ color: cssVars.neutral.DEFAULT }}>
+                {stats.total}
+              </div>
+              <div className="text-[10px]" style={{ color: cssVars.neutral.textMuted }}>
+                الإجمالي
+              </div>
+            </div>
+            <div className="text-center">
+              <div className="text-lg font-bold" style={{ color: cssVars.status.success }}>
+                {stats.reviewed}
+              </div>
+              <div className="text-[10px]" style={{ color: cssVars.neutral.textMuted }}>
+                مكتمل
+              </div>
+            </div>
+            <div className="text-center">
+              <div className="text-lg font-bold" style={{ color: cssVars.status.warning }}>
+                {stats.issues}
+              </div>
+              <div className="text-[10px]" style={{ color: cssVars.neutral.textMuted }}>
+                مشاكل
+              </div>
+            </div>
+            <div className="text-center">
+              <div className="text-lg font-bold" style={{ color: cssVars.neutral.textSecondary }}>
+                {stats.pending}
+              </div>
+              <div className="text-[10px]" style={{ color: cssVars.neutral.textMuted }}>
+                معلق
+              </div>
+            </div>
+          </div>
+
+          {/* Session Manager */}
           {showSessionManager && (
             <div
               className="max-h-64 overflow-y-auto border-b-2 p-4"
@@ -901,7 +951,7 @@ export default function ManualReviewNavigator() {
                 </h3>
                 <button
                   onClick={() => createNewSession(newSessionName, newTesterName, newTestReason)}
-                  className="flex items-center gap-1 rounded px-2 py-1 text-xs transition-colors hover:opacity-80"
+                  className="flex min-h-[44px] touch-manipulation items-center gap-1 rounded px-2 py-1 text-xs transition-colors hover:opacity-80"
                   style={{
                     backgroundColor: cssVars.primary.DEFAULT,
                     color: cssVars.neutral.bg,
@@ -917,7 +967,7 @@ export default function ManualReviewNavigator() {
                   placeholder="اسم الجلسة الجديدة..."
                   value={newSessionName}
                   onChange={(e) => setNewSessionName(e.target.value)}
-                  className="w-full rounded border-2 px-2 py-1 text-xs focus:outline-none focus:ring-2"
+                  className="w-full touch-manipulation rounded border-2 px-2 py-1 text-xs focus:outline-none focus:ring-2"
                   style={{
                     backgroundColor: cssVars.neutral.bg,
                     borderColor: cssVars.neutral.border,
@@ -929,7 +979,7 @@ export default function ManualReviewNavigator() {
                   placeholder="اسم المختبر (اختياري)..."
                   value={newTesterName}
                   onChange={(e) => setNewTesterName(e.target.value)}
-                  className="w-full rounded border-2 px-2 py-1 text-xs focus:outline-none focus:ring-2"
+                  className="w-full touch-manipulation rounded border-2 px-2 py-1 text-xs focus:outline-none focus:ring-2"
                   style={{
                     backgroundColor: cssVars.neutral.bg,
                     borderColor: cssVars.neutral.border,
@@ -940,7 +990,7 @@ export default function ManualReviewNavigator() {
                   placeholder="سبب الاختبار (اختياري)..."
                   value={newTestReason}
                   onChange={(e) => setNewTestReason(e.target.value)}
-                  className="w-full rounded border-2 px-2 py-1 text-xs focus:outline-none focus:ring-2"
+                  className="w-full touch-manipulation rounded border-2 px-2 py-1 text-xs focus:outline-none focus:ring-2"
                   style={{
                     backgroundColor: cssVars.neutral.bg,
                     borderColor: cssVars.neutral.border,
@@ -1006,21 +1056,25 @@ export default function ManualReviewNavigator() {
             </div>
           )}
 
+          {/* Session Info - Desktop Only */}
           {Array.isArray(sessions) && sessions.find((s) => s.id === currentSessionId) && (
             <div
-              className="border-b-2 p-4"
+              className="hidden border-b-2 p-3 sm:block sm:p-4"
               style={{
                 borderColor: cssVars.neutral.border,
                 backgroundColor: `color-mix(in srgb, ${cssVars.neutral.border} 5%, transparent)`,
               }}
             >
               <div className="mb-2 flex items-center justify-between">
-                <h3 className="text-sm font-semibold" style={{ color: cssVars.neutral.DEFAULT }}>
+                <h3
+                  className="text-xs font-semibold sm:text-sm"
+                  style={{ color: cssVars.neutral.DEFAULT }}
+                >
                   معلومات الجلسة
                 </h3>
                 <button
                   onClick={() => setEditingSessionInfo(!editingSessionInfo)}
-                  className="text-xs opacity-60 hover:opacity-100"
+                  className="min-h-[44px] touch-manipulation px-2 text-xs opacity-60 hover:opacity-100"
                   style={{ color: cssVars.primary.DEFAULT }}
                 >
                   {editingSessionInfo ? 'إلغاء' : 'تعديل'}
@@ -1059,7 +1113,7 @@ export default function ManualReviewNavigator() {
                       const current = sessions.find((s) => s.id === currentSessionId);
                       updateSessionInfo(e.target.value, current?.testReason || '');
                     }}
-                    className="w-full rounded border-2 px-2 py-1 text-xs focus:outline-none focus:ring-2"
+                    className="w-full touch-manipulation rounded border-2 px-2 py-1 text-xs focus:outline-none focus:ring-2"
                     style={{
                       backgroundColor: cssVars.neutral.bg,
                       borderColor: cssVars.neutral.border,
@@ -1073,7 +1127,7 @@ export default function ManualReviewNavigator() {
                       const current = sessions.find((s) => s.id === currentSessionId);
                       updateSessionInfo(current?.testerName || '', e.target.value);
                     }}
-                    className="w-full rounded border-2 px-2 py-1 text-xs focus:outline-none focus:ring-2"
+                    className="w-full touch-manipulation rounded border-2 px-2 py-1 text-xs focus:outline-none focus:ring-2"
                     style={{
                       backgroundColor: cssVars.neutral.bg,
                       borderColor: cssVars.neutral.border,
@@ -1086,8 +1140,12 @@ export default function ManualReviewNavigator() {
             </div>
           )}
 
+          {/* Scenarios - Desktop Only */}
           {Array.isArray(sessions) && sessions.find((s) => s.id === currentSessionId) && (
-            <div className="border-b-2 p-4" style={{ borderColor: cssVars.neutral.border }}>
+            <div
+              className="hidden border-b-2 p-4 sm:block"
+              style={{ borderColor: cssVars.neutral.border }}
+            >
               <div className="mb-2 flex items-center justify-between">
                 <h3 className="text-sm font-semibold" style={{ color: cssVars.neutral.DEFAULT }}>
                   سيناريوهات الاختبار (
@@ -1109,7 +1167,7 @@ export default function ManualReviewNavigator() {
                       });
                     }
                   }}
-                  className="flex items-center gap-1 rounded px-2 py-1 text-xs transition-colors hover:opacity-80"
+                  className="flex min-h-[44px] touch-manipulation items-center gap-1 rounded px-2 py-1 text-xs transition-colors hover:opacity-80"
                   style={{
                     backgroundColor: `color-mix(in srgb, ${cssVars.secondary.DEFAULT} 15%, transparent)`,
                     color: cssVars.secondary.DEFAULT,
@@ -1144,7 +1202,7 @@ export default function ManualReviewNavigator() {
                       </div>
                       <button
                         onClick={() => removeScenario(scenario.id)}
-                        className="ml-2 rounded p-1 transition-colors hover:opacity-80"
+                        className="ml-2 flex min-h-[44px] min-w-[44px] touch-manipulation items-center justify-center rounded p-1 transition-colors hover:opacity-80"
                         style={{ color: cssVars.neutral.textSecondary }}
                       >
                         <X className="h-3 w-3" />
@@ -1162,15 +1220,19 @@ export default function ManualReviewNavigator() {
             </div>
           )}
 
-          <div className="border-b-2 p-4" style={{ borderColor: cssVars.neutral.border }}>
-            <div className="mb-2 flex items-center justify-between text-sm">
+          {/* Progress & Stats - Desktop Only */}
+          <div
+            className="hidden border-b-2 p-3 sm:block sm:p-4"
+            style={{ borderColor: cssVars.neutral.border }}
+          >
+            <div className="mb-2 flex items-center justify-between text-xs sm:text-sm">
               <span style={{ color: cssVars.neutral.DEFAULT }}>التقدم</span>
               <span className="font-semibold" style={{ color: cssVars.primary.DEFAULT }}>
                 {Math.round(progressPercentage)}%
               </span>
             </div>
             <div
-              className="mb-3 h-2 w-full overflow-hidden rounded-full"
+              className="mb-2 h-2 w-full overflow-hidden rounded-full sm:mb-3"
               style={{ backgroundColor: cssVars.neutral.border }}
             >
               <div
@@ -1181,38 +1243,59 @@ export default function ManualReviewNavigator() {
                 }}
               />
             </div>
-            <div className="grid grid-cols-4 gap-2 text-xs">
+            <div className="grid grid-cols-4 gap-1 text-xs sm:gap-2">
               <div className="text-center">
                 <div className="font-semibold" style={{ color: cssVars.neutral.DEFAULT }}>
                   {stats.total}
                 </div>
-                <div style={{ color: cssVars.neutral.textMuted }}>الإجمالي</div>
+                <div
+                  className="text-[10px] sm:text-xs"
+                  style={{ color: cssVars.neutral.textMuted }}
+                >
+                  الإجمالي
+                </div>
               </div>
               <div className="text-center">
                 <div className="font-semibold" style={{ color: cssVars.status.success }}>
                   {stats.reviewed}
                 </div>
-                <div style={{ color: cssVars.neutral.textMuted }}>مكتمل</div>
+                <div
+                  className="text-[10px] sm:text-xs"
+                  style={{ color: cssVars.neutral.textMuted }}
+                >
+                  مكتمل
+                </div>
               </div>
               <div className="text-center">
                 <div className="font-semibold" style={{ color: cssVars.status.warning }}>
                   {stats.issues}
                 </div>
-                <div style={{ color: cssVars.neutral.textMuted }}>مشاكل</div>
+                <div
+                  className="text-[10px] sm:text-xs"
+                  style={{ color: cssVars.neutral.textMuted }}
+                >
+                  مشاكل
+                </div>
               </div>
               <div className="text-center">
                 <div className="font-semibold" style={{ color: cssVars.neutral.textSecondary }}>
                   {stats.pending}
                 </div>
-                <div style={{ color: cssVars.neutral.textMuted }}>معلق</div>
+                <div
+                  className="text-[10px] sm:text-xs"
+                  style={{ color: cssVars.neutral.textMuted }}
+                >
+                  معلق
+                </div>
               </div>
             </div>
           </div>
 
-          <div className="border-b-2 p-4" style={{ borderColor: cssVars.neutral.border }}>
+          {/* Search & Filter */}
+          <div className="border-b-2 p-3 sm:p-4" style={{ borderColor: cssVars.neutral.border }}>
             <div className="relative mb-3">
               <Search
-                className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2"
+                className="absolute right-3 top-1/2 h-4 w-4 -translate-y-1/2 sm:h-5 sm:w-5"
                 style={{ color: cssVars.neutral.textMuted }}
               />
               <input
@@ -1220,7 +1303,7 @@ export default function ManualReviewNavigator() {
                 placeholder="بحث في الصفحات..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full rounded-lg border-2 px-10 py-2 text-sm focus:outline-none focus:ring-2"
+                className="w-full touch-manipulation rounded-lg border-2 py-2.5 pl-4 pr-10 text-sm focus:outline-none focus:ring-2 sm:py-2 sm:text-base"
                 style={{
                   backgroundColor: cssVars.neutral.bg,
                   borderColor: cssVars.neutral.border,
@@ -1228,11 +1311,11 @@ export default function ManualReviewNavigator() {
                 }}
               />
             </div>
-            <div className="flex gap-2">
+            <div className="grid grid-cols-2 gap-2 sm:flex sm:gap-2">
               <button
                 onClick={() => setFilterStatus('all')}
-                className={`flex-1 rounded-lg px-3 py-1.5 text-xs font-medium transition-colors ${
-                  filterStatus === 'all' ? 'font-semibold' : ''
+                className={`min-h-[44px] flex-1 touch-manipulation rounded-lg px-2 py-1.5 text-xs font-medium transition-colors sm:py-2 ${
+                  filterStatus === 'all' ? 'font-semibold ring-2' : ''
                 }`}
                 style={{
                   backgroundColor:
@@ -1246,8 +1329,8 @@ export default function ManualReviewNavigator() {
               </button>
               <button
                 onClick={() => setFilterStatus('pending')}
-                className={`flex-1 rounded-lg px-3 py-1.5 text-xs font-medium transition-colors ${
-                  filterStatus === 'pending' ? 'font-semibold' : ''
+                className={`min-h-[44px] flex-1 touch-manipulation rounded-lg px-2 py-1.5 text-xs font-medium transition-colors sm:py-2 ${
+                  filterStatus === 'pending' ? 'font-semibold ring-2' : ''
                 }`}
                 style={{
                   backgroundColor:
@@ -1260,12 +1343,13 @@ export default function ManualReviewNavigator() {
                       : cssVars.neutral.textSecondary,
                 }}
               >
-                معلق ({stats.pending})
+                <span className="hidden sm:inline">معلق</span>
+                <span className="sm:hidden">معلق ({stats.pending})</span>
               </button>
               <button
                 onClick={() => setFilterStatus('reviewed')}
-                className={`flex-1 rounded-lg px-3 py-1.5 text-xs font-medium transition-colors ${
-                  filterStatus === 'reviewed' ? 'font-semibold' : ''
+                className={`min-h-[44px] flex-1 touch-manipulation rounded-lg px-2 py-1.5 text-xs font-medium transition-colors sm:py-2 ${
+                  filterStatus === 'reviewed' ? 'font-semibold ring-2' : ''
                 }`}
                 style={{
                   backgroundColor:
@@ -1278,12 +1362,13 @@ export default function ManualReviewNavigator() {
                       : cssVars.neutral.textSecondary,
                 }}
               >
-                مكتمل ({stats.reviewed})
+                <span className="hidden sm:inline">مكتمل</span>
+                <span className="sm:hidden">مكتمل ({stats.reviewed})</span>
               </button>
               <button
                 onClick={() => setFilterStatus('issues')}
-                className={`flex-1 rounded-lg px-3 py-1.5 text-xs font-medium transition-colors ${
-                  filterStatus === 'issues' ? 'font-semibold' : ''
+                className={`min-h-[44px] flex-1 touch-manipulation rounded-lg px-2 py-1.5 text-xs font-medium transition-colors sm:py-2 ${
+                  filterStatus === 'issues' ? 'font-semibold ring-2' : ''
                 }`}
                 style={{
                   backgroundColor:
@@ -1296,17 +1381,19 @@ export default function ManualReviewNavigator() {
                       : cssVars.neutral.textSecondary,
                 }}
               >
-                مشاكل ({stats.issues})
+                <span className="hidden sm:inline">مشاكل</span>
+                <span className="sm:hidden">مشاكل ({stats.issues})</span>
               </button>
             </div>
           </div>
 
-          <div className="flex-1 overflow-y-auto p-4">
+          {/* Pages List */}
+          <div className="flex-1 overflow-y-auto p-3 sm:p-4">
             {Object.entries(groupedPages).map(([group, pages]) => (
               <div key={group} className="mb-4">
                 <button
                   onClick={() => toggleGroup(group)}
-                  className="mb-2 flex w-full items-center justify-between rounded-lg px-3 py-2 text-sm font-semibold transition-colors hover:opacity-80"
+                  className="mb-2 flex min-h-[44px] w-full touch-manipulation items-center justify-between rounded-lg px-3 py-2 text-sm font-semibold transition-colors hover:opacity-80 sm:min-h-[44px]"
                   style={{ color: cssVars.primary.DEFAULT }}
                 >
                   <span>{group}</span>
@@ -1318,7 +1405,7 @@ export default function ManualReviewNavigator() {
                 </button>
 
                 {expandedGroups.has(group) && (
-                  <div className="space-y-1">
+                  <div className="space-y-1 sm:space-y-2">
                     {pages.map((page) => {
                       const active = isActive(page.path);
                       const status = getReviewStatus(page.path);
@@ -1328,7 +1415,7 @@ export default function ManualReviewNavigator() {
                       return (
                         <div
                           key={page.path}
-                          className={`rounded-lg border-2 p-2 transition-colors ${
+                          className={`rounded-lg border-2 p-2 transition-colors sm:p-3 ${
                             active ? 'ring-2' : ''
                           }`}
                           style={{
@@ -1340,14 +1427,14 @@ export default function ManualReviewNavigator() {
                         >
                           <div className="flex items-start gap-2">
                             <div className="min-w-0 flex-1">
-                              <div className="mb-2 flex items-center justify-between gap-2">
+                              <div className="mb-2 flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
                                 <button
                                   onClick={() => navigateToPage(page.path)}
-                                  className="flex-1 text-left"
+                                  className="min-h-[44px] flex-1 touch-manipulation text-left"
                                 >
-                                  <div className="flex items-center gap-2">
+                                  <div className="flex flex-wrap items-center gap-2">
                                     <span
-                                      className={`text-sm ${active ? 'font-semibold' : ''}`}
+                                      className={`text-sm sm:text-base ${active ? 'font-semibold' : 'font-medium'}`}
                                       style={{
                                         color: active
                                           ? cssVars.primary.DEFAULT
@@ -1358,26 +1445,32 @@ export default function ManualReviewNavigator() {
                                     </span>
                                     {page.isDynamic && (
                                       <span
-                                        className="text-xs opacity-60"
+                                        className="rounded bg-opacity-20 px-1.5 py-0.5 text-[10px] sm:text-xs"
+                                        style={{
+                                          backgroundColor: `color-mix(in srgb, ${cssVars.neutral.textMuted} 20%, transparent)`,
+                                          color: cssVars.neutral.textMuted,
+                                        }}
                                         title="مسار مع mock data"
                                       >
-                                        [mock]
+                                        mock
                                       </span>
                                     )}
                                   </div>
                                   {page.path && (
-                                    <div className="mt-0.5 text-xs opacity-60">
+                                    <div className="mt-1 truncate text-[10px] opacity-60 sm:text-xs">
                                       {page.isDynamic ? resolveDynamicRoute(page.path) : page.path}
                                     </div>
                                   )}
                                 </button>
 
-                                <StatusDropdown
-                                  currentStatus={status}
-                                  onStatusChange={(newStatus) =>
-                                    updateReviewStatus(page.path, newStatus)
-                                  }
-                                />
+                                <div className="flex-shrink-0">
+                                  <StatusDropdown
+                                    currentStatus={status}
+                                    onStatusChange={(newStatus) =>
+                                      updateReviewStatus(page.path, newStatus)
+                                    }
+                                  />
+                                </div>
                               </div>
 
                               {notes && !isEditing && (
@@ -1403,7 +1496,7 @@ export default function ManualReviewNavigator() {
                                       setEditingNotes(page.path);
                                       setNotesText(notes);
                                     }}
-                                    className="flex-shrink-0 text-xs opacity-60 hover:opacity-100"
+                                    className="min-h-[32px] flex-shrink-0 touch-manipulation px-2 text-xs opacity-60 hover:opacity-100"
                                     style={{ color: cssVars.primary.DEFAULT }}
                                   >
                                     تعديل
@@ -1417,7 +1510,7 @@ export default function ManualReviewNavigator() {
                                     value={notesText}
                                     onChange={(e) => setNotesText(e.target.value)}
                                     placeholder="ملاحظات المراجعة..."
-                                    className="w-full rounded border-2 p-2 text-xs focus:outline-none focus:ring-2"
+                                    className="w-full touch-manipulation rounded border-2 p-2 text-xs focus:outline-none focus:ring-2"
                                     style={{
                                       backgroundColor: cssVars.neutral.bg,
                                       borderColor: cssVars.neutral.border,
@@ -1427,13 +1520,13 @@ export default function ManualReviewNavigator() {
                                     autoFocus
                                     onClick={(e) => e.stopPropagation()}
                                   />
-                                  <div className="flex gap-2">
+                                  <div className="flex flex-col gap-2 sm:flex-row">
                                     <button
                                       onClick={(e) => {
                                         e.stopPropagation();
                                         updateReviewNotes(page.path, notesText);
                                       }}
-                                      className="flex-1 rounded bg-green-500 px-2 py-1 text-xs text-white hover:bg-green-600"
+                                      className="min-h-[44px] flex-1 touch-manipulation rounded bg-green-500 px-2 py-1 text-xs text-white hover:bg-green-600"
                                     >
                                       حفظ
                                     </button>
@@ -1443,7 +1536,7 @@ export default function ManualReviewNavigator() {
                                         setEditingNotes(null);
                                         setNotesText('');
                                       }}
-                                      className="flex-1 rounded bg-gray-500 px-2 py-1 text-xs text-white hover:bg-gray-600"
+                                      className="min-h-[44px] flex-1 touch-manipulation rounded bg-gray-500 px-2 py-1 text-xs text-white hover:bg-gray-600"
                                     >
                                       إلغاء
                                     </button>
@@ -1458,7 +1551,7 @@ export default function ManualReviewNavigator() {
                                     setEditingNotes(page.path);
                                     setNotesText('');
                                   }}
-                                  className="mt-1 flex items-center gap-1 text-xs opacity-60 hover:opacity-100"
+                                  className="mt-1 flex min-h-[44px] touch-manipulation items-center gap-1 text-xs opacity-60 hover:opacity-100"
                                   style={{ color: cssVars.neutral.textMuted }}
                                 >
                                   <FileText className="h-3 w-3" />
@@ -1485,8 +1578,9 @@ export default function ManualReviewNavigator() {
             )}
           </div>
 
+          {/* Footer */}
           <div
-            className="space-y-2 border-t-2 p-3"
+            className="space-y-2 border-t-2 p-3 sm:p-4"
             style={{
               borderColor: cssVars.neutral.border,
             }}
@@ -1497,20 +1591,21 @@ export default function ManualReviewNavigator() {
               </div>
               <button
                 onClick={clearCurrentSession}
-                className="rounded px-2 py-1 text-xs transition-colors hover:opacity-80"
+                className="min-h-[44px] touch-manipulation rounded px-2 py-1 text-xs transition-colors hover:opacity-80"
                 style={{
                   color: cssVars.neutral.textSecondary,
                 }}
                 title="حذف جميع التقدم في هذه الجلسة"
               >
                 <XCircle className="mr-1 inline h-3 w-3" />
-                مسح التقدم
+                <span className="hidden sm:inline">مسح التقدم</span>
+                <span className="sm:hidden">مسح</span>
               </button>
             </div>
-            <div className="flex gap-2">
+            <div className="flex flex-col gap-2 sm:flex-row">
               <button
                 onClick={exportToJSON}
-                className="flex flex-1 items-center justify-center gap-1 rounded px-2 py-1.5 text-xs transition-colors hover:opacity-80"
+                className="flex min-h-[44px] flex-1 touch-manipulation items-center justify-center gap-1 rounded px-2 py-1.5 text-xs transition-colors hover:opacity-80"
                 style={{
                   backgroundColor: `color-mix(in srgb, ${cssVars.primary.DEFAULT} 15%, transparent)`,
                   color: cssVars.primary.DEFAULT,
@@ -1522,7 +1617,7 @@ export default function ManualReviewNavigator() {
               </button>
               <button
                 onClick={exportToMarkdown}
-                className="flex flex-1 items-center justify-center gap-1 rounded px-2 py-1.5 text-xs transition-colors hover:opacity-80"
+                className="flex min-h-[44px] flex-1 touch-manipulation items-center justify-center gap-1 rounded px-2 py-1.5 text-xs transition-colors hover:opacity-80"
                 style={{
                   backgroundColor: `color-mix(in srgb, ${cssVars.secondary.DEFAULT} 15%, transparent)`,
                   color: cssVars.secondary.DEFAULT,
@@ -1533,7 +1628,10 @@ export default function ManualReviewNavigator() {
                 Markdown
               </button>
             </div>
-            <div className="text-center text-xs" style={{ color: cssVars.neutral.textMuted }}>
+            <div
+              className="text-center text-[10px] sm:text-xs"
+              style={{ color: cssVars.neutral.textMuted }}
+            >
               وضع التطوير فقط
             </div>
           </div>

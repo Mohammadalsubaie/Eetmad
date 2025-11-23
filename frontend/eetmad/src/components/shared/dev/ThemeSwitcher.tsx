@@ -50,7 +50,7 @@ export default function ThemeSwitcher() {
       {/* Toggle Button */}
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="fixed bottom-36 right-4 z-50 flex h-12 w-12 items-center justify-center rounded-full shadow-lg transition-all hover:scale-110"
+        className="fixed bottom-28 right-2 z-50 flex h-12 w-12 touch-manipulation items-center justify-center rounded-full shadow-lg transition-all hover:scale-110 sm:bottom-36 sm:right-4"
         style={{
           backgroundColor: cssVars.primary.DEFAULT,
           color: cssVars.neutral.bg,
@@ -63,7 +63,7 @@ export default function ThemeSwitcher() {
       {/* Switcher Panel */}
       {isOpen && (
         <div
-          className="fixed right-4 top-4 z-50 flex h-[calc(100vh-2rem)] w-80 flex-col rounded-2xl border-2 shadow-2xl"
+          className="fixed right-0 top-0 z-50 flex h-screen w-full flex-col rounded-none border-0 shadow-2xl sm:right-4 sm:top-4 sm:h-[calc(100vh-2rem)] sm:w-80 sm:rounded-2xl sm:border-2"
           style={{
             backgroundColor: cssVars.neutral.surface,
             borderColor: cssVars.neutral.border,
@@ -79,7 +79,7 @@ export default function ThemeSwitcher() {
             </h2>
             <button
               onClick={() => setIsOpen(false)}
-              className="rounded-lg p-1 transition-colors hover:opacity-80"
+              className="flex min-h-[44px] min-w-[44px] touch-manipulation items-center justify-center rounded-lg p-1 transition-colors hover:opacity-80"
               style={{ color: cssVars.neutral.textSecondary }}
             >
               <X className="h-5 w-5" />
@@ -98,7 +98,7 @@ export default function ThemeSwitcher() {
                 placeholder={t('searchThemes')}
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full rounded-lg border-2 px-10 py-2 text-sm focus:outline-none focus:ring-2"
+                className="w-full touch-manipulation rounded-lg border-2 px-10 py-2 text-sm focus:outline-none focus:ring-2"
                 style={{
                   backgroundColor: cssVars.neutral.bg,
                   borderColor: cssVars.neutral.border,
@@ -123,7 +123,7 @@ export default function ThemeSwitcher() {
             <div className="mb-4">
               <button
                 onClick={() => toggleGroup('Themes')}
-                className="mb-2 flex w-full items-center justify-between rounded-lg px-3 py-2 text-sm font-semibold transition-colors hover:opacity-80"
+                className="mb-2 flex min-h-[44px] w-full touch-manipulation items-center justify-between rounded-lg px-3 py-2 text-sm font-semibold transition-colors hover:opacity-80"
                 style={{ color: cssVars.primary.DEFAULT }}
               >
                 <span>{t('themes')}</span>
@@ -143,7 +143,7 @@ export default function ThemeSwitcher() {
                       <button
                         key={theme}
                         onClick={() => selectTheme(theme)}
-                        className={`w-full rounded-lg px-3 py-2.5 text-left transition-all ${
+                        className={`min-h-[44px] w-full touch-manipulation rounded-lg px-3 py-2.5 text-left transition-all ${
                           active ? 'font-semibold ring-2' : ''
                         }`}
                         style={{

@@ -64,37 +64,40 @@ export default function CategoryDetailPage() {
   return (
     <div>
       {/* Header */}
-      <div className="mb-6 flex items-center gap-4">
+      <div className="mb-4 sm:mb-6 flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4">
         <motion.button
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
           onClick={() => router.back()}
-          className="rounded-xl p-2 transition-all"
+          className="rounded-xl p-2 transition-all flex-shrink-0 self-start"
           style={{
             backgroundColor: `color-mix(in srgb, ${cssVars.neutral.border} 30%, transparent)`,
           }}
         >
-          <ArrowLeft className="h-5 w-5" style={{ color: cssVars.neutral.textSecondary }} />
+          <ArrowLeft className="h-4 w-4 sm:h-5 sm:w-5" style={{ color: cssVars.neutral.textSecondary }} />
         </motion.button>
-        <AdminPageHeader
-          title={category.nameAr}
-          description={category.nameEn}
-          icon={FolderTree}
-          action={
-            <AdminActionButton
-              label={t('categories.actions.edit')}
-              icon={Edit}
-              variant="primary"
-              onClick={() => router.push(`/admin/categories/${categoryId}/edit`)}
-            />
-          }
-        />
+        <div className="flex-1 min-w-0">
+          <AdminPageHeader
+            title={category.nameAr}
+            description={category.nameEn}
+            icon={FolderTree}
+            action={
+              <AdminActionButton
+                label={t('categories.actions.edit')}
+                icon={Edit}
+                variant="primary"
+                size="sm"
+                onClick={() => router.push(`/admin/categories/${categoryId}/edit`)}
+              />
+            }
+          />
+        </div>
       </div>
 
       <CategoryOverviewCard category={category} />
 
       {/* Details Sections */}
-      <div className="grid gap-6 lg:grid-cols-2">
+      <div className="grid gap-4 sm:gap-6 lg:grid-cols-2">
         <CategoryInfoSection category={category} />
         <CategoryDescriptionSection category={category} />
         <CategoryTimestampsSection category={category} />

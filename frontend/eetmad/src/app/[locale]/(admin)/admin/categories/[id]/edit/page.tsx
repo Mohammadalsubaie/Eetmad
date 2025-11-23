@@ -132,23 +132,25 @@ export default function EditCategoryPage() {
   return (
     <div>
       {/* Header */}
-      <div className="mb-6 flex items-center gap-4">
+      <div className="mb-4 sm:mb-6 flex items-start sm:items-center gap-2 sm:gap-4">
         <motion.button
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
           onClick={() => router.back()}
-          className="rounded-xl p-2 transition-all"
+          className="rounded-xl p-2 transition-all flex-shrink-0"
           style={{
             backgroundColor: `color-mix(in srgb, ${cssVars.neutral.border} 30%, transparent)`,
           }}
         >
-          <ArrowLeft className="h-5 w-5" style={{ color: cssVars.neutral.textSecondary }} />
+          <ArrowLeft className="h-4 w-4 sm:h-5 sm:w-5" style={{ color: cssVars.neutral.textSecondary }} />
         </motion.button>
-        <AdminPageHeader
-          title={t('categories.edit.title')}
-          description={t('categories.edit.description')}
-          icon={FolderTree}
-        />
+        <div className="flex-1 min-w-0">
+          <AdminPageHeader
+            title={t('categories.edit.title')}
+            description={t('categories.edit.description')}
+            icon={FolderTree}
+          />
+        </div>
       </div>
 
       {/* Form */}
@@ -156,7 +158,7 @@ export default function EditCategoryPage() {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         onSubmit={handleSubmit}
-        className="rounded-2xl border-2 p-6 shadow-md"
+        className="rounded-xl sm:rounded-2xl border-2 p-4 sm:p-6 shadow-md"
         style={{
           backgroundColor: cssVars.neutral.surface,
           borderColor: cssVars.neutral.border,
@@ -174,8 +176,8 @@ export default function EditCategoryPage() {
         <CategoryFormFields formData={formData} onChange={handleChange} />
 
         {/* Actions */}
-        <div className="mt-8 flex justify-end gap-3">
-          <Button type="button" variant="outline" onClick={() => router.back()}>
+        <div className="mt-6 sm:mt-8 flex flex-col-reverse sm:flex-row justify-end gap-3">
+          <Button type="button" variant="outline" onClick={() => router.back()} className="w-full sm:w-auto">
             {t('common.cancel')}
           </Button>
           <Button
@@ -184,6 +186,7 @@ export default function EditCategoryPage() {
             disabled={submitting}
             icon={Save}
             iconPosition="left"
+            className="w-full sm:w-auto"
           >
             {submitting ? (
               <>

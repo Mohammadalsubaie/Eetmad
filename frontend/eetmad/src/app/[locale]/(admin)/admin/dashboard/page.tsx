@@ -68,7 +68,7 @@ export default function AdminDashboardPage() {
 
       <AdminDashboardStats stats={stats} />
 
-      <div className="mb-8 grid gap-6 lg:grid-cols-2">
+      <div className="mb-6 sm:mb-8 grid gap-4 sm:gap-6 lg:grid-cols-2">
         <AdminDashboardRevenue stats={stats} />
         <AdminDashboardPerformance stats={stats} />
       </div>

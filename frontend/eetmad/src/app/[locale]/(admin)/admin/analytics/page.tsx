@@ -80,16 +80,18 @@ export default function AnalyticsPage() {
         description={t('analytics.description')}
         icon={BarChart3}
         action={
-          <div className="flex gap-3">
+          <div className="flex flex-wrap gap-2 sm:gap-3">
             <AdminActionButton
               label={t('analytics.actions.selectPeriod')}
               icon={Calendar}
               variant="secondary"
+              size="sm"
             />
             <AdminActionButton
               label={t('analytics.actions.exportReport')}
               icon={Download}
               variant="primary"
+              size="sm"
             />
           </div>
         }
@@ -132,21 +134,21 @@ export default function AnalyticsPage() {
       </div>
 
       {/* Charts */}
-      <div className="mb-8 grid gap-6 lg:grid-cols-2">
+      <div className="mb-6 sm:mb-8 grid gap-4 sm:gap-6 lg:grid-cols-2">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.4, ease: 'easeOut' }}
           whileHover={{ y: -6, scale: 1.01 }}
-          className="rounded-2xl border-2 p-6 shadow-lg transition-shadow duration-300"
+          className="rounded-xl sm:rounded-2xl border-2 p-4 sm:p-6 shadow-lg transition-shadow duration-300"
           style={{
             backgroundColor: cssVars.neutral.surface,
             borderColor: cssVars.neutral.border,
             boxShadow: `0 4px 6px -1px color-mix(in srgb, ${cssVars.neutral.darker} 10%, transparent), 0 2px 4px -1px color-mix(in srgb, ${cssVars.neutral.darker} 6%, transparent)`,
           }}
         >
-          <div className="mb-4 flex items-center justify-between">
-            <h3 className="text-xl font-bold" style={{ color: cssVars.secondary.DEFAULT }}>
+          <div className="mb-3 sm:mb-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
+            <h3 className="text-lg sm:text-xl font-bold" style={{ color: cssVars.secondary.DEFAULT }}>
               {t('analytics.charts.userGrowth')}
             </h3>
             <div
@@ -169,15 +171,15 @@ export default function AnalyticsPage() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.4, delay: 0.1, ease: 'easeOut' }}
           whileHover={{ y: -6, scale: 1.01 }}
-          className="rounded-2xl border-2 p-6 shadow-lg transition-shadow duration-300"
+          className="rounded-xl sm:rounded-2xl border-2 p-4 sm:p-6 shadow-lg transition-shadow duration-300"
           style={{
             backgroundColor: cssVars.neutral.surface,
             borderColor: cssVars.neutral.border,
             boxShadow: `0 4px 6px -1px color-mix(in srgb, ${cssVars.neutral.darker} 10%, transparent), 0 2px 4px -1px color-mix(in srgb, ${cssVars.neutral.darker} 6%, transparent)`,
           }}
         >
-          <div className="mb-4 flex items-center justify-between">
-            <h3 className="text-xl font-bold" style={{ color: cssVars.secondary.DEFAULT }}>
+          <div className="mb-3 sm:mb-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
+            <h3 className="text-lg sm:text-xl font-bold" style={{ color: cssVars.secondary.DEFAULT }}>
               {t('analytics.charts.monthlyRevenue')}
             </h3>
             <div
@@ -202,15 +204,15 @@ export default function AnalyticsPage() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.4, delay: 0.2, ease: 'easeOut' }}
           whileHover={{ y: -6, scale: 1.01 }}
-          className="rounded-2xl border-2 p-6 shadow-lg transition-shadow duration-300"
+          className="rounded-xl sm:rounded-2xl border-2 p-4 sm:p-6 shadow-lg transition-shadow duration-300"
           style={{
             backgroundColor: cssVars.neutral.surface,
             borderColor: cssVars.neutral.border,
             boxShadow: `0 4px 6px -1px color-mix(in srgb, ${cssVars.neutral.darker} 10%, transparent), 0 2px 4px -1px color-mix(in srgb, ${cssVars.neutral.darker} 6%, transparent)`,
           }}
         >
-          <div className="mb-4 flex items-center justify-between">
-            <h3 className="text-xl font-bold" style={{ color: cssVars.secondary.DEFAULT }}>
+          <div className="mb-3 sm:mb-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
+            <h3 className="text-lg sm:text-xl font-bold" style={{ color: cssVars.secondary.DEFAULT }}>
               {t('analytics.charts.projectsByCategory')}
             </h3>
             <div
@@ -234,15 +236,15 @@ export default function AnalyticsPage() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.4, delay: 0.3, ease: 'easeOut' }}
           whileHover={{ y: -6, scale: 1.01 }}
-          className="rounded-2xl border-2 p-6 shadow-lg transition-shadow duration-300"
+          className="rounded-xl sm:rounded-2xl border-2 p-4 sm:p-6 shadow-lg transition-shadow duration-300"
           style={{
             backgroundColor: cssVars.neutral.surface,
             borderColor: cssVars.neutral.border,
             boxShadow: `0 4px 6px -1px color-mix(in srgb, ${cssVars.neutral.darker} 10%, transparent), 0 2px 4px -1px color-mix(in srgb, ${cssVars.neutral.darker} 6%, transparent)`,
           }}
         >
-          <div className="mb-4 flex items-center justify-between">
-            <h3 className="text-xl font-bold" style={{ color: cssVars.secondary.DEFAULT }}>
+          <div className="mb-3 sm:mb-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
+            <h3 className="text-lg sm:text-xl font-bold" style={{ color: cssVars.secondary.DEFAULT }}>
               {t('analytics.charts.completionRate')}
             </h3>
             <div

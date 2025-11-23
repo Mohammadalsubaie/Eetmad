@@ -71,11 +71,12 @@ export default function AdminSettingsPage() {
             label={t('settings.actions.saveChanges')}
             icon={Save}
             variant="primary"
+            size="sm"
           />
         }
       />
 
-      <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      <div className="grid gap-4 sm:gap-6 sm:grid-cols-2 lg:grid-cols-3">
         {settingsSections.map((section) => (
           <motion.div
             key={section.id}
@@ -109,13 +110,13 @@ export default function AdminSettingsPage() {
 
       {/* Settings Form Placeholder */}
       <motion.div
-        className="mt-8 rounded-2xl border-2 p-8 shadow-md"
+        className="mt-6 sm:mt-8 rounded-xl sm:rounded-2xl border-2 p-4 sm:p-6 lg:p-8 shadow-md"
         style={{
           backgroundColor: cssVars.neutral.surface,
           borderColor: cssVars.neutral.border,
         }}
       >
-        <h2 className="mb-6 text-2xl font-bold" style={{ color: cssVars.secondary.DEFAULT }}>
+        <h2 className="mb-4 sm:mb-6 text-xl sm:text-2xl font-bold" style={{ color: cssVars.secondary.DEFAULT }}>
           الإعدادات العامة
         </h2>
 

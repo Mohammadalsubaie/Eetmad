@@ -17,7 +17,18 @@ interface UserGrowthChartProps {
   data: Array<{ month: string; users: number; growth: number }>;
 }
 
-const CustomTooltip = ({ active, payload, label }: any) => {
+interface CustomTooltipProps {
+  active?: boolean;
+  payload?: Array<{
+    name?: string;
+    value?: number;
+    color?: string;
+    dataKey?: string;
+  }>;
+  label?: string;
+}
+
+const CustomTooltip = ({ active, payload, label }: CustomTooltipProps) => {
   if (active && payload && payload.length) {
     return (
       <div
@@ -39,7 +50,7 @@ const CustomTooltip = ({ active, payload, label }: any) => {
         >
           {label}
         </p>
-        {payload.map((entry: any, index: number) => (
+        {payload.map((entry, index: number) => (
           <p
             key={index}
             style={{
@@ -63,8 +74,8 @@ const CustomTooltip = ({ active, payload, label }: any) => {
             <span style={{ fontWeight: '600' }}>{entry.name}:</span>
             <span style={{ fontWeight: 'bold' }}>
               {entry.dataKey === 'users'
-                ? entry.value.toLocaleString()
-                : `${entry.value.toFixed(1)}%`}
+                ? (entry.value ?? 0).toLocaleString()
+                : `${(entry.value ?? 0).toFixed(1)}%`}
             </span>
           </p>
         ))}

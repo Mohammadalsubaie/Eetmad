@@ -17,13 +17,20 @@ export function useProfile() {
   const [error, setError] = useState<Error | null>(null);
 
   useEffect(() => {
-    setIsLoading(true);
-    setError(null);
-    usersApi
-      .getProfile()
-      .then(setData)
-      .catch((err) => setError(err instanceof Error ? err : new Error(String(err))))
-      .finally(() => setIsLoading(false));
+    const fetchProfile = async () => {
+      setIsLoading(true);
+      setError(null);
+      try {
+        const data = await usersApi.getProfile();
+        setData(data);
+      } catch (err) {
+        setError(err instanceof Error ? err : new Error(String(err)));
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchProfile();
   }, []);
 
   return { data, isLoading, error };
@@ -35,14 +42,25 @@ export function useUser(id: string) {
   const [error, setError] = useState<Error | null>(null);
 
   useEffect(() => {
-    if (!id) return;
-    setIsLoading(true);
-    setError(null);
-    usersApi
-      .getUser(id)
-      .then(setData)
-      .catch((err) => setError(err instanceof Error ? err : new Error(String(err))))
-      .finally(() => setIsLoading(false));
+    if (!id) {
+      setIsLoading(false);
+      return;
+    }
+
+    const fetchUser = async () => {
+      setIsLoading(true);
+      setError(null);
+      try {
+        const data = await usersApi.getUser(id);
+        setData(data);
+      } catch (err) {
+        setError(err instanceof Error ? err : new Error(String(err)));
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchUser();
   }, [id]);
 
   return { data, isLoading, error };
@@ -54,13 +72,20 @@ export function useUserStatistics() {
   const [error, setError] = useState<Error | null>(null);
 
   useEffect(() => {
-    setIsLoading(true);
-    setError(null);
-    usersApi
-      .getStatistics()
-      .then(setData)
-      .catch((err) => setError(err instanceof Error ? err : new Error(String(err))))
-      .finally(() => setIsLoading(false));
+    const fetchStatistics = async () => {
+      setIsLoading(true);
+      setError(null);
+      try {
+        const data = await usersApi.getStatistics();
+        setData(data);
+      } catch (err) {
+        setError(err instanceof Error ? err : new Error(String(err)));
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchStatistics();
   }, []);
 
   return { data, isLoading, error };

@@ -15,14 +15,21 @@ export function useMilestones(params?: QueryParams) {
   const [error, setError] = useState<Error | null>(null);
 
   useEffect(() => {
-    setIsLoading(true);
-    setError(null);
-    milestonesApi
-      .getAll(params)
-      .then(setData)
-      .catch((err) => setError(err instanceof Error ? err : new Error(String(err))))
-      .finally(() => setIsLoading(false));
-  }, [JSON.stringify(params)]);
+    const fetchMilestones = async () => {
+      setIsLoading(true);
+      setError(null);
+      try {
+        const data = await milestonesApi.getAll(params);
+        setData(data);
+      } catch (err) {
+        setError(err instanceof Error ? err : new Error(String(err)));
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchMilestones();
+  }, [params]);
 
   return { data, isLoading, error };
 }
@@ -33,14 +40,25 @@ export function useMilestone(id: string) {
   const [error, setError] = useState<Error | null>(null);
 
   useEffect(() => {
-    if (!id) return;
-    setIsLoading(true);
-    setError(null);
-    milestonesApi
-      .getById(id)
-      .then(setData)
-      .catch((err) => setError(err instanceof Error ? err : new Error(String(err))))
-      .finally(() => setIsLoading(false));
+    if (!id) {
+      setIsLoading(false);
+      return;
+    }
+
+    const fetchMilestone = async () => {
+      setIsLoading(true);
+      setError(null);
+      try {
+        const data = await milestonesApi.getById(id);
+        setData(data);
+      } catch (err) {
+        setError(err instanceof Error ? err : new Error(String(err)));
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchMilestone();
   }, [id]);
 
   return { data, isLoading, error };
@@ -52,15 +70,26 @@ export function useMilestonesByProject(projectId: string, params?: QueryParams) 
   const [error, setError] = useState<Error | null>(null);
 
   useEffect(() => {
-    if (!projectId) return;
-    setIsLoading(true);
-    setError(null);
-    milestonesApi
-      .getByProject(projectId, params)
-      .then(setData)
-      .catch((err) => setError(err instanceof Error ? err : new Error(String(err))))
-      .finally(() => setIsLoading(false));
-  }, [projectId, JSON.stringify(params)]);
+    if (!projectId) {
+      setIsLoading(false);
+      return;
+    }
+
+    const fetchMilestones = async () => {
+      setIsLoading(true);
+      setError(null);
+      try {
+        const data = await milestonesApi.getByProject(projectId, params);
+        setData(data);
+      } catch (err) {
+        setError(err instanceof Error ? err : new Error(String(err)));
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchMilestones();
+  }, [projectId, params]);
 
   return { data, isLoading, error };
 }

@@ -35,12 +35,19 @@ export default function MilestoneForm({ milestone, projectId, onSuccess }: Miles
     title: milestone?.title || '',
     description: milestone?.description || '',
     amount: milestone?.amount || 0,
-    dueDate: milestone?.dueDate
-      ? new Date(milestone.dueDate).toISOString().split('T')[0]
-      : new Date(Date.now() + 30 * 24 * 60 * 60 * 1000).toISOString().split('T')[0],
+    dueDate: '',
     deliverables: milestone?.deliverables || '',
     sortOrder: milestone?.sortOrder || 0,
   });
+
+  useEffect(() => {
+    const defaultDueDate = milestone?.dueDate
+      ? new Date(milestone.dueDate).toISOString().split('T')[0]
+      : new Date(Date.now() + 30 * 24 * 60 * 60 * 1000).toISOString().split('T')[0];
+    setTimeout(() => {
+      setFormData((prev) => ({ ...prev, dueDate: defaultDueDate }));
+    }, 0);
+  }, [milestone?.dueDate]);
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
@@ -75,7 +82,7 @@ export default function MilestoneForm({ milestone, projectId, onSuccess }: Miles
       } else {
         router.push(`/projects/${projectId}/milestones`);
       }
-    } catch (err) {
+    } catch {
       // Error handled by hook
     }
   };

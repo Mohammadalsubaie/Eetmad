@@ -27,17 +27,29 @@ const COLORS = [
   cssVars.secondary.DEFAULT,
 ];
 
-const CustomTooltip = ({ active, payload, label }: any) => {
-  if (active && payload && payload.length) {
-    const value = payload[0].value;
-    const total = payload[0].payload.total || value;
-    const percentage = total > 0 ? ((value / total) * 100).toFixed(1) : 0;
+interface CustomTooltipProps {
+  active?: boolean;
+  payload?: Array<{
+    value?: number;
+    color?: string;
+    payload?: { total?: number };
+  }>;
+  label?: string;
+}
+
+const CustomTooltip = ({ active, payload, label }: CustomTooltipProps) => {
+  if (active && payload && payload.length && payload[0]) {
+    const firstPayload = payload[0];
+    const value = firstPayload.value ?? 0;
+    const total = firstPayload.payload?.total ?? value;
+    const percentage = total > 0 ? ((value / total) * 100).toFixed(1) : '0';
+    const color = firstPayload.color || COLORS[0];
 
     return (
       <div
         style={{
           backgroundColor: cssVars.neutral.surface,
-          border: `2px solid ${payload[0].color}`,
+          border: `2px solid ${color}`,
           borderRadius: '12px',
           padding: '12px 16px',
           boxShadow: `0 4px 12px color-mix(in srgb, ${cssVars.neutral.darker} 15%, transparent)`,
@@ -55,7 +67,7 @@ const CustomTooltip = ({ active, payload, label }: any) => {
         </p>
         <p
           style={{
-            color: payload[0].color,
+            color: color,
             fontSize: '16px',
             fontWeight: 'bold',
             margin: '4px 0',

@@ -16,14 +16,21 @@ export function useConversations(params?: QueryParams) {
   const [error, setError] = useState<Error | null>(null);
 
   useEffect(() => {
-    setIsLoading(true);
-    setError(null);
-    messagesApi
-      .getAllConversations(params)
-      .then(setData)
-      .catch((err) => setError(err instanceof Error ? err : new Error(String(err))))
-      .finally(() => setIsLoading(false));
-  }, [JSON.stringify(params)]);
+    const fetchConversations = async () => {
+      setIsLoading(true);
+      setError(null);
+      try {
+        const data = await messagesApi.getAllConversations(params);
+        setData(data);
+      } catch (err) {
+        setError(err instanceof Error ? err : new Error(String(err)));
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchConversations();
+  }, [params]);
 
   return { data, isLoading, error };
 }
@@ -34,14 +41,25 @@ export function useConversation(id: string) {
   const [error, setError] = useState<Error | null>(null);
 
   useEffect(() => {
-    if (!id) return;
-    setIsLoading(true);
-    setError(null);
-    messagesApi
-      .getConversation(id)
-      .then(setData)
-      .catch((err) => setError(err instanceof Error ? err : new Error(String(err))))
-      .finally(() => setIsLoading(false));
+    if (!id) {
+      setIsLoading(false);
+      return;
+    }
+
+    const fetchConversation = async () => {
+      setIsLoading(true);
+      setError(null);
+      try {
+        const data = await messagesApi.getConversation(id);
+        setData(data);
+      } catch (err) {
+        setError(err instanceof Error ? err : new Error(String(err)));
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchConversation();
   }, [id]);
 
   return { data, isLoading, error };
@@ -53,15 +71,26 @@ export function useMessages(conversationId: string, params?: QueryParams) {
   const [error, setError] = useState<Error | null>(null);
 
   useEffect(() => {
-    if (!conversationId) return;
-    setIsLoading(true);
-    setError(null);
-    messagesApi
-      .getMessages(conversationId, params)
-      .then(setData)
-      .catch((err) => setError(err instanceof Error ? err : new Error(String(err))))
-      .finally(() => setIsLoading(false));
-  }, [conversationId, JSON.stringify(params)]);
+    if (!conversationId) {
+      setIsLoading(false);
+      return;
+    }
+
+    const fetchMessages = async () => {
+      setIsLoading(true);
+      setError(null);
+      try {
+        const data = await messagesApi.getMessages(conversationId, params);
+        setData(data);
+      } catch (err) {
+        setError(err instanceof Error ? err : new Error(String(err)));
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchMessages();
+  }, [conversationId, params]);
 
   return { data, isLoading, error };
 }
@@ -72,13 +101,20 @@ export function useUnreadCount() {
   const [error, setError] = useState<Error | null>(null);
 
   useEffect(() => {
-    setIsLoading(true);
-    setError(null);
-    messagesApi
-      .getUnreadCount()
-      .then((result) => setData(result.count))
-      .catch((err) => setError(err instanceof Error ? err : new Error(String(err))))
-      .finally(() => setIsLoading(false));
+    const fetchUnreadCount = async () => {
+      setIsLoading(true);
+      setError(null);
+      try {
+        const result = await messagesApi.getUnreadCount();
+        setData(result.count);
+      } catch (err) {
+        setError(err instanceof Error ? err : new Error(String(err)));
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchUnreadCount();
   }, []);
 
   return { data, isLoading, error };

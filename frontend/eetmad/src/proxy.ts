@@ -14,10 +14,13 @@ export default function middleware(request: NextRequest) {
 
   // Check if pathname already has a valid locale
   const pathLocale = pathname.split('/')[1];
-  const hasValidLocale = routing.locales.includes(pathLocale as any);
+  const hasValidLocale = routing.locales.includes(pathLocale as (typeof routing.locales)[number]);
 
   // If we have a cookie preference and the path doesn't have a locale (or has a different one)
-  if (localeCookie && routing.locales.includes(localeCookie.value as any)) {
+  if (
+    localeCookie &&
+    routing.locales.includes(localeCookie.value as (typeof routing.locales)[number])
+  ) {
     // If path doesn't have a locale prefix, add it
     if (!hasValidLocale && pathname !== '/') {
       const url = request.nextUrl.clone();

@@ -15,11 +15,19 @@ interface OffersListProps {
 
 export default function OffersList({ requestId, onAccept, onReject }: OffersListProps) {
   const t = useTranslations('pages.offers');
+  // Always call both hooks to avoid conditional hook calls
+  const { data: allOffers, isLoading: isLoadingAll, error: errorAll } = useOffers();
+
   const {
-    data: offers,
-    isLoading,
-    error,
-  } = requestId ? useOffersByRequest(requestId) : useOffers();
+    data: requestOffers,
+    isLoading: isLoadingRequest,
+    error: errorRequest,
+  } = useOffersByRequest(requestId || '');
+
+  // Select data based on requestId
+  const offers = requestId ? requestOffers : allOffers;
+  const isLoading = requestId ? isLoadingRequest : isLoadingAll;
+  const error = requestId ? errorRequest : errorAll;
 
   const handleAccept = async (offerId: string) => {
     try {

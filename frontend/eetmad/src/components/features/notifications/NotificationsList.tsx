@@ -1,10 +1,13 @@
 'use client';
 
 import { useTranslations } from 'next-intl';
-import { useNotifications, useUnreadNotifications } from '@/lib/hooks/useNotifications';
+import {
+  useNotifications,
+  useUnreadNotifications,
+  useMarkAsRead,
+} from '@/lib/hooks/useNotifications';
 import NotificationCard from './NotificationCard';
 import { EmptyState, LoadingSpinner, ErrorMessage } from '@/components/ui';
-import { useMarkAsRead, useDeleteNotification } from '@/lib/hooks/useNotifications';
 
 interface NotificationsListProps {
   showUnreadOnly?: boolean;
@@ -16,24 +19,27 @@ export default function NotificationsList({
   type,
 }: NotificationsListProps) {
   const t = useTranslations('pages.notifications');
+  // Always call both hooks to avoid conditional hook calls
   const {
-    data: notifications,
-    isLoading,
-    error,
-  } = showUnreadOnly
-    ? useUnreadNotifications(type ? { type } : undefined)
-    : useNotifications(type ? { type } : undefined);
+    data: allNotifications,
+    isLoading: isLoadingAll,
+    error: errorAll,
+  } = useNotifications(type ? { type } : undefined);
+
+  const {
+    data: unreadNotifications,
+    isLoading: isLoadingUnread,
+    error: errorUnread,
+  } = useUnreadNotifications(type ? { type } : undefined);
+
+  // Select data based on showUnreadOnly
+  const notifications = showUnreadOnly ? unreadNotifications : allNotifications;
+  const isLoading = showUnreadOnly ? isLoadingUnread : isLoadingAll;
+  const error = showUnreadOnly ? errorUnread : errorAll;
   const { mutate: markAsRead } = useMarkAsRead();
-  const { mutate: deleteNotification } = useDeleteNotification();
 
   const handleMarkAsRead = (id: string) => {
     markAsRead(id);
-  };
-
-  const handleDelete = (id: string) => {
-    if (confirm(t('confirmDelete'))) {
-      deleteNotification(id);
-    }
   };
 
   if (isLoading) {
@@ -59,7 +65,6 @@ export default function NotificationsList({
             key={notification.id}
             notification={notification}
             onMarkAsRead={handleMarkAsRead}
-            onDelete={handleDelete}
           />
         ))
       )}

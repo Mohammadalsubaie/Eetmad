@@ -16,14 +16,21 @@ export function useReviews(params?: QueryParams) {
   const [error, setError] = useState<Error | null>(null);
 
   useEffect(() => {
-    setIsLoading(true);
-    setError(null);
-    reviewsApi
-      .getAll(params)
-      .then(setData)
-      .catch((err) => setError(err instanceof Error ? err : new Error(String(err))))
-      .finally(() => setIsLoading(false));
-  }, [JSON.stringify(params)]);
+    const fetchReviews = async () => {
+      setIsLoading(true);
+      setError(null);
+      try {
+        const data = await reviewsApi.getAll(params);
+        setData(data);
+      } catch (err) {
+        setError(err instanceof Error ? err : new Error(String(err)));
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchReviews();
+  }, [params]);
 
   return { data, isLoading, error };
 }
@@ -34,14 +41,25 @@ export function useReview(id: string) {
   const [error, setError] = useState<Error | null>(null);
 
   useEffect(() => {
-    if (!id) return;
-    setIsLoading(true);
-    setError(null);
-    reviewsApi
-      .getById(id)
-      .then(setData)
-      .catch((err) => setError(err instanceof Error ? err : new Error(String(err))))
-      .finally(() => setIsLoading(false));
+    if (!id) {
+      setIsLoading(false);
+      return;
+    }
+
+    const fetchReview = async () => {
+      setIsLoading(true);
+      setError(null);
+      try {
+        const data = await reviewsApi.getById(id);
+        setData(data);
+      } catch (err) {
+        setError(err instanceof Error ? err : new Error(String(err)));
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchReview();
   }, [id]);
 
   return { data, isLoading, error };
@@ -53,15 +71,26 @@ export function useReviewsByProject(projectId: string, params?: QueryParams) {
   const [error, setError] = useState<Error | null>(null);
 
   useEffect(() => {
-    if (!projectId) return;
-    setIsLoading(true);
-    setError(null);
-    reviewsApi
-      .getByProject(projectId, params)
-      .then(setData)
-      .catch((err) => setError(err instanceof Error ? err : new Error(String(err))))
-      .finally(() => setIsLoading(false));
-  }, [projectId, JSON.stringify(params)]);
+    if (!projectId) {
+      setIsLoading(false);
+      return;
+    }
+
+    const fetchReviews = async () => {
+      setIsLoading(true);
+      setError(null);
+      try {
+        const data = await reviewsApi.getByProject(projectId, params);
+        setData(data);
+      } catch (err) {
+        setError(err instanceof Error ? err : new Error(String(err)));
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchReviews();
+  }, [projectId, params]);
 
   return { data, isLoading, error };
 }
@@ -72,15 +101,26 @@ export function useReviewsBySupplier(supplierId: string, params?: QueryParams) {
   const [error, setError] = useState<Error | null>(null);
 
   useEffect(() => {
-    if (!supplierId) return;
-    setIsLoading(true);
-    setError(null);
-    reviewsApi
-      .getBySupplier(supplierId, params)
-      .then(setData)
-      .catch((err) => setError(err instanceof Error ? err : new Error(String(err))))
-      .finally(() => setIsLoading(false));
-  }, [supplierId, JSON.stringify(params)]);
+    if (!supplierId) {
+      setIsLoading(false);
+      return;
+    }
+
+    const fetchReviews = async () => {
+      setIsLoading(true);
+      setError(null);
+      try {
+        const data = await reviewsApi.getBySupplier(supplierId, params);
+        setData(data);
+      } catch (err) {
+        setError(err instanceof Error ? err : new Error(String(err)));
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchReviews();
+  }, [supplierId, params]);
 
   return { data, isLoading, error };
 }
@@ -91,14 +131,25 @@ export function useSupplierReviewStats(supplierId: string) {
   const [error, setError] = useState<Error | null>(null);
 
   useEffect(() => {
-    if (!supplierId) return;
-    setIsLoading(true);
-    setError(null);
-    reviewsApi
-      .getSupplierStatistics(supplierId)
-      .then(setData)
-      .catch((err) => setError(err instanceof Error ? err : new Error(String(err))))
-      .finally(() => setIsLoading(false));
+    if (!supplierId) {
+      setIsLoading(false);
+      return;
+    }
+
+    const fetchStatistics = async () => {
+      setIsLoading(true);
+      setError(null);
+      try {
+        const data = await reviewsApi.getSupplierStatistics(supplierId);
+        setData(data);
+      } catch (err) {
+        setError(err instanceof Error ? err : new Error(String(err)));
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchStatistics();
   }, [supplierId]);
 
   return { data, isLoading, error };

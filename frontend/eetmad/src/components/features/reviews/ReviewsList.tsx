@@ -13,15 +13,25 @@ interface ReviewsListProps {
 
 export default function ReviewsList({ projectId, supplierId }: ReviewsListProps) {
   const t = useTranslations('pages.reviews');
+  // Always call all hooks to avoid conditional hook calls
+  const { data: allReviews, isLoading: isLoadingAll, error: errorAll } = useReviews();
+
   const {
-    data: reviews,
-    isLoading,
-    error,
-  } = projectId
-    ? useReviewsByProject(projectId)
-    : supplierId
-      ? useReviewsBySupplier(supplierId)
-      : useReviews();
+    data: projectReviews,
+    isLoading: isLoadingProject,
+    error: errorProject,
+  } = useReviewsByProject(projectId || '');
+
+  const {
+    data: supplierReviews,
+    isLoading: isLoadingSupplier,
+    error: errorSupplier,
+  } = useReviewsBySupplier(supplierId || '');
+
+  // Select data based on projectId or supplierId
+  const reviews = projectId ? projectReviews : supplierId ? supplierReviews : allReviews;
+  const isLoading = projectId ? isLoadingProject : supplierId ? isLoadingSupplier : isLoadingAll;
+  const error = projectId ? errorProject : supplierId ? errorSupplier : errorAll;
 
   if (isLoading) {
     return <LoadingSpinner text={t('loading')} />;

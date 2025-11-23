@@ -14,14 +14,27 @@ const DEFAULT_COLORS = [
   cssVars.neutral.textMuted,
 ];
 
-const CustomTooltip = ({ active, payload }: any) => {
+interface CustomTooltipProps {
+  active?: boolean;
+  payload?: Array<{
+    name?: string;
+    value?: number;
+    color?: string;
+    payload?: { value?: number; color?: string };
+  }>;
+}
+
+const CustomTooltip = ({ active, payload }: CustomTooltipProps) => {
   if (active && payload && payload.length) {
     const data = payload[0];
+    const color = data.payload?.color || data.color || DEFAULT_COLORS[0];
+    const name = data.name || '';
+    const value = data.value ?? 0;
     return (
       <div
         style={{
           backgroundColor: cssVars.neutral.surface,
-          border: `2px solid ${data.payload.color || data.color}`,
+          border: `2px solid ${color}`,
           borderRadius: '12px',
           padding: '12px 16px',
           boxShadow: `0 4px 12px color-mix(in srgb, ${cssVars.neutral.darker} 15%, transparent)`,
@@ -43,21 +56,21 @@ const CustomTooltip = ({ active, payload }: any) => {
               display: 'inline-block',
               width: '12px',
               height: '12px',
-              backgroundColor: data.payload.color || data.color,
+              backgroundColor: color,
               borderRadius: '50%',
             }}
           />
-          {data.name}
+          {name}
         </p>
         <p
           style={{
-            color: data.payload.color || data.color,
+            color: color,
             fontSize: '18px',
             fontWeight: 'bold',
             margin: '4px 0',
           }}
         >
-          {data.value.toFixed(1)}%
+          {value.toFixed(1)}%
         </p>
       </div>
     );
@@ -71,15 +84,23 @@ export default function CompletionRateChart({ data }: CompletionRateChartProps) 
     color: item.color || DEFAULT_COLORS[index % DEFAULT_COLORS.length],
   }));
 
+  interface LabelProps {
+    cx?: number;
+    cy?: number;
+    midAngle?: number;
+    innerRadius?: number;
+    outerRadius?: number;
+    percent?: number;
+  }
+
   const renderCustomLabel = ({
-    cx,
-    cy,
-    midAngle,
-    innerRadius,
-    outerRadius,
-    percent,
-    payload,
-  }: any) => {
+    cx = 0,
+    cy = 0,
+    midAngle = 0,
+    innerRadius = 0,
+    outerRadius = 0,
+    percent = 0,
+  }: LabelProps) => {
     if (percent < 0.08) return null; // Don't show label for very small slices
 
     const RADIAN = Math.PI / 180;
@@ -141,17 +162,20 @@ export default function CompletionRateChart({ data }: CompletionRateChartProps) 
           layout="vertical"
           verticalAlign="bottom"
           align="center"
-          formatter={(value, entry: any) => (
-            <span
-              style={{
-                color: cssVars.neutral.darker,
-                fontSize: '16px',
-                fontWeight: 500,
-              }}
-            >
-              {value}: {entry.payload.value.toFixed(1)}%
-            </span>
-          )}
+          formatter={(value, entry: { payload?: { value?: number } }) => {
+            const percentage = entry.payload?.value?.toFixed(1) ?? '0.0';
+            return (
+              <span
+                style={{
+                  color: cssVars.neutral.darker,
+                  fontSize: '16px',
+                  fontWeight: 500,
+                }}
+              >
+                {value}: {percentage}%
+              </span>
+            );
+          }}
         />
       </PieChart>
     </ResponsiveContainer>

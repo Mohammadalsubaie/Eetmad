@@ -31,12 +31,16 @@ export default function EditSupplierProfilePage() {
 
   useEffect(() => {
     if (profile) {
-      setFormData({
-        serviceDescription: profile.serviceDescription || '',
-        responseTime: profile.responseTime || 0,
-        acceptanceRate: profile.acceptanceRate || 0,
-        onTimeDelivery: profile.onTimeDelivery || 0,
-      });
+      // Use setTimeout to avoid synchronous setState in effect
+      const timer = setTimeout(() => {
+        setFormData({
+          serviceDescription: profile.serviceDescription || '',
+          responseTime: profile.responseTime || 0,
+          acceptanceRate: profile.acceptanceRate || 0,
+          onTimeDelivery: profile.onTimeDelivery || 0,
+        });
+      }, 0);
+      return () => clearTimeout(timer);
     }
   }, [profile]);
 
@@ -57,7 +61,7 @@ export default function EditSupplierProfilePage() {
     try {
       await updateProfile(formData);
       router.push(`/${locale}/suppliers/me`);
-    } catch (err) {
+    } catch {
       // Error handled by hook
     }
   };

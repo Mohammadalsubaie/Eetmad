@@ -28,11 +28,23 @@ export default function RequestsList({ showMyRequests = false, filters }: Reques
     [activeFilters, searchQuery]
   );
 
+  // Always call both hooks to avoid conditional hook calls
   const {
-    data: requests,
-    isLoading,
-    error,
-  } = showMyRequests ? useMyRequests(combinedFilters) : useRequests(combinedFilters);
+    data: allRequests,
+    isLoading: isLoadingAll,
+    error: errorAll,
+  } = useRequests(combinedFilters);
+
+  const {
+    data: myRequests,
+    isLoading: isLoadingMy,
+    error: errorMy,
+  } = useMyRequests(combinedFilters);
+
+  // Select data based on showMyRequests
+  const requests = showMyRequests ? myRequests : allRequests;
+  const isLoading = showMyRequests ? isLoadingMy : isLoadingAll;
+  const error = showMyRequests ? errorMy : errorAll;
 
   const handleSearch = (query: string) => {
     setSearchQuery(query);

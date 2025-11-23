@@ -3,16 +3,7 @@
 import { useRouter } from 'next/navigation';
 import { useTranslations } from 'next-intl';
 import { motion } from 'framer-motion';
-import {
-  DollarSign,
-  CheckCircle2,
-  Clock,
-  XCircle,
-  CreditCard,
-  Building2,
-  Wallet,
-  ArrowRight,
-} from 'lucide-react';
+import { DollarSign, CreditCard, Building2, Wallet, ArrowRight } from 'lucide-react';
 import { cssVars } from '@/styles/theme';
 import type { Payment } from '@/lib/types/payment.types';
 import { Badge } from '@/components/ui';
@@ -48,23 +39,6 @@ export default function PaymentCard({ payment, onView }: PaymentCardProps) {
     return `${amount.toLocaleString()} ${currency}`;
   };
 
-  const getStatusColor = (status: string) => {
-    switch (status) {
-      case 'completed':
-        return cssVars.status.success;
-      case 'pending':
-      case 'processing':
-        return cssVars.status.warning;
-      case 'failed':
-      case 'cancelled':
-        return cssVars.status.error;
-      case 'refunded':
-        return cssVars.neutral.textMuted;
-      default:
-        return cssVars.neutral.textSecondary;
-    }
-  };
-
   const getMethodIcon = (method: string) => {
     switch (method) {
       case 'credit_card':
@@ -79,7 +53,10 @@ export default function PaymentCard({ payment, onView }: PaymentCardProps) {
     }
   };
 
-  const MethodIcon = getMethodIcon(payment.paymentMethod);
+  const renderMethodIcon = () => {
+    const MethodIconComponent = getMethodIcon(payment.paymentMethod);
+    return <MethodIconComponent className="h-4 w-4" style={{ color: cssVars.neutral.textMuted }} />;
+  };
 
   return (
     <motion.div
@@ -146,7 +123,7 @@ export default function PaymentCard({ payment, onView }: PaymentCardProps) {
           {/* Details */}
           <div className="mb-3 space-y-2">
             <div className="flex items-center gap-2">
-              <MethodIcon className="h-4 w-4" style={{ color: cssVars.neutral.textMuted }} />
+              {renderMethodIcon()}
               <span className="text-sm" style={{ color: cssVars.neutral.textSecondary }}>
                 {t(`method.${payment.paymentMethod}`)}
               </span>

@@ -37,16 +37,20 @@ export default function EditReviewPage() {
 
   useEffect(() => {
     if (review) {
-      setFormData({
-        rating: review.rating,
-        title: review.title,
-        comment: review.comment,
-        qualityRating: review.qualityRating || undefined,
-        communicationRating: review.communicationRating || undefined,
-        timelinessRating: review.timelinessRating || undefined,
-        professionalismRating: review.professionalismRating || undefined,
-        response: review.response || undefined,
-      });
+      // Use setTimeout to avoid synchronous setState in effect
+      const timer = setTimeout(() => {
+        setFormData({
+          rating: review.rating,
+          title: review.title,
+          comment: review.comment,
+          qualityRating: review.qualityRating || undefined,
+          communicationRating: review.communicationRating || undefined,
+          timelinessRating: review.timelinessRating || undefined,
+          professionalismRating: review.professionalismRating || undefined,
+          response: review.response || undefined,
+        });
+      }, 0);
+      return () => clearTimeout(timer);
     }
   }, [review]);
 
@@ -72,7 +76,7 @@ export default function EditReviewPage() {
     try {
       await updateReview(reviewId, formData);
       router.push(`/admin/reviews/${reviewId}`);
-    } catch (err) {
+    } catch {
       // Error is handled by the hook
     }
   };

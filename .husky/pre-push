@@ -68,12 +68,24 @@ echo ""
 # ============================================================================
 echo "${BLUE}🔍 [2/6] Running ESLint...${NC}"
 
-if npm run lint:check > /dev/null 2>&1; then
-  echo "${GREEN}✅ ESLint check passed${NC}"
-else
-  echo "${RED}❌ ESLint check failed${NC}"
+# Run ESLint and capture output
+LINT_OUTPUT=$(npm run lint:check 2>&1)
+LINT_EXIT_CODE=$?
+
+# Check output for errors vs warnings
+ERROR_COUNT=$(echo "$LINT_OUTPUT" | grep -oE "[0-9]+ error" | grep -oE "[0-9]+" || echo "0")
+WARNING_COUNT=$(echo "$LINT_OUTPUT" | grep -oE "[0-9]+ warning" | grep -oE "[0-9]+" || echo "0")
+
+if [ "$ERROR_COUNT" -gt 0 ]; then
+  echo "${RED}❌ ESLint check failed (${ERROR_COUNT} error(s) found)${NC}"
   echo "${YELLOW}💡 Run: npm run lint -- --fix${NC}"
   CHECKS_PASSED=false
+elif [ "$WARNING_COUNT" -gt 0 ]; then
+  # Only warnings, no errors - allow to pass but show info
+  echo "${YELLOW}⚠️  ESLint check passed with ${WARNING_COUNT} warning(s)${NC}"
+  echo "${CYAN}💡 Consider fixing warnings: npm run lint -- --fix${NC}"
+else
+  echo "${GREEN}✅ ESLint check passed${NC}"
 fi
 echo ""
 

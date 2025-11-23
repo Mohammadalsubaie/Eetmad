@@ -621,6 +621,20 @@
       "resendSuccess": "New code sent successfully!",
       "invalidToken": "[Translation needed]"
     },
+    "verifyPhone": {
+      "title": "Verify Your Phone",
+      "subtitle": "We've sent a verification code to your phone number",
+      "badge": "Phone Verification",
+      "verificationCode": "Verification Code",
+      "submitButton": "Verify Phone",
+      "resendButton": "Resend Code",
+      "resendIn": "Resend in",
+      "success": "Phone verified successfully!",
+      "error": "Invalid verification code",
+      "codeSent": "Verification code sent to {phone}",
+      "resendSuccess": "New code sent successfully!",
+      "successMessage": "Your phone number has been verified successfully. You can now sign in to your account."
+    },
     "twoFactor": {
       "title": "Two-Factor Authentication",
       "subtitle": "Secure your account with 2FA",

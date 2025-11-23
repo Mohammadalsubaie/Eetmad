@@ -11,14 +11,21 @@ export function useFaq(params?: QueryParams) {
   const [error, setError] = useState<Error | null>(null);
 
   useEffect(() => {
-    setIsLoading(true);
-    setError(null);
-    faqApi
-      .getAll(params)
-      .then(setData)
-      .catch((err) => setError(err instanceof Error ? err : new Error(String(err))))
-      .finally(() => setIsLoading(false));
-  }, [JSON.stringify(params)]);
+    const fetchFaq = async () => {
+      setIsLoading(true);
+      setError(null);
+      try {
+        const data = await faqApi.getAll(params);
+        setData(data);
+      } catch (err) {
+        setError(err instanceof Error ? err : new Error(String(err)));
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchFaq();
+  }, [params]);
 
   return { data, isLoading, error };
 }

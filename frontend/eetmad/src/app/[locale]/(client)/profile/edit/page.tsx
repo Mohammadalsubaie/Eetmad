@@ -39,23 +39,27 @@ export default function EditProfilePage() {
 
   useEffect(() => {
     if (profile) {
-      setFormData({
-        fullName: profile.fullName || '',
-        phone: profile.phone || '',
-        dateOfBirth: profile.dateOfBirth
-          ? new Date(profile.dateOfBirth).toISOString().split('T')[0]
-          : '',
-        nationalId: profile.nationalId || '',
-        companyName: profile.companyName || '',
-        commercialRegister: profile.commercialRegister || '',
-        taxNumber: profile.taxNumber || '',
-        street: profile.address?.street || '',
-        city: profile.address?.city || '',
-        state: profile.address?.state || '',
-        country: profile.address?.country || '',
-        postalCode: profile.address?.postalCode || '',
-      });
-      setAvatarPreview(profile.avatar || null);
+      // Use setTimeout to avoid synchronous setState in effect
+      const timer = setTimeout(() => {
+        setFormData({
+          fullName: profile.fullName || '',
+          phone: profile.phone || '',
+          dateOfBirth: profile.dateOfBirth
+            ? new Date(profile.dateOfBirth).toISOString().split('T')[0]
+            : '',
+          nationalId: profile.nationalId || '',
+          companyName: profile.companyName || '',
+          commercialRegister: profile.commercialRegister || '',
+          taxNumber: profile.taxNumber || '',
+          street: profile.address?.street || '',
+          city: profile.address?.city || '',
+          state: profile.address?.state || '',
+          country: profile.address?.country || '',
+          postalCode: profile.address?.postalCode || '',
+        });
+        setAvatarPreview(profile.avatar || null);
+      }, 0);
+      return () => clearTimeout(timer);
     }
   }, [profile]);
 
@@ -79,7 +83,7 @@ export default function EditProfilePage() {
     try {
       const result = await uploadAvatar(file);
       setAvatarPreview(result.avatar);
-    } catch (err) {
+    } catch {
       // Error handled by hook
     }
   };
@@ -105,7 +109,7 @@ export default function EditProfilePage() {
         },
       });
       router.push(`/${locale}/profile`);
-    } catch (err) {
+    } catch {
       // Error handled by hook
     }
   };

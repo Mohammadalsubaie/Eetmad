@@ -6,7 +6,6 @@ import { motion } from 'framer-motion';
 import {
   Bell,
   CheckCircle2,
-  Clock,
   DollarSign,
   FileText,
   MessageCircle,
@@ -14,7 +13,6 @@ import {
   Star,
   AlertCircle,
   Shield,
-  CreditCard,
   FileCheck,
 } from 'lucide-react';
 import { cssVars } from '@/styles/theme';
@@ -25,14 +23,12 @@ interface NotificationCardProps {
   notification: Notification;
   onView?: (id: string) => void;
   onMarkAsRead?: (id: string) => void;
-  onDelete?: (id: string) => void;
 }
 
 export default function NotificationCard({
   notification,
   onView,
   onMarkAsRead,
-  onDelete,
 }: NotificationCardProps) {
   const t = useTranslations('pages.notifications');
   const router = useRouter();
@@ -124,8 +120,11 @@ export default function NotificationCard({
     }
   };
 
-  const Icon = getTypeIcon(notification.type);
   const typeColor = getTypeColor(notification.type);
+  const renderIcon = () => {
+    const IconComponent = getTypeIcon(notification.type);
+    return <IconComponent className="h-6 w-6" style={{ color: typeColor }} />;
+  };
 
   return (
     <motion.div
@@ -149,7 +148,7 @@ export default function NotificationCard({
             backgroundColor: `color-mix(in srgb, ${typeColor} 15%, transparent)`,
           }}
         >
-          <Icon className="h-6 w-6" style={{ color: typeColor }} />
+          {renderIcon()}
         </div>
 
         {/* Content */}

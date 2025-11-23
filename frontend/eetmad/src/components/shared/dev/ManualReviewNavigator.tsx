@@ -16,7 +16,7 @@ import {
   X,
   XCircle,
 } from 'lucide-react';
-import { useLocale, useTranslations } from 'next-intl';
+import { useLocale } from 'next-intl';
 import { usePathname, useRouter } from 'next/navigation';
 import { useEffect, useRef, useState } from 'react';
 
@@ -216,7 +216,12 @@ const MOCK_IDS: Record<string, string> = {
   'admin/reviews/[id]': 'review-1',
 };
 
-const STATUS_OPTIONS: { value: ReviewStatus; label: string; color: string; icon: any }[] = [
+const STATUS_OPTIONS: {
+  value: ReviewStatus;
+  label: string;
+  color: string;
+  icon: React.ComponentType<{ className?: string }> | null;
+}[] = [
   { value: 'pending', label: 'معلق', color: cssVars.neutral.textMuted, icon: null },
   { value: 'reviewed', label: 'مكتمل', color: cssVars.status.success, icon: CheckCircle2 },
   { value: 'issues', label: 'لديه مشاكل', color: cssVars.status.warning, icon: AlertCircle },
@@ -241,11 +246,9 @@ const resolveDynamicRoute = (path: string): string => {
 function StatusDropdown({
   currentStatus,
   onStatusChange,
-  pagePath,
 }: {
   currentStatus: ReviewStatus;
   onStatusChange: (status: ReviewStatus) => void;
-  pagePath: string;
 }) {
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
@@ -363,11 +366,6 @@ export default function ManualReviewNavigator() {
   const router = useRouter();
   const pathname = usePathname();
   const locale = useLocale();
-  const t = useTranslations('dev');
-
-  if (process.env.NODE_ENV !== 'development') {
-    return null;
-  }
 
   const createNewSession = (
     name: string = '',
@@ -405,27 +403,31 @@ export default function ManualReviewNavigator() {
     if (savedSessions) {
       try {
         const parsedSessions = JSON.parse(savedSessions) as TestSession[];
-        setSessions(parsedSessions);
+        setTimeout(() => {
+          setSessions(parsedSessions);
 
-        if (savedCurrentSession && parsedSessions.find((s) => s.id === savedCurrentSession)) {
-          setCurrentSessionId(savedCurrentSession);
-          const currentSession = parsedSessions.find((s) => s.id === savedCurrentSession);
-          if (currentSession) {
-            setReviews(currentSession.reviews);
+          if (savedCurrentSession && parsedSessions.find((s) => s.id === savedCurrentSession)) {
+            setCurrentSessionId(savedCurrentSession);
+            const currentSession = parsedSessions.find((s) => s.id === savedCurrentSession);
+            if (currentSession) {
+              setReviews(currentSession.reviews);
+            }
+          } else if (parsedSessions.length > 0) {
+            const mostRecent = parsedSessions.sort(
+              (a, b) => new Date(b.updatedAt).getTime() - new Date(a.updatedAt).getTime()
+            )[0];
+            setCurrentSessionId(mostRecent.id);
+            setReviews(mostRecent.reviews);
+            localStorage.setItem(CURRENT_SESSION_KEY, mostRecent.id);
           }
-        } else if (parsedSessions.length > 0) {
-          const mostRecent = parsedSessions.sort(
-            (a, b) => new Date(b.updatedAt).getTime() - new Date(a.updatedAt).getTime()
-          )[0];
-          setCurrentSessionId(mostRecent.id);
-          setReviews(mostRecent.reviews);
-          localStorage.setItem(CURRENT_SESSION_KEY, mostRecent.id);
-        }
+        }, 0);
       } catch (e) {
         console.error('Failed to load sessions:', e);
       }
     } else {
-      createNewSession('اختبار أولي');
+      setTimeout(() => {
+        createNewSession('اختبار أولي');
+      }, 0);
     }
 
     // Listen for focused test suite events
@@ -523,27 +525,33 @@ export default function ManualReviewNavigator() {
 
   useEffect(() => {
     if (currentSessionId) {
-      setSessions((prevSessions) => {
-        if (!Array.isArray(prevSessions) || prevSessions.length === 0) {
-          return prevSessions;
-        }
-
-        const updatedSessions = prevSessions.map((session) => {
-          if (session.id === currentSessionId) {
-            return {
-              ...session,
-              reviews,
-              updatedAt: new Date().toISOString(),
-            };
+      setTimeout(() => {
+        setSessions((prevSessions) => {
+          if (!Array.isArray(prevSessions) || prevSessions.length === 0) {
+            return prevSessions;
           }
-          return session;
-        });
 
-        localStorage.setItem(STORAGE_KEY, JSON.stringify(updatedSessions));
-        return updatedSessions;
-      });
+          const updatedSessions = prevSessions.map((session) => {
+            if (session.id === currentSessionId) {
+              return {
+                ...session,
+                reviews,
+                updatedAt: new Date().toISOString(),
+              };
+            }
+            return session;
+          });
+
+          localStorage.setItem(STORAGE_KEY, JSON.stringify(updatedSessions));
+          return updatedSessions;
+        });
+      }, 0);
     }
   }, [reviews, currentSessionId]);
+
+  if (process.env.NODE_ENV !== 'development') {
+    return null;
+  }
 
   const toggleGroup = (group: string) => {
     const newExpanded = new Set(expandedGroups);
@@ -1369,7 +1377,6 @@ export default function ManualReviewNavigator() {
                                   onStatusChange={(newStatus) =>
                                     updateReviewStatus(page.path, newStatus)
                                   }
-                                  pagePath={page.path}
                                 />
                               </div>
 

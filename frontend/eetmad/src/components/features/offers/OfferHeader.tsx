@@ -1,6 +1,5 @@
 'use client';
 
-import { motion } from 'framer-motion';
 import { DollarSign, Edit } from 'lucide-react';
 import { cssVars } from '@/styles/theme';
 import { useTranslations } from 'next-intl';
@@ -33,25 +32,21 @@ export default function OfferHeader({ offer, offerId }: OfferHeaderProps) {
     }
   };
 
-  const getStatusIcon = (status: string) => {
-    switch (status) {
-      case 'accepted':
-        return CheckCircle2;
-      case 'rejected':
-        return XCircle;
-      case 'withdrawn':
-      case 'expired':
-        return AlertCircle;
-      default:
-        return AlertCircle;
-    }
-  };
-
   const formatCurrency = (amount: number) => {
     return `${amount.toLocaleString()} ${t('currency')}`;
   };
 
-  const StatusIcon = getStatusIcon(offer.status);
+  const renderStatusIcon = () => {
+    const IconComponent =
+      offer.status === 'accepted'
+        ? CheckCircle2
+        : offer.status === 'rejected'
+          ? XCircle
+          : AlertCircle;
+
+    return <IconComponent className="h-3 w-3" />;
+  };
+
   const statusColor = getStatusColor(offer.status);
 
   return (
@@ -70,7 +65,7 @@ export default function OfferHeader({ offer, offerId }: OfferHeaderProps) {
                 borderColor: statusColor,
               }}
             >
-              <StatusIcon className="h-3 w-3" />
+              {renderStatusIcon()}
               {t(`status.${offer.status}`)}
             </span>
             {offer.offerNumber && (

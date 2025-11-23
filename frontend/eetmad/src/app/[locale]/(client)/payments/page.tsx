@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { useTranslations, useLocale } from 'next-intl';
 import { useRouter } from 'next/navigation';
 import { motion } from 'framer-motion';
-import { Plus, Wallet, History, Filter } from 'lucide-react';
+import { Plus, Wallet, History } from 'lucide-react';
 import { cssVars } from '@/styles/theme';
 import { usePayments, usePendingPayments } from '@/lib/hooks/usePayments';
 import PaymentCard from '@/components/features/payments/PaymentCard';
@@ -17,11 +17,20 @@ export default function PaymentsPage() {
   const locale = useLocale();
   const router = useRouter();
   const [activeTab, setActiveTab] = useState<'all' | 'pending'>('all');
+
+  // Always call both hooks to avoid conditional hook calls
+  const { data: allPayments, isLoading: isLoadingAll, error: errorAll } = usePayments();
+
   const {
-    data: payments,
-    isLoading,
-    error,
-  } = activeTab === 'pending' ? usePendingPayments() : usePayments();
+    data: pendingPayments,
+    isLoading: isLoadingPending,
+    error: errorPending,
+  } = usePendingPayments();
+
+  // Select data based on active tab
+  const payments = activeTab === 'pending' ? pendingPayments : allPayments;
+  const isLoading = activeTab === 'pending' ? isLoadingPending : isLoadingAll;
+  const error = activeTab === 'pending' ? errorPending : errorAll;
 
   if (isLoading) {
     return (

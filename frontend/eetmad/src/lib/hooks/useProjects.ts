@@ -11,14 +11,21 @@ export function useProjects(filters?: ProjectFilters | QueryParams) {
   const [error, setError] = useState<Error | null>(null);
 
   useEffect(() => {
-    setIsLoading(true);
-    setError(null);
-    projectsApi
-      .getAll(filters)
-      .then(setData)
-      .catch((err) => setError(err instanceof Error ? err : new Error(String(err))))
-      .finally(() => setIsLoading(false));
-  }, [JSON.stringify(filters)]);
+    const fetchProjects = async () => {
+      setIsLoading(true);
+      setError(null);
+      try {
+        const data = await projectsApi.getAll(filters);
+        setData(data);
+      } catch (err) {
+        setError(err instanceof Error ? err : new Error(String(err)));
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchProjects();
+  }, [filters]);
 
   return { data, isLoading, error };
 }
@@ -29,12 +36,25 @@ export function useProject(id: string) {
   const [error, setError] = useState<Error | null>(null);
 
   useEffect(() => {
-    if (!id) return;
-    projectsApi
-      .getById(id)
-      .then(setData)
-      .catch(setError)
-      .finally(() => setIsLoading(false));
+    if (!id) {
+      setIsLoading(false);
+      return;
+    }
+
+    const fetchProject = async () => {
+      setIsLoading(true);
+      setError(null);
+      try {
+        const data = await projectsApi.getById(id);
+        setData(data);
+      } catch (err) {
+        setError(err instanceof Error ? err : new Error(String(err)));
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchProject();
   }, [id]);
 
   return { data, isLoading, error };

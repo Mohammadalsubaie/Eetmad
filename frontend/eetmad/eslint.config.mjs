@@ -12,6 +12,12 @@ const eslintConfig = defineConfig([
     'out/**',
     'build/**',
     'next-env.d.ts',
+    // Ignore scripts directory (contains legacy JS files with require())
+    'scripts/**',
+    // Ignore public directory (contains generated files)
+    'public/**',
+    // Ignore node_modules
+    'node_modules/**',
   ]),
 ]);
 

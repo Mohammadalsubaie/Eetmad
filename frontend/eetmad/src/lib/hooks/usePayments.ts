@@ -6,7 +6,6 @@ import type {
   Payment,
   Wallet,
   WalletTransaction,
-  Refund,
   InitiatePaymentInput,
   RefundRequestInput,
 } from '@/lib/types/payment.types';
@@ -18,14 +17,21 @@ export function usePayments(params?: QueryParams) {
   const [error, setError] = useState<Error | null>(null);
 
   useEffect(() => {
-    setIsLoading(true);
-    setError(null);
-    paymentsApi
-      .getAll(params)
-      .then(setData)
-      .catch((err) => setError(err instanceof Error ? err : new Error(String(err))))
-      .finally(() => setIsLoading(false));
-  }, [JSON.stringify(params)]);
+    const fetchPayments = async () => {
+      setIsLoading(true);
+      setError(null);
+      try {
+        const data = await paymentsApi.getAll(params);
+        setData(data);
+      } catch (err) {
+        setError(err instanceof Error ? err : new Error(String(err)));
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchPayments();
+  }, [params]);
 
   return { data, isLoading, error };
 }
@@ -36,14 +42,25 @@ export function usePayment(id: string) {
   const [error, setError] = useState<Error | null>(null);
 
   useEffect(() => {
-    if (!id) return;
-    setIsLoading(true);
-    setError(null);
-    paymentsApi
-      .getById(id)
-      .then(setData)
-      .catch((err) => setError(err instanceof Error ? err : new Error(String(err))))
-      .finally(() => setIsLoading(false));
+    if (!id) {
+      setIsLoading(false);
+      return;
+    }
+
+    const fetchPayment = async () => {
+      setIsLoading(true);
+      setError(null);
+      try {
+        const data = await paymentsApi.getById(id);
+        setData(data);
+      } catch (err) {
+        setError(err instanceof Error ? err : new Error(String(err)));
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchPayment();
   }, [id]);
 
   return { data, isLoading, error };
@@ -55,15 +72,26 @@ export function usePaymentsByProject(projectId: string, params?: QueryParams) {
   const [error, setError] = useState<Error | null>(null);
 
   useEffect(() => {
-    if (!projectId) return;
-    setIsLoading(true);
-    setError(null);
-    paymentsApi
-      .getByProject(projectId, params)
-      .then(setData)
-      .catch((err) => setError(err instanceof Error ? err : new Error(String(err))))
-      .finally(() => setIsLoading(false));
-  }, [projectId, JSON.stringify(params)]);
+    if (!projectId) {
+      setIsLoading(false);
+      return;
+    }
+
+    const fetchPayments = async () => {
+      setIsLoading(true);
+      setError(null);
+      try {
+        const data = await paymentsApi.getByProject(projectId, params);
+        setData(data);
+      } catch (err) {
+        setError(err instanceof Error ? err : new Error(String(err)));
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchPayments();
+  }, [projectId, params]);
 
   return { data, isLoading, error };
 }
@@ -74,14 +102,21 @@ export function usePaymentHistory(params?: QueryParams) {
   const [error, setError] = useState<Error | null>(null);
 
   useEffect(() => {
-    setIsLoading(true);
-    setError(null);
-    paymentsApi
-      .getHistory(params)
-      .then(setData)
-      .catch((err) => setError(err instanceof Error ? err : new Error(String(err))))
-      .finally(() => setIsLoading(false));
-  }, [JSON.stringify(params)]);
+    const fetchHistory = async () => {
+      setIsLoading(true);
+      setError(null);
+      try {
+        const data = await paymentsApi.getHistory(params);
+        setData(data);
+      } catch (err) {
+        setError(err instanceof Error ? err : new Error(String(err)));
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchHistory();
+  }, [params]);
 
   return { data, isLoading, error };
 }
@@ -92,14 +127,21 @@ export function usePendingPayments(params?: QueryParams) {
   const [error, setError] = useState<Error | null>(null);
 
   useEffect(() => {
-    setIsLoading(true);
-    setError(null);
-    paymentsApi
-      .getPending(params)
-      .then(setData)
-      .catch((err) => setError(err instanceof Error ? err : new Error(String(err))))
-      .finally(() => setIsLoading(false));
-  }, [JSON.stringify(params)]);
+    const fetchPending = async () => {
+      setIsLoading(true);
+      setError(null);
+      try {
+        const data = await paymentsApi.getPending(params);
+        setData(data);
+      } catch (err) {
+        setError(err instanceof Error ? err : new Error(String(err)));
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchPending();
+  }, [params]);
 
   return { data, isLoading, error };
 }
@@ -110,13 +152,20 @@ export function usePaymentStatistics() {
   const [error, setError] = useState<Error | null>(null);
 
   useEffect(() => {
-    setIsLoading(true);
-    setError(null);
-    paymentsApi
-      .getStatistics()
-      .then(setData)
-      .catch((err) => setError(err instanceof Error ? err : new Error(String(err))))
-      .finally(() => setIsLoading(false));
+    const fetchStatistics = async () => {
+      setIsLoading(true);
+      setError(null);
+      try {
+        const data = await paymentsApi.getStatistics();
+        setData(data);
+      } catch (err) {
+        setError(err instanceof Error ? err : new Error(String(err)));
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchStatistics();
   }, []);
 
   return { data, isLoading, error };
@@ -254,13 +303,20 @@ export function useWallet() {
   const [error, setError] = useState<Error | null>(null);
 
   useEffect(() => {
-    setIsLoading(true);
-    setError(null);
-    paymentsApi
-      .getWallet()
-      .then(setData)
-      .catch((err) => setError(err instanceof Error ? err : new Error(String(err))))
-      .finally(() => setIsLoading(false));
+    const fetchWallet = async () => {
+      setIsLoading(true);
+      setError(null);
+      try {
+        const data = await paymentsApi.getWallet();
+        setData(data);
+      } catch (err) {
+        setError(err instanceof Error ? err : new Error(String(err)));
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchWallet();
   }, []);
 
   return { data, isLoading, error };
@@ -272,14 +328,21 @@ export function useWalletTransactions(params?: QueryParams) {
   const [error, setError] = useState<Error | null>(null);
 
   useEffect(() => {
-    setIsLoading(true);
-    setError(null);
-    paymentsApi
-      .getWalletTransactions(params)
-      .then(setData)
-      .catch((err) => setError(err instanceof Error ? err : new Error(String(err))))
-      .finally(() => setIsLoading(false));
-  }, [JSON.stringify(params)]);
+    const fetchTransactions = async () => {
+      setIsLoading(true);
+      setError(null);
+      try {
+        const data = await paymentsApi.getWalletTransactions(params);
+        setData(data);
+      } catch (err) {
+        setError(err instanceof Error ? err : new Error(String(err)));
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchTransactions();
+  }, [params]);
 
   return { data, isLoading, error };
 }

@@ -1,16 +1,14 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { useTranslations } from 'next-intl';
 import { motion } from 'framer-motion';
-import { DollarSign } from 'lucide-react';
 import { cssVars } from '@/styles/theme';
 import type { Request, CreateRequestInput } from '@/lib/types/request.types';
 import { Button, ErrorMessage, LoadingSpinner } from '@/components/ui';
 import { useCreateRequest, useUpdateRequest } from '@/lib/hooks/useRequestMutations';
 import { useCategories } from '@/lib/hooks/useCategories';
-import { useRequest } from '@/lib/hooks/useRequests';
 import RequestFormFields from './RequestFormFields';
 
 interface RequestFormProps {
@@ -29,6 +27,15 @@ export default function RequestForm({ request, onSuccess }: RequestFormProps) {
   const submitting = isCreating || isUpdating;
   const error = createError || updateError;
 
+  const getDefaultDeadline = () => {
+    if (request?.deadline) {
+      return new Date(request.deadline).toISOString().split('T')[0];
+    }
+    const defaultDate = new Date();
+    defaultDate.setDate(defaultDate.getDate() + 30);
+    return defaultDate.toISOString().split('T')[0];
+  };
+
   const [formData, setFormData] = useState<CreateRequestInput>({
     title: request?.title || '',
     description: request?.description || '',
@@ -36,9 +43,7 @@ export default function RequestForm({ request, onSuccess }: RequestFormProps) {
     budgetMin: request?.budgetMin || undefined,
     budgetMax: request?.budgetMax || undefined,
     expectedDuration: request?.expectedDuration || 30,
-    deadline: request?.deadline
-      ? new Date(request.deadline).toISOString().split('T')[0]
-      : new Date(Date.now() + 30 * 24 * 60 * 60 * 1000).toISOString().split('T')[0],
+    deadline: getDefaultDeadline(),
     preferredStartDate: request?.preferredStartDate
       ? new Date(request.preferredStartDate).toISOString().split('T')[0]
       : undefined,
@@ -90,7 +95,7 @@ export default function RequestForm({ request, onSuccess }: RequestFormProps) {
       } else {
         router.push('/requests/my-requests');
       }
-    } catch (err) {
+    } catch {
       // Error handled by hook
     }
   };

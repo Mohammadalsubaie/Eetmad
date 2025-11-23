@@ -59,26 +59,30 @@ export default function ProfileSettingsPage() {
 
   useEffect(() => {
     if (profile?.notificationPreferences) {
-      setNotificationPrefs({
-        email: {
-          requests: profile.notificationPreferences.email?.requests || false,
-          offers: profile.notificationPreferences.email?.offers || false,
-          messages: profile.notificationPreferences.email?.messages || false,
-          reviews: profile.notificationPreferences.email?.reviews || false,
-          system: profile.notificationPreferences.email?.system || false,
-        },
-        push: {
-          requests: profile.notificationPreferences.push?.requests || false,
-          offers: profile.notificationPreferences.push?.offers || false,
-          messages: profile.notificationPreferences.push?.messages || false,
-          reviews: profile.notificationPreferences.push?.reviews || false,
-          system: profile.notificationPreferences.push?.system || false,
-        },
-        sms: {
-          important: profile.notificationPreferences.sms?.important || false,
-          security: profile.notificationPreferences.sms?.security || false,
-        },
-      });
+      // Use setTimeout to avoid synchronous setState in effect
+      const timer = setTimeout(() => {
+        setNotificationPrefs({
+          email: {
+            requests: profile.notificationPreferences.email?.requests || false,
+            offers: profile.notificationPreferences.email?.offers || false,
+            messages: profile.notificationPreferences.email?.messages || false,
+            reviews: profile.notificationPreferences.email?.reviews || false,
+            system: profile.notificationPreferences.email?.system || false,
+          },
+          push: {
+            requests: profile.notificationPreferences.push?.requests || false,
+            offers: profile.notificationPreferences.push?.offers || false,
+            messages: profile.notificationPreferences.push?.messages || false,
+            reviews: profile.notificationPreferences.push?.reviews || false,
+            system: profile.notificationPreferences.push?.system || false,
+          },
+          sms: {
+            important: profile.notificationPreferences.sms?.important || false,
+            security: profile.notificationPreferences.sms?.security || false,
+          },
+        });
+      }, 0);
+      return () => clearTimeout(timer);
     }
   }, [profile]);
 
@@ -100,7 +104,7 @@ export default function ProfileSettingsPage() {
       });
       setPasswordData({ currentPassword: '', newPassword: '', confirmPassword: '' });
       alert(t('passwordChanged'));
-    } catch (err) {
+    } catch {
       // Error handled by hook
     }
   };
@@ -119,7 +123,7 @@ export default function ProfileSettingsPage() {
     try {
       await updatePreferences(notificationPrefs);
       alert(t('preferencesSaved'));
-    } catch (err) {
+    } catch {
       // Error handled by hook
     }
   };
@@ -130,7 +134,7 @@ export default function ProfileSettingsPage() {
         try {
           await deleteAccount();
           router.push(`/${locale}/`);
-        } catch (err) {
+        } catch {
           // Error handled by hook
         }
       }

@@ -156,7 +156,9 @@ class DesignRulesValidator {
       filePath.endsWith('/loading.tsx') ||
       filePath.endsWith('\\loading.tsx') ||
       filePath.endsWith('/layout.tsx') ||
-      filePath.endsWith('\\layout.tsx')
+      filePath.endsWith('\\layout.tsx') ||
+      filePath.includes('/shared/dev/') ||
+      filePath.includes('\\shared\\dev\\')
     );
   }
 

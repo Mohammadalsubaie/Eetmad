@@ -2,7 +2,9 @@
 
 import { useRouter } from 'next/navigation';
 import { useTranslations } from 'next-intl';
-import { Briefcase, Calendar, Clock, DollarSign, Eye } from 'lucide-react';
+import { Briefcase, Calendar, Clock, Eye } from 'lucide-react';
+import SaudiRiyalIcon from '@/components/shared/icons/SaudiRiyalIcon';
+import CurrencyDisplay from '@/components/shared/CurrencyDisplay';
 import { cssVars } from '@/styles/theme';
 import StatusBadge from '@/components/shared/badges/StatusBadge';
 import type { Offer } from '@/lib/types/offer.types';
@@ -42,10 +44,18 @@ export function useOffersTableColumns(): ColumnConfig<Offer>[] {
       header: t('offers.table.price'),
       render: (offer: Offer) => (
         <div className="flex items-center gap-2">
-          <DollarSign className="h-4 w-4" style={{ color: cssVars.status.success }} />
-          <span className="font-bold" style={{ color: cssVars.secondary.DEFAULT }}>
-            {offer.proposedPrice.toLocaleString('ar-SA')} ر.س
-          </span>
+          <SaudiRiyalIcon
+            className="h-4 w-4"
+            style={{ color: cssVars.status.success }}
+            width={16}
+            height={16}
+          />
+          <CurrencyDisplay
+            amount={offer.proposedPrice}
+            className="font-bold"
+            iconSize={16}
+            iconClassName="h-4 w-4"
+          />
         </div>
       ),
     },

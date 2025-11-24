@@ -1,7 +1,9 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { CreditCard, DollarSign, TrendingUp } from 'lucide-react';
+import { CreditCard, TrendingUp } from 'lucide-react';
+import SaudiRiyalIcon from '@/components/shared/icons/SaudiRiyalIcon';
+import CurrencyDisplay from '@/components/shared/CurrencyDisplay';
 import { cssVars } from '@/styles/theme';
 import { useTranslations } from 'next-intl';
 import StatusBadge from '@/components/shared/badges/StatusBadge';
@@ -55,7 +57,7 @@ export default function PaymentOverviewCard({ payment }: PaymentOverviewCardProp
         </div>
         <div className="text-right">
           <div className="text-3xl font-bold" style={{ color: cssVars.secondary.DEFAULT }}>
-            {payment.amount.toLocaleString('ar-SA')} {t('common.currency')}
+            <CurrencyDisplay amount={payment.amount} iconSize={24} />
           </div>
           <div className="text-sm" style={{ color: cssVars.neutral.textSecondary }}>
             {t('payments.detail.totalAmount')}
@@ -73,10 +75,17 @@ export default function PaymentOverviewCard({ payment }: PaymentOverviewCardProp
             {t('payments.detail.netAmount')}
           </div>
           <div className="flex items-center gap-2">
-            <DollarSign className="h-5 w-5" style={{ color: cssVars.status.success }} />
-            <span className="text-xl font-bold" style={{ color: cssVars.secondary.DEFAULT }}>
-              {payment.netAmount.toLocaleString('ar-SA')} {t('common.currency')}
-            </span>
+            <SaudiRiyalIcon
+              className="h-5 w-5"
+              style={{ color: cssVars.status.success }}
+              width={20}
+              height={20}
+            />
+            <CurrencyDisplay
+              amount={payment.netAmount}
+              className="text-xl font-bold"
+              iconSize={20}
+            />
           </div>
         </div>
 
@@ -86,9 +95,11 @@ export default function PaymentOverviewCard({ payment }: PaymentOverviewCardProp
           </div>
           <div className="flex items-center gap-2">
             <TrendingUp className="h-5 w-5" style={{ color: cssVars.status.warning }} />
-            <span className="text-xl font-bold" style={{ color: cssVars.secondary.DEFAULT }}>
-              {payment.platformFee.toLocaleString('ar-SA')} {t('common.currency')}
-            </span>
+            <CurrencyDisplay
+              amount={payment.platformFee}
+              className="text-xl font-bold"
+              iconSize={20}
+            />
           </div>
         </div>
 

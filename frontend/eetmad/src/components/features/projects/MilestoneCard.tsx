@@ -1,15 +1,9 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import {
-  Calendar,
-  CheckCircle,
-  Clock,
-  DollarSign,
-  Download,
-  FileText,
-  XCircle,
-} from 'lucide-react';
+import { Calendar, CheckCircle, Clock, Download, FileText, XCircle } from 'lucide-react';
+import SaudiRiyalIcon from '@/components/shared/icons/SaudiRiyalIcon';
+import CurrencyDisplay from '@/components/shared/CurrencyDisplay';
 import { cssVars } from '@/styles/theme';
 import { useTranslations } from 'next-intl';
 import StatusBadge from '@/components/shared/badges/StatusBadge';
@@ -85,10 +79,13 @@ export default function MilestoneCard({
             {t('milestonesSection.amount')}
           </div>
           <div className="flex items-center gap-2">
-            <DollarSign className="h-4 w-4" style={{ color: cssVars.status.success }} />
-            <span className="font-bold" style={{ color: cssVars.secondary.DEFAULT }}>
-              {milestone.amount.toLocaleString('ar-SA')} {t('milestonesSection.currency')}
-            </span>
+            <SaudiRiyalIcon
+              className="h-4 w-4"
+              style={{ color: cssVars.status.success }}
+              width={16}
+              height={16}
+            />
+            <CurrencyDisplay amount={milestone.amount} className="font-bold" iconSize={16} />
           </div>
         </div>
         <div>

@@ -3,7 +3,9 @@
 import { useRouter } from 'next/navigation';
 import { useTranslations } from 'next-intl';
 import { motion } from 'framer-motion';
-import { Calendar, Eye, MapPin, Tag, Clock, DollarSign } from 'lucide-react';
+import { Calendar, Eye, MapPin, Tag, Clock } from 'lucide-react';
+import SaudiRiyalIcon from '@/components/shared/icons/SaudiRiyalIcon';
+import CurrencyDisplay from '@/components/shared/CurrencyDisplay';
 import { cssVars } from '@/styles/theme';
 import type { Request } from '@/lib/types/request.types';
 import { Badge } from '@/components/ui';
@@ -32,19 +34,6 @@ export default function RequestCard({ request, onView }: RequestCardProps) {
       month: 'short',
       day: 'numeric',
     });
-  };
-
-  const formatBudget = (min: number | null, max: number | null) => {
-    if (min && max) {
-      return `${min.toLocaleString()} - ${max.toLocaleString()} ${t('currency')}`;
-    }
-    if (min) {
-      return `${t('budgetMin')}: ${min.toLocaleString()} ${t('currency')}`;
-    }
-    if (max) {
-      return `${t('budgetMax')}: ${max.toLocaleString()} ${t('currency')}`;
-    }
-    return t('budgetNotSpecified');
   };
 
   const getStatusColor = (status: string) => {
@@ -114,9 +103,29 @@ export default function RequestCard({ request, onView }: RequestCardProps) {
       <div className="mb-4 grid grid-cols-2 gap-3">
         {/* Budget */}
         <div className="flex items-center gap-2">
-          <DollarSign className="h-4 w-4" style={{ color: cssVars.primary.DEFAULT }} />
+          <SaudiRiyalIcon
+            className="h-4 w-4"
+            style={{ color: cssVars.primary.DEFAULT }}
+            width={16}
+            height={16}
+          />
           <span className="text-sm font-medium" style={{ color: cssVars.neutral.textSecondary }}>
-            {formatBudget(request.budgetMin, request.budgetMax)}
+            {request.budgetMin && request.budgetMax ? (
+              <>
+                <CurrencyDisplay amount={request.budgetMin} iconSize={12} showIcon={false} /> -{' '}
+                <CurrencyDisplay amount={request.budgetMax} iconSize={12} />
+              </>
+            ) : request.budgetMin ? (
+              <>
+                {t('budgetMin')}: <CurrencyDisplay amount={request.budgetMin} iconSize={12} />
+              </>
+            ) : request.budgetMax ? (
+              <>
+                {t('budgetMax')}: <CurrencyDisplay amount={request.budgetMax} iconSize={12} />
+              </>
+            ) : (
+              t('budgetNotSpecified')
+            )}
           </span>
         </div>
 

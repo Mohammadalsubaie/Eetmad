@@ -2,14 +2,16 @@
 
 import { motion } from 'framer-motion';
 import { cssVars } from '@/styles/theme';
-import { LucideIcon, TrendingUp, TrendingDown } from 'lucide-react';
+import { TrendingUp, TrendingDown } from 'lucide-react';
+import React from 'react';
+import SaudiRiyalIcon from '@/components/shared/icons/SaudiRiyalIcon';
 
 interface AdminStatCardProps {
   title: string;
   value: string | number;
   change?: string;
   trend?: 'up' | 'down';
-  icon: LucideIcon;
+  icon: React.ComponentType<{ className?: string; style?: React.CSSProperties }>;
   color?: string;
 }
 
@@ -36,7 +38,16 @@ export default function AdminStatCard({
           className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-xl sm:h-12 sm:w-12"
           style={{ backgroundColor: `color-mix(in srgb, ${color} 15%, transparent)` }}
         >
-          <Icon className="h-5 w-5 sm:h-6 sm:w-6" style={{ color }} />
+          {Icon === SaudiRiyalIcon ? (
+            <SaudiRiyalIcon
+              className="h-5 w-5 sm:h-6 sm:w-6"
+              style={{ color }}
+              width={24}
+              height={24}
+            />
+          ) : (
+            <Icon className="h-5 w-5 sm:h-6 sm:w-6" style={{ color }} />
+          )}
         </div>
         {change && (
           <div

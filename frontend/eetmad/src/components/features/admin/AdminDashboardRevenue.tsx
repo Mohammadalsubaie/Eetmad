@@ -1,7 +1,9 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { DollarSign, TrendingUp } from 'lucide-react';
+import { TrendingUp } from 'lucide-react';
+import SaudiRiyalIcon from '@/components/shared/icons/SaudiRiyalIcon';
+import CurrencyDisplay from '@/components/shared/CurrencyDisplay';
 import { cssVars } from '@/styles/theme';
 import { useTranslations } from 'next-intl';
 import type { DashboardStats } from '@/lib/types';
@@ -30,7 +32,12 @@ export default function AdminDashboardRevenue({ stats }: AdminDashboardRevenuePr
               backgroundColor: `color-mix(in srgb, ${cssVars.status.success} 15%, transparent)`,
             }}
           >
-            <DollarSign className="h-6 w-6" style={{ color: cssVars.status.success }} />
+            <SaudiRiyalIcon
+              className="h-6 w-6"
+              style={{ color: cssVars.status.success }}
+              width={24}
+              height={24}
+            />
           </div>
           <div>
             <h3 className="text-lg font-bold" style={{ color: cssVars.secondary.DEFAULT }}>
@@ -54,7 +61,7 @@ export default function AdminDashboardRevenue({ stats }: AdminDashboardRevenuePr
         </div>
       </div>
       <div className="text-4xl font-bold" style={{ color: cssVars.secondary.DEFAULT }}>
-        {stats.totalRevenue.toLocaleString('ar-SA')} {t('common.currency')}
+        <CurrencyDisplay amount={stats.totalRevenue} iconSize={32} />
       </div>
       <div className="mt-2 text-sm" style={{ color: cssVars.neutral.textSecondary }}>
         {t('dashboard.revenue.comparison')}

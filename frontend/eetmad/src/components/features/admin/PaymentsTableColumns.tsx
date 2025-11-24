@@ -2,7 +2,9 @@
 
 import { useRouter } from 'next/navigation';
 import { useTranslations } from 'next-intl';
-import { Calendar, CheckCircle, Clock, CreditCard, DollarSign, Eye } from 'lucide-react';
+import { Calendar, CheckCircle, Clock, CreditCard, Eye } from 'lucide-react';
+import SaudiRiyalIcon from '@/components/shared/icons/SaudiRiyalIcon';
+import CurrencyDisplay from '@/components/shared/CurrencyDisplay';
 import { cssVars } from '@/styles/theme';
 import type { Payment } from '@/lib/types/payment.types';
 import type { ColumnConfig } from '@/components/shared/admin/AdminDataTable';
@@ -44,13 +46,22 @@ export function usePaymentsTableColumns(): ColumnConfig<Payment>[] {
       render: (payment: Payment) => (
         <div>
           <div className="flex items-center gap-2">
-            <DollarSign className="h-4 w-4" style={{ color: cssVars.status.success }} />
-            <span className="font-bold" style={{ color: cssVars.secondary.DEFAULT }}>
-              {payment.amount.toLocaleString('ar-SA')} ر.س
-            </span>
+            <SaudiRiyalIcon
+              className="h-4 w-4"
+              style={{ color: cssVars.status.success }}
+              width={16}
+              height={16}
+            />
+            <CurrencyDisplay
+              amount={payment.amount}
+              className="font-bold"
+              iconSize={16}
+              iconClassName="h-4 w-4"
+            />
           </div>
           <div className="text-xs" style={{ color: cssVars.neutral.textMuted }}>
-            {t('payments.labels.netAmount')}: {payment.netAmount.toLocaleString('ar-SA')} ر.س
+            {t('payments.labels.netAmount')}:{' '}
+            <CurrencyDisplay amount={payment.netAmount} iconSize={12} />
           </div>
         </div>
       ),

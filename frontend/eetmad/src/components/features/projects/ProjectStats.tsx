@@ -1,6 +1,8 @@
 'use client';
 
-import { Calendar, Clock, DollarSign, FileText } from 'lucide-react';
+import { Calendar, Clock, FileText } from 'lucide-react';
+import SaudiRiyalIcon from '@/components/shared/icons/SaudiRiyalIcon';
+import CurrencyDisplay from '@/components/shared/CurrencyDisplay';
 import { cssVars } from '@/styles/theme';
 import { useTranslations } from 'next-intl';
 import type { Project } from '@/lib/types/project.types';
@@ -20,20 +22,21 @@ export default function ProjectStats({ project }: ProjectStatsProps) {
     });
   };
 
-  const formatCurrency = (amount: number) => {
-    return `${amount.toLocaleString()} ${t('currency')}`;
-  };
-
   return (
     <div className="grid grid-cols-2 gap-4 md:grid-cols-4">
       <div className="flex items-center gap-2">
-        <DollarSign className="h-5 w-5" style={{ color: cssVars.primary.DEFAULT }} />
+        <SaudiRiyalIcon
+          className="h-5 w-5"
+          style={{ color: cssVars.primary.DEFAULT }}
+          width={20}
+          height={20}
+        />
         <div>
           <p className="text-xs" style={{ color: cssVars.neutral.textMuted }}>
             {t('totalAmount')}
           </p>
           <p className="text-sm font-bold" style={{ color: cssVars.secondary.DEFAULT }}>
-            {formatCurrency(project.totalAmount)}
+            <CurrencyDisplay amount={project.totalAmount} iconSize={16} />
           </p>
         </div>
       </div>

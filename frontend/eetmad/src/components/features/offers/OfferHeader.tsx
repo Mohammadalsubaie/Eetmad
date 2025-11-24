@@ -1,6 +1,8 @@
 'use client';
 
-import { DollarSign, Edit } from 'lucide-react';
+import { Edit } from 'lucide-react';
+import SaudiRiyalIcon from '@/components/shared/icons/SaudiRiyalIcon';
+import CurrencyDisplay from '@/components/shared/CurrencyDisplay';
 import { cssVars } from '@/styles/theme';
 import { useTranslations } from 'next-intl';
 import { useRouter } from 'next/navigation';
@@ -30,10 +32,6 @@ export default function OfferHeader({ offer, offerId }: OfferHeaderProps) {
       default:
         return cssVars.status.info;
     }
-  };
-
-  const formatCurrency = (amount: number) => {
-    return `${amount.toLocaleString()} ${t('currency')}`;
   };
 
   const renderStatusIcon = () => {
@@ -108,11 +106,14 @@ export default function OfferHeader({ offer, offerId }: OfferHeaderProps) {
             <p className="mb-1 text-xs font-medium" style={{ color: cssVars.neutral.textMuted }}>
               {t('proposedPrice')}
             </p>
-            <p className="text-3xl font-bold" style={{ color: cssVars.primary.DEFAULT }}>
-              {formatCurrency(offer.proposedPrice)}
-            </p>
+            <CurrencyDisplay amount={offer.proposedPrice} className="text-3xl font-bold" />
           </div>
-          <DollarSign className="h-10 w-10" style={{ color: cssVars.primary.DEFAULT }} />
+          <SaudiRiyalIcon
+            className="h-10 w-10"
+            style={{ color: cssVars.primary.DEFAULT }}
+            width={40}
+            height={40}
+          />
         </div>
       </div>
     </div>

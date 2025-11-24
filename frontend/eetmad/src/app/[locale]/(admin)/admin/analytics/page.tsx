@@ -11,15 +11,8 @@ import Breadcrumbs from '@/components/shared/navigation/Breadcrumbs';
 import { useAnalytics } from '@/lib/hooks/useAnalytics';
 import { cssVars } from '@/styles/theme';
 import { motion } from 'framer-motion';
-import {
-  Activity,
-  BarChart3,
-  Calendar,
-  DollarSign,
-  Download,
-  TrendingUp,
-  Users,
-} from 'lucide-react';
+import { Activity, BarChart3, Calendar, Download, TrendingUp, Users } from 'lucide-react';
+import SaudiRiyalIcon from '@/components/shared/icons/SaudiRiyalIcon';
 import { useLocale, useTranslations } from 'next-intl';
 
 export default function AnalyticsPage() {
@@ -120,7 +113,7 @@ export default function AnalyticsPage() {
           value={formatRevenue(data.stats.totalRevenue)}
           change="+18%"
           trend="up"
-          icon={DollarSign}
+          icon={SaudiRiyalIcon}
           color={cssVars.status.success}
         />
         <AdminStatCard

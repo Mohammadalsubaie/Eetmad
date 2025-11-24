@@ -5,13 +5,14 @@
 import { cn } from '@/lib/utils/cn';
 import { cssVars } from '@/styles/theme';
 import { motion } from 'framer-motion';
-import { LucideIcon, TrendingDown, TrendingUp } from 'lucide-react';
+import { TrendingDown, TrendingUp } from 'lucide-react';
 import React from 'react';
+import SaudiRiyalIcon from '@/components/shared/icons/SaudiRiyalIcon';
 
 interface StatCardProps {
-  icon: LucideIcon;
+  icon: React.ComponentType<{ className?: string; style?: React.CSSProperties }>;
   label: string;
-  value: string | number;
+  value: string | number | React.ReactNode;
   trend?: {
     value: number;
     isPositive: boolean;
@@ -62,7 +63,16 @@ const StatCard: React.FC<StatCardProps> = ({ icon: Icon, label, value, trend, cl
             backgroundColor: `color-mix(in srgb, ${cssVars.primary.DEFAULT} 10%, transparent)`,
           }}
         >
-          <Icon className="h-6 w-6" style={{ color: cssVars.primary.DEFAULT }} />
+          {Icon === SaudiRiyalIcon ? (
+            <SaudiRiyalIcon
+              className="h-6 w-6"
+              style={{ color: cssVars.primary.DEFAULT }}
+              width={24}
+              height={24}
+            />
+          ) : (
+            <Icon className="h-6 w-6" style={{ color: cssVars.primary.DEFAULT }} />
+          )}
         </div>
       </div>
     </motion.div>

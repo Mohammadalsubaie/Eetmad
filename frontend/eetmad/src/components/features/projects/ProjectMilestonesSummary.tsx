@@ -1,7 +1,9 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { CheckCircle, DollarSign, TrendingUp } from 'lucide-react';
+import { CheckCircle, TrendingUp } from 'lucide-react';
+import SaudiRiyalIcon from '@/components/shared/icons/SaudiRiyalIcon';
+import CurrencyDisplay from '@/components/shared/CurrencyDisplay';
 import { cssVars } from '@/styles/theme';
 import { useTranslations } from 'next-intl';
 import type { Project, ProjectMilestone } from '@/lib/types/project.types';
@@ -32,9 +34,10 @@ export default function ProjectMilestonesSummary({
         {[
           {
             label: t('milestonesSection.totalAmount'),
-            value: `${project.totalAmount.toLocaleString('ar-SA')} ${t('milestonesSection.currency')}`,
-            icon: DollarSign,
+            value: project.totalAmount,
+            icon: SaudiRiyalIcon,
             iconColor: cssVars.status.success,
+            useCurrencyDisplay: true,
           },
           {
             label: t('milestonesSection.progress'),
@@ -73,11 +76,28 @@ export default function ProjectMilestonesSummary({
                   backgroundColor: `color-mix(in srgb, ${stat.iconColor} 15%, transparent)`,
                 }}
               >
-                <stat.icon className="h-5 w-5" style={{ color: stat.iconColor }} />
+                {stat.icon === SaudiRiyalIcon ? (
+                  <SaudiRiyalIcon
+                    className="h-5 w-5"
+                    style={{ color: stat.iconColor }}
+                    width={20}
+                    height={20}
+                  />
+                ) : (
+                  <stat.icon className="h-5 w-5" style={{ color: stat.iconColor }} />
+                )}
               </div>
-              <span className="text-2xl font-bold" style={{ color: cssVars.secondary.DEFAULT }}>
-                {stat.value}
-              </span>
+              {stat.useCurrencyDisplay ? (
+                <CurrencyDisplay
+                  amount={stat.value as number}
+                  className="text-2xl font-bold"
+                  iconSize={24}
+                />
+              ) : (
+                <span className="text-2xl font-bold" style={{ color: cssVars.secondary.DEFAULT }}>
+                  {stat.value}
+                </span>
+              )}
             </div>
           </motion.div>
         ))}

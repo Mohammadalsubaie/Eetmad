@@ -41,13 +41,13 @@ export default function AdminDisputeDetailPage() {
   const t = useTranslations('pages.disputes');
   const tPages = useTranslations('pages');
   const tAdmin = useTranslations('admin');
-  
+
   const { data: dispute, isLoading, error } = useDispute(id);
   const { data: messages, isLoading: messagesLoading } = useDisputeMessages(id);
   const { mutate: addMessage, isLoading: sending } = useAddDisputeMessage();
   const { mutate: addEvidence, isLoading: uploading } = useAddEvidence();
   const { mutate: closeDispute, isLoading: closing } = useCloseDispute();
-  
+
   const [messageContent, setMessageContent] = useState('');
   const [evidenceFile, setEvidenceFile] = useState<File | null>(null);
   const [isResolving, setIsResolving] = useState(false);
@@ -207,14 +207,14 @@ export default function AdminDisputeDetailPage() {
       </div>
 
       <div className="container relative mx-auto px-4 py-8 sm:px-6 lg:px-8">
-      <Breadcrumbs
-        items={[
-          { label: tPages('admin.title'), href: `/${locale}/admin` },
-          { label: tPages('disputes.title'), href: `/${locale}/admin/disputes` },
+        <Breadcrumbs
+          items={[
+            { label: tPages('admin.title'), href: `/${locale}/admin` },
+            { label: tPages('disputes.title'), href: `/${locale}/admin/disputes` },
             { label: dispute.disputeNumber || id },
-        ]}
-        className="mb-6"
-      />
+          ]}
+          className="mb-6"
+        />
 
         {/* Back Button */}
         <motion.button
@@ -234,7 +234,7 @@ export default function AdminDisputeDetailPage() {
           transition={{ duration: 0.5 }}
           className="mb-8"
         >
-          <div className="mb-4 flex items-center gap-2 flex-wrap">
+          <div className="mb-4 flex flex-wrap items-center gap-2">
             <StatusBadge
               status={dispute.status}
               labels={{
@@ -271,7 +271,7 @@ export default function AdminDisputeDetailPage() {
               {t(`priority.${dispute.priority}`) || dispute.priority}
             </Badge>
           </div>
-          <div className="flex items-center gap-3 mb-4">
+          <div className="mb-4 flex items-center gap-3">
             <div
               className="flex h-12 w-12 items-center justify-center rounded-xl"
               style={{
@@ -519,7 +519,10 @@ export default function AdminDisputeDetailPage() {
                 </div>
                 {dispute.resolvedAt && (
                   <div>
-                    <p className="text-xs font-semibold" style={{ color: cssVars.neutral.textMuted }}>
+                    <p
+                      className="text-xs font-semibold"
+                      style={{ color: cssVars.neutral.textMuted }}
+                    >
                       {t('resolvedAt') || 'Resolved At'}
                     </p>
                     <p className="text-sm font-medium" style={{ color: cssVars.secondary.DEFAULT }}>
@@ -529,7 +532,10 @@ export default function AdminDisputeDetailPage() {
                 )}
                 {dispute.assignedTo && (
                   <div>
-                    <p className="text-xs font-semibold" style={{ color: cssVars.neutral.textMuted }}>
+                    <p
+                      className="text-xs font-semibold"
+                      style={{ color: cssVars.neutral.textMuted }}
+                    >
                       {t('assignedTo') || 'Assigned To'}
                     </p>
                     <p className="text-sm font-medium" style={{ color: cssVars.secondary.DEFAULT }}>
@@ -604,7 +610,9 @@ export default function AdminDisputeDetailPage() {
                       color: cssVars.secondary.DEFAULT,
                     }}
                   >
-                    {isResolving ? t('resolving') || 'Resolving...' : t('resolve') || 'Resolve Dispute'}
+                    {isResolving
+                      ? t('resolving') || 'Resolving...'
+                      : t('resolve') || 'Resolve Dispute'}
                   </Button>
                 </div>
 
@@ -661,7 +669,9 @@ export default function AdminDisputeDetailPage() {
                 <textarea
                   value={internalNote}
                   onChange={(e) => setInternalNote(e.target.value)}
-                  placeholder={t('internalNotePlaceholder') || 'Add internal note (only visible to admins)...'}
+                  placeholder={
+                    t('internalNotePlaceholder') || 'Add internal note (only visible to admins)...'
+                  }
                   rows={3}
                   className="mb-3 w-full rounded-xl border-2 px-4 py-3 text-sm outline-none transition-all focus:border-warning"
                   style={{

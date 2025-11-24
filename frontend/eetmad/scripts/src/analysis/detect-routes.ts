@@ -2,14 +2,14 @@
 
 /**
  * Route Detection Script
- * 
+ *
  * This script detects all navigation patterns in the application:
  * - Scans app directory structure for actual routes
  * - Finds Link components with href props
  * - Finds router.push/router.replace calls
  * - Detects external links (http/https)
  * - Extracts route constants usage
- * 
+ *
  * Output: Generates a comprehensive routing file (JSON and Markdown)
  */
 
@@ -73,7 +73,7 @@ class RouteDetector {
           if (entry.name.startsWith('[') && entry.name.endsWith(']')) {
             const paramName = entry.name.slice(1, -1);
             const currentPath = basePath ? `${basePath}/[${paramName}]` : `[${paramName}]`;
-            
+
             this.addRoute({
               path: currentPath,
               type: 'dynamic',
@@ -93,7 +93,7 @@ class RouteDetector {
           // Found a page route
           const routePath = basePath || '/';
           const isDynamic = routePath.includes('[');
-          const params = routePath.match(/\[(\w+)\]/g)?.map(p => p.slice(1, -1)) || [];
+          const params = routePath.match(/\[(\w+)\]/g)?.map((p) => p.slice(1, -1)) || [];
 
           this.addRoute({
             path: routePath,
@@ -116,10 +116,10 @@ class RouteDetector {
    */
   private getRouteGroup(path: string): string {
     if (!path || path.trim() === '') return 'root';
-    
+
     // Normalize path
     const normalized = path.startsWith('/') ? path.slice(1) : path;
-    
+
     // Extract route group from path (for filesystem routes)
     const groupMatch = normalized.match(/\((\w+)\)/);
     if (groupMatch) {
@@ -130,25 +130,61 @@ class RouteDetector {
     const segments = normalized.split('/').filter(Boolean);
     if (segments.length > 0) {
       const firstSegment = segments[0];
-      
+
       // Map common route prefixes to groups
       if (firstSegment === 'admin') return 'admin';
-      if (['login', 'register', 'forgot-password', 'reset-password', 'verify-email', 'verify-phone'].includes(firstSegment)) {
+      if (
+        [
+          'login',
+          'register',
+          'forgot-password',
+          'reset-password',
+          'verify-email',
+          'verify-phone',
+        ].includes(firstSegment)
+      ) {
         return 'auth';
       }
       if (['dashboard', 'profile'].includes(firstSegment)) {
         return 'main';
       }
-      if (['contracts', 'requests', 'projects', 'payments', 'messages', 'notifications', 'reviews', 'disputes', 'milestones'].includes(firstSegment)) {
+      if (
+        [
+          'contracts',
+          'requests',
+          'projects',
+          'payments',
+          'messages',
+          'notifications',
+          'reviews',
+          'disputes',
+          'milestones',
+        ].includes(firstSegment)
+      ) {
         return 'client';
       }
-      if (['offers', 'portfolio', 'stats', 'supplier-profile', 'supplier-projects'].includes(firstSegment)) {
+      if (
+        ['offers', 'portfolio', 'stats', 'supplier-profile', 'supplier-projects'].includes(
+          firstSegment
+        )
+      ) {
         return 'supplier';
       }
-      if (['about', 'categories', 'contact', 'faq', 'terms', 'privacy', 'how-it-works', 'browse-suppliers'].includes(firstSegment)) {
+      if (
+        [
+          'about',
+          'categories',
+          'contact',
+          'faq',
+          'terms',
+          'privacy',
+          'how-it-works',
+          'browse-suppliers',
+        ].includes(firstSegment)
+      ) {
         return 'public';
       }
-      
+
       return firstSegment;
     }
 
@@ -273,10 +309,12 @@ class RouteDetector {
     }
 
     // Must start with / or http or be a relative path
-    return route.startsWith('/') || 
-           route.startsWith('http://') || 
-           route.startsWith('https://') ||
-           route.match(/^[a-z0-9-]+/i) !== null;
+    return (
+      route.startsWith('/') ||
+      route.startsWith('http://') ||
+      route.startsWith('https://') ||
+      route.match(/^[a-z0-9-]+/i) !== null
+    );
   }
 
   /**
@@ -299,9 +337,20 @@ class RouteDetector {
   /**
    * Process a route found in code
    */
-  private processRoute(route: string, source: 'link' | 'router' | 'constant', file: string, line: number): void {
+  private processRoute(
+    route: string,
+    source: 'link' | 'router' | 'constant',
+    file: string,
+    line: number
+  ): void {
     // Skip empty routes, fragments, and special cases
-    if (!route || route.trim() === '' || route === '#' || route.startsWith('javascript:') || route.startsWith('mailto:')) {
+    if (
+      !route ||
+      route.trim() === '' ||
+      route === '#' ||
+      route.startsWith('javascript:') ||
+      route.startsWith('mailto:')
+    ) {
       return;
     }
 
@@ -317,10 +366,10 @@ class RouteDetector {
 
     // Normalize route
     let normalizedRoute = route;
-    
+
     // Remove locale prefix if present
     normalizedRoute = normalizedRoute.replace(/^\/[a-z]{2}\//, '/');
-    
+
     // Handle relative paths
     if (normalizedRoute.startsWith('./') || normalizedRoute.startsWith('../')) {
       return; // Skip relative paths as they're hard to resolve
@@ -340,7 +389,7 @@ class RouteDetector {
 
     // Check if it's dynamic
     const isDynamic = normalizedRoute.includes('[') || normalizedRoute.includes('${');
-    const params = normalizedRoute.match(/\[(\w+)\]/g)?.map(p => p.slice(1, -1)) || [];
+    const params = normalizedRoute.match(/\[(\w+)\]/g)?.map((p) => p.slice(1, -1)) || [];
 
     this.addRoute({
       path: normalizedRoute,
@@ -368,7 +417,7 @@ class RouteDetector {
       const content = readFileSync(routesFile, 'utf-8');
       const constantPattern = new RegExp(`${constantName}:\\s*["']([^"']+)["']`, 'g');
       const match = constantPattern.exec(content);
-      
+
       if (match) {
         const route = match[1];
         this.processRoute(route, 'constant', file, line);
@@ -431,13 +480,11 @@ class RouteDetector {
       generatedAt: new Date().toISOString(),
       totalRoutes: this.routes.size,
       summary: {
-        internal: Array.from(this.routes.values()).filter(r => r.type === 'internal').length,
-        dynamic: Array.from(this.routes.values()).filter(r => r.type === 'dynamic').length,
-        external: Array.from(this.routes.values()).filter(r => r.type === 'external').length,
+        internal: Array.from(this.routes.values()).filter((r) => r.type === 'internal').length,
+        dynamic: Array.from(this.routes.values()).filter((r) => r.type === 'dynamic').length,
+        external: Array.from(this.routes.values()).filter((r) => r.type === 'external').length,
       },
-      routes: Object.fromEntries(
-        grouped.map(group => [group.name, group.routes])
-      ),
+      routes: Object.fromEntries(grouped.map((group) => [group.name, group.routes])),
       allRoutes: Array.from(this.routes.values()).sort((a, b) => a.path.localeCompare(b.path)),
     };
 
@@ -451,9 +498,9 @@ class RouteDetector {
   private generateMarkdown(outputPath: string): void {
     const grouped = this.groupRoutes();
     const summary = {
-      internal: Array.from(this.routes.values()).filter(r => r.type === 'internal').length,
-      dynamic: Array.from(this.routes.values()).filter(r => r.type === 'dynamic').length,
-      external: Array.from(this.routes.values()).filter(r => r.type === 'external').length,
+      internal: Array.from(this.routes.values()).filter((r) => r.type === 'internal').length,
+      dynamic: Array.from(this.routes.values()).filter((r) => r.type === 'dynamic').length,
+      external: Array.from(this.routes.values()).filter((r) => r.type === 'external').length,
     };
 
     let md = `# Application Routes\n\n`;
@@ -474,9 +521,14 @@ class RouteDetector {
 
       for (const route of group.routes) {
         const path = route.path.length > 50 ? route.path.substring(0, 47) + '...' : route.path;
-        const type = route.type === 'dynamic' ? '🔄 Dynamic' : route.type === 'external' ? '🌐 External' : '📄 Internal';
+        const type =
+          route.type === 'dynamic'
+            ? '🔄 Dynamic'
+            : route.type === 'external'
+              ? '🌐 External'
+              : '📄 Internal';
         const source = route.source;
-        const file = route.file 
+        const file = route.file
           ? relative(this.projectRoot, route.file) + (route.line ? `:${route.line}` : '')
           : '-';
         md += `| \`${path}\` | ${type} | ${source} | ${file} |\n`;
@@ -485,13 +537,15 @@ class RouteDetector {
     }
 
     // External links section
-    const externalRoutes = Array.from(this.routes.values()).filter(r => r.type === 'external');
+    const externalRoutes = Array.from(this.routes.values()).filter((r) => r.type === 'external');
     if (externalRoutes.length > 0) {
       md += `## External Links\n\n`;
       md += `| URL | Source File |\n`;
       md += `|-----|-------------|\n`;
       for (const route of externalRoutes) {
-        const file = route.file ? relative(this.projectRoot, route.file) + (route.line ? `:${route.line}` : '') : '-';
+        const file = route.file
+          ? relative(this.projectRoot, route.file) + (route.line ? `:${route.line}` : '')
+          : '-';
         md += `| ${route.path} | ${file} |\n`;
       }
       md += `\n`;
@@ -518,7 +572,12 @@ class RouteDetector {
     console.log(`   Total routes detected: ${this.routes.size}\n`);
 
     // Step 3: Generate outputs
-    const outputDir = join(this.projectRoot, 'scripts', 'reports', new Date().toISOString().split('T')[0]);
+    const outputDir = join(
+      this.projectRoot,
+      'scripts',
+      'reports',
+      new Date().toISOString().split('T')[0]
+    );
     if (!existsSync(outputDir)) {
       mkdirSync(outputDir, { recursive: true });
     }
@@ -543,4 +602,3 @@ detector.detect().catch((error) => {
   console.error('Error detecting routes:', error);
   process.exit(1);
 });
-

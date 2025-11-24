@@ -1,9 +1,10 @@
 'use client';
 
 import dynamic from 'next/dynamic';
+import type React from 'react';
 
 // Helper function to create resilient dynamic imports with error handling
-const createDynamicImport = (importFn: () => Promise<any>) => {
+const createDynamicImport = (importFn: () => Promise<{ default: React.ComponentType }>) => {
   return dynamic(
     () =>
       importFn().catch((error) => {

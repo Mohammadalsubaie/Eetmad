@@ -5,19 +5,24 @@ import { cssVars } from '@/styles/theme';
 import { motion } from 'framer-motion';
 import { Sparkles } from 'lucide-react';
 import { useTranslations } from 'next-intl';
+import { useMemo } from 'react';
 
 export default function Loading() {
   const t = useTranslations('common');
 
-  // Generate floating particles
-  const particles = Array.from({ length: 12 }, (_, i) => ({
-    id: i,
-    size: Math.random() * 8 + 4,
-    delay: Math.random() * 2,
-    duration: Math.random() * 3 + 2,
-    x: Math.random() * 100,
-    y: Math.random() * 100,
-  }));
+  // Generate floating particles (using useMemo to avoid impure function calls during render)
+  const particles = useMemo(
+    () =>
+      Array.from({ length: 12 }, (_, i) => ({
+        id: i,
+        size: Math.random() * 8 + 4,
+        delay: Math.random() * 2,
+        duration: Math.random() * 3 + 2,
+        x: Math.random() * 100,
+        y: Math.random() * 100,
+      })),
+    []
+  );
 
   return (
     <div
@@ -58,7 +63,7 @@ export default function Loading() {
           }}
           animate={{
             y: [0, -30, 0],
-            x: [0, Math.random() * 20 - 10, 0],
+            x: [0, (particle.x % 20) - 10, 0],
             scale: [1, 1.2, 1],
             opacity: [0.2, 0.5, 0.2],
           }}

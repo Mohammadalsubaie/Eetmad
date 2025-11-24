@@ -60,7 +60,10 @@ export default function ProjectMilestonesSummary({
               borderColor: cssVars.neutral.border,
             }}
           >
-            <div className="mb-3 text-xs font-semibold uppercase tracking-wide" style={{ color: cssVars.neutral.textMuted }}>
+            <div
+              className="mb-3 text-xs font-semibold uppercase tracking-wide"
+              style={{ color: cssVars.neutral.textMuted }}
+            >
               {stat.label}
             </div>
             <div className="flex items-center gap-3">

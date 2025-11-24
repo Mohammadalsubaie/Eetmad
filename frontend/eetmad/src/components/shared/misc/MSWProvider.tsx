@@ -5,7 +5,7 @@ import { useEffect } from 'react';
 /**
  * MSW Provider - Initializes MSW worker in development, demo, and production mode
  * This component should be added to the root layout
- * 
+ *
  * Note: This component no longer blocks rendering - MSW initializes in the background
  */
 export function MSWProvider({ children }: { children: React.ReactNode }) {
@@ -27,7 +27,7 @@ export function MSWProvider({ children }: { children: React.ReactNode }) {
 
       try {
         const { worker } = await import('@/mocks/browser');
-        
+
         // Add a timeout to worker.start() to prevent hanging
         const startPromise = worker.start({
           onUnhandledRequest: 'bypass',

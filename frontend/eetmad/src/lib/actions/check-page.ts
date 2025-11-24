@@ -11,4 +11,3 @@ import { pageExists } from '@/lib/utils/page-exists';
 export async function checkPageExists(path: string, locale: string = 'ar'): Promise<boolean> {
   return pageExists(path, locale);
 }
-

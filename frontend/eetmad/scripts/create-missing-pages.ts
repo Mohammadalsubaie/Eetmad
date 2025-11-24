@@ -47,7 +47,7 @@ interface RouteInfo {
 const ROUTES_TO_CHECK: RouteInfo[] = [
   // Supplier routes
   { path: 'supplier-projects', group: 'supplier', isDynamic: false },
-  
+
   // Add more routes as needed
 ];
 
@@ -55,17 +55,24 @@ function createPlaceholderPage(routePath: string, routeInfo: RouteInfo) {
   const basePath = path.join(
     __dirname,
     '../../src/app/[locale]',
-    routeInfo.group === 'supplier' ? '(supplier)' : 
-    routeInfo.group === 'admin' ? '(admin)/admin' :
-    routeInfo.group === 'client' ? '(client)' :
-    routeInfo.group === 'auth' ? '(auth)' :
-    routeInfo.group === 'public' ? '(public)' :
-    routeInfo.group === 'main' ? '(main)' : '',
+    routeInfo.group === 'supplier'
+      ? '(supplier)'
+      : routeInfo.group === 'admin'
+        ? '(admin)/admin'
+        : routeInfo.group === 'client'
+          ? '(client)'
+          : routeInfo.group === 'auth'
+            ? '(auth)'
+            : routeInfo.group === 'public'
+              ? '(public)'
+              : routeInfo.group === 'main'
+                ? '(main)'
+                : '',
     routePath
   );
 
   const pagePath = path.join(basePath, 'page.tsx');
-  
+
   // Check if page already exists
   if (fs.existsSync(pagePath)) {
     console.log(`✓ ${routePath} already exists`);
@@ -76,19 +83,20 @@ function createPlaceholderPage(routePath: string, routeInfo: RouteInfo) {
   fs.mkdirSync(basePath, { recursive: true });
 
   // Generate component name
-  const componentName = routePath
-    .split('/')
-    .map(part => 
-      part.replace(/\[|\]/g, '')
-        .split('-')
-        .map(word => word.charAt(0).toUpperCase() + word.slice(1))
-        .join('')
-    )
-    .join('') + 'Page';
+  const componentName =
+    routePath
+      .split('/')
+      .map((part) =>
+        part
+          .replace(/\[|\]/g, '')
+          .split('-')
+          .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+          .join('')
+      )
+      .join('') + 'Page';
 
   // Generate placeholder content
-  const content = PLACEHOLDER_TEMPLATE
-    .replace(/PLACEHOLDER_PAGE_NAME/g, componentName)
+  const content = PLACEHOLDER_TEMPLATE.replace(/PLACEHOLDER_PAGE_NAME/g, componentName)
     .replace(/PLACEHOLDER_KEY/g, routePath.replace(/\//g, '.').replace(/\[.*?\]/g, ''))
     .replace(/PLACEHOLDER_TITLE/g, routePath.split('/').pop()?.replace(/-/g, ' ') || 'Page');
 
@@ -100,9 +108,8 @@ function createPlaceholderPage(routePath: string, routeInfo: RouteInfo) {
 // Main execution
 console.log('Creating placeholder pages...\n');
 
-ROUTES_TO_CHECK.forEach(route => {
+ROUTES_TO_CHECK.forEach((route) => {
   createPlaceholderPage(route.path, route);
 });
 
 console.log('\nDone!');
-

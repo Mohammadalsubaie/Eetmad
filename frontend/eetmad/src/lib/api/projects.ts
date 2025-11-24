@@ -54,9 +54,7 @@ export const projectsApi = {
         console.warn('Using mock milestones data');
         // Filter milestones by projectId from mockMilestones
         const projectMilestones = mockMilestones.filter((m) => m.projectId === projectId);
-        return projectMilestones.length > 0
-          ? projectMilestones.map((m) => ({ ...m }))
-          : [];
+        return projectMilestones.length > 0 ? projectMilestones.map((m) => ({ ...m })) : [];
       }
       throw error;
     }

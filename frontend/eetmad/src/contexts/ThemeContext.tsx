@@ -39,18 +39,18 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
     // Just ensure everything is synced properly
     const stored = localStorage.getItem('theme') as Theme | null;
     const storedThemeOption = localStorage.getItem('themeOption') as ThemeOption | null;
-    
+
     const initialTheme = stored || 'light';
     const themeToLoad = storedThemeOption || 'option1';
 
     // Sync state (should already match, but ensure it)
     setThemeState(initialTheme);
     setThemeOptionState(themeToLoad);
-    
+
     if (!storedThemeOption) {
       localStorage.setItem('themeOption', themeToLoad);
     }
-    
+
     // Only load if not already loaded by the blocking script
     const existingLink = document.getElementById('dynamic-theme');
     if (!existingLink || existingLink.getAttribute('data-theme') !== themeToLoad) {

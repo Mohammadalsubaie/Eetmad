@@ -11,9 +11,9 @@ interface BreadcrumbsWrapperProps {
 /**
  * Server Component wrapper that checks if pages exist before rendering breadcrumbs
  * This ensures that only real pages are clickable
- * 
+ *
  * Usage:
- * <BreadcrumbsWrapper 
+ * <BreadcrumbsWrapper
  *   items={[
  *     { label: 'الإدارة', href: '/ar/admin' }, // Will be non-clickable if page doesn't exist
  *     { label: 'المستخدمين', href: '/ar/admin/users' } // Will be clickable if page exists
@@ -36,7 +36,7 @@ export default function BreadcrumbsWrapper({
 
     // Check if the page exists
     const exists = pageExists(item.href, locale);
-    
+
     // If page doesn't exist, remove href to make it non-clickable
     return {
       ...item,
@@ -44,12 +44,5 @@ export default function BreadcrumbsWrapper({
     };
   });
 
-  return (
-    <Breadcrumbs
-      items={validatedItems}
-      showHome={showHome}
-      className={className}
-    />
-  );
+  return <Breadcrumbs items={validatedItems} showHome={showHome} className={className} />;
 }
-

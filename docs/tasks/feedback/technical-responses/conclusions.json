@@ -1,0 +1,175 @@
+{
+  "summary": {
+    "totalUniqueFeedback": 77,
+    "realisticFeedback": 29,
+    "unrealisticFeedback": 1,
+    "unknownFeedback": 47
+  },
+  "byStatus": {
+    "⚠️ يجب التحقق": 52,
+    "❌ غير موجودة": 2,
+    "❌ غير موجودة - غير ضرورية": 2,
+    "❌ غير موجودة - ليست في الخطط": 3,
+    "❌ غير موجودة - TODO": 2,
+    "✅ يمكن إضافتها": 7,
+    "✅ موجودة": 4,
+    "⚠️ موجودة لكن بسيطة": 1,
+    "⚠️ موجودة لكن قد تحتاج تحسين": 2,
+    "❌ غير واقعي - موجودة": 1,
+    "⚠️ موجودة جزئياً": 1
+  },
+  "byPriority": {
+    "medium": 33,
+    "low": 33,
+    "high": 11
+  },
+  "byCategory": {
+    "مقارنة مع المنصات المنافسة": 12,
+    "تجربة المستخدم - لوحة التحكم": 4,
+    "تجربة المستخدم - وضوح الحالة": 6,
+    "تجربة المستخدم - الجداول": 4,
+    "تجربة المستخدم - النماذج": 6,
+    "ميزات مفقودة": 10,
+    "تجربة المستخدم - الحالات الفارغة": 3,
+    "تجربة المستخدم - منع الأخطاء": 3,
+    "تجربة المستخدم - الفلترة": 2,
+    "تجربة المستخدم - التصميم المتجاوب": 4,
+    "إيجابي": 4,
+    "تجربة المستخدم - الاتساق": 2,
+    "تجربة المستخدم - التذكر": 3,
+    "تجربة المستخدم - المساعدة": 3,
+    "تجربة المستخدم - التنقل": 4,
+    "إمكانية الوصول": 2,
+    "تجربة المستخدم - التحكم": 5
+  },
+  "actionableItems": [
+    {
+      "feedback": "حقل الوصف طويل ولا أعرف إذا كان كافياً - أريد أمثلة أو templates",
+      "recommendation": "إضافة examples/placeholders للنماذج",
+      "priority": "low",
+      "count": 138
+    },
+    {
+      "feedback": "أريد إضافة tags أو فئات لأعمالي في المعرض",
+      "recommendation": "إضافة tags system للمعرض",
+      "priority": "low",
+      "count": 155
+    },
+    {
+      "feedback": "عند رفض مستند توثيق، لا يوجد template للرسائل - أريد templates",
+      "recommendation": "إضافة templates system للرفض",
+      "priority": "low",
+      "count": 209
+    },
+    {
+      "feedback": "في منصات أخرى يمكنني ترتيب أعمالي في المعرض - هنا لا يمكن",
+      "recommendation": "إضافة sort dropdown للمعرض",
+      "priority": "low",
+      "count": 160
+    },
+    {
+      "feedback": "عند كتابة الوصف، لا يوجد suggestions أو أمثلة - أريد placeholder مفيد",
+      "recommendation": "إضافة examples/placeholders للنماذج",
+      "priority": "low",
+      "count": 70
+    },
+    {
+      "feedback": "لا يمكنني نسخ عرض سابق لطلب جديد - أريد \"نسخ من عرض سابق\"",
+      "recommendation": "إضافة duplicate button في OfferForm",
+      "priority": "low",
+      "count": 159
+    },
+    {
+      "feedback": "عند إنشاء طلب، لا أعرف ما هي المعلومات المطلوبة - أريد أمثلة أو tooltips",
+      "recommendation": "إضافة examples/placeholders للنماذج",
+      "priority": "medium",
+      "count": 81
+    }
+  ],
+  "falsePositives": [
+    {
+      "feedback": "لا يوجد breadcrumbs في الصفحات الداخلية - أريد معرفة أين أنا",
+      "response": "Breadcrumbs موجودة فعلياً في 308 matches في الكود. هذا الـ feedback غير واقعي.",
+      "evidence": "308 matches في الكود",
+      "count": 71
+    }
+  ],
+  "criticalFindings": [
+    {
+      "feedback": "جداول المستخدمين طويلة ولا يمكنني البحث بسرعة - أريد search box في كل جدول",
+      "status": "❌ غير موجودة - TODO",
+      "recommendation": "تطوير SearchWithFilters component",
+      "count": 236
+    },
+    {
+      "feedback": "لا يمكنني اختيار عدة مستخدمين دفعة واحدة - أريد bulk actions",
+      "status": "❌ غير موجودة - ليست في الخطط",
+      "recommendation": "ميزة متقدمة - ليست أولوية",
+      "count": 217
+    },
+    {
+      "feedback": "لا يمكنني حفظ عرض كمسودة قبل الإرسال - أريد حفظ تلقائي",
+      "status": "⚠️ موجودة لكن قد تحتاج تحسين",
+      "recommendation": "تحسين UI لتفعيل draft في النماذج",
+      "count": 170
+    },
+    {
+      "feedback": "على الجوال، جدول العروض غير قابل للقراءة - أريد عرض بطاقات بدلاً من جدول",
+      "status": "⚠️ يجب التحقق",
+      "recommendation": "اختبار Responsive design على الجوال",
+      "count": 80
+    },
+    {
+      "feedback": "على الجوال، عرض تفاصيل الطلب صعب القراءة - أريد تحسين العرض",
+      "status": "⚠️ يجب التحقق",
+      "recommendation": "اختبار Responsive design على الجوال",
+      "count": 145
+    },
+    {
+      "feedback": "لا يمكنني حفظ طلب كمسودة - أريد حفظ تلقائي أثناء الكتابة",
+      "status": "⚠️ موجودة لكن قد تحتاج تحسين",
+      "recommendation": "تحسين UI لتفعيل draft في النماذج",
+      "count": 73
+    }
+  ],
+  "recommendations": [
+    {
+      "type": "immediate",
+      "items": [
+        "مراجعة SearchWithFilters component (TODO)",
+        "مراجعة UserManagement component (TODO)",
+        "إضافة refresh button للـ dashboards",
+        "تحسين EmptyState لإضافة suggestions"
+      ]
+    },
+    {
+      "type": "short_term",
+      "items": [
+        "إضافة Preview للنماذج (RequestForm, OfferForm)",
+        "تحسين الفلترة في DisputesList",
+        "إضافة sort للمعرض",
+        "إضافة tags للمعرض",
+        "إضافة duplicate للعروض",
+        "إضافة templates للرفض",
+        "إضافة examples للنماذج"
+      ]
+    },
+    {
+      "type": "long_term",
+      "items": [
+        "تطوير auto-save (يحتاج Backend)",
+        "إضافة export Excel (nice-to-have)",
+        "إضافة bulk actions (يحتاج Backend)",
+        "إضافة saved filters (يحتاج Backend)"
+      ]
+    },
+    {
+      "type": "clarification",
+      "items": [
+        "توضيح أن Breadcrumbs موجودة",
+        "توضيح أن Draft status موجودة في types",
+        "توضيح أن Charts موجودة"
+      ]
+    }
+  ]
+}

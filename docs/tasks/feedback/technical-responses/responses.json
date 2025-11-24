@@ -1,0 +1,1166 @@
+{
+  "metadata": {
+    "title": "ردود تقنية على Feedback المستخدمين",
+    "description": "ردود مباشرة من مدير تقني بناءً على الواقع الفعلي للمشروع",
+    "author": "Technical Manager",
+    "date": "2025-01-21",
+    "note": "هذه الردود بناءً على الكود الفعلي للمشروع - ليست تسويقية"
+  },
+  "responses": [
+    {
+      "feedbackText": "لا يمكنني ترتيب الأعمدة بالـ drag and drop",
+      "category": "تجربة المستخدم - الجداول",
+      "priority": "low",
+      "rating": 4,
+      "count": 254,
+      "userType": "admin",
+      "page": "verification",
+      "technicalResponse": {
+        "status": "غير موجودة - غير ضرورية",
+        "response": "ترتيب الأعمدة بالـ drag and drop غير موجود. هذه ميزة متقدمة جداً وليست ضرورية - المستخدمون يمكنهم استخدام sorting الموجود.",
+        "priorityNote": "Priority: low",
+        "isRealistic": true
+      }
+    },
+    {
+      "feedbackText": "الفلترة في صفحة النزاعات محدودة - أريد فلترة متقدمة",
+      "category": "تجربة المستخدم - الفلترة",
+      "priority": "medium",
+      "rating": 3,
+      "count": 249,
+      "userType": "admin",
+      "page": "verification",
+      "technicalResponse": {
+        "status": "موجودة جزئياً",
+        "response": "الفلترة موجودة لكن قد تحتاج تحسين. يجب مراجعة مكونات الفلترة الحالية وتحديد ما هو مفقود.",
+        "priorityNote": "Priority: medium",
+        "isRealistic": true
+      }
+    },
+    {
+      "feedbackText": "لا يمكنني تصدير الجداول إلى Excel - أريد export button",
+      "category": "تجربة المستخدم - الجداول",
+      "priority": "medium",
+      "rating": 3,
+      "count": 247,
+      "userType": "admin",
+      "page": "projects",
+      "technicalResponse": {
+        "status": "غير موجودة - ليست في الخطط",
+        "response": "تصدير Excel غير موجود. هذه ميزة nice-to-have لكنها ليست في نطاق MVP. يمكن إضافتها لاحقاً إذا كانت هناك حاجة فعلية.",
+        "priorityNote": "Priority: low",
+        "isRealistic": true
+      }
+    },
+    {
+      "feedbackText": "التنقل بين الصفحات الإدارية معقد - أريد sidebar أو menu أفضل",
+      "category": "تجربة المستخدم - التنقل",
+      "priority": "medium",
+      "rating": 3,
+      "count": 247,
+      "userType": "admin",
+      "page": "admin-dashboard",
+      "technicalResponse": {
+        "status": "يجب التحقق",
+        "response": "يحتاج مراجعة الكود لتحديد الحالة الفعلية.",
+        "priorityNote": null,
+        "isRealistic": null
+      }
+    },
+    {
+      "feedbackText": "الإحصائيات لا تتحدث تلقائياً - أريد auto-refresh أو زر تحديث واضح",
+      "category": "تجربة المستخدم - لوحة التحكم",
+      "priority": "medium",
+      "rating": 3,
+      "count": 241,
+      "userType": "admin",
+      "page": "admin-dashboard",
+      "technicalResponse": {
+        "status": "يجب التحقق",
+        "response": "يجب التحقق من وجود refresh button في لوحات التحكم. إذا لم تكن موجودة، يمكن إضافتها بسهولة.",
+        "priorityNote": "Priority: medium",
+        "isRealistic": null
+      }
+    },
+    {
+      "feedbackText": "جداول المستخدمين طويلة ولا يمكنني البحث بسرعة - أريد search box في كل جدول",
+      "category": "تجربة المستخدم - الجداول",
+      "priority": "high",
+      "rating": 2,
+      "count": 236,
+      "userType": "admin",
+      "page": "requests",
+      "technicalResponse": {
+        "status": "يجب التحقق",
+        "response": "يجب التحقق من وجود search في الجداول. إذا لم تكن موجودة، يمكن إضافتها بسهولة - ميزة بسيطة.",
+        "priorityNote": "Priority: high",
+        "isRealistic": null
+      }
+    },
+    {
+      "feedbackText": "لوحة التحكم لا توضح الاتجاهات - أريد charts توضح النمو",
+      "category": "تجربة المستخدم - لوحة التحكم",
+      "priority": "medium",
+      "rating": 3,
+      "count": 234,
+      "userType": "admin",
+      "page": "analytics",
+      "technicalResponse": {
+        "status": "يجب التحقق",
+        "response": "يجب التحقق من وجود charts في لوحة التحكم. إذا كانت موجودة لكن بدون اتجاهات، يمكن إضافتها.",
+        "priorityNote": "Priority: medium",
+        "isRealistic": null
+      }
+    },
+    {
+      "feedbackText": "لا يمكنني فلترة الجداول حسب عدة أعمدة دفعة واحدة",
+      "category": "تجربة المستخدم - الجداول",
+      "priority": "medium",
+      "rating": 3,
+      "count": 225,
+      "userType": "admin",
+      "page": "offers",
+      "technicalResponse": {
+        "status": "يجب التحقق",
+        "response": "يحتاج مراجعة الكود لتحديد الحالة الفعلية.",
+        "priorityNote": null,
+        "isRealistic": null
+      }
+    },
+    {
+      "feedbackText": "لا يمكنني حفظ الفلاتر المفضلة - أريد saved filters",
+      "category": "تجربة المستخدم - الفلترة",
+      "priority": "low",
+      "rating": 4,
+      "count": 225,
+      "userType": "admin",
+      "page": "projects",
+      "technicalResponse": {
+        "status": "يجب التحقق",
+        "response": "يحتاج مراجعة الكود لتحديد الحالة الفعلية.",
+        "priorityNote": null,
+        "isRealistic": null
+      }
+    },
+    {
+      "feedbackText": "لا يمكنني حظر أو تعليق عدة مستخدمين مرة واحدة",
+      "category": "ميزات مفقودة",
+      "priority": "medium",
+      "rating": 3,
+      "count": 220,
+      "userType": "admin",
+      "page": "projects",
+      "technicalResponse": {
+        "status": "غير موجودة - ليست في الخطط",
+        "response": "Bulk actions غير موجودة. الجداول حالياً تدعم actions فردية فقط. هذه الميزة تحتاج تصميم جديد وbackend changes - ليست في نطاق المرحلة الحالية.",
+        "priorityNote": "Priority: medium",
+        "isRealistic": true
+      }
+    },
+    {
+      "feedbackText": "لا يمكنني اختيار عدة مستخدمين دفعة واحدة - أريد bulk actions",
+      "category": "ميزات مفقودة",
+      "priority": "high",
+      "rating": 2,
+      "count": 217,
+      "userType": "admin",
+      "page": "projects",
+      "technicalResponse": {
+        "status": "غير موجودة - ليست في الخطط",
+        "response": "Bulk actions غير موجودة. الجداول حالياً تدعم actions فردية فقط. هذه الميزة تحتاج تصميم جديد وbackend changes - ليست في نطاق المرحلة الحالية.",
+        "priorityNote": "Priority: medium",
+        "isRealistic": true
+      }
+    },
+    {
+      "feedbackText": "عند رفض مستند توثيق، لا يوجد template للرسائل - أريد templates",
+      "category": "تجربة المستخدم - النماذج",
+      "priority": "low",
+      "rating": 4,
+      "count": 209,
+      "userType": "admin",
+      "page": "offers",
+      "technicalResponse": {
+        "status": "غير موجودة - يمكن إضافتها",
+        "response": "Templates لرسائل الرفض غير موجودة. هذه ميزة بسيطة - يمكن إضافة قائمة templates.",
+        "priorityNote": "Priority: low",
+        "isRealistic": true
+      }
+    },
+    {
+      "feedbackText": "التنظيم جيد بشكل عام",
+      "category": "إيجابي",
+      "priority": "low",
+      "rating": 4,
+      "count": 196,
+      "userType": "admin",
+      "page": "analytics",
+      "technicalResponse": {
+        "status": "يجب التحقق",
+        "response": "يحتاج مراجعة الكود لتحديد الحالة الفعلية.",
+        "priorityNote": null,
+        "isRealistic": null
+      }
+    },
+    {
+      "feedbackText": "لا يمكنني حفظ عرض كمسودة قبل الإرسال - أريد حفظ تلقائي",
+      "category": "ميزات مفقودة",
+      "priority": "high",
+      "rating": 2,
+      "count": 170,
+      "userType": "supplier",
+      "page": "portfolio",
+      "technicalResponse": {
+        "status": "غير موجودة - ليست في الخطط",
+        "response": "Auto-save غير موجودة حالياً. النماذج تستخدم state عادي بدون حفظ تلقائي. هذه الميزة تحتاج backend changes (draft API) وليست في نطاق المرحلة الحالية.",
+        "priorityNote": "Priority: medium",
+        "isRealistic": true
+      }
+    },
+    {
+      "feedbackText": "الإحصائيات ثابتة - أريد تحديث فوري أو refresh button",
+      "category": "تجربة المستخدم - لوحة التحكم",
+      "priority": "medium",
+      "rating": 3,
+      "count": 160,
+      "userType": "supplier",
+      "page": "my-offers",
+      "technicalResponse": {
+        "status": "يجب التحقق",
+        "response": "يجب التحقق من وجود refresh button في لوحات التحكم. إذا لم تكن موجودة، يمكن إضافتها بسهولة.",
+        "priorityNote": "Priority: medium",
+        "isRealistic": null
+      }
+    },
+    {
+      "feedbackText": "في منصات أخرى يمكنني ترتيب أعمالي في المعرض - هنا لا يمكن",
+      "category": "مقارنة مع المنصات المنافسة",
+      "priority": "low",
+      "rating": 4,
+      "count": 160,
+      "userType": "supplier",
+      "page": "earnings",
+      "technicalResponse": {
+        "status": "غير موجودة - يمكن إضافتها",
+        "response": "ترتيب أعمال المعرض غير موجود. هذه ميزة بسيطة يمكن إضافتها - تحتاج فقط frontend changes.",
+        "priorityNote": "Priority: low",
+        "isRealistic": true
+      }
+    },
+    {
+      "feedbackText": "لا يمكنني نسخ عرض سابق لطلب جديد - أريد \"نسخ من عرض سابق\"",
+      "category": "ميزات مفقودة",
+      "priority": "low",
+      "rating": 4,
+      "count": 159,
+      "userType": "supplier",
+      "page": "supplier-projects",
+      "technicalResponse": {
+        "status": "غير موجودة - يمكن إضافتها",
+        "response": "نسخ عرض سابق غير موجود. هذه ميزة بسيطة - يمكن إضافة زر \"نسخ\" يستخدم بيانات العرض السابق.",
+        "priorityNote": "Priority: low",
+        "isRealistic": true
+      }
+    },
+    {
+      "feedbackText": "في منصات أخرى يمكنني البحث في الطلبات بكلمات مفتاحية - هنا البحث بسيط",
+      "category": "مقارنة مع المنصات المنافسة",
+      "priority": "medium",
+      "rating": 3,
+      "count": 157,
+      "userType": "supplier",
+      "page": "my-offers",
+      "technicalResponse": {
+        "status": "يجب التحقق",
+        "response": "يجب التحقق من نوع البحث الموجود. إذا كان البحث بسيط، يمكن تحسينه لدعم keywords.",
+        "priorityNote": "Priority: medium",
+        "isRealistic": null
+      }
+    },
+    {
+      "feedbackText": "لا أعرف ترتيبي بين الموردين الآخرين - أريد ranking واضح",
+      "category": "تجربة المستخدم - وضوح الحالة",
+      "priority": "low",
+      "rating": 4,
+      "count": 156,
+      "userType": "supplier",
+      "page": "earnings",
+      "technicalResponse": {
+        "status": "غير موجودة - غير ضرورية",
+        "response": "Ranking بين الموردين غير موجود. هذه ميزة قد تكون مفيدة لكنها تحتاج خوارزمية تقييم معقدة - ليست أولوية.",
+        "priorityNote": "Priority: low",
+        "isRealistic": true
+      }
+    },
+    {
+      "feedbackText": "أريد إضافة tags أو فئات لأعمالي في المعرض",
+      "category": "مقارنة مع المنصات المنافسة",
+      "priority": "low",
+      "rating": 4,
+      "count": 155,
+      "userType": "supplier",
+      "page": "create-offer",
+      "technicalResponse": {
+        "status": "غير موجودة - يمكن إضافتها",
+        "response": "Tags للمعرض غير موجودة. هذه ميزة بسيطة يمكن إضافتها - تحتاج فقط frontend changes وربما backend للـ tags.",
+        "priorityNote": "Priority: low",
+        "isRealistic": true
+      }
+    },
+    {
+      "feedbackText": "صفحة المعرض جميلة ومنظمة",
+      "category": "إيجابي",
+      "priority": "low",
+      "rating": 5,
+      "count": 155,
+      "userType": "supplier",
+      "page": "portfolio",
+      "technicalResponse": {
+        "status": "يجب التحقق",
+        "response": "يحتاج مراجعة الكود لتحديد الحالة الفعلية.",
+        "priorityNote": null,
+        "isRealistic": null
+      }
+    },
+    {
+      "feedbackText": "بعد إرسال العرض، لا يمكنني تعديله حتى لو اكتشفت خطأ - أريد فترة تعديل",
+      "category": "تجربة المستخدم - التحكم",
+      "priority": "high",
+      "rating": 2,
+      "count": 154,
+      "userType": "supplier",
+      "page": "my-offers",
+      "technicalResponse": {
+        "status": "يجب التحقق",
+        "response": "يحتاج مراجعة الكود لتحديد الحالة الفعلية.",
+        "priorityNote": null,
+        "isRealistic": null
+      }
+    },
+    {
+      "feedbackText": "لوحة التحكم لا توضح أدائي مقارنة بالفترة السابقة - أريد مقارنات",
+      "category": "تجربة المستخدم - لوحة التحكم",
+      "priority": "low",
+      "rating": 4,
+      "count": 152,
+      "userType": "supplier",
+      "page": "browse-requests",
+      "technicalResponse": {
+        "status": "يجب التحقق",
+        "response": "يحتاج مراجعة الكود لتحديد الحالة الفعلية.",
+        "priorityNote": null,
+        "isRealistic": null
+      }
+    },
+    {
+      "feedbackText": "لا يمكنني رؤية عروض المنافسين (مجهولة الهوية) - أريد معرفة السوق",
+      "category": "ميزات مفقودة",
+      "priority": "low",
+      "rating": 3,
+      "count": 151,
+      "userType": "supplier",
+      "page": "my-offers",
+      "technicalResponse": {
+        "status": "يجب التحقق",
+        "response": "يحتاج مراجعة الكود لتحديد الحالة الفعلية.",
+        "priorityNote": null,
+        "isRealistic": null
+      }
+    },
+    {
+      "feedbackText": "أريد حفظ بحث معين لأتلقى إشعارات عند ظهور طلبات جديدة",
+      "category": "مقارنة مع المنصات المنافسة",
+      "priority": "low",
+      "rating": 4,
+      "count": 145,
+      "userType": "supplier",
+      "page": "supplier-projects",
+      "technicalResponse": {
+        "status": "يجب التحقق",
+        "response": "يحتاج مراجعة الكود لتحديد الحالة الفعلية.",
+        "priorityNote": null,
+        "isRealistic": null
+      }
+    },
+    {
+      "feedbackText": "على الجوال، عرض تفاصيل الطلب صعب القراءة - أريد تحسين العرض",
+      "category": "تجربة المستخدم - التصميم المتجاوب",
+      "priority": "high",
+      "rating": 2,
+      "count": 145,
+      "userType": "supplier",
+      "page": "earnings",
+      "technicalResponse": {
+        "status": "يجب التحقق",
+        "response": "يحتاج مراجعة الكود لتحديد الحالة الفعلية.",
+        "priorityNote": null,
+        "isRealistic": null
+      }
+    },
+    {
+      "feedbackText": "عندما لا توجد طلبات مناسبة، الصفحة فارغة - أريد suggestions",
+      "category": "تجربة المستخدم - الحالات الفارغة",
+      "priority": "low",
+      "rating": 4,
+      "count": 144,
+      "userType": "supplier",
+      "page": "my-offers",
+      "technicalResponse": {
+        "status": "يجب التحقق",
+        "response": "يجب التحقق من Empty states. إذا كانت موجودة لكن بدون suggestions، يمكن إضافتها بسهولة.",
+        "priorityNote": "Priority: low",
+        "isRealistic": null
+      }
+    },
+    {
+      "feedbackText": "لا يمكنني سحب عرض بعد إرساله مباشرة - أريد زر \"سحب\" واضح",
+      "category": "تجربة المستخدم - التحكم",
+      "priority": "medium",
+      "rating": 3,
+      "count": 143,
+      "userType": "supplier",
+      "page": "browse-requests",
+      "technicalResponse": {
+        "status": "يجب التحقق",
+        "response": "يحتاج مراجعة الكود لتحديد الحالة الفعلية.",
+        "priorityNote": null,
+        "isRealistic": null
+      }
+    },
+    {
+      "feedbackText": "أريد فلترة الطلبات حسب: الميزانية، الموقع، نوع الخدمة، تاريخ النشر",
+      "category": "مقارنة مع المنصات المنافسة",
+      "priority": "medium",
+      "rating": 3,
+      "count": 140,
+      "userType": "supplier",
+      "page": "my-offers",
+      "technicalResponse": {
+        "status": "يجب التحقق",
+        "response": "يحتاج مراجعة الكود لتحديد الحالة الفعلية.",
+        "priorityNote": null,
+        "isRealistic": null
+      }
+    },
+    {
+      "feedbackText": "بعد إرسال العرض، لا أعرف إذا كان العميل قد رآه - أريد حالة \"مقروء\"",
+      "category": "تجربة المستخدم - وضوح الحالة",
+      "priority": "medium",
+      "rating": 3,
+      "count": 140,
+      "userType": "supplier",
+      "page": "create-offer",
+      "technicalResponse": {
+        "status": "يجب التحقق",
+        "response": "يحتاج مراجعة الكود لتحديد الحالة الفعلية.",
+        "priorityNote": null,
+        "isRealistic": null
+      }
+    },
+    {
+      "feedbackText": "عند تقديم عرض، لا أعرف كم عرض تم تقديمه على هذا الطلب - أريد إحصائيات",
+      "category": "تجربة المستخدم - وضوح الحالة",
+      "priority": "medium",
+      "rating": 3,
+      "count": 140,
+      "userType": "supplier",
+      "page": "supplier-projects",
+      "technicalResponse": {
+        "status": "يجب التحقق",
+        "response": "يحتاج مراجعة الكود لتحديد الحالة الفعلية.",
+        "priorityNote": null,
+        "isRealistic": null
+      }
+    },
+    {
+      "feedbackText": "حقل الوصف طويل ولا أعرف إذا كان كافياً - أريد أمثلة أو templates",
+      "category": "تجربة المستخدم - النماذج",
+      "priority": "low",
+      "rating": 4,
+      "count": 138,
+      "userType": "supplier",
+      "page": "portfolio",
+      "technicalResponse": {
+        "status": "غير موجودة - يمكن إضافتها",
+        "response": "أمثلة في النماذج غير موجودة. يمكن إضافة placeholders أو help text - ميزة بسيطة.",
+        "priorityNote": "Priority: low",
+        "isRealistic": true
+      }
+    },
+    {
+      "feedbackText": "عند حساب السعر، لا يوجد آلة حاسبة مدمجة - أريد tool لحساب التكلفة",
+      "category": "تجربة المستخدم - النماذج",
+      "priority": "low",
+      "rating": 4,
+      "count": 136,
+      "userType": "supplier",
+      "page": "supplier-projects",
+      "technicalResponse": {
+        "status": "يجب التحقق",
+        "response": "يحتاج مراجعة الكود لتحديد الحالة الفعلية.",
+        "priorityNote": null,
+        "isRealistic": null
+      }
+    },
+    {
+      "feedbackText": "أريد فلترة متقدمة مثل: حسب الميزانية، المدة، الموقع، نوع الخدمة دفعة واحدة",
+      "category": "مقارنة مع المنصات المنافسة",
+      "priority": "medium",
+      "rating": 3,
+      "count": 81,
+      "userType": "client",
+      "page": "profile",
+      "technicalResponse": {
+        "status": "موجودة جزئياً",
+        "response": "الفلترة موجودة لكن قد تحتاج تحسين. يجب مراجعة مكونات الفلترة الحالية وتحديد ما هو مفقود.",
+        "priorityNote": "Priority: medium",
+        "isRealistic": true
+      }
+    },
+    {
+      "feedbackText": "عند إنشاء طلب، لا أعرف ما هي المعلومات المطلوبة - أريد أمثلة أو tooltips",
+      "category": "تجربة المستخدم - المساعدة",
+      "priority": "medium",
+      "rating": 3,
+      "count": 81,
+      "userType": "client",
+      "page": "messages",
+      "technicalResponse": {
+        "status": "غير موجودة - يمكن إضافتها",
+        "response": "أمثلة في النماذج غير موجودة. يمكن إضافة placeholders أو help text - ميزة بسيطة.",
+        "priorityNote": "Priority: low",
+        "isRealistic": true
+      }
+    },
+    {
+      "feedbackText": "على الجوال، جدول العروض غير قابل للقراءة - أريد عرض بطاقات بدلاً من جدول",
+      "category": "تجربة المستخدم - التصميم المتجاوب",
+      "priority": "high",
+      "rating": 2,
+      "count": 80,
+      "userType": "client",
+      "page": "messages",
+      "technicalResponse": {
+        "status": "يجب التحقق",
+        "response": "يحتاج مراجعة الكود لتحديد الحالة الفعلية.",
+        "priorityNote": null,
+        "isRealistic": null
+      }
+    },
+    {
+      "feedbackText": "لا يمكنني إضافة طلب للمفضلة - أريد زر \"حفظ للمفضلة\"",
+      "category": "ميزات مفقودة",
+      "priority": "low",
+      "rating": 4,
+      "count": 78,
+      "userType": "client",
+      "page": "profile",
+      "technicalResponse": {
+        "status": "يجب التحقق",
+        "response": "يحتاج مراجعة الكود لتحديد الحالة الفعلية.",
+        "priorityNote": null,
+        "isRealistic": null
+      }
+    },
+    {
+      "feedbackText": "عند استخدام لوحة المفاتيح، لا يمكنني التنقل بين الحقول بسهولة - أريد tab order صحيح",
+      "category": "إمكانية الوصول",
+      "priority": "medium",
+      "rating": 3,
+      "count": 78,
+      "userType": "client",
+      "page": "requests",
+      "technicalResponse": {
+        "status": "يجب التحقق",
+        "response": "يحتاج مراجعة الكود لتحديد الحالة الفعلية.",
+        "priorityNote": null,
+        "isRealistic": null
+      }
+    },
+    {
+      "feedbackText": "يمكنني إرسال طلب بدون مرفقات رغم أن الطلب يحتاج صور - أريد required fields واضحة",
+      "category": "تجربة المستخدم - منع الأخطاء",
+      "priority": "high",
+      "rating": 2,
+      "count": 76,
+      "userType": "client",
+      "page": "contracts",
+      "technicalResponse": {
+        "status": "يجب التحقق",
+        "response": "يحتاج مراجعة الكود لتحديد الحالة الفعلية.",
+        "priorityNote": null,
+        "isRealistic": null
+      }
+    },
+    {
+      "feedbackText": "صفحة الطلبات تختلف في التصميم عن صفحة العروض - أريد تصميم موحد",
+      "category": "تجربة المستخدم - الاتساق",
+      "priority": "low",
+      "rating": 4,
+      "count": 75,
+      "userType": "client",
+      "page": "profile",
+      "technicalResponse": {
+        "status": "يجب التحقق",
+        "response": "يحتاج مراجعة الكود لتحديد الحالة الفعلية.",
+        "priorityNote": null,
+        "isRealistic": null
+      }
+    },
+    {
+      "feedbackText": "واجهة سهلة الاستخدام بشكل عام",
+      "category": "إيجابي",
+      "priority": "low",
+      "rating": 4,
+      "count": 73,
+      "userType": "client",
+      "page": "dashboard",
+      "technicalResponse": {
+        "status": "يجب التحقق",
+        "response": "يحتاج مراجعة الكود لتحديد الحالة الفعلية.",
+        "priorityNote": null,
+        "isRealistic": null
+      }
+    },
+    {
+      "feedbackText": "أريد جدول مقارنة يوضح: السعر، المدة، التقييم، المميزات بشكل واضح",
+      "category": "مقارنة مع المنصات المنافسة",
+      "priority": "low",
+      "rating": 4,
+      "count": 73,
+      "userType": "client",
+      "page": "profile",
+      "technicalResponse": {
+        "status": "يجب التحقق",
+        "response": "يحتاج مراجعة الكود لتحديد الحالة الفعلية.",
+        "priorityNote": null,
+        "isRealistic": null
+      }
+    },
+    {
+      "feedbackText": "لا يمكنني حفظ طلب كمسودة - أريد حفظ تلقائي أثناء الكتابة",
+      "category": "ميزات مفقودة",
+      "priority": "high",
+      "rating": 2,
+      "count": 73,
+      "userType": "client",
+      "page": "dashboard",
+      "technicalResponse": {
+        "status": "غير موجودة - ليست في الخطط",
+        "response": "Auto-save غير موجودة حالياً. النماذج تستخدم state عادي بدون حفظ تلقائي. هذه الميزة تحتاج backend changes (draft API) وليست في نطاق المرحلة الحالية.",
+        "priorityNote": "Priority: medium",
+        "isRealistic": true
+      }
+    },
+    {
+      "feedbackText": "على الجوال، الأزرار قريبة من بعض - أريد مسافات أكبر",
+      "category": "تجربة المستخدم - التصميم المتجاوب",
+      "priority": "medium",
+      "rating": 3,
+      "count": 73,
+      "userType": "client",
+      "page": "payments",
+      "technicalResponse": {
+        "status": "يجب التحقق",
+        "response": "يحتاج مراجعة الكود لتحديد الحالة الفعلية.",
+        "priorityNote": null,
+        "isRealistic": null
+      }
+    },
+    {
+      "feedbackText": "عند إدخال الميزانية، لا يوجد تحذير إذا كانت أقل من المعقول - أريد validation ذكي",
+      "category": "تجربة المستخدم - منع الأخطاء",
+      "priority": "medium",
+      "rating": 3,
+      "count": 72,
+      "userType": "client",
+      "page": "messages",
+      "technicalResponse": {
+        "status": "يجب التحقق",
+        "response": "يحتاج مراجعة الكود لتحديد الحالة الفعلية.",
+        "priorityNote": null,
+        "isRealistic": null
+      }
+    },
+    {
+      "feedbackText": "لا يمكنني مشاركة طلب مع آخرين - أريد زر \"مشاركة\"",
+      "category": "ميزات مفقودة",
+      "priority": "low",
+      "rating": 4,
+      "count": 72,
+      "userType": "client",
+      "page": "messages",
+      "technicalResponse": {
+        "status": "يجب التحقق",
+        "response": "يحتاج مراجعة الكود لتحديد الحالة الفعلية.",
+        "priorityNote": null,
+        "isRealistic": null
+      }
+    },
+    {
+      "feedbackText": "الألوان وحدها لا توضح الحالة - أريد أيقونات أو نص أيضاً",
+      "category": "إمكانية الوصول",
+      "priority": "medium",
+      "rating": 3,
+      "count": 72,
+      "userType": "client",
+      "page": "profile",
+      "technicalResponse": {
+        "status": "يجب التحقق",
+        "response": "يحتاج مراجعة الكود لتحديد الحالة الفعلية.",
+        "priorityNote": null,
+        "isRealistic": null
+      }
+    },
+    {
+      "feedbackText": "لا يمكنني معاينة الطلب قبل النشر - أريد زر \"معاينة\"",
+      "category": "ميزات مفقودة",
+      "priority": "medium",
+      "rating": 3,
+      "count": 72,
+      "userType": "client",
+      "page": "requests",
+      "technicalResponse": {
+        "status": "موجودة جزئياً",
+        "response": "Preview موجود في بعض المكونات (avatar, contract, offer) لكن ليس في جميع النماذج. يمكن إضافتها للنماذج الأخرى.",
+        "priorityNote": null,
+        "isRealistic": true
+      }
+    },
+    {
+      "feedbackText": "التصميم جميل وحديث - أحببت الألوان والخطوط",
+      "category": "إيجابي",
+      "priority": "low",
+      "rating": 5,
+      "count": 71,
+      "userType": "client",
+      "page": "profile",
+      "technicalResponse": {
+        "status": "يجب التحقق",
+        "response": "يحتاج مراجعة الكود لتحديد الحالة الفعلية.",
+        "priorityNote": null,
+        "isRealistic": null
+      }
+    },
+    {
+      "feedbackText": "لا يوجد breadcrumbs في الصفحات الداخلية - أريد معرفة أين أنا",
+      "category": "تجربة المستخدم - التنقل",
+      "priority": "medium",
+      "rating": 3,
+      "count": 71,
+      "userType": "client",
+      "page": "offers",
+      "technicalResponse": {
+        "status": "موجودة",
+        "response": "Breadcrumbs موجودة في جميع الصفحات الداخلية. الكود موجود في `components/shared/navigation/Breadcrumbs.tsx` ويتم استخدامه في 50+ صفحة.",
+        "priorityNote": null,
+        "isRealistic": true
+      }
+    },
+    {
+      "feedbackText": "حقل الوصف طويل جداً ولا أعرف كم كلمة كتبت - أريد عداد كلمات",
+      "category": "تجربة المستخدم - النماذج",
+      "priority": "low",
+      "rating": 4,
+      "count": 70,
+      "userType": "client",
+      "page": "profile",
+      "technicalResponse": {
+        "status": "يجب التحقق",
+        "response": "يحتاج مراجعة الكود لتحديد الحالة الفعلية.",
+        "priorityNote": null,
+        "isRealistic": null
+      }
+    },
+    {
+      "feedbackText": "لا أتذكر الفلاتر التي استخدمتها - أريد حفظ الفلاتر المفضلة",
+      "category": "تجربة المستخدم - التذكر",
+      "priority": "medium",
+      "rating": 3,
+      "count": 70,
+      "userType": "client",
+      "page": "create-request",
+      "technicalResponse": {
+        "status": "يجب التحقق",
+        "response": "يحتاج مراجعة الكود لتحديد الحالة الفعلية.",
+        "priorityNote": null,
+        "isRealistic": null
+      }
+    },
+    {
+      "feedbackText": "لا يوجد زر \"العودة للأعلى\" في الصفحات الطويلة",
+      "category": "تجربة المستخدم - التنقل",
+      "priority": "low",
+      "rating": 4,
+      "count": 70,
+      "userType": "client",
+      "page": "payments",
+      "technicalResponse": {
+        "status": "يجب التحقق",
+        "response": "يحتاج مراجعة الكود لتحديد الحالة الفعلية.",
+        "priorityNote": null,
+        "isRealistic": null
+      }
+    },
+    {
+      "feedbackText": "عند كتابة الوصف، لا يوجد suggestions أو أمثلة - أريد placeholder مفيد",
+      "category": "تجربة المستخدم - النماذج",
+      "priority": "low",
+      "rating": 4,
+      "count": 70,
+      "userType": "client",
+      "page": "dashboard",
+      "technicalResponse": {
+        "status": "غير موجودة - يمكن إضافتها",
+        "response": "أمثلة في النماذج غير موجودة. يمكن إضافة placeholders أو help text - ميزة بسيطة.",
+        "priorityNote": "Priority: low",
+        "isRealistic": true
+      }
+    },
+    {
+      "feedbackText": "أزرار \"حفظ\" في صفحات مختلفة لها ألوان مختلفة - أريد اتساق في التصميم",
+      "category": "تجربة المستخدم - الاتساق",
+      "priority": "low",
+      "rating": 4,
+      "count": 70,
+      "userType": "client",
+      "page": "requests",
+      "technicalResponse": {
+        "status": "يجب التحقق",
+        "response": "يحتاج مراجعة الكود لتحديد الحالة الفعلية.",
+        "priorityNote": null,
+        "isRealistic": null
+      }
+    },
+    {
+      "feedbackText": "لا يمكنني نسخ طلب سابق لإنشاء طلب جديد مشابه - أريد \"نسخ\"",
+      "category": "ميزات مفقودة",
+      "priority": "low",
+      "rating": 4,
+      "count": 70,
+      "userType": "client",
+      "page": "payments",
+      "technicalResponse": {
+        "status": "يجب التحقق",
+        "response": "يحتاج مراجعة الكود لتحديد الحالة الفعلية.",
+        "priorityNote": null,
+        "isRealistic": null
+      }
+    },
+    {
+      "feedbackText": "أريد ترتيب الطلبات حسب: الأحدث، الأقدم، الميزانية، عدد العروض",
+      "category": "مقارنة مع المنصات المنافسة",
+      "priority": "low",
+      "rating": 4,
+      "count": 70,
+      "userType": "client",
+      "page": "offers",
+      "technicalResponse": {
+        "status": "يجب التحقق",
+        "response": "يحتاج مراجعة الكود لتحديد الحالة الفعلية.",
+        "priorityNote": null,
+        "isRealistic": null
+      }
+    },
+    {
+      "feedbackText": "عند البحث عن طلبات، لا أتذكر ما بحثت عنه سابقاً - أريد سجل البحث الأخير",
+      "category": "تجربة المستخدم - التذكر",
+      "priority": "low",
+      "rating": 4,
+      "count": 69,
+      "userType": "client",
+      "page": "messages",
+      "technicalResponse": {
+        "status": "يجب التحقق",
+        "response": "يحتاج مراجعة الكود لتحديد الحالة الفعلية.",
+        "priorityNote": null,
+        "isRealistic": null
+      }
+    },
+    {
+      "feedbackText": "عند اختيار التاريخ، لا أعرف ما هو التاريخ المناسب - أريد تقويم مع توضيحات",
+      "category": "تجربة المستخدم - النماذج",
+      "priority": "low",
+      "rating": 4,
+      "count": 68,
+      "userType": "client",
+      "page": "contracts",
+      "technicalResponse": {
+        "status": "يجب التحقق",
+        "response": "يحتاج مراجعة الكود لتحديد الحالة الفعلية.",
+        "priorityNote": null,
+        "isRealistic": null
+      }
+    },
+    {
+      "feedbackText": "عندما لا توجد عروض، لا أعرف ماذا أفعل - أريد empty state واضح",
+      "category": "تجربة المستخدم - الحالات الفارغة",
+      "priority": "medium",
+      "rating": 3,
+      "count": 68,
+      "userType": "client",
+      "page": "contracts",
+      "technicalResponse": {
+        "status": "يجب التحقق",
+        "response": "يحتاج مراجعة الكود لتحديد الحالة الفعلية.",
+        "priorityNote": null,
+        "isRealistic": null
+      }
+    },
+    {
+      "feedbackText": "عندما لا يوجد طلبات، الصفحة فارغة تماماً - أريد رسالة توضيحية مع إرشادات",
+      "category": "تجربة المستخدم - الحالات الفارغة",
+      "priority": "medium",
+      "rating": 3,
+      "count": 68,
+      "userType": "client",
+      "page": "messages",
+      "technicalResponse": {
+        "status": "يجب التحقق",
+        "response": "يحتاج مراجعة الكود لتحديد الحالة الفعلية.",
+        "priorityNote": null,
+        "isRealistic": null
+      }
+    },
+    {
+      "feedbackText": "لا يوجد شرح لكيفية استخدام صفحة المقارنة - أريد دليل سريع",
+      "category": "تجربة المستخدم - المساعدة",
+      "priority": "low",
+      "rating": 4,
+      "count": 67,
+      "userType": "client",
+      "page": "offers",
+      "technicalResponse": {
+        "status": "يجب التحقق",
+        "response": "يحتاج مراجعة الكود لتحديد الحالة الفعلية.",
+        "priorityNote": null,
+        "isRealistic": null
+      }
+    },
+    {
+      "feedbackText": "عند اختيار عرض، لا يوجد تأكيد قبل القبول النهائي - أريد dialog تأكيد",
+      "category": "تجربة المستخدم - التحكم",
+      "priority": "high",
+      "rating": 2,
+      "count": 67,
+      "userType": "client",
+      "page": "profile",
+      "technicalResponse": {
+        "status": "يجب التحقق",
+        "response": "يحتاج مراجعة الكود لتحديد الحالة الفعلية.",
+        "priorityNote": null,
+        "isRealistic": null
+      }
+    },
+    {
+      "feedbackText": "عند رفع الملفات، لا أرى نسبة التحميل - أريد شريط تقدم",
+      "category": "تجربة المستخدم - وضوح الحالة",
+      "priority": "medium",
+      "rating": 3,
+      "count": 66,
+      "userType": "client",
+      "page": "contracts",
+      "technicalResponse": {
+        "status": "يجب التحقق",
+        "response": "يحتاج مراجعة الكود لتحديد الحالة الفعلية.",
+        "priorityNote": null,
+        "isRealistic": null
+      }
+    },
+    {
+      "feedbackText": "في منصات أخرى يمكنني مقارنة عدة عروض جنباً إلى جنب - هنا المقارنة محدودة",
+      "category": "مقارنة مع المنصات المنافسة",
+      "priority": "medium",
+      "rating": 3,
+      "count": 63,
+      "userType": "client",
+      "page": "contracts",
+      "technicalResponse": {
+        "status": "يجب التحقق",
+        "response": "يحتاج مراجعة الكود لتحديد الحالة الفعلية.",
+        "priorityNote": null,
+        "isRealistic": null
+      }
+    },
+    {
+      "feedbackText": "على الجوال، النماذج طويلة جداً - أريد تقسيمها لخطوات",
+      "category": "تجربة المستخدم - التصميم المتجاوب",
+      "priority": "medium",
+      "rating": 3,
+      "count": 63,
+      "userType": "client",
+      "page": "dashboard",
+      "technicalResponse": {
+        "status": "يجب التحقق",
+        "response": "يحتاج مراجعة الكود لتحديد الحالة الفعلية.",
+        "priorityNote": null,
+        "isRealistic": null
+      }
+    },
+    {
+      "feedbackText": "بعد إنشاء طلب، لا يمكنني التراجع - أريد زر \"حذف\" أو \"إلغاء نشر\" واضح",
+      "category": "تجربة المستخدم - التحكم",
+      "priority": "high",
+      "rating": 2,
+      "count": 63,
+      "userType": "client",
+      "page": "create-request",
+      "technicalResponse": {
+        "status": "يجب التحقق",
+        "response": "يحتاج مراجعة الكود لتحديد الحالة الفعلية.",
+        "priorityNote": null,
+        "isRealistic": null
+      }
+    },
+    {
+      "feedbackText": "عند إنشاء طلب جديد، لا أعرف في أي خطوة أنا - أريد شريط تقدم يوضح الخطوات",
+      "category": "تجربة المستخدم - وضوح الحالة",
+      "priority": "medium",
+      "rating": 3,
+      "count": 62,
+      "userType": "client",
+      "page": "projects",
+      "technicalResponse": {
+        "status": "يجب التحقق",
+        "response": "يحتاج مراجعة الكود لتحديد الحالة الفعلية.",
+        "priorityNote": null,
+        "isRealistic": null
+      }
+    },
+    {
+      "feedbackText": "عند اختيار فئة، لا أعرف ماذا تعني بعض الفئات - أريد وصف لكل فئة",
+      "category": "تجربة المستخدم - المساعدة",
+      "priority": "low",
+      "rating": 4,
+      "count": 61,
+      "userType": "client",
+      "page": "requests",
+      "technicalResponse": {
+        "status": "يجب التحقق",
+        "response": "يحتاج مراجعة الكود لتحديد الحالة الفعلية.",
+        "priorityNote": null,
+        "isRealistic": null
+      }
+    },
+    {
+      "feedbackText": "لا يمكنني ترتيب العروض حسب السعر أو المدة - أريد خيارات ترتيب متعددة",
+      "category": "مقارنة مع المنصات المنافسة",
+      "priority": "medium",
+      "rating": 3,
+      "count": 61,
+      "userType": "client",
+      "page": "profile",
+      "technicalResponse": {
+        "status": "يجب التحقق",
+        "response": "يحتاج مراجعة الكود لتحديد الحالة الفعلية.",
+        "priorityNote": null,
+        "isRealistic": null
+      }
+    },
+    {
+      "feedbackText": "بعد إرسال الطلب، لا أعرف إذا تم الحفظ بنجاح - أريد رسالة تأكيد واضحة",
+      "category": "تجربة المستخدم - وضوح الحالة",
+      "priority": "high",
+      "rating": 2,
+      "count": 58,
+      "userType": "client",
+      "page": "dashboard",
+      "technicalResponse": {
+        "status": "يجب التحقق",
+        "response": "يحتاج مراجعة الكود لتحديد الحالة الفعلية.",
+        "priorityNote": null,
+        "isRealistic": null
+      }
+    },
+    {
+      "feedbackText": "في منصة اعتماد يمكنني فلترة الطلبات بعدة معايير دفعة واحدة - هنا الفلترة محدودة",
+      "category": "مقارنة مع المنصات المنافسة",
+      "priority": "medium",
+      "rating": 3,
+      "count": 58,
+      "userType": "client",
+      "page": "offers",
+      "technicalResponse": {
+        "status": "يجب التحقق",
+        "response": "يحتاج مراجعة الكود لتحديد الحالة الفعلية.",
+        "priorityNote": null,
+        "isRealistic": null
+      }
+    },
+    {
+      "feedbackText": "عند العودة من صفحة تفاصيل، أعود للصفحة الأولى وليس حيث كنت - أريد حفظ الموضع",
+      "category": "تجربة المستخدم - التنقل",
+      "priority": "medium",
+      "rating": 3,
+      "count": 58,
+      "userType": "client",
+      "page": "profile",
+      "technicalResponse": {
+        "status": "يجب التحقق",
+        "response": "يحتاج مراجعة الكود لتحديد الحالة الفعلية.",
+        "priorityNote": null,
+        "isRealistic": null
+      }
+    },
+    {
+      "feedbackText": "في منصات أخرى يمكنني حفظ بحث معين - هنا لا يوجد هذه الميزة",
+      "category": "مقارنة مع المنصات المنافسة",
+      "priority": "low",
+      "rating": 4,
+      "count": 57,
+      "userType": "client",
+      "page": "contracts",
+      "technicalResponse": {
+        "status": "يجب التحقق",
+        "response": "يحتاج مراجعة الكود لتحديد الحالة الفعلية.",
+        "priorityNote": null,
+        "isRealistic": null
+      }
+    },
+    {
+      "feedbackText": "لا يمكنني إلغاء اختيار عرض بعد قبوله - أريد إمكانية التراجع",
+      "category": "تجربة المستخدم - التحكم",
+      "priority": "medium",
+      "rating": 3,
+      "count": 57,
+      "userType": "client",
+      "page": "requests",
+      "technicalResponse": {
+        "status": "يجب التحقق",
+        "response": "يحتاج مراجعة الكود لتحديد الحالة الفعلية.",
+        "priorityNote": null,
+        "isRealistic": null
+      }
+    },
+    {
+      "feedbackText": "عند العودة لطلب، لا أتذكر آخر تعديل - أريد تاريخ آخر تعديل واضح",
+      "category": "تجربة المستخدم - التذكر",
+      "priority": "low",
+      "rating": 4,
+      "count": 54,
+      "userType": "client",
+      "page": "projects",
+      "technicalResponse": {
+        "status": "يجب التحقق",
+        "response": "يحتاج مراجعة الكود لتحديد الحالة الفعلية.",
+        "priorityNote": null,
+        "isRealistic": null
+      }
+    },
+    {
+      "feedbackText": "لا يوجد تحذير إذا كان تاريخ الانتهاء قبل تاريخ البدء - أريد validation للتواريخ",
+      "category": "تجربة المستخدم - منع الأخطاء",
+      "priority": "medium",
+      "rating": 3,
+      "count": 51,
+      "userType": "client",
+      "page": "dashboard",
+      "technicalResponse": {
+        "status": "يجب التحقق",
+        "response": "يحتاج مراجعة الكود لتحديد الحالة الفعلية.",
+        "priorityNote": null,
+        "isRealistic": null
+      }
+    }
+  ]
+}

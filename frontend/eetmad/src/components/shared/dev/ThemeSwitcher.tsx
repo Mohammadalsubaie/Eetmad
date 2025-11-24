@@ -15,11 +15,6 @@ export default function ThemeSwitcher() {
   const { themeOption, setThemeOption } = useTheme();
   const t = useTranslations('dev');
 
-  // Only show in development
-  if (process.env.NODE_ENV !== 'development') {
-    return null;
-  }
-
   const availableThemes = getAvailableThemes();
 
   const toggleGroup = (group: string) => {

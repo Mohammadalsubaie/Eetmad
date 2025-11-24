@@ -583,10 +583,6 @@ export default function ManualReviewNavigator() {
     }
   }, [reviews, currentSessionId]);
 
-  if (process.env.NODE_ENV !== 'development') {
-    return null;
-  }
-
   const toggleGroup = (group: string) => {
     const newExpanded = new Set(expandedGroups);
     if (newExpanded.has(group)) {

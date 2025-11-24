@@ -91,14 +91,14 @@ jobs:
                   # Run ESLint and capture output
                   LINT_OUTPUT=$(npm run lint:check 2>&1 || true)
                   LINT_EXIT_CODE=$?
-                  
+
                   # Check output for errors vs warnings
-                  ERROR_COUNT=$(echo "$LINT_OUTPUT" | grep -oE "[0-9]+ error" | grep -oE "[0-9]+" || echo "0")
-                  WARNING_COUNT=$(echo "$LINT_OUTPUT" | grep -oE "[0-9]+ warning" | grep -oE "[0-9]+" || echo "0")
-                  
+                  ERROR_COUNT=$(echo "$LINT_OUTPUT" | grep -oE "[0-9]+ error" | head -1 | grep -oE "[0-9]+" || echo "0")
+                  WARNING_COUNT=$(echo "$LINT_OUTPUT" | grep -oE "[0-9]+ warning" | head -1 | grep -oE "[0-9]+" || echo "0")
+
                   # Display full output
                   echo "$LINT_OUTPUT"
-                  
+
                   # Fail only if there are actual errors
                   if [ "$ERROR_COUNT" -gt 0 ]; then
                       echo "::error::ESLint found $ERROR_COUNT error(s). Please fix them."

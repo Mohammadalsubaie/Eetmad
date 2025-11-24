@@ -1,6 +1,7 @@
 'use client';
 
-import { Briefcase, DollarSign, Star, TrendingUp } from 'lucide-react';
+import { Briefcase, Star, TrendingUp } from 'lucide-react';
+import SaudiRiyalIcon from '@/components/shared/icons/SaudiRiyalIcon';
 import { cssVars } from '@/styles/theme';
 import { useTranslations } from 'next-intl';
 import type { User } from '@/lib/types/user.types';
@@ -35,7 +36,7 @@ export default function UserStats({ user }: UserStatsProps) {
         title={t('users.detail.stats.wallet')}
         value={user.walletBalance.toLocaleString('ar-SA')}
         change={t('common.currency')}
-        icon={DollarSign}
+        icon={SaudiRiyalIcon}
         color={cssVars.status.success}
       />
       <AdminStatCard

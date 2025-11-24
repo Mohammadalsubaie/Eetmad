@@ -8,12 +8,13 @@ import {
   Edit,
   CheckCircle2,
   XCircle,
-  DollarSign,
   Calendar,
   Download,
   FileText,
   Clock,
 } from 'lucide-react';
+import SaudiRiyalIcon from '@/components/shared/icons/SaudiRiyalIcon';
+import CurrencyDisplay from '@/components/shared/CurrencyDisplay';
 import { cssVars } from '@/styles/theme';
 import {
   useMilestone,
@@ -106,10 +107,6 @@ export default function MilestoneDetailPage() {
     });
   };
 
-  const formatCurrency = (amount: number) => {
-    return `${amount.toLocaleString()} ${t('milestonesSection.currency')}`;
-  };
-
   return (
     <div className="container mx-auto py-8" style={{ backgroundColor: cssVars.neutral.bg }}>
       <Breadcrumbs
@@ -195,10 +192,17 @@ export default function MilestoneDetailPage() {
                   {t('milestonesSection.amount')}
                 </p>
                 <div className="mt-1 flex items-center gap-2">
-                  <DollarSign className="h-4 w-4" style={{ color: cssVars.status.success }} />
-                  <p className="text-lg font-bold" style={{ color: cssVars.secondary.DEFAULT }}>
-                    {formatCurrency(milestone.amount)}
-                  </p>
+                  <SaudiRiyalIcon
+                    className="h-4 w-4"
+                    style={{ color: cssVars.status.success }}
+                    width={16}
+                    height={16}
+                  />
+                  <CurrencyDisplay
+                    amount={milestone.amount}
+                    className="text-lg font-bold"
+                    iconSize={16}
+                  />
                 </div>
               </div>
               <div>

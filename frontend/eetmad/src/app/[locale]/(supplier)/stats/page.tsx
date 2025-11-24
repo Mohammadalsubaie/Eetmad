@@ -2,7 +2,9 @@
 
 import { useMemo } from 'react';
 import { useTranslations, useLocale } from 'next-intl';
-import { DollarSign, TrendingUp, CheckCircle2, Star, Package, Award } from 'lucide-react';
+import { TrendingUp, CheckCircle2, Star, Package, Award } from 'lucide-react';
+import SaudiRiyalIcon from '@/components/shared/icons/SaudiRiyalIcon';
+import CurrencyDisplay from '@/components/shared/CurrencyDisplay';
 import { cssVars } from '@/styles/theme';
 import { useSupplierStatistics } from '@/lib/hooks/useSupplier';
 import { LoadingSpinner, ErrorMessage } from '@/components/ui';
@@ -22,10 +24,6 @@ export default function StatsPage() {
   const t = useTranslations('pages.stats');
   const locale = useLocale();
   const { stats, isLoading, error } = useSupplierStatistics();
-
-  const formatCurrency = (amount: number) => {
-    return `${amount.toLocaleString()} ${t('currency')}`;
-  };
 
   const { acceptanceRate, completionRate } = useMemo(() => {
     if (!stats) return { acceptanceRate: 0, completionRate: 0 };
@@ -74,9 +72,9 @@ export default function StatsPage() {
       {/* Stats Grid */}
       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
         <StatCard
-          icon={DollarSign}
+          icon={SaudiRiyalIcon}
           label={t('totalEarnings')}
-          value={formatCurrency(stats.totalEarnings)}
+          value={<CurrencyDisplay amount={stats.totalEarnings} iconSize={16} />}
         />
         <StatCard icon={Package} label={t('totalOffers')} value={stats.totalOffers.toString()} />
         <StatCard

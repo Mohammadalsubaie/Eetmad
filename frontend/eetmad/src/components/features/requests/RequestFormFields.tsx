@@ -3,7 +3,7 @@
 import type { Category } from '@/lib/types/category.types';
 import type { CreateRequestInput } from '@/lib/types/request.types';
 import { cssVars } from '@/styles/theme';
-import { DollarSign } from 'lucide-react';
+import SaudiRiyalIcon from '@/components/shared/icons/SaudiRiyalIcon';
 import { useTranslations } from 'next-intl';
 
 interface RequestFormFieldsProps {
@@ -117,9 +117,11 @@ export default function RequestFormFields({
             {t('form.budgetMin')}
           </label>
           <div className="relative">
-            <DollarSign
+            <SaudiRiyalIcon
               className="absolute right-3 top-1/2 h-5 w-5 -translate-y-1/2"
               style={{ color: cssVars.neutral.textMuted }}
+              width={20}
+              height={20}
             />
             <input
               type="number"
@@ -148,9 +150,11 @@ export default function RequestFormFields({
             {t('form.budgetMax')}
           </label>
           <div className="relative">
-            <DollarSign
+            <SaudiRiyalIcon
               className="absolute right-3 top-1/2 h-5 w-5 -translate-y-1/2"
               style={{ color: cssVars.neutral.textMuted }}
+              width={20}
+              height={20}
             />
             <input
               type="number"

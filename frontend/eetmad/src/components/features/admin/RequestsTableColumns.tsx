@@ -4,7 +4,9 @@ import type { ColumnConfig } from '@/components/shared/admin/AdminDataTable';
 import StatusBadge from '@/components/shared/badges/StatusBadge';
 import type { Request } from '@/lib/types/request.types';
 import { cssVars } from '@/styles/theme';
-import { Calendar, DollarSign, Eye, FileText } from 'lucide-react';
+import { Calendar, Eye, FileText } from 'lucide-react';
+import SaudiRiyalIcon from '@/components/shared/icons/SaudiRiyalIcon';
+import CurrencyDisplay from '@/components/shared/CurrencyDisplay';
 import { useTranslations } from 'next-intl';
 import { useRouter } from 'next/navigation';
 
@@ -42,10 +44,15 @@ export function useRequestsTableColumns(): ColumnConfig<Request>[] {
       header: t('requests.table.budget'),
       render: (request: Request) => (
         <div className="flex items-center gap-2">
-          <DollarSign className="h-4 w-4" style={{ color: cssVars.status.success }} />
+          <SaudiRiyalIcon
+            className="h-4 w-4"
+            style={{ color: cssVars.status.success }}
+            width={16}
+            height={16}
+          />
           <span className="font-bold" style={{ color: cssVars.secondary.DEFAULT }}>
-            {request.budgetMin?.toLocaleString('ar-SA') ?? 0} -{' '}
-            {request.budgetMax?.toLocaleString('ar-SA') ?? 0} ر.س
+            <CurrencyDisplay amount={request.budgetMin ?? 0} iconSize={16} showIcon={false} /> -{' '}
+            <CurrencyDisplay amount={request.budgetMax ?? 0} iconSize={16} />
           </span>
         </div>
       ),

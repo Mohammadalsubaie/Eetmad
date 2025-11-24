@@ -4,7 +4,8 @@ import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { useLocale, useTranslations } from 'next-intl';
 import { motion } from 'framer-motion';
-import { ArrowLeft, DollarSign } from 'lucide-react';
+import { ArrowLeft } from 'lucide-react';
+import SaudiRiyalIcon from '@/components/shared/icons/SaudiRiyalIcon';
 import { cssVars } from '@/styles/theme';
 import { useInitiatePayment } from '@/lib/hooks/usePayments';
 import { Button, ErrorMessage, LoadingSpinner } from '@/components/ui';
@@ -148,9 +149,11 @@ export default function InitiatePaymentPage() {
               {t('amount')} *
             </label>
             <div className="relative">
-              <DollarSign
+              <SaudiRiyalIcon
                 className="absolute right-3 top-1/2 h-5 w-5 -translate-y-1/2"
                 style={{ color: cssVars.neutral.textMuted }}
+                width={20}
+                height={20}
               />
               <Input
                 type="number"

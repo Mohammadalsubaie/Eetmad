@@ -3,7 +3,9 @@
 import { useRouter } from 'next/navigation';
 import { useTranslations } from 'next-intl';
 import { motion } from 'framer-motion';
-import { DollarSign, CreditCard, Building2, Wallet, ArrowRight } from 'lucide-react';
+import { CreditCard, Building2, Wallet, ArrowRight } from 'lucide-react';
+import SaudiRiyalIcon from '@/components/shared/icons/SaudiRiyalIcon';
+import CurrencyDisplay from '@/components/shared/CurrencyDisplay';
 import { cssVars } from '@/styles/theme';
 import type { Payment } from '@/lib/types/payment.types';
 import { Badge } from '@/components/ui';
@@ -35,27 +37,25 @@ export default function PaymentCard({ payment, onView }: PaymentCardProps) {
     });
   };
 
-  const formatCurrency = (amount: number, currency: string) => {
-    return `${amount.toLocaleString()} ${currency}`;
-  };
-
-  const getMethodIcon = (method: string) => {
-    switch (method) {
+  const renderMethodIcon = () => {
+    switch (payment.paymentMethod) {
       case 'credit_card':
       case 'debit_card':
-        return CreditCard;
+        return <CreditCard className="h-4 w-4" style={{ color: cssVars.neutral.textMuted }} />;
       case 'bank_transfer':
-        return Building2;
+        return <Building2 className="h-4 w-4" style={{ color: cssVars.neutral.textMuted }} />;
       case 'wallet':
-        return Wallet;
+        return <Wallet className="h-4 w-4" style={{ color: cssVars.neutral.textMuted }} />;
       default:
-        return DollarSign;
+        return (
+          <SaudiRiyalIcon
+            className="h-4 w-4"
+            style={{ color: cssVars.neutral.textMuted }}
+            width={16}
+            height={16}
+          />
+        );
     }
-  };
-
-  const renderMethodIcon = () => {
-    const MethodIconComponent = getMethodIcon(payment.paymentMethod);
-    return <MethodIconComponent className="h-4 w-4" style={{ color: cssVars.neutral.textMuted }} />;
   };
 
   return (
@@ -105,17 +105,15 @@ export default function PaymentCard({ payment, onView }: PaymentCardProps) {
 
           {/* Amount */}
           <div className="mb-3">
-            <p className="text-2xl font-bold" style={{ color: cssVars.secondary.DEFAULT }}>
-              {formatCurrency(payment.amount, payment.currency)}
-            </p>
+            <CurrencyDisplay amount={payment.amount} className="text-2xl font-bold" iconSize={24} />
             {payment.platformFee > 0 && (
               <p className="text-sm" style={{ color: cssVars.neutral.textMuted }}>
-                {t('platformFee')}: {formatCurrency(payment.platformFee, payment.currency)}
+                {t('platformFee')}: <CurrencyDisplay amount={payment.platformFee} iconSize={14} />
               </p>
             )}
             {payment.netAmount > 0 && (
               <p className="text-sm font-semibold" style={{ color: cssVars.status.success }}>
-                {t('netAmount')}: {formatCurrency(payment.netAmount, payment.currency)}
+                {t('netAmount')}: <CurrencyDisplay amount={payment.netAmount} iconSize={14} />
               </p>
             )}
           </div>

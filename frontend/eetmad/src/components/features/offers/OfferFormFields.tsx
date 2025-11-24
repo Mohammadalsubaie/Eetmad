@@ -3,7 +3,8 @@
 import type { CreateOfferInput } from '@/lib/types/offer.types';
 import type { Request } from '@/lib/types/request.types';
 import { cssVars } from '@/styles/theme';
-import { DollarSign } from 'lucide-react';
+import SaudiRiyalIcon from '@/components/shared/icons/SaudiRiyalIcon';
+import CurrencyDisplay from '@/components/shared/CurrencyDisplay';
 import { useTranslations } from 'next-intl';
 
 interface OfferFormFieldsProps {
@@ -34,8 +35,9 @@ export default function OfferFormFields({ formData, request, onChange }: OfferFo
           </p>
           {request.budgetMin && request.budgetMax && (
             <p className="mt-2 text-sm font-medium" style={{ color: cssVars.primary.DEFAULT }}>
-              {t('requestBudget')}: {request.budgetMin.toLocaleString()} -{' '}
-              {request.budgetMax.toLocaleString()} {t('currency')}
+              {t('requestBudget')}:{' '}
+              <CurrencyDisplay amount={request.budgetMin} iconSize={14} showIcon={false} /> -{' '}
+              <CurrencyDisplay amount={request.budgetMax} iconSize={14} />
             </p>
           )}
         </div>
@@ -51,9 +53,11 @@ export default function OfferFormFields({ formData, request, onChange }: OfferFo
           {t('form.proposedPrice')} *
         </label>
         <div className="relative">
-          <DollarSign
+          <SaudiRiyalIcon
             className="absolute right-3 top-1/2 h-5 w-5 -translate-y-1/2"
             style={{ color: cssVars.neutral.textMuted }}
+            width={20}
+            height={20}
           />
           <input
             type="number"

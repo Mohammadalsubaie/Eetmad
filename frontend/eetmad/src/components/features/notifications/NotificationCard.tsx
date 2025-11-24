@@ -6,7 +6,6 @@ import { motion } from 'framer-motion';
 import {
   Bell,
   CheckCircle2,
-  DollarSign,
   FileText,
   MessageCircle,
   Package,
@@ -15,6 +14,7 @@ import {
   Shield,
   FileCheck,
 } from 'lucide-react';
+import SaudiRiyalIcon from '@/components/shared/icons/SaudiRiyalIcon';
 import { cssVars } from '@/styles/theme';
 import type { Notification } from '@/lib/types/notification.types';
 import { Badge } from '@/components/ui';
@@ -83,7 +83,7 @@ export default function NotificationCard({
       case 'review':
         return Star;
       case 'payment':
-        return DollarSign;
+        return SaudiRiyalIcon;
       case 'contract':
         return FileCheck;
       case 'dispute':
@@ -123,6 +123,11 @@ export default function NotificationCard({
   const typeColor = getTypeColor(notification.type);
   const renderIcon = () => {
     const IconComponent = getTypeIcon(notification.type);
+    if (IconComponent === SaudiRiyalIcon) {
+      return (
+        <SaudiRiyalIcon className="h-6 w-6" style={{ color: typeColor }} width={24} height={24} />
+      );
+    }
     return <IconComponent className="h-6 w-6" style={{ color: typeColor }} />;
   };
 

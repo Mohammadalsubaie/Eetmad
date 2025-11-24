@@ -3,7 +3,8 @@
 import { useTranslations, useLocale } from 'next-intl';
 import { motion } from 'framer-motion';
 import { cssVars } from '@/styles/theme';
-import { Settings, Save, Globe, DollarSign, Mail, Shield, Bell, Database } from 'lucide-react';
+import { Settings, Save, Globe, Mail, Shield, Bell, Database } from 'lucide-react';
+import SaudiRiyalIcon from '@/components/shared/icons/SaudiRiyalIcon';
 import AdminPageHeader from '@/components/shared/admin/AdminPageHeader';
 import AdminActionButton from '@/components/shared/admin/AdminActionButton';
 import Breadcrumbs from '@/components/shared/navigation/Breadcrumbs';
@@ -23,7 +24,7 @@ export default function AdminSettingsPage() {
     {
       id: 'payment',
       title: t('settings.sections.payment'),
-      icon: DollarSign,
+      icon: SaudiRiyalIcon,
       color: cssVars.status.success,
     },
     {
@@ -103,7 +104,16 @@ export default function AdminSettingsPage() {
                   backgroundColor: `color-mix(in srgb, ${section.color} 15%, transparent)`,
                 }}
               >
-                <section.icon className="h-7 w-7" style={{ color: section.color }} />
+                {section.icon === SaudiRiyalIcon ? (
+                  <SaudiRiyalIcon
+                    className="h-7 w-7"
+                    style={{ color: section.color }}
+                    width={28}
+                    height={28}
+                  />
+                ) : (
+                  <section.icon className="h-7 w-7" style={{ color: section.color }} />
+                )}
               </div>
               <h3 className="text-lg font-bold" style={{ color: cssVars.secondary.DEFAULT }}>
                 {section.title}

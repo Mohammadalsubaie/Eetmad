@@ -2,7 +2,8 @@
 
 import { cssVars } from '@/styles/theme';
 import { motion } from 'framer-motion';
-import { Activity, ArrowRight, Building2, DollarSign, Sparkles, TrendingUp } from 'lucide-react';
+import { Activity, ArrowRight, Building2, Sparkles, TrendingUp } from 'lucide-react';
+import SaudiRiyalIcon from '@/components/shared/icons/SaudiRiyalIcon';
 import { useTranslations } from 'next-intl';
 import React from 'react';
 import { useTheme } from '@/contexts/ThemeContext';
@@ -14,7 +15,7 @@ const HeroSection: React.FC = () => {
 
   const stats = [
     { key: 'activeProjects', icon: Activity },
-    { key: 'totalValue', icon: DollarSign },
+    { key: 'totalValue', icon: SaudiRiyalIcon },
     { key: 'government', icon: Building2 },
     { key: 'successRate', icon: TrendingUp },
   ];

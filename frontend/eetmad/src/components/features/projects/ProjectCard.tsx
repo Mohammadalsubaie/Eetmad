@@ -4,7 +4,9 @@ import { Badge } from '@/components/ui';
 import type { Project } from '@/lib/types/project.types';
 import { cssVars } from '@/styles/theme';
 import { motion } from 'framer-motion';
-import { AlertCircle, Calendar, CheckCircle2, Clock, DollarSign, TrendingUp } from 'lucide-react';
+import { AlertCircle, Calendar, CheckCircle2, Clock, TrendingUp } from 'lucide-react';
+import SaudiRiyalIcon from '@/components/shared/icons/SaudiRiyalIcon';
+import CurrencyDisplay from '@/components/shared/CurrencyDisplay';
 import { useTranslations } from 'next-intl';
 import { useRouter } from 'next/navigation';
 
@@ -32,10 +34,6 @@ export default function ProjectCard({ project, onView }: ProjectCardProps) {
       month: 'short',
       day: 'numeric',
     });
-  };
-
-  const formatCurrency = (amount: number) => {
-    return `${amount.toLocaleString()} ${t('currency')}`;
   };
 
   const getStatusColor = (status: string) => {
@@ -138,13 +136,18 @@ export default function ProjectCard({ project, onView }: ProjectCardProps) {
       <div className="mb-4 grid grid-cols-2 gap-3">
         {/* Total Amount */}
         <div className="flex items-center gap-2">
-          <DollarSign className="h-4 w-4" style={{ color: cssVars.primary.DEFAULT }} />
+          <SaudiRiyalIcon
+            className="h-4 w-4"
+            style={{ color: cssVars.primary.DEFAULT }}
+            width={16}
+            height={16}
+          />
           <div>
             <p className="text-xs" style={{ color: cssVars.neutral.textMuted }}>
               {t('totalAmount')}
             </p>
             <p className="text-sm font-bold" style={{ color: cssVars.secondary.DEFAULT }}>
-              {formatCurrency(project.totalAmount)}
+              <CurrencyDisplay amount={project.totalAmount} iconSize={16} />
             </p>
           </div>
         </div>

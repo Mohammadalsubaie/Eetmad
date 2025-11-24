@@ -11,6 +11,7 @@ import {
   Legend,
 } from 'recharts';
 import { useTranslations } from 'next-intl';
+import CurrencyDisplay from '@/components/shared/CurrencyDisplay';
 import { cssVars } from '@/styles/theme';
 
 interface MonthlyRevenueChartProps {
@@ -80,7 +81,7 @@ const CustomTooltip = ({ active, payload, label, t }: CustomTooltipProps) => {
                 />
                 <span style={{ fontWeight: '600' }}>{entry.name}:</span>
                 <span style={{ fontWeight: 'bold' }}>
-                  {entry.value?.toLocaleString()} {t('currency')}
+                  <CurrencyDisplay amount={entry.value || 0} iconSize={14} />
                 </span>
               </p>
               {isRevenue && percentage !== null && (

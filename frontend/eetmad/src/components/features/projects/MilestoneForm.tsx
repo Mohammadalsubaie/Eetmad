@@ -4,7 +4,8 @@ import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { useTranslations } from 'next-intl';
 import { motion } from 'framer-motion';
-import { DollarSign, Calendar } from 'lucide-react';
+import { Calendar } from 'lucide-react';
+import SaudiRiyalIcon from '@/components/shared/icons/SaudiRiyalIcon';
 import { cssVars } from '@/styles/theme';
 import type {
   ProjectMilestone,
@@ -149,9 +150,11 @@ export default function MilestoneForm({ milestone, projectId, onSuccess }: Miles
             {t('milestonesSection.form.amount')} *
           </label>
           <div className="relative">
-            <DollarSign
+            <SaudiRiyalIcon
               className="absolute right-3 top-1/2 h-5 w-5 -translate-y-1/2"
               style={{ color: cssVars.neutral.textMuted }}
+              width={20}
+              height={20}
             />
             <Input
               type="number"

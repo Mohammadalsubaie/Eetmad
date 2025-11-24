@@ -1,5 +1,5 @@
 ## GitHub setup and issue import
-
+   .
 Follow these steps to push this project to GitHub and convert `user-stories.md` directly into GitHub Issues.
 
 ### 1) Initialize git and create a GitHub repo

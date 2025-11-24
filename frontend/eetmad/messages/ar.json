@@ -736,18 +736,33 @@
         "closed": "مغلق",
         "escalated": "متصاعد"
       },
-      "priority": {
-        "low": "منخفضة",
-        "medium": "متوسطة",
-        "high": "عالية",
-        "urgent": "عاجلة"
-      },
+      "resolve": "حل النزاع",
+      "resolving": "جاري الحل...",
+      "escalate": "تصعيد",
+      "escalating": "جاري التصعيد...",
+      "resolutionPlaceholder": "أدخل الحل...",
+      "internalNotePlaceholder": "إضافة ملاحظة داخلية (مرئية فقط للمدراء)...",
+      "addNote": "إضافة ملاحظة",
+      "confirmResolve": "هل أنت متأكد من حل هذا النزاع؟",
+      "confirmEscalate": "هل أنت متأكد من تصعيد هذا النزاع؟",
+      "resolutionRequired": "نص الحل مطلوب",
+      "resolveError": "فشل حل النزاع",
+      "escalateError": "فشل تصعيد النزاع",
+      "assignedTo": "معين لـ",
+      "noteError": "فشل إضافة الملاحظة الداخلية",
+      "closing": "جاري الإغلاق...",
       "category": {
         "quality": "الجودة",
         "delivery": "التسليم",
         "payment": "الدفع",
         "communication": "التواصل",
         "other": "أخرى"
+      },
+      "priority": {
+        "low": "منخفضة",
+        "medium": "متوسطة",
+        "high": "عالية",
+        "urgent": "عاجلة"
       }
     },
     "privacy": {
@@ -2271,6 +2286,7 @@
       }
     },
     "iconPlaceholder": "أيقونة",
+    "actions": "إجراءات الإدارة",
     "nav": {
       "dashboard": "لوحة التحكم",
       "users": "المستخدمين",
@@ -2415,6 +2431,10 @@
         "successRate": "معدل النجاح",
         "verified": "التحقق",
         "actions": "الإجراءات"
+      },
+      "detail": {
+        "title": "تفاصيل المورد",
+        "description": "عرض معلومات المورد التفصيلية"
       }
     },
     "requests": {
@@ -2434,6 +2454,10 @@
         "active": "نشط",
         "closed": "مغلق",
         "cancelled": "ملغي"
+      },
+      "detail": {
+        "title": "تفاصيل الطلب",
+        "description": "عرض تفاصيل الطلب الكاملة"
       }
     },
     "offers": {
@@ -2458,6 +2482,10 @@
       "time": {
         "days": "يوم",
         "hours": "ساعة"
+      },
+      "detail": {
+        "title": "تفاصيل العرض",
+        "description": "عرض تفاصيل العرض الكاملة"
       }
     },
     "projects": {
@@ -2483,6 +2511,10 @@
         "cancelled": "ملغي",
         "disputed": "نزاع",
         "in_progress": "قيد التنفيذ"
+      },
+      "detail": {
+        "title": "تفاصيل المشروع",
+        "description": "عرض تفاصيل المشروع الكاملة"
       }
     },
     "disputes": {

@@ -2,37 +2,45 @@
 
 import dynamic from 'next/dynamic';
 
+// Helper function to create resilient dynamic imports with error handling
+const createDynamicImport = (importFn: () => Promise<any>) => {
+  return dynamic(
+    () =>
+      importFn().catch((error) => {
+        console.error('Failed to load component:', error);
+        // Return a fallback component that renders nothing
+        return { default: () => null };
+      }),
+    { ssr: true, loading: () => null }
+  );
+};
+
 // Dynamic imports to avoid chunk loading issues
-const HeroSection = dynamic(() => import('@/components/features/home/HeroSection'), { ssr: true });
-const PlatformOverviewSection = dynamic(
-  () => import('@/components/features/home/PlatformOverviewSection'),
-  { ssr: true }
+// Added error handling to prevent crashes
+const HeroSection = createDynamicImport(() => import('@/components/features/home/HeroSection'));
+const PlatformOverviewSection = createDynamicImport(
+  () => import('@/components/features/home/PlatformOverviewSection')
 );
-const GettingStartedSection = dynamic(
-  () => import('@/components/features/home/GettingStartedSection'),
-  { ssr: true }
+const GettingStartedSection = createDynamicImport(
+  () => import('@/components/features/home/GettingStartedSection')
 );
-const AudienceSection = dynamic(() => import('@/components/features/home/AudienceSection'), {
-  ssr: true,
-});
-const CTASection = dynamic(() => import('@/components/features/home/CTASection'), { ssr: true });
-const ExploreCategoriesSection = dynamic(
-  () => import('@/components/features/home/ExploreCategoriesSection'),
-  { ssr: true }
+const AudienceSection = createDynamicImport(
+  () => import('@/components/features/home/AudienceSection')
 );
-const ProjectBenefitsSection = dynamic(
-  () => import('@/components/features/home/ProjectBenefitsSection'),
-  { ssr: true }
+const CTASection = createDynamicImport(() => import('@/components/features/home/CTASection'));
+const ExploreCategoriesSection = createDynamicImport(
+  () => import('@/components/features/home/ExploreCategoriesSection')
 );
-const TransparencySection = dynamic(
-  () => import('@/components/features/home/TransparencySection'),
-  { ssr: true }
+const ProjectBenefitsSection = createDynamicImport(
+  () => import('@/components/features/home/ProjectBenefitsSection')
 );
-const SuccessStoriesSection = dynamic(
-  () => import('@/components/features/home/SuccessStoriesSection'),
-  { ssr: true }
+const TransparencySection = createDynamicImport(
+  () => import('@/components/features/home/TransparencySection')
 );
-const FAQSection = dynamic(() => import('@/components/features/home/FAQSection'), { ssr: true });
+const SuccessStoriesSection = createDynamicImport(
+  () => import('@/components/features/home/SuccessStoriesSection')
+);
+const FAQSection = createDynamicImport(() => import('@/components/features/home/FAQSection'));
 
 export default function HomePage() {
   return (

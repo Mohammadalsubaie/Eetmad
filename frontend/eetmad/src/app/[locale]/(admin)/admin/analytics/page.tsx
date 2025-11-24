@@ -86,12 +86,20 @@ export default function AnalyticsPage() {
               icon={Calendar}
               variant="secondary"
               size="sm"
+              onClick={() => {
+                // TODO: Implement date picker/modal for period selection
+                console.log('Select period');
+              }}
             />
             <AdminActionButton
               label={t('analytics.actions.exportReport')}
               icon={Download}
               variant="primary"
               size="sm"
+              onClick={() => {
+                // TODO: Implement export report action
+                console.log('Export analytics report');
+              }}
             />
           </div>
         }

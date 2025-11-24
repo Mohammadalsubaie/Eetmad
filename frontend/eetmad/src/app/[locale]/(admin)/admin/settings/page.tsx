@@ -72,6 +72,10 @@ export default function AdminSettingsPage() {
             icon={Save}
             variant="primary"
             size="sm"
+            onClick={() => {
+              // TODO: Implement save settings action
+              console.log('Save settings');
+            }}
           />
         }
       />
@@ -82,6 +86,10 @@ export default function AdminSettingsPage() {
             key={section.id}
             whileHover={{ y: -4, scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
+            onClick={() => {
+              // TODO: Implement navigation to specific settings section or open modal
+              console.log(`Open ${section.id} settings`);
+            }}
             className="cursor-pointer rounded-2xl border-2 p-6 shadow-md transition-all"
             style={{
               backgroundColor: cssVars.neutral.surface,

@@ -25,6 +25,7 @@
     "analyze:structure:v2": "tsx scripts/src/analysis/analyze-structure-v2.ts",
     "add:breadcrumbs": "tsx scripts/src/analysis/add-breadcrumbs.ts",
     "fix:breadcrumbs": "tsx scripts/src/analysis/fix-breadcrumb-translations.ts",
+    "detect:routes": "tsx scripts/src/analysis/detect-routes.ts",
     "prepare": "husky",
     "lint:check": "eslint . --ext .ts,.tsx",
     "format:check": "prettier --check \"**/*.{ts,tsx,json,md,css}\"",

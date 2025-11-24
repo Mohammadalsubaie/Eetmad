@@ -1,31 +1,31 @@
 'use client';
 
-import { useState } from 'react';
-import { useTranslations } from 'next-intl';
-import { motion, AnimatePresence } from 'framer-motion';
 import { cssVars } from '@/styles/theme';
+import { AnimatePresence, motion } from 'framer-motion';
 import {
-  LayoutDashboard,
-  Users,
-  ShoppingBag,
-  FileText,
-  Briefcase,
   AlertTriangle,
-  ShieldCheck,
-  FolderTree,
-  CreditCard,
-  Star,
-  Flag,
-  Settings,
   BarChart3,
-  Menu,
-  X,
   Bell,
-  LogOut,
+  Briefcase,
   ChevronDown,
+  CreditCard,
+  FileText,
+  Flag,
+  FolderTree,
+  LayoutDashboard,
+  LogOut,
+  Menu,
+  Settings,
+  ShieldCheck,
+  ShoppingBag,
+  Star,
+  Users,
+  X,
 } from 'lucide-react';
+import { useTranslations } from 'next-intl';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import { useState } from 'react';
 
 interface NavItem {
   id: string;

@@ -4,7 +4,7 @@ import { useParams, useRouter } from 'next/navigation';
 import { useTranslations, useLocale } from 'next-intl';
 import { motion } from 'framer-motion';
 import { cssVars } from '@/styles/theme';
-import { ArrowLeft } from 'lucide-react';
+import { ArrowLeft, Target } from 'lucide-react';
 import { useProjectMilestones } from '@/lib/hooks/useProjects';
 import { useApproveMilestone, useRejectMilestone } from '@/lib/hooks/useMilestones';
 import { LoadingSpinner, ErrorMessage, EmptyState } from '@/components/ui';
@@ -16,7 +16,6 @@ export default function ProjectMilestonesPage() {
   const params = useParams();
   const router = useRouter();
   const t = useTranslations('pages.projects');
-  const tPages = useTranslations('pages');
   const locale = useLocale();
   const projectId = params.id as string;
 
@@ -48,7 +47,7 @@ export default function ProjectMilestonesPage() {
 
   if (isLoading) {
     return (
-      <div>
+      <div className="container mx-auto py-8" style={{ backgroundColor: cssVars.neutral.bg }}>
         <Breadcrumbs
           items={[
             { label: t('title'), href: `/${locale}/projects` },
@@ -66,7 +65,7 @@ export default function ProjectMilestonesPage() {
 
   if (error || !project) {
     return (
-      <div>
+      <div className="container mx-auto py-8" style={{ backgroundColor: cssVars.neutral.bg }}>
         <Breadcrumbs
           items={[
             { label: t('title'), href: `/${locale}/projects` },
@@ -86,47 +85,118 @@ export default function ProjectMilestonesPage() {
   }
 
   return (
-    <div>
-      {/* Header */}
-      <div className="mb-6 flex items-center gap-4">
-        <motion.button
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.95 }}
-          onClick={() => router.push(`/projects/${projectId}`)}
-          className="rounded-xl p-2 transition-all"
-          style={{
-            backgroundColor: `color-mix(in srgb, ${cssVars.neutral.border} 30%, transparent)`,
-          }}
-        >
-          <ArrowLeft className="h-5 w-5" style={{ color: cssVars.neutral.textSecondary }} />
-        </motion.button>
-        <div>
-          <h1 className="text-3xl font-bold" style={{ color: cssVars.secondary.DEFAULT }}>
-            {t('milestonesSection.title')}
-          </h1>
-          <p className="mt-1 text-base" style={{ color: cssVars.neutral.textSecondary }}>
-            {project.projectNumber}
-          </p>
-        </div>
+    <div className="relative min-h-screen" style={{ backgroundColor: cssVars.neutral.bg }}>
+      {/* Background decoration */}
+      <div className="absolute inset-0 opacity-5">
+        <div
+          className="absolute start-0 top-1/4 h-96 w-96 rounded-full blur-3xl"
+          style={{ background: cssVars.accent.primary }}
+        />
+        <div
+          className="absolute bottom-1/4 end-0 h-96 w-96 rounded-full blur-3xl"
+          style={{ background: cssVars.primary.DEFAULT }}
+        />
       </div>
 
-      <ProjectMilestonesSummary project={project} milestones={milestones} />
+      <div className="container relative mx-auto px-4 py-8 sm:px-6 lg:px-8">
+        <Breadcrumbs
+          items={[
+            { label: t('title'), href: `/${locale}/projects` },
+            { label: project.projectNumber || projectId },
+            { label: t('milestonesSection.title') },
+          ]}
+          className="mb-6"
+        />
 
-      {/* Milestones List */}
-      <div className="space-y-4">
-        {milestones.length === 0 ? (
-          <EmptyState title={t('milestonesSection.empty')} description="" />
-        ) : (
-          milestones.map((milestone, index) => (
-            <MilestoneCard
-              key={milestone.id}
-              milestone={milestone}
-              index={index}
-              onApprove={handleApprove}
-              onReject={handleReject}
-            />
-          ))
-        )}
+        {/* Header Section */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          className="mb-8"
+        >
+          <div className="mb-6 flex items-center gap-4">
+            <motion.button
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              onClick={() => router.push(`/${locale}/projects/${projectId}`)}
+              className="rounded-xl p-2 transition-all"
+              style={{
+                backgroundColor: `color-mix(in srgb, ${cssVars.neutral.border} 30%, transparent)`,
+              }}
+            >
+              <ArrowLeft className="h-5 w-5" style={{ color: cssVars.neutral.textSecondary }} />
+            </motion.button>
+            <div className="flex items-center gap-3">
+              <div
+                className="flex h-12 w-12 items-center justify-center rounded-xl"
+                style={{
+                  backgroundColor: `color-mix(in srgb, ${cssVars.primary.DEFAULT} 15%, transparent)`,
+                }}
+              >
+                <Target className="h-6 w-6" style={{ color: cssVars.primary.DEFAULT }} />
+              </div>
+              <div>
+                <h1
+                  className="mb-1 text-3xl font-bold lg:text-4xl"
+                  style={{ color: cssVars.secondary.DEFAULT }}
+                >
+                  {t('milestonesSection.title')}
+                </h1>
+                <p className="text-base" style={{ color: cssVars.neutral.textSecondary }}>
+                  {project.projectNumber || `Project #${projectId}`}
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {t('milestonesSection.description') && (
+            <p className="text-lg" style={{ color: cssVars.neutral.textSecondary }}>
+              {t('milestonesSection.description')}
+            </p>
+          )}
+        </motion.div>
+
+        {/* Summary Card */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.1, duration: 0.5 }}
+          className="mb-8"
+        >
+          <ProjectMilestonesSummary project={project} milestones={milestones} />
+        </motion.div>
+
+        {/* Milestones List */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.2, duration: 0.5 }}
+          className="space-y-6"
+        >
+          {milestones.length === 0 ? (
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ delay: 0.3, duration: 0.4 }}
+            >
+              <EmptyState
+                title={t('milestonesSection.empty')}
+                description={t('milestonesSection.emptyDescription')}
+              />
+            </motion.div>
+          ) : (
+            milestones.map((milestone, index) => (
+              <MilestoneCard
+                key={milestone.id}
+                milestone={milestone}
+                index={index}
+                onApprove={handleApprove}
+                onReject={handleReject}
+              />
+            ))
+          )}
+        </motion.div>
       </div>
     </div>
   );

@@ -2,6 +2,7 @@ import apiClient from './client';
 import type { QueryParams } from '@/lib/types/common.types';
 import type { Project, ProjectMilestone } from '@/lib/types/project.types';
 import { mockProjects } from '@/mocks/data/projects';
+import { mockMilestones } from '@/mocks/data/milestones';
 import { USE_MOCKS } from './_mockHelper';
 
 export const projectsApi = {
@@ -51,8 +52,11 @@ export const projectsApi = {
     } catch (error) {
       if (USE_MOCKS || process.env.NODE_ENV === 'development') {
         console.warn('Using mock milestones data');
-        const project = mockProjects.find((proj) => proj.id === projectId);
-        return project?.milestones || [];
+        // Filter milestones by projectId from mockMilestones
+        const projectMilestones = mockMilestones.filter((m) => m.projectId === projectId);
+        return projectMilestones.length > 0
+          ? projectMilestones.map((m) => ({ ...m }))
+          : [];
       }
       throw error;
     }

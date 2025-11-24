@@ -55,18 +55,27 @@ export default function AdminUsersPage() {
               icon={Mail}
               variant="secondary"
               size="sm"
+              onClick={() => {
+                // TODO: Implement send email action
+                console.log('Send email to users');
+              }}
             />
             <AdminActionButton
               label={t('users.actions.export')}
               icon={Download}
               variant="secondary"
               size="sm"
+              onClick={() => {
+                // TODO: Implement export action
+                console.log('Export users data');
+              }}
             />
             <AdminActionButton
               label={t('users.actions.addUser')}
               icon={Plus}
               variant="primary"
               size="sm"
+              onClick={() => router.push('/admin/users/new')}
             />
           </div>
         }

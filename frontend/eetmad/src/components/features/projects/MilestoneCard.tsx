@@ -36,7 +36,8 @@ export default function MilestoneCard({
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: index * 0.1 }}
-      className="rounded-2xl border-2 p-6 shadow-md"
+      whileHover={{ y: -4 }}
+      className="rounded-2xl border-2 p-6 shadow-lg transition-all hover:shadow-xl"
       style={{
         backgroundColor: cssVars.neutral.surface,
         borderColor: cssVars.neutral.border,

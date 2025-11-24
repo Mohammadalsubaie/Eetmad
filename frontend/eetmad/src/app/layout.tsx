@@ -13,6 +13,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             __html: `
               (function() {
                 try {
+                  // Initialize locale
                   var locale = document.cookie
                     .split('; ')
                     .find(row => row.startsWith('NEXT_LOCALE='))
@@ -20,7 +21,34 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                   if (locale && ['en', 'ar'].includes(locale)) {
                     document.documentElement.lang = locale;
                   }
-                } catch (e) {}
+                  
+                  // Initialize theme BEFORE React hydrates to prevent FOUC
+                  var storedTheme = localStorage.getItem('theme');
+                  var storedThemeOption = localStorage.getItem('themeOption') || 'option1';
+                  
+                  // Apply dark mode class immediately
+                  if (storedTheme === 'dark') {
+                    document.documentElement.classList.add('dark');
+                  } else {
+                    document.documentElement.classList.remove('dark');
+                  }
+                  
+                  // Load theme CSS synchronously to prevent delay
+                  var themePath = '/themes/' + storedThemeOption + '.css';
+                  var existingLink = document.getElementById('dynamic-theme');
+                  if (existingLink) {
+                    existingLink.remove();
+                  }
+                  
+                  var link = document.createElement('link');
+                  link.id = 'dynamic-theme';
+                  link.rel = 'stylesheet';
+                  link.href = themePath;
+                  link.setAttribute('data-theme', storedThemeOption);
+                  document.head.appendChild(link);
+                } catch (e) {
+                  // Silently fail - theme will load via React context
+                }
               })();
             `,
           }}

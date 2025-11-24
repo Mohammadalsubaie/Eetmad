@@ -6,6 +6,7 @@ import AdminPageHeader from '@/components/shared/admin/AdminPageHeader';
 import { useCategories } from '@/lib/hooks/useCategories';
 import { FolderTree, Plus } from 'lucide-react';
 import { useTranslations, useLocale } from 'next-intl';
+import { useRouter } from 'next/navigation';
 import Breadcrumbs from '@/components/shared/navigation/Breadcrumbs';
 import { useCategoriesTableColumns } from '@/components/features/admin/CategoriesTableColumns';
 
@@ -13,6 +14,7 @@ export default function CategoriesManagementPage() {
   const t = useTranslations('admin');
   const tPages = useTranslations('pages');
   const locale = useLocale();
+  const router = useRouter();
   const { data: categories, isLoading } = useCategories();
   const columns = useCategoriesTableColumns();
 
@@ -35,6 +37,7 @@ export default function CategoriesManagementPage() {
             label={t('categories.actions.addCategory')}
             icon={Plus}
             variant="primary"
+            onClick={() => router.push('/admin/categories/new')}
           />
         }
       />

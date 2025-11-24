@@ -20,6 +20,12 @@ export function Header() {
   const { theme } = useTheme();
   const isDark = theme === 'dark';
 
+  // Hide header in admin pages
+  const isAdminPage = pathname?.includes('/admin');
+  if (isAdminPage) {
+    return null;
+  }
+
   const navItems = [
     { key: 'home', href: '/', disabled: false },
     { key: 'about', href: '/about', disabled: false },

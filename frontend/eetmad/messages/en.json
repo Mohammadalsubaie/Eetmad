@@ -60,7 +60,19 @@
     "pageTitle": "Frequently Asked Questions",
     "fetchError": "Failed to load FAQs. Please try again later.",
     "loading": "Loading FAQs...",
-    "noFaqsFound": "No FAQs found at the moment."
+    "noFaqsFound": "No FAQs found at the moment.",
+    "questions": {
+      "timelines": "How long does it take to receive offers?",
+      "offers": "How many offers can I expect?",
+      "payments": "How does the payment process work?",
+      "quality": "How do you ensure supplier quality?"
+    },
+    "answers": {
+      "timelines": "Offers typically start arriving within 24 hours of posting the request. In most cases, you receive several offers within two days. The duration depends on the type and complexity of the request.",
+      "offers": "The number of offers varies depending on the type of request and geographic region. On average, requests receive 5-10 offers from different suppliers. Clear and detailed requests attract more offers.",
+      "payments": "We do not directly intervene in the payment process. Financial agreements are made directly between the parties. We recommend using secure and documented payment methods. We provide an optional contract template to document the agreement.",
+      "quality": "We verify all suppliers before accepting them on the platform. We require commercial registration and official documents. We have a comprehensive user rating system. We continuously monitor supplier performance and take action against violators."
+    }
   },
   "home": {
     "hero": {
@@ -563,6 +575,7 @@
       "title": "Create Your Account",
       "subtitle": "Join our platform and start your journey",
       "badge": "Get Started Free",
+      "selectUserType": "Please select account type",
       "fullName": "Full Name",
       "phoneNumber": "Phone Number",
       "companyName": "Company Name",
@@ -585,8 +598,7 @@
           "title": "Supplier",
           "description": "Browse requests and submit your offers"
         }
-      },
-      "selectUserType": "[Translation needed]"
+      }
     },
     "forgotPassword": {
       "title": "Reset Your Password",
@@ -621,9 +633,9 @@
       "resendButton": "Resend Code",
       "success": "Email verified successfully!",
       "error": "Invalid verification code",
+      "invalidToken": "Verification link is invalid or expired",
       "codeSent": "Verification code sent to {email}",
-      "resendSuccess": "New code sent successfully!",
-      "invalidToken": "[Translation needed]"
+      "resendSuccess": "New code sent successfully!"
     },
     "verifyPhone": {
       "title": "Verify Your Phone",
@@ -681,6 +693,7 @@
       "all": "All",
       "pending": "Pending",
       "resolved": "Resolved",
+      "search": "Search disputes...",
       "disputeNotFound": "Dispute not found",
       "disputeInfo": "Dispute Information",
       "disputeNumber": "Dispute Number",
@@ -701,19 +714,6 @@
       "descriptionPlaceholder": "Describe the dispute in detail...",
       "categoryLabel": "Category",
       "priorityLabel": "Priority",
-      "category": {
-        "quality": "[Translation needed: الجودة]",
-        "delivery": "[Translation needed: التسليم]",
-        "payment": "[Translation needed: الدفع]",
-        "communication": "[Translation needed: التواصل]",
-        "other": "[Translation needed: أخرى]"
-      },
-      "priority": {
-        "low": "[Translation needed: منخفضة]",
-        "medium": "[Translation needed: متوسطة]",
-        "high": "[Translation needed: عالية]",
-        "urgent": "[Translation needed: عاجلة]"
-      },
       "projectId": "Project ID",
       "projectIdPlaceholder": "Enter project ID",
       "optional": "Optional",
@@ -735,6 +735,34 @@
         "resolved": "Resolved",
         "closed": "Closed",
         "escalated": "Escalated"
+      },
+      "resolve": "Resolve Dispute",
+      "resolving": "Resolving...",
+      "escalate": "Escalate",
+      "escalating": "Escalating...",
+      "resolutionPlaceholder": "Enter resolution...",
+      "internalNotePlaceholder": "Add internal note (only visible to admins)...",
+      "addNote": "Add Note",
+      "confirmResolve": "Are you sure you want to resolve this dispute?",
+      "confirmEscalate": "Are you sure you want to escalate this dispute?",
+      "resolutionRequired": "Resolution text is required",
+      "resolveError": "Failed to resolve dispute",
+      "escalateError": "Failed to escalate dispute",
+      "assignedTo": "Assigned To",
+      "noteError": "Failed to add internal note",
+      "closing": "Closing...",
+      "category": {
+        "quality": "[Translation needed: الجودة]",
+        "delivery": "[Translation needed: التسليم]",
+        "payment": "[Translation needed: الدفع]",
+        "communication": "[Translation needed: التواصل]",
+        "other": "[Translation needed: أخرى]"
+      },
+      "priority": {
+        "low": "[Translation needed: منخفضة]",
+        "medium": "[Translation needed: متوسطة]",
+        "high": "[Translation needed: عالية]",
+        "urgent": "[Translation needed: عاجلة]"
       }
     },
     "privacy": {
@@ -778,22 +806,41 @@
       "title": "Verification"
     },
     "users": {
-      "title": "Users",
-      "address": "[Translation needed]",
-      "averageRating": "[Translation needed]",
-      "commercialRegister": "[Translation needed]",
-      "companyInformation": "[Translation needed]",
-      "companyName": "[Translation needed]",
-      "completedProjects": "[Translation needed]",
-      "contactInformation": "[Translation needed]",
-      "email": "[Translation needed]",
-      "memberSince": "[Translation needed]",
-      "notAvailable": "[Translation needed]",
-      "phone": "[Translation needed]",
-      "taxNumber": "[Translation needed]",
-      "totalReviews": "[Translation needed]",
-      "userNotFound": "[Translation needed]",
-      "verified": "[Translation needed]"
+      "title": "User Profile",
+      "loading": "Loading user...",
+      "error": "Failed to load user",
+      "notFound": "User not found",
+      "back": "Back",
+      "memberSince": "Member since",
+      "stats": {
+        "projects": "Projects",
+        "wallet": "Wallet"
+      },
+      "accountInfo": {
+        "title": "Account Information",
+        "memberSince": "Member since",
+        "lastLogin": "Last login",
+        "userType": "User type",
+        "userTypes": {
+          "client": "Client",
+          "supplier": "Supplier",
+          "admin": "Admin"
+        }
+      },
+      "address": "Address",
+      "averageRating": "Average rating",
+      "commercialRegister": "Commercial register",
+      "companyInformation": "Company information",
+      "companyName": "Company name",
+      "completedProjects": "Completed projects",
+      "contactInformation": "Contact information",
+      "email": "Email",
+      "notAvailable": "Not available",
+      "phone": "Phone",
+      "taxNumber": "Tax number",
+      "totalReviews": "Total reviews",
+      "userNotFound": "User not found",
+      "verified": "Verified"
     },
     "settings": {
       "title": "Settings"
@@ -842,61 +889,66 @@
         "client_to_supplier": "Client to Supplier",
         "supplier_to_client": "Supplier to Client"
       },
-      "cancel": "[Translation needed]"
+      "cancel": "Cancel"
     },
     "payments": {
       "title": "Payments",
-      "subtitle": "Manage all your payments and transactions",
-      "loading": "Loading payments...",
+      "addFunds": "Add Funds",
+      "addFundsAmountPrompt": "Enter amount to add",
+      "all": "All",
+      "amount": "Amount",
+      "amountPlaceholder": "Enter amount",
+      "back": "Back",
+      "balance": "Balance",
+      "cancel": "Cancel",
+      "completedAt": "Completed At",
+      "confirmCancel": "Are you sure you want to cancel this payment?",
+      "createdAt": "Created At",
+      "failureReason": "Failure Reason",
+      "history": "History",
+      "historyDescription": "View your complete payment history",
+      "initiate": "Initiate Payment",
+      "initiatePayment": "Initiate Payment",
+      "initiatePaymentDescription": "Start a new payment process",
+      "method": {
+        "bank_transfer": "Bank Transfer",
+        "credit_card": "Credit Card",
+        "debit_card": "Debit Card",
+        "wallet": "Wallet"
+      },
+      "milestoneId": "Milestone ID",
+      "milestoneIdPlaceholder": "Enter milestone ID (optional)",
+      "netAmount": "Net Amount",
       "noPayments": "No payments found",
       "noPaymentsDescription": "You don't have any payments yet.",
       "noPendingPayments": "No pending payments",
-      "all": "All",
-      "pending": "Pending",
-      "history": "History",
-      "wallet": "Wallet",
-      "walletDescription": "Manage your wallet balance and transactions",
-      "walletNotFound": "Wallet not found",
-      "balance": "Balance",
-      "addFunds": "Add Funds",
-      "withdraw": "Withdraw",
-      "transactions": "Transactions",
-      "viewAll": "View All",
       "noTransactions": "No transactions found",
-      "initiatePayment": "Initiate Payment",
-      "initiatePaymentDescription": "Start a new payment process",
-      "paymentNotFound": "Payment not found",
-      "paymentInfo": "Payment Information",
-      "timeline": "Timeline",
-      "transactionId": "Transaction ID",
-      "paymentMethod": "Payment Method",
-      "paymentGateway": "Payment Gateway",
-      "amount": "Amount",
-      "platformFee": "Platform Fee",
-      "netAmount": "Net Amount",
-      "createdAt": "Created At",
-      "completedAt": "Completed At",
-      "refundedAt": "Refunded At",
-      "failureReason": "Failure Reason",
-      "cancel": "Cancel",
-      "requestRefund": "Request Refund",
-      "refundReasonPrompt": "Please provide a reason for the refund",
-      "confirmCancel": "Are you sure you want to cancel this payment?",
-      "notCompleted": "Not completed",
       "notAvailable": "Not available",
-      "back": "Back",
-      "projectId": "Project ID",
-      "projectIdPlaceholder": "Enter project ID",
-      "milestoneId": "Milestone ID",
-      "milestoneIdPlaceholder": "Enter milestone ID (optional)",
-      "amountPlaceholder": "Enter amount",
-      "paymentType": "Payment Type",
+      "notCompleted": "Not completed",
       "notes": "Notes",
       "notesPlaceholder": "Additional notes (optional)",
       "optional": "Optional",
+      "paymentGateway": "Payment Gateway",
+      "paymentInfo": "Payment Information",
+      "paymentMethod": "Payment Method",
+      "paymentNotFound": "Payment not found",
+      "paymentType": "Payment Type",
+      "pending": "Pending",
+      "platformFee": "Platform Fee",
       "processing": "Processing...",
-      "initiate": "Initiate Payment",
-      "addFundsAmountPrompt": "Enter amount to add",
+      "projectId": "Project ID",
+      "projectIdPlaceholder": "Enter project ID",
+      "refundReasonPrompt": "Please provide a reason for the refund",
+      "refundedAt": "Refunded At",
+      "requestRefund": "Request Refund",
+      "status": {
+        "cancelled": "Cancelled",
+        "completed": "Completed",
+        "failed": "Failed",
+        "pending": "Pending",
+        "processing": "Processing",
+        "refunded": "Refunded"
+      },
       "transactionType": {
         "deposit": "Deposit",
         "withdrawal": "Withdrawal",
@@ -905,90 +957,23 @@
         "commission": "Commission",
         "fee": "Fee"
       },
-      "status": {
-        "pending": "Pending",
-        "processing": "Processing",
-        "completed": "Completed",
-        "failed": "Failed",
-        "cancelled": "Cancelled",
-        "refunded": "Refunded"
-      },
+      "subtitle": "Manage all your payments and transactions",
+      "timeline": "Timeline",
+      "transactionId": "Transaction ID",
+      "transactions": "Transactions",
       "type": {
         "deposit": "Deposit",
-        "milestone": "Milestone",
         "final": "Final",
-        "refund": "Refund",
-        "withdrawal": "Withdrawal"
+        "milestone": "Milestone"
       },
-      "method": {
-        "credit_card": "Credit Card",
-        "debit_card": "Debit Card",
-        "bank_transfer": "Bank Transfer",
-        "wallet": "Wallet",
-        "cash": "Cash"
-      },
-      "historyDescription": "View your complete payment history"
+      "viewAll": "View All",
+      "wallet": "Wallet",
+      "walletDescription": "Manage your wallet balance and transactions",
+      "walletNotFound": "Wallet not found",
+      "withdraw": "Withdraw"
     },
     "setup": {
       "title": "Setup"
-    },
-    "suppliers": {
-      "title": "Suppliers",
-      "badge": "Suppliers",
-      "subtitle": "Browse our verified suppliers",
-      "searchPlaceholder": "Search suppliers...",
-      "loading": "Loading suppliers...",
-      "error": "Failed to load suppliers",
-      "noSuppliers": "No suppliers found.",
-      "noSuppliersDescription": "There are no suppliers available yet.",
-      "acceptanceRate": "Acceptance",
-      "onTime": "On Time",
-      "notFound": "Supplier not found",
-      "supplierNotFound": "Supplier not found",
-      "verified": "Verified",
-      "supplierProfile": "Supplier Profile",
-      "responseTime": "Response Time",
-      "minutes": "minutes",
-      "onTimeDelivery": "On-Time Delivery",
-      "portfolioItems": "Portfolio Items",
-      "categories": "Categories",
-      "primary": "Primary",
-      "portfolio": "Portfolio",
-      "portfolioDescription": "View all portfolio items from this supplier",
-      "noPortfolioItems": "No portfolio items",
-      "noPortfolioItemsDescription": "This supplier has not added any portfolio items yet.",
-      "certifications": "Certifications",
-      "issuedBy": "Issued By",
-      "issuedAt": "Issued At",
-      "reviews": "reviews",
-      "myProfile": "My Supplier Profile",
-      "profileNotFound": "Profile not found",
-      "edit": "Edit",
-      "averageRating": "Average Rating",
-      "totalProjects": "Total Projects",
-      "totalEarnings": "Total Earnings",
-      "currency": "SAR",
-      "viewPortfolio": "View Portfolio",
-      "viewPortfolioDescription": "Manage your portfolio items",
-      "editProfile": "Edit Profile",
-      "editProfileDescription": "Update your supplier profile information",
-      "editProfileTitle": "Edit Supplier Profile",
-      "createProfile": "Create Supplier Profile",
-      "serviceDescription": "Service Description",
-      "serviceDescriptionPlaceholder": "Describe your services...",
-      "workingHours": "Working Hours",
-      "performanceMetrics": "Performance Metrics",
-      "save": "Save",
-      "saving": "Saving...",
-      "cancel": "Cancel",
-      "back": "Back",
-      "pages": {
-        "suppliers": {
-          "title": "Title"
-        }
-      },
-      "emptyState": "[Translation needed]",
-      "noResults": "[Translation needed]"
     },
     "terms": {
       "title": "Terms and Conditions",
@@ -1091,6 +1076,7 @@
       "subtitle": "Explore all available categories",
       "loading": "Loading categories...",
       "noCategories": "No categories available at the moment.",
+      "emptyState": "No data",
       "requests": "requests",
       "subcategories": "subcategories",
       "notFound": "Category not found",
@@ -1102,31 +1088,68 @@
         "categories": {
           "title": "Title"
         }
-      },
-      "emptyState": "[Translation needed]"
+      }
     },
     "about": {
       "title": "About Us"
     },
-    "supplierProfile": {
-      "title": "Edit Supplier Profile",
-      "subtitle": "Update your supplier profile information",
-      "loading": "Loading profile...",
+    "suppliers": {
+      "title": "Suppliers",
+      "badge": "Suppliers",
+      "subtitle": "Browse our verified suppliers",
+      "searchPlaceholder": "Search suppliers...",
+      "loading": "Loading suppliers...",
+      "error": "Failed to load suppliers",
+      "noSuppliers": "No suppliers found.",
+      "noSuppliersDescription": "There are no suppliers available yet.",
+      "acceptanceRate": "Acceptance",
+      "onTime": "On Time",
+      "notFound": "Supplier not found",
+      "supplierNotFound": "Supplier not found",
+      "back": "Back",
+      "verified": "Verified",
+      "reviews": "reviews",
+      "onTimeDelivery": "On-Time Delivery",
+      "responseTime": "Response Time",
+      "minutes": "minutes",
+      "categories": "Categories",
+      "primary": "Primary",
+      "portfolio": "Portfolio",
+      "portfolioDescription": "View all portfolio items from this supplier",
+      "noPortfolioItems": "No portfolio items",
+      "noPortfolioItemsDescription": "This supplier has not added any portfolio items yet.",
+      "certifications": "Certifications",
+      "issuedBy": "Issued By",
+      "issuedAt": "Issued At",
+      "myProfile": "My Supplier Profile",
+      "profileNotFound": "Profile not found",
+      "edit": "Edit",
+      "averageRating": "Average Rating",
+      "totalProjects": "Total Projects",
+      "totalEarnings": "Total Earnings",
+      "currency": "SAR",
+      "viewPortfolio": "View Portfolio",
+      "viewPortfolioDescription": "Manage your portfolio items",
+      "editProfile": "Edit Profile",
+      "editProfileDescription": "Update your supplier profile information",
+      "editProfileTitle": "Edit Supplier Profile",
+      "createProfile": "Create Supplier Profile",
       "serviceDescription": "Service Description",
-      "serviceDescriptionPlaceholder": "Describe your services and expertise...",
-      "cancel": "Cancel",
-      "save": "Save Changes",
+      "serviceDescriptionPlaceholder": "Describe your services...",
+      "workingHours": "Working Hours",
+      "performanceMetrics": "Performance Metrics",
+      "save": "Save",
       "saving": "Saving...",
-      "saveError": "Failed to save profile. Please try again.",
-      "id": "Supplier ID",
+      "cancel": "Cancel",
       "pages": {
-        "edit": {
+        "suppliers": {
           "title": "Title"
         }
       },
-      "edit": {
-        "title": "Title"
-      }
+      "emptyState": "No data",
+      "noResults": "No results",
+      "portfolioItems": "Portfolio Items",
+      "supplierProfile": "Supplier Profile"
     },
     "dashboard": {
       "title": "Dashboard",
@@ -1176,14 +1199,14 @@
       "title": "Profile",
       "subtitle": "View and manage your profile information",
       "loading": "Loading profile...",
+      "error": "Failed to load profile",
+      "editProfile": "Edit Profile",
+      "settings": "Settings",
       "userType": {
         "client": "Client",
         "supplier": "Supplier",
         "admin": "Admin"
       },
-      "error": "Failed to load profile",
-      "editProfile": "Edit Profile",
-      "settings": "Settings",
       "notProvided": "Not provided",
       "edit": {
         "title": "Edit Profile",
@@ -1285,6 +1308,7 @@
       },
       "security": {
         "title": "Security Settings",
+        "subtitle": "Subtitle",
         "back": "Back",
         "currentPassword": "Current Password",
         "newPassword": "New Password",
@@ -1307,7 +1331,6 @@
           "samePassword": "New password must be different from current password",
           "changePasswordFailed": "Failed to change password. Please check your current password and try again."
         },
-        "subtitle": "Subtitle",
         "pages": {
           "profile": {
             "title": "Title"
@@ -1319,12 +1342,10 @@
         "profile": {
           "title": "Title"
         },
-        "changing": "[Translation needed]"
+        "changing": "Changing..."
       },
       "reviews": "reviews",
-      "completedProjects": "completed projects",
       "currency": "SAR",
-      "memberSince": "Member Since",
       "status": {
         "active": "Active",
         "inactive": "Inactive"
@@ -1366,56 +1387,125 @@
           "title": "Title"
         }
       },
-      "address": "[Translation needed]",
-      "avatar": "[Translation needed]",
-      "averageRating": "[Translation needed]",
-      "back": "[Translation needed]",
-      "cancel": "[Translation needed]",
-      "changePassword": "[Translation needed]",
-      "changing": "[Translation needed]",
-      "city": "[Translation needed]",
-      "commercialRegister": "[Translation needed]",
-      "companyInformation": "[Translation needed]",
-      "companyName": "[Translation needed]",
-      "confirmDeleteAccount": "[Translation needed]",
-      "confirmDeleteAccountFinal": "[Translation needed]",
-      "confirmPassword": "[Translation needed]",
-      "country": "[Translation needed]",
-      "currentPassword": "[Translation needed]",
-      "dangerZone": "[Translation needed]",
-      "dateOfBirth": "[Translation needed]",
-      "deleteAccount": "[Translation needed]",
-      "deleteAccountWarning": "[Translation needed]",
-      "deleting": "[Translation needed]",
-      "editDescription": "[Translation needed]",
-      "email": "[Translation needed]",
-      "emailNotifications": "[Translation needed]",
-      "fullName": "[Translation needed]",
-      "nationalId": "[Translation needed]",
-      "newPassword": "[Translation needed]",
-      "notAvailable": "[Translation needed]",
-      "notificationPreferences": "[Translation needed]",
-      "passwordChanged": "[Translation needed]",
-      "passwordsDoNotMatch": "[Translation needed]",
-      "personalInformation": "[Translation needed]",
-      "phone": "[Translation needed]",
-      "postalCode": "[Translation needed]",
-      "preferencesSaved": "[Translation needed]",
-      "profileNotFound": "[Translation needed]",
-      "pushNotifications": "[Translation needed]",
-      "save": "[Translation needed]",
-      "saving": "[Translation needed]",
-      "settings": "[Translation needed]",
-      "settingsDescription": "[Translation needed]",
-      "smsNotifications": "[Translation needed]",
-      "state": "[Translation needed]",
-      "street": "[Translation needed]",
-      "taxNumber": "[Translation needed]",
-      "totalReviews": "[Translation needed]",
-      "uploadAvatar": "[Translation needed]",
-      "uploading": "[Translation needed]",
-      "verified": "[Translation needed]",
-      "walletBalance": "[Translation needed]"
+      "notifications": {
+        "requests": "Requests",
+        "offers": "Offers",
+        "messages": "Messages",
+        "reviews": "Reviews",
+        "system": "System",
+        "important": "Important",
+        "security": "Security"
+      },
+      "profile": {
+        "completedProjects": "Completed projects",
+        "memberSince": "Member since",
+        "address": "Address",
+        "avatar": "Avatar",
+        "averageRating": "Average rating",
+        "back": "Back",
+        "cancel": "Cancel",
+        "changePassword": "Change password",
+        "changing": "Changing...",
+        "city": "City",
+        "commercialRegister": "Commercial register",
+        "companyInformation": "Company information",
+        "companyName": "Company name",
+        "confirmDeleteAccount": "Are you sure you want to delete your account?",
+        "confirmDeleteAccountFinal": "Your account will be permanently deleted. Type DELETE to confirm.",
+        "confirmPassword": "Confirm password",
+        "country": "Country",
+        "currentPassword": "Current password",
+        "dangerZone": "Danger zone",
+        "dateOfBirth": "Date of birth",
+        "deleteAccount": "Delete account",
+        "deleteAccountWarning": "Once you delete your account, there is no going back. Please be certain.",
+        "deleting": "Deleting...",
+        "editDescription": "Update your profile information",
+        "email": "Email",
+        "emailNotifications": "Email notifications",
+        "fullName": "Full name",
+        "nationalId": "National ID",
+        "newPassword": "New password",
+        "notAvailable": "Not available",
+        "notificationPreferences": "Notification preferences",
+        "passwordChanged": "Password changed successfully",
+        "passwordsDoNotMatch": "Passwords do not match",
+        "personalInformation": "Personal information",
+        "phone": "Phone",
+        "postalCode": "Postal code",
+        "preferencesSaved": "Preferences saved successfully",
+        "profileNotFound": "Profile not found",
+        "pushNotifications": "Push notifications",
+        "save": "Save",
+        "saving": "Saving...",
+        "settings": "Settings",
+        "settingsDescription": "Manage your account settings and preferences",
+        "smsNotifications": "SMS notifications",
+        "state": "State/Province",
+        "street": "Street address",
+        "taxNumber": "Tax number",
+        "totalReviews": "Total reviews",
+        "uploadAvatar": "Upload avatar",
+        "uploading": "Uploading...",
+        "verified": "Verified",
+        "walletBalance": "Wallet balance",
+        "userType": {
+          "client": "Client",
+          "supplier": "Supplier",
+          "admin": "Admin"
+        }
+      },
+      "profileNotFound": "Profile not found",
+      "back": "Back",
+      "editDescription": "Update your profile information",
+      "avatar": "Avatar",
+      "uploading": "Uploading...",
+      "uploadAvatar": "Upload avatar",
+      "personalInformation": "Personal information",
+      "fullName": "Full name",
+      "phone": "Phone",
+      "dateOfBirth": "Date of birth",
+      "nationalId": "National ID",
+      "companyInformation": "Company information",
+      "companyName": "Company name",
+      "commercialRegister": "Commercial register",
+      "taxNumber": "Tax number",
+      "address": "Address",
+      "street": "Street address",
+      "city": "City",
+      "state": "State/Province",
+      "country": "Country",
+      "postalCode": "Postal code",
+      "cancel": "Cancel",
+      "saving": "Saving...",
+      "save": "Save",
+      "notAvailable": "Not available",
+      "verified": "Verified",
+      "averageRating": "Average rating",
+      "completedProjects": "Completed projects",
+      "totalReviews": "Total reviews",
+      "walletBalance": "Wallet balance",
+      "email": "Email",
+      "passwordsDoNotMatch": "Passwords do not match",
+      "passwordChanged": "Password changed successfully",
+      "preferencesSaved": "Preferences saved successfully",
+      "confirmDeleteAccount": "Are you sure you want to delete your account?",
+      "confirmDeleteAccountFinal": "Your account will be permanently deleted. Type DELETE to confirm.",
+      "settingsDescription": "Manage your account settings and preferences",
+      "changePassword": "Change password",
+      "currentPassword": "Current password",
+      "newPassword": "New password",
+      "confirmPassword": "Confirm password",
+      "changing": "Changing...",
+      "notificationPreferences": "Notification preferences",
+      "emailNotifications": "Email notifications",
+      "pushNotifications": "Push notifications",
+      "smsNotifications": "SMS notifications",
+      "dangerZone": "Danger zone",
+      "deleteAccountWarning": "Once you delete your account, there is no going back. Please be certain.",
+      "deleting": "Deleting...",
+      "deleteAccount": "Delete account",
+      "memberSince": "Member Since"
     },
     "security": {
       "title": "Security Settings"
@@ -1494,9 +1584,9 @@
         "create": "Create Request",
         "update": "Update Request",
         "saving": "Saving...",
-        "expectedDurationPlaceholder": "[Translation needed]",
-        "location": "[Translation needed]",
-        "locationPlaceholder": "[Translation needed]"
+        "expectedDurationPlaceholder": "Enter expected duration",
+        "location": "Location",
+        "locationPlaceholder": "Enter location"
       },
       "pages": {
         "requests": {
@@ -1611,10 +1701,6 @@
       "projectTitle": "Project",
       "currency": "SAR",
       "milestones": "Milestones",
-      "progress": "Progress",
-      "totalAmount": "Total Amount",
-      "expectedEndDate": "Expected End",
-      "optional": "Optional",
       "pages": {
         "projects": {
           "title": "Projects",
@@ -1640,6 +1726,7 @@
         "edit": "Edit Milestone",
         "editDescription": "Update milestone details",
         "details": "Details",
+        "loading": "Loading milestones...",
         "notFound": "Milestone not found",
         "complete": "Complete Milestone",
         "confirmApprove": "Are you sure you want to approve this milestone?",
@@ -1660,6 +1747,10 @@
           "saving": "Saving..."
         },
         "currency": "SAR",
+        "totalAmount": "Total Amount",
+        "progress": "Progress",
+        "completedMilestones": "Completed Milestones",
+        "empty": "No milestones found",
         "amount": "Amount",
         "dueDate": "Due Date",
         "deliverables": "Deliverables",
@@ -1678,12 +1769,14 @@
         "actions": {
           "approve": "Approve",
           "reject": "Reject"
-        },
-        "completedMilestones": "[Translation needed]",
-        "empty": "[Translation needed]",
-        "progress": "[Translation needed]",
-        "totalAmount": "[Translation needed]"
+        }
       },
+      "projectIdRequired": "Project ID is required",
+      "progress": "Progress",
+      "totalAmount": "Total Amount",
+      "expectedEndDate": "Expected End",
+      "optional": "Optional",
+      "cancel": "Cancel",
       "approved": "Approved",
       "status": {
         "draft": "Draft",
@@ -1695,7 +1788,6 @@
         "disputed": "Disputed"
       },
       "back": "Back",
-      "cancel": "Cancel",
       "notFound": "Project not found",
       "backToProjects": "Back to Projects",
       "startDate": "Start Date",
@@ -1743,7 +1835,11 @@
       "submit": "Submit",
       "filesRequired": "Please upload at least one file",
       "projectNotFound": "Project not found",
-      "projectIdRequired": "Project ID is required"
+      "projects": {
+        "milestones": {
+          "title": "Milestones"
+        }
+      }
     },
     "contracts": {
       "title": "Contracts",
@@ -1754,6 +1850,7 @@
       "contract": "Contract",
       "contractNumber": "Contract Number",
       "contractDetails": "Contract Details",
+      "contractInfo": "Contract Information",
       "contractText": "Contract Text",
       "termsAndConditions": "Terms and Conditions",
       "paymentTerms": "Payment Terms",
@@ -1780,7 +1877,6 @@
       "back": "Back",
       "backToContracts": "Back to Contracts",
       "notFound": "Contract not found",
-      "contractInfo": "Contract Information",
       "status": {
         "draft": "Draft",
         "pending_client_signature": "Pending Client Signature",
@@ -1797,13 +1893,13 @@
       "clauses": "Clauses",
       "clausesDescription": "Manage custom clauses for this contract",
       "addClause": "Add Clause",
+      "add": "Add",
       "noClauses": "No custom clauses",
       "clauseKeyPlaceholder": "Clause key (e.g., additionalSupport)",
       "clauseValuePlaceholder": "Clause value",
-      "add": "Add",
-      "cancel": "Cancel",
       "delete": "Delete",
       "confirmDeleteClause": "Are you sure you want to delete this clause?",
+      "cancel": "Cancel",
       "signing": {
         "title": "Contract Signing",
         "description": "Please review the contract and provide your signature",
@@ -1837,132 +1933,6 @@
         "update": "Update Contract",
         "saving": "Saving..."
       }
-    },
-    "messages": {
-      "title": "Messages",
-      "subtitle": "Communicate with suppliers and clients",
-      "loading": "Loading conversations...",
-      "noConversations": "No conversations found",
-      "noConversationsDescription": "Start a new conversation to get started",
-      "conversation": "Conversation",
-      "conversationAboutRequest": "Conversation about Request",
-      "conversationAboutProject": "Conversation about Project",
-      "newConversation": "New Conversation",
-      "newConversationDescription": "Start a conversation with other users",
-      "status": {
-        "active": "Active",
-        "archived": "Archived",
-        "closed": "Closed"
-      },
-      "active": "Active",
-      "archived": "Archived",
-      "request": "Request",
-      "project": "Project",
-      "participants": "participants",
-      "noMessages": "No messages yet. Start the conversation!",
-      "typeMessage": "Type a message...",
-      "send": "Send",
-      "sending": "Sending...",
-      "edit": "Edit",
-      "delete": "Delete",
-      "confirmDeleteMessage": "Are you sure you want to delete this message?",
-      "conversationNotFound": "Conversation not found",
-      "editing": "Editing message",
-      "editMessagePlaceholder": "Edit your message...",
-      "cancel": "Cancel",
-      "archive": "Archive",
-      "unarchive": "Unarchive",
-      "mute": "Mute",
-      "unmute": "Unmute",
-      "searchUsers": "Search Users",
-      "searchUsersPlaceholder": "Search by name or email...",
-      "selectedUsers": "Selected Users",
-      "users": "Users",
-      "noUsersFound": "No users found",
-      "initialMessage": "Initial Message",
-      "optional": "Optional",
-      "initialMessagePlaceholder": "Write an initial message (optional)...",
-      "creating": "Creating...",
-      "createConversation": "Create Conversation",
-      "settings": "Settings",
-      "settingsDescription": "Manage your message preferences",
-      "emailNotifications": "Email Notifications",
-      "emailNotificationsDescription": "Receive email notifications for new messages",
-      "pushNotifications": "Push Notifications",
-      "pushNotificationsDescription": "Receive push notifications for new messages",
-      "soundEnabled": "Sound Enabled",
-      "soundEnabledDescription": "Play sound when receiving new messages",
-      "autoMarkAsRead": "Auto Mark as Read",
-      "autoMarkAsReadDescription": "Automatically mark messages as read when viewed",
-      "status": {
-        "active": "Active",
-        "archived": "Archived",
-        "closed": "Closed"
-      },
-      "back": "Back"
-    },
-    "notifications": {
-      "title": "Notifications",
-      "subtitle": "Stay updated with all your activities",
-      "loading": "Loading notifications...",
-      "noNotifications": "No notifications found",
-      "noNotificationsDescription": "You're all caught up! No new notifications.",
-      "noUnreadNotifications": "No unread notifications",
-      "noUnreadNotificationsDescription": "All notifications have been read",
-      "all": "All",
-      "unread": "Unread",
-      "markAllAsRead": "Mark All as Read",
-      "clearAll": "Clear All",
-      "confirmMarkAllAsRead": "Are you sure you want to mark all notifications as read?",
-      "confirmClearAll": "Are you sure you want to delete all notifications? This action cannot be undone.",
-      "confirmDelete": "Are you sure you want to delete this notification?",
-      "notificationNotFound": "Notification not found",
-      "details": "Details",
-      "typeLabel": "Type",
-      "type": {
-        "request": "Request",
-        "offer": "Offer",
-        "project": "Project",
-        "message": "Message",
-        "payment": "Payment",
-        "contract": "Contract",
-        "review": "Review",
-        "dispute": "Dispute",
-        "system": "System",
-        "verification": "Verification"
-      },
-      "status": "Status",
-      "read": "Read",
-      "readAt": "Read At",
-      "createdAt": "Created At",
-      "reference": "Reference",
-      "viewRelated": "View Related",
-      "delete": "Delete",
-      "settings": "Settings",
-      "settingsDescription": "Manage your notification preferences",
-      "channels": "Channels",
-      "inAppNotifications": "In-App Notifications",
-      "inAppNotificationsDescription": "Receive notifications within the application",
-      "emailNotifications": "Email Notifications",
-      "emailNotificationsDescription": "Receive email notifications",
-      "smsNotifications": "SMS Notifications",
-      "smsNotificationsDescription": "Receive SMS notifications",
-      "pushNotifications": "Push Notifications",
-      "pushNotificationsDescription": "Receive push notifications on your device",
-      "notificationTypes": "Notification Types",
-      "requestNotifications": "Request Notifications",
-      "offerNotifications": "Offer Notifications",
-      "projectNotifications": "Project Notifications",
-      "messageNotifications": "Message Notifications",
-      "paymentNotifications": "Payment Notifications",
-      "contractNotifications": "Contract Notifications",
-      "disputeNotifications": "Dispute Notifications",
-      "systemNotifications": "System Notifications",
-      "justNow": "Just now",
-      "minutesAgo": "minutes ago",
-      "hoursAgo": "hours ago",
-      "daysAgo": "days ago",
-      "back": "Back"
     },
     "portfolio": {
       "pageTitle": "Portfolio",
@@ -2021,6 +1991,26 @@
         }
       },
       "setup": {
+        "title": "Title"
+      }
+    },
+    "supplierProfile": {
+      "title": "Edit Supplier Profile",
+      "id": "Supplier ID",
+      "subtitle": "Update your supplier profile information",
+      "loading": "Loading profile...",
+      "serviceDescription": "Service Description",
+      "serviceDescriptionPlaceholder": "Describe your services and expertise...",
+      "cancel": "Cancel",
+      "save": "Save Changes",
+      "saving": "Saving...",
+      "saveError": "Failed to save profile. Please try again.",
+      "pages": {
+        "edit": {
+          "title": "Title"
+        }
+      },
+      "edit": {
         "title": "Title"
       }
     },
@@ -2116,6 +2106,127 @@
           "admin": "Admin"
         }
       }
+    },
+    "messages": {
+      "title": "Messages",
+      "subtitle": "Communicate with suppliers and clients",
+      "loading": "Loading conversations...",
+      "noConversations": "No conversations found",
+      "noConversationsDescription": "Start a new conversation to get started",
+      "conversation": "Conversation",
+      "conversationAboutRequest": "Conversation about Request",
+      "conversationAboutProject": "Conversation about Project",
+      "newConversation": "New Conversation",
+      "newConversationDescription": "Start a conversation with other users",
+      "status": {
+        "active": "Active",
+        "archived": "Archived",
+        "closed": "Closed"
+      },
+      "active": "Active",
+      "archived": "Archived",
+      "request": "Request",
+      "project": "Project",
+      "participants": "participants",
+      "noMessages": "No messages yet. Start the conversation!",
+      "typeMessage": "Type a message...",
+      "send": "Send",
+      "sending": "Sending...",
+      "edit": "Edit",
+      "delete": "Delete",
+      "confirmDeleteMessage": "Are you sure you want to delete this message?",
+      "conversationNotFound": "Conversation not found",
+      "editing": "Editing message",
+      "editMessagePlaceholder": "Edit your message...",
+      "cancel": "Cancel",
+      "archive": "Archive",
+      "unarchive": "Unarchive",
+      "mute": "Mute",
+      "unmute": "Unmute",
+      "searchUsers": "Search Users",
+      "searchUsersPlaceholder": "Search by name or email...",
+      "selectedUsers": "Selected Users",
+      "users": "Users",
+      "noUsersFound": "No users found",
+      "initialMessage": "Initial Message",
+      "optional": "Optional",
+      "initialMessagePlaceholder": "Write an initial message (optional)...",
+      "creating": "Creating...",
+      "createConversation": "Create Conversation",
+      "settings": "Settings",
+      "settingsDescription": "Manage your message preferences",
+      "emailNotifications": "Email Notifications",
+      "emailNotificationsDescription": "Receive email notifications for new messages",
+      "pushNotifications": "Push Notifications",
+      "pushNotificationsDescription": "Receive push notifications for new messages",
+      "soundEnabled": "Sound Enabled",
+      "soundEnabledDescription": "Play sound when receiving new messages",
+      "autoMarkAsRead": "Auto Mark as Read",
+      "autoMarkAsReadDescription": "Automatically mark messages as read when viewed",
+      "back": "Back"
+    },
+    "notifications": {
+      "all": "All",
+      "back": "Back",
+      "channels": "Channels",
+      "clearAll": "Clear All",
+      "confirmClearAll": "Are you sure you want to delete all notifications? This action cannot be undone.",
+      "confirmDelete": "Are you sure you want to delete this notification?",
+      "confirmMarkAllAsRead": "Are you sure you want to mark all notifications as read?",
+      "contractNotifications": "Contract Notifications",
+      "createdAt": "Created At",
+      "daysAgo": "days ago",
+      "delete": "Delete",
+      "details": "Details",
+      "disputeNotifications": "Dispute Notifications",
+      "emailNotifications": "Email Notifications",
+      "emailNotificationsDescription": "Receive email notifications",
+      "hoursAgo": "hours ago",
+      "inAppNotifications": "In-App Notifications",
+      "inAppNotificationsDescription": "Receive notifications within the application",
+      "justNow": "Just now",
+      "loading": "Loading notifications...",
+      "markAllAsRead": "Mark All as Read",
+      "messageNotifications": "Message Notifications",
+      "minutesAgo": "minutes ago",
+      "noNotifications": "No notifications found",
+      "noNotificationsDescription": "You're all caught up! No new notifications.",
+      "noUnreadNotifications": "No unread notifications",
+      "noUnreadNotificationsDescription": "All notifications have been read",
+      "notificationNotFound": "Notification not found",
+      "notificationTypes": "Notification Types",
+      "typeLabel": "Type",
+      "type": {
+        "request": "Request",
+        "offer": "Offer",
+        "project": "Project",
+        "message": "Message",
+        "payment": "Payment",
+        "contract": "Contract",
+        "review": "Review",
+        "dispute": "Dispute",
+        "system": "System",
+        "verification": "Verification"
+      },
+      "offerNotifications": "Offer Notifications",
+      "paymentNotifications": "Payment Notifications",
+      "projectNotifications": "Project Notifications",
+      "pushNotifications": "Push Notifications",
+      "pushNotificationsDescription": "Receive push notifications on your device",
+      "read": "Read",
+      "readAt": "Read At",
+      "reference": "Reference",
+      "requestNotifications": "Request Notifications",
+      "settings": "Settings",
+      "settingsDescription": "Manage your notification preferences",
+      "smsNotifications": "SMS Notifications",
+      "smsNotificationsDescription": "Receive SMS notifications",
+      "status": "Status",
+      "subtitle": "Stay updated with all your activities",
+      "systemNotifications": "System Notifications",
+      "title": "Notifications",
+      "unread": "Unread",
+      "viewRelated": "View Related"
     }
   },
   "admin": {
@@ -2174,6 +2285,7 @@
       }
     },
     "iconPlaceholder": "Icon",
+    "actions": "Admin Actions",
     "nav": {
       "dashboard": "Dashboard",
       "users": "Users",
@@ -2194,6 +2306,7 @@
     "dashboard": {
       "title": "Dashboard",
       "description": "Platform overview",
+      "error": "An error occurred while loading data",
       "stats": {
         "totalUsers": "Total Users",
         "totalSuppliers": "Total Suppliers",
@@ -2229,92 +2342,80 @@
       "alerts": {
         "pendingDisputes": "Pending disputes need review",
         "pendingVerifications": "Verification requests awaiting approval"
-      },
-      "error": "[Translation needed]"
+      }
     },
     "users": {
       "title": "Users",
-      "userNotFound": "User not found",
-      "notAvailable": "Not available",
-      "verified": "Verified",
-      "averageRating": "Average Rating",
-      "completedProjects": "Completed Projects",
-      "totalReviews": "Total Reviews",
-      "memberSince": "Member Since",
-      "contactInformation": "Contact Information",
-      "email": "Email",
-      "phone": "Phone",
-      "address": "Address",
-      "companyInformation": "Company Information",
-      "companyName": "Company Name",
-      "commercialRegister": "Commercial Register",
-      "taxNumber": "Tax Number",
-      "userType": {
+      "description": "View and manage all users",
+      "search": "Search for user...",
+      "empty": "No users found",
+      "table": {
+        "name": "Name",
+        "type": "Type",
+        "status": "Status",
+        "verified": "Verified",
+        "projects": "Projects",
+        "rating": "Rating",
+        "actions": "Actions"
+      },
+      "actions": {
+        "sendEmail": "Send email",
+        "export": "Export",
+        "addUser": "Add user",
+        "suspend": "Suspend",
+        "ban": "Ban"
+      },
+      "types": {
         "client": "Client",
         "supplier": "Supplier",
         "admin": "Admin"
       },
-      "types": {
-        "supplier": "Supplier",
-        "admin": "Admin",
-        "client": "Client"
+      "users": {
+        "types": {
+          "supplier": "Supplier",
+          "admin": "Admin",
+          "client": "Client"
+        }
       },
-      "actions": {
-        "addUser": "[Translation needed]",
-        "ban": "[Translation needed]",
-        "export": "[Translation needed]",
-        "sendEmail": "[Translation needed]",
-        "suspend": "[Translation needed]"
-      },
-      "description": "[Translation needed]",
-      "detail": {
-        "commercialRegister": "[Translation needed]",
-        "companyName": "[Translation needed]",
-        "createdAt": "[Translation needed]",
-        "dateOfBirth": "[Translation needed]",
-        "description": "[Translation needed]",
-        "email": "[Translation needed]",
-        "emailVerification": "[Translation needed]",
-        "lastLogin": "[Translation needed]",
-        "location": "[Translation needed]",
-        "memberSince": "[Translation needed]",
-        "nationalId": "[Translation needed]",
-        "phone": "[Translation needed]",
-        "phoneVerification": "[Translation needed]",
-        "sections": {
-          "account": "[Translation needed]",
-          "address": "[Translation needed]",
-          "personalInfo": "[Translation needed]",
-          "verification": "[Translation needed]"
-        },
-        "stats": {
-          "completed": "[Translation needed]",
-          "lastLogin": "[Translation needed]",
-          "projects": "[Translation needed]",
-          "rating": "[Translation needed]",
-          "reviews": "[Translation needed]",
-          "wallet": "[Translation needed]"
-        },
-        "taxNumber": "[Translation needed]",
-        "updatedAt": "[Translation needed]"
-      },
-      "empty": "[Translation needed]",
-      "notFound": "[Translation needed]",
-      "search": "[Translation needed]",
       "statuses": {
-        "active": "[Translation needed]",
-        "banned": "[Translation needed]",
-        "inactive": "[Translation needed]",
-        "suspended": "[Translation needed]"
+        "active": "Active",
+        "inactive": "Inactive",
+        "suspended": "Suspended",
+        "banned": "Banned"
       },
-      "table": {
-        "actions": "[Translation needed]",
-        "name": "[Translation needed]",
-        "projects": "[Translation needed]",
-        "rating": "[Translation needed]",
-        "status": "[Translation needed]",
-        "type": "[Translation needed]",
-        "verified": "[Translation needed]"
+      "loading": "Loading user...",
+      "notFound": "User not found",
+      "verified": "Verified",
+      "detail": {
+        "description": "View and manage user details",
+        "email": "Email",
+        "phone": "Phone",
+        "location": "Location",
+        "memberSince": "Member since",
+        "stats": {
+          "rating": "Rating",
+          "reviews": "Reviews",
+          "projects": "Projects",
+          "completed": "Completed",
+          "wallet": "Wallet balance",
+          "lastLogin": "Last login"
+        },
+        "sections": {
+          "personalInfo": "Personal information",
+          "address": "Address",
+          "verification": "Verification status",
+          "account": "Account information"
+        },
+        "dateOfBirth": "Date of birth",
+        "nationalId": "National ID",
+        "companyName": "Company name",
+        "commercialRegister": "Commercial register",
+        "taxNumber": "Tax number",
+        "emailVerification": "Email verification",
+        "phoneVerification": "Phone verification",
+        "createdAt": "Created at",
+        "updatedAt": "Updated at",
+        "lastLogin": "Last login"
       }
     },
     "suppliers": {
@@ -2329,6 +2430,10 @@
         "successRate": "Success Rate",
         "verified": "Verified",
         "actions": "Actions"
+      },
+      "detail": {
+        "title": "Supplier Details",
+        "description": "View detailed supplier information"
       }
     },
     "requests": {
@@ -2348,6 +2453,10 @@
         "active": "Active",
         "closed": "Closed",
         "cancelled": "Cancelled"
+      },
+      "detail": {
+        "title": "Request Details",
+        "description": "View complete request details"
       }
     },
     "offers": {
@@ -2372,6 +2481,10 @@
       "time": {
         "days": "day",
         "hours": "hour"
+      },
+      "detail": {
+        "title": "Offer Details",
+        "description": "View complete offer details"
       }
     },
     "projects": {
@@ -2380,13 +2493,13 @@
       "search": "Search for project...",
       "empty": "No projects found",
       "table": {
+        "request": "Request",
         "title": "Project Title",
         "price": "Price",
         "progress": "Progress",
         "deadline": "Deadline",
         "status": "Status",
-        "actions": "Actions",
-        "request": "Request"
+        "actions": "Actions"
       },
       "statuses": {
         "draft": "Draft",
@@ -2397,6 +2510,10 @@
         "cancelled": "Cancelled",
         "disputed": "Disputed",
         "in_progress": "In Progress"
+      },
+      "detail": {
+        "title": "Project Details",
+        "description": "View complete project details"
       }
     },
     "disputes": {
@@ -2474,8 +2591,8 @@
         "actions": "Actions"
       },
       "actions": {
-        "edit": "Edit Category",
-        "addCategory": "Add Category"
+        "addCategory": "Add Category",
+        "edit": "Edit Category"
       },
       "statuses": {
         "active": "Active",
@@ -2774,73 +2891,6 @@
         "supportEmail": "Support Email",
         "phoneNumber": "Phone Number",
         "maintenanceMode": "Enable Maintenance Mode"
-      }
-    },
-    "profile": {
-      "title": "Profile",
-      "edit": "Edit Profile",
-      "editDescription": "Update your personal information",
-      "settings": "Settings",
-      "settingsDescription": "Manage your account settings and preferences",
-      "profileNotFound": "Profile not found",
-      "back": "Back",
-      "verified": "Verified",
-      "averageRating": "Average Rating",
-      "completedProjects": "Completed Projects",
-      "totalReviews": "Total Reviews",
-      "walletBalance": "Wallet Balance",
-      "currency": "SAR",
-      "personalInformation": "Personal Information",
-      "companyInformation": "Company Information",
-      "email": "Email",
-      "phone": "Phone",
-      "dateOfBirth": "Date of Birth",
-      "nationalId": "National ID",
-      "companyName": "Company Name",
-      "commercialRegister": "Commercial Register",
-      "taxNumber": "Tax Number",
-      "address": "Address",
-      "street": "Street",
-      "city": "City",
-      "state": "State",
-      "country": "Country",
-      "postalCode": "Postal Code",
-      "notAvailable": "Not available",
-      "avatar": "Avatar",
-      "uploadAvatar": "Upload Avatar",
-      "uploading": "Uploading...",
-      "fullName": "Full Name",
-      "changePassword": "Change Password",
-      "currentPassword": "Current Password",
-      "newPassword": "New Password",
-      "confirmPassword": "Confirm Password",
-      "passwordsDoNotMatch": "Passwords do not match",
-      "passwordChanged": "Password changed successfully",
-      "changing": "Changing...",
-      "notificationPreferences": "Notification Preferences",
-      "emailNotifications": "Email Notifications",
-      "pushNotifications": "Push Notifications",
-      "smsNotifications": "SMS Notifications",
-      "preferencesSaved": "Preferences saved successfully",
-      "notifications": {
-        "requests": "Requests",
-        "offers": "Offers",
-        "messages": "Messages",
-        "reviews": "Reviews",
-        "system": "System",
-        "important": "Important",
-        "security": "Security"
-      },
-      "dangerZone": "Danger Zone",
-      "deleteAccount": "Delete Account",
-      "deleteAccountWarning": "Once you delete your account, there is no going back. Please be certain.",
-      "confirmDeleteAccount": "Are you sure you want to delete your account? This action cannot be undone.",
-      "confirmDeleteAccountFinal": "This will permanently delete your account. Type DELETE to confirm.",
-      "deleting": "Deleting...",
-      "userType": {
-        "client": "Client",
-        "supplier": "Supplier",
-        "admin": "Admin"
       }
     },
     "common": {

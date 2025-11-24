@@ -180,14 +180,18 @@ const ALL_PAGES: PageRoute[] = [
   // Admin pages
   { path: 'admin/dashboard', label: 'Admin Dashboard', group: 'Admin' },
   { path: 'admin/users', label: 'Users', group: 'Admin' },
+  { path: 'admin/users/new', label: 'New User', group: 'Admin' },
   { path: 'admin/users/[id]', label: 'User Detail', group: 'Admin', isDynamic: true },
   { path: 'admin/categories', label: 'Categories', group: 'Admin' },
   { path: 'admin/categories/new', label: 'New Category', group: 'Admin' },
   { path: 'admin/categories/[id]', label: 'Category Detail', group: 'Admin', isDynamic: true },
   { path: 'admin/categories/[id]/edit', label: 'Edit Category', group: 'Admin', isDynamic: true },
   { path: 'admin/requests', label: 'Requests', group: 'Admin' },
+  { path: 'admin/requests/[id]', label: 'Request Detail', group: 'Admin', isDynamic: true },
   { path: 'admin/offers', label: 'Offers', group: 'Admin' },
+  { path: 'admin/offers/[id]', label: 'Offer Detail', group: 'Admin', isDynamic: true },
   { path: 'admin/projects', label: 'Projects', group: 'Admin' },
+  { path: 'admin/projects/[id]', label: 'Project Detail', group: 'Admin', isDynamic: true },
   { path: 'admin/disputes', label: 'Disputes', group: 'Admin' },
   { path: 'admin/disputes/[id]', label: 'Dispute Detail', group: 'Admin', isDynamic: true },
   { path: 'admin/payments', label: 'Payments', group: 'Admin' },
@@ -200,6 +204,7 @@ const ALL_PAGES: PageRoute[] = [
   { path: 'admin/analytics', label: 'Analytics', group: 'Admin' },
   { path: 'admin/verification', label: 'Verification', group: 'Admin' },
   { path: 'admin/suppliers', label: 'Suppliers', group: 'Admin' },
+  { path: 'admin/suppliers/[id]', label: 'Supplier Detail', group: 'Admin', isDynamic: true },
   { path: 'admin/settings', label: 'Settings', group: 'Admin' },
 ];
 
@@ -227,6 +232,10 @@ const MOCK_IDS: Record<string, string> = {
   'admin/disputes/[id]': mockDisputes[0]?.id || 'dispute-1',
   'admin/payments/[id]': mockPayments[0]?.id || 'payment-1',
   'admin/reviews/[id]': mockReviews[0]?.id || 'review-1',
+  'admin/requests/[id]': mockRequests[0]?.id || '1',
+  'admin/offers/[id]': mockOffers[0]?.id || 'offer-1',
+  'admin/projects/[id]': mockProjects[0]?.id || '1',
+  'admin/suppliers/[id]': mockSuppliers[0]?.id || '1',
 };
 
 const STATUS_OPTIONS: {

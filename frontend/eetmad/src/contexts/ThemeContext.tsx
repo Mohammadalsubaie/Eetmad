@@ -16,34 +16,55 @@ interface ThemeContextType {
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
-  const [theme, setThemeState] = useState<Theme>('light');
-  const [themeOption, setThemeOptionState] = useState<ThemeOption>('option1');
+  // Initialize state from localStorage synchronously (if available) to prevent flash
+  const getInitialTheme = (): Theme => {
+    if (typeof window === 'undefined') return 'light';
+    const stored = localStorage.getItem('theme') as Theme | null;
+    return stored || 'light';
+  };
 
-  // Initialize theme on client side only
+  const getInitialThemeOption = (): ThemeOption => {
+    if (typeof window === 'undefined') return 'option1';
+    const stored = localStorage.getItem('themeOption') as ThemeOption | null;
+    return stored || 'option1';
+  };
+
+  const [theme, setThemeState] = useState<Theme>(getInitialTheme);
+  const [themeOption, setThemeOptionState] = useState<ThemeOption>(getInitialThemeOption);
+
+  // Sync theme state with what was set by the blocking script
+  // This runs after the blocking script has already applied the theme
   useEffect(() => {
+    // Theme should already be applied by the blocking script in layout.tsx
+    // Just ensure everything is synced properly
     const stored = localStorage.getItem('theme') as Theme | null;
     const storedThemeOption = localStorage.getItem('themeOption') as ThemeOption | null;
-    // Always default to light if no stored preference
+
     const initialTheme = stored || 'light';
-
-    // eslint-disable-next-line react-hooks/set-state-in-effect
-    setThemeState(initialTheme);
-
-    // Load theme option - use stored or default to option1
     const themeToLoad = storedThemeOption || 'option1';
+
+    // Sync state (should already match, but ensure it)
+    setThemeState(initialTheme);
     setThemeOptionState(themeToLoad);
+
     if (!storedThemeOption) {
       localStorage.setItem('themeOption', themeToLoad);
     }
-    loadTheme(themeToLoad);
 
-    // Apply theme class immediately
+    // Only load if not already loaded by the blocking script
+    const existingLink = document.getElementById('dynamic-theme');
+    if (!existingLink || existingLink.getAttribute('data-theme') !== themeToLoad) {
+      loadTheme(themeToLoad);
+    }
+
+    // Ensure theme class is applied (should already be done by script, but ensure it)
     if (initialTheme === 'dark') {
       document.documentElement.classList.add('dark');
     } else {
       document.documentElement.classList.remove('dark');
     }
-  }, []);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []); // Only run once on mount - theme is already set by blocking script
 
   // Update theme
   const setTheme = (newTheme: Theme) => {

@@ -7,12 +7,14 @@ import { motion } from 'framer-motion';
 import { ArrowUp, Facebook, Globe, Linkedin, Target, Twitter } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { useEffect, useState } from 'react';
 
 export function Footer() {
   const t = useTranslations('footer');
   const { theme } = useTheme();
   const isDark = theme === 'dark';
+  const pathname = usePathname();
   const [showScrollTop, setShowScrollTop] = useState(false);
 
   useEffect(() => {
@@ -84,6 +86,10 @@ export function Footer() {
     },
   };
 
+  const isAdminPage = pathname?.includes('/admin');
+  if (isAdminPage) {
+    return null;
+  }
   return (
     <footer
       role="contentinfo"

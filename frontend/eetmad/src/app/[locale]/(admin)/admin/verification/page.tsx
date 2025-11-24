@@ -50,6 +50,10 @@ export default function VerificationPage() {
             label={t('verification.actions.exportReport')}
             icon={Download}
             variant="secondary"
+            onClick={() => {
+              // TODO: Implement export report action
+              console.log('Export verification report');
+            }}
           />
         }
       />

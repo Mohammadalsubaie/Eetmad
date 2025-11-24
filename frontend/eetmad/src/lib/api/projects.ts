@@ -50,7 +50,7 @@ export const projectsApi = {
       const { data } = await apiClient.get(`/v1/milestones/project/${projectId}`);
       return data;
     } catch (error) {
-      if (USE_MOCKS || process.env.NODE_ENV === 'development') {
+      if (USE_MOCKS) {
         console.warn('Using mock milestones data');
         // Filter milestones by projectId from mockMilestones
         const projectMilestones = mockMilestones.filter((m) => m.projectId === projectId);

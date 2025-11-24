@@ -18,7 +18,7 @@ export const adminApi = {
       const { data } = await apiClient.get('/admin/users', { params });
       return data;
     } catch (error) {
-      if (USE_MOCKS || process.env.NODE_ENV === 'development') {
+      if (USE_MOCKS) {
         console.warn('Using mock users data');
         return mockUsers;
       }
@@ -31,7 +31,7 @@ export const adminApi = {
       const { data } = await apiClient.get(`/admin/users/${id}`);
       return data;
     } catch (error) {
-      if (USE_MOCKS || process.env.NODE_ENV === 'development') {
+      if (USE_MOCKS) {
         console.warn('Using mock user data');
         const user = mockUsers.find((u) => u.id === id);
         if (!user) {
@@ -48,7 +48,7 @@ export const adminApi = {
       const { data } = await apiClient.get('/admin/verification');
       return data;
     } catch (error) {
-      if (USE_MOCKS || process.env.NODE_ENV === 'development') {
+      if (USE_MOCKS) {
         console.warn('Using mock verification data');
         return mockVerificationDocuments;
       }
@@ -66,7 +66,7 @@ export const adminApi = {
       const { data } = await apiClient.get('/admin/disputes', { params });
       return data;
     } catch (error) {
-      if (USE_MOCKS || process.env.NODE_ENV === 'development') {
+      if (USE_MOCKS) {
         console.warn('Using mock disputes data');
         return mockDisputes;
       }
@@ -79,7 +79,7 @@ export const adminApi = {
       const { data } = await apiClient.get('/admin/reports', { params });
       return data;
     } catch (error) {
-      if (USE_MOCKS || process.env.NODE_ENV === 'development') {
+      if (USE_MOCKS) {
         console.warn('Using mock reports data');
         return mockReports;
       }
@@ -92,7 +92,7 @@ export const adminApi = {
       const { data } = await apiClient.get('/admin/analytics');
       return data;
     } catch (error) {
-      if (USE_MOCKS || process.env.NODE_ENV === 'development') {
+      if (USE_MOCKS) {
         console.warn('Using mock analytics data');
         return mockAnalyticsData;
       }

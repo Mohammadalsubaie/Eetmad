@@ -11,15 +11,11 @@ import { useEffect } from 'react';
 export function MSWProvider({ children }: { children: React.ReactNode }) {
   useEffect(() => {
     const initMsw = async () => {
-      // Initialize MSW when enabled via environment variables
+      // Initialize MSW in all environments
       // Works in all environments: development, demo, and production
       // MSW only works in the browser (client-side)
-      const isDemo = process.env.NEXT_PUBLIC_ENV === 'demo';
-      const useMocksEnabled = process.env.NEXT_PUBLIC_USE_MOCKS === 'true';
-      const isDevelopment = process.env.NODE_ENV === 'development';
-
-      const shouldUseMocks =
-        typeof window !== 'undefined' && (isDevelopment || isDemo || useMocksEnabled);
+      // Always enable MSW in all environments
+      const shouldUseMocks = typeof window !== 'undefined';
 
       if (!shouldUseMocks) {
         return;

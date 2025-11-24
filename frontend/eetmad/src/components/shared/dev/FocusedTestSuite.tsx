@@ -186,10 +186,6 @@ export default function FocusedTestSuite() {
     }
   }, [testSuites]);
 
-  if (process.env.NODE_ENV !== 'development') {
-    return null;
-  }
-
   const createTestSuite = (type: TestSuiteType, name: string, description: string) => {
     const template = TEST_SUITE_TEMPLATES.find((t) => t.type === type);
     if (!template) return;

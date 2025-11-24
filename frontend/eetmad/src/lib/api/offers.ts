@@ -147,7 +147,7 @@ export const offersApi = {
       const { data } = await apiClient.get<Offer[]>(`/v1/offers/request/${requestId}`, { params });
       return data;
     } catch (error) {
-      if (USE_MOCKS || process.env.NODE_ENV === 'development') {
+      if (USE_MOCKS) {
         console.warn('Using mock offers data');
         return mockOffers.filter((offer) => offer.requestId === requestId);
       }
@@ -171,7 +171,7 @@ export const offersApi = {
       const { data } = await apiClient.get<Offer[]>('/v1/offers/me', { params });
       return data;
     } catch (error) {
-      if (USE_MOCKS || process.env.NODE_ENV === 'development') {
+      if (USE_MOCKS) {
         console.warn('Using mock offers data');
         return mockOffers;
       }

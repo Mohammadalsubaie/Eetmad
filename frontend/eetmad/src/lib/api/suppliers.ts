@@ -139,7 +139,7 @@ export const suppliersApi = {
       const { data } = await apiClient.get('/v1/suppliers/me/statistics');
       return data;
     } catch (error) {
-      if (USE_MOCKS || process.env.NODE_ENV === 'development') {
+      if (USE_MOCKS) {
         console.warn('Using mock statistics data');
         return {
           totalOffers: 12,

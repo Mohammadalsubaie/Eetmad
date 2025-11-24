@@ -124,7 +124,7 @@ export const dashboardApi = {
       const { data } = await apiClient.get<DashboardOverview>('/dashboard/overview');
       return data;
     } catch (error) {
-      if (USE_MOCKS || process.env.NODE_ENV === 'development') {
+      if (USE_MOCKS) {
         console.warn('Using mock dashboard overview data');
         return mockOverview;
       }
@@ -137,7 +137,7 @@ export const dashboardApi = {
       const { data } = await apiClient.get<DashboardStatistics>('/dashboard/statistics');
       return data;
     } catch (error) {
-      if (USE_MOCKS || process.env.NODE_ENV === 'development') {
+      if (USE_MOCKS) {
         console.warn('Using mock dashboard statistics data');
         return mockStatistics;
       }
@@ -150,7 +150,7 @@ export const dashboardApi = {
       const { data } = await apiClient.get<RecentActivity[]>('/dashboard/recent-activity');
       return data;
     } catch (error) {
-      if (USE_MOCKS || process.env.NODE_ENV === 'development') {
+      if (USE_MOCKS) {
         console.warn('Using mock recent activity data');
         return mockRecentActivity;
       }

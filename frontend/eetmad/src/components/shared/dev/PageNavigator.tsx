@@ -160,11 +160,6 @@ export default function PageNavigator() {
   const locale = useLocale();
   const t = useTranslations('dev');
 
-  // Only show in development
-  if (process.env.NODE_ENV !== 'development') {
-    return null;
-  }
-
   const toggleGroup = (group: string) => {
     const newExpanded = new Set(expandedGroups);
     if (newExpanded.has(group)) {

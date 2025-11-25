@@ -43,18 +43,10 @@ export function useRequestsTableColumns(): ColumnConfig<Request>[] {
       key: 'budgetMin',
       header: t('requests.table.budget'),
       render: (request: Request) => (
-        <div className="flex items-center gap-2">
-          <SaudiRiyalIcon
-            className="h-4 w-4"
-            style={{ color: cssVars.status.success }}
-            width={16}
-            height={16}
-          />
-          <span className="font-bold" style={{ color: cssVars.secondary.DEFAULT }}>
-            <CurrencyDisplay amount={request.budgetMin ?? 0} iconSize={16} showIcon={false} /> -{' '}
-            <CurrencyDisplay amount={request.budgetMax ?? 0} iconSize={16} />
-          </span>
-        </div>
+        <span className="font-bold" style={{ color: cssVars.secondary.DEFAULT }}>
+          <CurrencyDisplay amount={request.budgetMin ?? 0} iconSize={16} showIcon={false} /> -{' '}
+          <CurrencyDisplay amount={request.budgetMax ?? 0} iconSize={16} />
+        </span>
       ),
     },
     {

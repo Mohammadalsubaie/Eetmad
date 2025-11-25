@@ -119,12 +119,14 @@ export default function CategoryFormFields({ formData, onChange }: CategoryFormF
           name="sortOrder"
           value={formData.sortOrder || 0}
           onChange={onChange}
+          onWheel={(e) => e.currentTarget.blur()}
           min="0"
-          className="w-full rounded-xl border-2 px-4 py-3 outline-none transition-all focus:border-opacity-100"
+          className="w-full rounded-xl border-2 px-4 py-3 outline-none transition-all focus:border-opacity-100 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
           style={{
             backgroundColor: cssVars.neutral.bg,
             borderColor: cssVars.neutral.border,
             color: cssVars.secondary.DEFAULT,
+            MozAppearance: 'textfield',
           }}
         />
       </div>

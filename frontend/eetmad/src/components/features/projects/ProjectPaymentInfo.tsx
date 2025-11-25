@@ -2,6 +2,7 @@
 
 import { cssVars } from '@/styles/theme';
 import { useTranslations } from 'next-intl';
+import CurrencyDisplay from '@/components/shared/CurrencyDisplay';
 import type { Project } from '@/lib/types/project.types';
 
 interface ProjectPaymentInfoProps {
@@ -10,10 +11,6 @@ interface ProjectPaymentInfoProps {
 
 export default function ProjectPaymentInfo({ project }: ProjectPaymentInfoProps) {
   const t = useTranslations('pages.projects');
-
-  const formatCurrency = (amount: number) => {
-    return `${amount.toLocaleString()} ${t('currency')}`;
-  };
 
   return (
     <div
@@ -32,7 +29,7 @@ export default function ProjectPaymentInfo({ project }: ProjectPaymentInfoProps)
             {t('depositAmount')}
           </span>
           <span className="text-sm font-bold" style={{ color: cssVars.secondary.DEFAULT }}>
-            {formatCurrency(project.depositAmount)}
+            <CurrencyDisplay amount={project.depositAmount} iconSize={14} />
           </span>
         </div>
         <div className="flex justify-between">
@@ -40,7 +37,7 @@ export default function ProjectPaymentInfo({ project }: ProjectPaymentInfoProps)
             {t('finalAmount')}
           </span>
           <span className="text-sm font-bold" style={{ color: cssVars.secondary.DEFAULT }}>
-            {formatCurrency(project.finalAmount)}
+            <CurrencyDisplay amount={project.finalAmount} iconSize={14} />
           </span>
         </div>
       </div>

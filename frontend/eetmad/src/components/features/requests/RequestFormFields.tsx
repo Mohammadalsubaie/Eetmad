@@ -1,9 +1,9 @@
 'use client';
 
+import SaudiRiyalIcon from '@/components/shared/icons/SaudiRiyalIcon';
 import type { Category } from '@/lib/types/category.types';
 import type { CreateRequestInput } from '@/lib/types/request.types';
 import { cssVars } from '@/styles/theme';
-import SaudiRiyalIcon from '@/components/shared/icons/SaudiRiyalIcon';
 import { useTranslations } from 'next-intl';
 
 interface RequestFormFieldsProps {
@@ -118,7 +118,7 @@ export default function RequestFormFields({
           </label>
           <div className="relative">
             <SaudiRiyalIcon
-              className="absolute right-3 top-1/2 h-5 w-5 -translate-y-1/2"
+              className="absolute left-3 top-1/2 h-5 w-5 -translate-y-1/2"
               style={{ color: cssVars.neutral.textMuted }}
               width={20}
               height={20}
@@ -129,13 +129,15 @@ export default function RequestFormFields({
               name="budgetMin"
               value={formData.budgetMin || ''}
               onChange={onChange}
+              onWheel={(e) => e.currentTarget.blur()}
               min="0"
               step="0.01"
-              className="w-full rounded-xl border-2 px-4 py-3 pe-12 text-sm"
+              className="w-full rounded-xl border-2 px-4 py-3 ps-12 text-sm [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
               style={{
                 backgroundColor: cssVars.neutral.surface,
                 borderColor: cssVars.neutral.border,
                 color: cssVars.secondary.DEFAULT,
+                MozAppearance: 'textfield',
               }}
               placeholder={t('form.budgetMinPlaceholder')}
             />
@@ -151,7 +153,7 @@ export default function RequestFormFields({
           </label>
           <div className="relative">
             <SaudiRiyalIcon
-              className="absolute right-3 top-1/2 h-5 w-5 -translate-y-1/2"
+              className="absolute left-3 top-1/2 h-5 w-5 -translate-y-1/2"
               style={{ color: cssVars.neutral.textMuted }}
               width={20}
               height={20}
@@ -162,13 +164,15 @@ export default function RequestFormFields({
               name="budgetMax"
               value={formData.budgetMax || ''}
               onChange={onChange}
+              onWheel={(e) => e.currentTarget.blur()}
               min="0"
               step="0.01"
-              className="w-full rounded-xl border-2 px-4 py-3 pe-12 text-sm"
+              className="w-full rounded-xl border-2 px-4 py-3 ps-12 text-sm [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
               style={{
                 backgroundColor: cssVars.neutral.surface,
                 borderColor: cssVars.neutral.border,
                 color: cssVars.secondary.DEFAULT,
+                MozAppearance: 'textfield',
               }}
               placeholder={t('form.budgetMaxPlaceholder')}
             />
@@ -192,10 +196,12 @@ export default function RequestFormFields({
             name="expectedDuration"
             value={formData.expectedDuration}
             onChange={onChange}
+            onWheel={(e) => e.currentTarget.blur()}
             required
             min="1"
-            className="w-full rounded-xl border-2 px-4 py-3 text-sm"
+            className="w-full rounded-xl border-2 px-4 py-3 text-sm [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
             style={{
+              MozAppearance: 'textfield',
               backgroundColor: cssVars.neutral.surface,
               borderColor: cssVars.neutral.border,
               color: cssVars.secondary.DEFAULT,

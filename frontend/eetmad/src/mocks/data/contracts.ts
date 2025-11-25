@@ -10,14 +10,14 @@ export const mockContracts: Contract[] = [
     contractNumber: 'CNT-2025-001',
     projectId: '1',
     contractText:
-      'This contract outlines the terms and conditions for the website development project...',
+      'يحدد هذا العقد الشروط والأحكام لمشروع تطوير الموقع الإلكتروني...',
     termsAndConditions:
-      '1. The supplier agrees to deliver the project within the specified timeframe.\n2. The client agrees to make payments according to the payment schedule.\n3. Both parties agree to maintain confidentiality.',
+      '1. يوافق المورد على تسليم المشروع في الإطار الزمني المحدد.\n2. يوافق العميل على سداد المدفوعات وفقاً لجدول الدفع.\n3. يتفق الطرفان على الحفاظ على السرية.',
     paymentTerms:
-      'Payment will be made in three installments: 30% upon signing, 40% at milestone completion, and 30% upon final delivery.',
+      'سيتم الدفع على ثلاث دفعات: 30% عند التوقيع، 40% عند إكمال المرحلة، و30% عند التسليم النهائي.',
     deliverables:
-      '1. Fully functional website\n2. Source code\n3. Documentation\n4. Training session',
-    warrantyTerms: 'The supplier provides a 6-month warranty for all delivered work.',
+      '1. موقع إلكتروني كامل الوظائف\n2. الكود المصدري\n3. الوثائق\n4. جلسة تدريبية',
+    warrantyTerms: 'يوفر المورد ضماناً لمدة 6 أشهر لجميع الأعمال المسلمة.',
     clientSignature: null,
     supplierSignature: null,
     clientSignedAt: null,
@@ -34,14 +34,14 @@ export const mockContracts: Contract[] = [
     contractNumber: 'CNT-2025-002',
     projectId: '2',
     contractText:
-      'This contract outlines the terms and conditions for the mobile app development project...',
+      'يحدد هذا العقد الشروط والأحكام لمشروع تطوير تطبيق الجوال...',
     termsAndConditions:
-      '1. The supplier agrees to deliver the project within the specified timeframe.\n2. The client agrees to make payments according to the payment schedule.\n3. Both parties agree to maintain confidentiality.',
+      '1. يوافق المورد على تسليم المشروع في الإطار الزمني المحدد.\n2. يوافق العميل على سداد المدفوعات وفقاً لجدول الدفع.\n3. يتفق الطرفان على الحفاظ على السرية.',
     paymentTerms:
-      'Payment will be made in four installments: 25% upon signing, 25% at first milestone, 25% at second milestone, and 25% upon final delivery.',
+      'سيتم الدفع على أربع دفعات: 25% عند التوقيع، 25% عند المرحلة الأولى، 25% عند المرحلة الثانية، و25% عند التسليم النهائي.',
     deliverables:
-      '1. Mobile application (iOS and Android)\n2. Source code\n3. Documentation\n4. App store submission',
-    warrantyTerms: 'The supplier provides a 12-month warranty for all delivered work.',
+      '1. تطبيق الجوال (iOS و Android)\n2. الكود المصدري\n3. الوثائق\n4. تقديم التطبيق للمتاجر',
+    warrantyTerms: 'يوفر المورد ضماناً لمدة 12 شهراً لجميع الأعمال المسلمة.',
     clientSignature: 'signature-hash-1',
     supplierSignature: 'signature-hash-2',
     clientSignedAt: new Date(Date.now() - 3 * 24 * 60 * 60 * 1000).toISOString(),
@@ -50,7 +50,7 @@ export const mockContracts: Contract[] = [
     version: 1,
     templateUsed: 'standard-project-contract',
     customClauses: {
-      additionalSupport: 'The supplier will provide 3 months of free support after delivery.',
+      additionalSupport: 'سيوفر المورد 3 أشهر من الدعم المجاني بعد التسليم.',
     },
     createdAt: new Date(Date.now() - 7 * 24 * 60 * 60 * 1000).toISOString(),
     updatedAt: new Date(Date.now() - 2 * 24 * 60 * 60 * 1000).toISOString(),
@@ -59,12 +59,12 @@ export const mockContracts: Contract[] = [
     id: 'contract-3',
     contractNumber: 'CNT-2025-003',
     projectId: '3',
-    contractText: 'This contract outlines the terms and conditions for the branding project...',
+    contractText: 'يحدد هذا العقد الشروط والأحكام لمشروع الهوية البصرية...',
     termsAndConditions:
-      '1. The supplier agrees to deliver the project within the specified timeframe.\n2. The client agrees to make payments according to the payment schedule.\n3. Both parties agree to maintain confidentiality.',
+      '1. يوافق المورد على تسليم المشروع في الإطار الزمني المحدد.\n2. يوافق العميل على سداد المدفوعات وفقاً لجدول الدفع.\n3. يتفق الطرفان على الحفاظ على السرية.',
     paymentTerms:
-      'Payment will be made in two installments: 50% upon signing and 50% upon final delivery.',
-    deliverables: '1. Logo design\n2. Brand guidelines\n3. Business cards\n4. Letterhead design',
+      'سيتم الدفع على دفعتين: 50% عند التوقيع و50% عند التسليم النهائي.',
+    deliverables: '1. تصميم الشعار\n2. دليل الهوية البصرية\n3. بطاقات العمل\n4. تصميم الأوراق الرسمية',
     warrantyTerms: null,
     clientSignature: null,
     supplierSignature: 'signature-hash-3',

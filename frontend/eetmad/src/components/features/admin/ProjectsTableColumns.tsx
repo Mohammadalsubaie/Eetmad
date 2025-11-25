@@ -46,20 +46,12 @@ export function useProjectsTableColumns(): ColumnConfig<Project>[] {
       key: 'totalAmount',
       header: t('projects.table.price'),
       render: (project: Project) => (
-        <div className="flex items-center gap-2">
-          <SaudiRiyalIcon
-            className="h-4 w-4"
-            style={{ color: cssVars.status.success }}
-            width={16}
-            height={16}
-          />
-          <CurrencyDisplay
-            amount={project.totalAmount}
-            className="font-bold"
-            iconSize={16}
-            iconClassName="h-4 w-4"
-          />
-        </div>
+        <CurrencyDisplay
+          amount={project.totalAmount}
+          className="font-bold"
+          iconSize={16}
+          iconClassName="h-4 w-4"
+        />
       ),
     },
     {

@@ -74,7 +74,7 @@ const CustomTooltip = ({ active, payload, label }: CustomTooltipProps) => {
             <span style={{ fontWeight: '600' }}>{entry.name}:</span>
             <span style={{ fontWeight: 'bold' }}>
               {entry.dataKey === 'users'
-                ? (entry.value ?? 0).toLocaleString()
+                ? new Intl.NumberFormat('en-US', { numberingSystem: 'latn' }).format(entry.value ?? 0)
                 : `${(entry.value ?? 0).toFixed(1)}%`}
             </span>
           </p>
@@ -129,7 +129,7 @@ export default function UserGrowthChart({ data }: UserGrowthChartProps) {
           stroke={cssVars.neutral.border}
           tickLine={{ stroke: cssVars.neutral.border }}
           axisLine={{ stroke: cssVars.neutral.border }}
-          tickFormatter={(value) => value.toLocaleString()}
+          tickFormatter={(value) => new Intl.NumberFormat('en-US', { numberingSystem: 'latn' }).format(value)}
           width={70}
           dx={-5}
         />

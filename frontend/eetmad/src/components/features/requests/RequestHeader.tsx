@@ -104,36 +104,28 @@ export default function RequestHeader({ request, requestId }: RequestHeaderProps
             </p>
           </div>
         </div>
-        <div className="flex items-center gap-2">
-          <SaudiRiyalIcon
-            className="h-5 w-5"
-            style={{ color: cssVars.primary.DEFAULT }}
-            width={20}
-            height={20}
-          />
-          <div>
-            <p className="text-xs" style={{ color: cssVars.neutral.textMuted }}>
-              {t('budget')}
-            </p>
-            <p className="text-sm font-bold" style={{ color: cssVars.secondary.DEFAULT }}>
-              {request.budgetMin && request.budgetMax ? (
-                <>
-                  <CurrencyDisplay amount={request.budgetMin} iconSize={16} showIcon={false} /> -{' '}
-                  <CurrencyDisplay amount={request.budgetMax} iconSize={16} />
-                </>
-              ) : request.budgetMin ? (
-                <>
-                  {t('budgetMin')}: <CurrencyDisplay amount={request.budgetMin} iconSize={16} />
-                </>
-              ) : request.budgetMax ? (
-                <>
-                  {t('budgetMax')}: <CurrencyDisplay amount={request.budgetMax} iconSize={16} />
-                </>
-              ) : (
-                t('budgetNotSpecified')
-              )}
-            </p>
-          </div>
+        <div>
+          <p className="text-xs" style={{ color: cssVars.neutral.textMuted }}>
+            {t('budget')}
+          </p>
+          <p className="text-sm font-bold" style={{ color: cssVars.secondary.DEFAULT }}>
+            {request.budgetMin && request.budgetMax ? (
+              <>
+                <CurrencyDisplay amount={request.budgetMin} iconSize={16} showIcon={false} /> -{' '}
+                <CurrencyDisplay amount={request.budgetMax} iconSize={16} />
+              </>
+            ) : request.budgetMin ? (
+              <>
+                {t('budgetMin')}: <CurrencyDisplay amount={request.budgetMin} iconSize={16} />
+              </>
+            ) : request.budgetMax ? (
+              <>
+                {t('budgetMax')}: <CurrencyDisplay amount={request.budgetMax} iconSize={16} />
+              </>
+            ) : (
+              t('budgetNotSpecified')
+            )}
+          </p>
         </div>
         <div className="flex items-center gap-2">
           <Clock className="h-5 w-5" style={{ color: cssVars.primary.DEFAULT }} />

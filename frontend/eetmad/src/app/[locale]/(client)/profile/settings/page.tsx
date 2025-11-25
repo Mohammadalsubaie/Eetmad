@@ -4,7 +4,16 @@ import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { useLocale, useTranslations } from 'next-intl';
 import { motion } from 'framer-motion';
-import { ArrowLeft, Lock, Bell, Trash2, AlertTriangle } from 'lucide-react';
+import {
+  ArrowLeft,
+  Lock,
+  Bell,
+  Trash2,
+  AlertTriangle,
+  Mail,
+  Smartphone,
+  MessageSquare,
+} from 'lucide-react';
 import { cssVars } from '@/styles/theme';
 import {
   useProfile,
@@ -12,7 +21,7 @@ import {
   useUpdateNotificationPreferences,
   useDeleteAccount,
 } from '@/lib/hooks/useUsers';
-import { LoadingSpinner, ErrorMessage, Button } from '@/components/ui';
+import { LoadingSpinner, ErrorMessage, Button, Switch } from '@/components/ui';
 import Breadcrumbs from '@/components/shared/navigation/Breadcrumbs';
 import Input from '@/components/ui/Input/Input';
 
@@ -278,88 +287,191 @@ export default function ProfileSettingsPage() {
             borderColor: cssVars.neutral.border,
           }}
         >
-          <div className="mb-4 flex items-center justify-between">
+          <div className="mb-6 flex items-center justify-between">
             <div className="flex items-center gap-3">
-              <Bell className="h-6 w-6" style={{ color: cssVars.primary.DEFAULT }} />
-              <h2 className="text-xl font-bold" style={{ color: cssVars.secondary.DEFAULT }}>
-                {t('notificationPreferences')}
-              </h2>
+              <div
+                className="flex h-12 w-12 items-center justify-center rounded-xl"
+                style={{
+                  background: `linear-gradient(135deg, ${cssVars.primary.DEFAULT}15, ${cssVars.primary.light}15)`,
+                }}
+              >
+                <Bell className="h-6 w-6" style={{ color: cssVars.primary.DEFAULT }} />
+              </div>
+              <div>
+                <h2 className="text-xl font-bold" style={{ color: cssVars.secondary.DEFAULT }}>
+                  {t('notificationPreferences')}
+                </h2>
+                <p className="mt-1 text-sm" style={{ color: cssVars.neutral.textSecondary }}>
+                  اختر كيف تريد تلقي الإشعارات
+                </p>
+              </div>
             </div>
             <Button
               onClick={handleSaveNotifications}
               disabled={updatingPreferences}
-              variant="outline"
+              variant="primary"
+              icon={updatingPreferences ? undefined : Bell}
             >
               {updatingPreferences ? t('saving') : t('save')}
             </Button>
           </div>
+
           <div className="space-y-6">
             {/* Email Notifications */}
-            <div>
-              <h3 className="mb-3 text-sm font-bold" style={{ color: cssVars.secondary.DEFAULT }}>
-                {t('emailNotifications')}
-              </h3>
-              <div className="space-y-2">
-                {Object.entries(notificationPrefs.email).map(([key, value]) => (
-                  <label key={key} className="flex items-center gap-3">
-                    <input
-                      type="checkbox"
-                      checked={value}
-                      onChange={() => handleNotificationChange('email', key)}
-                      className="h-4 w-4 rounded"
-                      style={{ accentColor: cssVars.primary.DEFAULT }}
-                    />
-                    <span className="text-sm" style={{ color: cssVars.secondary.DEFAULT }}>
-                      {t(`notifications.${key}`)}
-                    </span>
-                  </label>
-                ))}
+            <motion.div
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.3 }}
+              className="rounded-xl border p-5"
+              style={{
+                backgroundColor: cssVars.neutral.surfaceAlt,
+                borderColor: cssVars.neutral.border,
+              }}
+            >
+              <div className="mb-4 flex items-center gap-3">
+                <div
+                  className="flex h-10 w-10 items-center justify-center rounded-lg"
+                  style={{
+                    backgroundColor: `${cssVars.primary.DEFAULT}15`,
+                  }}
+                >
+                  <Mail className="h-5 w-5" style={{ color: cssVars.primary.DEFAULT }} />
+                </div>
+                <div>
+                  <h3 className="text-base font-bold" style={{ color: cssVars.secondary.DEFAULT }}>
+                    {t('emailNotifications')}
+                  </h3>
+                  <p className="text-xs" style={{ color: cssVars.neutral.textSecondary }}>
+                    تلقي الإشعارات عبر البريد الإلكتروني
+                  </p>
+                </div>
               </div>
-            </div>
+              <div className="space-y-4">
+                {Object.entries(notificationPrefs.email).map(([key, value]) => {
+                  const descriptions: Record<string, string> = {
+                    requests: 'إشعارات عند استلام طلبات جديدة',
+                    offers: 'إشعارات عند استلام عروض جديدة',
+                    messages: 'إشعارات عند استلام رسائل جديدة',
+                    reviews: 'إشعارات عند تلقي تقييمات جديدة',
+                    system: 'إشعارات النظام والتحديثات المهمة',
+                  };
+                  return (
+                    <Switch
+                      key={key}
+                      id={`email-${key}`}
+                      checked={value}
+                      onCheckedChange={() => handleNotificationChange('email', key)}
+                      label={t(`notifications.${key}`)}
+                      description={descriptions[key]}
+                      size="md"
+                    />
+                  );
+                })}
+              </div>
+            </motion.div>
+
             {/* Push Notifications */}
-            <div>
-              <h3 className="mb-3 text-sm font-bold" style={{ color: cssVars.secondary.DEFAULT }}>
-                {t('pushNotifications')}
-              </h3>
-              <div className="space-y-2">
-                {Object.entries(notificationPrefs.push).map(([key, value]) => (
-                  <label key={key} className="flex items-center gap-3">
-                    <input
-                      type="checkbox"
-                      checked={value}
-                      onChange={() => handleNotificationChange('push', key)}
-                      className="h-4 w-4 rounded"
-                      style={{ accentColor: cssVars.primary.DEFAULT }}
-                    />
-                    <span className="text-sm" style={{ color: cssVars.secondary.DEFAULT }}>
-                      {t(`notifications.${key}`)}
-                    </span>
-                  </label>
-                ))}
+            <motion.div
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.3, delay: 0.1 }}
+              className="rounded-xl border p-5"
+              style={{
+                backgroundColor: cssVars.neutral.surfaceAlt,
+                borderColor: cssVars.neutral.border,
+              }}
+            >
+              <div className="mb-4 flex items-center gap-3">
+                <div
+                  className="flex h-10 w-10 items-center justify-center rounded-lg"
+                  style={{
+                    backgroundColor: `${cssVars.primary.DEFAULT}15`,
+                  }}
+                >
+                  <Smartphone className="h-5 w-5" style={{ color: cssVars.primary.DEFAULT }} />
+                </div>
+                <div>
+                  <h3 className="text-base font-bold" style={{ color: cssVars.secondary.DEFAULT }}>
+                    {t('pushNotifications')}
+                  </h3>
+                  <p className="text-xs" style={{ color: cssVars.neutral.textSecondary }}>
+                    تلقي الإشعارات الفورية على جهازك
+                  </p>
+                </div>
               </div>
-            </div>
+              <div className="space-y-4">
+                {Object.entries(notificationPrefs.push).map(([key, value]) => {
+                  const descriptions: Record<string, string> = {
+                    requests: 'إشعارات فورية عند استلام طلبات جديدة',
+                    offers: 'إشعارات فورية عند استلام عروض جديدة',
+                    messages: 'إشعارات فورية عند استلام رسائل جديدة',
+                    reviews: 'إشعارات فورية عند تلقي تقييمات جديدة',
+                    system: 'إشعارات فورية للنظام والتحديثات المهمة',
+                  };
+                  return (
+                    <Switch
+                      key={key}
+                      id={`push-${key}`}
+                      checked={value}
+                      onCheckedChange={() => handleNotificationChange('push', key)}
+                      label={t(`notifications.${key}`)}
+                      description={descriptions[key]}
+                      size="md"
+                    />
+                  );
+                })}
+              </div>
+            </motion.div>
+
             {/* SMS Notifications */}
-            <div>
-              <h3 className="mb-3 text-sm font-bold" style={{ color: cssVars.secondary.DEFAULT }}>
-                {t('smsNotifications')}
-              </h3>
-              <div className="space-y-2">
-                {Object.entries(notificationPrefs.sms).map(([key, value]) => (
-                  <label key={key} className="flex items-center gap-3">
-                    <input
-                      type="checkbox"
-                      checked={value}
-                      onChange={() => handleNotificationChange('sms', key)}
-                      className="h-4 w-4 rounded"
-                      style={{ accentColor: cssVars.primary.DEFAULT }}
-                    />
-                    <span className="text-sm" style={{ color: cssVars.secondary.DEFAULT }}>
-                      {t(`notifications.${key}`)}
-                    </span>
-                  </label>
-                ))}
+            <motion.div
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.3, delay: 0.2 }}
+              className="rounded-xl border p-5"
+              style={{
+                backgroundColor: cssVars.neutral.surfaceAlt,
+                borderColor: cssVars.neutral.border,
+              }}
+            >
+              <div className="mb-4 flex items-center gap-3">
+                <div
+                  className="flex h-10 w-10 items-center justify-center rounded-lg"
+                  style={{
+                    backgroundColor: `${cssVars.primary.DEFAULT}15`,
+                  }}
+                >
+                  <MessageSquare className="h-5 w-5" style={{ color: cssVars.primary.DEFAULT }} />
+                </div>
+                <div>
+                  <h3 className="text-base font-bold" style={{ color: cssVars.secondary.DEFAULT }}>
+                    {t('smsNotifications')}
+                  </h3>
+                  <p className="text-xs" style={{ color: cssVars.neutral.textSecondary }}>
+                    تلقي الإشعارات المهمة عبر الرسائل النصية
+                  </p>
+                </div>
               </div>
-            </div>
+              <div className="space-y-4">
+                {Object.entries(notificationPrefs.sms).map(([key, value]) => {
+                  const descriptions: Record<string, string> = {
+                    important: 'إشعارات مهمة عبر الرسائل النصية',
+                    security: 'إشعارات الأمان والتحقق عبر الرسائل النصية',
+                  };
+                  return (
+                    <Switch
+                      key={key}
+                      id={`sms-${key}`}
+                      checked={value}
+                      onCheckedChange={() => handleNotificationChange('sms', key)}
+                      label={t(`notifications.${key}`)}
+                      description={descriptions[key]}
+                      size="md"
+                    />
+                  );
+                })}
+              </div>
+            </motion.div>
           </div>
         </div>
 

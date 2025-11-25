@@ -4,6 +4,7 @@ export * from './Button';
 export * from './Card';
 export * from './IconContainer';
 export * from './Input';
+export * from './Switch';
 export * from './Tag';
 
 // New components with default exports

@@ -45,20 +45,12 @@ export function usePaymentsTableColumns(): ColumnConfig<Payment>[] {
       header: t('payments.table.amount'),
       render: (payment: Payment) => (
         <div>
-          <div className="flex items-center gap-2">
-            <SaudiRiyalIcon
-              className="h-4 w-4"
-              style={{ color: cssVars.status.success }}
-              width={16}
-              height={16}
-            />
-            <CurrencyDisplay
-              amount={payment.amount}
-              className="font-bold"
-              iconSize={16}
-              iconClassName="h-4 w-4"
-            />
-          </div>
+          <CurrencyDisplay
+            amount={payment.amount}
+            className="font-bold"
+            iconSize={16}
+            iconClassName="h-4 w-4"
+          />
           <div className="text-xs" style={{ color: cssVars.neutral.textMuted }}>
             {t('payments.labels.netAmount')}:{' '}
             <CurrencyDisplay amount={payment.netAmount} iconSize={12} />

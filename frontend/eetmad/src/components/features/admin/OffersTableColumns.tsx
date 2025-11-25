@@ -43,20 +43,12 @@ export function useOffersTableColumns(): ColumnConfig<Offer>[] {
       key: 'price',
       header: t('offers.table.price'),
       render: (offer: Offer) => (
-        <div className="flex items-center gap-2">
-          <SaudiRiyalIcon
-            className="h-4 w-4"
-            style={{ color: cssVars.status.success }}
-            width={16}
-            height={16}
-          />
-          <CurrencyDisplay
-            amount={offer.proposedPrice}
-            className="font-bold"
-            iconSize={16}
-            iconClassName="h-4 w-4"
-          />
-        </div>
+        <CurrencyDisplay
+          amount={offer.proposedPrice}
+          className="font-bold"
+          iconSize={16}
+          iconClassName="h-4 w-4"
+        />
       ),
     },
     {

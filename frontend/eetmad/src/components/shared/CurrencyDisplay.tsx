@@ -1,5 +1,6 @@
 'use client';
 
+import SaudiRiyalIcon from '@/components/shared/icons/SaudiRiyalIcon';
 import { cn } from '@/lib/utils/cn';
 
 interface CurrencyDisplayProps {
@@ -13,7 +14,7 @@ interface CurrencyDisplayProps {
 
 /**
  * Component to display currency amount with Saudi Riyal icon
- * Replaces text currency indicators (ر.س, SAR, ريال) with icon
+ * Displays amount followed by the Saudi Riyal icon (according to design guidelines)
  */
 export default function CurrencyDisplay({
   amount,
@@ -23,11 +24,18 @@ export default function CurrencyDisplay({
   showIcon = true,
   locale = 'ar-SA',
 }: CurrencyDisplayProps) {
-  const formattedAmount = typeof amount === 'number' ? amount.toLocaleString(locale) : amount;
+  // Format numbers with English numerals (latn) regardless of locale
+  const formattedAmount =
+    typeof amount === 'number'
+      ? new Intl.NumberFormat('en-US', {
+          numberingSystem: 'latn',
+        }).format(amount)
+      : amount;
 
   return (
-    <span className={cn('inline-flex items-center', className)}>
+    <span className={cn('inline-flex items-center gap-1', className)}>
       <span>{formattedAmount}</span>
+      {showIcon && <SaudiRiyalIcon width={iconSize} height={iconSize} className={iconClassName} />}
     </span>
   );
 }

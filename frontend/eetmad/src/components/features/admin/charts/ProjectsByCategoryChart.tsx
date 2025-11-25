@@ -73,7 +73,7 @@ const CustomTooltip = ({ active, payload, label }: CustomTooltipProps) => {
             margin: '4px 0',
           }}
         >
-          {value.toLocaleString()} مشروع
+          {new Intl.NumberFormat('en-US', { numberingSystem: 'latn' }).format(value)} مشروع
         </p>
         <p
           style={{

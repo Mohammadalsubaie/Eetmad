@@ -1,13 +1,12 @@
 'use client';
 
+import StatusBadge from '@/components/shared/badges/StatusBadge';
+import CurrencyDisplay from '@/components/shared/CurrencyDisplay';
+import type { Payment } from '@/lib/types/payment.types';
+import { cssVars } from '@/styles/theme';
 import { motion } from 'framer-motion';
 import { CreditCard, TrendingUp } from 'lucide-react';
-import SaudiRiyalIcon from '@/components/shared/icons/SaudiRiyalIcon';
-import CurrencyDisplay from '@/components/shared/CurrencyDisplay';
-import { cssVars } from '@/styles/theme';
 import { useTranslations } from 'next-intl';
-import StatusBadge from '@/components/shared/badges/StatusBadge';
-import type { Payment } from '@/lib/types/payment.types';
 
 interface PaymentOverviewCardProps {
   payment: Payment;
@@ -74,19 +73,7 @@ export default function PaymentOverviewCard({ payment }: PaymentOverviewCardProp
           <div className="mb-2 text-xs font-semibold" style={{ color: cssVars.neutral.textMuted }}>
             {t('payments.detail.netAmount')}
           </div>
-          <div className="flex items-center gap-2">
-            <SaudiRiyalIcon
-              className="h-5 w-5"
-              style={{ color: cssVars.status.success }}
-              width={20}
-              height={20}
-            />
-            <CurrencyDisplay
-              amount={payment.netAmount}
-              className="text-xl font-bold"
-              iconSize={20}
-            />
-          </div>
+          <CurrencyDisplay amount={payment.netAmount} className="text-xl font-bold" iconSize={20} />
         </div>
 
         <div>

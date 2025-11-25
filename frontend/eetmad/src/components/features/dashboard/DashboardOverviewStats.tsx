@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import { Activity, CheckCircle2, FileText, Package, TrendingUp, Wallet } from 'lucide-react';
 import { cssVars } from '@/styles/theme';
 import { useTranslations } from 'next-intl';
+import CurrencyDisplay from '@/components/shared/CurrencyDisplay';
 import type { DashboardOverview } from '@/lib/api/dashboard';
 
 interface DashboardOverviewStatsProps {
@@ -114,7 +115,7 @@ export default function DashboardOverviewStats({ overview }: DashboardOverviewSt
           </div>
         </div>
         <div className="mb-1 text-3xl font-bold" style={{ color: cssVars.secondary.DEFAULT }}>
-          {overview.walletBalance.toLocaleString()} {t('currency')}
+          <CurrencyDisplay amount={overview.walletBalance} iconSize={24} />
         </div>
         <div className="text-sm" style={{ color: cssVars.neutral.textSecondary }}>
           {t('stats.walletBalance')}

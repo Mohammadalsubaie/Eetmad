@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import { CheckCircle2, Star, Wallet } from 'lucide-react';
 import { cssVars } from '@/styles/theme';
 import { useTranslations } from 'next-intl';
+import CurrencyDisplay from '@/components/shared/CurrencyDisplay';
 import type { User } from '@/lib/types/user.types';
 
 interface ProfileStatsProps {
@@ -56,7 +57,7 @@ export default function ProfileStats({ user }: ProfileStatsProps) {
             </span>
           </div>
           <span className="font-bold" style={{ color: cssVars.secondary.DEFAULT }}>
-            {user.walletBalance.toLocaleString()} {t('currency')}
+            <CurrencyDisplay amount={user.walletBalance} iconSize={16} />
           </span>
         </div>
       </div>

@@ -8,7 +8,7 @@ export const mockSuppliers: Supplier[] = [
   {
     id: '1',
     userId: '1',
-    businessName: 'Tech Solutions Pro',
+    businessName: 'الحلول التقنية المتقدمة',
     serviceDescription: 'نوفر حلول تقنية متكاملة لتطوير المواقع والتطبيقات بأعلى معايير الجودة',
     categories: [
       {
@@ -40,7 +40,7 @@ export const mockSuppliers: Supplier[] = [
         title: 'منصة حكومية متكاملة',
         description: 'تطوير منصة حكومية شاملة للخدمات الإلكترونية',
         images: [],
-        category: 'Web Development',
+        category: 'تطوير الويب',
         completedAt: '2024-01-15T00:00:00Z',
         clientName: 'وزارة التحول الرقمي',
       },
@@ -49,7 +49,7 @@ export const mockSuppliers: Supplier[] = [
         title: 'تطبيق موبايل للخدمات الصحية',
         description: 'تطبيق شامل للخدمات الصحية',
         images: [],
-        category: 'App Development',
+        category: 'تطوير التطبيقات',
         completedAt: '2024-02-20T00:00:00Z',
         clientName: 'وزارة الصحة',
       },
@@ -86,7 +86,7 @@ export const mockSuppliers: Supplier[] = [
     onTimeDelivery: 98,
     isVerified: true,
     verificationDate: '2023-01-01T00:00:00Z',
-    verificationNotes: 'Verified supplier',
+    verificationNotes: 'مورد موثوق',
     createdAt: '2023-01-01T00:00:00Z',
     updatedAt: '2024-01-01T00:00:00Z',
     rating: 4.8,
@@ -95,7 +95,7 @@ export const mockSuppliers: Supplier[] = [
   {
     id: '2',
     userId: '2',
-    businessName: 'Creative Design Studio',
+    businessName: 'استوديو التصميم الإبداعي',
     serviceDescription: 'استوديو متخصص في التصميم الجرافيكي والهوية البصرية',
     categories: [
       {
@@ -127,7 +127,7 @@ export const mockSuppliers: Supplier[] = [
         title: 'هوية بصرية لمبادرة وطنية',
         description: 'تصميم هوية بصرية شاملة',
         images: [],
-        category: 'Brand Design',
+        category: 'تصميم الهوية',
         completedAt: '2024-03-10T00:00:00Z',
         clientName: 'هيئة الترفيه',
       },
@@ -147,7 +147,7 @@ export const mockSuppliers: Supplier[] = [
     onTimeDelivery: 92,
     isVerified: true,
     verificationDate: '2023-02-01T00:00:00Z',
-    verificationNotes: 'Verified supplier',
+    verificationNotes: 'مورد موثوق',
     createdAt: '2023-02-01T00:00:00Z',
     updatedAt: '2024-01-01T00:00:00Z',
     rating: 4.6,
@@ -156,7 +156,7 @@ export const mockSuppliers: Supplier[] = [
   {
     id: '3',
     userId: '3',
-    businessName: 'Logistics Solutions Co',
+    businessName: 'شركة الحلول اللوجستية',
     serviceDescription: 'شركة متخصصة في الخدمات اللوجستية والتوريدات',
     categories: [
       {
@@ -207,7 +207,7 @@ export const mockSuppliers: Supplier[] = [
     onTimeDelivery: 95,
     isVerified: true,
     verificationDate: '2023-03-01T00:00:00Z',
-    verificationNotes: 'Verified supplier',
+    verificationNotes: 'مورد موثوق',
     createdAt: '2023-03-01T00:00:00Z',
     updatedAt: '2024-01-01T00:00:00Z',
     rating: 4.7,

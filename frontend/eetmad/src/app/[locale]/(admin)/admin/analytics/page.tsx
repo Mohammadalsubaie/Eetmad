@@ -13,6 +13,7 @@ import { cssVars } from '@/styles/theme';
 import { motion } from 'framer-motion';
 import { Activity, BarChart3, Calendar, Download, TrendingUp, Users } from 'lucide-react';
 import SaudiRiyalIcon from '@/components/shared/icons/SaudiRiyalIcon';
+import CurrencyDisplay from '@/components/shared/CurrencyDisplay';
 import { useLocale, useTranslations } from 'next-intl';
 
 export default function AnalyticsPage() {
@@ -49,13 +50,23 @@ export default function AnalyticsPage() {
 
   const formatRevenue = (value: number) => {
     if (value >= 1000000) {
-      return `${(value / 1000000).toFixed(1)}${t('analytics.currency.million')}`;
+      const millions = (value / 1000000).toFixed(1);
+      return (
+        <span className="inline-flex items-center gap-1">
+          {millions}M <SaudiRiyalIcon width={20} height={20} />
+        </span>
+      );
     }
-    return `${(value / 1000).toFixed(0)}${t('analytics.currency.thousand')}`;
+    const thousands = (value / 1000).toFixed(0);
+    return (
+      <span className="inline-flex items-center gap-1">
+        {thousands}K <SaudiRiyalIcon width={20} height={20} />
+      </span>
+    );
   };
 
   const formatNumber = (value: number) => {
-    return value.toLocaleString();
+    return new Intl.NumberFormat('en-US', { numberingSystem: 'latn' }).format(value);
   };
 
   return (

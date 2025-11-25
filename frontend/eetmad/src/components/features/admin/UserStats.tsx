@@ -34,8 +34,8 @@ export default function UserStats({ user }: UserStatsProps) {
       />
       <AdminStatCard
         title={t('users.detail.stats.wallet')}
-        value={user.walletBalance.toLocaleString('ar-SA')}
-        change={t('common.currency')}
+        value={new Intl.NumberFormat('en-US', { numberingSystem: 'latn' }).format(user.walletBalance)}
+        change=""
         icon={SaudiRiyalIcon}
         color={cssVars.status.success}
       />

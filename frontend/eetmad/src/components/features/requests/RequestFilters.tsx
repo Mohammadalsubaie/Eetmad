@@ -155,12 +155,14 @@ export default function RequestFilters({ filters = {}, onFilterChange }: Request
                     type="number"
                     value={localFilters.budgetMin || ''}
                     onChange={(e) => handleFilterChange('budgetMin', e.target.value)}
+                    onWheel={(e) => e.currentTarget.blur()}
                     placeholder={t('filterBudgetMinPlaceholder')}
-                    className="w-full rounded-lg border-2 px-4 py-2 text-sm"
+                    className="w-full rounded-lg border-2 px-4 py-2 text-sm [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
                     style={{
                       backgroundColor: cssVars.neutral.surface,
                       borderColor: cssVars.neutral.border,
                       color: cssVars.secondary.DEFAULT,
+                      MozAppearance: 'textfield',
                     }}
                   />
                 </div>
@@ -175,12 +177,14 @@ export default function RequestFilters({ filters = {}, onFilterChange }: Request
                     type="number"
                     value={localFilters.budgetMax || ''}
                     onChange={(e) => handleFilterChange('budgetMax', e.target.value)}
+                    onWheel={(e) => e.currentTarget.blur()}
                     placeholder={t('filterBudgetMaxPlaceholder')}
-                    className="w-full rounded-lg border-2 px-4 py-2 text-sm"
+                    className="w-full rounded-lg border-2 px-4 py-2 text-sm [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
                     style={{
                       backgroundColor: cssVars.neutral.surface,
                       borderColor: cssVars.neutral.border,
                       color: cssVars.secondary.DEFAULT,
+                      MozAppearance: 'textfield',
                     }}
                   />
                 </div>

@@ -69,7 +69,7 @@ export const mockProjects: Project[] = [
     expectedEndDate: new Date(Date.now() - 30 * 24 * 60 * 60 * 1000).toISOString(),
     actualEndDate: new Date(Date.now() - 25 * 24 * 60 * 60 * 1000).toISOString(),
     deliveryProof: [],
-    deliveryNotes: 'Project completed successfully',
+    deliveryNotes: 'تم إكمال المشروع بنجاح',
     approvedByClient: true,
     approvalDate: new Date(Date.now() - 20 * 24 * 60 * 60 * 1000).toISOString(),
     progress: 100,

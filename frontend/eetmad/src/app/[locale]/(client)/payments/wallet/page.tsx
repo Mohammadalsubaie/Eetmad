@@ -8,6 +8,7 @@ import { cssVars } from '@/styles/theme';
 import { useWallet, useWalletTransactions, useAddFunds } from '@/lib/hooks/usePayments';
 import { LoadingSpinner, ErrorMessage, Button } from '@/components/ui';
 import Breadcrumbs from '@/components/shared/navigation/Breadcrumbs';
+import CurrencyDisplay from '@/components/shared/CurrencyDisplay';
 
 export default function WalletPage() {
   const t = useTranslations('pages.payments');
@@ -44,9 +45,6 @@ export default function WalletPage() {
     );
   }
 
-  const formatCurrency = (amount: number, currency: string) => {
-    return `${amount.toLocaleString()} ${currency}`;
-  };
 
   const formatDate = (dateString: string) => {
     return new Date(dateString).toLocaleDateString('en-US', {
@@ -101,7 +99,7 @@ export default function WalletPage() {
           </h2>
         </div>
         <p className="text-5xl font-bold" style={{ color: cssVars.secondary.DEFAULT }}>
-          {formatCurrency(wallet.balance, wallet.currency)}
+          <CurrencyDisplay amount={wallet.balance} iconSize={40} />
         </p>
         <div className="mt-6 flex gap-3">
           <Button
@@ -199,7 +197,7 @@ export default function WalletPage() {
                       }`}
                     >
                       {transaction.type === 'deposit' || transaction.type === 'refund' ? '+' : '-'}
-                      {formatCurrency(Math.abs(transaction.amount), 'SAR')}
+                      <CurrencyDisplay amount={Math.abs(transaction.amount)} iconSize={16} />
                     </p>
                     <p className="text-xs" style={{ color: cssVars.neutral.textMuted }}>
                       {t(`status.${transaction.status}`)}

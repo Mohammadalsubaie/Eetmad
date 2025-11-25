@@ -5,7 +5,6 @@ import type { Offer } from '@/lib/types/offer.types';
 import { cssVars } from '@/styles/theme';
 import { motion } from 'framer-motion';
 import { AlertCircle, Calendar, CheckCircle2, Clock, XCircle } from 'lucide-react';
-import SaudiRiyalIcon from '@/components/shared/icons/SaudiRiyalIcon';
 import CurrencyDisplay from '@/components/shared/CurrencyDisplay';
 import { useTranslations } from 'next-intl';
 import { useRouter } from 'next/navigation';
@@ -100,19 +99,11 @@ export default function OfferCard({
           backgroundColor: `color-mix(in srgb, ${cssVars.primary.DEFAULT} 5%, transparent)`,
         }}
       >
-        <div className="flex items-center justify-between">
-          <div>
-            <p className="mb-1 text-xs font-medium" style={{ color: cssVars.neutral.textMuted }}>
-              {t('proposedPrice')}
-            </p>
-            <CurrencyDisplay amount={offer.proposedPrice} className="text-2xl font-bold" />
-          </div>
-          <SaudiRiyalIcon
-            className="h-8 w-8"
-            style={{ color: cssVars.primary.DEFAULT }}
-            width={32}
-            height={32}
-          />
+        <div>
+          <p className="mb-1 text-xs font-medium" style={{ color: cssVars.neutral.textMuted }}>
+            {t('proposedPrice')}
+          </p>
+          <CurrencyDisplay amount={offer.proposedPrice} className="text-2xl font-bold" iconSize={24} />
         </div>
       </div>
 

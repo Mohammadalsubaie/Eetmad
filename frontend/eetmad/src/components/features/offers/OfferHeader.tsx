@@ -1,7 +1,6 @@
 'use client';
 
 import { Edit } from 'lucide-react';
-import SaudiRiyalIcon from '@/components/shared/icons/SaudiRiyalIcon';
 import CurrencyDisplay from '@/components/shared/CurrencyDisplay';
 import { cssVars } from '@/styles/theme';
 import { useTranslations } from 'next-intl';
@@ -101,19 +100,11 @@ export default function OfferHeader({ offer, offerId }: OfferHeaderProps) {
           backgroundColor: `color-mix(in srgb, ${cssVars.primary.DEFAULT} 5%, transparent)`,
         }}
       >
-        <div className="flex items-center justify-between">
-          <div>
-            <p className="mb-1 text-xs font-medium" style={{ color: cssVars.neutral.textMuted }}>
-              {t('proposedPrice')}
-            </p>
-            <CurrencyDisplay amount={offer.proposedPrice} className="text-3xl font-bold" />
-          </div>
-          <SaudiRiyalIcon
-            className="h-10 w-10"
-            style={{ color: cssVars.primary.DEFAULT }}
-            width={40}
-            height={40}
-          />
+        <div>
+          <p className="mb-1 text-xs font-medium" style={{ color: cssVars.neutral.textMuted }}>
+            {t('proposedPrice')}
+          </p>
+          <CurrencyDisplay amount={offer.proposedPrice} className="text-3xl font-bold" iconSize={32} />
         </div>
       </div>
     </div>

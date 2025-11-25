@@ -3,6 +3,7 @@
 import { cssVars } from '@/styles/theme';
 import { useTranslations } from 'next-intl';
 import { Badge } from '@/components/ui';
+import CurrencyDisplay from '@/components/shared/CurrencyDisplay';
 import type { Project } from '@/lib/types/project.types';
 
 interface ProjectMilestonesListProps {
@@ -18,10 +19,6 @@ export default function ProjectMilestonesList({ project }: ProjectMilestonesList
       month: 'long',
       day: 'numeric',
     });
-  };
-
-  const formatCurrency = (amount: number) => {
-    return `${amount.toLocaleString()} ${t('currency')}`;
   };
 
   if (!project.milestones || project.milestones.length === 0) {
@@ -67,7 +64,7 @@ export default function ProjectMilestonesList({ project }: ProjectMilestonesList
               className="flex items-center gap-4 text-xs"
               style={{ color: cssVars.neutral.textMuted }}
             >
-              <span>{formatCurrency(milestone.amount)}</span>
+              <CurrencyDisplay amount={milestone.amount} iconSize={12} />
               <span>{formatDate(milestone.dueDate)}</span>
             </div>
           </div>

@@ -74,14 +74,7 @@ export default function PaymentOverviewCard({ payment }: PaymentOverviewCardProp
           <div className="mb-2 text-xs font-semibold" style={{ color: cssVars.neutral.textMuted }}>
             {t('payments.detail.netAmount')}
           </div>
-          <div className="flex items-center gap-2">
-            <SaudiRiyalIcon
-              className="h-5 w-5"
-              style={{ color: cssVars.status.success }}
-              width={20}
-              height={20}
-            />
-            <CurrencyDisplay
+          <CurrencyDisplay
               amount={payment.netAmount}
               className="text-xl font-bold"
               iconSize={20}

@@ -78,15 +78,7 @@ export default function MilestoneCard({
           <div className="mb-2 text-xs font-semibold" style={{ color: cssVars.neutral.textMuted }}>
             {t('milestonesSection.amount')}
           </div>
-          <div className="flex items-center gap-2">
-            <SaudiRiyalIcon
-              className="h-4 w-4"
-              style={{ color: cssVars.status.success }}
-              width={16}
-              height={16}
-            />
-            <CurrencyDisplay amount={milestone.amount} className="font-bold" iconSize={16} />
-          </div>
+          <CurrencyDisplay amount={milestone.amount} className="font-bold" iconSize={16} />
         </div>
         <div>
           <div className="mb-2 text-xs font-semibold" style={{ color: cssVars.neutral.textMuted }}>

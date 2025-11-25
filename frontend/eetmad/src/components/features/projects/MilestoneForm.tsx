@@ -151,7 +151,7 @@ export default function MilestoneForm({ milestone, projectId, onSuccess }: Miles
           </label>
           <div className="relative">
             <SaudiRiyalIcon
-              className="absolute right-3 top-1/2 h-5 w-5 -translate-y-1/2"
+              className="absolute left-3 top-1/2 h-5 w-5 -translate-y-1/2"
               style={{ color: cssVars.neutral.textMuted }}
               width={20}
               height={20}
@@ -162,10 +162,14 @@ export default function MilestoneForm({ milestone, projectId, onSuccess }: Miles
               name="amount"
               value={formData.amount}
               onChange={handleChange}
+              onWheel={(e) => e.currentTarget.blur()}
               required
               min="0"
               step="0.01"
-              className="w-full pe-12"
+              className="w-full ps-12 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
+              style={{
+                MozAppearance: 'textfield',
+              }}
               placeholder={t('milestonesSection.form.amountPlaceholder')}
             />
           </div>

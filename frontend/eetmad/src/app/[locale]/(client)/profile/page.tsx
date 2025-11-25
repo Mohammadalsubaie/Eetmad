@@ -18,6 +18,7 @@ import {
 import { cssVars } from '@/styles/theme';
 import { useProfile, useUserStatistics } from '@/lib/hooks/useUsers';
 import { LoadingSpinner, ErrorMessage, Button } from '@/components/ui';
+import CurrencyDisplay from '@/components/shared/CurrencyDisplay';
 import Breadcrumbs from '@/components/shared/navigation/Breadcrumbs';
 import { Avatar, Badge } from '@/components/ui';
 
@@ -183,7 +184,7 @@ export default function ProfilePage() {
               </span>
             </div>
             <p className="text-2xl font-bold" style={{ color: cssVars.secondary.DEFAULT }}>
-              {profile.walletBalance.toLocaleString()} {t('currency')}
+              <CurrencyDisplay amount={profile.walletBalance} iconSize={20} />
             </p>
           </div>
         </div>

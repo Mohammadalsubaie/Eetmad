@@ -8,7 +8,7 @@ export const mockCategories: Category[] = [
   {
     id: '1',
     nameAr: 'الحلول التقنية',
-    nameEn: 'Tech Solutions',
+    nameEn: 'الحلول التقنية',
     parentId: null,
     icon: '💻',
     description: 'برمجة، تطوير مواقع، تطبيقات، وحلول تقنية متكاملة',
@@ -23,7 +23,7 @@ export const mockCategories: Category[] = [
   {
     id: '2',
     nameAr: 'الخدمات الإبداعية',
-    nameEn: 'Creative Services',
+    nameEn: 'الخدمات الإبداعية',
     parentId: null,
     icon: '🎨',
     description: 'تصميم جرافيك، هوية بصرية، تسويق رقمي ومحتوى',
@@ -38,7 +38,7 @@ export const mockCategories: Category[] = [
   {
     id: '3',
     nameAr: 'الخدمات التشغيلية',
-    nameEn: 'Operational Services',
+    nameEn: 'الخدمات التشغيلية',
     parentId: null,
     icon: '📦',
     description: 'توريدات، معدات، صيانة وخدمات لوجستية',
@@ -53,7 +53,7 @@ export const mockCategories: Category[] = [
   {
     id: '4',
     nameAr: 'الفعاليات والمناسبات',
-    nameEn: 'Events & Occasions',
+    nameEn: 'الفعاليات والمناسبات',
     parentId: null,
     icon: '🎉',
     description: 'تنظيم مؤتمرات، معارض، حفلات ومناسبات خاصة',
@@ -68,7 +68,7 @@ export const mockCategories: Category[] = [
   {
     id: '5',
     nameAr: 'تطوير الويب',
-    nameEn: 'Web Development',
+    nameEn: 'تطوير الويب',
     parentId: '1',
     icon: '🌐',
     description: 'تطوير مواقع وتطبيقات ويب',
@@ -83,7 +83,7 @@ export const mockCategories: Category[] = [
   {
     id: '6',
     nameAr: 'تطوير التطبيقات',
-    nameEn: 'App Development',
+    nameEn: 'تطوير التطبيقات',
     parentId: '1',
     icon: '📱',
     description: 'تطوير تطبيقات موبايل',

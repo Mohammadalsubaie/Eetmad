@@ -8,7 +8,7 @@ import SaudiRiyalIcon from '@/components/shared/icons/SaudiRiyalIcon';
 
 interface AdminStatCardProps {
   title: string;
-  value: string | number;
+  value: string | number | React.ReactNode;
   change?: string;
   trend?: 'up' | 'down';
   icon: React.ComponentType<{ className?: string; style?: React.CSSProperties }>;

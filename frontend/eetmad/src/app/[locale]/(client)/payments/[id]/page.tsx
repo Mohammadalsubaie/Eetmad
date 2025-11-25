@@ -9,6 +9,7 @@ import { usePayment, useRefundPayment, useCancelPayment } from '@/lib/hooks/useP
 import { LoadingSpinner, ErrorMessage, Button, Badge } from '@/components/ui';
 import Breadcrumbs from '@/components/shared/navigation/Breadcrumbs';
 import StatusBadge from '@/components/shared/badges/StatusBadge';
+import CurrencyDisplay from '@/components/shared/CurrencyDisplay';
 
 export default function PaymentDetailPage() {
   const params = useParams();
@@ -70,9 +71,6 @@ export default function PaymentDetailPage() {
     });
   };
 
-  const formatCurrency = (amount: number, currency: string) => {
-    return `${amount.toLocaleString()} ${currency}`;
-  };
 
   return (
     <div className="container mx-auto py-8" style={{ backgroundColor: cssVars.neutral.bg }}>
@@ -128,7 +126,7 @@ export default function PaymentDetailPage() {
           </Badge>
         </div>
         <h1 className="text-4xl font-bold" style={{ color: cssVars.secondary.DEFAULT }}>
-          {formatCurrency(payment.amount, payment.currency)}
+          <CurrencyDisplay amount={payment.amount} iconSize={32} />
         </h1>
       </div>
 
@@ -178,7 +176,7 @@ export default function PaymentDetailPage() {
                 {t('amount')}
               </p>
               <p className="text-lg font-bold" style={{ color: cssVars.secondary.DEFAULT }}>
-                {formatCurrency(payment.amount, payment.currency)}
+                <CurrencyDisplay amount={payment.amount} iconSize={18} />
               </p>
             </div>
             {payment.platformFee > 0 && (
@@ -187,7 +185,7 @@ export default function PaymentDetailPage() {
                   {t('platformFee')}
                 </p>
                 <p className="text-sm font-medium" style={{ color: cssVars.neutral.textSecondary }}>
-                  {formatCurrency(payment.platformFee, payment.currency)}
+                  <CurrencyDisplay amount={payment.platformFee} iconSize={14} />
                 </p>
               </div>
             )}
@@ -197,7 +195,7 @@ export default function PaymentDetailPage() {
                   {t('netAmount')}
                 </p>
                 <p className="text-lg font-bold" style={{ color: cssVars.status.success }}>
-                  {formatCurrency(payment.netAmount, payment.currency)}
+                  <CurrencyDisplay amount={payment.netAmount} iconSize={18} />
                 </p>
               </div>
             )}

@@ -24,21 +24,13 @@ export default function ProjectStats({ project }: ProjectStatsProps) {
 
   return (
     <div className="grid grid-cols-2 gap-4 md:grid-cols-4">
-      <div className="flex items-center gap-2">
-        <SaudiRiyalIcon
-          className="h-5 w-5"
-          style={{ color: cssVars.primary.DEFAULT }}
-          width={20}
-          height={20}
-        />
-        <div>
-          <p className="text-xs" style={{ color: cssVars.neutral.textMuted }}>
-            {t('totalAmount')}
-          </p>
-          <p className="text-sm font-bold" style={{ color: cssVars.secondary.DEFAULT }}>
-            <CurrencyDisplay amount={project.totalAmount} iconSize={16} />
-          </p>
-        </div>
+      <div>
+        <p className="text-xs" style={{ color: cssVars.neutral.textMuted }}>
+          {t('totalAmount')}
+        </p>
+        <p className="text-sm font-bold" style={{ color: cssVars.secondary.DEFAULT }}>
+          <CurrencyDisplay amount={project.totalAmount} iconSize={16} />
+        </p>
       </div>
       <div className="flex items-center gap-2">
         <Calendar className="h-5 w-5" style={{ color: cssVars.primary.DEFAULT }} />

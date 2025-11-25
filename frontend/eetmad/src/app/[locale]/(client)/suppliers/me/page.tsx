@@ -9,6 +9,7 @@ import { useMySupplierProfile, useSupplierStatistics } from '@/lib/hooks/useSupp
 import { LoadingSpinner, ErrorMessage, Button } from '@/components/ui';
 import Breadcrumbs from '@/components/shared/navigation/Breadcrumbs';
 import { Badge } from '@/components/ui';
+import CurrencyDisplay from '@/components/shared/CurrencyDisplay';
 
 export default function MySupplierProfilePage() {
   const t = useTranslations('pages.suppliers');
@@ -53,7 +54,7 @@ export default function MySupplierProfilePage() {
                   borderColor: cssVars.status.success,
                 }}
               >
-                <CheckCircle2 className="mr-1 h-3 w-3" />
+                <CheckCircle2 className="me-1 h-3 w-3" />
                 {t('verified')}
               </Badge>
             )}
@@ -125,7 +126,11 @@ export default function MySupplierProfilePage() {
               </span>
             </div>
             <p className="text-2xl font-bold" style={{ color: cssVars.secondary.DEFAULT }}>
-              {statistics.totalEarnings?.toLocaleString() || '0'} {t('currency')}
+              {statistics.totalEarnings ? (
+                <CurrencyDisplay amount={statistics.totalEarnings} iconSize={20} />
+              ) : (
+                <CurrencyDisplay amount={0} iconSize={20} />
+              )}
             </p>
           </div>
           <div
@@ -200,7 +205,7 @@ export default function MySupplierProfilePage() {
           whileHover={{ scale: 1.02 }}
           whileTap={{ scale: 0.98 }}
           onClick={() => router.push(`/${locale}/suppliers/${profile.id}/portfolio`)}
-          className="rounded-2xl border-2 p-6 text-left transition-all hover:shadow-lg"
+          className="rounded-2xl border-2 p-6 text-start transition-all hover:shadow-lg"
           style={{
             backgroundColor: cssVars.neutral.surface,
             borderColor: cssVars.neutral.border,
@@ -217,7 +222,7 @@ export default function MySupplierProfilePage() {
           whileHover={{ scale: 1.02 }}
           whileTap={{ scale: 0.98 }}
           onClick={() => router.push(`/${locale}/suppliers/me/edit`)}
-          className="rounded-2xl border-2 p-6 text-left transition-all hover:shadow-lg"
+          className="rounded-2xl border-2 p-6 text-start transition-all hover:shadow-lg"
           style={{
             backgroundColor: cssVars.neutral.surface,
             borderColor: cssVars.neutral.border,

@@ -1,10 +1,10 @@
 'use client';
 
-import { Briefcase, FileText, ShoppingBag, Users } from 'lucide-react';
-import { cssVars } from '@/styles/theme';
-import { useTranslations } from 'next-intl';
 import AdminStatCard from '@/components/shared/admin/AdminStatCard';
 import type { DashboardStats } from '@/lib/types';
+import { cssVars } from '@/styles/theme';
+import { Briefcase, FileText, ShoppingBag, Users } from 'lucide-react';
+import { useTranslations } from 'next-intl';
 
 interface AdminDashboardStatsProps {
   stats: DashboardStats;
@@ -17,7 +17,7 @@ export default function AdminDashboardStats({ stats }: AdminDashboardStatsProps)
     <div className="mb-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
       <AdminStatCard
         title={t('dashboard.stats.totalUsers')}
-        value={stats.totalUsers.toLocaleString('ar-SA')}
+        value={new Intl.NumberFormat('en-US', { numberingSystem: 'latn' }).format(stats.totalUsers)}
         change="+12%"
         trend="up"
         icon={Users}
@@ -25,7 +25,9 @@ export default function AdminDashboardStats({ stats }: AdminDashboardStatsProps)
       />
       <AdminStatCard
         title={t('dashboard.stats.totalSuppliers')}
-        value={stats.totalSuppliers.toLocaleString('ar-SA')}
+        value={new Intl.NumberFormat('en-US', { numberingSystem: 'latn' }).format(
+          stats.totalSuppliers
+        )}
         change="+8%"
         trend="up"
         icon={ShoppingBag}
@@ -33,7 +35,9 @@ export default function AdminDashboardStats({ stats }: AdminDashboardStatsProps)
       />
       <AdminStatCard
         title={t('dashboard.stats.activeRequests')}
-        value={stats.activeRequests.toLocaleString('ar-SA')}
+        value={new Intl.NumberFormat('en-US', { numberingSystem: 'latn' }).format(
+          stats.activeRequests
+        )}
         change="+24%"
         trend="up"
         icon={FileText}
@@ -41,7 +45,9 @@ export default function AdminDashboardStats({ stats }: AdminDashboardStatsProps)
       />
       <AdminStatCard
         title={t('dashboard.stats.activeProjects')}
-        value={stats.activeProjects.toLocaleString('ar-SA')}
+        value={new Intl.NumberFormat('en-US', { numberingSystem: 'latn' }).format(
+          stats.activeProjects
+        )}
         change="-3%"
         trend="down"
         icon={Briefcase}

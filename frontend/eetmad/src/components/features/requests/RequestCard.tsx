@@ -102,32 +102,24 @@ export default function RequestCard({ request, onView }: RequestCardProps) {
       {/* Details Grid */}
       <div className="mb-4 grid grid-cols-2 gap-3">
         {/* Budget */}
-        <div className="flex items-center gap-2">
-          <SaudiRiyalIcon
-            className="h-4 w-4"
-            style={{ color: cssVars.primary.DEFAULT }}
-            width={16}
-            height={16}
-          />
-          <span className="text-sm font-medium" style={{ color: cssVars.neutral.textSecondary }}>
-            {request.budgetMin && request.budgetMax ? (
-              <>
-                <CurrencyDisplay amount={request.budgetMin} iconSize={12} showIcon={false} /> -{' '}
-                <CurrencyDisplay amount={request.budgetMax} iconSize={12} />
-              </>
-            ) : request.budgetMin ? (
-              <>
-                {t('budgetMin')}: <CurrencyDisplay amount={request.budgetMin} iconSize={12} />
-              </>
-            ) : request.budgetMax ? (
-              <>
-                {t('budgetMax')}: <CurrencyDisplay amount={request.budgetMax} iconSize={12} />
-              </>
-            ) : (
-              t('budgetNotSpecified')
-            )}
-          </span>
-        </div>
+        <span className="text-sm font-medium" style={{ color: cssVars.neutral.textSecondary }}>
+          {request.budgetMin && request.budgetMax ? (
+            <>
+              <CurrencyDisplay amount={request.budgetMin} iconSize={12} showIcon={false} /> -{' '}
+              <CurrencyDisplay amount={request.budgetMax} iconSize={12} />
+            </>
+          ) : request.budgetMin ? (
+            <>
+              {t('budgetMin')}: <CurrencyDisplay amount={request.budgetMin} iconSize={12} />
+            </>
+          ) : request.budgetMax ? (
+            <>
+              {t('budgetMax')}: <CurrencyDisplay amount={request.budgetMax} iconSize={12} />
+            </>
+          ) : (
+            t('budgetNotSpecified')
+          )}
+        </span>
 
         {/* Duration */}
         <div className="flex items-center gap-2">

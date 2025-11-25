@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import { Info } from 'lucide-react';
 import { cssVars } from '@/styles/theme';
 import { useTranslations } from 'next-intl';
+import SaudiRiyalIcon from '@/components/shared/icons/SaudiRiyalIcon';
 import type { Payment } from '@/lib/types/payment.types';
 
 interface PaymentInfoSectionProps {
@@ -60,8 +61,8 @@ export default function PaymentInfoSection({ payment }: PaymentInfoSectionProps)
           <span style={{ color: cssVars.neutral.textSecondary }}>
             {t('payments.detail.currency')}
           </span>
-          <span className="font-semibold" style={{ color: cssVars.secondary.DEFAULT }}>
-            {payment.currency}
+          <span className="font-semibold inline-flex items-center gap-1" style={{ color: cssVars.secondary.DEFAULT }}>
+            <SaudiRiyalIcon width={16} height={16} />
           </span>
         </div>
       </div>

@@ -135,21 +135,13 @@ export default function ProjectCard({ project, onView }: ProjectCardProps) {
       {/* Details Grid */}
       <div className="mb-4 grid grid-cols-2 gap-3">
         {/* Total Amount */}
-        <div className="flex items-center gap-2">
-          <SaudiRiyalIcon
-            className="h-4 w-4"
-            style={{ color: cssVars.primary.DEFAULT }}
-            width={16}
-            height={16}
-          />
-          <div>
-            <p className="text-xs" style={{ color: cssVars.neutral.textMuted }}>
-              {t('totalAmount')}
-            </p>
-            <p className="text-sm font-bold" style={{ color: cssVars.secondary.DEFAULT }}>
-              <CurrencyDisplay amount={project.totalAmount} iconSize={16} />
-            </p>
-          </div>
+        <div>
+          <p className="text-xs" style={{ color: cssVars.neutral.textMuted }}>
+            {t('totalAmount')}
+          </p>
+          <p className="text-sm font-bold" style={{ color: cssVars.secondary.DEFAULT }}>
+            <CurrencyDisplay amount={project.totalAmount} iconSize={16} />
+          </p>
         </div>
 
         {/* Expected End Date */}

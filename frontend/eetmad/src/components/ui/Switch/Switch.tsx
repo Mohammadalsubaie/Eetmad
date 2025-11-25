@@ -1,11 +1,12 @@
 'use client';
 
-import React from 'react';
-import { motion } from 'framer-motion';
-import { cssVars } from '@/styles/theme';
 import { animationDuration, easing } from '@/lib/theme/animation-standards';
+import { cssVars } from '@/styles/theme';
+import { motion } from 'framer-motion';
+import React from 'react';
 
-export interface SwitchProps extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'type'> {
+export interface SwitchProps
+  extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'type' | 'size'> {
   checked?: boolean;
   onCheckedChange?: (checked: boolean) => void;
   label?: string;
@@ -81,13 +82,11 @@ const Switch = React.forwardRef<HTMLInputElement, SwitchProps>(
               disabled ? 'cursor-not-allowed opacity-50' : 'cursor-pointer'
             } ${currentSize.track}`}
             style={{
-              backgroundColor: checked
-                ? cssVars.primary.DEFAULT
-                : cssVars.neutral.border,
+              backgroundColor: checked ? cssVars.primary.DEFAULT : cssVars.neutral.border,
             }}
           >
             <motion.span
-              className={`absolute rounded-full bg-white shadow-md pointer-events-none ${currentSize.thumb}`}
+              className={`pointer-events-none absolute rounded-full bg-white shadow-md ${currentSize.thumb}`}
               animate={{
                 x: checked ? currentSize.translateX : '0.125rem',
               }}
@@ -116,10 +115,7 @@ const Switch = React.forwardRef<HTMLInputElement, SwitchProps>(
               </label>
             )}
             {description && (
-              <p
-                className="mt-0.5 text-xs"
-                style={{ color: cssVars.neutral.textSecondary }}
-              >
+              <p className="mt-0.5 text-xs" style={{ color: cssVars.neutral.textSecondary }}>
                 {description}
               </p>
             )}
@@ -133,4 +129,3 @@ const Switch = React.forwardRef<HTMLInputElement, SwitchProps>(
 Switch.displayName = 'Switch';
 
 export default Switch;
-

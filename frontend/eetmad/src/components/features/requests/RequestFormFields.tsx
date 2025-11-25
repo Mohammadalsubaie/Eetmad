@@ -1,9 +1,9 @@
 'use client';
 
+import SaudiRiyalIcon from '@/components/shared/icons/SaudiRiyalIcon';
 import type { Category } from '@/lib/types/category.types';
 import type { CreateRequestInput } from '@/lib/types/request.types';
 import { cssVars } from '@/styles/theme';
-import SaudiRiyalIcon from '@/components/shared/icons/SaudiRiyalIcon';
 import { useTranslations } from 'next-intl';
 
 interface RequestFormFieldsProps {
@@ -132,7 +132,7 @@ export default function RequestFormFields({
               onWheel={(e) => e.currentTarget.blur()}
               min="0"
               step="0.01"
-              className="w-full rounded-xl border-2 px-4 py-3 ps-12 text-sm [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
+              className="w-full rounded-xl border-2 px-4 py-3 ps-12 text-sm [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
               style={{
                 backgroundColor: cssVars.neutral.surface,
                 borderColor: cssVars.neutral.border,
@@ -167,7 +167,7 @@ export default function RequestFormFields({
               onWheel={(e) => e.currentTarget.blur()}
               min="0"
               step="0.01"
-              className="w-full rounded-xl border-2 px-4 py-3 ps-12 text-sm [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
+              className="w-full rounded-xl border-2 px-4 py-3 ps-12 text-sm [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
               style={{
                 backgroundColor: cssVars.neutral.surface,
                 borderColor: cssVars.neutral.border,
@@ -199,11 +199,9 @@ export default function RequestFormFields({
             onWheel={(e) => e.currentTarget.blur()}
             required
             min="1"
-            className="w-full rounded-xl border-2 px-4 py-3 text-sm [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
+            className="w-full rounded-xl border-2 px-4 py-3 text-sm [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
             style={{
               MozAppearance: 'textfield',
-            }}
-            style={{
               backgroundColor: cssVars.neutral.surface,
               borderColor: cssVars.neutral.border,
               color: cssVars.secondary.DEFAULT,

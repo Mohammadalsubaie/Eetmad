@@ -1,66 +1,17 @@
-name: Deploy to EC2
+name: Deploy to EC2 (Single Server)
 
 on:
   push:
-    branches:
-      - develop
-      - staging
-      - main
+    branches: [ staging, main ]
 
 jobs:
-  deploy-development:
-    if: github.ref == 'refs/heads/develop'
-    runs-on: ubuntu-latest
-    environment: development
-    steps:
-      - uses: actions/checkout@v4
-      - name: Deploy to Development
-        uses: appleboy/ssh-action@master
-        with:
-          host: ${{ secrets.DEV_EC2_HOST }}
-          username: ${{ secrets.DEV_EC2_USER }}
-          key: ${{ secrets.DEV_DEPLOY_KEY }}
-          port: ${{ secrets.DEV_EC2_PORT }}
-          script: |
-            cd eetmad/frontend/eetmad
-            git fetch origin
-            git reset --hard origin/develop
-            npm install
-            npm run build
-            pm2 restart eetmad || pm2 start npm --name "eetmad" -- start
-            pm2 save
-
   deploy-staging:
     if: github.ref == 'refs/heads/staging'
     runs-on: ubuntu-latest
     environment: staging
     steps:
       - uses: actions/checkout@v4
-      - name: Deploy to Staging
-        uses: appleboy/ssh-action@master
-        with:
-          host: ${{ secrets.STAGE_EC2_HOST }}
-          username: ${{ secrets.STAGE_EC2_USER }}
-          key: ${{ secrets.STAGE_DEPLOY_KEY }}
-          port: ${{ secrets.STAGE_EC2_PORT }}
-          script: |
-            cd eetmad/frontend/eetmad
-            git fetch origin
-            git reset --hard origin/staging
-            npm install
-            npm run build
-            pm2 restart eetmad-stage || pm2 start npm --name "eetmad-stage" -- start
-            pm2 save
-
-  deploy-production:
-    if: github.ref == 'refs/heads/main'
-    runs-on: ubuntu-latest
-    environment: 
-      name: production
-      url: https://eetmad.com
-    steps:
-      - uses: actions/checkout@v4
-      - name: Deploy to Production
+      - name: Deploy Staging
         uses: appleboy/ssh-action@master
         with:
           host: ${{ secrets.PROD_EC2_HOST }}
@@ -68,11 +19,32 @@ jobs:
           key: ${{ secrets.PROD_DEPLOY_KEY }}
           port: ${{ secrets.PROD_EC2_PORT }}
           script: |
-            cd eetmad/frontend/eetmad
-            git fetch origin
+            cd ~/Eetmad/frontend/eetmad
+            git fetch --all
+            git reset --hard origin/staging
+            npm ci
+            npm run build --if-present
+            pm2 restart eetmad-staging || pm2 start npm --name "eetmad-staging" -- start -- -p 3001
+            pm2 save
+
+  deploy-production:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    environment: production
+    steps:
+      - uses: actions/checkout@v4
+      - name: Deploy Production
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.PROD_EC2_HOST }}
+          username: ${{ secrets.PROD_EC2_USER }}
+          key: ${{ secrets.PROD_DEPLOY_KEY }}
+          port: ${{ secrets.PROD_EC2_PORT }}
+          script: |
+            cd ~/Eetmad/frontend/eetmad
+            git fetch --all
             git reset --hard origin/main
-            npm install
-            npm run build
-            pm2 delete eetmad 2>/dev/null || true
+            npm ci
+            npm run build --if-present
             pm2 restart eetmad-prod || pm2 start npm --name "eetmad-prod" -- start
             pm2 save

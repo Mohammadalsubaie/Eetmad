@@ -46,7 +46,6 @@ const FAQSection = createDynamicImport(() => import('@/components/features/home/
 export default function HomePage() {
   return (
     <main>
-      <HeroSection />
 
     </main>
   );

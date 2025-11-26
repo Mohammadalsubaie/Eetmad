@@ -1,8 +1,10 @@
-name: Deploy to EC2 (Single Server)
+name: Deploy to EC2 (Single Server – Production + Staging)
 
 on:
   push:
-    branches: [ staging, main ]
+    branches:
+      - staging
+      - main
 
 jobs:
   deploy-staging:
@@ -11,7 +13,19 @@ jobs:
     environment: staging
     steps:
       - uses: actions/checkout@v4
-      - name: Deploy Staging
+
+      - name: Install Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies & Build
+        run: |
+          npm ci
+          npm run build
+
+      - name: Deploy to Staging (port 3001)
         uses: appleboy/ssh-action@master
         with:
           host: ${{ secrets.PROD_EC2_HOST }}
@@ -20,11 +34,18 @@ jobs:
           port: ${{ secrets.PROD_EC2_PORT }}
           script: |
             cd ~/Eetmad/frontend/eetmad
+
+            # Pull latest code
             git fetch --all
             git reset --hard origin/staging
+
+            # Install + Build
             npm ci
-            npm run build --if-present
-            pm2 restart eetmad-staging || pm2 start npm --name "eetmad-staging" -- start -- -p 3001
+            npm run build
+
+            # Restart in real production mode (this is the key!)
+            pm2 delete eetmad-staging 2>/dev/null || true
+            pm2 start "npm run start" --name "eetmad-staging" -- -p 3001
             pm2 save
 
   deploy-production:
@@ -33,7 +54,19 @@ jobs:
     environment: production
     steps:
       - uses: actions/checkout@v4
-      - name: Deploy Production
+
+      - name: Install Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies & Build
+        run: |
+          npm ci
+          npm run build
+
+      - name: Deploy to Production (port 3000)
         uses: appleboy/ssh-action@master
         with:
           host: ${{ secrets.PROD_EC2_HOST }}
@@ -42,9 +75,13 @@ jobs:
           port: ${{ secrets.PROD_EC2_PORT }}
           script: |
             cd ~/Eetmad/frontend/eetmad
+
             git fetch --all
             git reset --hard origin/main
+
             npm ci
-            npm run build --if-present
-            pm2 restart eetmad-prod || pm2 start npm --name "eetmad-prod" -- start
+            npm run build
+
+            pm2 delete eetmad-prod 2>/dev/null || true
+            pm2 start "npm run start" --name "eetmad-prod"
             pm2 save

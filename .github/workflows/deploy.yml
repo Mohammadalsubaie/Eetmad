@@ -1,11 +1,8 @@
-name: Deploy to EC2 (Single Server – 3 Environments)
+name: Deploy to EC2 (Single Server)
 
 on:
   push:
-    branches:
-      - develop     # → Development (local only, optional)
-      - staging     # → Staging on port 3001
-      - main        # → Production on port 3000
+    branches: [ staging, main ]
 
 jobs:
   deploy-staging:
@@ -14,42 +11,40 @@ jobs:
     environment: staging
     steps:
       - uses: actions/checkout@v4
-      - name: Deploy to Staging (port 3001)
+      - name: Deploy Staging
         uses: appleboy/ssh-action@master
         with:
-          host: ${{ secrets.PROD_EC2_HOST }}        # ← SAME server
-          username: ubuntu
-          key: ${{ secrets.PROD_DEPLOY_KEY }}       # ← SAME key
-          port: 22
+          host: ${{ secrets.PROD_EC2_HOST }}
+          username: ${{ secrets.PROD_EC2_USER }}
+          key: ${{ secrets.PROD_DEPLOY_KEY }}
+          port: ${{ secrets.PROD_EC2_PORT }}
           script: |
             cd ~/Eetmad/frontend/eetmad
             git fetch --all
             git reset --hard origin/staging
-            npm ci --only=production
-            npm run build
+            npm ci
+            npm run build --if-present
             pm2 restart eetmad-staging || pm2 start npm --name "eetmad-staging" -- start -- -p 3001
             pm2 save
 
   deploy-production:
     if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
-    environment:
-      name: production
-      url: https://eetmad.com
+    environment: production
     steps:
       - uses: actions/checkout@v4
-      - name: Deploy to Production (port 3000)
+      - name: Deploy Production
         uses: appleboy/ssh-action@master
         with:
-          host: ${{ secrets.PROD_EC2_HOST }}        # ← SAME server
-          username: ubuntu
-          key: ${{ secrets.PROD_DEPLOY_KEY }}       # ← SAME key
-          port: 22
+          host: ${{ secrets.PROD_EC2_HOST }}
+          username: ${{ secrets.PROD_EC2_USER }}
+          key: ${{ secrets.PROD_DEPLOY_KEY }}
+          port: ${{ secrets.PROD_EC2_PORT }}
           script: |
             cd ~/Eetmad/frontend/eetmad
             git fetch --all
             git reset --hard origin/main
-            npm ci --only=production
-            npm run build
+            npm ci
+            npm run build --if-present
             pm2 restart eetmad-prod || pm2 start npm --name "eetmad-prod" -- start
             pm2 save

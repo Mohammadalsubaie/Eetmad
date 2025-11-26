@@ -1,31 +1,28 @@
-name: Deploy to EC2 (Single Server – Production + Staging)
+name: Deploy to EC2 (Single Server)
 
 on:
   push:
-    branches:
-      - staging
-      - main
+    branches: [ staging, main ]
 
 jobs:
-  deploy-staging:
-    if: github.ref == 'refs/heads/staging'
+  deploy:
     runs-on: ubuntu-latest
-    environment: staging
+    environment: ${{ github.ref_name == 'main' && 'production' || 'staging' }}
     steps:
       - uses: actions/checkout@v4
 
-      - name: Install Node.js
+      - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '20'
-          cache: 'npm'
+          node-version: 20
+          cache: npm
 
-      - name: Install dependencies & Build
+      - name: Install + Build
         run: |
           npm ci
           npm run build
 
-      - name: Deploy to Staging (port 3001)
+      - name: Deploy
         uses: appleboy/ssh-action@master
         with:
           host: ${{ secrets.PROD_EC2_HOST }}
@@ -34,54 +31,17 @@ jobs:
           port: ${{ secrets.PROD_EC2_PORT }}
           script: |
             cd ~/Eetmad/frontend/eetmad
-
-            # Pull latest code
             git fetch --all
-            git reset --hard origin/staging
-
-            # Install + Build
-            npm ci
-            npm run build
-
-            # Restart in real production mode (this is the key!)
-            pm2 delete eetmad-staging 2>/dev/null || true
-            pm2 start "npm run start" --name "eetmad-staging" -- -p 3001
-            pm2 save
-
-  deploy-production:
-    if: github.ref == 'refs/heads/main'
-    runs-on: ubuntu-latest
-    environment: production
-    steps:
-      - uses: actions/checkout@v4
-
-      - name: Install Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-          cache: 'npm'
-
-      - name: Install dependencies & Build
-        run: |
-          npm ci
-          npm run build
-
-      - name: Deploy to Production (port 3000)
-        uses: appleboy/ssh-action@master
-        with:
-          host: ${{ secrets.PROD_EC2_HOST }}
-          username: ${{ secrets.PROD_EC2_USER }}
-          key: ${{ secrets.PROD_DEPLOY_KEY }}
-          port: ${{ secrets.PROD_EC2_PORT }}
-          script: |
-            cd ~/Eetmad/frontend/eetmad
-
-            git fetch --all
-            git reset --hard origin/main
+            git reset --hard origin/${{ github.ref_name }}
 
             npm ci
             npm run build
 
-            pm2 delete eetmad-prod 2>/dev/null || true
-            pm2 start "npm run start" --name "eetmad-prod"
+            if [ "${{ github.ref_name }}" = "main" ]; then
+              pm2 delete eetmad-prod 2>/dev/null || true
+              pm2 start "npm run start" --name "eetmad-prod"
+            else
+              pm2 delete eetmad-staging 2>/dev/null || true
+              pm2 start "npm run start" --name "eetmad-staging" -- -p 3001
+            fi
             pm2 save

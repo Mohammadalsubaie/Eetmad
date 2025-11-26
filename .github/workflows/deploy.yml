@@ -23,10 +23,12 @@ jobs:
           port: ${{ secrets.DEV_EC2_PORT }}
           script: |
             cd eetmad/frontend/eetmad
-            git pull origin develop
+            git fetch origin
+            git reset --hard origin/develop
             npm install
             npm run build
             pm2 restart eetmad || pm2 start npm --name "eetmad" -- start
+            pm2 save
 
   deploy-staging:
     if: github.ref == 'refs/heads/staging'
@@ -43,10 +45,12 @@ jobs:
           port: ${{ secrets.STAGE_EC2_PORT }}
           script: |
             cd eetmad/frontend/eetmad
-            git pull origin staging
+            git fetch origin
+            git reset --hard origin/staging
             npm install
             npm run build
             pm2 restart eetmad-stage || pm2 start npm --name "eetmad-stage" -- start
+            pm2 save
 
   deploy-production:
     if: github.ref == 'refs/heads/main'
@@ -65,8 +69,10 @@ jobs:
           port: ${{ secrets.PROD_EC2_PORT }}
           script: |
             cd eetmad/frontend/eetmad
-            git pull origin main
+            git fetch origin
+            git reset --hard origin/main
             npm install
             npm run build
+            pm2 delete eetmad 2>/dev/null || true
             pm2 restart eetmad-prod || pm2 start npm --name "eetmad-prod" -- start
             pm2 save

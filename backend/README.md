@@ -1,36 +1,15 @@
-# Backend
+# Eetmad Backend (Go + Gin + GORM + PostgreSQL)
 
-Go backend server for the Eetmad application.
+منصة ربط العملاء بالموردين - الباك إند مكتوب بـ Go
 
-## Development
+## المميزات الحالية
+- تسجيل مستخدم (Register) شغال 100%
+- اتصال بقاعدة بيانات PostgreSQL حقيقية
+- هيكلة نظيفة وجاهزة لإضافة باقي الـ APIs
 
-### Prerequisites
-- Go 1.21 or higher
-- Docker and Docker Compose (for containerized development)
-
-### Local Development
-
-Run the server:
+## كيف تشغّل المشروع
 ```bash
+cp .env.example .env
+# عدّل الـ DATABASE_URL في .env
 go run main.go
-```
-
-The server will start on port 3000 (or the port specified in the `PORT` environment variable).
-
-### Docker Development
-
-Build and run with Docker Compose:
-```bash
-docker-compose up backend
-```
-
-The backend service uses Air for hot reloading during development.
-
-## API Endpoints
-
-### Health Check
-- `GET /health` - Returns server health status
-
-## Environment Variables
-
-- `PORT` - Server port (default: 3000)
+API جاهز على: http://localhost:8080

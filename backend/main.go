@@ -1,38 +1,27 @@
 package main
 
 import (
-	"encoding/json"
 	"log"
-	"net/http"
 	"os"
+
+	"github.com/eetmad/backend/database"
+	"github.com/eetmad/backend/models"
+	"github.com/eetmad/backend/routes"
+	"github.com/gin-gonic/gin"
+	"github.com/joho/godotenv"
 )
 
-type HealthResponse struct {
-	Status string `json:"status"`
-}
-
-func healthHandler(w http.ResponseWriter, r *http.Request) {
-	if r.Method != http.MethodGet {
-		http.Error(w, "Method not allowed", http.StatusMethodNotAllowed)
-		return
-	}
-
-	response := HealthResponse{Status: "ok"}
-	w.Header().Set("Content-Type", "application/json")
-	json.NewEncoder(w).Encode(response)
-}
-
 func main() {
+	godotenv.Load()
+	database.Connect()
+	database.DB.AutoMigrate(&models.User{})
+
+	r := gin.Default()
+	routes.RegisterRoutes(r)   // ← الاسم الصحيح الآن
+
 	port := os.Getenv("PORT")
-	if port == "" {
-		port = "3000"
-	}
+	if port == "" { port = "8080" }
 
-	http.HandleFunc("/health", healthHandler)
-
-	log.Printf("Backend listening on port %s", port)
-	if err := http.ListenAndServe(":"+port, nil); err != nil {
-		log.Fatal(err)
-	}
+	log.Printf("API شغال 100% على http://localhost:%s", port)
+	log.Fatal(r.Run(":" + port))
 }
-

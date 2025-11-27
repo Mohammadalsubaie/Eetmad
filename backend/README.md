@@ -1,15 +1,13 @@
-# Eetmad Backend (Go + Gin + GORM + PostgreSQL)
+# Backend (Go + Gin + GORM)
 
-منصة ربط العملاء بالموردين - الباك إند مكتوب بـ Go
+الباك إند الرسمي لمنصة إيتمد  
+مكتوب بـ Go، متصل بقاعدة بيانات PostgreSQL حقيقية
 
-## المميزات الحالية
-- تسجيل مستخدم (Register) شغال 100%
-- اتصال بقاعدة بيانات PostgreSQL حقيقية
-- هيكلة نظيفة وجاهزة لإضافة باقي الـ APIs
+## حاليًا شغال:
+- POST /api/v1/auth/register
 
-## كيف تشغّل المشروع
+## تشغيل
 ```bash
 cp .env.example .env
-# عدّل الـ DATABASE_URL في .env
+# عدّل الـ DATABASE_URL
 go run main.go
-API جاهز على: http://localhost:8080

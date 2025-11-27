@@ -1,14 +1,6 @@
-# Environment variables
 .env
-
-# Go
+.env.example
 go.sum
 *.exe
-*.exe~
-*.dll
-*.so
-*.dylib
-
-# Binaries
 bin/
 tmp/

@@ -1,3 +1,5 @@
+'use client';
+
 // src/components/features/home/StatsSection.tsx
 
 import PageContainer from '@/components/shared/layouts/PageContainer';
@@ -51,7 +53,7 @@ const StatsSection: React.FC = () => {
           {stats.map((stat, index) => (
             <div
               key={index}
-              className="border-border bg-card rounded-xl border-2 p-6 shadow-md transition-all duration-250 hover:shadow-xl"
+              className="duration-250 rounded-xl border-2 border-border bg-card p-6 shadow-md transition-all hover:shadow-xl"
             >
               <div className="mb-4 flex items-start justify-between">
                 <div
@@ -60,14 +62,14 @@ const StatsSection: React.FC = () => {
                   <stat.icon className="h-7 w-7" />
                 </div>
                 {stat.trend && (
-                  <div className="text-success bg-success/10 flex items-center gap-1 rounded-full px-3 py-1">
+                  <div className="flex items-center gap-1 rounded-full bg-success/10 px-3 py-1 text-success">
                     <TrendingUp className="h-4 w-4" />
                     <span className="text-sm font-bold">+{stat.trend.value}%</span>
                   </div>
                 )}
               </div>
-              <div className="text-muted-foreground mb-2 text-sm font-medium">{stat.label}</div>
-              <div className="text-foreground text-3xl font-bold">{stat.value}</div>
+              <div className="mb-2 text-sm font-medium text-muted-foreground">{stat.label}</div>
+              <div className="text-3xl font-bold text-foreground">{stat.value}</div>
             </div>
           ))}
         </div>

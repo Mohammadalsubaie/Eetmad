@@ -158,3 +158,29 @@ export interface BankAccount {
   isDefault: boolean;
   verified?: boolean;
 }
+
+// Input Types
+export interface CreatePaymentInput {
+  projectId: string;
+  milestoneId?: string | null;
+  amount: number;
+  paymentType: PaymentType;
+  paymentMethod: PaymentMethod;
+  notes?: string | null;
+}
+
+export interface InitiatePaymentInput {
+  projectId: string;
+  milestoneId?: string | null;
+  amount: number;
+  paymentType: PaymentType;
+  paymentMethod: PaymentMethod;
+  gateway?: string;
+  notes?: string | null;
+}
+
+export interface RefundRequestInput {
+  amount?: number; // Optional for full refund
+  reason: string;
+  refundMethod?: RefundMethod;
+}

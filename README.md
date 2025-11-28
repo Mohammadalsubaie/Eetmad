@@ -1,5 +1,5 @@
 ## GitHub setup and issue import
-
+   .
 Follow these steps to push this project to GitHub and convert `user-stories.md` directly into GitHub Issues.
 
 ### 1) Initialize git and create a GitHub repo
@@ -15,7 +15,7 @@ git commit -m "chore: initial commit with user stories and tools"
 # Create a new repo (set --public or --private)
 gh repo create fisal --source . --public --push --confirm
 ```
-
+.
 If you can't use `gh`, create a repo manually on GitHub, then:
 
 ```bash

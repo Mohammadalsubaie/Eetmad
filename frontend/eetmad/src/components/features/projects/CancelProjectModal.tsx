@@ -1,4 +1,4 @@
-export default function Cancelprojectmodal() {
+export default function CancelProjectModal() {
   // TODO: Implement CancelProjectModal component
   return null;
 }

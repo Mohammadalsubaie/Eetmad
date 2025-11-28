@@ -92,3 +92,14 @@ export interface UpdateUserProfileData {
     github?: string;
   };
 }
+
+export interface UserStatistics {
+  totalProjects: number;
+  completedProjects: number;
+  activeProjects: number;
+  cancelledProjects: number;
+  totalSpent?: number; // For clients
+  totalEarned?: number; // For suppliers
+  averageRating: number;
+  totalReviews: number;
+}

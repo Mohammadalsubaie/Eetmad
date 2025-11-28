@@ -1,4 +1,4 @@
-export default function Searchwithfilters() {
+export default function SearchWithFilters() {
   // TODO: Implement SearchWithFilters component
   return null;
 }

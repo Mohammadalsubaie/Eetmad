@@ -1,4 +1,4 @@
-export default function Pagelayout() {
+export default function PageLayout() {
   // TODO: Implement PageLayout component
   return null;
 }

@@ -2,10 +2,9 @@
 
 import PageContainer from '@/components/shared/layouts/PageContainer';
 import Section from '@/components/shared/layouts/Section';
-import { Avatar } from '@/components/ui/avatar';
+
 import { Quote, Star } from 'lucide-react';
 import { useTranslations } from 'next-intl';
-import React from 'react';
 
 interface Testimonial {
   id: number;
@@ -54,39 +53,36 @@ const TestimonialsSection: React.FC = () => {
     <Section background="gray" padding="xl">
       <PageContainer>
         <div className="mb-16 text-center">
-          <h2 className="text-foreground mb-4 text-3xl font-bold lg:text-4xl">{t('title')}</h2>
-          <p className="text-muted-foreground mx-auto max-w-2xl text-lg">{t('description')}</p>
+          <h2 className="mb-4 text-3xl font-bold text-foreground lg:text-4xl">{t('title')}</h2>
+          <p className="mx-auto max-w-2xl text-lg text-muted-foreground">{t('description')}</p>
         </div>
 
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {testimonials.map((testimonial) => (
             <div
               key={testimonial.id}
-              className="group border-border bg-card hover:border-primary/20 rounded-xl border p-6 shadow-md transition-all hover:shadow-lg"
+              className="group rounded-xl border border-border bg-card p-6 shadow-md transition-all hover:border-primary/20 hover:shadow-lg"
             >
               {/* Quote Icon */}
               <div className="mb-4 flex justify-between">
-                <Quote className="text-primary/20 h-8 w-8" />
+                <Quote className="h-8 w-8 text-primary/20" />
                 <div className="flex gap-1">
                   {Array.from({ length: testimonial.rating }).map((_, i) => (
-                    <Star key={i} className="fill-warning text-warning h-5 w-5" />
+                    <Star key={i} className="h-5 w-5 fill-warning text-warning" />
                   ))}
                 </div>
               </div>
 
               {/* Content */}
-              <p className="text-foreground/90 mb-6 leading-relaxed">
+              <p className="mb-6 leading-relaxed text-foreground/90">
                 &ldquo;{t(testimonial.contentKey)}&rdquo;
               </p>
 
               {/* Author */}
-              <div className="border-border flex items-center gap-3 border-t pt-4">
-                <Avatar className="bg-primary/10 text-primary h-12 w-12">
-                  {testimonial.avatar}
-                </Avatar>
+              <div className="flex items-center gap-3 border-t border-border pt-4">
                 <div>
-                  <div className="text-foreground font-semibold">{t(testimonial.nameKey)}</div>
-                  <div className="text-muted-foreground text-sm">
+                  <div className="font-semibold text-foreground">{t(testimonial.nameKey)}</div>
+                  <div className="text-sm text-muted-foreground">
                     {t(testimonial.roleKey)} - {t(testimonial.companyKey)}
                   </div>
                 </div>

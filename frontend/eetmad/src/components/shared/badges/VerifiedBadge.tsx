@@ -1,4 +1,4 @@
-export default function Verifiedbadge() {
+export default function VerifiedBadge() {
   // TODO: Implement VerifiedBadge component
   return null;
 }

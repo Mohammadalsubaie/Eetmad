@@ -4,8 +4,8 @@ export interface AuditLog {
   action: string;
   entityType: string;
   entityId: string | null;
-  changes: Record<string, unknown>; // JSON
-  metadata: Record<string, unknown>; // JSON
+  changes: Record<string, unknown>;
+  metadata: Record<string, unknown>;
   ipAddress: string;
   userAgent: string;
   createdAt: string;

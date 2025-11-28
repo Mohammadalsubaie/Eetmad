@@ -1,4 +1,4 @@
-export default function Verificationqueue() {
+export default function VerificationQueue() {
   // TODO: Implement VerificationQueue component
   return null;
 }

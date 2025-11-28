@@ -1,49 +1,115 @@
 {
+  "common": {
+    "home": "Home",
+    "components": "Components",
+    "loading": "Loading...",
+    "noData": "No data",
+    "search": "Search..."
+  },
   "nav": {
     "home": "Home",
     "about": "About",
-    "requests": "Requests",
+    "categories": "Categories",
     "suppliers": "Suppliers",
-    "contact": "Contact"
+    "contact": "Contact",
+    "requests": "Requests",
+    "toggleMenu": "Toggle menu",
+    "projects": "Projects",
+    "organizations": "Organizations",
+    "resources": "Resources",
+    "support": "Support",
+    "myAccount": "My Account",
+    "notifications": "Notifications",
+    "menu": "Menu",
+    "brandName": "Opportunities Platform",
+    "brandTagline": "Government Bidding Portal",
+    "mainNavigation": "Main Navigation",
+    "openMenu": "Open Menu",
+    "closeMenu": "Close Menu",
+    "mobileNavigation": "Mobile Navigation"
+  },
+  "footer": {
+    "brandName": "Opportunities Platform",
+    "brandDescription": "A trusted platform connecting talents with government opportunities with transparency and high professionalism",
+    "quickLinks": {
+      "title": "Quick Links",
+      "projects": "Projects",
+      "organizations": "Organizations",
+      "resources": "Resources",
+      "pricing": "Pricing"
+    },
+    "support": {
+      "title": "Support",
+      "help": "Help",
+      "faq": "FAQ",
+      "contact": "Contact",
+      "terms": "Terms"
+    },
+    "info": {
+      "title": "Information",
+      "about": "About Us",
+      "privacy": "Privacy",
+      "security": "Security",
+      "careers": "Careers"
+    },
+    "copyright": "© 2025 Opportunities Platform. All rights reserved",
+    "termsAndConditions": "Terms & Conditions",
+    "privacyPolicy": "Privacy Policy"
+  },
+  "faq": {
+    "pageTitle": "Frequently Asked Questions",
+    "fetchError": "Failed to load FAQs. Please try again later.",
+    "loading": "Loading FAQs...",
+    "noFaqsFound": "No FAQs found at the moment.",
+    "questions": {
+      "timelines": "How long does it take to receive offers?",
+      "offers": "How many offers can I expect?",
+      "payments": "How does the payment process work?",
+      "quality": "How do you ensure supplier quality?"
+    },
+    "answers": {
+      "timelines": "Offers typically start arriving within 24 hours of posting the request. In most cases, you receive several offers within two days. The duration depends on the type and complexity of the request.",
+      "offers": "The number of offers varies depending on the type of request and geographic region. On average, requests receive 5-10 offers from different suppliers. Clear and detailed requests attract more offers.",
+      "payments": "We do not directly intervene in the payment process. Financial agreements are made directly between the parties. We recommend using secure and documented payment methods. We provide an optional contract template to document the agreement.",
+      "quality": "We verify all suppliers before accepting them on the platform. We require commercial registration and official documents. We have a comprehensive user rating system. We continuously monitor supplier performance and take action against violators."
+    }
   },
   "home": {
     "hero": {
-      "badge": "Leading Platform for Specifications",
-      "title": "Request Your Product Specifications",
-      "titleHighlight": "and Get the Best Offers",
-      "subtitle": "A platform connecting specification seekers with professional suppliers. Get competitive quotes from trusted suppliers in minutes",
-      "searchPlaceholder": "Search for specifications, products, or suppliers...",
-      "searchButton": "Search",
-      "requestButton": "Request Specifications Now",
-      "browseSuppliersButton": "Browse Suppliers",
-      "illustrationText": "Simple and Easy Interface",
+      "badge": "312 Opportunities Available Now",
+      "title": "Explore",
+      "titleHighlight": "Exceptional Opportunities",
+      "titleEnd": "in the Government Sector",
+      "subtitle": "A trusted platform connecting talents with government opportunities. Complete transparency, smooth processes, and shared success",
+      "exploreButton": "Explore Opportunities",
+      "videoButton": "Watch Video",
       "stats": {
-        "requests": "Specification Requests",
-        "suppliers": "Verified Suppliers",
-        "satisfaction": "Customer Satisfaction"
-      },
-      "floatingCards": {
-        "newRequest": "New Request",
-        "quote": "Quote"
+        "activeProjects": {
+          "label": "Active Projects",
+          "value": "312",
+          "change": "+24%"
+        },
+        "totalValue": {
+          "label": "Total Value",
+          "value": "186M",
+          "change": "+18%"
+        },
+        "government": {
+          "label": "Government Entities",
+          "value": "84",
+          "change": "+12%"
+        },
+        "successRate": {
+          "label": "Success Rate",
+          "value": "94%",
+          "change": "+5%"
+        }
       }
     },
     "cta": {
-      "title": "Get Started Today",
-      "description": "Join thousands of businesses finding the best suppliers",
-      "primary": "Sign Up Now",
-      "secondary": "Learn More",
-      "benefits": {
-        "free": "Free to use",
-        "network": "Wide supplier network",
-        "fast": "Fast responses",
-        "support": "24/7 support"
-      },
-      "stats": {
-        "requests": "Active Requests",
-        "suppliers": "Verified Suppliers",
-        "satisfaction": "Satisfaction Rate",
-        "support": "Support"
-      }
+      "title": "Start Today and Launch Your First Competition",
+      "primary": "I Want to Post a Request",
+      "secondary": "I Want to Submit Offers"
     },
     "stats": {
       "title": "Our Stats",
@@ -190,5 +256,2684 @@
         }
       }
     }
+  },
+  "biddingPlatform": {
+    "pages": {
+      "about": {
+        "title": "About Us"
+      }
+    },
+    "about": {
+      "title": "About Our Platform",
+      "description": "We are dedicated to connecting talents with government opportunities, fostering transparency, efficiency, and shared success.",
+      "missionTitle": "Our Mission",
+      "missionDescription": "To empower individuals and businesses by providing a seamless and transparent platform for government bidding, ensuring fair access and optimal outcomes for all participants.",
+      "visionTitle": "Our Vision",
+      "visionDescription": "To be the leading platform for government procurement, recognized for our innovation, integrity, and commitment to community development and economic growth.",
+      "ourValuesTitle": "Our Core Values",
+      "value1": "Transparency",
+      "value2": "Integrity",
+      "value3": "Innovation"
+    },
+    "sections": {
+      "platformOverview": {
+        "eyebrow": "Overview",
+        "title": "Smart Platform for Bidding Management",
+        "subtitle": "Discover how we make the bidding process easier and more efficient",
+        "mainCard": {
+          "title": "How Does It Work?",
+          "description": "Our platform is designed to simplify the bidding process from start to finish. We provide you with the tools and capabilities you need to get the best offers.",
+          "highlights": {
+            "postRequests": "Post your requests easily and clearly",
+            "receiveOffers": "Receive competitive offers from certified suppliers",
+            "manageCompetition": "Compare offers and choose the best",
+            "smartContract": "Smart management of contracts and agreements"
+          }
+        },
+        "features": {
+          "modern": {
+            "title": "Modern Technology",
+            "description": "Modern and easy-to-use interface with the latest technologies"
+          },
+          "secure": {
+            "title": "Safe & Protected",
+            "description": "Highest security standards to protect your data and transactions"
+          },
+          "smart": {
+            "title": "Smart & Efficient",
+            "description": "Smart system to match requests with suitable suppliers"
+          },
+          "trusted": {
+            "title": "Reliable & Certified",
+            "description": "Network of certified and trusted suppliers"
+          }
+        }
+      },
+      "audience": {
+        "eyebrow": "Who Uses the Platform?",
+        "title": "For Everyone Seeking Professional Solutions",
+        "subtitle": "Whether you're an individual or a business, we provide what you need",
+        "segments": {
+          "individuals": {
+            "tagline": "For Individuals",
+            "title": "Personal Project Owners",
+            "description": "Planning a home project or special event? Get offers from certified professionals",
+            "items": {
+              "furniture": "Custom home furniture and decor",
+              "design": "Interior design and coordination",
+              "events": "Event and wedding planning",
+              "maintenance": "Home maintenance and renovations",
+              "customNeeds": "Special needs and individual projects"
+            }
+          },
+          "businesses": {
+            "tagline": "For Businesses",
+            "title": "Companies & Enterprises",
+            "description": "We help your company find the best suppliers for all your operational needs",
+            "items": {
+              "tech": "Technology and IT solutions",
+              "supply": "Office supplies and equipment",
+              "office": "Office setup and furnishing",
+              "eventManagement": "Corporate event management",
+              "retainer": "Long-term supply contracts"
+            }
+          }
+        }
+      },
+      "exploreCategories": {
+        "eyebrow": "Most Requested Categories",
+        "title": "Explore Categories",
+        "subtitle": "Browse the most popular categories and find what you need",
+        "insight": {
+          "title": "Active Requests",
+          "value": "250+",
+          "description": "New requests daily"
+        },
+        "items": {
+          "techSolutions": {
+            "title": "Tech Solutions",
+            "description": "Programming, web development, apps, and integrated tech solutions",
+            "stat": "350+ active requests"
+          },
+          "creative": {
+            "title": "Creative Services",
+            "description": "Graphic design, branding, digital marketing and content",
+            "stat": "280+ active requests"
+          },
+          "operations": {
+            "title": "Operational Services",
+            "description": "Supplies, equipment, maintenance and logistics services",
+            "stat": "420+ active requests"
+          },
+          "events": {
+            "title": "Events & Occasions",
+            "description": "Conferences, exhibitions, parties and special occasions",
+            "stat": "190+ active requests"
+          }
+        }
+      },
+      "projectBenefits": {
+        "eyebrow": "Why Choose Us?",
+        "title": "Platform Benefits",
+        "subtitle": "Discover the features that make us the best choice",
+        "items": {
+          "transparency": {
+            "title": "Full Transparency",
+            "description": "All offers are documented and visible, with comprehensive supplier rating system"
+          },
+          "matching": {
+            "title": "Smart Matching",
+            "description": "Smart system connects your request with the most suitable suppliers by specialty and experience"
+          },
+          "quality": {
+            "title": "Quality Guaranteed",
+            "description": "All suppliers are certified and rated by previous clients"
+          },
+          "support": {
+            "title": "Continuous Support",
+            "description": "Professional support team available 24/7 to help you"
+          }
+        }
+      },
+      "transparency": {
+        "eyebrow": "Transparency & Trust",
+        "title": "Trusted and Secure Platform",
+        "subtitle": "We ensure a safe and transparent experience in all your transactions",
+        "mainCard": {
+          "title": "Complete Transparency at Every Step",
+          "description": "We are committed to providing a safe and transparent environment for all users. Our system is designed to ensure trust and credibility in every transaction.",
+          "points": {
+            "point1": "All offers are documented and secured",
+            "point2": "Comprehensive supplier rating system",
+            "point3": "Complete protection of data and information",
+            "point4": "24/7 support team available"
+          }
+        },
+        "features": {
+          "ratings": {
+            "title": "Rating System",
+            "description": "Real reviews from users help you choose the best supplier"
+          },
+          "management": {
+            "title": "Contract Management",
+            "description": "Complete system for managing contracts and agreements securely"
+          },
+          "documentation": {
+            "title": "Full Documentation",
+            "description": "All transactions are documented and stored securely"
+          },
+          "verification": {
+            "title": "Supplier Verification",
+            "description": "All suppliers are verified and their credibility is confirmed"
+          }
+        }
+      },
+      "successStories": {
+        "eyebrow": "Success Stories",
+        "title": "Clients Who Succeeded With Us",
+        "subtitle": "Discover how our platform helped businesses find the best suppliers",
+        "stories": {
+          "smallBusiness": {
+            "title": "Small Business Gets 12 Offers",
+            "description": "A tech startup was able to get 12 competitive offers to equip their offices",
+            "statLabel": "Offers"
+          },
+          "individual": {
+            "title": "Individual Saves 30% on Costs",
+            "description": "An individual project owner saved more than 30% of expected costs thanks to competition between suppliers",
+            "statLabel": "Offer",
+            "statLabelPlural": "Offers"
+          },
+          "enterprise": {
+            "title": "Large Enterprise Finds Reliable Supplier",
+            "description": "A large enterprise contracted with a certified supplier to supply equipment worth over one million riyals",
+            "statLabel": "Offers"
+          }
+        },
+        "withinHours": "Within {hours} hours",
+        "totalProjects": "Successful Projects",
+        "satisfactionRate": "Satisfaction Rate",
+        "avgResponseTime": "Average Response Hours"
+      },
+      "gettingStarted": {
+        "eyebrow": "Get Started Now",
+        "title": "How to Start With Our Platform",
+        "subtitle": "Simple steps to start getting the best offers",
+        "cards": {
+          "owners": {
+            "tagline": "For Specification Seekers",
+            "title": "Project Owners",
+            "description": "Looking for reliable suppliers? Start by posting your request now and get competitive offers from certified suppliers",
+            "badge": "Start Free",
+            "steps": {
+              "step1": {
+                "order": "1",
+                "title": "Create New Account",
+                "description": "Create your account for free in minutes"
+              },
+              "step2": {
+                "order": "2",
+                "title": "Post Specification Request",
+                "description": "Write details of what you need clearly"
+              },
+              "step3": {
+                "order": "3",
+                "title": "Receive Offers",
+                "description": "Get offers from certified suppliers"
+              },
+              "step4": {
+                "order": "4",
+                "title": "Choose Best Offer",
+                "description": "Compare offers and choose the most suitable"
+              }
+            }
+          },
+          "providers": {
+            "tagline": "For Suppliers",
+            "title": "Service Providers",
+            "description": "Are you a professional supplier? Join our network of certified suppliers and get new requests daily",
+            "badge": "Join Now",
+            "steps": {
+              "step1": {
+                "order": "1",
+                "title": "Register as Supplier",
+                "description": "Submit your data and documents for verification"
+              },
+              "step2": {
+                "order": "2",
+                "title": "Complete Your Profile",
+                "description": "Add information about your services and products"
+              },
+              "step3": {
+                "order": "3",
+                "title": "Browse Requests",
+                "description": "Search for requests suitable for your services"
+              },
+              "step4": {
+                "order": "4",
+                "title": "Submit Your Offers",
+                "description": "Send competitive offers for suitable requests"
+              }
+            }
+          }
+        },
+        "pages": {
+          "howItWorks": {
+            "title": "Title"
+          }
+        }
+      }
+    }
+  },
+  "templates": {
+    "template1": {
+      "title": "Template 1",
+      "description": "This is a placeholder template. You can add your own templates here."
+    }
+  },
+  "auth": {
+    "emailPlaceholder": "Enter your email address",
+    "common": {
+      "email": "Email Address",
+      "password": "Password",
+      "confirmPassword": "Confirm Password",
+      "rememberMe": "Remember me",
+      "forgotPassword": "Forgot password?",
+      "orContinueWith": "Or continue with",
+      "alreadyHaveAccount": "Already have an account?",
+      "dontHaveAccount": "Don't have an account?",
+      "backToLogin": "Back to Login",
+      "continue": "Continue",
+      "back": "Back",
+      "requiredField": "This field is required",
+      "invalidEmail": "Please enter a valid email address",
+      "passwordTooShort": "Password must be at least 8 characters",
+      "passwordsNotMatch": "Passwords do not match",
+      "agreeTermsError": "Please agree to the terms and conditions",
+      "passwordStrength": {
+        "label": "Password Strength",
+        "weak": "Weak",
+        "medium": "Medium",
+        "strong": "Strong"
+      },
+      "didntReceiveCode": "Didn't receive the code?",
+      "securityTip": "Choose a strong password with at least 8 characters, including uppercase, lowercase, numbers, and symbols.",
+      "successMessage": "Your password has been reset successfully. You can now sign in with your new password.",
+      "redirecting": "Redirecting to login...",
+      "emailVerifiedMessage": "Your email has been verified successfully. You can now sign in to your account."
+    },
+    "login": {
+      "title": "Welcome Back",
+      "subtitle": "Sign in to your account to continue",
+      "badge": "Secure Login",
+      "submitButton": "Sign In",
+      "signUpLink": "Sign Up",
+      "success": "Login successful! Redirecting...",
+      "error": "Invalid email or password"
+    },
+    "register": {
+      "title": "Create Your Account",
+      "subtitle": "Join our platform and start your journey",
+      "badge": "Get Started Free",
+      "selectUserType": "Please select account type",
+      "fullName": "Full Name",
+      "phoneNumber": "Phone Number",
+      "companyName": "Company Name",
+      "commercialRegistration": "Commercial Registration",
+      "submitButton": "Create Account",
+      "signInLink": "Sign In",
+      "termsAgreement": "I agree to the <terms>Terms of Service</terms> and <privacy>Privacy Policy</privacy>",
+      "termsOfService": "Terms of Service",
+      "privacyPolicy": "Privacy Policy",
+      "success": "Account created successfully! Please verify your email.",
+      "error": "Registration failed. Please try again.",
+      "userType": {
+        "title": "Choose Account Type",
+        "subtitle": "Select the type that best describes you",
+        "client": {
+          "title": "Client",
+          "description": "Post requests and receive offers from suppliers"
+        },
+        "supplier": {
+          "title": "Supplier",
+          "description": "Browse requests and submit your offers"
+        }
+      }
+    },
+    "forgotPassword": {
+      "title": "Reset Your Password",
+      "subtitle": "Enter your email address and we'll send you a reset link",
+      "badge": "Password Recovery",
+      "submitButton": "Send Reset Link",
+      "success": "Reset link sent! Check your email.",
+      "error": "Failed to send reset link. Please try again.",
+      "checkEmail": {
+        "title": "Check Your Email",
+        "message": "We've sent a password reset link to {email}",
+        "note": "Didn't receive the email? Check your spam folder or",
+        "resendLink": "resend"
+      }
+    },
+    "resetPassword": {
+      "title": "Set New Password",
+      "subtitle": "Enter your new password below",
+      "badge": "Reset Password",
+      "newPassword": "New Password",
+      "submitButton": "Reset Password",
+      "success": "Password reset successfully! Redirecting to login...",
+      "error": "Failed to reset password. Please try again.",
+      "invalidToken": "Invalid or expired reset link"
+    },
+    "verifyEmail": {
+      "title": "Verify Your Email",
+      "subtitle": "We've sent a verification code to your email",
+      "badge": "Email Verification",
+      "verificationCode": "Verification Code",
+      "submitButton": "Verify Email",
+      "resendButton": "Resend Code",
+      "success": "Email verified successfully!",
+      "error": "Invalid verification code",
+      "invalidToken": "Verification link is invalid or expired",
+      "codeSent": "Verification code sent to {email}",
+      "resendSuccess": "New code sent successfully!"
+    },
+    "verifyPhone": {
+      "title": "Verify Your Phone",
+      "subtitle": "We've sent a verification code to your phone number",
+      "badge": "Phone Verification",
+      "verificationCode": "Verification Code",
+      "submitButton": "Verify Phone",
+      "resendButton": "Resend Code",
+      "resendIn": "Resend in",
+      "success": "Phone verified successfully!",
+      "error": "Invalid verification code",
+      "codeSent": "Verification code sent to {phone}",
+      "resendSuccess": "New code sent successfully!",
+      "successMessage": "Your phone number has been verified successfully. You can now sign in to your account."
+    },
+    "twoFactor": {
+      "title": "Two-Factor Authentication",
+      "subtitle": "Secure your account with 2FA",
+      "badge": "Security",
+      "enable": "Enable 2FA",
+      "disable": "Disable 2FA",
+      "setupInstructions": {
+        "step1": "Scan the QR code with your authenticator app",
+        "step2": "Enter the 6-digit code from your app",
+        "step3": "Save your backup codes in a safe place"
+      },
+      "backupCodes": "Backup Codes",
+      "downloadCodes": "Download Codes",
+      "verificationCode": "Verification Code",
+      "submitButton": "Verify & Enable",
+      "qrCodeAlt": "QR code for two-factor authentication setup"
+    },
+    "sessions": {
+      "title": "Active Sessions",
+      "subtitle": "Manage your active sessions and devices",
+      "currentSession": "Current Session",
+      "lastActive": "Last active: {time}",
+      "terminateButton": "Terminate",
+      "terminateAllButton": "Terminate All Other Sessions",
+      "noOtherSessions": "No other active sessions"
+    }
+  },
+  "pages": {
+    "admin": {
+      "title": "Admin"
+    },
+    "disputes": {
+      "title": "Disputes",
+      "subtitle": "Manage and resolve disputes",
+      "loading": "Loading disputes...",
+      "noDisputes": "No disputes found",
+      "noDisputesDescription": "You don't have any disputes yet.",
+      "newDispute": "New Dispute",
+      "newDisputeDescription": "Raise a new dispute for a project",
+      "all": "All",
+      "pending": "Pending",
+      "resolved": "Resolved",
+      "search": "Search disputes...",
+      "disputeNotFound": "Dispute not found",
+      "disputeInfo": "Dispute Information",
+      "disputeNumber": "Dispute Number",
+      "evidence": "Evidence",
+      "evidenceFiles": "evidence files",
+      "messages": "Messages",
+      "noMessages": "No messages yet",
+      "typeMessage": "Type a message...",
+      "send": "Send",
+      "sending": "Sending...",
+      "addEvidence": "Add Evidence",
+      "uploadEvidence": "Upload Evidence",
+      "upload": "Upload",
+      "uploading": "Uploading...",
+      "subject": "Subject",
+      "subjectPlaceholder": "Enter dispute subject",
+      "description": "Description",
+      "descriptionPlaceholder": "Describe the dispute in detail...",
+      "categoryLabel": "Category",
+      "priorityLabel": "Priority",
+      "projectId": "Project ID",
+      "projectIdPlaceholder": "Enter project ID",
+      "optional": "Optional",
+      "cancel": "Cancel",
+      "submit": "Submit Dispute",
+      "submitting": "Submitting...",
+      "close": "Close Dispute",
+      "confirmClose": "Are you sure you want to close this dispute?",
+      "createdAt": "Created At",
+      "resolvedAt": "Resolved At",
+      "resolution": "Resolution",
+      "internalNote": "Internal Note",
+      "message": "Message",
+      "notAvailable": "Not available",
+      "back": "Back",
+      "status": {
+        "open": "Open",
+        "in_review": "In Review",
+        "resolved": "Resolved",
+        "closed": "Closed",
+        "escalated": "Escalated"
+      },
+      "resolve": "Resolve Dispute",
+      "resolving": "Resolving...",
+      "escalate": "Escalate",
+      "escalating": "Escalating...",
+      "resolutionPlaceholder": "Enter resolution...",
+      "internalNotePlaceholder": "Add internal note (only visible to admins)...",
+      "addNote": "Add Note",
+      "confirmResolve": "Are you sure you want to resolve this dispute?",
+      "confirmEscalate": "Are you sure you want to escalate this dispute?",
+      "resolutionRequired": "Resolution text is required",
+      "resolveError": "Failed to resolve dispute",
+      "escalateError": "Failed to escalate dispute",
+      "assignedTo": "Assigned To",
+      "noteError": "Failed to add internal note",
+      "closing": "Closing...",
+      "category": {
+        "quality": "[Translation needed: الجودة]",
+        "delivery": "[Translation needed: التسليم]",
+        "payment": "[Translation needed: الدفع]",
+        "communication": "[Translation needed: التواصل]",
+        "other": "[Translation needed: أخرى]"
+      },
+      "priority": {
+        "low": "[Translation needed: منخفضة]",
+        "medium": "[Translation needed: متوسطة]",
+        "high": "[Translation needed: عالية]",
+        "urgent": "[Translation needed: عاجلة]"
+      }
+    },
+    "privacy": {
+      "title": "Privacy Policy",
+      "introduction": {
+        "title": "Introduction",
+        "paragraph1": "This Privacy Policy describes Our policies and procedures on the collection, use and disclosure of Your information when You use the Service and tells You about Your privacy rights and how the law protects You.",
+        "paragraph2": "We use Your Personal data to provide and improve the Service. By using the Service, You agree to the collection and use of information in accordance with this Privacy Policy."
+      },
+      "dataCollection": {
+        "title": "Collecting and Using Your Personal Data",
+        "paragraph1": "While using Our Service, We may ask You to provide Us with certain personally identifiable information that can be used to contact or identify You. Personally identifiable information may include, but is not limited to:",
+        "item1": "Email address",
+        "item2": "First name and last name",
+        "item3": "Phone number"
+      },
+      "dataUsage": {
+        "title": "Use of Your Personal Data",
+        "paragraph1": "The Company may use Personal Data for the following purposes: To provide and maintain our Service, including to monitor the usage of our Service. To manage Your Account: to manage Your registration as a user of the Service. The Personal Data You provide can give You access to different functionalities of the Service that are available to You as a registered user."
+      },
+      "userRights": {
+        "title": "Your Privacy Rights",
+        "paragraph1": "You have the right to access, update or to delete the information We have on You. Whenever made possible, you can access, update or request deletion of Your Personal Data directly within Your account settings section. If you are unable to perform these actions yourself, please contact Us to assist You."
+      },
+      "changes": {
+        "title": "Changes to this Privacy Policy",
+        "paragraph1": "We may update Our Privacy Policy from time to time. We will notify You of any changes by posting the new Privacy Policy on this page. We will let You know via email and/or a prominent notice on Our Service, prior to the change becoming effective and update the 'Last updated' date at the top of this Privacy Policy."
+      },
+      "contact": {
+        "title": "Contact Us",
+        "paragraph1": "If you have any questions about this Privacy Policy, You can contact us: By email: support@eetmad.com"
+      }
+    },
+    "new": {
+      "title": "New"
+    },
+    "edit": {
+      "title": "Edit"
+    },
+    "verification": {
+      "title": "Verification"
+    },
+    "users": {
+      "title": "User Profile",
+      "loading": "Loading user...",
+      "error": "Failed to load user",
+      "notFound": "User not found",
+      "back": "Back",
+      "memberSince": "Member since",
+      "stats": {
+        "projects": "Projects",
+        "wallet": "Wallet"
+      },
+      "accountInfo": {
+        "title": "Account Information",
+        "memberSince": "Member since",
+        "lastLogin": "Last login",
+        "userType": "User type",
+        "userTypes": {
+          "client": "Client",
+          "supplier": "Supplier",
+          "admin": "Admin"
+        }
+      },
+      "address": "Address",
+      "averageRating": "Average rating",
+      "commercialRegister": "Commercial register",
+      "companyInformation": "Company information",
+      "companyName": "Company name",
+      "completedProjects": "Completed projects",
+      "contactInformation": "Contact information",
+      "email": "Email",
+      "notAvailable": "Not available",
+      "phone": "Phone",
+      "taxNumber": "Tax number",
+      "totalReviews": "Total reviews",
+      "userNotFound": "User not found",
+      "verified": "Verified"
+    },
+    "settings": {
+      "title": "Settings"
+    },
+    "reviews": {
+      "title": "Title",
+      "subtitle": "View and manage all reviews",
+      "newReview": "New Review",
+      "newReviewDescription": "Share your experience and help others make informed decisions",
+      "loading": "Loading reviews...",
+      "noReviews": "No reviews found",
+      "noReviewsDescription": "There are no reviews yet.",
+      "reviewNotFound": "Review not found",
+      "missingRequiredParams": "Project ID and Reviewed ID are required",
+      "back": "Back",
+      "verified": "Verified",
+      "overallRating": "Overall Rating",
+      "titlePlaceholder": "Enter review title",
+      "comment": "Comment",
+      "commentPlaceholder": "Share your experience...",
+      "detailedRatings": "Detailed Ratings",
+      "quality": "Quality",
+      "communication": "Communication",
+      "timeliness": "Timeliness",
+      "professionalism": "Professionalism",
+      "optional": "Optional",
+      "submit": "Submit Review",
+      "update": "Update Review",
+      "submitting": "Submitting...",
+      "response": "Response",
+      "addResponse": "Add Response",
+      "responsePlaceholder": "Write your response...",
+      "submitResponse": "Submit Response",
+      "responding": "Responding...",
+      "helpful": "Helpful",
+      "notHelpful": "Not Helpful",
+      "stats": "Statistics",
+      "confirmDelete": "Are you sure you want to delete this review?",
+      "edit": "Edit",
+      "delete": "Delete",
+      "report": "Report",
+      "reportReasonPrompt": "Please provide a reason for reporting this review",
+      "reportSubmitted": "Report submitted successfully",
+      "notAvailable": "Not available",
+      "type": {
+        "client_to_supplier": "Client to Supplier",
+        "supplier_to_client": "Supplier to Client"
+      },
+      "cancel": "Cancel"
+    },
+    "payments": {
+      "title": "Payments",
+      "addFunds": "Add Funds",
+      "addFundsAmountPrompt": "Enter amount to add",
+      "all": "All",
+      "amount": "Amount",
+      "amountPlaceholder": "Enter amount",
+      "back": "Back",
+      "balance": "Balance",
+      "cancel": "Cancel",
+      "completedAt": "Completed At",
+      "confirmCancel": "Are you sure you want to cancel this payment?",
+      "createdAt": "Created At",
+      "failureReason": "Failure Reason",
+      "history": "History",
+      "historyDescription": "View your complete payment history",
+      "initiate": "Initiate Payment",
+      "initiatePayment": "Initiate Payment",
+      "initiatePaymentDescription": "Start a new payment process",
+      "method": {
+        "bank_transfer": "Bank Transfer",
+        "credit_card": "Credit Card",
+        "debit_card": "Debit Card",
+        "wallet": "Wallet"
+      },
+      "milestoneId": "Milestone ID",
+      "milestoneIdPlaceholder": "Enter milestone ID (optional)",
+      "netAmount": "Net Amount",
+      "noPayments": "No payments found",
+      "noPaymentsDescription": "You don't have any payments yet.",
+      "noPendingPayments": "No pending payments",
+      "noTransactions": "No transactions found",
+      "notAvailable": "Not available",
+      "notCompleted": "Not completed",
+      "notes": "Notes",
+      "notesPlaceholder": "Additional notes (optional)",
+      "optional": "Optional",
+      "paymentGateway": "Payment Gateway",
+      "paymentInfo": "Payment Information",
+      "paymentMethod": "Payment Method",
+      "paymentNotFound": "Payment not found",
+      "paymentType": "Payment Type",
+      "pending": "Pending",
+      "platformFee": "Platform Fee",
+      "processing": "Processing...",
+      "projectId": "Project ID",
+      "projectIdPlaceholder": "Enter project ID",
+      "refundReasonPrompt": "Please provide a reason for the refund",
+      "refundedAt": "Refunded At",
+      "requestRefund": "Request Refund",
+      "status": {
+        "cancelled": "Cancelled",
+        "completed": "Completed",
+        "failed": "Failed",
+        "pending": "Pending",
+        "processing": "Processing",
+        "refunded": "Refunded"
+      },
+      "transactionType": {
+        "deposit": "Deposit",
+        "withdrawal": "Withdrawal",
+        "payment": "Payment",
+        "refund": "Refund",
+        "commission": "Commission",
+        "fee": "Fee"
+      },
+      "subtitle": "Manage all your payments and transactions",
+      "timeline": "Timeline",
+      "transactionId": "Transaction ID",
+      "transactions": "Transactions",
+      "type": {
+        "deposit": "Deposit",
+        "final": "Final",
+        "milestone": "Milestone"
+      },
+      "viewAll": "View All",
+      "wallet": "Wallet",
+      "walletDescription": "Manage your wallet balance and transactions",
+      "walletNotFound": "Wallet not found",
+      "withdraw": "Withdraw"
+    },
+    "setup": {
+      "title": "Setup"
+    },
+    "terms": {
+      "title": "Terms and Conditions",
+      "pageTitle": "Terms and Conditions",
+      "introduction": "Welcome to Eetmad. These Terms and Conditions govern your use of our website and services. By accessing or using our platform, you agree to be bound by these terms.",
+      "section1Title": "Acceptance of Terms",
+      "section1Content": "By creating an account or using any part of our service, you confirm your acceptance of these Terms and Conditions and our Privacy Policy. If you do not agree, you may not access or use the service.",
+      "section2Title": "User Accounts",
+      "section2Content": "You must be at least 18 years old to create an account. You are responsible for maintaining the confidentiality of your account and password and for restricting access to your computer. You agree to accept responsibility for all activities that occur under your account or password.",
+      "section3Title": "Prohibited Activities",
+      "section3Content": "You may not use the service for any illegal or unauthorized purpose. You agree to comply with all local laws regarding online conduct and acceptable content. Prohibited activities include, but are not limited to, harassment, spamming, and distributing malicious software.",
+      "section4Title": "Intellectual Property",
+      "section4Content": "The service and its original content, features, and functionality are and will remain the exclusive property of Eetmad and its licensors. Our trademarks and trade dress may not be used in connection with any product or service without the prior written consent of Eetmad.",
+      "section5Title": "Limitation of Liability",
+      "section5Content": "In no event shall Eetmad, nor its directors, employees, partners, agents, suppliers, or affiliates, be liable for any indirect, incidental, special, consequential or punitive damages, including without limitation, loss of profits, data, use, goodwill, or other intangible losses, resulting from (i) your access to or use of or inability to access or use the Service; (ii) any conduct or content of any third party on the Service; (iii) any content obtained from the Service; and (iv) unauthorized access, use or alteration of your transmissions or content, whether based on warranty, contract, tort (including negligence) or any other legal theory, whether or not we have been informed of the possibility of such damage, and even if a remedy set forth herein is found to have failed of its essential purpose.",
+      "conclusion": "These Terms and Conditions are effective as of November 16, 2025.",
+      "pages": {
+        "terms": {
+          "title": "Title"
+        }
+      }
+    },
+    "faq": {
+      "title": "Frequently Asked Questions",
+      "pageTitle": "Frequently Asked Questions",
+      "fetchError": "Failed to load FAQs. Please try again later.",
+      "loading": "Loading FAQs...",
+      "noFaqsFound": "No FAQs found at the moment.",
+      "eyebrow": "FAQ",
+      "subtitle": "Find answers to the most common questions about our platform and services",
+      "questions": {
+        "timelines": "How long does it take to get offers?",
+        "offers": "How many offers to expect?",
+        "payments": "How does the payment process work?",
+        "quality": "How do you ensure supplier quality?"
+      },
+      "answers": {
+        "timelines": "Offers usually start arriving within 24 hours of posting the request. In most cases, you get several offers within two days. The duration depends on the type of request and its complexity.",
+        "offers": "The number of offers varies depending on the type of request and geographic area. On average, requests receive 5-10 offers from different suppliers. Clear and detailed requests attract more offers.",
+        "payments": "We do not directly intervene in the payment process. Financial agreements are made between the two parties directly. We recommend using safe and documented payment methods. We provide an optional contract template to document the agreement.",
+        "quality": "We verify all suppliers before accepting them on the platform. We request commercial registration and official documents. We have a comprehensive rating system from users. We continuously monitor supplier performance and take action against violators."
+      },
+      "items": {
+        "timelines": {
+          "question": "How long does it take to get offers?",
+          "summary": "Typically within 24-48 hours of posting",
+          "answer": "Offers usually start arriving within 24 hours of posting the request. In most cases, you get several offers within two days. The duration depends on the type of request and its complexity."
+        },
+        "offers": {
+          "question": "How many offers to expect?",
+          "summary": "Average of 5-10 offers per request",
+          "answer": "The number of offers varies depending on the type of request and geographic area. On average, requests receive 5-10 offers from different suppliers. Clear and detailed requests attract more offers."
+        },
+        "payments": {
+          "question": "How does the payment process work?",
+          "summary": "Direct agreements between parties with safe payment methods",
+          "answer": "We do not directly intervene in the payment process. Financial agreements are made between the two parties directly. We recommend using safe and documented payment methods. We provide an optional contract template to document the agreement."
+        },
+        "quality": {
+          "question": "How do you ensure supplier quality?",
+          "summary": "Comprehensive verification and rating system",
+          "answer": "We verify all suppliers before accepting them on the platform. We request commercial registration and official documents. We have a comprehensive rating system from users. We continuously monitor supplier performance and take action against violators."
+        }
+      },
+      "pages": {
+        "faq": {
+          "title": "Title"
+        }
+      }
+    },
+    "howItWorks": {
+      "title": "How It Works"
+    },
+    "contact": {
+      "title": "Contact Us",
+      "nameLabel": "Your Name",
+      "emailLabel": "Your Email",
+      "subjectLabel": "Subject",
+      "messageLabel": "Your Message",
+      "submitButton": "Send Message",
+      "sending": "Sending...",
+      "allFieldsRequired": "All fields are required.",
+      "invalidEmail": "Please enter a valid email address.",
+      "submissionFailed": "Failed to send message. Please try again.",
+      "pageTitle": "Contact Us",
+      "pageDescription": "We'd love to hear from you! Send us a message and we'll get back to you as soon as possible.",
+      "formTitle": "Send us a Message",
+      "submitting": "Sending...",
+      "submitSuccess": "Your message has been sent successfully!",
+      "submitError": "Failed to send your message. Please try again later.",
+      "pages": {
+        "contact": {
+          "title": "Title"
+        }
+      }
+    },
+    "categories": {
+      "title": "Categories",
+      "badge": "Browse",
+      "subtitle": "Explore all available categories",
+      "loading": "Loading categories...",
+      "noCategories": "No categories available at the moment.",
+      "emptyState": "No data",
+      "requests": "requests",
+      "subcategories": "subcategories",
+      "notFound": "Category not found",
+      "error": "Failed to load category",
+      "back": "Back",
+      "backToCategories": "Back to Categories",
+      "suppliers": "suppliers",
+      "pages": {
+        "categories": {
+          "title": "Title"
+        }
+      }
+    },
+    "about": {
+      "title": "About Us"
+    },
+    "suppliers": {
+      "title": "Suppliers",
+      "badge": "Suppliers",
+      "subtitle": "Browse our verified suppliers",
+      "searchPlaceholder": "Search suppliers...",
+      "loading": "Loading suppliers...",
+      "error": "Failed to load suppliers",
+      "noSuppliers": "No suppliers found.",
+      "noSuppliersDescription": "There are no suppliers available yet.",
+      "acceptanceRate": "Acceptance",
+      "onTime": "On Time",
+      "notFound": "Supplier not found",
+      "supplierNotFound": "Supplier not found",
+      "back": "Back",
+      "verified": "Verified",
+      "reviews": "reviews",
+      "onTimeDelivery": "On-Time Delivery",
+      "responseTime": "Response Time",
+      "minutes": "minutes",
+      "categories": "Categories",
+      "primary": "Primary",
+      "portfolio": "Portfolio",
+      "portfolioDescription": "View all portfolio items from this supplier",
+      "noPortfolioItems": "No portfolio items",
+      "noPortfolioItemsDescription": "This supplier has not added any portfolio items yet.",
+      "certifications": "Certifications",
+      "issuedBy": "Issued By",
+      "issuedAt": "Issued At",
+      "myProfile": "My Supplier Profile",
+      "profileNotFound": "Profile not found",
+      "edit": "Edit",
+      "averageRating": "Average Rating",
+      "totalProjects": "Total Projects",
+      "totalEarnings": "Total Earnings",
+      "currency": "SAR",
+      "viewPortfolio": "View Portfolio",
+      "viewPortfolioDescription": "Manage your portfolio items",
+      "editProfile": "Edit Profile",
+      "editProfileDescription": "Update your supplier profile information",
+      "editProfileTitle": "Edit Supplier Profile",
+      "createProfile": "Create Supplier Profile",
+      "serviceDescription": "Service Description",
+      "serviceDescriptionPlaceholder": "Describe your services...",
+      "workingHours": "Working Hours",
+      "performanceMetrics": "Performance Metrics",
+      "save": "Save",
+      "saving": "Saving...",
+      "cancel": "Cancel",
+      "pages": {
+        "suppliers": {
+          "title": "Title"
+        }
+      },
+      "emptyState": "No data",
+      "noResults": "No results",
+      "portfolioItems": "Portfolio Items",
+      "supplierProfile": "Supplier Profile"
+    },
+    "dashboard": {
+      "title": "Dashboard",
+      "subtitle": "Welcome back! Here's an overview of your activity",
+      "loading": "Loading dashboard...",
+      "currency": "SAR",
+      "timeAgo": {
+        "justNow": "Just now",
+        "minutes": "{count} minute(s) ago",
+        "hours": "{count} hour(s) ago",
+        "days": "{count} day(s) ago"
+      },
+      "stats": {
+        "totalRequests": "Total Requests",
+        "activeProjects": "Active Projects",
+        "completedProjects": "Completed Projects",
+        "walletBalance": "Wallet Balance"
+      },
+      "sections": {
+        "requests": {
+          "title": "Requests",
+          "total": "Total",
+          "active": "Active",
+          "closed": "Closed",
+          "pending": "Pending"
+        },
+        "projects": {
+          "title": "Projects",
+          "total": "Total",
+          "active": "Active",
+          "completed": "Completed",
+          "cancelled": "Cancelled",
+          "milestones": "Milestones"
+        },
+        "recentActivity": {
+          "title": "Recent Activity",
+          "empty": "No recent activity"
+        }
+      },
+      "pages": {
+        "dashboard": {
+          "title": "Title"
+        }
+      }
+    },
+    "profile": {
+      "title": "Profile",
+      "subtitle": "View and manage your profile information",
+      "loading": "Loading profile...",
+      "error": "Failed to load profile",
+      "editProfile": "Edit Profile",
+      "settings": "Settings",
+      "userType": {
+        "client": "Client",
+        "supplier": "Supplier",
+        "admin": "Admin"
+      },
+      "notProvided": "Not provided",
+      "edit": {
+        "title": "Edit Profile",
+        "subtitle": "Update your personal information",
+        "back": "Back",
+        "loading": "Loading profile...",
+        "save": "Save Changes",
+        "saving": "Saving...",
+        "success": "Profile updated successfully!",
+        "security": "Security",
+        "avatar": "Avatar",
+        "uploadAvatar": "Upload Avatar",
+        "uploading": "Uploading...",
+        "cancel": "Cancel",
+        "personalInformation": "Personal Information",
+        "companyInformation": "Company Information",
+        "address": "Address",
+        "fullName": "Full Name",
+        "phone": "Phone",
+        "dateOfBirth": "Date of Birth",
+        "nationalId": "National ID",
+        "companyName": "Company Name",
+        "commercialRegister": "Commercial Register",
+        "taxNumber": "Tax Number",
+        "street": "Street",
+        "city": "City",
+        "state": "State",
+        "country": "Country",
+        "postalCode": "Postal Code",
+        "sections": {
+          "basicInfo": "Basic Information",
+          "companyInfo": "Company Information",
+          "address": "Address",
+          "socialLinks": "Social Links & Website"
+        },
+        "fields": {
+          "street": {
+            "placeholder": "Enter street name"
+          },
+          "city": {
+            "placeholder": "Enter city name"
+          },
+          "state": {
+            "placeholder": "Enter state/region"
+          },
+          "country": {
+            "placeholder": "Enter country name"
+          },
+          "postalCode": {
+            "placeholder": "Enter postal code"
+          },
+          "fullName": {
+            "placeholder": "Enter full name"
+          },
+          "phone": {
+            "placeholder": "Enter phone number"
+          },
+          "dateOfBirth": {
+            "placeholder": "Select date of birth"
+          },
+          "nationalId": {
+            "placeholder": "Enter national ID"
+          },
+          "companyName": {
+            "placeholder": "Enter company name"
+          },
+          "commercialRegister": {
+            "placeholder": "Enter commercial register number"
+          },
+          "taxNumber": {
+            "placeholder": "Enter tax number"
+          },
+          "website": {
+            "placeholder": "https://example.com"
+          },
+          "linkedin": {
+            "placeholder": "https://linkedin.com/in/username"
+          },
+          "twitter": {
+            "placeholder": "https://twitter.com/username"
+          },
+          "github": {
+            "placeholder": "https://github.com/username"
+          },
+          "bio": {
+            "label": "Bio",
+            "placeholder": "Write a short bio about yourself...",
+            "maxLength": "max"
+          }
+        },
+        "errors": {
+          "saveFailed": "Failed to save changes. Please try again."
+        },
+        "userType": {
+          "client": "Client",
+          "supplier": "Supplier",
+          "admin": "Admin"
+        }
+      },
+      "security": {
+        "title": "Security Settings",
+        "subtitle": "Subtitle",
+        "back": "Back",
+        "currentPassword": "Current Password",
+        "newPassword": "New Password",
+        "confirmPassword": "Confirm New Password",
+        "saveButton": "Save Changes",
+        "passwordStrength": {
+          "label": "Password Strength",
+          "weak": "Weak",
+          "medium": "Medium",
+          "strong": "Strong"
+        },
+        "securityTip": "Choose a strong password with at least 8 characters, including uppercase, lowercase, numbers, and symbols. After changing your password, you will be logged out from all other devices.",
+        "success": {
+          "passwordChanged": "Password changed successfully! You have been logged out from all other devices."
+        },
+        "errors": {
+          "currentPasswordRequired": "Current password is required",
+          "passwordTooShort": "Password must be at least 8 characters",
+          "passwordsNotMatch": "Passwords do not match",
+          "samePassword": "New password must be different from current password",
+          "changePasswordFailed": "Failed to change password. Please check your current password and try again."
+        },
+        "pages": {
+          "profile": {
+            "title": "Title"
+          },
+          "security": {
+            "title": "Title"
+          }
+        },
+        "profile": {
+          "title": "Title"
+        },
+        "changing": "Changing..."
+      },
+      "reviews": "reviews",
+      "currency": "SAR",
+      "status": {
+        "active": "Active",
+        "inactive": "Inactive"
+      },
+      "sections": {
+        "contactInfo": {
+          "title": "Contact Information",
+          "email": "Email",
+          "phone": "Phone",
+          "address": "Address",
+          "verified": "Verified",
+          "notVerified": "Not verified"
+        },
+        "companyInfo": {
+          "title": "Company Information",
+          "companyName": "Company Name",
+          "commercialRegister": "Commercial Register"
+        },
+        "stats": {
+          "title": "Quick Stats",
+          "rating": "Rating",
+          "projects": "Projects",
+          "wallet": "Wallet"
+        },
+        "accountInfo": {
+          "title": "Account Information",
+          "memberSince": "Member Since",
+          "lastLogin": "Last Login",
+          "userType": "User Type",
+          "userTypes": {
+            "client": "Client",
+            "supplier": "Supplier",
+            "admin": "Admin"
+          }
+        }
+      },
+      "pages": {
+        "profile": {
+          "title": "Title"
+        }
+      },
+      "notifications": {
+        "requests": "Requests",
+        "offers": "Offers",
+        "messages": "Messages",
+        "reviews": "Reviews",
+        "system": "System",
+        "important": "Important",
+        "security": "Security"
+      },
+      "profile": {
+        "completedProjects": "Completed projects",
+        "memberSince": "Member since",
+        "address": "Address",
+        "avatar": "Avatar",
+        "averageRating": "Average rating",
+        "back": "Back",
+        "cancel": "Cancel",
+        "changePassword": "Change password",
+        "changing": "Changing...",
+        "city": "City",
+        "commercialRegister": "Commercial register",
+        "companyInformation": "Company information",
+        "companyName": "Company name",
+        "confirmDeleteAccount": "Are you sure you want to delete your account?",
+        "confirmDeleteAccountFinal": "Your account will be permanently deleted. Type DELETE to confirm.",
+        "confirmPassword": "Confirm password",
+        "country": "Country",
+        "currentPassword": "Current password",
+        "dangerZone": "Danger zone",
+        "dateOfBirth": "Date of birth",
+        "deleteAccount": "Delete account",
+        "deleteAccountWarning": "Once you delete your account, there is no going back. Please be certain.",
+        "deleting": "Deleting...",
+        "editDescription": "Update your profile information",
+        "email": "Email",
+        "emailNotifications": "Email notifications",
+        "fullName": "Full name",
+        "nationalId": "National ID",
+        "newPassword": "New password",
+        "notAvailable": "Not available",
+        "notificationPreferences": "Notification preferences",
+        "passwordChanged": "Password changed successfully",
+        "passwordsDoNotMatch": "Passwords do not match",
+        "personalInformation": "Personal information",
+        "phone": "Phone",
+        "postalCode": "Postal code",
+        "preferencesSaved": "Preferences saved successfully",
+        "profileNotFound": "Profile not found",
+        "pushNotifications": "Push notifications",
+        "save": "Save",
+        "saving": "Saving...",
+        "settings": "Settings",
+        "settingsDescription": "Manage your account settings and preferences",
+        "smsNotifications": "SMS notifications",
+        "state": "State/Province",
+        "street": "Street address",
+        "taxNumber": "Tax number",
+        "totalReviews": "Total reviews",
+        "uploadAvatar": "Upload avatar",
+        "uploading": "Uploading...",
+        "verified": "Verified",
+        "walletBalance": "Wallet balance",
+        "userType": {
+          "client": "Client",
+          "supplier": "Supplier",
+          "admin": "Admin"
+        }
+      },
+      "profileNotFound": "Profile not found",
+      "back": "Back",
+      "editDescription": "Update your profile information",
+      "avatar": "Avatar",
+      "uploading": "Uploading...",
+      "uploadAvatar": "Upload avatar",
+      "personalInformation": "Personal information",
+      "fullName": "Full name",
+      "phone": "Phone",
+      "dateOfBirth": "Date of birth",
+      "nationalId": "National ID",
+      "companyInformation": "Company information",
+      "companyName": "Company name",
+      "commercialRegister": "Commercial register",
+      "taxNumber": "Tax number",
+      "address": "Address",
+      "street": "Street address",
+      "city": "City",
+      "state": "State/Province",
+      "country": "Country",
+      "postalCode": "Postal code",
+      "cancel": "Cancel",
+      "saving": "Saving...",
+      "save": "Save",
+      "notAvailable": "Not available",
+      "verified": "Verified",
+      "averageRating": "Average rating",
+      "completedProjects": "Completed projects",
+      "totalReviews": "Total reviews",
+      "walletBalance": "Wallet balance",
+      "email": "Email",
+      "passwordsDoNotMatch": "Passwords do not match",
+      "passwordChanged": "Password changed successfully",
+      "preferencesSaved": "Preferences saved successfully",
+      "confirmDeleteAccount": "Are you sure you want to delete your account?",
+      "confirmDeleteAccountFinal": "Your account will be permanently deleted. Type DELETE to confirm.",
+      "settingsDescription": "Manage your account settings and preferences",
+      "changePassword": "Change password",
+      "currentPassword": "Current password",
+      "newPassword": "New password",
+      "confirmPassword": "Confirm password",
+      "changing": "Changing...",
+      "notificationPreferences": "Notification preferences",
+      "emailNotifications": "Email notifications",
+      "pushNotifications": "Push notifications",
+      "smsNotifications": "SMS notifications",
+      "dangerZone": "Danger zone",
+      "deleteAccountWarning": "Once you delete your account, there is no going back. Please be certain.",
+      "deleting": "Deleting...",
+      "deleteAccount": "Delete account",
+      "memberSince": "Member Since"
+    },
+    "security": {
+      "title": "Security Settings"
+    },
+    "requests": {
+      "title": "Requests",
+      "subtitle": "Browse and manage all available requests",
+      "createRequest": "Create Request",
+      "loading": "Loading requests...",
+      "fetchError": "Failed to load requests. Please try again later.",
+      "edit": {
+        "title": "Title"
+      },
+      "noRequests": "No requests found",
+      "noMyRequests": "You haven't created any requests yet",
+      "noRequestsDescription": "Start by creating your first request to get offers from suppliers",
+      "searchPlaceholder": "Search requests...",
+      "filters": "Filters",
+      "clearFilters": "Clear",
+      "applyFilters": "Apply",
+      "filterStatus": "Status",
+      "filterBudgetMin": "Min Budget",
+      "filterBudgetMax": "Max Budget",
+      "filterBudgetMinPlaceholder": "Minimum",
+      "filterBudgetMaxPlaceholder": "Maximum",
+      "allStatuses": "All Statuses",
+      "status": {
+        "draft": "Draft",
+        "open": "Open",
+        "in_progress": "In Progress",
+        "completed": "Completed",
+        "cancelled": "Cancelled",
+        "closed": "Closed",
+        "published": "Published"
+      },
+      "currency": "SAR",
+      "budgetMin": "Min",
+      "budgetMax": "Max",
+      "budgetNotSpecified": "Budget not specified",
+      "days": "days",
+      "offers": "offers",
+      "onSiteVisit": "On-site Visit Required",
+      "locationNotSpecified": "Location not specified",
+      "back": "Back",
+      "backToRequests": "Back to Requests",
+      "notFound": "Request not found",
+      "views": "Views",
+      "budget": "Budget",
+      "duration": "Duration",
+      "description": "Description",
+      "details": "Details",
+      "deadline": "Deadline",
+      "location": "Location",
+      "viewOffers": "View Offers",
+      "myRequests": "My Requests",
+      "myRequestsSubtitle": "Manage all your requests",
+      "createRequestSubtitle": "Fill in the details to create a new request",
+      "editSubtitle": "Update your request details",
+      "saveError": "Failed to save request. Please try again.",
+      "form": {
+        "title": "Title",
+        "titlePlaceholder": "Enter request title",
+        "description": "Description",
+        "descriptionPlaceholder": "Describe what you need in detail",
+        "category": "Category",
+        "selectCategory": "Select a category",
+        "budgetMin": "Minimum Budget",
+        "budgetMax": "Maximum Budget",
+        "budgetMinPlaceholder": "Min amount",
+        "budgetMaxPlaceholder": "Max amount",
+        "expectedDuration": "Expected Duration (days)",
+        "deadline": "Deadline",
+        "preferredStartDate": "Preferred Start Date",
+        "requiresOnSiteVisit": "Requires on-site visit",
+        "cancel": "Cancel",
+        "create": "Create Request",
+        "update": "Update Request",
+        "saving": "Saving...",
+        "expectedDurationPlaceholder": "Enter expected duration",
+        "location": "Location",
+        "locationPlaceholder": "Enter location"
+      },
+      "pages": {
+        "requests": {
+          "title": "Title"
+        },
+        "edit": {
+          "title": "Title"
+        },
+        "new": {
+          "title": "Title"
+        }
+      },
+      "new": {
+        "title": "Title"
+      }
+    },
+    "offers": {
+      "title": "Offers",
+      "subtitle": "Offers for request",
+      "loading": "Loading offers...",
+      "fetchError": "Failed to load offers. Please try again later.",
+      "noOffers": "No offers found",
+      "noOffersDescription": "No offers have been submitted for this request yet.",
+      "back": "Back",
+      "notFound": "Offer not found",
+      "pages": {
+        "requests": {
+          "title": "Requests"
+        },
+        "offers": {
+          "title": "Offers"
+        },
+        "edit": {
+          "title": "Title"
+        },
+        "new": {
+          "title": "Title"
+        }
+      },
+      "currency": "SAR",
+      "proposedPrice": "Proposed Price",
+      "days": "days",
+      "startDate": "Start Date",
+      "warranty": "Warranty",
+      "technicalProposal": "Technical Proposal",
+      "accept": "Accept",
+      "reject": "Reject",
+      "viewDetails": "View Details",
+      "status": {
+        "pending": "Pending",
+        "accepted": "Accepted",
+        "rejected": "Rejected",
+        "withdrawn": "Withdrawn",
+        "expired": "Expired"
+      },
+      "myOffers": "My Offers",
+      "myOffersSubtitle": "View and manage all your submitted offers",
+      "createOffer": "Create Offer",
+      "createOfferSubtitle": "Submit a new offer for a request",
+      "editOffer": "Edit Offer",
+      "editOfferSubtitle": "Update your offer details",
+      "offerDetails": "Offer Details",
+      "backToOffers": "Back to Offers",
+      "edit": {
+        "title": "Title"
+      },
+      "withdraw": "Withdraw Offer",
+      "confirmWithdraw": "Are you sure you want to withdraw this offer?",
+      "estimatedDuration": "Estimated Duration",
+      "deliverables": "Deliverables",
+      "paymentTerms": "Payment Terms",
+      "warrantyDetails": "Warranty Details",
+      "requestBudget": "Request Budget",
+      "form": {
+        "requestId": "Request ID",
+        "requestIdPlaceholder": "Enter request ID",
+        "proposedPrice": "Proposed Price",
+        "proposedPricePlaceholder": "Enter your proposed price",
+        "estimatedDuration": "Estimated Duration (days)",
+        "estimatedDurationPlaceholder": "Days",
+        "startDate": "Start Date",
+        "technicalProposal": "Technical Proposal",
+        "technicalProposalPlaceholder": "Describe your technical approach and methodology",
+        "deliverables": "Deliverables",
+        "deliverablesPlaceholder": "List all deliverables and outcomes",
+        "paymentTerms": "Payment Terms",
+        "paymentTermsPlaceholder": "Describe payment schedule and terms",
+        "warrantyPeriod": "Warranty Period (days)",
+        "warrantyPeriodPlaceholder": "Optional",
+        "warrantyDetails": "Warranty Details",
+        "warrantyDetailsPlaceholder": "Optional warranty information",
+        "cancel": "Cancel",
+        "create": "Create Offer",
+        "update": "Update Offer",
+        "saving": "Saving..."
+      },
+      "saveError": "Failed to save offer. Please try again.",
+      "new": {
+        "title": "Title"
+      },
+      "requests": {
+        "title": "Title"
+      }
+    },
+    "projects": {
+      "title": "Projects",
+      "subtitle": "View and manage all your active projects",
+      "loading": "Loading projects...",
+      "fetchError": "Failed to load projects. Please try again later.",
+      "noProjects": "No projects found",
+      "noProjectsDescription": "You don't have any projects yet. Create a request and accept an offer to start a project.",
+      "projectTitle": "Project",
+      "currency": "SAR",
+      "milestones": "Milestones",
+      "pages": {
+        "projects": {
+          "title": "Projects",
+          "pages": {
+            "projects": {
+              "title": "Projects"
+            },
+            "milestones": {
+              "title": "Milestones"
+            }
+          }
+        },
+        "milestones": {
+          "title": "Milestones"
+        }
+      },
+      "milestonesSection": {
+        "title": "Milestones",
+        "description": "View and manage all milestones",
+        "new": "New Milestone",
+        "newDescription": "Add a new milestone to the project",
+        "emptyDescription": "Start by creating a new milestone",
+        "edit": "Edit Milestone",
+        "editDescription": "Update milestone details",
+        "details": "Details",
+        "loading": "Loading milestones...",
+        "notFound": "Milestone not found",
+        "complete": "Complete Milestone",
+        "confirmApprove": "Are you sure you want to approve this milestone?",
+        "rejectReasonPrompt": "Please provide a reason for rejection",
+        "completeNotesPrompt": "Add completion notes (optional)",
+        "form": {
+          "title": "Title",
+          "titlePlaceholder": "Enter milestone title",
+          "description": "Description",
+          "descriptionPlaceholder": "Describe the milestone...",
+          "amount": "Amount",
+          "amountPlaceholder": "Enter amount",
+          "dueDate": "Due Date",
+          "deliverables": "Deliverables",
+          "deliverablesPlaceholder": "List deliverables (optional)...",
+          "create": "Create Milestone",
+          "update": "Update Milestone",
+          "saving": "Saving..."
+        },
+        "currency": "SAR",
+        "totalAmount": "Total Amount",
+        "progress": "Progress",
+        "completedMilestones": "Completed Milestones",
+        "empty": "No milestones found",
+        "amount": "Amount",
+        "dueDate": "Due Date",
+        "deliverables": "Deliverables",
+        "attachments": "Attachments",
+        "notes": "Notes",
+        "paymentStatus": "Payment Status",
+        "paid": "Paid",
+        "pending": "Pending",
+        "statuses": {
+          "pending": "Pending",
+          "in_progress": "In Progress",
+          "completed": "Completed",
+          "approved": "Approved",
+          "rejected": "Rejected"
+        },
+        "actions": {
+          "approve": "Approve",
+          "reject": "Reject"
+        }
+      },
+      "projectIdRequired": "Project ID is required",
+      "progress": "Progress",
+      "totalAmount": "Total Amount",
+      "expectedEndDate": "Expected End",
+      "optional": "Optional",
+      "cancel": "Cancel",
+      "approved": "Approved",
+      "status": {
+        "draft": "Draft",
+        "pending_contract": "Pending Contract",
+        "active": "Active",
+        "on_hold": "On Hold",
+        "completed": "Completed",
+        "cancelled": "Cancelled",
+        "disputed": "Disputed"
+      },
+      "back": "Back",
+      "notFound": "Project not found",
+      "backToProjects": "Back to Projects",
+      "startDate": "Start Date",
+      "paymentInfo": "Payment Information",
+      "depositAmount": "Deposit",
+      "finalAmount": "Final Amount",
+      "viewMilestones": "View Milestones",
+      "milestoneStatus": {
+        "pending": "Pending",
+        "in_progress": "In Progress",
+        "completed": "Completed",
+        "approved": "Approved",
+        "rejected": "Rejected"
+      },
+      "submitMilestone": "Submit Milestone",
+      "start": "Start",
+      "startProject": "Start Project",
+      "startProjectDescription": "Begin working on this project",
+      "startProjectInfo": "Starting this project will mark it as active and begin the timeline.",
+      "starting": "Starting...",
+      "confirmStart": "Are you sure you want to start this project?",
+      "complete": "Complete",
+      "completeProject": "Complete Project",
+      "completeProjectDescription": "Mark this project as completed",
+      "completeProjectInfo": "Completing this project will finalize all work and close the project.",
+      "completing": "Completing...",
+      "confirmComplete": "Are you sure you want to complete this project?",
+      "progressWarning": "Current progress",
+      "cancelProject": "Cancel Project",
+      "cancelProjectDescription": "Cancel this project permanently",
+      "cancelProjectWarning": "Cancelling this project will stop all work and cannot be undone. Please provide a reason.",
+      "cancelReason": "Cancellation Reason",
+      "cancelReasonPlaceholder": "Please explain why you are cancelling this project...",
+      "cancelling": "Cancelling...",
+      "confirmCancel": "Confirm Cancellation",
+      "reasonRequired": "Please provide a cancellation reason",
+      "deliveryProof": "Delivery Proof",
+      "deliveryProofDescription": "Upload proof of project delivery",
+      "deliveryFiles": "Delivery Files",
+      "uploadFiles": "Upload Files",
+      "uploadFilesDescription": "Click to upload or drag and drop files here",
+      "deliveryNotes": "Delivery Notes",
+      "deliveryNotesPlaceholder": "Add any additional notes about the delivery...",
+      "uploading": "Uploading...",
+      "submit": "Submit",
+      "filesRequired": "Please upload at least one file",
+      "projectNotFound": "Project not found",
+      "projects": {
+        "milestones": {
+          "title": "Milestones"
+        }
+      }
+    },
+    "contracts": {
+      "title": "Contracts",
+      "subtitle": "View and manage all your contracts",
+      "loading": "Loading contracts...",
+      "noContracts": "No contracts found",
+      "noContractsDescription": "You don't have any contracts yet.",
+      "contract": "Contract",
+      "contractNumber": "Contract Number",
+      "contractDetails": "Contract Details",
+      "contractInfo": "Contract Information",
+      "contractText": "Contract Text",
+      "termsAndConditions": "Terms and Conditions",
+      "paymentTerms": "Payment Terms",
+      "deliverables": "Deliverables",
+      "warrantyTerms": "Warranty Terms",
+      "templateUsed": "Template Used",
+      "version": "Version",
+      "signatures": "Signatures",
+      "clientSignature": "Client Signature",
+      "supplierSignature": "Supplier Signature",
+      "notSigned": "Not signed",
+      "createContract": "Create Contract",
+      "newContract": "New Contract",
+      "newContractDescription": "Create a new contract for your project",
+      "editContract": "Edit Contract",
+      "editContractDescription": "Update contract details",
+      "edit": "Edit",
+      "sign": "Sign",
+      "signContract": "Sign Contract",
+      "signContractDescription": "Review and sign the contract",
+      "download": "Download",
+      "viewVersions": "View Versions",
+      "manageClauses": "Manage Clauses",
+      "back": "Back",
+      "backToContracts": "Back to Contracts",
+      "notFound": "Contract not found",
+      "status": {
+        "draft": "Draft",
+        "pending_client_signature": "Pending Client Signature",
+        "pending_supplier_signature": "Pending Supplier Signature",
+        "signed": "Signed",
+        "cancelled": "Cancelled",
+        "expired": "Expired"
+      },
+      "versions": "Versions",
+      "versionsDescription": "View all versions of this contract",
+      "currentVersion": "Current Version",
+      "noVersions": "No versions found",
+      "view": "View",
+      "clauses": "Clauses",
+      "clausesDescription": "Manage custom clauses for this contract",
+      "addClause": "Add Clause",
+      "add": "Add",
+      "noClauses": "No custom clauses",
+      "clauseKeyPlaceholder": "Clause key (e.g., additionalSupport)",
+      "clauseValuePlaceholder": "Clause value",
+      "delete": "Delete",
+      "confirmDeleteClause": "Are you sure you want to delete this clause?",
+      "cancel": "Cancel",
+      "signing": {
+        "title": "Contract Signing",
+        "description": "Please review the contract and provide your signature",
+        "clientSignature": "Client Signature",
+        "supplierSignature": "Supplier Signature",
+        "pending": "Pending",
+        "signatureLabel": "Your Signature",
+        "signaturePlaceholder": "Enter your signature",
+        "signatureHint": "Type your full name as your signature",
+        "signing": "Signing...",
+        "sign": "Sign Contract",
+        "alreadySigned": "You have already signed this contract",
+        "fullySigned": "Contract Fully Signed",
+        "fullySignedDescription": "Both parties have signed this contract"
+      },
+      "form": {
+        "contractText": "Contract Text",
+        "contractTextPlaceholder": "Enter the main contract text...",
+        "termsAndConditions": "Terms and Conditions",
+        "termsAndConditionsPlaceholder": "Enter terms and conditions...",
+        "paymentTerms": "Payment Terms",
+        "paymentTermsPlaceholder": "Enter payment terms...",
+        "deliverables": "Deliverables",
+        "deliverablesPlaceholder": "Enter deliverables...",
+        "warrantyTerms": "Warranty Terms",
+        "warrantyTermsPlaceholder": "Enter warranty terms (optional)...",
+        "templateUsed": "Template Used",
+        "templateUsedPlaceholder": "Enter template name (optional)...",
+        "cancel": "Cancel",
+        "create": "Create Contract",
+        "update": "Update Contract",
+        "saving": "Saving..."
+      }
+    },
+    "portfolio": {
+      "pageTitle": "Portfolio",
+      "pageSubtitle": "Showcase your completed projects and work",
+      "title": "Portfolio Items",
+      "subtitle": "Manage your portfolio",
+      "addItem": "Add Item",
+      "loading": "Loading portfolio...",
+      "fetchError": "Failed to load portfolio. Please try again later.",
+      "noItems": "No portfolio items",
+      "noItemsDescription": "Add your first portfolio item to showcase your work",
+      "confirmDelete": "Are you sure you want to delete this portfolio item?",
+      "pages": {
+        "portfolio": {
+          "title": "Title"
+        }
+      }
+    },
+    "stats": {
+      "title": "Statistics",
+      "subtitle": "View your performance metrics and statistics",
+      "loading": "Loading statistics...",
+      "fetchError": "Failed to load statistics. Please try again later.",
+      "currency": "SAR",
+      "totalEarnings": "Total Earnings",
+      "totalOffers": "Total Offers",
+      "acceptedOffers": "Accepted Offers",
+      "totalProjects": "Total Projects",
+      "completedProjects": "Completed Projects",
+      "averageRating": "Average Rating",
+      "pages": {
+        "stats": {
+          "title": "Title"
+        }
+      }
+    },
+    "supplierSetup": {
+      "title": "Supplier Profile Setup",
+      "subtitle": "Complete your supplier profile to start receiving requests",
+      "step": "Step",
+      "of": "of",
+      "step1Title": "Select Your Categories",
+      "step1Description": "Choose the categories you specialize in",
+      "step2Title": "Describe Your Services",
+      "step2Description": "Tell clients about your services and expertise",
+      "serviceDescription": "Service Description",
+      "serviceDescriptionPlaceholder": "Describe your services, expertise, and what makes you unique...",
+      "previous": "Previous",
+      "next": "Next",
+      "complete": "Complete Setup",
+      "saving": "Saving...",
+      "saveError": "Failed to save profile. Please try again.",
+      "pages": {
+        "setup": {
+          "title": "Setup"
+        }
+      },
+      "setup": {
+        "title": "Title"
+      }
+    },
+    "supplierProfile": {
+      "title": "Edit Supplier Profile",
+      "id": "Supplier ID",
+      "subtitle": "Update your supplier profile information",
+      "loading": "Loading profile...",
+      "serviceDescription": "Service Description",
+      "serviceDescriptionPlaceholder": "Describe your services and expertise...",
+      "cancel": "Cancel",
+      "save": "Save Changes",
+      "saving": "Saving...",
+      "saveError": "Failed to save profile. Please try again.",
+      "pages": {
+        "edit": {
+          "title": "Title"
+        }
+      },
+      "edit": {
+        "title": "Title"
+      }
+    },
+    "statistics": {
+      "title": "Statistics"
+    },
+    "myOffers": {
+      "title": "My Offers"
+    },
+    "createOffer": {
+      "title": "Create New Offer"
+    },
+    "offerDetails": {
+      "title": "Offer Details",
+      "id": "Offer ID"
+    },
+    "editOffer": {
+      "title": "Edit Offer",
+      "id": "Offer ID"
+    },
+    "createRequest": {
+      "title": "Create New Request"
+    },
+    "myRequests": {
+      "title": "My Requests"
+    },
+    "requestDetails": {
+      "title": "Request Details",
+      "id": "Request ID"
+    },
+    "requestOffers": {
+      "title": "Request Offers",
+      "id": "Request ID"
+    },
+    "editRequest": {
+      "title": "Edit Request",
+      "id": "Request ID"
+    },
+    "adminDashboard": {
+      "title": "Admin Dashboard"
+    },
+    "userManagement": {
+      "title": "User Management"
+    },
+    "userDetails": {
+      "title": "User Details",
+      "id": "User ID"
+    },
+    "categoryManagement": {
+      "title": "Category Management"
+    },
+    "analytics": {
+      "title": "Analytics"
+    },
+    "disputeDetails": {
+      "title": "Dispute Details",
+      "id": "Dispute ID"
+    },
+    "reports": {
+      "title": "Reports"
+    },
+    "systemSettings": {
+      "title": "System Settings"
+    },
+    "verificationQueue": {
+      "title": "Verification Queue"
+    },
+    "pages": {
+      "admin": {
+        "title": "Admin"
+      },
+      "disputes": {
+        "title": "Disputes"
+      },
+      "privacy": {
+        "title": "Privacy Policy"
+      },
+      "new": {
+        "title": "New"
+      },
+      "edit": {
+        "title": "Edit"
+      },
+      "projects": {
+        "milestones": {
+          "title": "Milestones"
+        }
+      },
+      "users": {
+        "userType": {
+          "client": "Client",
+          "supplier": "Supplier",
+          "admin": "Admin"
+        }
+      }
+    },
+    "messages": {
+      "title": "Messages",
+      "subtitle": "Communicate with suppliers and clients",
+      "loading": "Loading conversations...",
+      "noConversations": "No conversations found",
+      "noConversationsDescription": "Start a new conversation to get started",
+      "conversation": "Conversation",
+      "conversationAboutRequest": "Conversation about Request",
+      "conversationAboutProject": "Conversation about Project",
+      "newConversation": "New Conversation",
+      "newConversationDescription": "Start a conversation with other users",
+      "status": {
+        "active": "Active",
+        "archived": "Archived",
+        "closed": "Closed"
+      },
+      "active": "Active",
+      "archived": "Archived",
+      "request": "Request",
+      "project": "Project",
+      "participants": "participants",
+      "noMessages": "No messages yet. Start the conversation!",
+      "typeMessage": "Type a message...",
+      "send": "Send",
+      "sending": "Sending...",
+      "edit": "Edit",
+      "delete": "Delete",
+      "confirmDeleteMessage": "Are you sure you want to delete this message?",
+      "conversationNotFound": "Conversation not found",
+      "editing": "Editing message",
+      "editMessagePlaceholder": "Edit your message...",
+      "cancel": "Cancel",
+      "archive": "Archive",
+      "unarchive": "Unarchive",
+      "mute": "Mute",
+      "unmute": "Unmute",
+      "searchUsers": "Search Users",
+      "searchUsersPlaceholder": "Search by name or email...",
+      "selectedUsers": "Selected Users",
+      "users": "Users",
+      "noUsersFound": "No users found",
+      "initialMessage": "Initial Message",
+      "optional": "Optional",
+      "initialMessagePlaceholder": "Write an initial message (optional)...",
+      "creating": "Creating...",
+      "createConversation": "Create Conversation",
+      "settings": "Settings",
+      "settingsDescription": "Manage your message preferences",
+      "emailNotifications": "Email Notifications",
+      "emailNotificationsDescription": "Receive email notifications for new messages",
+      "pushNotifications": "Push Notifications",
+      "pushNotificationsDescription": "Receive push notifications for new messages",
+      "soundEnabled": "Sound Enabled",
+      "soundEnabledDescription": "Play sound when receiving new messages",
+      "autoMarkAsRead": "Auto Mark as Read",
+      "autoMarkAsReadDescription": "Automatically mark messages as read when viewed",
+      "back": "Back"
+    },
+    "notifications": {
+      "all": "All",
+      "back": "Back",
+      "channels": "Channels",
+      "clearAll": "Clear All",
+      "confirmClearAll": "Are you sure you want to delete all notifications? This action cannot be undone.",
+      "confirmDelete": "Are you sure you want to delete this notification?",
+      "confirmMarkAllAsRead": "Are you sure you want to mark all notifications as read?",
+      "contractNotifications": "Contract Notifications",
+      "createdAt": "Created At",
+      "daysAgo": "days ago",
+      "delete": "Delete",
+      "details": "Details",
+      "disputeNotifications": "Dispute Notifications",
+      "emailNotifications": "Email Notifications",
+      "emailNotificationsDescription": "Receive email notifications",
+      "hoursAgo": "hours ago",
+      "inAppNotifications": "In-App Notifications",
+      "inAppNotificationsDescription": "Receive notifications within the application",
+      "justNow": "Just now",
+      "loading": "Loading notifications...",
+      "markAllAsRead": "Mark All as Read",
+      "messageNotifications": "Message Notifications",
+      "minutesAgo": "minutes ago",
+      "noNotifications": "No notifications found",
+      "noNotificationsDescription": "You're all caught up! No new notifications.",
+      "noUnreadNotifications": "No unread notifications",
+      "noUnreadNotificationsDescription": "All notifications have been read",
+      "notificationNotFound": "Notification not found",
+      "notificationTypes": "Notification Types",
+      "typeLabel": "Type",
+      "type": {
+        "request": "Request",
+        "offer": "Offer",
+        "project": "Project",
+        "message": "Message",
+        "payment": "Payment",
+        "contract": "Contract",
+        "review": "Review",
+        "dispute": "Dispute",
+        "system": "System",
+        "verification": "Verification"
+      },
+      "offerNotifications": "Offer Notifications",
+      "paymentNotifications": "Payment Notifications",
+      "projectNotifications": "Project Notifications",
+      "pushNotifications": "Push Notifications",
+      "pushNotificationsDescription": "Receive push notifications on your device",
+      "read": "Read",
+      "readAt": "Read At",
+      "reference": "Reference",
+      "requestNotifications": "Request Notifications",
+      "settings": "Settings",
+      "settingsDescription": "Manage your notification preferences",
+      "smsNotifications": "SMS Notifications",
+      "smsNotificationsDescription": "Receive SMS notifications",
+      "status": "Status",
+      "subtitle": "Stay updated with all your activities",
+      "systemNotifications": "System Notifications",
+      "title": "Notifications",
+      "unread": "Unread",
+      "viewRelated": "View Related"
+    }
+  },
+  "admin": {
+    "title": "Admin Panel",
+    "pages": {
+      "admin": {
+        "title": "Admin"
+      },
+      "analytics": {
+        "title": "Analytics"
+      },
+      "categories": {
+        "title": "Categories"
+      },
+      "dashboard": {
+        "title": "Dashboard"
+      },
+      "disputes": {
+        "title": "Disputes"
+      },
+      "edit": {
+        "title": "Edit"
+      },
+      "new": {
+        "title": "New"
+      },
+      "offers": {
+        "title": "Offers"
+      },
+      "payments": {
+        "title": "Payments"
+      },
+      "projects": {
+        "title": "Projects"
+      },
+      "reports": {
+        "title": "Reports"
+      },
+      "requests": {
+        "title": "Requests"
+      },
+      "reviews": {
+        "title": "Reviews"
+      },
+      "settings": {
+        "title": "Settings"
+      },
+      "suppliers": {
+        "title": "Suppliers"
+      },
+      "users": {
+        "title": "Users"
+      },
+      "verification": {
+        "title": "Verification"
+      }
+    },
+    "iconPlaceholder": "Icon",
+    "actions": "Admin Actions",
+    "nav": {
+      "dashboard": "Dashboard",
+      "users": "Users",
+      "suppliers": "Suppliers",
+      "requests": "Requests",
+      "offers": "Offers",
+      "projects": "Projects",
+      "disputes": "Disputes",
+      "verification": "Verification",
+      "categories": "Categories",
+      "payments": "Payments",
+      "reviews": "Reviews",
+      "reports": "Reports",
+      "analytics": "Analytics",
+      "settings": "Settings",
+      "logout": "Logout"
+    },
+    "dashboard": {
+      "title": "Dashboard",
+      "description": "Platform overview",
+      "error": "An error occurred while loading data",
+      "stats": {
+        "totalUsers": "Total Users",
+        "totalSuppliers": "Total Suppliers",
+        "activeRequests": "Active Requests",
+        "activeProjects": "Active Projects"
+      },
+      "revenue": {
+        "title": "Total Revenue",
+        "subtitle": "This month",
+        "comparison": "Compared to last month"
+      },
+      "performance": {
+        "title": "Performance Rate",
+        "subtitle": "Project completion rate",
+        "completionRate": "Project completion rate"
+      },
+      "recentActivity": {
+        "title": "Recent Activity",
+        "search": "Search activity...",
+        "empty": "No recent activity",
+        "table": {
+          "activity": "Activity",
+          "time": "Time"
+        },
+        "types": {
+          "user_registered": "New user registered",
+          "project_completed": "Project completed successfully",
+          "dispute_opened": "New dispute opened",
+          "payment_received": "New payment received",
+          "verification_pending": "New verification request"
+        }
+      },
+      "alerts": {
+        "pendingDisputes": "Pending disputes need review",
+        "pendingVerifications": "Verification requests awaiting approval"
+      }
+    },
+    "users": {
+      "title": "Users",
+      "description": "View and manage all users",
+      "search": "Search for user...",
+      "empty": "No users found",
+      "table": {
+        "name": "Name",
+        "type": "Type",
+        "status": "Status",
+        "verified": "Verified",
+        "projects": "Projects",
+        "rating": "Rating",
+        "actions": "Actions"
+      },
+      "actions": {
+        "sendEmail": "Send email",
+        "export": "Export",
+        "addUser": "Add user",
+        "suspend": "Suspend",
+        "ban": "Ban"
+      },
+      "types": {
+        "client": "Client",
+        "supplier": "Supplier",
+        "admin": "Admin"
+      },
+      "users": {
+        "types": {
+          "supplier": "Supplier",
+          "admin": "Admin",
+          "client": "Client"
+        }
+      },
+      "statuses": {
+        "active": "Active",
+        "inactive": "Inactive",
+        "suspended": "Suspended",
+        "banned": "Banned"
+      },
+      "loading": "Loading user...",
+      "notFound": "User not found",
+      "verified": "Verified",
+      "detail": {
+        "description": "View and manage user details",
+        "email": "Email",
+        "phone": "Phone",
+        "location": "Location",
+        "memberSince": "Member since",
+        "stats": {
+          "rating": "Rating",
+          "reviews": "Reviews",
+          "projects": "Projects",
+          "completed": "Completed",
+          "wallet": "Wallet balance",
+          "lastLogin": "Last login"
+        },
+        "sections": {
+          "personalInfo": "Personal information",
+          "address": "Address",
+          "verification": "Verification status",
+          "account": "Account information"
+        },
+        "dateOfBirth": "Date of birth",
+        "nationalId": "National ID",
+        "companyName": "Company name",
+        "commercialRegister": "Commercial register",
+        "taxNumber": "Tax number",
+        "emailVerification": "Email verification",
+        "phoneVerification": "Phone verification",
+        "createdAt": "Created at",
+        "updatedAt": "Updated at",
+        "lastLogin": "Last login"
+      }
+    },
+    "suppliers": {
+      "title": "Supplier Management",
+      "description": "View and manage all suppliers",
+      "search": "Search for supplier...",
+      "empty": "No suppliers found",
+      "table": {
+        "name": "Supplier Name",
+        "rating": "Rating",
+        "projects": "Projects",
+        "successRate": "Success Rate",
+        "verified": "Verified",
+        "actions": "Actions"
+      },
+      "detail": {
+        "title": "Supplier Details",
+        "description": "View detailed supplier information"
+      }
+    },
+    "requests": {
+      "title": "Request Management",
+      "description": "View and manage all requests",
+      "search": "Search for request...",
+      "empty": "No requests found",
+      "table": {
+        "title": "Request Title",
+        "budget": "Budget",
+        "deadline": "Deadline",
+        "status": "Status",
+        "actions": "Actions"
+      },
+      "statuses": {
+        "draft": "Draft",
+        "active": "Active",
+        "closed": "Closed",
+        "cancelled": "Cancelled"
+      },
+      "detail": {
+        "title": "Request Details",
+        "description": "View complete request details"
+      }
+    },
+    "offers": {
+      "title": "Offer Management",
+      "description": "View and manage all offers",
+      "search": "Search for offer...",
+      "empty": "No offers found",
+      "table": {
+        "request": "Request",
+        "price": "Price",
+        "deliveryTime": "Delivery Time",
+        "date": "Date",
+        "status": "Status",
+        "actions": "Actions"
+      },
+      "statuses": {
+        "pending": "Pending",
+        "accepted": "Accepted",
+        "rejected": "Rejected",
+        "withdrawn": "Withdrawn"
+      },
+      "time": {
+        "days": "day",
+        "hours": "hour"
+      },
+      "detail": {
+        "title": "Offer Details",
+        "description": "View complete offer details"
+      }
+    },
+    "projects": {
+      "title": "Project Management",
+      "description": "View and manage all projects",
+      "search": "Search for project...",
+      "empty": "No projects found",
+      "table": {
+        "request": "Request",
+        "title": "Project Title",
+        "price": "Price",
+        "progress": "Progress",
+        "deadline": "Deadline",
+        "status": "Status",
+        "actions": "Actions"
+      },
+      "statuses": {
+        "draft": "Draft",
+        "pending_contract": "Pending Contract",
+        "active": "Active",
+        "on_hold": "On Hold",
+        "completed": "Completed",
+        "cancelled": "Cancelled",
+        "disputed": "Disputed",
+        "in_progress": "In Progress"
+      },
+      "detail": {
+        "title": "Project Details",
+        "description": "View complete project details"
+      }
+    },
+    "disputes": {
+      "title": "Dispute Management",
+      "description": "View and resolve disputes",
+      "search": "Search for dispute...",
+      "empty": "No disputes found",
+      "table": {
+        "reason": "Reason",
+        "priority": "Priority",
+        "date": "Date",
+        "status": "Status",
+        "actions": "Actions"
+      },
+      "priorities": {
+        "high": "High",
+        "medium": "Medium",
+        "low": "Low"
+      },
+      "priority": {
+        "high": "High",
+        "medium": "Medium",
+        "low": "Low"
+      },
+      "statuses": {
+        "open": "Open",
+        "in_review": "In Review",
+        "escalated": "Escalated",
+        "resolved": "Resolved",
+        "closed": "Closed"
+      }
+    },
+    "verification": {
+      "title": "Verification Queue",
+      "description": "Review verification requests",
+      "search": "Search for document...",
+      "empty": "No documents to review",
+      "table": {
+        "documentType": "Document Type",
+        "submittedAt": "Submitted At",
+        "expiryDate": "Expiry Date",
+        "status": "Status",
+        "actions": "Actions"
+      },
+      "actions": {
+        "exportReport": "Export Report"
+      },
+      "statuses": {
+        "pending": "Pending",
+        "approved": "Approved",
+        "rejected": "Rejected"
+      },
+      "stats": {
+        "pending": "Pending",
+        "approved": "Approved",
+        "rejected": "Rejected"
+      },
+      "types": {
+        "commercialRegister": "Commercial Register",
+        "nationalId": "National ID",
+        "taxNumber": "Tax Number",
+        "other": "Document"
+      }
+    },
+    "categories": {
+      "title": "Category Management",
+      "description": "Organize and manage categories",
+      "search": "Search for category...",
+      "empty": "No categories found",
+      "table": {
+        "name": "Category Name",
+        "slug": "Slug",
+        "order": "Order",
+        "status": "Status",
+        "actions": "Actions"
+      },
+      "actions": {
+        "addCategory": "Add Category",
+        "edit": "Edit Category"
+      },
+      "statuses": {
+        "active": "Active",
+        "inactive": "Inactive"
+      },
+      "loading": "Loading category...",
+      "notFound": "Category not found",
+      "create": {
+        "title": "Create Category",
+        "description": "Add a new category to the system",
+        "error": "Failed to create category"
+      },
+      "edit": {
+        "title": "Edit Category",
+        "description": "Update category information",
+        "error": "Failed to update category"
+      },
+      "form": {
+        "nameAr": "Name (Arabic)",
+        "nameArPlaceholder": "اسم الفئة",
+        "nameEn": "Name (English)",
+        "nameEnPlaceholder": "Category Name",
+        "description": "Description",
+        "descriptionPlaceholder": "Category description",
+        "icon": "Icon",
+        "sortOrder": "Sort Order",
+        "isActive": "Active"
+      },
+      "detail": {
+        "suppliers": "Suppliers",
+        "requests": "Requests",
+        "sortOrder": "Sort Order",
+        "slug": "Slug",
+        "icon": "Icon",
+        "parent": "Parent Category",
+        "status": "Status",
+        "createdAt": "Created At",
+        "updatedAt": "Updated At",
+        "sections": {
+          "info": "Category Information",
+          "description": "Description",
+          "timestamps": "Timestamps"
+        }
+      }
+    },
+    "payments": {
+      "title": "Payment Management",
+      "description": "View and monitor payments",
+      "search": "Search for payment...",
+      "empty": "No payments found",
+      "table": {
+        "transaction": "Transaction ID",
+        "amount": "Amount",
+        "method": "Payment Method",
+        "date": "Date",
+        "status": "Status",
+        "actions": "Actions"
+      },
+      "statuses": {
+        "pending": "Pending",
+        "processing": "Processing",
+        "completed": "Completed",
+        "failed": "Failed",
+        "cancelled": "Cancelled",
+        "refunded": "Refunded"
+      },
+      "methods": {
+        "credit_card": "Credit Card",
+        "debit_card": "Debit Card",
+        "bank_transfer": "Bank Transfer",
+        "wallet": "Wallet",
+        "cash": "Cash"
+      },
+      "types": {
+        "deposit": "Deposit",
+        "milestone": "Milestone Payment",
+        "final": "Final Payment",
+        "refund": "Refund",
+        "withdrawal": "Withdrawal",
+        "project_payment": "Project Payment",
+        "milestone_payment": "Milestone Payment"
+      },
+      "labels": {
+        "pending": "Pending",
+        "netAmount": "Net"
+      },
+      "loading": "Loading payment...",
+      "notFound": "Payment not found",
+      "stages": {
+        "initiated": "Initiated",
+        "pending": "Pending",
+        "processing": "Processing",
+        "completed": "Completed",
+        "failed": "Failed",
+        "cancelled": "Cancelled",
+        "refunded": "Refunded"
+      },
+      "detail": {
+        "title": "Payment Details",
+        "description": "View payment transaction details",
+        "totalAmount": "Total Amount",
+        "netAmount": "Net Amount",
+        "platformFee": "Platform Fee",
+        "paymentMethod": "Payment Method",
+        "paymentType": "Payment Type",
+        "paymentStage": "Payment Stage",
+        "gateway": "Payment Gateway",
+        "currency": "Currency",
+        "createdAt": "Created At",
+        "completedAt": "Completed At",
+        "ipAddress": "IP Address",
+        "projectId": "Project ID",
+        "milestoneId": "Milestone ID",
+        "payerId": "Payer ID",
+        "receiverId": "Receiver ID",
+        "sections": {
+          "paymentInfo": "Payment Information",
+          "transactionInfo": "Transaction Information",
+          "projectInfo": "Project Information",
+          "notes": "Notes",
+          "failureReason": "Failure Reason"
+        }
+      }
+    },
+    "reviews": {
+      "title": "Review Management",
+      "description": "View and moderate reviews",
+      "search": "Search for review...",
+      "empty": "No reviews found",
+      "table": {
+        "rating": "Rating",
+        "comment": "Comment",
+        "helpful": "Helpful",
+        "date": "Date",
+        "verified": "Verified",
+        "actions": "Actions"
+      },
+      "loading": "Loading review...",
+      "notFound": "Review not found",
+      "verified": "Verified",
+      "notVerified": "Not Verified",
+      "actions": {
+        "edit": "Edit Review"
+      },
+      "types": {
+        "client_to_supplier": "Client to Supplier",
+        "supplier_to_client": "Supplier to Client"
+      },
+      "statuses": {
+        "pending": "Pending",
+        "published": "Published",
+        "hidden": "Hidden",
+        "reported": "Reported"
+      },
+      "create": {
+        "title": "Create Review",
+        "description": "Add a new review",
+        "error": "Failed to create review"
+      },
+      "edit": {
+        "title": "Edit Review",
+        "description": "Update review information",
+        "error": "Failed to update review"
+      },
+      "form": {
+        "projectId": "Project ID",
+        "reviewedId": "Reviewed ID",
+        "reviewType": "Review Type",
+        "rating": "Overall Rating",
+        "title": "Title",
+        "comment": "Comment",
+        "qualityRating": "Quality Rating",
+        "communicationRating": "Communication Rating",
+        "timelinessRating": "Timeliness Rating",
+        "professionalismRating": "Professionalism Rating",
+        "response": "Response"
+      },
+      "detail": {
+        "title": "Review Details",
+        "description": "View review information",
+        "reviewType": "Review Type",
+        "projectId": "Project ID",
+        "reviewerId": "Reviewer ID",
+        "reviewedId": "Reviewed ID",
+        "status": "Status",
+        "qualityRating": "Quality",
+        "communicationRating": "Communication",
+        "timelinessRating": "Timeliness",
+        "professionalismRating": "Professionalism",
+        "helpfulCount": "Helpful",
+        "notHelpfulCount": "Not Helpful",
+        "createdAt": "Created At",
+        "respondedAt": "Responded At",
+        "sections": {
+          "info": "Review Information",
+          "engagement": "Engagement & Timestamps",
+          "response": "Response"
+        }
+      }
+    },
+    "reports": {
+      "title": "Report Management",
+      "description": "Review submitted reports",
+      "search": "Search for report...",
+      "empty": "No reports found",
+      "table": {
+        "type": "Type",
+        "reason": "Reason",
+        "date": "Date",
+        "status": "Status",
+        "actions": "Actions"
+      },
+      "types": {
+        "user": "User",
+        "project": "Project",
+        "review": "Review",
+        "other": "Item"
+      },
+      "reasons": {
+        "inappropriate_content": "Inappropriate Content",
+        "spam": "Spam",
+        "false_information": "False Information",
+        "fraud": "Fraud"
+      },
+      "statuses": {
+        "pending": "Pending",
+        "reviewing": "Reviewing",
+        "under_review": "Reviewing",
+        "resolved": "Resolved",
+        "dismissed": "Dismissed"
+      }
+    },
+    "analytics": {
+      "title": "Analytics & Reports",
+      "description": "Platform statistics and analytics",
+      "loading": "Loading...",
+      "error": "An error occurred while loading data",
+      "common": {
+        "project": "project"
+      },
+      "currency": {
+        "million": "M SAR",
+        "thousand": "K SAR"
+      },
+      "actions": {
+        "selectPeriod": "Select Period",
+        "exportReport": "Export Report"
+      },
+      "charts": {
+        "userGrowth": "User Growth",
+        "userGrowthDetails": {
+          "title": "User Growth",
+          "usersLabel": "Users",
+          "growthLabel": "Growth %"
+        },
+        "monthlyRevenue": "Monthly Revenue",
+        "monthlyRevenueDetails": {
+          "title": "Monthly Revenue",
+          "revenueLabel": "Revenue",
+          "targetLabel": "Target",
+          "currency": "SAR",
+          "ofTarget": "of target"
+        },
+        "projectsByCategory": "Projects by Category",
+        "projectsByCategoryDetails": {
+          "title": "Projects by Category",
+          "label": "Projects"
+        },
+        "completionRate": "Project Completion Rate",
+        "placeholder": "Chart"
+      },
+      "stats": {
+        "totalUsers": "Total Users",
+        "totalRevenue": "Total Revenue",
+        "activeProjects": "Active Projects",
+        "growthRate": "Growth Rate"
+      }
+    },
+    "settings": {
+      "title": "System Settings",
+      "description": "Manage platform settings",
+      "actions": {
+        "saveChanges": "Save Changes"
+      },
+      "sections": {
+        "general": "General Settings",
+        "payment": "Payment Settings",
+        "email": "Email Settings",
+        "security": "Security & Privacy",
+        "notifications": "Notifications",
+        "database": "Database",
+        "manage": "Manage"
+      },
+      "fields": {
+        "platformName": "Platform Name",
+        "supportEmail": "Support Email",
+        "phoneNumber": "Phone Number",
+        "maintenanceMode": "Enable Maintenance Mode"
+      }
+    },
+    "common": {
+      "loading": "Loading...",
+      "noData": "No data",
+      "search": "Search...",
+      "filter": "Filter",
+      "export": "Export",
+      "save": "Save",
+      "cancel": "Cancel",
+      "delete": "Delete",
+      "edit": "Edit",
+      "view": "View",
+      "actions": "Actions",
+      "currency": "SAR",
+      "saving": "Saving..."
+    },
+    "admin": {
+      "title": "Title"
+    },
+    "new": {
+      "title": "Title"
+    },
+    "edit": {
+      "title": "Title"
+    }
+  },
+  "dev": {
+    "pageNavigator": "Developer Page Navigator",
+    "searchPages": "Search pages...",
+    "dynamic": "[dynamic]",
+    "devModeOnly": "Dev Mode Only",
+    "totalPages": "Total: {count} pages",
+    "noPagesFound": "No pages found",
+    "themeSwitcher": "Theme Switcher",
+    "searchThemes": "Search themes...",
+    "currentTheme": "Current Theme",
+    "totalThemes": "Total: {count} themes",
+    "noThemesFound": "No themes found",
+    "themes": "Themes",
+    "background": "Background",
+    "primary": "Primary",
+    "accent": "Accent",
+    "text": "Text"
   }
 }

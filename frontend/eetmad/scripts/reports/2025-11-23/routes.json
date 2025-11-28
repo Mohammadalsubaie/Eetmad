@@ -1,0 +1,2325 @@
+{
+  "generatedAt": "2025-11-23T19:26:01.974Z",
+  "totalRoutes": 128,
+  "summary": {
+    "internal": 81,
+    "dynamic": 36,
+    "external": 11
+  },
+  "routes": {
+    "admin": [
+      {
+        "path": "/admin/categories",
+        "type": "internal",
+        "source": "router",
+        "isDynamic": false,
+        "params": [],
+        "group": "admin",
+        "file": "app/[locale]/(admin)/admin/categories/new/page.tsx",
+        "line": 66
+      },
+      {
+        "path": "/admin/reviews",
+        "type": "internal",
+        "source": "router",
+        "isDynamic": false,
+        "params": [],
+        "group": "admin",
+        "file": "app/[locale]/(admin)/admin/reviews/new/page.tsx",
+        "line": 64
+      },
+      {
+        "path": "admin/analytics",
+        "type": "internal",
+        "source": "filesystem",
+        "isDynamic": false,
+        "params": [],
+        "group": "admin",
+        "file": "/Users/hamad/Projects/fisal/frontend/eetmad/src/app/[locale]/(admin)/admin/analytics/page.tsx"
+      },
+      {
+        "path": "admin/categories",
+        "type": "internal",
+        "source": "filesystem",
+        "isDynamic": false,
+        "params": [],
+        "group": "admin",
+        "file": "/Users/hamad/Projects/fisal/frontend/eetmad/src/app/[locale]/(admin)/admin/categories/page.tsx"
+      },
+      {
+        "path": "admin/categories/[id]",
+        "type": "dynamic",
+        "source": "filesystem",
+        "isDynamic": true,
+        "params": ["id"],
+        "group": "admin",
+        "file": "/Users/hamad/Projects/fisal/frontend/eetmad/src/app/[locale]/(admin)/admin/categories/[id]"
+      },
+      {
+        "path": "admin/categories/[id]/edit",
+        "type": "dynamic",
+        "source": "filesystem",
+        "isDynamic": true,
+        "params": ["id"],
+        "group": "admin",
+        "file": "/Users/hamad/Projects/fisal/frontend/eetmad/src/app/[locale]/(admin)/admin/categories/[id]/edit/page.tsx"
+      },
+      {
+        "path": "admin/categories/new",
+        "type": "internal",
+        "source": "filesystem",
+        "isDynamic": false,
+        "params": [],
+        "group": "admin",
+        "file": "/Users/hamad/Projects/fisal/frontend/eetmad/src/app/[locale]/(admin)/admin/categories/new/page.tsx"
+      },
+      {
+        "path": "admin/dashboard",
+        "type": "internal",
+        "source": "filesystem",
+        "isDynamic": false,
+        "params": [],
+        "group": "admin",
+        "file": "/Users/hamad/Projects/fisal/frontend/eetmad/src/app/[locale]/(admin)/admin/dashboard/page.tsx"
+      },
+      {
+        "path": "admin/disputes",
+        "type": "internal",
+        "source": "filesystem",
+        "isDynamic": false,
+        "params": [],
+        "group": "admin",
+        "file": "/Users/hamad/Projects/fisal/frontend/eetmad/src/app/[locale]/(admin)/admin/disputes/page.tsx"
+      },
+      {
+        "path": "admin/disputes/[id]",
+        "type": "dynamic",
+        "source": "filesystem",
+        "isDynamic": true,
+        "params": ["id"],
+        "group": "admin",
+        "file": "/Users/hamad/Projects/fisal/frontend/eetmad/src/app/[locale]/(admin)/admin/disputes/[id]"
+      },
+      {
+        "path": "admin/offers",
+        "type": "internal",
+        "source": "filesystem",
+        "isDynamic": false,
+        "params": [],
+        "group": "admin",
+        "file": "/Users/hamad/Projects/fisal/frontend/eetmad/src/app/[locale]/(admin)/admin/offers/page.tsx"
+      },
+      {
+        "path": "admin/payments",
+        "type": "internal",
+        "source": "filesystem",
+        "isDynamic": false,
+        "params": [],
+        "group": "admin",
+        "file": "/Users/hamad/Projects/fisal/frontend/eetmad/src/app/[locale]/(admin)/admin/payments/page.tsx"
+      },
+      {
+        "path": "admin/payments/[id]",
+        "type": "dynamic",
+        "source": "filesystem",
+        "isDynamic": true,
+        "params": ["id"],
+        "group": "admin",
+        "file": "/Users/hamad/Projects/fisal/frontend/eetmad/src/app/[locale]/(admin)/admin/payments/[id]"
+      },
+      {
+        "path": "admin/projects",
+        "type": "internal",
+        "source": "filesystem",
+        "isDynamic": false,
+        "params": [],
+        "group": "admin",
+        "file": "/Users/hamad/Projects/fisal/frontend/eetmad/src/app/[locale]/(admin)/admin/projects/page.tsx"
+      },
+      {
+        "path": "admin/reports",
+        "type": "internal",
+        "source": "filesystem",
+        "isDynamic": false,
+        "params": [],
+        "group": "admin",
+        "file": "/Users/hamad/Projects/fisal/frontend/eetmad/src/app/[locale]/(admin)/admin/reports/page.tsx"
+      },
+      {
+        "path": "admin/requests",
+        "type": "internal",
+        "source": "filesystem",
+        "isDynamic": false,
+        "params": [],
+        "group": "admin",
+        "file": "/Users/hamad/Projects/fisal/frontend/eetmad/src/app/[locale]/(admin)/admin/requests/page.tsx"
+      },
+      {
+        "path": "admin/reviews",
+        "type": "internal",
+        "source": "filesystem",
+        "isDynamic": false,
+        "params": [],
+        "group": "admin",
+        "file": "/Users/hamad/Projects/fisal/frontend/eetmad/src/app/[locale]/(admin)/admin/reviews/page.tsx"
+      },
+      {
+        "path": "admin/reviews/[id]",
+        "type": "dynamic",
+        "source": "filesystem",
+        "isDynamic": true,
+        "params": ["id"],
+        "group": "admin",
+        "file": "/Users/hamad/Projects/fisal/frontend/eetmad/src/app/[locale]/(admin)/admin/reviews/[id]"
+      },
+      {
+        "path": "admin/reviews/[id]/edit",
+        "type": "dynamic",
+        "source": "filesystem",
+        "isDynamic": true,
+        "params": ["id"],
+        "group": "admin",
+        "file": "/Users/hamad/Projects/fisal/frontend/eetmad/src/app/[locale]/(admin)/admin/reviews/[id]/edit/page.tsx"
+      },
+      {
+        "path": "admin/reviews/new",
+        "type": "internal",
+        "source": "filesystem",
+        "isDynamic": false,
+        "params": [],
+        "group": "admin",
+        "file": "/Users/hamad/Projects/fisal/frontend/eetmad/src/app/[locale]/(admin)/admin/reviews/new/page.tsx"
+      },
+      {
+        "path": "admin/settings",
+        "type": "internal",
+        "source": "filesystem",
+        "isDynamic": false,
+        "params": [],
+        "group": "admin",
+        "file": "/Users/hamad/Projects/fisal/frontend/eetmad/src/app/[locale]/(admin)/admin/settings/page.tsx"
+      },
+      {
+        "path": "admin/suppliers",
+        "type": "internal",
+        "source": "filesystem",
+        "isDynamic": false,
+        "params": [],
+        "group": "admin",
+        "file": "/Users/hamad/Projects/fisal/frontend/eetmad/src/app/[locale]/(admin)/admin/suppliers/page.tsx"
+      },
+      {
+        "path": "admin/users",
+        "type": "internal",
+        "source": "filesystem",
+        "isDynamic": false,
+        "params": [],
+        "group": "admin",
+        "file": "/Users/hamad/Projects/fisal/frontend/eetmad/src/app/[locale]/(admin)/admin/users/page.tsx"
+      },
+      {
+        "path": "admin/users/[id]",
+        "type": "dynamic",
+        "source": "filesystem",
+        "isDynamic": true,
+        "params": ["id"],
+        "group": "admin",
+        "file": "/Users/hamad/Projects/fisal/frontend/eetmad/src/app/[locale]/(admin)/admin/users/[id]"
+      },
+      {
+        "path": "admin/verification",
+        "type": "internal",
+        "source": "filesystem",
+        "isDynamic": false,
+        "params": [],
+        "group": "admin",
+        "file": "/Users/hamad/Projects/fisal/frontend/eetmad/src/app/[locale]/(admin)/admin/verification/page.tsx"
+      }
+    ],
+    "auth": [
+      {
+        "path": "/forgot-password",
+        "type": "internal",
+        "source": "link",
+        "isDynamic": false,
+        "params": [],
+        "group": "auth",
+        "file": "components/features/auth/LoginForm.tsx",
+        "line": 176
+      },
+      {
+        "path": "/login",
+        "type": "internal",
+        "source": "link",
+        "isDynamic": false,
+        "params": [],
+        "group": "auth",
+        "file": "components/shared/layouts/Header.tsx",
+        "line": 155
+      },
+      {
+        "path": "/register",
+        "type": "internal",
+        "source": "link",
+        "isDynamic": false,
+        "params": [],
+        "group": "auth",
+        "file": "components/features/auth/LoginForm.tsx",
+        "line": 255
+      },
+      {
+        "path": "forgot-password",
+        "type": "internal",
+        "source": "filesystem",
+        "isDynamic": false,
+        "params": [],
+        "group": "auth",
+        "file": "/Users/hamad/Projects/fisal/frontend/eetmad/src/app/[locale]/(auth)/forgot-password/page.tsx"
+      },
+      {
+        "path": "login",
+        "type": "internal",
+        "source": "filesystem",
+        "isDynamic": false,
+        "params": [],
+        "group": "auth",
+        "file": "/Users/hamad/Projects/fisal/frontend/eetmad/src/app/[locale]/(auth)/login/page.tsx"
+      },
+      {
+        "path": "register",
+        "type": "internal",
+        "source": "filesystem",
+        "isDynamic": false,
+        "params": [],
+        "group": "auth",
+        "file": "/Users/hamad/Projects/fisal/frontend/eetmad/src/app/[locale]/(auth)/register/page.tsx"
+      },
+      {
+        "path": "reset-password",
+        "type": "internal",
+        "source": "filesystem",
+        "isDynamic": false,
+        "params": [],
+        "group": "auth",
+        "file": "/Users/hamad/Projects/fisal/frontend/eetmad/src/app/[locale]/(auth)/reset-password/page.tsx"
+      },
+      {
+        "path": "verify-email",
+        "type": "internal",
+        "source": "filesystem",
+        "isDynamic": false,
+        "params": [],
+        "group": "auth",
+        "file": "/Users/hamad/Projects/fisal/frontend/eetmad/src/app/[locale]/(auth)/verify-email/page.tsx"
+      },
+      {
+        "path": "verify-phone",
+        "type": "internal",
+        "source": "filesystem",
+        "isDynamic": false,
+        "params": [],
+        "group": "auth",
+        "file": "/Users/hamad/Projects/fisal/frontend/eetmad/src/app/[locale]/(auth)/verify-phone/page.tsx"
+      }
+    ],
+    "client": [
+      {
+        "path": "/projects",
+        "type": "internal",
+        "source": "router",
+        "isDynamic": false,
+        "params": [],
+        "group": "client",
+        "file": "app/[locale]/(client)/projects/[id]/page.tsx",
+        "line": 49
+      },
+      {
+        "path": "/requests",
+        "type": "internal",
+        "source": "router",
+        "isDynamic": false,
+        "params": [],
+        "group": "client",
+        "file": "app/[locale]/(client)/requests/[id]/page.tsx",
+        "line": 47
+      },
+      {
+        "path": "/requests/my-requests",
+        "type": "internal",
+        "source": "router",
+        "isDynamic": false,
+        "params": [],
+        "group": "client",
+        "file": "components/features/requests/RequestForm.tsx",
+        "line": 96
+      },
+      {
+        "path": "/requests/new",
+        "type": "internal",
+        "source": "router",
+        "isDynamic": false,
+        "params": [],
+        "group": "client",
+        "file": "app/[locale]/(client)/requests/page.tsx",
+        "line": 34
+      },
+      {
+        "path": "contracts",
+        "type": "internal",
+        "source": "filesystem",
+        "isDynamic": false,
+        "params": [],
+        "group": "client",
+        "file": "/Users/hamad/Projects/fisal/frontend/eetmad/src/app/[locale]/(client)/contracts/page.tsx"
+      },
+      {
+        "path": "contracts/[id]",
+        "type": "dynamic",
+        "source": "filesystem",
+        "isDynamic": true,
+        "params": ["id"],
+        "group": "client",
+        "file": "/Users/hamad/Projects/fisal/frontend/eetmad/src/app/[locale]/(client)/contracts/[id]"
+      },
+      {
+        "path": "contracts/[id]/clauses",
+        "type": "dynamic",
+        "source": "filesystem",
+        "isDynamic": true,
+        "params": ["id"],
+        "group": "client",
+        "file": "/Users/hamad/Projects/fisal/frontend/eetmad/src/app/[locale]/(client)/contracts/[id]/clauses/page.tsx"
+      },
+      {
+        "path": "contracts/[id]/edit",
+        "type": "dynamic",
+        "source": "filesystem",
+        "isDynamic": true,
+        "params": ["id"],
+        "group": "client",
+        "file": "/Users/hamad/Projects/fisal/frontend/eetmad/src/app/[locale]/(client)/contracts/[id]/edit/page.tsx"
+      },
+      {
+        "path": "contracts/[id]/sign",
+        "type": "dynamic",
+        "source": "filesystem",
+        "isDynamic": true,
+        "params": ["id"],
+        "group": "client",
+        "file": "/Users/hamad/Projects/fisal/frontend/eetmad/src/app/[locale]/(client)/contracts/[id]/sign/page.tsx"
+      },
+      {
+        "path": "contracts/[id]/versions",
+        "type": "dynamic",
+        "source": "filesystem",
+        "isDynamic": true,
+        "params": ["id"],
+        "group": "client",
+        "file": "/Users/hamad/Projects/fisal/frontend/eetmad/src/app/[locale]/(client)/contracts/[id]/versions/page.tsx"
+      },
+      {
+        "path": "contracts/new",
+        "type": "internal",
+        "source": "filesystem",
+        "isDynamic": false,
+        "params": [],
+        "group": "client",
+        "file": "/Users/hamad/Projects/fisal/frontend/eetmad/src/app/[locale]/(client)/contracts/new/page.tsx"
+      },
+      {
+        "path": "disputes",
+        "type": "internal",
+        "source": "filesystem",
+        "isDynamic": false,
+        "params": [],
+        "group": "client",
+        "file": "/Users/hamad/Projects/fisal/frontend/eetmad/src/app/[locale]/(client)/disputes/page.tsx"
+      },
+      {
+        "path": "disputes/[id]",
+        "type": "dynamic",
+        "source": "filesystem",
+        "isDynamic": true,
+        "params": ["id"],
+        "group": "client",
+        "file": "/Users/hamad/Projects/fisal/frontend/eetmad/src/app/[locale]/(client)/disputes/[id]"
+      },
+      {
+        "path": "disputes/new",
+        "type": "internal",
+        "source": "filesystem",
+        "isDynamic": false,
+        "params": [],
+        "group": "client",
+        "file": "/Users/hamad/Projects/fisal/frontend/eetmad/src/app/[locale]/(client)/disputes/new/page.tsx"
+      },
+      {
+        "path": "messages",
+        "type": "internal",
+        "source": "filesystem",
+        "isDynamic": false,
+        "params": [],
+        "group": "client",
+        "file": "/Users/hamad/Projects/fisal/frontend/eetmad/src/app/[locale]/(client)/messages/page.tsx"
+      },
+      {
+        "path": "messages/[id]",
+        "type": "dynamic",
+        "source": "filesystem",
+        "isDynamic": true,
+        "params": ["id"],
+        "group": "client",
+        "file": "/Users/hamad/Projects/fisal/frontend/eetmad/src/app/[locale]/(client)/messages/[id]"
+      },
+      {
+        "path": "messages/new",
+        "type": "internal",
+        "source": "filesystem",
+        "isDynamic": false,
+        "params": [],
+        "group": "client",
+        "file": "/Users/hamad/Projects/fisal/frontend/eetmad/src/app/[locale]/(client)/messages/new/page.tsx"
+      },
+      {
+        "path": "messages/settings",
+        "type": "internal",
+        "source": "filesystem",
+        "isDynamic": false,
+        "params": [],
+        "group": "client",
+        "file": "/Users/hamad/Projects/fisal/frontend/eetmad/src/app/[locale]/(client)/messages/settings/page.tsx"
+      },
+      {
+        "path": "milestones",
+        "type": "internal",
+        "source": "filesystem",
+        "isDynamic": false,
+        "params": [],
+        "group": "client",
+        "file": "/Users/hamad/Projects/fisal/frontend/eetmad/src/app/[locale]/(client)/milestones/page.tsx"
+      },
+      {
+        "path": "milestones/[id]",
+        "type": "dynamic",
+        "source": "filesystem",
+        "isDynamic": true,
+        "params": ["id"],
+        "group": "client",
+        "file": "/Users/hamad/Projects/fisal/frontend/eetmad/src/app/[locale]/(client)/milestones/[id]"
+      },
+      {
+        "path": "milestones/[id]/edit",
+        "type": "dynamic",
+        "source": "filesystem",
+        "isDynamic": true,
+        "params": ["id"],
+        "group": "client",
+        "file": "/Users/hamad/Projects/fisal/frontend/eetmad/src/app/[locale]/(client)/milestones/[id]/edit/page.tsx"
+      },
+      {
+        "path": "milestones/new",
+        "type": "internal",
+        "source": "filesystem",
+        "isDynamic": false,
+        "params": [],
+        "group": "client",
+        "file": "/Users/hamad/Projects/fisal/frontend/eetmad/src/app/[locale]/(client)/milestones/new/page.tsx"
+      },
+      {
+        "path": "notifications",
+        "type": "internal",
+        "source": "filesystem",
+        "isDynamic": false,
+        "params": [],
+        "group": "client",
+        "file": "/Users/hamad/Projects/fisal/frontend/eetmad/src/app/[locale]/(client)/notifications/page.tsx"
+      },
+      {
+        "path": "notifications/[id]",
+        "type": "dynamic",
+        "source": "filesystem",
+        "isDynamic": true,
+        "params": ["id"],
+        "group": "client",
+        "file": "/Users/hamad/Projects/fisal/frontend/eetmad/src/app/[locale]/(client)/notifications/[id]"
+      },
+      {
+        "path": "notifications/settings",
+        "type": "internal",
+        "source": "filesystem",
+        "isDynamic": false,
+        "params": [],
+        "group": "client",
+        "file": "/Users/hamad/Projects/fisal/frontend/eetmad/src/app/[locale]/(client)/notifications/settings/page.tsx"
+      },
+      {
+        "path": "payments",
+        "type": "internal",
+        "source": "filesystem",
+        "isDynamic": false,
+        "params": [],
+        "group": "client",
+        "file": "/Users/hamad/Projects/fisal/frontend/eetmad/src/app/[locale]/(client)/payments/page.tsx"
+      },
+      {
+        "path": "payments/[id]",
+        "type": "dynamic",
+        "source": "filesystem",
+        "isDynamic": true,
+        "params": ["id"],
+        "group": "client",
+        "file": "/Users/hamad/Projects/fisal/frontend/eetmad/src/app/[locale]/(client)/payments/[id]"
+      },
+      {
+        "path": "payments/history",
+        "type": "internal",
+        "source": "filesystem",
+        "isDynamic": false,
+        "params": [],
+        "group": "client",
+        "file": "/Users/hamad/Projects/fisal/frontend/eetmad/src/app/[locale]/(client)/payments/history/page.tsx"
+      },
+      {
+        "path": "payments/initiate",
+        "type": "internal",
+        "source": "filesystem",
+        "isDynamic": false,
+        "params": [],
+        "group": "client",
+        "file": "/Users/hamad/Projects/fisal/frontend/eetmad/src/app/[locale]/(client)/payments/initiate/page.tsx"
+      },
+      {
+        "path": "payments/wallet",
+        "type": "internal",
+        "source": "filesystem",
+        "isDynamic": false,
+        "params": [],
+        "group": "client",
+        "file": "/Users/hamad/Projects/fisal/frontend/eetmad/src/app/[locale]/(client)/payments/wallet/page.tsx"
+      },
+      {
+        "path": "projects",
+        "type": "internal",
+        "source": "filesystem",
+        "isDynamic": false,
+        "params": [],
+        "group": "client",
+        "file": "/Users/hamad/Projects/fisal/frontend/eetmad/src/app/[locale]/(client)/projects/page.tsx"
+      },
+      {
+        "path": "projects/[id]",
+        "type": "dynamic",
+        "source": "filesystem",
+        "isDynamic": true,
+        "params": ["id"],
+        "group": "client",
+        "file": "/Users/hamad/Projects/fisal/frontend/eetmad/src/app/[locale]/(client)/projects/[id]"
+      },
+      {
+        "path": "projects/[id]/cancel",
+        "type": "dynamic",
+        "source": "filesystem",
+        "isDynamic": true,
+        "params": ["id"],
+        "group": "client",
+        "file": "/Users/hamad/Projects/fisal/frontend/eetmad/src/app/[locale]/(client)/projects/[id]/cancel/page.tsx"
+      },
+      {
+        "path": "projects/[id]/complete",
+        "type": "dynamic",
+        "source": "filesystem",
+        "isDynamic": true,
+        "params": ["id"],
+        "group": "client",
+        "file": "/Users/hamad/Projects/fisal/frontend/eetmad/src/app/[locale]/(client)/projects/[id]/complete/page.tsx"
+      },
+      {
+        "path": "projects/[id]/delivery",
+        "type": "dynamic",
+        "source": "filesystem",
+        "isDynamic": true,
+        "params": ["id"],
+        "group": "client",
+        "file": "/Users/hamad/Projects/fisal/frontend/eetmad/src/app/[locale]/(client)/projects/[id]/delivery/page.tsx"
+      },
+      {
+        "path": "projects/[id]/milestones",
+        "type": "dynamic",
+        "source": "filesystem",
+        "isDynamic": true,
+        "params": ["id"],
+        "group": "client",
+        "file": "/Users/hamad/Projects/fisal/frontend/eetmad/src/app/[locale]/(client)/projects/[id]/milestones/page.tsx"
+      },
+      {
+        "path": "projects/[id]/start",
+        "type": "dynamic",
+        "source": "filesystem",
+        "isDynamic": true,
+        "params": ["id"],
+        "group": "client",
+        "file": "/Users/hamad/Projects/fisal/frontend/eetmad/src/app/[locale]/(client)/projects/[id]/start/page.tsx"
+      },
+      {
+        "path": "requests",
+        "type": "internal",
+        "source": "filesystem",
+        "isDynamic": false,
+        "params": [],
+        "group": "client",
+        "file": "/Users/hamad/Projects/fisal/frontend/eetmad/src/app/[locale]/(client)/requests/page.tsx"
+      },
+      {
+        "path": "requests/[id]",
+        "type": "dynamic",
+        "source": "filesystem",
+        "isDynamic": true,
+        "params": ["id"],
+        "group": "client",
+        "file": "/Users/hamad/Projects/fisal/frontend/eetmad/src/app/[locale]/(client)/requests/[id]"
+      },
+      {
+        "path": "requests/[id]/edit",
+        "type": "dynamic",
+        "source": "filesystem",
+        "isDynamic": true,
+        "params": ["id"],
+        "group": "client",
+        "file": "/Users/hamad/Projects/fisal/frontend/eetmad/src/app/[locale]/(client)/requests/[id]/edit/page.tsx"
+      },
+      {
+        "path": "requests/[id]/offers",
+        "type": "dynamic",
+        "source": "filesystem",
+        "isDynamic": true,
+        "params": ["id"],
+        "group": "client",
+        "file": "/Users/hamad/Projects/fisal/frontend/eetmad/src/app/[locale]/(client)/requests/[id]/offers/page.tsx"
+      },
+      {
+        "path": "requests/my-requests",
+        "type": "internal",
+        "source": "filesystem",
+        "isDynamic": false,
+        "params": [],
+        "group": "client",
+        "file": "/Users/hamad/Projects/fisal/frontend/eetmad/src/app/[locale]/(client)/requests/my-requests/page.tsx"
+      },
+      {
+        "path": "requests/new",
+        "type": "internal",
+        "source": "filesystem",
+        "isDynamic": false,
+        "params": [],
+        "group": "client",
+        "file": "/Users/hamad/Projects/fisal/frontend/eetmad/src/app/[locale]/(client)/requests/new/page.tsx"
+      },
+      {
+        "path": "reviews",
+        "type": "internal",
+        "source": "filesystem",
+        "isDynamic": false,
+        "params": [],
+        "group": "client",
+        "file": "/Users/hamad/Projects/fisal/frontend/eetmad/src/app/[locale]/(client)/reviews/page.tsx"
+      },
+      {
+        "path": "reviews/[id]",
+        "type": "dynamic",
+        "source": "filesystem",
+        "isDynamic": true,
+        "params": ["id"],
+        "group": "client",
+        "file": "/Users/hamad/Projects/fisal/frontend/eetmad/src/app/[locale]/(client)/reviews/[id]"
+      },
+      {
+        "path": "reviews/new",
+        "type": "internal",
+        "source": "filesystem",
+        "isDynamic": false,
+        "params": [],
+        "group": "client",
+        "file": "/Users/hamad/Projects/fisal/frontend/eetmad/src/app/[locale]/(client)/reviews/new/page.tsx"
+      }
+    ],
+    "main": [
+      {
+        "path": "/profile/edit",
+        "type": "internal",
+        "source": "router",
+        "isDynamic": false,
+        "params": [],
+        "group": "main",
+        "file": "components/features/profile/ProfileHeader.tsx",
+        "line": 25
+      },
+      {
+        "path": "dashboard",
+        "type": "internal",
+        "source": "filesystem",
+        "isDynamic": false,
+        "params": [],
+        "group": "main",
+        "file": "/Users/hamad/Projects/fisal/frontend/eetmad/src/app/[locale]/(main)/dashboard/page.tsx"
+      },
+      {
+        "path": "profile",
+        "type": "internal",
+        "source": "filesystem",
+        "isDynamic": false,
+        "params": [],
+        "group": "main",
+        "file": "/Users/hamad/Projects/fisal/frontend/eetmad/src/app/[locale]/(client)/profile/page.tsx"
+      },
+      {
+        "path": "profile/edit",
+        "type": "internal",
+        "source": "filesystem",
+        "isDynamic": false,
+        "params": [],
+        "group": "main",
+        "file": "/Users/hamad/Projects/fisal/frontend/eetmad/src/app/[locale]/(client)/profile/edit/page.tsx"
+      },
+      {
+        "path": "profile/settings",
+        "type": "internal",
+        "source": "filesystem",
+        "isDynamic": false,
+        "params": [],
+        "group": "main",
+        "file": "/Users/hamad/Projects/fisal/frontend/eetmad/src/app/[locale]/(client)/profile/settings/page.tsx"
+      }
+    ],
+    "other": [
+      {
+        "path": "http://localhost:3000",
+        "type": "external",
+        "source": "external",
+        "file": "lib/constants/config.ts",
+        "line": 7
+      },
+      {
+        "path": "https://api.example.com",
+        "type": "external",
+        "source": "external",
+        "file": "lib/utils/naming-validator.test-demo.ts",
+        "line": 40
+      },
+      {
+        "path": "https://docs.google.com/forms/d/1NzAEs7uruIqcHz0NvVa-xstUp14G1hNig0jzmoyUomQ/edit",
+        "type": "external",
+        "source": "external",
+        "file": "components/features/home/HeroSection.tsx",
+        "line": 90
+      },
+      {
+        "path": "https://i.pravatar.cc/150?img=12",
+        "type": "external",
+        "source": "external",
+        "file": "mocks/data/home.ts",
+        "line": 22
+      },
+      {
+        "path": "https://i.pravatar.cc/150?img=14",
+        "type": "external",
+        "source": "external",
+        "file": "mocks/data/home.ts",
+        "line": 30
+      },
+      {
+        "path": "https://i.pravatar.cc/150?img=33",
+        "type": "external",
+        "source": "external",
+        "file": "mocks/data/home.ts",
+        "line": 45
+      },
+      {
+        "path": "https://i.pravatar.cc/150?img=45",
+        "type": "external",
+        "source": "external",
+        "file": "mocks/data/home.ts",
+        "line": 38
+      },
+      {
+        "path": "https://i.pravatar.cc/150?img=47",
+        "type": "external",
+        "source": "external",
+        "file": "mocks/data/home.ts",
+        "line": 492
+      },
+      {
+        "path": "https://i.pravatar.cc/150?img=48",
+        "type": "external",
+        "source": "external",
+        "file": "mocks/data/home.ts",
+        "line": 535
+      },
+      {
+        "path": "https://i.pravatar.cc/150?img=51",
+        "type": "external",
+        "source": "external",
+        "file": "mocks/data/home.ts",
+        "line": 513
+      },
+      {
+        "path": "https://i.pravatar.cc/150?img=52",
+        "type": "external",
+        "source": "external",
+        "file": "mocks/data/home.ts",
+        "line": 657
+      }
+    ],
+    "public": [
+      {
+        "path": "/categories",
+        "type": "internal",
+        "source": "link",
+        "isDynamic": false,
+        "params": [],
+        "group": "public",
+        "file": "app/[locale]/(public)/categories/[slug]/page.tsx",
+        "line": 68
+      },
+      {
+        "path": "/privacy",
+        "type": "internal",
+        "source": "link",
+        "isDynamic": false,
+        "params": [],
+        "group": "public",
+        "file": "components/shared/layouts/Footer.tsx",
+        "line": 319
+      },
+      {
+        "path": "/terms",
+        "type": "internal",
+        "source": "link",
+        "isDynamic": false,
+        "params": [],
+        "group": "public",
+        "file": "components/shared/layouts/Footer.tsx",
+        "line": 285
+      },
+      {
+        "path": "about",
+        "type": "internal",
+        "source": "filesystem",
+        "isDynamic": false,
+        "params": [],
+        "group": "public",
+        "file": "/Users/hamad/Projects/fisal/frontend/eetmad/src/app/[locale]/(public)/about/page.tsx"
+      },
+      {
+        "path": "browse-suppliers",
+        "type": "internal",
+        "source": "filesystem",
+        "isDynamic": false,
+        "params": [],
+        "group": "public",
+        "file": "/Users/hamad/Projects/fisal/frontend/eetmad/src/app/[locale]/(public)/browse-suppliers/page.tsx"
+      },
+      {
+        "path": "browse-suppliers/[id]",
+        "type": "dynamic",
+        "source": "filesystem",
+        "isDynamic": true,
+        "params": ["id"],
+        "group": "public",
+        "file": "/Users/hamad/Projects/fisal/frontend/eetmad/src/app/[locale]/(public)/browse-suppliers/[id]"
+      },
+      {
+        "path": "categories",
+        "type": "internal",
+        "source": "filesystem",
+        "isDynamic": false,
+        "params": [],
+        "group": "public",
+        "file": "/Users/hamad/Projects/fisal/frontend/eetmad/src/app/[locale]/(public)/categories/page.tsx"
+      },
+      {
+        "path": "categories/[slug]",
+        "type": "dynamic",
+        "source": "filesystem",
+        "isDynamic": true,
+        "params": ["slug"],
+        "group": "public",
+        "file": "/Users/hamad/Projects/fisal/frontend/eetmad/src/app/[locale]/(public)/categories/[slug]"
+      },
+      {
+        "path": "contact",
+        "type": "internal",
+        "source": "filesystem",
+        "isDynamic": false,
+        "params": [],
+        "group": "public",
+        "file": "/Users/hamad/Projects/fisal/frontend/eetmad/src/app/[locale]/(public)/contact/page.tsx"
+      },
+      {
+        "path": "faq",
+        "type": "internal",
+        "source": "filesystem",
+        "isDynamic": false,
+        "params": [],
+        "group": "public",
+        "file": "/Users/hamad/Projects/fisal/frontend/eetmad/src/app/[locale]/(public)/faq/page.tsx"
+      },
+      {
+        "path": "how-it-works",
+        "type": "internal",
+        "source": "filesystem",
+        "isDynamic": false,
+        "params": [],
+        "group": "public",
+        "file": "/Users/hamad/Projects/fisal/frontend/eetmad/src/app/[locale]/(public)/how-it-works/page.tsx"
+      },
+      {
+        "path": "privacy",
+        "type": "internal",
+        "source": "filesystem",
+        "isDynamic": false,
+        "params": [],
+        "group": "public",
+        "file": "/Users/hamad/Projects/fisal/frontend/eetmad/src/app/[locale]/(public)/privacy/page.tsx"
+      },
+      {
+        "path": "terms",
+        "type": "internal",
+        "source": "filesystem",
+        "isDynamic": false,
+        "params": [],
+        "group": "public",
+        "file": "/Users/hamad/Projects/fisal/frontend/eetmad/src/app/[locale]/(public)/terms/page.tsx"
+      }
+    ],
+    "root": [
+      {
+        "path": "/",
+        "type": "internal",
+        "source": "filesystem,link",
+        "isDynamic": false,
+        "params": [],
+        "group": "root",
+        "file": "/Users/hamad/Projects/fisal/frontend/eetmad/src/app/[locale]/page.tsx"
+      }
+    ],
+    "supplier": [
+      {
+        "path": "/offers",
+        "type": "internal",
+        "source": "router",
+        "isDynamic": false,
+        "params": [],
+        "group": "supplier",
+        "file": "components/features/offers/OfferForm.tsx",
+        "line": 82
+      },
+      {
+        "path": "/offers/new",
+        "type": "internal",
+        "source": "router",
+        "isDynamic": false,
+        "params": [],
+        "group": "supplier",
+        "file": "app/[locale]/(supplier)/offers/page.tsx",
+        "line": 45
+      },
+      {
+        "path": "/supplier-projects",
+        "type": "internal",
+        "source": "router",
+        "isDynamic": false,
+        "params": [],
+        "group": "supplier",
+        "file": "app/[locale]/(supplier)/supplier-projects/[id]/page.tsx",
+        "line": 54
+      },
+      {
+        "path": "offers",
+        "type": "internal",
+        "source": "filesystem",
+        "isDynamic": false,
+        "params": [],
+        "group": "supplier",
+        "file": "/Users/hamad/Projects/fisal/frontend/eetmad/src/app/[locale]/(supplier)/offers/page.tsx"
+      },
+      {
+        "path": "offers/[id]",
+        "type": "dynamic",
+        "source": "filesystem",
+        "isDynamic": true,
+        "params": ["id"],
+        "group": "supplier",
+        "file": "/Users/hamad/Projects/fisal/frontend/eetmad/src/app/[locale]/(supplier)/offers/[id]"
+      },
+      {
+        "path": "offers/[id]/edit",
+        "type": "dynamic",
+        "source": "filesystem",
+        "isDynamic": true,
+        "params": ["id"],
+        "group": "supplier",
+        "file": "/Users/hamad/Projects/fisal/frontend/eetmad/src/app/[locale]/(supplier)/offers/[id]/edit/page.tsx"
+      },
+      {
+        "path": "offers/new",
+        "type": "internal",
+        "source": "filesystem",
+        "isDynamic": false,
+        "params": [],
+        "group": "supplier",
+        "file": "/Users/hamad/Projects/fisal/frontend/eetmad/src/app/[locale]/(supplier)/offers/new/page.tsx"
+      },
+      {
+        "path": "portfolio",
+        "type": "internal",
+        "source": "filesystem",
+        "isDynamic": false,
+        "params": [],
+        "group": "supplier",
+        "file": "/Users/hamad/Projects/fisal/frontend/eetmad/src/app/[locale]/(supplier)/portfolio/page.tsx"
+      },
+      {
+        "path": "stats",
+        "type": "internal",
+        "source": "filesystem",
+        "isDynamic": false,
+        "params": [],
+        "group": "supplier",
+        "file": "/Users/hamad/Projects/fisal/frontend/eetmad/src/app/[locale]/(supplier)/stats/page.tsx"
+      },
+      {
+        "path": "supplier-profile/edit",
+        "type": "internal",
+        "source": "filesystem",
+        "isDynamic": false,
+        "params": [],
+        "group": "supplier",
+        "file": "/Users/hamad/Projects/fisal/frontend/eetmad/src/app/[locale]/(supplier)/supplier-profile/edit/page.tsx"
+      },
+      {
+        "path": "supplier-profile/setup",
+        "type": "internal",
+        "source": "filesystem",
+        "isDynamic": false,
+        "params": [],
+        "group": "supplier",
+        "file": "/Users/hamad/Projects/fisal/frontend/eetmad/src/app/[locale]/(supplier)/supplier-profile/setup/page.tsx"
+      },
+      {
+        "path": "supplier-projects/[id]",
+        "type": "dynamic",
+        "source": "filesystem",
+        "isDynamic": true,
+        "params": ["id"],
+        "group": "supplier",
+        "file": "/Users/hamad/Projects/fisal/frontend/eetmad/src/app/[locale]/(supplier)/supplier-projects/[id]"
+      }
+    ],
+    "suppliers": [
+      {
+        "path": "suppliers",
+        "type": "internal",
+        "source": "filesystem",
+        "isDynamic": false,
+        "params": [],
+        "group": "suppliers",
+        "file": "/Users/hamad/Projects/fisal/frontend/eetmad/src/app/[locale]/(client)/suppliers/page.tsx"
+      },
+      {
+        "path": "suppliers/[id]",
+        "type": "dynamic",
+        "source": "filesystem",
+        "isDynamic": true,
+        "params": ["id"],
+        "group": "suppliers",
+        "file": "/Users/hamad/Projects/fisal/frontend/eetmad/src/app/[locale]/(client)/suppliers/[id]"
+      },
+      {
+        "path": "suppliers/[id]/portfolio",
+        "type": "dynamic",
+        "source": "filesystem",
+        "isDynamic": true,
+        "params": ["id"],
+        "group": "suppliers",
+        "file": "/Users/hamad/Projects/fisal/frontend/eetmad/src/app/[locale]/(client)/suppliers/[id]/portfolio/page.tsx"
+      },
+      {
+        "path": "suppliers/me",
+        "type": "internal",
+        "source": "filesystem",
+        "isDynamic": false,
+        "params": [],
+        "group": "suppliers",
+        "file": "/Users/hamad/Projects/fisal/frontend/eetmad/src/app/[locale]/(client)/suppliers/me/page.tsx"
+      },
+      {
+        "path": "suppliers/me/edit",
+        "type": "internal",
+        "source": "filesystem",
+        "isDynamic": false,
+        "params": [],
+        "group": "suppliers",
+        "file": "/Users/hamad/Projects/fisal/frontend/eetmad/src/app/[locale]/(client)/suppliers/me/edit/page.tsx"
+      }
+    ],
+    "users": [
+      {
+        "path": "users/[id]",
+        "type": "dynamic",
+        "source": "filesystem",
+        "isDynamic": true,
+        "params": ["id"],
+        "group": "users",
+        "file": "/Users/hamad/Projects/fisal/frontend/eetmad/src/app/[locale]/(client)/users/[id]"
+      }
+    ]
+  },
+  "allRoutes": [
+    {
+      "path": "/",
+      "type": "internal",
+      "source": "filesystem,link",
+      "isDynamic": false,
+      "params": [],
+      "group": "root",
+      "file": "/Users/hamad/Projects/fisal/frontend/eetmad/src/app/[locale]/page.tsx"
+    },
+    {
+      "path": "/admin/categories",
+      "type": "internal",
+      "source": "router",
+      "isDynamic": false,
+      "params": [],
+      "group": "admin",
+      "file": "app/[locale]/(admin)/admin/categories/new/page.tsx",
+      "line": 66
+    },
+    {
+      "path": "/admin/reviews",
+      "type": "internal",
+      "source": "router",
+      "isDynamic": false,
+      "params": [],
+      "group": "admin",
+      "file": "app/[locale]/(admin)/admin/reviews/new/page.tsx",
+      "line": 64
+    },
+    {
+      "path": "/categories",
+      "type": "internal",
+      "source": "link",
+      "isDynamic": false,
+      "params": [],
+      "group": "public",
+      "file": "app/[locale]/(public)/categories/[slug]/page.tsx",
+      "line": 68
+    },
+    {
+      "path": "/forgot-password",
+      "type": "internal",
+      "source": "link",
+      "isDynamic": false,
+      "params": [],
+      "group": "auth",
+      "file": "components/features/auth/LoginForm.tsx",
+      "line": 176
+    },
+    {
+      "path": "/login",
+      "type": "internal",
+      "source": "link",
+      "isDynamic": false,
+      "params": [],
+      "group": "auth",
+      "file": "components/shared/layouts/Header.tsx",
+      "line": 155
+    },
+    {
+      "path": "/offers",
+      "type": "internal",
+      "source": "router",
+      "isDynamic": false,
+      "params": [],
+      "group": "supplier",
+      "file": "components/features/offers/OfferForm.tsx",
+      "line": 82
+    },
+    {
+      "path": "/offers/new",
+      "type": "internal",
+      "source": "router",
+      "isDynamic": false,
+      "params": [],
+      "group": "supplier",
+      "file": "app/[locale]/(supplier)/offers/page.tsx",
+      "line": 45
+    },
+    {
+      "path": "/privacy",
+      "type": "internal",
+      "source": "link",
+      "isDynamic": false,
+      "params": [],
+      "group": "public",
+      "file": "components/shared/layouts/Footer.tsx",
+      "line": 319
+    },
+    {
+      "path": "/profile/edit",
+      "type": "internal",
+      "source": "router",
+      "isDynamic": false,
+      "params": [],
+      "group": "main",
+      "file": "components/features/profile/ProfileHeader.tsx",
+      "line": 25
+    },
+    {
+      "path": "/projects",
+      "type": "internal",
+      "source": "router",
+      "isDynamic": false,
+      "params": [],
+      "group": "client",
+      "file": "app/[locale]/(client)/projects/[id]/page.tsx",
+      "line": 49
+    },
+    {
+      "path": "/register",
+      "type": "internal",
+      "source": "link",
+      "isDynamic": false,
+      "params": [],
+      "group": "auth",
+      "file": "components/features/auth/LoginForm.tsx",
+      "line": 255
+    },
+    {
+      "path": "/requests",
+      "type": "internal",
+      "source": "router",
+      "isDynamic": false,
+      "params": [],
+      "group": "client",
+      "file": "app/[locale]/(client)/requests/[id]/page.tsx",
+      "line": 47
+    },
+    {
+      "path": "/requests/my-requests",
+      "type": "internal",
+      "source": "router",
+      "isDynamic": false,
+      "params": [],
+      "group": "client",
+      "file": "components/features/requests/RequestForm.tsx",
+      "line": 96
+    },
+    {
+      "path": "/requests/new",
+      "type": "internal",
+      "source": "router",
+      "isDynamic": false,
+      "params": [],
+      "group": "client",
+      "file": "app/[locale]/(client)/requests/page.tsx",
+      "line": 34
+    },
+    {
+      "path": "/supplier-projects",
+      "type": "internal",
+      "source": "router",
+      "isDynamic": false,
+      "params": [],
+      "group": "supplier",
+      "file": "app/[locale]/(supplier)/supplier-projects/[id]/page.tsx",
+      "line": 54
+    },
+    {
+      "path": "/terms",
+      "type": "internal",
+      "source": "link",
+      "isDynamic": false,
+      "params": [],
+      "group": "public",
+      "file": "components/shared/layouts/Footer.tsx",
+      "line": 285
+    },
+    {
+      "path": "about",
+      "type": "internal",
+      "source": "filesystem",
+      "isDynamic": false,
+      "params": [],
+      "group": "public",
+      "file": "/Users/hamad/Projects/fisal/frontend/eetmad/src/app/[locale]/(public)/about/page.tsx"
+    },
+    {
+      "path": "admin/analytics",
+      "type": "internal",
+      "source": "filesystem",
+      "isDynamic": false,
+      "params": [],
+      "group": "admin",
+      "file": "/Users/hamad/Projects/fisal/frontend/eetmad/src/app/[locale]/(admin)/admin/analytics/page.tsx"
+    },
+    {
+      "path": "admin/categories",
+      "type": "internal",
+      "source": "filesystem",
+      "isDynamic": false,
+      "params": [],
+      "group": "admin",
+      "file": "/Users/hamad/Projects/fisal/frontend/eetmad/src/app/[locale]/(admin)/admin/categories/page.tsx"
+    },
+    {
+      "path": "admin/categories/[id]",
+      "type": "dynamic",
+      "source": "filesystem",
+      "isDynamic": true,
+      "params": ["id"],
+      "group": "admin",
+      "file": "/Users/hamad/Projects/fisal/frontend/eetmad/src/app/[locale]/(admin)/admin/categories/[id]"
+    },
+    {
+      "path": "admin/categories/[id]/edit",
+      "type": "dynamic",
+      "source": "filesystem",
+      "isDynamic": true,
+      "params": ["id"],
+      "group": "admin",
+      "file": "/Users/hamad/Projects/fisal/frontend/eetmad/src/app/[locale]/(admin)/admin/categories/[id]/edit/page.tsx"
+    },
+    {
+      "path": "admin/categories/new",
+      "type": "internal",
+      "source": "filesystem",
+      "isDynamic": false,
+      "params": [],
+      "group": "admin",
+      "file": "/Users/hamad/Projects/fisal/frontend/eetmad/src/app/[locale]/(admin)/admin/categories/new/page.tsx"
+    },
+    {
+      "path": "admin/dashboard",
+      "type": "internal",
+      "source": "filesystem",
+      "isDynamic": false,
+      "params": [],
+      "group": "admin",
+      "file": "/Users/hamad/Projects/fisal/frontend/eetmad/src/app/[locale]/(admin)/admin/dashboard/page.tsx"
+    },
+    {
+      "path": "admin/disputes",
+      "type": "internal",
+      "source": "filesystem",
+      "isDynamic": false,
+      "params": [],
+      "group": "admin",
+      "file": "/Users/hamad/Projects/fisal/frontend/eetmad/src/app/[locale]/(admin)/admin/disputes/page.tsx"
+    },
+    {
+      "path": "admin/disputes/[id]",
+      "type": "dynamic",
+      "source": "filesystem",
+      "isDynamic": true,
+      "params": ["id"],
+      "group": "admin",
+      "file": "/Users/hamad/Projects/fisal/frontend/eetmad/src/app/[locale]/(admin)/admin/disputes/[id]"
+    },
+    {
+      "path": "admin/offers",
+      "type": "internal",
+      "source": "filesystem",
+      "isDynamic": false,
+      "params": [],
+      "group": "admin",
+      "file": "/Users/hamad/Projects/fisal/frontend/eetmad/src/app/[locale]/(admin)/admin/offers/page.tsx"
+    },
+    {
+      "path": "admin/payments",
+      "type": "internal",
+      "source": "filesystem",
+      "isDynamic": false,
+      "params": [],
+      "group": "admin",
+      "file": "/Users/hamad/Projects/fisal/frontend/eetmad/src/app/[locale]/(admin)/admin/payments/page.tsx"
+    },
+    {
+      "path": "admin/payments/[id]",
+      "type": "dynamic",
+      "source": "filesystem",
+      "isDynamic": true,
+      "params": ["id"],
+      "group": "admin",
+      "file": "/Users/hamad/Projects/fisal/frontend/eetmad/src/app/[locale]/(admin)/admin/payments/[id]"
+    },
+    {
+      "path": "admin/projects",
+      "type": "internal",
+      "source": "filesystem",
+      "isDynamic": false,
+      "params": [],
+      "group": "admin",
+      "file": "/Users/hamad/Projects/fisal/frontend/eetmad/src/app/[locale]/(admin)/admin/projects/page.tsx"
+    },
+    {
+      "path": "admin/reports",
+      "type": "internal",
+      "source": "filesystem",
+      "isDynamic": false,
+      "params": [],
+      "group": "admin",
+      "file": "/Users/hamad/Projects/fisal/frontend/eetmad/src/app/[locale]/(admin)/admin/reports/page.tsx"
+    },
+    {
+      "path": "admin/requests",
+      "type": "internal",
+      "source": "filesystem",
+      "isDynamic": false,
+      "params": [],
+      "group": "admin",
+      "file": "/Users/hamad/Projects/fisal/frontend/eetmad/src/app/[locale]/(admin)/admin/requests/page.tsx"
+    },
+    {
+      "path": "admin/reviews",
+      "type": "internal",
+      "source": "filesystem",
+      "isDynamic": false,
+      "params": [],
+      "group": "admin",
+      "file": "/Users/hamad/Projects/fisal/frontend/eetmad/src/app/[locale]/(admin)/admin/reviews/page.tsx"
+    },
+    {
+      "path": "admin/reviews/[id]",
+      "type": "dynamic",
+      "source": "filesystem",
+      "isDynamic": true,
+      "params": ["id"],
+      "group": "admin",
+      "file": "/Users/hamad/Projects/fisal/frontend/eetmad/src/app/[locale]/(admin)/admin/reviews/[id]"
+    },
+    {
+      "path": "admin/reviews/[id]/edit",
+      "type": "dynamic",
+      "source": "filesystem",
+      "isDynamic": true,
+      "params": ["id"],
+      "group": "admin",
+      "file": "/Users/hamad/Projects/fisal/frontend/eetmad/src/app/[locale]/(admin)/admin/reviews/[id]/edit/page.tsx"
+    },
+    {
+      "path": "admin/reviews/new",
+      "type": "internal",
+      "source": "filesystem",
+      "isDynamic": false,
+      "params": [],
+      "group": "admin",
+      "file": "/Users/hamad/Projects/fisal/frontend/eetmad/src/app/[locale]/(admin)/admin/reviews/new/page.tsx"
+    },
+    {
+      "path": "admin/settings",
+      "type": "internal",
+      "source": "filesystem",
+      "isDynamic": false,
+      "params": [],
+      "group": "admin",
+      "file": "/Users/hamad/Projects/fisal/frontend/eetmad/src/app/[locale]/(admin)/admin/settings/page.tsx"
+    },
+    {
+      "path": "admin/suppliers",
+      "type": "internal",
+      "source": "filesystem",
+      "isDynamic": false,
+      "params": [],
+      "group": "admin",
+      "file": "/Users/hamad/Projects/fisal/frontend/eetmad/src/app/[locale]/(admin)/admin/suppliers/page.tsx"
+    },
+    {
+      "path": "admin/users",
+      "type": "internal",
+      "source": "filesystem",
+      "isDynamic": false,
+      "params": [],
+      "group": "admin",
+      "file": "/Users/hamad/Projects/fisal/frontend/eetmad/src/app/[locale]/(admin)/admin/users/page.tsx"
+    },
+    {
+      "path": "admin/users/[id]",
+      "type": "dynamic",
+      "source": "filesystem",
+      "isDynamic": true,
+      "params": ["id"],
+      "group": "admin",
+      "file": "/Users/hamad/Projects/fisal/frontend/eetmad/src/app/[locale]/(admin)/admin/users/[id]"
+    },
+    {
+      "path": "admin/verification",
+      "type": "internal",
+      "source": "filesystem",
+      "isDynamic": false,
+      "params": [],
+      "group": "admin",
+      "file": "/Users/hamad/Projects/fisal/frontend/eetmad/src/app/[locale]/(admin)/admin/verification/page.tsx"
+    },
+    {
+      "path": "browse-suppliers",
+      "type": "internal",
+      "source": "filesystem",
+      "isDynamic": false,
+      "params": [],
+      "group": "public",
+      "file": "/Users/hamad/Projects/fisal/frontend/eetmad/src/app/[locale]/(public)/browse-suppliers/page.tsx"
+    },
+    {
+      "path": "browse-suppliers/[id]",
+      "type": "dynamic",
+      "source": "filesystem",
+      "isDynamic": true,
+      "params": ["id"],
+      "group": "public",
+      "file": "/Users/hamad/Projects/fisal/frontend/eetmad/src/app/[locale]/(public)/browse-suppliers/[id]"
+    },
+    {
+      "path": "categories",
+      "type": "internal",
+      "source": "filesystem",
+      "isDynamic": false,
+      "params": [],
+      "group": "public",
+      "file": "/Users/hamad/Projects/fisal/frontend/eetmad/src/app/[locale]/(public)/categories/page.tsx"
+    },
+    {
+      "path": "categories/[slug]",
+      "type": "dynamic",
+      "source": "filesystem",
+      "isDynamic": true,
+      "params": ["slug"],
+      "group": "public",
+      "file": "/Users/hamad/Projects/fisal/frontend/eetmad/src/app/[locale]/(public)/categories/[slug]"
+    },
+    {
+      "path": "contact",
+      "type": "internal",
+      "source": "filesystem",
+      "isDynamic": false,
+      "params": [],
+      "group": "public",
+      "file": "/Users/hamad/Projects/fisal/frontend/eetmad/src/app/[locale]/(public)/contact/page.tsx"
+    },
+    {
+      "path": "contracts",
+      "type": "internal",
+      "source": "filesystem",
+      "isDynamic": false,
+      "params": [],
+      "group": "client",
+      "file": "/Users/hamad/Projects/fisal/frontend/eetmad/src/app/[locale]/(client)/contracts/page.tsx"
+    },
+    {
+      "path": "contracts/[id]",
+      "type": "dynamic",
+      "source": "filesystem",
+      "isDynamic": true,
+      "params": ["id"],
+      "group": "client",
+      "file": "/Users/hamad/Projects/fisal/frontend/eetmad/src/app/[locale]/(client)/contracts/[id]"
+    },
+    {
+      "path": "contracts/[id]/clauses",
+      "type": "dynamic",
+      "source": "filesystem",
+      "isDynamic": true,
+      "params": ["id"],
+      "group": "client",
+      "file": "/Users/hamad/Projects/fisal/frontend/eetmad/src/app/[locale]/(client)/contracts/[id]/clauses/page.tsx"
+    },
+    {
+      "path": "contracts/[id]/edit",
+      "type": "dynamic",
+      "source": "filesystem",
+      "isDynamic": true,
+      "params": ["id"],
+      "group": "client",
+      "file": "/Users/hamad/Projects/fisal/frontend/eetmad/src/app/[locale]/(client)/contracts/[id]/edit/page.tsx"
+    },
+    {
+      "path": "contracts/[id]/sign",
+      "type": "dynamic",
+      "source": "filesystem",
+      "isDynamic": true,
+      "params": ["id"],
+      "group": "client",
+      "file": "/Users/hamad/Projects/fisal/frontend/eetmad/src/app/[locale]/(client)/contracts/[id]/sign/page.tsx"
+    },
+    {
+      "path": "contracts/[id]/versions",
+      "type": "dynamic",
+      "source": "filesystem",
+      "isDynamic": true,
+      "params": ["id"],
+      "group": "client",
+      "file": "/Users/hamad/Projects/fisal/frontend/eetmad/src/app/[locale]/(client)/contracts/[id]/versions/page.tsx"
+    },
+    {
+      "path": "contracts/new",
+      "type": "internal",
+      "source": "filesystem",
+      "isDynamic": false,
+      "params": [],
+      "group": "client",
+      "file": "/Users/hamad/Projects/fisal/frontend/eetmad/src/app/[locale]/(client)/contracts/new/page.tsx"
+    },
+    {
+      "path": "dashboard",
+      "type": "internal",
+      "source": "filesystem",
+      "isDynamic": false,
+      "params": [],
+      "group": "main",
+      "file": "/Users/hamad/Projects/fisal/frontend/eetmad/src/app/[locale]/(main)/dashboard/page.tsx"
+    },
+    {
+      "path": "disputes",
+      "type": "internal",
+      "source": "filesystem",
+      "isDynamic": false,
+      "params": [],
+      "group": "client",
+      "file": "/Users/hamad/Projects/fisal/frontend/eetmad/src/app/[locale]/(client)/disputes/page.tsx"
+    },
+    {
+      "path": "disputes/[id]",
+      "type": "dynamic",
+      "source": "filesystem",
+      "isDynamic": true,
+      "params": ["id"],
+      "group": "client",
+      "file": "/Users/hamad/Projects/fisal/frontend/eetmad/src/app/[locale]/(client)/disputes/[id]"
+    },
+    {
+      "path": "disputes/new",
+      "type": "internal",
+      "source": "filesystem",
+      "isDynamic": false,
+      "params": [],
+      "group": "client",
+      "file": "/Users/hamad/Projects/fisal/frontend/eetmad/src/app/[locale]/(client)/disputes/new/page.tsx"
+    },
+    {
+      "path": "faq",
+      "type": "internal",
+      "source": "filesystem",
+      "isDynamic": false,
+      "params": [],
+      "group": "public",
+      "file": "/Users/hamad/Projects/fisal/frontend/eetmad/src/app/[locale]/(public)/faq/page.tsx"
+    },
+    {
+      "path": "forgot-password",
+      "type": "internal",
+      "source": "filesystem",
+      "isDynamic": false,
+      "params": [],
+      "group": "auth",
+      "file": "/Users/hamad/Projects/fisal/frontend/eetmad/src/app/[locale]/(auth)/forgot-password/page.tsx"
+    },
+    {
+      "path": "how-it-works",
+      "type": "internal",
+      "source": "filesystem",
+      "isDynamic": false,
+      "params": [],
+      "group": "public",
+      "file": "/Users/hamad/Projects/fisal/frontend/eetmad/src/app/[locale]/(public)/how-it-works/page.tsx"
+    },
+    {
+      "path": "http://localhost:3000",
+      "type": "external",
+      "source": "external",
+      "file": "lib/constants/config.ts",
+      "line": 7
+    },
+    {
+      "path": "https://api.example.com",
+      "type": "external",
+      "source": "external",
+      "file": "lib/utils/naming-validator.test-demo.ts",
+      "line": 40
+    },
+    {
+      "path": "https://docs.google.com/forms/d/1NzAEs7uruIqcHz0NvVa-xstUp14G1hNig0jzmoyUomQ/edit",
+      "type": "external",
+      "source": "external",
+      "file": "components/features/home/HeroSection.tsx",
+      "line": 90
+    },
+    {
+      "path": "https://i.pravatar.cc/150?img=12",
+      "type": "external",
+      "source": "external",
+      "file": "mocks/data/home.ts",
+      "line": 22
+    },
+    {
+      "path": "https://i.pravatar.cc/150?img=14",
+      "type": "external",
+      "source": "external",
+      "file": "mocks/data/home.ts",
+      "line": 30
+    },
+    {
+      "path": "https://i.pravatar.cc/150?img=33",
+      "type": "external",
+      "source": "external",
+      "file": "mocks/data/home.ts",
+      "line": 45
+    },
+    {
+      "path": "https://i.pravatar.cc/150?img=45",
+      "type": "external",
+      "source": "external",
+      "file": "mocks/data/home.ts",
+      "line": 38
+    },
+    {
+      "path": "https://i.pravatar.cc/150?img=47",
+      "type": "external",
+      "source": "external",
+      "file": "mocks/data/home.ts",
+      "line": 492
+    },
+    {
+      "path": "https://i.pravatar.cc/150?img=48",
+      "type": "external",
+      "source": "external",
+      "file": "mocks/data/home.ts",
+      "line": 535
+    },
+    {
+      "path": "https://i.pravatar.cc/150?img=51",
+      "type": "external",
+      "source": "external",
+      "file": "mocks/data/home.ts",
+      "line": 513
+    },
+    {
+      "path": "https://i.pravatar.cc/150?img=52",
+      "type": "external",
+      "source": "external",
+      "file": "mocks/data/home.ts",
+      "line": 657
+    },
+    {
+      "path": "login",
+      "type": "internal",
+      "source": "filesystem",
+      "isDynamic": false,
+      "params": [],
+      "group": "auth",
+      "file": "/Users/hamad/Projects/fisal/frontend/eetmad/src/app/[locale]/(auth)/login/page.tsx"
+    },
+    {
+      "path": "messages",
+      "type": "internal",
+      "source": "filesystem",
+      "isDynamic": false,
+      "params": [],
+      "group": "client",
+      "file": "/Users/hamad/Projects/fisal/frontend/eetmad/src/app/[locale]/(client)/messages/page.tsx"
+    },
+    {
+      "path": "messages/[id]",
+      "type": "dynamic",
+      "source": "filesystem",
+      "isDynamic": true,
+      "params": ["id"],
+      "group": "client",
+      "file": "/Users/hamad/Projects/fisal/frontend/eetmad/src/app/[locale]/(client)/messages/[id]"
+    },
+    {
+      "path": "messages/new",
+      "type": "internal",
+      "source": "filesystem",
+      "isDynamic": false,
+      "params": [],
+      "group": "client",
+      "file": "/Users/hamad/Projects/fisal/frontend/eetmad/src/app/[locale]/(client)/messages/new/page.tsx"
+    },
+    {
+      "path": "messages/settings",
+      "type": "internal",
+      "source": "filesystem",
+      "isDynamic": false,
+      "params": [],
+      "group": "client",
+      "file": "/Users/hamad/Projects/fisal/frontend/eetmad/src/app/[locale]/(client)/messages/settings/page.tsx"
+    },
+    {
+      "path": "milestones",
+      "type": "internal",
+      "source": "filesystem",
+      "isDynamic": false,
+      "params": [],
+      "group": "client",
+      "file": "/Users/hamad/Projects/fisal/frontend/eetmad/src/app/[locale]/(client)/milestones/page.tsx"
+    },
+    {
+      "path": "milestones/[id]",
+      "type": "dynamic",
+      "source": "filesystem",
+      "isDynamic": true,
+      "params": ["id"],
+      "group": "client",
+      "file": "/Users/hamad/Projects/fisal/frontend/eetmad/src/app/[locale]/(client)/milestones/[id]"
+    },
+    {
+      "path": "milestones/[id]/edit",
+      "type": "dynamic",
+      "source": "filesystem",
+      "isDynamic": true,
+      "params": ["id"],
+      "group": "client",
+      "file": "/Users/hamad/Projects/fisal/frontend/eetmad/src/app/[locale]/(client)/milestones/[id]/edit/page.tsx"
+    },
+    {
+      "path": "milestones/new",
+      "type": "internal",
+      "source": "filesystem",
+      "isDynamic": false,
+      "params": [],
+      "group": "client",
+      "file": "/Users/hamad/Projects/fisal/frontend/eetmad/src/app/[locale]/(client)/milestones/new/page.tsx"
+    },
+    {
+      "path": "notifications",
+      "type": "internal",
+      "source": "filesystem",
+      "isDynamic": false,
+      "params": [],
+      "group": "client",
+      "file": "/Users/hamad/Projects/fisal/frontend/eetmad/src/app/[locale]/(client)/notifications/page.tsx"
+    },
+    {
+      "path": "notifications/[id]",
+      "type": "dynamic",
+      "source": "filesystem",
+      "isDynamic": true,
+      "params": ["id"],
+      "group": "client",
+      "file": "/Users/hamad/Projects/fisal/frontend/eetmad/src/app/[locale]/(client)/notifications/[id]"
+    },
+    {
+      "path": "notifications/settings",
+      "type": "internal",
+      "source": "filesystem",
+      "isDynamic": false,
+      "params": [],
+      "group": "client",
+      "file": "/Users/hamad/Projects/fisal/frontend/eetmad/src/app/[locale]/(client)/notifications/settings/page.tsx"
+    },
+    {
+      "path": "offers",
+      "type": "internal",
+      "source": "filesystem",
+      "isDynamic": false,
+      "params": [],
+      "group": "supplier",
+      "file": "/Users/hamad/Projects/fisal/frontend/eetmad/src/app/[locale]/(supplier)/offers/page.tsx"
+    },
+    {
+      "path": "offers/[id]",
+      "type": "dynamic",
+      "source": "filesystem",
+      "isDynamic": true,
+      "params": ["id"],
+      "group": "supplier",
+      "file": "/Users/hamad/Projects/fisal/frontend/eetmad/src/app/[locale]/(supplier)/offers/[id]"
+    },
+    {
+      "path": "offers/[id]/edit",
+      "type": "dynamic",
+      "source": "filesystem",
+      "isDynamic": true,
+      "params": ["id"],
+      "group": "supplier",
+      "file": "/Users/hamad/Projects/fisal/frontend/eetmad/src/app/[locale]/(supplier)/offers/[id]/edit/page.tsx"
+    },
+    {
+      "path": "offers/new",
+      "type": "internal",
+      "source": "filesystem",
+      "isDynamic": false,
+      "params": [],
+      "group": "supplier",
+      "file": "/Users/hamad/Projects/fisal/frontend/eetmad/src/app/[locale]/(supplier)/offers/new/page.tsx"
+    },
+    {
+      "path": "payments",
+      "type": "internal",
+      "source": "filesystem",
+      "isDynamic": false,
+      "params": [],
+      "group": "client",
+      "file": "/Users/hamad/Projects/fisal/frontend/eetmad/src/app/[locale]/(client)/payments/page.tsx"
+    },
+    {
+      "path": "payments/[id]",
+      "type": "dynamic",
+      "source": "filesystem",
+      "isDynamic": true,
+      "params": ["id"],
+      "group": "client",
+      "file": "/Users/hamad/Projects/fisal/frontend/eetmad/src/app/[locale]/(client)/payments/[id]"
+    },
+    {
+      "path": "payments/history",
+      "type": "internal",
+      "source": "filesystem",
+      "isDynamic": false,
+      "params": [],
+      "group": "client",
+      "file": "/Users/hamad/Projects/fisal/frontend/eetmad/src/app/[locale]/(client)/payments/history/page.tsx"
+    },
+    {
+      "path": "payments/initiate",
+      "type": "internal",
+      "source": "filesystem",
+      "isDynamic": false,
+      "params": [],
+      "group": "client",
+      "file": "/Users/hamad/Projects/fisal/frontend/eetmad/src/app/[locale]/(client)/payments/initiate/page.tsx"
+    },
+    {
+      "path": "payments/wallet",
+      "type": "internal",
+      "source": "filesystem",
+      "isDynamic": false,
+      "params": [],
+      "group": "client",
+      "file": "/Users/hamad/Projects/fisal/frontend/eetmad/src/app/[locale]/(client)/payments/wallet/page.tsx"
+    },
+    {
+      "path": "portfolio",
+      "type": "internal",
+      "source": "filesystem",
+      "isDynamic": false,
+      "params": [],
+      "group": "supplier",
+      "file": "/Users/hamad/Projects/fisal/frontend/eetmad/src/app/[locale]/(supplier)/portfolio/page.tsx"
+    },
+    {
+      "path": "privacy",
+      "type": "internal",
+      "source": "filesystem",
+      "isDynamic": false,
+      "params": [],
+      "group": "public",
+      "file": "/Users/hamad/Projects/fisal/frontend/eetmad/src/app/[locale]/(public)/privacy/page.tsx"
+    },
+    {
+      "path": "profile",
+      "type": "internal",
+      "source": "filesystem",
+      "isDynamic": false,
+      "params": [],
+      "group": "main",
+      "file": "/Users/hamad/Projects/fisal/frontend/eetmad/src/app/[locale]/(client)/profile/page.tsx"
+    },
+    {
+      "path": "profile/edit",
+      "type": "internal",
+      "source": "filesystem",
+      "isDynamic": false,
+      "params": [],
+      "group": "main",
+      "file": "/Users/hamad/Projects/fisal/frontend/eetmad/src/app/[locale]/(client)/profile/edit/page.tsx"
+    },
+    {
+      "path": "profile/settings",
+      "type": "internal",
+      "source": "filesystem",
+      "isDynamic": false,
+      "params": [],
+      "group": "main",
+      "file": "/Users/hamad/Projects/fisal/frontend/eetmad/src/app/[locale]/(client)/profile/settings/page.tsx"
+    },
+    {
+      "path": "projects",
+      "type": "internal",
+      "source": "filesystem",
+      "isDynamic": false,
+      "params": [],
+      "group": "client",
+      "file": "/Users/hamad/Projects/fisal/frontend/eetmad/src/app/[locale]/(client)/projects/page.tsx"
+    },
+    {
+      "path": "projects/[id]",
+      "type": "dynamic",
+      "source": "filesystem",
+      "isDynamic": true,
+      "params": ["id"],
+      "group": "client",
+      "file": "/Users/hamad/Projects/fisal/frontend/eetmad/src/app/[locale]/(client)/projects/[id]"
+    },
+    {
+      "path": "projects/[id]/cancel",
+      "type": "dynamic",
+      "source": "filesystem",
+      "isDynamic": true,
+      "params": ["id"],
+      "group": "client",
+      "file": "/Users/hamad/Projects/fisal/frontend/eetmad/src/app/[locale]/(client)/projects/[id]/cancel/page.tsx"
+    },
+    {
+      "path": "projects/[id]/complete",
+      "type": "dynamic",
+      "source": "filesystem",
+      "isDynamic": true,
+      "params": ["id"],
+      "group": "client",
+      "file": "/Users/hamad/Projects/fisal/frontend/eetmad/src/app/[locale]/(client)/projects/[id]/complete/page.tsx"
+    },
+    {
+      "path": "projects/[id]/delivery",
+      "type": "dynamic",
+      "source": "filesystem",
+      "isDynamic": true,
+      "params": ["id"],
+      "group": "client",
+      "file": "/Users/hamad/Projects/fisal/frontend/eetmad/src/app/[locale]/(client)/projects/[id]/delivery/page.tsx"
+    },
+    {
+      "path": "projects/[id]/milestones",
+      "type": "dynamic",
+      "source": "filesystem",
+      "isDynamic": true,
+      "params": ["id"],
+      "group": "client",
+      "file": "/Users/hamad/Projects/fisal/frontend/eetmad/src/app/[locale]/(client)/projects/[id]/milestones/page.tsx"
+    },
+    {
+      "path": "projects/[id]/start",
+      "type": "dynamic",
+      "source": "filesystem",
+      "isDynamic": true,
+      "params": ["id"],
+      "group": "client",
+      "file": "/Users/hamad/Projects/fisal/frontend/eetmad/src/app/[locale]/(client)/projects/[id]/start/page.tsx"
+    },
+    {
+      "path": "register",
+      "type": "internal",
+      "source": "filesystem",
+      "isDynamic": false,
+      "params": [],
+      "group": "auth",
+      "file": "/Users/hamad/Projects/fisal/frontend/eetmad/src/app/[locale]/(auth)/register/page.tsx"
+    },
+    {
+      "path": "requests",
+      "type": "internal",
+      "source": "filesystem",
+      "isDynamic": false,
+      "params": [],
+      "group": "client",
+      "file": "/Users/hamad/Projects/fisal/frontend/eetmad/src/app/[locale]/(client)/requests/page.tsx"
+    },
+    {
+      "path": "requests/[id]",
+      "type": "dynamic",
+      "source": "filesystem",
+      "isDynamic": true,
+      "params": ["id"],
+      "group": "client",
+      "file": "/Users/hamad/Projects/fisal/frontend/eetmad/src/app/[locale]/(client)/requests/[id]"
+    },
+    {
+      "path": "requests/[id]/edit",
+      "type": "dynamic",
+      "source": "filesystem",
+      "isDynamic": true,
+      "params": ["id"],
+      "group": "client",
+      "file": "/Users/hamad/Projects/fisal/frontend/eetmad/src/app/[locale]/(client)/requests/[id]/edit/page.tsx"
+    },
+    {
+      "path": "requests/[id]/offers",
+      "type": "dynamic",
+      "source": "filesystem",
+      "isDynamic": true,
+      "params": ["id"],
+      "group": "client",
+      "file": "/Users/hamad/Projects/fisal/frontend/eetmad/src/app/[locale]/(client)/requests/[id]/offers/page.tsx"
+    },
+    {
+      "path": "requests/my-requests",
+      "type": "internal",
+      "source": "filesystem",
+      "isDynamic": false,
+      "params": [],
+      "group": "client",
+      "file": "/Users/hamad/Projects/fisal/frontend/eetmad/src/app/[locale]/(client)/requests/my-requests/page.tsx"
+    },
+    {
+      "path": "requests/new",
+      "type": "internal",
+      "source": "filesystem",
+      "isDynamic": false,
+      "params": [],
+      "group": "client",
+      "file": "/Users/hamad/Projects/fisal/frontend/eetmad/src/app/[locale]/(client)/requests/new/page.tsx"
+    },
+    {
+      "path": "reset-password",
+      "type": "internal",
+      "source": "filesystem",
+      "isDynamic": false,
+      "params": [],
+      "group": "auth",
+      "file": "/Users/hamad/Projects/fisal/frontend/eetmad/src/app/[locale]/(auth)/reset-password/page.tsx"
+    },
+    {
+      "path": "reviews",
+      "type": "internal",
+      "source": "filesystem",
+      "isDynamic": false,
+      "params": [],
+      "group": "client",
+      "file": "/Users/hamad/Projects/fisal/frontend/eetmad/src/app/[locale]/(client)/reviews/page.tsx"
+    },
+    {
+      "path": "reviews/[id]",
+      "type": "dynamic",
+      "source": "filesystem",
+      "isDynamic": true,
+      "params": ["id"],
+      "group": "client",
+      "file": "/Users/hamad/Projects/fisal/frontend/eetmad/src/app/[locale]/(client)/reviews/[id]"
+    },
+    {
+      "path": "reviews/new",
+      "type": "internal",
+      "source": "filesystem",
+      "isDynamic": false,
+      "params": [],
+      "group": "client",
+      "file": "/Users/hamad/Projects/fisal/frontend/eetmad/src/app/[locale]/(client)/reviews/new/page.tsx"
+    },
+    {
+      "path": "stats",
+      "type": "internal",
+      "source": "filesystem",
+      "isDynamic": false,
+      "params": [],
+      "group": "supplier",
+      "file": "/Users/hamad/Projects/fisal/frontend/eetmad/src/app/[locale]/(supplier)/stats/page.tsx"
+    },
+    {
+      "path": "supplier-profile/edit",
+      "type": "internal",
+      "source": "filesystem",
+      "isDynamic": false,
+      "params": [],
+      "group": "supplier",
+      "file": "/Users/hamad/Projects/fisal/frontend/eetmad/src/app/[locale]/(supplier)/supplier-profile/edit/page.tsx"
+    },
+    {
+      "path": "supplier-profile/setup",
+      "type": "internal",
+      "source": "filesystem",
+      "isDynamic": false,
+      "params": [],
+      "group": "supplier",
+      "file": "/Users/hamad/Projects/fisal/frontend/eetmad/src/app/[locale]/(supplier)/supplier-profile/setup/page.tsx"
+    },
+    {
+      "path": "supplier-projects/[id]",
+      "type": "dynamic",
+      "source": "filesystem",
+      "isDynamic": true,
+      "params": ["id"],
+      "group": "supplier",
+      "file": "/Users/hamad/Projects/fisal/frontend/eetmad/src/app/[locale]/(supplier)/supplier-projects/[id]"
+    },
+    {
+      "path": "suppliers",
+      "type": "internal",
+      "source": "filesystem",
+      "isDynamic": false,
+      "params": [],
+      "group": "suppliers",
+      "file": "/Users/hamad/Projects/fisal/frontend/eetmad/src/app/[locale]/(client)/suppliers/page.tsx"
+    },
+    {
+      "path": "suppliers/[id]",
+      "type": "dynamic",
+      "source": "filesystem",
+      "isDynamic": true,
+      "params": ["id"],
+      "group": "suppliers",
+      "file": "/Users/hamad/Projects/fisal/frontend/eetmad/src/app/[locale]/(client)/suppliers/[id]"
+    },
+    {
+      "path": "suppliers/[id]/portfolio",
+      "type": "dynamic",
+      "source": "filesystem",
+      "isDynamic": true,
+      "params": ["id"],
+      "group": "suppliers",
+      "file": "/Users/hamad/Projects/fisal/frontend/eetmad/src/app/[locale]/(client)/suppliers/[id]/portfolio/page.tsx"
+    },
+    {
+      "path": "suppliers/me",
+      "type": "internal",
+      "source": "filesystem",
+      "isDynamic": false,
+      "params": [],
+      "group": "suppliers",
+      "file": "/Users/hamad/Projects/fisal/frontend/eetmad/src/app/[locale]/(client)/suppliers/me/page.tsx"
+    },
+    {
+      "path": "suppliers/me/edit",
+      "type": "internal",
+      "source": "filesystem",
+      "isDynamic": false,
+      "params": [],
+      "group": "suppliers",
+      "file": "/Users/hamad/Projects/fisal/frontend/eetmad/src/app/[locale]/(client)/suppliers/me/edit/page.tsx"
+    },
+    {
+      "path": "terms",
+      "type": "internal",
+      "source": "filesystem",
+      "isDynamic": false,
+      "params": [],
+      "group": "public",
+      "file": "/Users/hamad/Projects/fisal/frontend/eetmad/src/app/[locale]/(public)/terms/page.tsx"
+    },
+    {
+      "path": "users/[id]",
+      "type": "dynamic",
+      "source": "filesystem",
+      "isDynamic": true,
+      "params": ["id"],
+      "group": "users",
+      "file": "/Users/hamad/Projects/fisal/frontend/eetmad/src/app/[locale]/(client)/users/[id]"
+    },
+    {
+      "path": "verify-email",
+      "type": "internal",
+      "source": "filesystem",
+      "isDynamic": false,
+      "params": [],
+      "group": "auth",
+      "file": "/Users/hamad/Projects/fisal/frontend/eetmad/src/app/[locale]/(auth)/verify-email/page.tsx"
+    },
+    {
+      "path": "verify-phone",
+      "type": "internal",
+      "source": "filesystem",
+      "isDynamic": false,
+      "params": [],
+      "group": "auth",
+      "file": "/Users/hamad/Projects/fisal/frontend/eetmad/src/app/[locale]/(auth)/verify-phone/page.tsx"
+    }
+  ]
+}

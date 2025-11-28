@@ -108,8 +108,8 @@ When you need color variations, use opacity modifiers instead of color shades:
 ### Cards and Panels
 
 ```tsx
-<div className="bg-card text-card-foreground border-border rounded-lg border shadow-sm">
-  <h3 className="text-foreground font-bold">Title</h3>
+<div className="rounded-lg border border-border bg-card text-card-foreground shadow-sm">
+  <h3 className="font-bold text-foreground">Title</h3>
   <p className="text-muted-foreground">Description</p>
 </div>
 ```
@@ -135,14 +135,14 @@ When you need color variations, use opacity modifiers instead of color shades:
   <p className="opacity-90">Hero description with slight transparency</p>
 
   {/* Nested card on colored background */}
-  <div className="bg-card text-card-foreground border-border border">Content</div>
+  <div className="border border-border bg-card text-card-foreground">Content</div>
 </section>
 ```
 
 ### Glass Morphism Effects
 
 ```tsx
-<div className="bg-primary-foreground/10 border-primary-foreground/20 border backdrop-blur-sm">
+<div className="border border-primary-foreground/20 bg-primary-foreground/10 backdrop-blur-sm">
   Glass effect content
 </div>
 ```
@@ -271,7 +271,7 @@ The only time to use `dark:` is for utility classes that aren't color-related:
 
 ```tsx
 <Dialog>
-  <DialogContent className="bg-card text-card-foreground border-border">
+  <DialogContent className="border-border bg-card text-card-foreground">
     <DialogHeader>
       <DialogTitle className="text-foreground">Title</DialogTitle>
       <DialogDescription className="text-muted-foreground">Description</DialogDescription>

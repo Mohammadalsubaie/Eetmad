@@ -1,0 +1,52 @@
+name: Deploy
+
+on:
+  push:
+    branches: [ staging, main ]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment: ${{ github.ref_name == 'main' && 'production' || 'staging' }}
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm install   # ← NOT npm ci (we’ll use ci on server)
+
+      - name: Build
+        run: npm run build
+
+      - name: Deploy to Server
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.PROD_EC2_HOST }}
+          username: ${{ secrets.PROD_EC2_USER }}
+          key: ${{ secrets.PROD_DEPLOY_KEY }}
+          port: ${{ secrets.PROD_EC2_PORT }}
+          script: |
+            cd ~/Eetmad/frontend/eetmad
+            git fetch --all
+            git reset --hard origin/${{ github.ref_name }}
+
+            npm ci --only=production   # ← this works because package-lock.json IS there
+            npm run build
+
+            if [ "${{ github.ref_name }}" = "main" ]; then
+              pm2 delete eetmad-prod 2>/dev/null || true
+              pm2 start "npm run start" --name "eetmad-prod"
+            else
+              pm2 delete eetmad-staging 2>/dev/null || true
+              pm2 start "npm run start" --name "eetmad-staging" -- -p 3001
+            fi
+            pm2 save

@@ -55,7 +55,7 @@ export const mockCategories: Category[] = [
   {
     id: 'cat-001',
     nameAr: 'تطوير البرمجيات',
-    nameEn: 'Software Development',
+    nameEn: 'تطوير البرمجيات',
     slug: 'software-development',
     parentId: null,
     icon: 'Code2',
@@ -70,7 +70,7 @@ export const mockCategories: Category[] = [
   {
     id: 'cat-002',
     nameAr: 'التصميم الجرافيكي',
-    nameEn: 'Graphic Design',
+    nameEn: 'التصميم الجرافيكي',
     slug: 'graphic-design',
     parentId: null,
     icon: 'Palette',
@@ -85,7 +85,7 @@ export const mockCategories: Category[] = [
   {
     id: 'cat-003',
     nameAr: 'التسويق الرقمي',
-    nameEn: 'Digital Marketing',
+    nameEn: 'التسويق الرقمي',
     slug: 'digital-marketing',
     parentId: null,
     icon: 'TrendingUp',
@@ -100,7 +100,7 @@ export const mockCategories: Category[] = [
   {
     id: 'cat-004',
     nameAr: 'الكتابة والترجمة',
-    nameEn: 'Writing & Translation',
+    nameEn: 'الكتابة والترجمة',
     slug: 'writing-translation',
     parentId: null,
     icon: 'FileText',
@@ -115,7 +115,7 @@ export const mockCategories: Category[] = [
   {
     id: 'cat-005',
     nameAr: 'المونتاج والفيديو',
-    nameEn: 'Video Editing',
+    nameEn: 'المونتاج والفيديو',
     slug: 'video-editing',
     parentId: null,
     icon: 'Video',
@@ -130,7 +130,7 @@ export const mockCategories: Category[] = [
   {
     id: 'cat-006',
     nameAr: 'الاستشارات',
-    nameEn: 'Consulting',
+    nameEn: 'الاستشارات',
     slug: 'consulting',
     parentId: null,
     icon: 'Briefcase',
@@ -145,7 +145,7 @@ export const mockCategories: Category[] = [
   {
     id: 'cat-007',
     nameAr: 'الصيانة والدعم الفني',
-    nameEn: 'Maintenance & Support',
+    nameEn: 'الصيانة والدعم الفني',
     slug: 'maintenance-support',
     parentId: null,
     icon: 'Wrench',
@@ -160,7 +160,7 @@ export const mockCategories: Category[] = [
   {
     id: 'cat-008',
     nameAr: 'التجارة الإلكترونية',
-    nameEn: 'E-Commerce',
+    nameEn: 'التجارة الإلكترونية',
     slug: 'ecommerce',
     parentId: null,
     icon: 'ShoppingCart',
@@ -180,9 +180,9 @@ export const clientWorkflowSteps: WorkflowStep[] = [
   {
     id: 1,
     titleAr: 'أنشئ طلبك',
-    titleEn: 'Create Request',
+    titleEn: 'أنشئ طلبك',
     descriptionAr: 'حدد احتياجك بدقة، الميزانية، والموعد المتوقع',
-    descriptionEn: 'Define your needs, budget, and expected timeline',
+    descriptionEn: 'حدد احتياجك بدقة، الميزانية، والموعد المتوقع',
     icon: 'FileEdit',
     forUserType: 'client',
     color: 'blue',
@@ -190,9 +190,9 @@ export const clientWorkflowSteps: WorkflowStep[] = [
   {
     id: 2,
     titleAr: 'استقبل العروض',
-    titleEn: 'Receive Offers',
+    titleEn: 'استقبل العروض',
     descriptionAr: 'سيتقدم الموردون المؤهلون بعروضهم التنافسية',
-    descriptionEn: 'Qualified suppliers will submit competitive offers',
+    descriptionEn: 'سيتقدم الموردون المؤهلون بعروضهم التنافسية',
     icon: 'Mail',
     forUserType: 'client',
     color: 'green',
@@ -200,9 +200,9 @@ export const clientWorkflowSteps: WorkflowStep[] = [
   {
     id: 3,
     titleAr: 'قارن واختر',
-    titleEn: 'Compare & Choose',
+    titleEn: 'قارن واختر',
     descriptionAr: 'قارن بين العروض واختر الأنسب حسب الجودة والسعر',
-    descriptionEn: 'Compare offers and choose the best based on quality and price',
+    descriptionEn: 'قارن بين العروض واختر الأنسب حسب الجودة والسعر',
     icon: 'CheckCircle2',
     forUserType: 'client',
     color: 'purple',
@@ -210,9 +210,9 @@ export const clientWorkflowSteps: WorkflowStep[] = [
   {
     id: 4,
     titleAr: 'تابع المشروع',
-    titleEn: 'Track Project',
+    titleEn: 'تابع المشروع',
     descriptionAr: 'تابع تقدم العمل وتواصل مع المورد حتى الإنجاز',
-    descriptionEn: 'Track progress and communicate until completion',
+    descriptionEn: 'تابع تقدم العمل وتواصل مع المورد حتى الإنجاز',
     icon: 'BarChart3',
     forUserType: 'client',
     color: 'orange',
@@ -223,9 +223,9 @@ export const supplierWorkflowSteps: WorkflowStep[] = [
   {
     id: 1,
     titleAr: 'أنشئ ملفك',
-    titleEn: 'Create Profile',
+    titleEn: 'أنشئ ملفك',
     descriptionAr: 'أنشئ ملفك الاحترافي وأضف معرض أعمالك وشهاداتك',
-    descriptionEn: 'Create professional profile with portfolio and certificates',
+    descriptionEn: 'أنشئ ملفك الاحترافي وأضف معرض أعمالك وشهاداتك',
     icon: 'User',
     forUserType: 'supplier',
     color: 'blue',
@@ -233,9 +233,9 @@ export const supplierWorkflowSteps: WorkflowStep[] = [
   {
     id: 2,
     titleAr: 'تصفح الطلبات',
-    titleEn: 'Browse Requests',
+    titleEn: 'تصفح الطلبات',
     descriptionAr: 'ابحث عن الطلبات المناسبة لخبراتك ومجال عملك',
-    descriptionEn: 'Find requests matching your expertise and field',
+    descriptionEn: 'ابحث عن الطلبات المناسبة لخبراتك ومجال عملك',
     icon: 'Search',
     forUserType: 'supplier',
     color: 'green',
@@ -243,9 +243,9 @@ export const supplierWorkflowSteps: WorkflowStep[] = [
   {
     id: 3,
     titleAr: 'قدم عرضك',
-    titleEn: 'Submit Offer',
+    titleEn: 'قدم عرضك',
     descriptionAr: 'قدم عرضك المفصل بالسعر، المدة، وخطة التنفيذ',
-    descriptionEn: 'Submit detailed offer with price, timeline, and plan',
+    descriptionEn: 'قدم عرضك المفصل بالسعر، المدة، وخطة التنفيذ',
     icon: 'Send',
     forUserType: 'supplier',
     color: 'purple',
@@ -253,10 +253,10 @@ export const supplierWorkflowSteps: WorkflowStep[] = [
   {
     id: 4,
     titleAr: 'نفذ واستلم',
-    titleEn: 'Execute & Get Paid',
+    titleEn: 'نفذ واستلم',
     descriptionAr: 'نفذ المشروع بجودة عالية واحصل على مستحقاتك بأمان',
-    descriptionEn: 'Execute project with quality and receive payment securely',
-    icon: 'DollarSign',
+    descriptionEn: 'نفذ المشروع بجودة عالية واحصل على مستحقاتك بأمان',
+    icon: 'SaudiRiyalIcon',
     forUserType: 'supplier',
     color: 'orange',
   },
@@ -558,7 +558,7 @@ export const mockPlatformStats: PlatformStat[] = [
   {
     id: 'stat-001',
     labelAr: 'مشروع مكتمل',
-    labelEn: 'Completed Projects',
+    labelEn: 'مشروع مكتمل',
     value: 12547,
     icon: 'CheckCircle2',
     suffix: '+',
@@ -573,7 +573,7 @@ export const mockPlatformStats: PlatformStat[] = [
   {
     id: 'stat-002',
     labelAr: 'مورد نشط',
-    labelEn: 'Active Suppliers',
+    labelEn: 'مورد نشط',
     value: 3891,
     icon: 'Users',
     suffix: '+',
@@ -588,7 +588,7 @@ export const mockPlatformStats: PlatformStat[] = [
   {
     id: 'stat-003',
     labelAr: 'عميل راضي',
-    labelEn: 'Satisfied Clients',
+    labelEn: 'عميل راضي',
     value: 8926,
     icon: 'Star',
     suffix: '+',
@@ -603,10 +603,10 @@ export const mockPlatformStats: PlatformStat[] = [
   {
     id: 'stat-004',
     labelAr: 'قيمة المعاملات',
-    labelEn: 'Transaction Value',
+    labelEn: 'قيمة المعاملات',
     value: 45000000,
-    icon: 'DollarSign',
-    suffix: ' ريال',
+    icon: 'SaudiRiyalIcon',
+    suffix: '',
     color: 'purple',
     trend: {
       direction: 'up',
@@ -675,9 +675,9 @@ export const mockTrustFeatures: TrustFeature[] = [
   {
     id: 'trust-001',
     titleAr: 'دفع آمن',
-    titleEn: 'Secure Payment',
+    titleEn: 'دفع آمن',
     descriptionAr: 'نظام دفع آمن ومضمون مع حماية كاملة لأموالك',
-    descriptionEn: 'Secure payment system with full money protection',
+    descriptionEn: 'نظام دفع آمن ومضمون مع حماية كاملة لأموالك',
     icon: 'Shield',
     color: 'green',
     features: ['حماية المدفوعات', 'دعم جميع وسائل الدفع', 'ضمان استرجاع الأموال'],
@@ -685,9 +685,9 @@ export const mockTrustFeatures: TrustFeature[] = [
   {
     id: 'trust-002',
     titleAr: 'موردون موثوقون',
-    titleEn: 'Verified Suppliers',
+    titleEn: 'موردون موثوقون',
     descriptionAr: 'جميع الموردين يخضعون للتحقق والمراجعة',
-    descriptionEn: 'All suppliers are verified and reviewed',
+    descriptionEn: 'جميع الموردين يخضعون للتحقق والمراجعة',
     icon: 'BadgeCheck',
     color: 'blue',
     features: ['التحقق من الهوية', 'مراجعة الأعمال السابقة', 'تقييمات حقيقية'],
@@ -695,9 +695,9 @@ export const mockTrustFeatures: TrustFeature[] = [
   {
     id: 'trust-003',
     titleAr: 'دعم على مدار الساعة',
-    titleEn: '24/7 Support',
+    titleEn: 'دعم على مدار الساعة',
     descriptionAr: 'فريق دعم متاح دائماً لمساعدتك',
-    descriptionEn: 'Support team always available to help',
+    descriptionEn: 'فريق دعم متاح دائماً لمساعدتك',
     icon: 'Headphones',
     color: 'purple',
     features: ['دعم فوري', 'حل النزاعات', 'استشارات مجانية'],
@@ -705,9 +705,9 @@ export const mockTrustFeatures: TrustFeature[] = [
   {
     id: 'trust-004',
     titleAr: 'ضمان الجودة',
-    titleEn: 'Quality Guarantee',
+    titleEn: 'ضمان الجودة',
     descriptionAr: 'نضمن لك جودة العمل أو استرجاع أموالك',
-    descriptionEn: 'We guarantee quality or your money back',
+    descriptionEn: 'نضمن لك جودة العمل أو استرجاع أموالك',
     icon: 'Award',
     color: 'orange',
     features: ['ضمان الاسترجاع', 'مراجعة الجودة', 'معايير احترافية'],
@@ -720,11 +720,11 @@ export const mockFAQs: FAQItem[] = [
   {
     id: 'faq-001',
     questionAr: 'كيف يمكنني إنشاء طلب جديد؟',
-    questionEn: 'How can I create a new request?',
+    questionEn: 'كيف يمكنني إنشاء طلب جديد؟',
     answerAr:
       'يمكنك إنشاء طلب جديد بالضغط على زر "إنشاء طلب" من لوحة التحكم، ثم ملء جميع التفاصيل المطلوبة مثل العنوان، الوصف، الميزانية، والموعد المتوقع. بعد المراجعة سيتم نشر طلبك ليراه الموردون المؤهلون.',
     answerEn:
-      'You can create a new request by clicking "Create Request" button from your dashboard, then fill in all required details.',
+      'يمكنك إنشاء طلب جديد بالضغط على زر "إنشاء طلب" من لوحة التحكم، ثم ملء جميع التفاصيل المطلوبة مثل العنوان، الوصف، الميزانية، والموعد المتوقع. بعد المراجعة سيتم نشر طلبك ليراه الموردون المؤهلون.',
     categoryId: 'cat-001',
     displayOrder: 1,
     isPublished: true,
@@ -738,10 +738,11 @@ export const mockFAQs: FAQItem[] = [
   {
     id: 'faq-002',
     questionAr: 'كم تستغرق عملية التحقق من الموردين؟',
-    questionEn: 'How long does supplier verification take?',
+    questionEn: 'كم تستغرق عملية التحقق من الموردين؟',
     answerAr:
       'عملية التحقق من الموردين عادة تستغرق من 2-5 أيام عمل. نقوم بمراجعة جميع الوثائق والمعلومات المقدمة للتأكد من مصداقية المورد وجودة خدماته.',
-    answerEn: 'Supplier verification usually takes 2-5 business days.',
+    answerEn:
+      'عملية التحقق من الموردين عادة تستغرق من 2-5 أيام عمل. نقوم بمراجعة جميع الوثائق والمعلومات المقدمة للتأكد من مصداقية المورد وجودة خدماته.',
     categoryId: null,
     displayOrder: 2,
     isPublished: true,
@@ -755,10 +756,11 @@ export const mockFAQs: FAQItem[] = [
   {
     id: 'faq-003',
     questionAr: 'هل يمكنني تعديل الطلب بعد نشره؟',
-    questionEn: 'Can I edit a request after publishing?',
+    questionEn: 'هل يمكنني تعديل الطلب بعد نشره؟',
     answerAr:
       'نعم، يمكنك تعديل تفاصيل الطلب قبل استلام أي عروض. بعد استلام العروض، يمكنك فقط تمديد الموعد النهائي أو إضافة توضيحات.',
-    answerEn: 'Yes, you can edit request details before receiving any offers.',
+    answerEn:
+      'نعم، يمكنك تعديل تفاصيل الطلب قبل استلام أي عروض. بعد استلام العروض، يمكنك فقط تمديد الموعد النهائي أو إضافة توضيحات.',
     categoryId: null,
     displayOrder: 3,
     isPublished: true,
@@ -772,10 +774,11 @@ export const mockFAQs: FAQItem[] = [
   {
     id: 'faq-004',
     questionAr: 'كيف يتم حماية المدفوعات؟',
-    questionEn: 'How are payments protected?',
+    questionEn: 'كيف يتم حماية المدفوعات؟',
     answerAr:
       'نستخدم نظام الضمان المالي حيث يتم حجز المبلغ في المنصة حتى يتم إنجاز العمل وموافقة العميل. هذا يضمن حقوق الطرفين ويحميهم من أي مخاطر.',
-    answerEn: 'We use escrow system where amount is held until work completion.',
+    answerEn:
+      'نستخدم نظام الضمان المالي حيث يتم حجز المبلغ في المنصة حتى يتم إنجاز العمل وموافقة العميل. هذا يضمن حقوق الطرفين ويحميهم من أي مخاطر.',
     categoryId: null,
     displayOrder: 4,
     isPublished: true,
